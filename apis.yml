@@ -1,11 +1,9 @@
 aid: klaviyo
-url: 
-  https://raw.githubusercontent.com/api-search/klaviyo/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-search/klaviyo/refs/heads/main/apis.yml
 apis:
   - aid: klaviyo:klaviyo
     name: Klaviyo
-    tags:
-      - API
+    tags: []
     humanURL: https://developers.klaviyo.com/
     properties:
       - url: https://developers.klaviyo.com/
@@ -17,8 +15,8 @@ apis:
 name: Klaviyo
 tags:
   - Commerce
-  - Point of Sales
   - Inventory
+  - Point of Sales
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
