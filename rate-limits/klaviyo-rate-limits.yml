@@ -1,0 +1,40 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Klaviyo
+providerId: klaviyo
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Email
+  - SMS
+description: 'Klaviyo Public API: per-endpoint burst and steady-state rate limits.'
+sources:
+  - https://www.klaviyo.com/pricing
+  - https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: Default burst
+    scope: account/endpoint
+    metric: requests_per_second
+    limit: 75
+    timeFrame: second
+  - name: Default steady-state
+    scope: account/endpoint
+    metric: requests_per_minute
+    limit: 700
+    timeFrame: minute
+  - name: Profile create-or-update burst
+    scope: account
+    metric: requests_per_second
+    limit: 75
+    timeFrame: second
+  - name: Bulk profile import
+    scope: account
+    metric: concurrent_jobs
+    limit: 1

@@ -1,0 +1,55 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Klaviyo
+providerId: klaviyo
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Marketing Automation
+description: FOCUS-aligned FinOps for Klaviyo.
+sources:
+  - https://www.klaviyo.com/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Klaviyo
+serviceCategory: Marketing Automation
+billingModel:
+  pricingCategory: Tiered by Profile Count + SMS Credits
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Klaviyo
+  ServiceCategory: Marketing Automation
+  ProviderName: Klaviyo
+  PublisherName: Klaviyo
+  BillingCurrency: USD
+meters:
+  - name: active_profiles
+    unit: profile
+    aggregation: max
+  - name: email_sends
+    unit: email
+    aggregation: sum
+  - name: sms_credits_used
+    unit: credit
+    aggregation: sum
+  - name: mobile_push_sends
+    unit: push
+    aggregation: sum
+principles:
+  - name: Visibility
+    description: Track Klaviyo consumption monthly via admin/billing exports.
+  - name: Allocation
+    description: Tag seats/usage to teams or cost centers for chargeback.
+  - name: Optimization
+    description: Right-size tier and seat count quarterly; reclaim inactive seats.
+  - name: Accountability
+    description: Set spend alerts and renew at observed active utilization.
