@@ -117,6 +117,12 @@ common:
     sources:
       - https://www.klaviyo.com/pricing
     updated: '2026-05-04'
+  - type: Integrations
+    url: https://www.klaviyo.com/partners
+integrations:
+  - name: Email subject line generator
+  - name: Email & SMS ROI calculator
+  - name: Become a partner
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
