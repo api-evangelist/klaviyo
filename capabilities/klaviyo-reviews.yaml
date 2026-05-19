@@ -1,0 +1,241 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Reviews
+  description: 'Klaviyo API — Reviews. 3 operations. Lead operation: Get Reviews. Self-contained Naftiko capability covering
+    one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Reviews
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-reviews
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Reviews business capability. Self-contained, no shared references.
+    resources:
+    - name: api-reviews
+      path: /api/reviews
+      operations:
+      - name: getreviews
+        method: GET
+        description: Get Reviews
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[event]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[review]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`created`: '
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-reviews-id
+      path: /api/reviews/{id}
+      operations:
+      - name: getreview
+        method: GET
+        description: Get Review
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the review
+          required: true
+        - name: fields[event]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[review]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatereview
+        method: PATCH
+        description: Update Review
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of the review (review ID).
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-reviews-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Reviews. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/reviews
+      name: api-reviews
+      description: REST surface for api-reviews.
+      operations:
+      - method: GET
+        name: getreviews
+        description: Get Reviews
+        call: klaviyo-reviews.getreviews
+        with:
+          fields[event]: rest.fields[event]
+          fields[review]: rest.fields[review]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/reviews/{id}
+      name: api-reviews-id
+      description: REST surface for api-reviews-id.
+      operations:
+      - method: GET
+        name: getreview
+        description: Get Review
+        call: klaviyo-reviews.getreview
+        with:
+          id: rest.id
+          fields[event]: rest.fields[event]
+          fields[review]: rest.fields[review]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatereview
+        description: Update Review
+        call: klaviyo-reviews.updatereview
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-reviews-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Reviews. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-reviews
+      description: Get Reviews
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-reviews.getreviews
+      with:
+        fields[event]: tools.fields[event]
+        fields[review]: tools.fields[review]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-review
+      description: Get Review
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-reviews.getreview
+      with:
+        id: tools.id
+        fields[event]: tools.fields[event]
+        fields[review]: tools.fields[review]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-review
+      description: Update Review
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-reviews.updatereview
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

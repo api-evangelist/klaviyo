@@ -1,0 +1,379 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Webhooks
+  description: 'Klaviyo API — Webhooks. 7 operations. Lead operation: Get Webhook Topics. Self-contained Naftiko capability
+    covering one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-webhooks
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: api-webhook-topics
+      path: /api/webhook-topics
+      operations:
+      - name: getwebhooktopics
+        method: GET
+        description: Get Webhook Topics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-webhook-topics-id
+      path: /api/webhook-topics/{id}
+      operations:
+      - name: getwebhooktopic
+        method: GET
+        description: Get Webhook Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the webhook topic.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-webhooks
+      path: /api/webhooks
+      operations:
+      - name: getwebhooks
+        method: GET
+        description: Get Webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[webhook]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createwebhook
+        method: POST
+        description: Create Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-webhooks-id
+      path: /api/webhooks/{id}
+      operations:
+      - name: getwebhook
+        method: GET
+        description: Get Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the webhook.
+          required: true
+        - name: fields[webhook]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatewebhook
+        method: PATCH
+        description: Update Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the webhook.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewebhook
+        method: DELETE
+        description: Delete Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the webhook.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-webhooks-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Webhooks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/webhook-topics
+      name: api-webhook-topics
+      description: REST surface for api-webhook-topics.
+      operations:
+      - method: GET
+        name: getwebhooktopics
+        description: Get Webhook Topics
+        call: klaviyo-webhooks.getwebhooktopics
+        with:
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/webhook-topics/{id}
+      name: api-webhook-topics-id
+      description: REST surface for api-webhook-topics-id.
+      operations:
+      - method: GET
+        name: getwebhooktopic
+        description: Get Webhook Topic
+        call: klaviyo-webhooks.getwebhooktopic
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/webhooks
+      name: api-webhooks
+      description: REST surface for api-webhooks.
+      operations:
+      - method: GET
+        name: getwebhooks
+        description: Get Webhooks
+        call: klaviyo-webhooks.getwebhooks
+        with:
+          fields[webhook]: rest.fields[webhook]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhook
+        description: Create Webhook
+        call: klaviyo-webhooks.createwebhook
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/webhooks/{id}
+      name: api-webhooks-id
+      description: REST surface for api-webhooks-id.
+      operations:
+      - method: GET
+        name: getwebhook
+        description: Get Webhook
+        call: klaviyo-webhooks.getwebhook
+        with:
+          id: rest.id
+          fields[webhook]: rest.fields[webhook]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatewebhook
+        description: Update Webhook
+        call: klaviyo-webhooks.updatewebhook
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhook
+        description: Delete Webhook
+        call: klaviyo-webhooks.deletewebhook
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Webhooks. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-webhook-topics
+      description: Get Webhook Topics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-webhooks.getwebhooktopics
+      with:
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-webhook-topic
+      description: Get Webhook Topic
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-webhooks.getwebhooktopic
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-webhooks
+      description: Get Webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-webhooks.getwebhooks
+      with:
+        fields[webhook]: tools.fields[webhook]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-webhook
+      description: Create Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-webhooks.createwebhook
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-webhook
+      description: Get Webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-webhooks.getwebhook
+      with:
+        id: tools.id
+        fields[webhook]: tools.fields[webhook]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-webhook
+      description: Update Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-webhooks.updatewebhook
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-webhook
+      description: Delete Webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-webhooks.deletewebhook
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,1378 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Metrics
+  description: 'Klaviyo API — Metrics. 24 operations. Lead operation: Get Custom Metrics. Self-contained Naftiko capability
+    covering one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Metrics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-metrics
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Metrics business capability. Self-contained, no shared references.
+    resources:
+    - name: api-custom-metrics
+      path: /api/custom-metrics
+      operations:
+      - name: getcustommetrics
+        method: GET
+        description: Get Custom Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[custom-metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createcustommetric
+        method: POST
+        description: Create Custom Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-custom-metrics-id
+      path: /api/custom-metrics/{id}
+      operations:
+      - name: getcustommetric
+        method: GET
+        description: Get Custom Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the custom metric
+          required: true
+        - name: fields[custom-metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatecustommetric
+        method: PATCH
+        description: Update Custom Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the custom metric
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecustommetric
+        method: DELETE
+        description: Delete Custom Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the custom metric
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-custom-metrics-id-metrics
+      path: /api/custom-metrics/{id}/metrics
+      operations:
+      - name: getmetricsforcustommetric
+        method: GET
+        description: Get Metrics for Custom Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the custom metric
+          required: true
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-custom-metrics-id-relationships-metrics
+      path: /api/custom-metrics/{id}/relationships/metrics
+      operations:
+      - name: getmetricidsforcustommetric
+        method: GET
+        description: Get Metric IDs for Custom Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the custom metric
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-mapped-metrics
+      path: /api/mapped-metrics
+      operations:
+      - name: getmappedmetrics
+        method: GET
+        description: Get Mapped Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[custom-metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[mapped-metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-mapped-metrics-id
+      path: /api/mapped-metrics/{id}
+      operations:
+      - name: getmappedmetric
+        method: GET
+        description: Get Mapped Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The type of mapping.
+          required: true
+        - name: fields[custom-metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[mapped-metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatemappedmetric
+        method: PATCH
+        description: Update Mapped Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The type of mapping.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-mapped-metrics-id-custom-metric
+      path: /api/mapped-metrics/{id}/custom-metric
+      operations:
+      - name: getcustommetricformappedmetric
+        method: GET
+        description: Get Custom Metric for Mapped Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The type of mapping.
+          required: true
+        - name: fields[custom-metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-mapped-metrics-id-metric
+      path: /api/mapped-metrics/{id}/metric
+      operations:
+      - name: getmetricformappedmetric
+        method: GET
+        description: Get Metric for Mapped Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The type of mapping.
+          required: true
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-mapped-metrics-id-relationships-custom-metric
+      path: /api/mapped-metrics/{id}/relationships/custom-metric
+      operations:
+      - name: getcustommetricidformappedmetric
+        method: GET
+        description: Get Custom Metric ID for Mapped Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The type of mapping.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-mapped-metrics-id-relationships-metric
+      path: /api/mapped-metrics/{id}/relationships/metric
+      operations:
+      - name: getmetricidformappedmetric
+        method: GET
+        description: Get Metric ID for Mapped Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The type of mapping.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metric-aggregates
+      path: /api/metric-aggregates
+      operations:
+      - name: querymetricaggregates
+        method: POST
+        description: Query Metric Aggregates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-metric-properties-id
+      path: /api/metric-properties/{id}
+      operations:
+      - name: getmetricproperty
+        method: GET
+        description: Get Metric Property
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the metric property
+          required: true
+        - name: additional-fields[metric-property]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''sample_values'''
+        - name: fields[metric-property]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metric-properties-id-metric
+      path: /api/metric-properties/{id}/metric
+      operations:
+      - name: getmetricformetricproperty
+        method: GET
+        description: Get Metric for Metric Property
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the metric property
+          required: true
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metric-properties-id-relationships-metric
+      path: /api/metric-properties/{id}/relationships/metric
+      operations:
+      - name: getmetricidformetricproperty
+        method: GET
+        description: Get Metric ID for Metric Property
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the metric property
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metrics
+      path: /api/metrics
+      operations:
+      - name: getmetrics
+        method: GET
+        description: Get Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[flow]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`integratio
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metrics-id
+      path: /api/metrics/{id}
+      operations:
+      - name: getmetric
+        method: GET
+        description: Get Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Metric ID
+          required: true
+        - name: fields[flow]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[metric]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metrics-id-flow-triggers
+      path: /api/metrics/{id}/flow-triggers
+      operations:
+      - name: getflowstriggeredbymetric
+        method: GET
+        description: Get Flows Triggered by Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[flow]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metrics-id-metric-properties
+      path: /api/metrics/{id}/metric-properties
+      operations:
+      - name: getpropertiesformetric
+        method: GET
+        description: Get Properties for Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the metric
+          required: true
+        - name: additional-fields[metric-property]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''sample_values'''
+        - name: fields[metric-property]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metrics-id-relationships-flow-triggers
+      path: /api/metrics/{id}/relationships/flow-triggers
+      operations:
+      - name: getidsforflowstriggeredbymetric
+        method: GET
+        description: Get IDs for Flows Triggered by Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-metrics-id-relationships-metric-properties
+      path: /api/metrics/{id}/relationships/metric-properties
+      operations:
+      - name: getpropertyidsformetric
+        method: GET
+        description: Get Property IDs for Metric
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the metric
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-metrics-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Metrics. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/custom-metrics
+      name: api-custom-metrics
+      description: REST surface for api-custom-metrics.
+      operations:
+      - method: GET
+        name: getcustommetrics
+        description: Get Custom Metrics
+        call: klaviyo-metrics.getcustommetrics
+        with:
+          fields[custom-metric]: rest.fields[custom-metric]
+          fields[metric]: rest.fields[metric]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcustommetric
+        description: Create Custom Metric
+        call: klaviyo-metrics.createcustommetric
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/custom-metrics/{id}
+      name: api-custom-metrics-id
+      description: REST surface for api-custom-metrics-id.
+      operations:
+      - method: GET
+        name: getcustommetric
+        description: Get Custom Metric
+        call: klaviyo-metrics.getcustommetric
+        with:
+          id: rest.id
+          fields[custom-metric]: rest.fields[custom-metric]
+          fields[metric]: rest.fields[metric]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecustommetric
+        description: Update Custom Metric
+        call: klaviyo-metrics.updatecustommetric
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecustommetric
+        description: Delete Custom Metric
+        call: klaviyo-metrics.deletecustommetric
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/custom-metrics/{id}/metrics
+      name: api-custom-metrics-id-metrics
+      description: REST surface for api-custom-metrics-id-metrics.
+      operations:
+      - method: GET
+        name: getmetricsforcustommetric
+        description: Get Metrics for Custom Metric
+        call: klaviyo-metrics.getmetricsforcustommetric
+        with:
+          id: rest.id
+          fields[metric]: rest.fields[metric]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/custom-metrics/{id}/relationships/metrics
+      name: api-custom-metrics-id-relationships-metrics
+      description: REST surface for api-custom-metrics-id-relationships-metrics.
+      operations:
+      - method: GET
+        name: getmetricidsforcustommetric
+        description: Get Metric IDs for Custom Metric
+        call: klaviyo-metrics.getmetricidsforcustommetric
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/mapped-metrics
+      name: api-mapped-metrics
+      description: REST surface for api-mapped-metrics.
+      operations:
+      - method: GET
+        name: getmappedmetrics
+        description: Get Mapped Metrics
+        call: klaviyo-metrics.getmappedmetrics
+        with:
+          fields[custom-metric]: rest.fields[custom-metric]
+          fields[mapped-metric]: rest.fields[mapped-metric]
+          fields[metric]: rest.fields[metric]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/mapped-metrics/{id}
+      name: api-mapped-metrics-id
+      description: REST surface for api-mapped-metrics-id.
+      operations:
+      - method: GET
+        name: getmappedmetric
+        description: Get Mapped Metric
+        call: klaviyo-metrics.getmappedmetric
+        with:
+          id: rest.id
+          fields[custom-metric]: rest.fields[custom-metric]
+          fields[mapped-metric]: rest.fields[mapped-metric]
+          fields[metric]: rest.fields[metric]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatemappedmetric
+        description: Update Mapped Metric
+        call: klaviyo-metrics.updatemappedmetric
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/mapped-metrics/{id}/custom-metric
+      name: api-mapped-metrics-id-custom-metric
+      description: REST surface for api-mapped-metrics-id-custom-metric.
+      operations:
+      - method: GET
+        name: getcustommetricformappedmetric
+        description: Get Custom Metric for Mapped Metric
+        call: klaviyo-metrics.getcustommetricformappedmetric
+        with:
+          id: rest.id
+          fields[custom-metric]: rest.fields[custom-metric]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/mapped-metrics/{id}/metric
+      name: api-mapped-metrics-id-metric
+      description: REST surface for api-mapped-metrics-id-metric.
+      operations:
+      - method: GET
+        name: getmetricformappedmetric
+        description: Get Metric for Mapped Metric
+        call: klaviyo-metrics.getmetricformappedmetric
+        with:
+          id: rest.id
+          fields[metric]: rest.fields[metric]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/mapped-metrics/{id}/relationships/custom-metric
+      name: api-mapped-metrics-id-relationships-custom-metric
+      description: REST surface for api-mapped-metrics-id-relationships-custom-metric.
+      operations:
+      - method: GET
+        name: getcustommetricidformappedmetric
+        description: Get Custom Metric ID for Mapped Metric
+        call: klaviyo-metrics.getcustommetricidformappedmetric
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/mapped-metrics/{id}/relationships/metric
+      name: api-mapped-metrics-id-relationships-metric
+      description: REST surface for api-mapped-metrics-id-relationships-metric.
+      operations:
+      - method: GET
+        name: getmetricidformappedmetric
+        description: Get Metric ID for Mapped Metric
+        call: klaviyo-metrics.getmetricidformappedmetric
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metric-aggregates
+      name: api-metric-aggregates
+      description: REST surface for api-metric-aggregates.
+      operations:
+      - method: POST
+        name: querymetricaggregates
+        description: Query Metric Aggregates
+        call: klaviyo-metrics.querymetricaggregates
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metric-properties/{id}
+      name: api-metric-properties-id
+      description: REST surface for api-metric-properties-id.
+      operations:
+      - method: GET
+        name: getmetricproperty
+        description: Get Metric Property
+        call: klaviyo-metrics.getmetricproperty
+        with:
+          id: rest.id
+          additional-fields[metric-property]: rest.additional-fields[metric-property]
+          fields[metric-property]: rest.fields[metric-property]
+          fields[metric]: rest.fields[metric]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metric-properties/{id}/metric
+      name: api-metric-properties-id-metric
+      description: REST surface for api-metric-properties-id-metric.
+      operations:
+      - method: GET
+        name: getmetricformetricproperty
+        description: Get Metric for Metric Property
+        call: klaviyo-metrics.getmetricformetricproperty
+        with:
+          id: rest.id
+          fields[metric]: rest.fields[metric]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metric-properties/{id}/relationships/metric
+      name: api-metric-properties-id-relationships-metric
+      description: REST surface for api-metric-properties-id-relationships-metric.
+      operations:
+      - method: GET
+        name: getmetricidformetricproperty
+        description: Get Metric ID for Metric Property
+        call: klaviyo-metrics.getmetricidformetricproperty
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metrics
+      name: api-metrics
+      description: REST surface for api-metrics.
+      operations:
+      - method: GET
+        name: getmetrics
+        description: Get Metrics
+        call: klaviyo-metrics.getmetrics
+        with:
+          fields[flow]: rest.fields[flow]
+          fields[metric]: rest.fields[metric]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metrics/{id}
+      name: api-metrics-id
+      description: REST surface for api-metrics-id.
+      operations:
+      - method: GET
+        name: getmetric
+        description: Get Metric
+        call: klaviyo-metrics.getmetric
+        with:
+          id: rest.id
+          fields[flow]: rest.fields[flow]
+          fields[metric]: rest.fields[metric]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metrics/{id}/flow-triggers
+      name: api-metrics-id-flow-triggers
+      description: REST surface for api-metrics-id-flow-triggers.
+      operations:
+      - method: GET
+        name: getflowstriggeredbymetric
+        description: Get Flows Triggered by Metric
+        call: klaviyo-metrics.getflowstriggeredbymetric
+        with:
+          id: rest.id
+          fields[flow]: rest.fields[flow]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metrics/{id}/metric-properties
+      name: api-metrics-id-metric-properties
+      description: REST surface for api-metrics-id-metric-properties.
+      operations:
+      - method: GET
+        name: getpropertiesformetric
+        description: Get Properties for Metric
+        call: klaviyo-metrics.getpropertiesformetric
+        with:
+          id: rest.id
+          additional-fields[metric-property]: rest.additional-fields[metric-property]
+          fields[metric-property]: rest.fields[metric-property]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metrics/{id}/relationships/flow-triggers
+      name: api-metrics-id-relationships-flow-triggers
+      description: REST surface for api-metrics-id-relationships-flow-triggers.
+      operations:
+      - method: GET
+        name: getidsforflowstriggeredbymetric
+        description: Get IDs for Flows Triggered by Metric
+        call: klaviyo-metrics.getidsforflowstriggeredbymetric
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/metrics/{id}/relationships/metric-properties
+      name: api-metrics-id-relationships-metric-properties
+      description: REST surface for api-metrics-id-relationships-metric-properties.
+      operations:
+      - method: GET
+        name: getpropertyidsformetric
+        description: Get Property IDs for Metric
+        call: klaviyo-metrics.getpropertyidsformetric
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-metrics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Metrics. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-custom-metrics
+      description: Get Custom Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getcustommetrics
+      with:
+        fields[custom-metric]: tools.fields[custom-metric]
+        fields[metric]: tools.fields[metric]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-custom-metric
+      description: Create Custom Metric
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-metrics.createcustommetric
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-custom-metric
+      description: Get Custom Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getcustommetric
+      with:
+        id: tools.id
+        fields[custom-metric]: tools.fields[custom-metric]
+        fields[metric]: tools.fields[metric]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-custom-metric
+      description: Update Custom Metric
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.updatecustommetric
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-custom-metric
+      description: Delete Custom Metric
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-metrics.deletecustommetric
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metrics-custom-metric
+      description: Get Metrics for Custom Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetricsforcustommetric
+      with:
+        id: tools.id
+        fields[metric]: tools.fields[metric]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-ids-custom-metric
+      description: Get Metric IDs for Custom Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetricidsforcustommetric
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-mapped-metrics
+      description: Get Mapped Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmappedmetrics
+      with:
+        fields[custom-metric]: tools.fields[custom-metric]
+        fields[mapped-metric]: tools.fields[mapped-metric]
+        fields[metric]: tools.fields[metric]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-mapped-metric
+      description: Get Mapped Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmappedmetric
+      with:
+        id: tools.id
+        fields[custom-metric]: tools.fields[custom-metric]
+        fields[mapped-metric]: tools.fields[mapped-metric]
+        fields[metric]: tools.fields[metric]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-mapped-metric
+      description: Update Mapped Metric
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.updatemappedmetric
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-custom-metric-mapped-metric
+      description: Get Custom Metric for Mapped Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getcustommetricformappedmetric
+      with:
+        id: tools.id
+        fields[custom-metric]: tools.fields[custom-metric]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-mapped-metric
+      description: Get Metric for Mapped Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetricformappedmetric
+      with:
+        id: tools.id
+        fields[metric]: tools.fields[metric]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-custom-metric-id-mapped
+      description: Get Custom Metric ID for Mapped Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getcustommetricidformappedmetric
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-id-mapped-metric
+      description: Get Metric ID for Mapped Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetricidformappedmetric
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-metric-aggregates
+      description: Query Metric Aggregates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: klaviyo-metrics.querymetricaggregates
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-property
+      description: Get Metric Property
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetricproperty
+      with:
+        id: tools.id
+        additional-fields[metric-property]: tools.additional-fields[metric-property]
+        fields[metric-property]: tools.fields[metric-property]
+        fields[metric]: tools.fields[metric]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-metric-property
+      description: Get Metric for Metric Property
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetricformetricproperty
+      with:
+        id: tools.id
+        fields[metric]: tools.fields[metric]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-id-metric-property
+      description: Get Metric ID for Metric Property
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetricidformetricproperty
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metrics
+      description: Get Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetrics
+      with:
+        fields[flow]: tools.fields[flow]
+        fields[metric]: tools.fields[metric]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric
+      description: Get Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getmetric
+      with:
+        id: tools.id
+        fields[flow]: tools.fields[flow]
+        fields[metric]: tools.fields[metric]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-flows-triggered-metric
+      description: Get Flows Triggered by Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getflowstriggeredbymetric
+      with:
+        id: tools.id
+        fields[flow]: tools.fields[flow]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-properties-metric
+      description: Get Properties for Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getpropertiesformetric
+      with:
+        id: tools.id
+        additional-fields[metric-property]: tools.additional-fields[metric-property]
+        fields[metric-property]: tools.fields[metric-property]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ids-flows-triggered-metric
+      description: Get IDs for Flows Triggered by Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getidsforflowstriggeredbymetric
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-property-ids-metric
+      description: Get Property IDs for Metric
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-metrics.getpropertyidsformetric
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.

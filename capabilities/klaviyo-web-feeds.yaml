@@ -1,0 +1,301 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Web Feeds
+  description: 'Klaviyo API — Web Feeds. 5 operations. Lead operation: Get Web Feeds. Self-contained Naftiko capability covering
+    one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Web Feeds
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-web-feeds
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Web Feeds business capability. Self-contained, no shared references.
+    resources:
+    - name: api-web-feeds
+      path: /api/web-feeds
+      operations:
+      - name: getwebfeeds
+        method: GET
+        description: Get Web Feeds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[web-feed]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`name`: `an'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 5. Min: 1. Max: 20.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createwebfeed
+        method: POST
+        description: Create Web Feed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-web-feeds-id
+      path: /api/web-feeds/{id}
+      operations:
+      - name: getwebfeed
+        method: GET
+        description: Get Web Feed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the web feed
+          required: true
+        - name: fields[web-feed]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatewebfeed
+        method: PATCH
+        description: Update Web Feed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the web feed
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewebfeed
+        method: DELETE
+        description: Delete Web Feed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the web feed
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-web-feeds-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Web Feeds. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/web-feeds
+      name: api-web-feeds
+      description: REST surface for api-web-feeds.
+      operations:
+      - method: GET
+        name: getwebfeeds
+        description: Get Web Feeds
+        call: klaviyo-web-feeds.getwebfeeds
+        with:
+          fields[web-feed]: rest.fields[web-feed]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebfeed
+        description: Create Web Feed
+        call: klaviyo-web-feeds.createwebfeed
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/web-feeds/{id}
+      name: api-web-feeds-id
+      description: REST surface for api-web-feeds-id.
+      operations:
+      - method: GET
+        name: getwebfeed
+        description: Get Web Feed
+        call: klaviyo-web-feeds.getwebfeed
+        with:
+          id: rest.id
+          fields[web-feed]: rest.fields[web-feed]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatewebfeed
+        description: Update Web Feed
+        call: klaviyo-web-feeds.updatewebfeed
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebfeed
+        description: Delete Web Feed
+        call: klaviyo-web-feeds.deletewebfeed
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-web-feeds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Web Feeds. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-web-feeds
+      description: Get Web Feeds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-web-feeds.getwebfeeds
+      with:
+        fields[web-feed]: tools.fields[web-feed]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-web-feed
+      description: Create Web Feed
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-web-feeds.createwebfeed
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-web-feed
+      description: Get Web Feed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-web-feeds.getwebfeed
+      with:
+        id: tools.id
+        fields[web-feed]: tools.fields[web-feed]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-web-feed
+      description: Update Web Feed
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-web-feeds.updatewebfeed
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-web-feed
+      description: Delete Web Feed
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-web-feeds.deletewebfeed
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.

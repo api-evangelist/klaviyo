@@ -1,0 +1,987 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Coupons
+  description: 'Klaviyo API — Coupons. 17 operations. Lead operation: Get Bulk Create Coupon Code Jobs. Self-contained Naftiko
+    capability covering one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Coupons
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-coupons
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Coupons business capability. Self-contained, no shared references.
+    resources:
+    - name: api-coupon-code-bulk-create-jobs
+      path: /api/coupon-code-bulk-create-jobs
+      operations:
+      - name: getbulkcreatecouponcodejobs
+        method: GET
+        description: Get Bulk Create Coupon Code Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[coupon-code-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkcreatecouponcodes
+        method: POST
+        description: Bulk Create Coupon Codes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-coupon-code-bulk-create-jobs-job_id
+      path: /api/coupon-code-bulk-create-jobs/{job_id}
+      operations:
+      - name: getbulkcreatecouponcodesjob
+        method: GET
+        description: Get Bulk Create Coupon Codes Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[coupon-code-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[coupon-code]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-coupon-codes
+      path: /api/coupon-codes
+      operations:
+      - name: getcouponcodes
+        method: GET
+        description: Get Coupon Codes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[coupon-code]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[coupon]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`expires_at
+          required: true
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createcouponcode
+        method: POST
+        description: Create Coupon Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-coupon-codes-id
+      path: /api/coupon-codes/{id}
+      operations:
+      - name: getcouponcode
+        method: GET
+        description: Get Coupon Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of a coupon code is a combination of its unique code and the id of the coupon it is associated
+            with.
+          required: true
+        - name: fields[coupon-code]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[coupon]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatecouponcode
+        method: PATCH
+        description: Update Coupon Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of a coupon code is a combination of its unique code and the id of the coupon it is associated
+            with.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecouponcode
+        method: DELETE
+        description: Delete Coupon Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of a coupon code is a combination of its unique code and the id of the coupon it is associated
+            with.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-coupon-codes-id-coupon
+      path: /api/coupon-codes/{id}/coupon
+      operations:
+      - name: getcouponforcouponcode
+        method: GET
+        description: Get Coupon For Coupon Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the coupon to look up the relationship of.
+          required: true
+        - name: fields[coupon]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-coupon-codes-id-relationships-coupon
+      path: /api/coupon-codes/{id}/relationships/coupon
+      operations:
+      - name: getcouponidforcouponcode
+        method: GET
+        description: Get Coupon ID for Coupon Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the coupon to look up the relationship of.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-coupons
+      path: /api/coupons
+      operations:
+      - name: getcoupons
+        method: GET
+        description: Get Coupons
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[coupon]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createcoupon
+        method: POST
+        description: Create Coupon
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-coupons-id
+      path: /api/coupons/{id}
+      operations:
+      - name: getcoupon
+        method: GET
+        description: Get Coupon
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+          required: true
+        - name: fields[coupon]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatecoupon
+        method: PATCH
+        description: Update Coupon
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecoupon
+        method: DELETE
+        description: Delete Coupon
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-coupons-id-coupon-codes
+      path: /api/coupons/{id}/coupon-codes
+      operations:
+      - name: getcouponcodesforcoupon
+        method: GET
+        description: Get Coupon Codes for Coupon
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the coupon to look up the relationship of.
+          required: true
+        - name: fields[coupon-code]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`expires_at
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-coupons-id-relationships-coupon-codes
+      path: /api/coupons/{id}/relationships/coupon-codes
+      operations:
+      - name: getcouponcodeidsforcoupon
+        method: GET
+        description: Get Coupon Code IDs for Coupon
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the coupon to look up the relationship of.
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`expires_at
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-coupons-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Coupons. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/coupon-code-bulk-create-jobs
+      name: api-coupon-code-bulk-create-jobs
+      description: REST surface for api-coupon-code-bulk-create-jobs.
+      operations:
+      - method: GET
+        name: getbulkcreatecouponcodejobs
+        description: Get Bulk Create Coupon Code Jobs
+        call: klaviyo-coupons.getbulkcreatecouponcodejobs
+        with:
+          fields[coupon-code-bulk-create-job]: rest.fields[coupon-code-bulk-create-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkcreatecouponcodes
+        description: Bulk Create Coupon Codes
+        call: klaviyo-coupons.bulkcreatecouponcodes
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupon-code-bulk-create-jobs/{job-id}
+      name: api-coupon-code-bulk-create-jobs-job-id
+      description: REST surface for api-coupon-code-bulk-create-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkcreatecouponcodesjob
+        description: Get Bulk Create Coupon Codes Job
+        call: klaviyo-coupons.getbulkcreatecouponcodesjob
+        with:
+          job_id: rest.job_id
+          fields[coupon-code-bulk-create-job]: rest.fields[coupon-code-bulk-create-job]
+          fields[coupon-code]: rest.fields[coupon-code]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupon-codes
+      name: api-coupon-codes
+      description: REST surface for api-coupon-codes.
+      operations:
+      - method: GET
+        name: getcouponcodes
+        description: Get Coupon Codes
+        call: klaviyo-coupons.getcouponcodes
+        with:
+          fields[coupon-code]: rest.fields[coupon-code]
+          fields[coupon]: rest.fields[coupon]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcouponcode
+        description: Create Coupon Code
+        call: klaviyo-coupons.createcouponcode
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupon-codes/{id}
+      name: api-coupon-codes-id
+      description: REST surface for api-coupon-codes-id.
+      operations:
+      - method: GET
+        name: getcouponcode
+        description: Get Coupon Code
+        call: klaviyo-coupons.getcouponcode
+        with:
+          id: rest.id
+          fields[coupon-code]: rest.fields[coupon-code]
+          fields[coupon]: rest.fields[coupon]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecouponcode
+        description: Update Coupon Code
+        call: klaviyo-coupons.updatecouponcode
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecouponcode
+        description: Delete Coupon Code
+        call: klaviyo-coupons.deletecouponcode
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupon-codes/{id}/coupon
+      name: api-coupon-codes-id-coupon
+      description: REST surface for api-coupon-codes-id-coupon.
+      operations:
+      - method: GET
+        name: getcouponforcouponcode
+        description: Get Coupon For Coupon Code
+        call: klaviyo-coupons.getcouponforcouponcode
+        with:
+          id: rest.id
+          fields[coupon]: rest.fields[coupon]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupon-codes/{id}/relationships/coupon
+      name: api-coupon-codes-id-relationships-coupon
+      description: REST surface for api-coupon-codes-id-relationships-coupon.
+      operations:
+      - method: GET
+        name: getcouponidforcouponcode
+        description: Get Coupon ID for Coupon Code
+        call: klaviyo-coupons.getcouponidforcouponcode
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupons
+      name: api-coupons
+      description: REST surface for api-coupons.
+      operations:
+      - method: GET
+        name: getcoupons
+        description: Get Coupons
+        call: klaviyo-coupons.getcoupons
+        with:
+          fields[coupon]: rest.fields[coupon]
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcoupon
+        description: Create Coupon
+        call: klaviyo-coupons.createcoupon
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupons/{id}
+      name: api-coupons-id
+      description: REST surface for api-coupons-id.
+      operations:
+      - method: GET
+        name: getcoupon
+        description: Get Coupon
+        call: klaviyo-coupons.getcoupon
+        with:
+          id: rest.id
+          fields[coupon]: rest.fields[coupon]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecoupon
+        description: Update Coupon
+        call: klaviyo-coupons.updatecoupon
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecoupon
+        description: Delete Coupon
+        call: klaviyo-coupons.deletecoupon
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupons/{id}/coupon-codes
+      name: api-coupons-id-coupon-codes
+      description: REST surface for api-coupons-id-coupon-codes.
+      operations:
+      - method: GET
+        name: getcouponcodesforcoupon
+        description: Get Coupon Codes for Coupon
+        call: klaviyo-coupons.getcouponcodesforcoupon
+        with:
+          id: rest.id
+          fields[coupon-code]: rest.fields[coupon-code]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/coupons/{id}/relationships/coupon-codes
+      name: api-coupons-id-relationships-coupon-codes
+      description: REST surface for api-coupons-id-relationships-coupon-codes.
+      operations:
+      - method: GET
+        name: getcouponcodeidsforcoupon
+        description: Get Coupon Code IDs for Coupon
+        call: klaviyo-coupons.getcouponcodeidsforcoupon
+        with:
+          id: rest.id
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-coupons-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Coupons. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-bulk-create-coupon-code
+      description: Get Bulk Create Coupon Code Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getbulkcreatecouponcodejobs
+      with:
+        fields[coupon-code-bulk-create-job]: tools.fields[coupon-code-bulk-create-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-create-coupon-codes
+      description: Bulk Create Coupon Codes
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-coupons.bulkcreatecouponcodes
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-create-coupon-codes
+      description: Get Bulk Create Coupon Codes Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getbulkcreatecouponcodesjob
+      with:
+        job_id: tools.job_id
+        fields[coupon-code-bulk-create-job]: tools.fields[coupon-code-bulk-create-job]
+        fields[coupon-code]: tools.fields[coupon-code]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-coupon-codes
+      description: Get Coupon Codes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getcouponcodes
+      with:
+        fields[coupon-code]: tools.fields[coupon-code]
+        fields[coupon]: tools.fields[coupon]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-coupon-code
+      description: Create Coupon Code
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-coupons.createcouponcode
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-coupon-code
+      description: Get Coupon Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getcouponcode
+      with:
+        id: tools.id
+        fields[coupon-code]: tools.fields[coupon-code]
+        fields[coupon]: tools.fields[coupon]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-coupon-code
+      description: Update Coupon Code
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.updatecouponcode
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-coupon-code
+      description: Delete Coupon Code
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-coupons.deletecouponcode
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-coupon-coupon-code
+      description: Get Coupon For Coupon Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getcouponforcouponcode
+      with:
+        id: tools.id
+        fields[coupon]: tools.fields[coupon]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-coupon-id-coupon-code
+      description: Get Coupon ID for Coupon Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getcouponidforcouponcode
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-coupons
+      description: Get Coupons
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getcoupons
+      with:
+        fields[coupon]: tools.fields[coupon]
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-coupon
+      description: Create Coupon
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-coupons.createcoupon
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-coupon
+      description: Get Coupon
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getcoupon
+      with:
+        id: tools.id
+        fields[coupon]: tools.fields[coupon]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-coupon
+      description: Update Coupon
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.updatecoupon
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-coupon
+      description: Delete Coupon
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-coupons.deletecoupon
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-coupon-codes-coupon
+      description: Get Coupon Codes for Coupon
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getcouponcodesforcoupon
+      with:
+        id: tools.id
+        fields[coupon-code]: tools.fields[coupon-code]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-coupon-code-ids-coupon
+      description: Get Coupon Code IDs for Coupon
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-coupons.getcouponcodeidsforcoupon
+      with:
+        id: tools.id
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.

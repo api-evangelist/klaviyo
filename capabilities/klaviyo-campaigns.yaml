@@ -1,0 +1,1458 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Campaigns
+  description: 'Klaviyo API — Campaigns. 26 operations. Lead operation: Create Campaign Clone. Self-contained Naftiko capability
+    covering one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Campaigns
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-campaigns
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Campaigns business capability. Self-contained, no shared references.
+    resources:
+    - name: api-campaign-clone
+      path: /api/campaign-clone
+      operations:
+      - name: createcampaignclone
+        method: POST
+        description: Create Campaign Clone
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-campaign-message-assign-template
+      path: /api/campaign-message-assign-template
+      operations:
+      - name: assigntemplatetocampaignmessage
+        method: POST
+        description: Assign Template to Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-campaign-messages-id
+      path: /api/campaign-messages/{id}
+      operations:
+      - name: getcampaignmessage
+        method: GET
+        description: Get Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The message ID to be retrieved
+          required: true
+        - name: fields[campaign-message]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[campaign]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[image]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[template]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatecampaignmessage
+        method: PATCH
+        description: Update Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The message ID to be retrieved
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-campaign-messages-id-campaign
+      path: /api/campaign-messages/{id}/campaign
+      operations:
+      - name: getcampaignforcampaignmessage
+        method: GET
+        description: Get Campaign for Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[campaign]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaign-messages-id-image
+      path: /api/campaign-messages/{id}/image
+      operations:
+      - name: getimageforcampaignmessage
+        method: GET
+        description: Get Image for Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[image]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaign-messages-id-relationships-campaign
+      path: /api/campaign-messages/{id}/relationships/campaign
+      operations:
+      - name: getcampaignidforcampaignmessage
+        method: GET
+        description: Get Campaign ID for Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaign-messages-id-relationships-image
+      path: /api/campaign-messages/{id}/relationships/image
+      operations:
+      - name: getimageidforcampaignmessage
+        method: GET
+        description: Get Image ID for Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updateimageforcampaignmessage
+        method: PATCH
+        description: Update Image for Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-campaign-messages-id-relationships-template
+      path: /api/campaign-messages/{id}/relationships/template
+      operations:
+      - name: gettemplateidforcampaignmessage
+        method: GET
+        description: Get Template ID for Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaign-messages-id-template
+      path: /api/campaign-messages/{id}/template
+      operations:
+      - name: gettemplateforcampaignmessage
+        method: GET
+        description: Get Template for Campaign Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[template]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaign-recipient-estimation-jobs
+      path: /api/campaign-recipient-estimation-jobs
+      operations:
+      - name: refreshcampaignrecipientestimation
+        method: POST
+        description: Refresh Campaign Recipient Estimation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-campaign-recipient-estimation-jobs-id
+      path: /api/campaign-recipient-estimation-jobs/{id}
+      operations:
+      - name: getcampaignrecipientestimationjob
+        method: GET
+        description: Get Campaign Recipient Estimation Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the campaign to get recipient estimation status
+          required: true
+        - name: fields[campaign-recipient-estimation-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaign-recipient-estimations-id
+      path: /api/campaign-recipient-estimations/{id}
+      operations:
+      - name: getcampaignrecipientestimation
+        method: GET
+        description: Get Campaign Recipient Estimation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the campaign for which to get the estimated number of recipients
+          required: true
+        - name: fields[campaign-recipient-estimation]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaign-send-jobs
+      path: /api/campaign-send-jobs
+      operations:
+      - name: sendcampaign
+        method: POST
+        description: Send Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-campaign-send-jobs-id
+      path: /api/campaign-send-jobs/{id}
+      operations:
+      - name: getcampaignsendjob
+        method: GET
+        description: Get Campaign Send Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the campaign to send
+          required: true
+        - name: fields[campaign-send-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: cancelcampaignsend
+        method: PATCH
+        description: Cancel Campaign Send
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the currently sending campaign to cancel or revert
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-campaigns
+      path: /api/campaigns
+      operations:
+      - name: getcampaigns
+        method: GET
+        description: Get Campaigns
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[campaign-message]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[campaign]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[tag]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`id`: `any`'
+          required: true
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createcampaign
+        method: POST
+        description: Create Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-campaigns-id
+      path: /api/campaigns/{id}
+      operations:
+      - name: getcampaign
+        method: GET
+        description: Get Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The campaign ID to be retrieved
+          required: true
+        - name: fields[campaign-message]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[campaign]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[tag]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatecampaign
+        method: PATCH
+        description: Update Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The campaign ID to be retrieved
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecampaign
+        method: DELETE
+        description: Delete Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The campaign ID to be deleted
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaigns-id-campaign-messages
+      path: /api/campaigns/{id}/campaign-messages
+      operations:
+      - name: getmessagesforcampaign
+        method: GET
+        description: Get Messages for Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[campaign-message]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[campaign]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[image]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[template]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaigns-id-relationships-campaign-messages
+      path: /api/campaigns/{id}/relationships/campaign-messages
+      operations:
+      - name: getmessageidsforcampaign
+        method: GET
+        description: Get Message IDs for Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaigns-id-relationships-tags
+      path: /api/campaigns/{id}/relationships/tags
+      operations:
+      - name: gettagidsforcampaign
+        method: GET
+        description: Get Tag IDs for Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-campaigns-id-tags
+      path: /api/campaigns/{id}/tags
+      operations:
+      - name: gettagsforcampaign
+        method: GET
+        description: Get Tags for Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[tag]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-campaigns-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Campaigns. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/campaign-clone
+      name: api-campaign-clone
+      description: REST surface for api-campaign-clone.
+      operations:
+      - method: POST
+        name: createcampaignclone
+        description: Create Campaign Clone
+        call: klaviyo-campaigns.createcampaignclone
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-message-assign-template
+      name: api-campaign-message-assign-template
+      description: REST surface for api-campaign-message-assign-template.
+      operations:
+      - method: POST
+        name: assigntemplatetocampaignmessage
+        description: Assign Template to Campaign Message
+        call: klaviyo-campaigns.assigntemplatetocampaignmessage
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-messages/{id}
+      name: api-campaign-messages-id
+      description: REST surface for api-campaign-messages-id.
+      operations:
+      - method: GET
+        name: getcampaignmessage
+        description: Get Campaign Message
+        call: klaviyo-campaigns.getcampaignmessage
+        with:
+          id: rest.id
+          fields[campaign-message]: rest.fields[campaign-message]
+          fields[campaign]: rest.fields[campaign]
+          fields[image]: rest.fields[image]
+          fields[template]: rest.fields[template]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecampaignmessage
+        description: Update Campaign Message
+        call: klaviyo-campaigns.updatecampaignmessage
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-messages/{id}/campaign
+      name: api-campaign-messages-id-campaign
+      description: REST surface for api-campaign-messages-id-campaign.
+      operations:
+      - method: GET
+        name: getcampaignforcampaignmessage
+        description: Get Campaign for Campaign Message
+        call: klaviyo-campaigns.getcampaignforcampaignmessage
+        with:
+          id: rest.id
+          fields[campaign]: rest.fields[campaign]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-messages/{id}/image
+      name: api-campaign-messages-id-image
+      description: REST surface for api-campaign-messages-id-image.
+      operations:
+      - method: GET
+        name: getimageforcampaignmessage
+        description: Get Image for Campaign Message
+        call: klaviyo-campaigns.getimageforcampaignmessage
+        with:
+          id: rest.id
+          fields[image]: rest.fields[image]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-messages/{id}/relationships/campaign
+      name: api-campaign-messages-id-relationships-campaign
+      description: REST surface for api-campaign-messages-id-relationships-campaign.
+      operations:
+      - method: GET
+        name: getcampaignidforcampaignmessage
+        description: Get Campaign ID for Campaign Message
+        call: klaviyo-campaigns.getcampaignidforcampaignmessage
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-messages/{id}/relationships/image
+      name: api-campaign-messages-id-relationships-image
+      description: REST surface for api-campaign-messages-id-relationships-image.
+      operations:
+      - method: GET
+        name: getimageidforcampaignmessage
+        description: Get Image ID for Campaign Message
+        call: klaviyo-campaigns.getimageidforcampaignmessage
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateimageforcampaignmessage
+        description: Update Image for Campaign Message
+        call: klaviyo-campaigns.updateimageforcampaignmessage
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-messages/{id}/relationships/template
+      name: api-campaign-messages-id-relationships-template
+      description: REST surface for api-campaign-messages-id-relationships-template.
+      operations:
+      - method: GET
+        name: gettemplateidforcampaignmessage
+        description: Get Template ID for Campaign Message
+        call: klaviyo-campaigns.gettemplateidforcampaignmessage
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-messages/{id}/template
+      name: api-campaign-messages-id-template
+      description: REST surface for api-campaign-messages-id-template.
+      operations:
+      - method: GET
+        name: gettemplateforcampaignmessage
+        description: Get Template for Campaign Message
+        call: klaviyo-campaigns.gettemplateforcampaignmessage
+        with:
+          id: rest.id
+          fields[template]: rest.fields[template]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-recipient-estimation-jobs
+      name: api-campaign-recipient-estimation-jobs
+      description: REST surface for api-campaign-recipient-estimation-jobs.
+      operations:
+      - method: POST
+        name: refreshcampaignrecipientestimation
+        description: Refresh Campaign Recipient Estimation
+        call: klaviyo-campaigns.refreshcampaignrecipientestimation
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-recipient-estimation-jobs/{id}
+      name: api-campaign-recipient-estimation-jobs-id
+      description: REST surface for api-campaign-recipient-estimation-jobs-id.
+      operations:
+      - method: GET
+        name: getcampaignrecipientestimationjob
+        description: Get Campaign Recipient Estimation Job
+        call: klaviyo-campaigns.getcampaignrecipientestimationjob
+        with:
+          id: rest.id
+          fields[campaign-recipient-estimation-job]: rest.fields[campaign-recipient-estimation-job]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-recipient-estimations/{id}
+      name: api-campaign-recipient-estimations-id
+      description: REST surface for api-campaign-recipient-estimations-id.
+      operations:
+      - method: GET
+        name: getcampaignrecipientestimation
+        description: Get Campaign Recipient Estimation
+        call: klaviyo-campaigns.getcampaignrecipientestimation
+        with:
+          id: rest.id
+          fields[campaign-recipient-estimation]: rest.fields[campaign-recipient-estimation]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-send-jobs
+      name: api-campaign-send-jobs
+      description: REST surface for api-campaign-send-jobs.
+      operations:
+      - method: POST
+        name: sendcampaign
+        description: Send Campaign
+        call: klaviyo-campaigns.sendcampaign
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaign-send-jobs/{id}
+      name: api-campaign-send-jobs-id
+      description: REST surface for api-campaign-send-jobs-id.
+      operations:
+      - method: GET
+        name: getcampaignsendjob
+        description: Get Campaign Send Job
+        call: klaviyo-campaigns.getcampaignsendjob
+        with:
+          id: rest.id
+          fields[campaign-send-job]: rest.fields[campaign-send-job]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: cancelcampaignsend
+        description: Cancel Campaign Send
+        call: klaviyo-campaigns.cancelcampaignsend
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaigns
+      name: api-campaigns
+      description: REST surface for api-campaigns.
+      operations:
+      - method: GET
+        name: getcampaigns
+        description: Get Campaigns
+        call: klaviyo-campaigns.getcampaigns
+        with:
+          fields[campaign-message]: rest.fields[campaign-message]
+          fields[campaign]: rest.fields[campaign]
+          fields[tag]: rest.fields[tag]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcampaign
+        description: Create Campaign
+        call: klaviyo-campaigns.createcampaign
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaigns/{id}
+      name: api-campaigns-id
+      description: REST surface for api-campaigns-id.
+      operations:
+      - method: GET
+        name: getcampaign
+        description: Get Campaign
+        call: klaviyo-campaigns.getcampaign
+        with:
+          id: rest.id
+          fields[campaign-message]: rest.fields[campaign-message]
+          fields[campaign]: rest.fields[campaign]
+          fields[tag]: rest.fields[tag]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecampaign
+        description: Update Campaign
+        call: klaviyo-campaigns.updatecampaign
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecampaign
+        description: Delete Campaign
+        call: klaviyo-campaigns.deletecampaign
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaigns/{id}/campaign-messages
+      name: api-campaigns-id-campaign-messages
+      description: REST surface for api-campaigns-id-campaign-messages.
+      operations:
+      - method: GET
+        name: getmessagesforcampaign
+        description: Get Messages for Campaign
+        call: klaviyo-campaigns.getmessagesforcampaign
+        with:
+          id: rest.id
+          fields[campaign-message]: rest.fields[campaign-message]
+          fields[campaign]: rest.fields[campaign]
+          fields[image]: rest.fields[image]
+          fields[template]: rest.fields[template]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaigns/{id}/relationships/campaign-messages
+      name: api-campaigns-id-relationships-campaign-messages
+      description: REST surface for api-campaigns-id-relationships-campaign-messages.
+      operations:
+      - method: GET
+        name: getmessageidsforcampaign
+        description: Get Message IDs for Campaign
+        call: klaviyo-campaigns.getmessageidsforcampaign
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaigns/{id}/relationships/tags
+      name: api-campaigns-id-relationships-tags
+      description: REST surface for api-campaigns-id-relationships-tags.
+      operations:
+      - method: GET
+        name: gettagidsforcampaign
+        description: Get Tag IDs for Campaign
+        call: klaviyo-campaigns.gettagidsforcampaign
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/campaigns/{id}/tags
+      name: api-campaigns-id-tags
+      description: REST surface for api-campaigns-id-tags.
+      operations:
+      - method: GET
+        name: gettagsforcampaign
+        description: Get Tags for Campaign
+        call: klaviyo-campaigns.gettagsforcampaign
+        with:
+          id: rest.id
+          fields[tag]: rest.fields[tag]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-campaigns-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Campaigns. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-campaign-clone
+      description: Create Campaign Clone
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-campaigns.createcampaignclone
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: assign-template-campaign-message
+      description: Assign Template to Campaign Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-campaigns.assigntemplatetocampaignmessage
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaign-message
+      description: Get Campaign Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getcampaignmessage
+      with:
+        id: tools.id
+        fields[campaign-message]: tools.fields[campaign-message]
+        fields[campaign]: tools.fields[campaign]
+        fields[image]: tools.fields[image]
+        fields[template]: tools.fields[template]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-campaign-message
+      description: Update Campaign Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.updatecampaignmessage
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaign-campaign-message
+      description: Get Campaign for Campaign Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getcampaignforcampaignmessage
+      with:
+        id: tools.id
+        fields[campaign]: tools.fields[campaign]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-image-campaign-message
+      description: Get Image for Campaign Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getimageforcampaignmessage
+      with:
+        id: tools.id
+        fields[image]: tools.fields[image]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaign-id-campaign-message
+      description: Get Campaign ID for Campaign Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getcampaignidforcampaignmessage
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-image-id-campaign-message
+      description: Get Image ID for Campaign Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getimageidforcampaignmessage
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-image-campaign-message
+      description: Update Image for Campaign Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.updateimageforcampaignmessage
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-template-id-campaign-message
+      description: Get Template ID for Campaign Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.gettemplateidforcampaignmessage
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-template-campaign-message
+      description: Get Template for Campaign Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.gettemplateforcampaignmessage
+      with:
+        id: tools.id
+        fields[template]: tools.fields[template]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refresh-campaign-recipient-estimation
+      description: Refresh Campaign Recipient Estimation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-campaigns.refreshcampaignrecipientestimation
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaign-recipient-estimation-job
+      description: Get Campaign Recipient Estimation Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getcampaignrecipientestimationjob
+      with:
+        id: tools.id
+        fields[campaign-recipient-estimation-job]: tools.fields[campaign-recipient-estimation-job]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaign-recipient-estimation
+      description: Get Campaign Recipient Estimation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getcampaignrecipientestimation
+      with:
+        id: tools.id
+        fields[campaign-recipient-estimation]: tools.fields[campaign-recipient-estimation]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-campaign
+      description: Send Campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-campaigns.sendcampaign
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaign-send-job
+      description: Get Campaign Send Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getcampaignsendjob
+      with:
+        id: tools.id
+        fields[campaign-send-job]: tools.fields[campaign-send-job]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-campaign-send
+      description: Cancel Campaign Send
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.cancelcampaignsend
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaigns
+      description: Get Campaigns
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getcampaigns
+      with:
+        fields[campaign-message]: tools.fields[campaign-message]
+        fields[campaign]: tools.fields[campaign]
+        fields[tag]: tools.fields[tag]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-campaign
+      description: Create Campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-campaigns.createcampaign
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaign
+      description: Get Campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getcampaign
+      with:
+        id: tools.id
+        fields[campaign-message]: tools.fields[campaign-message]
+        fields[campaign]: tools.fields[campaign]
+        fields[tag]: tools.fields[tag]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-campaign
+      description: Update Campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.updatecampaign
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-campaign
+      description: Delete Campaign
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-campaigns.deletecampaign
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-messages-campaign
+      description: Get Messages for Campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getmessagesforcampaign
+      with:
+        id: tools.id
+        fields[campaign-message]: tools.fields[campaign-message]
+        fields[campaign]: tools.fields[campaign]
+        fields[image]: tools.fields[image]
+        fields[template]: tools.fields[template]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-message-ids-campaign
+      description: Get Message IDs for Campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.getmessageidsforcampaign
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tag-ids-campaign
+      description: Get Tag IDs for Campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.gettagidsforcampaign
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tags-campaign
+      description: Get Tags for Campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-campaigns.gettagsforcampaign
+      with:
+        id: tools.id
+        fields[tag]: tools.fields[tag]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.

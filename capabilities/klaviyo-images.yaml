@@ -1,0 +1,308 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Images
+  description: 'Klaviyo API — Images. 5 operations. Lead operation: Upload Image From File. Self-contained Naftiko capability
+    covering one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Images
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-images
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Images business capability. Self-contained, no shared references.
+    resources:
+    - name: api-image-upload
+      path: /api/image-upload
+      operations:
+      - name: uploadimagefromfile
+        method: POST
+        description: Upload Image From File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-images
+      path: /api/images
+      operations:
+      - name: getimages
+        method: GET
+        description: Get Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[image]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`id`: `any`'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: uploadimagefromurl
+        method: POST
+        description: Upload Image From URL
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-images-id
+      path: /api/images/{id}
+      operations:
+      - name: getimage
+        method: GET
+        description: Get Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the image
+          required: true
+        - name: fields[image]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updateimage
+        method: PATCH
+        description: Update Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the image
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-images-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Images. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/api/image-upload
+      name: api-image-upload
+      description: REST surface for api-image-upload.
+      operations:
+      - method: POST
+        name: uploadimagefromfile
+        description: Upload Image From File
+        call: klaviyo-images.uploadimagefromfile
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/images
+      name: api-images
+      description: REST surface for api-images.
+      operations:
+      - method: GET
+        name: getimages
+        description: Get Images
+        call: klaviyo-images.getimages
+        with:
+          fields[image]: rest.fields[image]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: uploadimagefromurl
+        description: Upload Image From URL
+        call: klaviyo-images.uploadimagefromurl
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/images/{id}
+      name: api-images-id
+      description: REST surface for api-images-id.
+      operations:
+      - method: GET
+        name: getimage
+        description: Get Image
+        call: klaviyo-images.getimage
+        with:
+          id: rest.id
+          fields[image]: rest.fields[image]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateimage
+        description: Update Image
+        call: klaviyo-images.updateimage
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-images-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Images. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: upload-image-file
+      description: Upload Image From File
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-images.uploadimagefromfile
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-images
+      description: Get Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-images.getimages
+      with:
+        fields[image]: tools.fields[image]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-image-url
+      description: Upload Image From URL
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-images.uploadimagefromurl
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-image
+      description: Get Image
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-images.getimage
+      with:
+        id: tools.id
+        fields[image]: tools.fields[image]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-image
+      description: Update Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-images.updateimage
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

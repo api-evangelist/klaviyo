@@ -1,0 +1,3179 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Catalogs
+  description: 'Klaviyo API — Catalogs. 55 operations. Lead operation: Create Back In Stock Subscription. Self-contained Naftiko
+    capability covering one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Catalogs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-catalogs
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Catalogs business capability. Self-contained, no shared references.
+    resources:
+    - name: api-back-in-stock-subscriptions
+      path: /api/back-in-stock-subscriptions
+      operations:
+      - name: createbackinstocksubscription
+        method: POST
+        description: Create Back In Stock Subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-categories
+      path: /api/catalog-categories
+      operations:
+      - name: getcatalogcategories
+        method: GET
+        description: Get Catalog Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-category]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createcatalogcategory
+        method: POST
+        description: Create Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-categories-id
+      path: /api/catalog-categories/{id}
+      operations:
+      - name: getcatalogcategory
+        method: GET
+        description: Get Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `'
+          required: true
+        - name: fields[catalog-category]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatecatalogcategory
+        method: PATCH
+        description: Update Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecatalogcategory
+        method: DELETE
+        description: Delete Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-categories-id-items
+      path: /api/catalog-categories/{id}/items
+      operations:
+      - name: getitemsforcatalogcategory
+        method: GET
+        description: Get Items for Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `'
+          required: true
+        - name: fields[catalog-item]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-variant]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-categories-id-relationships-items
+      path: /api/catalog-categories/{id}/relationships/items
+      operations:
+      - name: getitemidsforcatalogcategory
+        method: GET
+        description: Get Item IDs for Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `'
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: additemstocatalogcategory
+        method: POST
+        description: Add Items to Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updateitemsforcatalogcategory
+        method: PATCH
+        description: Update Items for Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: removeitemsfromcatalogcategory
+        method: DELETE
+        description: Remove Items from Catalog Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-category-bulk-create-jobs
+      path: /api/catalog-category-bulk-create-jobs
+      operations:
+      - name: getbulkcreatecategoriesjobs
+        method: GET
+        description: Get Bulk Create Categories Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-category-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkcreatecatalogcategories
+        method: POST
+        description: Bulk Create Catalog Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-category-bulk-create-jobs-job_id
+      path: /api/catalog-category-bulk-create-jobs/{job_id}
+      operations:
+      - name: getbulkcreatecategoriesjob
+        method: GET
+        description: Get Bulk Create Categories Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-category-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-category]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-category-bulk-delete-jobs
+      path: /api/catalog-category-bulk-delete-jobs
+      operations:
+      - name: getbulkdeletecategoriesjobs
+        method: GET
+        description: Get Bulk Delete Categories Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-category-bulk-delete-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkdeletecatalogcategories
+        method: POST
+        description: Bulk Delete Catalog Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-category-bulk-delete-jobs-job_id
+      path: /api/catalog-category-bulk-delete-jobs/{job_id}
+      operations:
+      - name: getbulkdeletecategoriesjob
+        method: GET
+        description: Get Bulk Delete Categories Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-category-bulk-delete-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-category-bulk-update-jobs
+      path: /api/catalog-category-bulk-update-jobs
+      operations:
+      - name: getbulkupdatecategoriesjobs
+        method: GET
+        description: Get Bulk Update Categories Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-category-bulk-update-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkupdatecatalogcategories
+        method: POST
+        description: Bulk Update Catalog Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-category-bulk-update-jobs-job_id
+      path: /api/catalog-category-bulk-update-jobs/{job_id}
+      operations:
+      - name: getbulkupdatecategoriesjob
+        method: GET
+        description: Get Bulk Update Categories Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-category-bulk-update-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-category]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-item-bulk-create-jobs
+      path: /api/catalog-item-bulk-create-jobs
+      operations:
+      - name: getbulkcreatecatalogitemsjobs
+        method: GET
+        description: Get Bulk Create Catalog Items Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-item-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkcreatecatalogitems
+        method: POST
+        description: Bulk Create Catalog Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-item-bulk-create-jobs-job_id
+      path: /api/catalog-item-bulk-create-jobs/{job_id}
+      operations:
+      - name: getbulkcreatecatalogitemsjob
+        method: GET
+        description: Get Bulk Create Catalog Items Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-item-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-item]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-item-bulk-delete-jobs
+      path: /api/catalog-item-bulk-delete-jobs
+      operations:
+      - name: getbulkdeletecatalogitemsjobs
+        method: GET
+        description: Get Bulk Delete Catalog Items Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-item-bulk-delete-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkdeletecatalogitems
+        method: POST
+        description: Bulk Delete Catalog Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-item-bulk-delete-jobs-job_id
+      path: /api/catalog-item-bulk-delete-jobs/{job_id}
+      operations:
+      - name: getbulkdeletecatalogitemsjob
+        method: GET
+        description: Get Bulk Delete Catalog Items Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-item-bulk-delete-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-item-bulk-update-jobs
+      path: /api/catalog-item-bulk-update-jobs
+      operations:
+      - name: getbulkupdatecatalogitemsjobs
+        method: GET
+        description: Get Bulk Update Catalog Items Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-item-bulk-update-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkupdatecatalogitems
+        method: POST
+        description: Bulk Update Catalog Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-item-bulk-update-jobs-job_id
+      path: /api/catalog-item-bulk-update-jobs/{job_id}
+      operations:
+      - name: getbulkupdatecatalogitemsjob
+        method: GET
+        description: Get Bulk Update Catalog Items Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-item-bulk-update-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-item]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-items
+      path: /api/catalog-items
+      operations:
+      - name: getcatalogitems
+        method: GET
+        description: Get Catalog Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-item]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-variant]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createcatalogitem
+        method: POST
+        description: Create Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-items-id
+      path: /api/catalog-items/{id}
+      operations:
+      - name: getcatalogitem
+        method: GET
+        description: Get Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: fields[catalog-item]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-variant]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatecatalogitem
+        method: PATCH
+        description: Update Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecatalogitem
+        method: DELETE
+        description: Delete Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-items-id-categories
+      path: /api/catalog-items/{id}/categories
+      operations:
+      - name: getcategoriesforcatalogitem
+        method: GET
+        description: Get Categories for Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: fields[catalog-category]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-items-id-relationships-categories
+      path: /api/catalog-items/{id}/relationships/categories
+      operations:
+      - name: getcategoryidsforcatalogitem
+        method: GET
+        description: Get Category IDs for Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: addcategoriestocatalogitem
+        method: POST
+        description: Add Categories to Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updatecategoriesforcatalogitem
+        method: PATCH
+        description: Update Categories for Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: removecategoriesfromcatalogitem
+        method: DELETE
+        description: Remove Categories from Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-items-id-relationships-variants
+      path: /api/catalog-items/{id}/relationships/variants
+      operations:
+      - name: getvariantidsforcatalogitem
+        method: GET
+        description: Get Variant IDs for Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-items-id-variants
+      path: /api/catalog-items/{id}/variants
+      operations:
+      - name: getvariantsforcatalogitem
+        method: GET
+        description: Get Variants for Catalog Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$cus'
+          required: true
+        - name: fields[catalog-variant]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-variant-bulk-create-jobs
+      path: /api/catalog-variant-bulk-create-jobs
+      operations:
+      - name: getbulkcreatevariantsjobs
+        method: GET
+        description: Get Bulk Create Variants Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-variant-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkcreatecatalogvariants
+        method: POST
+        description: Bulk Create Catalog Variants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-variant-bulk-create-jobs-job_id
+      path: /api/catalog-variant-bulk-create-jobs/{job_id}
+      operations:
+      - name: getbulkcreatevariantsjob
+        method: GET
+        description: Get Bulk Create Variants Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-variant-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-variant]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-variant-bulk-delete-jobs
+      path: /api/catalog-variant-bulk-delete-jobs
+      operations:
+      - name: getbulkdeletevariantsjobs
+        method: GET
+        description: Get Bulk Delete Variants Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-variant-bulk-delete-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkdeletecatalogvariants
+        method: POST
+        description: Bulk Delete Catalog Variants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-variant-bulk-delete-jobs-job_id
+      path: /api/catalog-variant-bulk-delete-jobs/{job_id}
+      operations:
+      - name: getbulkdeletevariantsjob
+        method: GET
+        description: Get Bulk Delete Variants Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-variant-bulk-delete-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-variant-bulk-update-jobs
+      path: /api/catalog-variant-bulk-update-jobs
+      operations:
+      - name: getbulkupdatevariantsjobs
+        method: GET
+        description: Get Bulk Update Variants Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-variant-bulk-update-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkupdatecatalogvariants
+        method: POST
+        description: Bulk Update Catalog Variants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-variant-bulk-update-jobs-job_id
+      path: /api/catalog-variant-bulk-update-jobs/{job_id}
+      operations:
+      - name: getbulkupdatevariantsjob
+        method: GET
+        description: Get Bulk Update Variants Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[catalog-variant-bulk-update-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[catalog-variant]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-catalog-variants
+      path: /api/catalog-variants
+      operations:
+      - name: getcatalogvariants
+        method: GET
+        description: Get Catalog Variants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[catalog-variant]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`ids`: `any'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 100. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createcatalogvariant
+        method: POST
+        description: Create Catalog Variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-catalog-variants-id
+      path: /api/catalog-variants/{id}
+      operations:
+      - name: getcatalogvariant
+        method: GET
+        description: Get Catalog Variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog variant ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$'
+          required: true
+        - name: fields[catalog-variant]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatecatalogvariant
+        method: PATCH
+        description: Update Catalog Variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog variant ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecatalogvariant
+        method: DELETE
+        description: Delete Catalog Variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: 'The catalog variant ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`.
+            Currently, the only supported integration type is `$'
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-catalogs-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Catalogs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/back-in-stock-subscriptions
+      name: api-back-in-stock-subscriptions
+      description: REST surface for api-back-in-stock-subscriptions.
+      operations:
+      - method: POST
+        name: createbackinstocksubscription
+        description: Create Back In Stock Subscription
+        call: klaviyo-catalogs.createbackinstocksubscription
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-categories
+      name: api-catalog-categories
+      description: REST surface for api-catalog-categories.
+      operations:
+      - method: GET
+        name: getcatalogcategories
+        description: Get Catalog Categories
+        call: klaviyo-catalogs.getcatalogcategories
+        with:
+          fields[catalog-category]: rest.fields[catalog-category]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcatalogcategory
+        description: Create Catalog Category
+        call: klaviyo-catalogs.createcatalogcategory
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-categories/{id}
+      name: api-catalog-categories-id
+      description: REST surface for api-catalog-categories-id.
+      operations:
+      - method: GET
+        name: getcatalogcategory
+        description: Get Catalog Category
+        call: klaviyo-catalogs.getcatalogcategory
+        with:
+          id: rest.id
+          fields[catalog-category]: rest.fields[catalog-category]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecatalogcategory
+        description: Update Catalog Category
+        call: klaviyo-catalogs.updatecatalogcategory
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecatalogcategory
+        description: Delete Catalog Category
+        call: klaviyo-catalogs.deletecatalogcategory
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-categories/{id}/items
+      name: api-catalog-categories-id-items
+      description: REST surface for api-catalog-categories-id-items.
+      operations:
+      - method: GET
+        name: getitemsforcatalogcategory
+        description: Get Items for Catalog Category
+        call: klaviyo-catalogs.getitemsforcatalogcategory
+        with:
+          id: rest.id
+          fields[catalog-item]: rest.fields[catalog-item]
+          fields[catalog-variant]: rest.fields[catalog-variant]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-categories/{id}/relationships/items
+      name: api-catalog-categories-id-relationships-items
+      description: REST surface for api-catalog-categories-id-relationships-items.
+      operations:
+      - method: GET
+        name: getitemidsforcatalogcategory
+        description: Get Item IDs for Catalog Category
+        call: klaviyo-catalogs.getitemidsforcatalogcategory
+        with:
+          id: rest.id
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: additemstocatalogcategory
+        description: Add Items to Catalog Category
+        call: klaviyo-catalogs.additemstocatalogcategory
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateitemsforcatalogcategory
+        description: Update Items for Catalog Category
+        call: klaviyo-catalogs.updateitemsforcatalogcategory
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removeitemsfromcatalogcategory
+        description: Remove Items from Catalog Category
+        call: klaviyo-catalogs.removeitemsfromcatalogcategory
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-category-bulk-create-jobs
+      name: api-catalog-category-bulk-create-jobs
+      description: REST surface for api-catalog-category-bulk-create-jobs.
+      operations:
+      - method: GET
+        name: getbulkcreatecategoriesjobs
+        description: Get Bulk Create Categories Jobs
+        call: klaviyo-catalogs.getbulkcreatecategoriesjobs
+        with:
+          fields[catalog-category-bulk-create-job]: rest.fields[catalog-category-bulk-create-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkcreatecatalogcategories
+        description: Bulk Create Catalog Categories
+        call: klaviyo-catalogs.bulkcreatecatalogcategories
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-category-bulk-create-jobs/{job-id}
+      name: api-catalog-category-bulk-create-jobs-job-id
+      description: REST surface for api-catalog-category-bulk-create-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkcreatecategoriesjob
+        description: Get Bulk Create Categories Job
+        call: klaviyo-catalogs.getbulkcreatecategoriesjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-category-bulk-create-job]: rest.fields[catalog-category-bulk-create-job]
+          fields[catalog-category]: rest.fields[catalog-category]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-category-bulk-delete-jobs
+      name: api-catalog-category-bulk-delete-jobs
+      description: REST surface for api-catalog-category-bulk-delete-jobs.
+      operations:
+      - method: GET
+        name: getbulkdeletecategoriesjobs
+        description: Get Bulk Delete Categories Jobs
+        call: klaviyo-catalogs.getbulkdeletecategoriesjobs
+        with:
+          fields[catalog-category-bulk-delete-job]: rest.fields[catalog-category-bulk-delete-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkdeletecatalogcategories
+        description: Bulk Delete Catalog Categories
+        call: klaviyo-catalogs.bulkdeletecatalogcategories
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-category-bulk-delete-jobs/{job-id}
+      name: api-catalog-category-bulk-delete-jobs-job-id
+      description: REST surface for api-catalog-category-bulk-delete-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkdeletecategoriesjob
+        description: Get Bulk Delete Categories Job
+        call: klaviyo-catalogs.getbulkdeletecategoriesjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-category-bulk-delete-job]: rest.fields[catalog-category-bulk-delete-job]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-category-bulk-update-jobs
+      name: api-catalog-category-bulk-update-jobs
+      description: REST surface for api-catalog-category-bulk-update-jobs.
+      operations:
+      - method: GET
+        name: getbulkupdatecategoriesjobs
+        description: Get Bulk Update Categories Jobs
+        call: klaviyo-catalogs.getbulkupdatecategoriesjobs
+        with:
+          fields[catalog-category-bulk-update-job]: rest.fields[catalog-category-bulk-update-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkupdatecatalogcategories
+        description: Bulk Update Catalog Categories
+        call: klaviyo-catalogs.bulkupdatecatalogcategories
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-category-bulk-update-jobs/{job-id}
+      name: api-catalog-category-bulk-update-jobs-job-id
+      description: REST surface for api-catalog-category-bulk-update-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkupdatecategoriesjob
+        description: Get Bulk Update Categories Job
+        call: klaviyo-catalogs.getbulkupdatecategoriesjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-category-bulk-update-job]: rest.fields[catalog-category-bulk-update-job]
+          fields[catalog-category]: rest.fields[catalog-category]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-item-bulk-create-jobs
+      name: api-catalog-item-bulk-create-jobs
+      description: REST surface for api-catalog-item-bulk-create-jobs.
+      operations:
+      - method: GET
+        name: getbulkcreatecatalogitemsjobs
+        description: Get Bulk Create Catalog Items Jobs
+        call: klaviyo-catalogs.getbulkcreatecatalogitemsjobs
+        with:
+          fields[catalog-item-bulk-create-job]: rest.fields[catalog-item-bulk-create-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkcreatecatalogitems
+        description: Bulk Create Catalog Items
+        call: klaviyo-catalogs.bulkcreatecatalogitems
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-item-bulk-create-jobs/{job-id}
+      name: api-catalog-item-bulk-create-jobs-job-id
+      description: REST surface for api-catalog-item-bulk-create-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkcreatecatalogitemsjob
+        description: Get Bulk Create Catalog Items Job
+        call: klaviyo-catalogs.getbulkcreatecatalogitemsjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-item-bulk-create-job]: rest.fields[catalog-item-bulk-create-job]
+          fields[catalog-item]: rest.fields[catalog-item]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-item-bulk-delete-jobs
+      name: api-catalog-item-bulk-delete-jobs
+      description: REST surface for api-catalog-item-bulk-delete-jobs.
+      operations:
+      - method: GET
+        name: getbulkdeletecatalogitemsjobs
+        description: Get Bulk Delete Catalog Items Jobs
+        call: klaviyo-catalogs.getbulkdeletecatalogitemsjobs
+        with:
+          fields[catalog-item-bulk-delete-job]: rest.fields[catalog-item-bulk-delete-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkdeletecatalogitems
+        description: Bulk Delete Catalog Items
+        call: klaviyo-catalogs.bulkdeletecatalogitems
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-item-bulk-delete-jobs/{job-id}
+      name: api-catalog-item-bulk-delete-jobs-job-id
+      description: REST surface for api-catalog-item-bulk-delete-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkdeletecatalogitemsjob
+        description: Get Bulk Delete Catalog Items Job
+        call: klaviyo-catalogs.getbulkdeletecatalogitemsjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-item-bulk-delete-job]: rest.fields[catalog-item-bulk-delete-job]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-item-bulk-update-jobs
+      name: api-catalog-item-bulk-update-jobs
+      description: REST surface for api-catalog-item-bulk-update-jobs.
+      operations:
+      - method: GET
+        name: getbulkupdatecatalogitemsjobs
+        description: Get Bulk Update Catalog Items Jobs
+        call: klaviyo-catalogs.getbulkupdatecatalogitemsjobs
+        with:
+          fields[catalog-item-bulk-update-job]: rest.fields[catalog-item-bulk-update-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkupdatecatalogitems
+        description: Bulk Update Catalog Items
+        call: klaviyo-catalogs.bulkupdatecatalogitems
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-item-bulk-update-jobs/{job-id}
+      name: api-catalog-item-bulk-update-jobs-job-id
+      description: REST surface for api-catalog-item-bulk-update-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkupdatecatalogitemsjob
+        description: Get Bulk Update Catalog Items Job
+        call: klaviyo-catalogs.getbulkupdatecatalogitemsjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-item-bulk-update-job]: rest.fields[catalog-item-bulk-update-job]
+          fields[catalog-item]: rest.fields[catalog-item]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-items
+      name: api-catalog-items
+      description: REST surface for api-catalog-items.
+      operations:
+      - method: GET
+        name: getcatalogitems
+        description: Get Catalog Items
+        call: klaviyo-catalogs.getcatalogitems
+        with:
+          fields[catalog-item]: rest.fields[catalog-item]
+          fields[catalog-variant]: rest.fields[catalog-variant]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcatalogitem
+        description: Create Catalog Item
+        call: klaviyo-catalogs.createcatalogitem
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-items/{id}
+      name: api-catalog-items-id
+      description: REST surface for api-catalog-items-id.
+      operations:
+      - method: GET
+        name: getcatalogitem
+        description: Get Catalog Item
+        call: klaviyo-catalogs.getcatalogitem
+        with:
+          id: rest.id
+          fields[catalog-item]: rest.fields[catalog-item]
+          fields[catalog-variant]: rest.fields[catalog-variant]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecatalogitem
+        description: Update Catalog Item
+        call: klaviyo-catalogs.updatecatalogitem
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecatalogitem
+        description: Delete Catalog Item
+        call: klaviyo-catalogs.deletecatalogitem
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-items/{id}/categories
+      name: api-catalog-items-id-categories
+      description: REST surface for api-catalog-items-id-categories.
+      operations:
+      - method: GET
+        name: getcategoriesforcatalogitem
+        description: Get Categories for Catalog Item
+        call: klaviyo-catalogs.getcategoriesforcatalogitem
+        with:
+          id: rest.id
+          fields[catalog-category]: rest.fields[catalog-category]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-items/{id}/relationships/categories
+      name: api-catalog-items-id-relationships-categories
+      description: REST surface for api-catalog-items-id-relationships-categories.
+      operations:
+      - method: GET
+        name: getcategoryidsforcatalogitem
+        description: Get Category IDs for Catalog Item
+        call: klaviyo-catalogs.getcategoryidsforcatalogitem
+        with:
+          id: rest.id
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addcategoriestocatalogitem
+        description: Add Categories to Catalog Item
+        call: klaviyo-catalogs.addcategoriestocatalogitem
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecategoriesforcatalogitem
+        description: Update Categories for Catalog Item
+        call: klaviyo-catalogs.updatecategoriesforcatalogitem
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removecategoriesfromcatalogitem
+        description: Remove Categories from Catalog Item
+        call: klaviyo-catalogs.removecategoriesfromcatalogitem
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-items/{id}/relationships/variants
+      name: api-catalog-items-id-relationships-variants
+      description: REST surface for api-catalog-items-id-relationships-variants.
+      operations:
+      - method: GET
+        name: getvariantidsforcatalogitem
+        description: Get Variant IDs for Catalog Item
+        call: klaviyo-catalogs.getvariantidsforcatalogitem
+        with:
+          id: rest.id
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-items/{id}/variants
+      name: api-catalog-items-id-variants
+      description: REST surface for api-catalog-items-id-variants.
+      operations:
+      - method: GET
+        name: getvariantsforcatalogitem
+        description: Get Variants for Catalog Item
+        call: klaviyo-catalogs.getvariantsforcatalogitem
+        with:
+          id: rest.id
+          fields[catalog-variant]: rest.fields[catalog-variant]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-variant-bulk-create-jobs
+      name: api-catalog-variant-bulk-create-jobs
+      description: REST surface for api-catalog-variant-bulk-create-jobs.
+      operations:
+      - method: GET
+        name: getbulkcreatevariantsjobs
+        description: Get Bulk Create Variants Jobs
+        call: klaviyo-catalogs.getbulkcreatevariantsjobs
+        with:
+          fields[catalog-variant-bulk-create-job]: rest.fields[catalog-variant-bulk-create-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkcreatecatalogvariants
+        description: Bulk Create Catalog Variants
+        call: klaviyo-catalogs.bulkcreatecatalogvariants
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-variant-bulk-create-jobs/{job-id}
+      name: api-catalog-variant-bulk-create-jobs-job-id
+      description: REST surface for api-catalog-variant-bulk-create-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkcreatevariantsjob
+        description: Get Bulk Create Variants Job
+        call: klaviyo-catalogs.getbulkcreatevariantsjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-variant-bulk-create-job]: rest.fields[catalog-variant-bulk-create-job]
+          fields[catalog-variant]: rest.fields[catalog-variant]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-variant-bulk-delete-jobs
+      name: api-catalog-variant-bulk-delete-jobs
+      description: REST surface for api-catalog-variant-bulk-delete-jobs.
+      operations:
+      - method: GET
+        name: getbulkdeletevariantsjobs
+        description: Get Bulk Delete Variants Jobs
+        call: klaviyo-catalogs.getbulkdeletevariantsjobs
+        with:
+          fields[catalog-variant-bulk-delete-job]: rest.fields[catalog-variant-bulk-delete-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkdeletecatalogvariants
+        description: Bulk Delete Catalog Variants
+        call: klaviyo-catalogs.bulkdeletecatalogvariants
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-variant-bulk-delete-jobs/{job-id}
+      name: api-catalog-variant-bulk-delete-jobs-job-id
+      description: REST surface for api-catalog-variant-bulk-delete-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkdeletevariantsjob
+        description: Get Bulk Delete Variants Job
+        call: klaviyo-catalogs.getbulkdeletevariantsjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-variant-bulk-delete-job]: rest.fields[catalog-variant-bulk-delete-job]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-variant-bulk-update-jobs
+      name: api-catalog-variant-bulk-update-jobs
+      description: REST surface for api-catalog-variant-bulk-update-jobs.
+      operations:
+      - method: GET
+        name: getbulkupdatevariantsjobs
+        description: Get Bulk Update Variants Jobs
+        call: klaviyo-catalogs.getbulkupdatevariantsjobs
+        with:
+          fields[catalog-variant-bulk-update-job]: rest.fields[catalog-variant-bulk-update-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkupdatecatalogvariants
+        description: Bulk Update Catalog Variants
+        call: klaviyo-catalogs.bulkupdatecatalogvariants
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-variant-bulk-update-jobs/{job-id}
+      name: api-catalog-variant-bulk-update-jobs-job-id
+      description: REST surface for api-catalog-variant-bulk-update-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkupdatevariantsjob
+        description: Get Bulk Update Variants Job
+        call: klaviyo-catalogs.getbulkupdatevariantsjob
+        with:
+          job_id: rest.job_id
+          fields[catalog-variant-bulk-update-job]: rest.fields[catalog-variant-bulk-update-job]
+          fields[catalog-variant]: rest.fields[catalog-variant]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-variants
+      name: api-catalog-variants
+      description: REST surface for api-catalog-variants.
+      operations:
+      - method: GET
+        name: getcatalogvariants
+        description: Get Catalog Variants
+        call: klaviyo-catalogs.getcatalogvariants
+        with:
+          fields[catalog-variant]: rest.fields[catalog-variant]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcatalogvariant
+        description: Create Catalog Variant
+        call: klaviyo-catalogs.createcatalogvariant
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/catalog-variants/{id}
+      name: api-catalog-variants-id
+      description: REST surface for api-catalog-variants-id.
+      operations:
+      - method: GET
+        name: getcatalogvariant
+        description: Get Catalog Variant
+        call: klaviyo-catalogs.getcatalogvariant
+        with:
+          id: rest.id
+          fields[catalog-variant]: rest.fields[catalog-variant]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecatalogvariant
+        description: Update Catalog Variant
+        call: klaviyo-catalogs.updatecatalogvariant
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecatalogvariant
+        description: Delete Catalog Variant
+        call: klaviyo-catalogs.deletecatalogvariant
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-catalogs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Catalogs. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-back-stock-subscription
+      description: Create Back In Stock Subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.createbackinstocksubscription
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-catalog-categories
+      description: Get Catalog Categories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getcatalogcategories
+      with:
+        fields[catalog-category]: tools.fields[catalog-category]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-catalog-category
+      description: Create Catalog Category
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.createcatalogcategory
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-catalog-category
+      description: Get Catalog Category
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getcatalogcategory
+      with:
+        id: tools.id
+        fields[catalog-category]: tools.fields[catalog-category]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-catalog-category
+      description: Update Catalog Category
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.updatecatalogcategory
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-catalog-category
+      description: Delete Catalog Category
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-catalogs.deletecatalogcategory
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-items-catalog-category
+      description: Get Items for Catalog Category
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getitemsforcatalogcategory
+      with:
+        id: tools.id
+        fields[catalog-item]: tools.fields[catalog-item]
+        fields[catalog-variant]: tools.fields[catalog-variant]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-item-ids-catalog-category
+      description: Get Item IDs for Catalog Category
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getitemidsforcatalogcategory
+      with:
+        id: tools.id
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-items-catalog-category
+      description: Add Items to Catalog Category
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.additemstocatalogcategory
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-items-catalog-category
+      description: Update Items for Catalog Category
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.updateitemsforcatalogcategory
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-items-catalog-category
+      description: Remove Items from Catalog Category
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-catalogs.removeitemsfromcatalogcategory
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-create-categories-jobs
+      description: Get Bulk Create Categories Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkcreatecategoriesjobs
+      with:
+        fields[catalog-category-bulk-create-job]: tools.fields[catalog-category-bulk-create-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-create-catalog-categories
+      description: Bulk Create Catalog Categories
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkcreatecatalogcategories
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-create-categories-job
+      description: Get Bulk Create Categories Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkcreatecategoriesjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-category-bulk-create-job]: tools.fields[catalog-category-bulk-create-job]
+        fields[catalog-category]: tools.fields[catalog-category]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-delete-categories-jobs
+      description: Get Bulk Delete Categories Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkdeletecategoriesjobs
+      with:
+        fields[catalog-category-bulk-delete-job]: tools.fields[catalog-category-bulk-delete-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-delete-catalog-categories
+      description: Bulk Delete Catalog Categories
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkdeletecatalogcategories
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-delete-categories-job
+      description: Get Bulk Delete Categories Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkdeletecategoriesjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-category-bulk-delete-job]: tools.fields[catalog-category-bulk-delete-job]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-update-categories-jobs
+      description: Get Bulk Update Categories Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkupdatecategoriesjobs
+      with:
+        fields[catalog-category-bulk-update-job]: tools.fields[catalog-category-bulk-update-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-update-catalog-categories
+      description: Bulk Update Catalog Categories
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkupdatecatalogcategories
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-update-categories-job
+      description: Get Bulk Update Categories Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkupdatecategoriesjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-category-bulk-update-job]: tools.fields[catalog-category-bulk-update-job]
+        fields[catalog-category]: tools.fields[catalog-category]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-create-catalog-items
+      description: Get Bulk Create Catalog Items Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkcreatecatalogitemsjobs
+      with:
+        fields[catalog-item-bulk-create-job]: tools.fields[catalog-item-bulk-create-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-create-catalog-items
+      description: Bulk Create Catalog Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkcreatecatalogitems
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-create-catalog-items-2
+      description: Get Bulk Create Catalog Items Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkcreatecatalogitemsjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-item-bulk-create-job]: tools.fields[catalog-item-bulk-create-job]
+        fields[catalog-item]: tools.fields[catalog-item]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-delete-catalog-items
+      description: Get Bulk Delete Catalog Items Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkdeletecatalogitemsjobs
+      with:
+        fields[catalog-item-bulk-delete-job]: tools.fields[catalog-item-bulk-delete-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-delete-catalog-items
+      description: Bulk Delete Catalog Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkdeletecatalogitems
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-delete-catalog-items-2
+      description: Get Bulk Delete Catalog Items Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkdeletecatalogitemsjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-item-bulk-delete-job]: tools.fields[catalog-item-bulk-delete-job]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-update-catalog-items
+      description: Get Bulk Update Catalog Items Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkupdatecatalogitemsjobs
+      with:
+        fields[catalog-item-bulk-update-job]: tools.fields[catalog-item-bulk-update-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-update-catalog-items
+      description: Bulk Update Catalog Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkupdatecatalogitems
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-update-catalog-items-2
+      description: Get Bulk Update Catalog Items Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkupdatecatalogitemsjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-item-bulk-update-job]: tools.fields[catalog-item-bulk-update-job]
+        fields[catalog-item]: tools.fields[catalog-item]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-catalog-items
+      description: Get Catalog Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getcatalogitems
+      with:
+        fields[catalog-item]: tools.fields[catalog-item]
+        fields[catalog-variant]: tools.fields[catalog-variant]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-catalog-item
+      description: Create Catalog Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.createcatalogitem
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-catalog-item
+      description: Get Catalog Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getcatalogitem
+      with:
+        id: tools.id
+        fields[catalog-item]: tools.fields[catalog-item]
+        fields[catalog-variant]: tools.fields[catalog-variant]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-catalog-item
+      description: Update Catalog Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.updatecatalogitem
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-catalog-item
+      description: Delete Catalog Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-catalogs.deletecatalogitem
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-categories-catalog-item
+      description: Get Categories for Catalog Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getcategoriesforcatalogitem
+      with:
+        id: tools.id
+        fields[catalog-category]: tools.fields[catalog-category]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-category-ids-catalog-item
+      description: Get Category IDs for Catalog Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getcategoryidsforcatalogitem
+      with:
+        id: tools.id
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-categories-catalog-item
+      description: Add Categories to Catalog Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.addcategoriestocatalogitem
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-categories-catalog-item
+      description: Update Categories for Catalog Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.updatecategoriesforcatalogitem
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-categories-catalog-item
+      description: Remove Categories from Catalog Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-catalogs.removecategoriesfromcatalogitem
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-variant-ids-catalog-item
+      description: Get Variant IDs for Catalog Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getvariantidsforcatalogitem
+      with:
+        id: tools.id
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-variants-catalog-item
+      description: Get Variants for Catalog Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getvariantsforcatalogitem
+      with:
+        id: tools.id
+        fields[catalog-variant]: tools.fields[catalog-variant]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-create-variants-jobs
+      description: Get Bulk Create Variants Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkcreatevariantsjobs
+      with:
+        fields[catalog-variant-bulk-create-job]: tools.fields[catalog-variant-bulk-create-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-create-catalog-variants
+      description: Bulk Create Catalog Variants
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkcreatecatalogvariants
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-create-variants-job
+      description: Get Bulk Create Variants Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkcreatevariantsjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-variant-bulk-create-job]: tools.fields[catalog-variant-bulk-create-job]
+        fields[catalog-variant]: tools.fields[catalog-variant]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-delete-variants-jobs
+      description: Get Bulk Delete Variants Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkdeletevariantsjobs
+      with:
+        fields[catalog-variant-bulk-delete-job]: tools.fields[catalog-variant-bulk-delete-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-delete-catalog-variants
+      description: Bulk Delete Catalog Variants
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkdeletecatalogvariants
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-delete-variants-job
+      description: Get Bulk Delete Variants Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkdeletevariantsjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-variant-bulk-delete-job]: tools.fields[catalog-variant-bulk-delete-job]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-update-variants-jobs
+      description: Get Bulk Update Variants Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkupdatevariantsjobs
+      with:
+        fields[catalog-variant-bulk-update-job]: tools.fields[catalog-variant-bulk-update-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-update-catalog-variants
+      description: Bulk Update Catalog Variants
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.bulkupdatecatalogvariants
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-update-variants-job
+      description: Get Bulk Update Variants Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getbulkupdatevariantsjob
+      with:
+        job_id: tools.job_id
+        fields[catalog-variant-bulk-update-job]: tools.fields[catalog-variant-bulk-update-job]
+        fields[catalog-variant]: tools.fields[catalog-variant]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-catalog-variants
+      description: Get Catalog Variants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getcatalogvariants
+      with:
+        fields[catalog-variant]: tools.fields[catalog-variant]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-catalog-variant
+      description: Create Catalog Variant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-catalogs.createcatalogvariant
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-catalog-variant
+      description: Get Catalog Variant
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.getcatalogvariant
+      with:
+        id: tools.id
+        fields[catalog-variant]: tools.fields[catalog-variant]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-catalog-variant
+      description: Update Catalog Variant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-catalogs.updatecatalogvariant
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-catalog-variant
+      description: Delete Catalog Variant
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-catalogs.deletecatalogvariant
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.

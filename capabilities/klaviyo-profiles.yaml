@@ -1,0 +1,2079 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Profiles
+  description: 'Klaviyo API — Profiles. 36 operations. Lead operation: Get Bulk Import Profiles Jobs. Self-contained Naftiko
+    capability covering one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Profiles
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-profiles
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Profiles business capability. Self-contained, no shared references.
+    resources:
+    - name: api-profile-bulk-import-jobs
+      path: /api/profile-bulk-import-jobs
+      operations:
+      - name: getbulkimportprofilesjobs
+        method: GET
+        description: Get Bulk Import Profiles Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[profile-bulk-import-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkimportprofiles
+        method: POST
+        description: Bulk Import Profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profile-bulk-import-jobs-id-import-errors
+      path: /api/profile-bulk-import-jobs/{id}/import-errors
+      operations:
+      - name: geterrorsforbulkimportprofilesjob
+        method: GET
+        description: Get Errors for Bulk Import Profiles Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[import-error]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profile-bulk-import-jobs-id-lists
+      path: /api/profile-bulk-import-jobs/{id}/lists
+      operations:
+      - name: getlistforbulkimportprofilesjob
+        method: GET
+        description: Get List for Bulk Import Profiles Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[list]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profile-bulk-import-jobs-id-profiles
+      path: /api/profile-bulk-import-jobs/{id}/profiles
+      operations:
+      - name: getprofilesforbulkimportprofilesjob
+        method: GET
+        description: Get Profiles for Bulk Import Profiles Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: additional-fields[profile]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''subscriptions'',
+            ''predictive_analytics'''
+        - name: fields[profile]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profile-bulk-import-jobs-id-relationships-lists
+      path: /api/profile-bulk-import-jobs/{id}/relationships/lists
+      operations:
+      - name: getlistidsforbulkimportprofilesjob
+        method: GET
+        description: Get List IDs for Bulk Import Profiles Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profile-bulk-import-jobs-id-relationships-profiles
+      path: /api/profile-bulk-import-jobs/{id}/relationships/profiles
+      operations:
+      - name: getprofileidsforbulkimportprofilesjob
+        method: GET
+        description: Get Profile IDs for Bulk Import Profiles Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profile-bulk-import-jobs-job_id
+      path: /api/profile-bulk-import-jobs/{job_id}
+      operations:
+      - name: getbulkimportprofilesjob
+        method: GET
+        description: Get Bulk Import Profiles Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[list]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[profile-bulk-import-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profile-import
+      path: /api/profile-import
+      operations:
+      - name: createorupdateprofile
+        method: POST
+        description: Create or Update Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: additional-fields[profile]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''subscriptions'',
+            ''predictive_analytics'''
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profile-merge
+      path: /api/profile-merge
+      operations:
+      - name: mergeprofiles
+        method: POST
+        description: Merge Profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profile-subscription-bulk-create-jobs
+      path: /api/profile-subscription-bulk-create-jobs
+      operations:
+      - name: bulksubscribeprofiles
+        method: POST
+        description: Bulk Subscribe Profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profile-subscription-bulk-delete-jobs
+      path: /api/profile-subscription-bulk-delete-jobs
+      operations:
+      - name: bulkunsubscribeprofiles
+        method: POST
+        description: Bulk Unsubscribe Profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profile-suppression-bulk-create-jobs
+      path: /api/profile-suppression-bulk-create-jobs
+      operations:
+      - name: getbulksuppressprofilesjobs
+        method: GET
+        description: Get Bulk Suppress Profiles Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[profile-suppression-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulksuppressprofiles
+        method: POST
+        description: Bulk Suppress Profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profile-suppression-bulk-create-jobs-job_id
+      path: /api/profile-suppression-bulk-create-jobs/{job_id}
+      operations:
+      - name: getbulksuppressprofilesjob
+        method: GET
+        description: Get Bulk Suppress Profiles Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[profile-suppression-bulk-create-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profile-suppression-bulk-delete-jobs
+      path: /api/profile-suppression-bulk-delete-jobs
+      operations:
+      - name: getbulkunsuppressprofilesjobs
+        method: GET
+        description: Get Bulk Unsuppress Profiles Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[profile-suppression-bulk-delete-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`status`: `'
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: bulkunsuppressprofiles
+        method: POST
+        description: Bulk Unsuppress Profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profile-suppression-bulk-delete-jobs-job_id
+      path: /api/profile-suppression-bulk-delete-jobs/{job_id}
+      operations:
+      - name: getbulkunsuppressprofilesjob
+        method: GET
+        description: Get Bulk Unsuppress Profiles Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: job_id
+          in: path
+          type: string
+          description: ID of the job to retrieve.
+          required: true
+        - name: fields[profile-suppression-bulk-delete-job]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profiles
+      path: /api/profiles
+      operations:
+      - name: getprofiles
+        method: GET
+        description: Get Profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: additional-fields[profile]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''subscriptions'',
+            ''predictive_analytics'''
+        - name: fields[profile]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[push-token]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`id`: `any`'
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createprofile
+        method: POST
+        description: Create Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: additional-fields[profile]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''subscriptions'',
+            ''predictive_analytics'''
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profiles-id
+      path: /api/profiles/{id}
+      operations:
+      - name: getprofile
+        method: GET
+        description: Get Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: additional-fields[profile]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''subscriptions'',
+            ''predictive_analytics'''
+        - name: fields[list]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[profile]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[push-token]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[segment]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updateprofile
+        method: PATCH
+        description: Update Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          required: true
+        - name: additional-fields[profile]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''subscriptions'',
+            ''predictive_analytics'''
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-profiles-id-conversation
+      path: /api/profiles/{id}/conversation
+      operations:
+      - name: getconversationforprofile
+        method: GET
+        description: Get Conversation for Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profiles-id-lists
+      path: /api/profiles/{id}/lists
+      operations:
+      - name: getlistsforprofile
+        method: GET
+        description: Get Lists for Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[list]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profiles-id-push-tokens
+      path: /api/profiles/{id}/push-tokens
+      operations:
+      - name: getpushtokensforprofile
+        method: GET
+        description: Get Push Tokens for Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[push-token]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profiles-id-relationships-conversation
+      path: /api/profiles/{id}/relationships/conversation
+      operations:
+      - name: getconversationidforprofile
+        method: GET
+        description: Get Conversation ID for Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profiles-id-relationships-lists
+      path: /api/profiles/{id}/relationships/lists
+      operations:
+      - name: getlistidsforprofile
+        method: GET
+        description: Get List IDs for Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profiles-id-relationships-push-tokens
+      path: /api/profiles/{id}/relationships/push-tokens
+      operations:
+      - name: getpushtokenidsforprofile
+        method: GET
+        description: Get Push Token IDs for Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profiles-id-relationships-segments
+      path: /api/profiles/{id}/relationships/segments
+      operations:
+      - name: getsegmentidsforprofile
+        method: GET
+        description: Get Segment IDs for Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-profiles-id-segments
+      path: /api/profiles/{id}/segments
+      operations:
+      - name: getsegmentsforprofile
+        method: GET
+        description: Get Segments for Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[segment]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-push-tokens
+      path: /api/push-tokens
+      operations:
+      - name: getpushtokens
+        method: GET
+        description: Get Push Tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[profile]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[push-token]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`id`: `equa'
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createpushtoken
+        method: POST
+        description: Create or Update Push Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-push-tokens-id
+      path: /api/push-tokens/{id}
+      operations:
+      - name: getpushtoken
+        method: GET
+        description: Get Push Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The value of the push token
+          required: true
+        - name: fields[profile]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[push-token]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: deletepushtoken
+        method: DELETE
+        description: Delete Push Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The value of the push token to delete
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-push-tokens-id-profile
+      path: /api/push-tokens/{id}/profile
+      operations:
+      - name: getprofileforpushtoken
+        method: GET
+        description: Get Profile for Push Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The value of the push token
+          required: true
+        - name: additional-fields[profile]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''subscriptions'',
+            ''predictive_analytics'''
+        - name: fields[profile]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-push-tokens-id-relationships-profile
+      path: /api/push-tokens/{id}/relationships/profile
+      operations:
+      - name: getprofileidforpushtoken
+        method: GET
+        description: Get Profile ID for Push Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The value of the push token
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-profiles-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Profiles. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/profile-bulk-import-jobs
+      name: api-profile-bulk-import-jobs
+      description: REST surface for api-profile-bulk-import-jobs.
+      operations:
+      - method: GET
+        name: getbulkimportprofilesjobs
+        description: Get Bulk Import Profiles Jobs
+        call: klaviyo-profiles.getbulkimportprofilesjobs
+        with:
+          fields[profile-bulk-import-job]: rest.fields[profile-bulk-import-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkimportprofiles
+        description: Bulk Import Profiles
+        call: klaviyo-profiles.bulkimportprofiles
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-bulk-import-jobs/{id}/import-errors
+      name: api-profile-bulk-import-jobs-id-import-errors
+      description: REST surface for api-profile-bulk-import-jobs-id-import-errors.
+      operations:
+      - method: GET
+        name: geterrorsforbulkimportprofilesjob
+        description: Get Errors for Bulk Import Profiles Job
+        call: klaviyo-profiles.geterrorsforbulkimportprofilesjob
+        with:
+          id: rest.id
+          fields[import-error]: rest.fields[import-error]
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-bulk-import-jobs/{id}/lists
+      name: api-profile-bulk-import-jobs-id-lists
+      description: REST surface for api-profile-bulk-import-jobs-id-lists.
+      operations:
+      - method: GET
+        name: getlistforbulkimportprofilesjob
+        description: Get List for Bulk Import Profiles Job
+        call: klaviyo-profiles.getlistforbulkimportprofilesjob
+        with:
+          id: rest.id
+          fields[list]: rest.fields[list]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-bulk-import-jobs/{id}/profiles
+      name: api-profile-bulk-import-jobs-id-profiles
+      description: REST surface for api-profile-bulk-import-jobs-id-profiles.
+      operations:
+      - method: GET
+        name: getprofilesforbulkimportprofilesjob
+        description: Get Profiles for Bulk Import Profiles Job
+        call: klaviyo-profiles.getprofilesforbulkimportprofilesjob
+        with:
+          id: rest.id
+          additional-fields[profile]: rest.additional-fields[profile]
+          fields[profile]: rest.fields[profile]
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-bulk-import-jobs/{id}/relationships/lists
+      name: api-profile-bulk-import-jobs-id-relationships-lists
+      description: REST surface for api-profile-bulk-import-jobs-id-relationships-lists.
+      operations:
+      - method: GET
+        name: getlistidsforbulkimportprofilesjob
+        description: Get List IDs for Bulk Import Profiles Job
+        call: klaviyo-profiles.getlistidsforbulkimportprofilesjob
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-bulk-import-jobs/{id}/relationships/profiles
+      name: api-profile-bulk-import-jobs-id-relationships-profiles
+      description: REST surface for api-profile-bulk-import-jobs-id-relationships-profiles.
+      operations:
+      - method: GET
+        name: getprofileidsforbulkimportprofilesjob
+        description: Get Profile IDs for Bulk Import Profiles Job
+        call: klaviyo-profiles.getprofileidsforbulkimportprofilesjob
+        with:
+          id: rest.id
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-bulk-import-jobs/{job-id}
+      name: api-profile-bulk-import-jobs-job-id
+      description: REST surface for api-profile-bulk-import-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkimportprofilesjob
+        description: Get Bulk Import Profiles Job
+        call: klaviyo-profiles.getbulkimportprofilesjob
+        with:
+          job_id: rest.job_id
+          fields[list]: rest.fields[list]
+          fields[profile-bulk-import-job]: rest.fields[profile-bulk-import-job]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-import
+      name: api-profile-import
+      description: REST surface for api-profile-import.
+      operations:
+      - method: POST
+        name: createorupdateprofile
+        description: Create or Update Profile
+        call: klaviyo-profiles.createorupdateprofile
+        with:
+          additional-fields[profile]: rest.additional-fields[profile]
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-merge
+      name: api-profile-merge
+      description: REST surface for api-profile-merge.
+      operations:
+      - method: POST
+        name: mergeprofiles
+        description: Merge Profiles
+        call: klaviyo-profiles.mergeprofiles
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-subscription-bulk-create-jobs
+      name: api-profile-subscription-bulk-create-jobs
+      description: REST surface for api-profile-subscription-bulk-create-jobs.
+      operations:
+      - method: POST
+        name: bulksubscribeprofiles
+        description: Bulk Subscribe Profiles
+        call: klaviyo-profiles.bulksubscribeprofiles
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-subscription-bulk-delete-jobs
+      name: api-profile-subscription-bulk-delete-jobs
+      description: REST surface for api-profile-subscription-bulk-delete-jobs.
+      operations:
+      - method: POST
+        name: bulkunsubscribeprofiles
+        description: Bulk Unsubscribe Profiles
+        call: klaviyo-profiles.bulkunsubscribeprofiles
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-suppression-bulk-create-jobs
+      name: api-profile-suppression-bulk-create-jobs
+      description: REST surface for api-profile-suppression-bulk-create-jobs.
+      operations:
+      - method: GET
+        name: getbulksuppressprofilesjobs
+        description: Get Bulk Suppress Profiles Jobs
+        call: klaviyo-profiles.getbulksuppressprofilesjobs
+        with:
+          fields[profile-suppression-bulk-create-job]: rest.fields[profile-suppression-bulk-create-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulksuppressprofiles
+        description: Bulk Suppress Profiles
+        call: klaviyo-profiles.bulksuppressprofiles
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-suppression-bulk-create-jobs/{job-id}
+      name: api-profile-suppression-bulk-create-jobs-job-id
+      description: REST surface for api-profile-suppression-bulk-create-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulksuppressprofilesjob
+        description: Get Bulk Suppress Profiles Job
+        call: klaviyo-profiles.getbulksuppressprofilesjob
+        with:
+          job_id: rest.job_id
+          fields[profile-suppression-bulk-create-job]: rest.fields[profile-suppression-bulk-create-job]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-suppression-bulk-delete-jobs
+      name: api-profile-suppression-bulk-delete-jobs
+      description: REST surface for api-profile-suppression-bulk-delete-jobs.
+      operations:
+      - method: GET
+        name: getbulkunsuppressprofilesjobs
+        description: Get Bulk Unsuppress Profiles Jobs
+        call: klaviyo-profiles.getbulkunsuppressprofilesjobs
+        with:
+          fields[profile-suppression-bulk-delete-job]: rest.fields[profile-suppression-bulk-delete-job]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bulkunsuppressprofiles
+        description: Bulk Unsuppress Profiles
+        call: klaviyo-profiles.bulkunsuppressprofiles
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profile-suppression-bulk-delete-jobs/{job-id}
+      name: api-profile-suppression-bulk-delete-jobs-job-id
+      description: REST surface for api-profile-suppression-bulk-delete-jobs-job_id.
+      operations:
+      - method: GET
+        name: getbulkunsuppressprofilesjob
+        description: Get Bulk Unsuppress Profiles Job
+        call: klaviyo-profiles.getbulkunsuppressprofilesjob
+        with:
+          job_id: rest.job_id
+          fields[profile-suppression-bulk-delete-job]: rest.fields[profile-suppression-bulk-delete-job]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles
+      name: api-profiles
+      description: REST surface for api-profiles.
+      operations:
+      - method: GET
+        name: getprofiles
+        description: Get Profiles
+        call: klaviyo-profiles.getprofiles
+        with:
+          additional-fields[profile]: rest.additional-fields[profile]
+          fields[profile]: rest.fields[profile]
+          fields[push-token]: rest.fields[push-token]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createprofile
+        description: Create Profile
+        call: klaviyo-profiles.createprofile
+        with:
+          additional-fields[profile]: rest.additional-fields[profile]
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}
+      name: api-profiles-id
+      description: REST surface for api-profiles-id.
+      operations:
+      - method: GET
+        name: getprofile
+        description: Get Profile
+        call: klaviyo-profiles.getprofile
+        with:
+          id: rest.id
+          additional-fields[profile]: rest.additional-fields[profile]
+          fields[list]: rest.fields[list]
+          fields[profile]: rest.fields[profile]
+          fields[push-token]: rest.fields[push-token]
+          fields[segment]: rest.fields[segment]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateprofile
+        description: Update Profile
+        call: klaviyo-profiles.updateprofile
+        with:
+          id: rest.id
+          additional-fields[profile]: rest.additional-fields[profile]
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}/conversation
+      name: api-profiles-id-conversation
+      description: REST surface for api-profiles-id-conversation.
+      operations:
+      - method: GET
+        name: getconversationforprofile
+        description: Get Conversation for Profile
+        call: klaviyo-profiles.getconversationforprofile
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}/lists
+      name: api-profiles-id-lists
+      description: REST surface for api-profiles-id-lists.
+      operations:
+      - method: GET
+        name: getlistsforprofile
+        description: Get Lists for Profile
+        call: klaviyo-profiles.getlistsforprofile
+        with:
+          id: rest.id
+          fields[list]: rest.fields[list]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}/push-tokens
+      name: api-profiles-id-push-tokens
+      description: REST surface for api-profiles-id-push-tokens.
+      operations:
+      - method: GET
+        name: getpushtokensforprofile
+        description: Get Push Tokens for Profile
+        call: klaviyo-profiles.getpushtokensforprofile
+        with:
+          id: rest.id
+          fields[push-token]: rest.fields[push-token]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}/relationships/conversation
+      name: api-profiles-id-relationships-conversation
+      description: REST surface for api-profiles-id-relationships-conversation.
+      operations:
+      - method: GET
+        name: getconversationidforprofile
+        description: Get Conversation ID for Profile
+        call: klaviyo-profiles.getconversationidforprofile
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}/relationships/lists
+      name: api-profiles-id-relationships-lists
+      description: REST surface for api-profiles-id-relationships-lists.
+      operations:
+      - method: GET
+        name: getlistidsforprofile
+        description: Get List IDs for Profile
+        call: klaviyo-profiles.getlistidsforprofile
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}/relationships/push-tokens
+      name: api-profiles-id-relationships-push-tokens
+      description: REST surface for api-profiles-id-relationships-push-tokens.
+      operations:
+      - method: GET
+        name: getpushtokenidsforprofile
+        description: Get Push Token IDs for Profile
+        call: klaviyo-profiles.getpushtokenidsforprofile
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}/relationships/segments
+      name: api-profiles-id-relationships-segments
+      description: REST surface for api-profiles-id-relationships-segments.
+      operations:
+      - method: GET
+        name: getsegmentidsforprofile
+        description: Get Segment IDs for Profile
+        call: klaviyo-profiles.getsegmentidsforprofile
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/profiles/{id}/segments
+      name: api-profiles-id-segments
+      description: REST surface for api-profiles-id-segments.
+      operations:
+      - method: GET
+        name: getsegmentsforprofile
+        description: Get Segments for Profile
+        call: klaviyo-profiles.getsegmentsforprofile
+        with:
+          id: rest.id
+          fields[segment]: rest.fields[segment]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/push-tokens
+      name: api-push-tokens
+      description: REST surface for api-push-tokens.
+      operations:
+      - method: GET
+        name: getpushtokens
+        description: Get Push Tokens
+        call: klaviyo-profiles.getpushtokens
+        with:
+          fields[profile]: rest.fields[profile]
+          fields[push-token]: rest.fields[push-token]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpushtoken
+        description: Create or Update Push Token
+        call: klaviyo-profiles.createpushtoken
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/push-tokens/{id}
+      name: api-push-tokens-id
+      description: REST surface for api-push-tokens-id.
+      operations:
+      - method: GET
+        name: getpushtoken
+        description: Get Push Token
+        call: klaviyo-profiles.getpushtoken
+        with:
+          id: rest.id
+          fields[profile]: rest.fields[profile]
+          fields[push-token]: rest.fields[push-token]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepushtoken
+        description: Delete Push Token
+        call: klaviyo-profiles.deletepushtoken
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/push-tokens/{id}/profile
+      name: api-push-tokens-id-profile
+      description: REST surface for api-push-tokens-id-profile.
+      operations:
+      - method: GET
+        name: getprofileforpushtoken
+        description: Get Profile for Push Token
+        call: klaviyo-profiles.getprofileforpushtoken
+        with:
+          id: rest.id
+          additional-fields[profile]: rest.additional-fields[profile]
+          fields[profile]: rest.fields[profile]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/push-tokens/{id}/relationships/profile
+      name: api-push-tokens-id-relationships-profile
+      description: REST surface for api-push-tokens-id-relationships-profile.
+      operations:
+      - method: GET
+        name: getprofileidforpushtoken
+        description: Get Profile ID for Push Token
+        call: klaviyo-profiles.getprofileidforpushtoken
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-profiles-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Profiles. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-bulk-import-profiles-jobs
+      description: Get Bulk Import Profiles Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getbulkimportprofilesjobs
+      with:
+        fields[profile-bulk-import-job]: tools.fields[profile-bulk-import-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-import-profiles
+      description: Bulk Import Profiles
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.bulkimportprofiles
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-errors-bulk-import-profiles
+      description: Get Errors for Bulk Import Profiles Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.geterrorsforbulkimportprofilesjob
+      with:
+        id: tools.id
+        fields[import-error]: tools.fields[import-error]
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-list-bulk-import-profiles
+      description: Get List for Bulk Import Profiles Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getlistforbulkimportprofilesjob
+      with:
+        id: tools.id
+        fields[list]: tools.fields[list]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-profiles-bulk-import-profiles
+      description: Get Profiles for Bulk Import Profiles Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getprofilesforbulkimportprofilesjob
+      with:
+        id: tools.id
+        additional-fields[profile]: tools.additional-fields[profile]
+        fields[profile]: tools.fields[profile]
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-list-ids-bulk-import
+      description: Get List IDs for Bulk Import Profiles Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getlistidsforbulkimportprofilesjob
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-profile-ids-bulk-import
+      description: Get Profile IDs for Bulk Import Profiles Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getprofileidsforbulkimportprofilesjob
+      with:
+        id: tools.id
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-import-profiles-job
+      description: Get Bulk Import Profiles Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getbulkimportprofilesjob
+      with:
+        job_id: tools.job_id
+        fields[list]: tools.fields[list]
+        fields[profile-bulk-import-job]: tools.fields[profile-bulk-import-job]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-profile
+      description: Create or Update Profile
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.createorupdateprofile
+      with:
+        additional-fields[profile]: tools.additional-fields[profile]
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: merge-profiles
+      description: Merge Profiles
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.mergeprofiles
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-subscribe-profiles
+      description: Bulk Subscribe Profiles
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.bulksubscribeprofiles
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-unsubscribe-profiles
+      description: Bulk Unsubscribe Profiles
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.bulkunsubscribeprofiles
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-suppress-profiles-jobs
+      description: Get Bulk Suppress Profiles Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getbulksuppressprofilesjobs
+      with:
+        fields[profile-suppression-bulk-create-job]: tools.fields[profile-suppression-bulk-create-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-suppress-profiles
+      description: Bulk Suppress Profiles
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.bulksuppressprofiles
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-suppress-profiles-job
+      description: Get Bulk Suppress Profiles Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getbulksuppressprofilesjob
+      with:
+        job_id: tools.job_id
+        fields[profile-suppression-bulk-create-job]: tools.fields[profile-suppression-bulk-create-job]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-unsuppress-profiles-jobs
+      description: Get Bulk Unsuppress Profiles Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getbulkunsuppressprofilesjobs
+      with:
+        fields[profile-suppression-bulk-delete-job]: tools.fields[profile-suppression-bulk-delete-job]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-unsuppress-profiles
+      description: Bulk Unsuppress Profiles
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.bulkunsuppressprofiles
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-unsuppress-profiles-job
+      description: Get Bulk Unsuppress Profiles Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getbulkunsuppressprofilesjob
+      with:
+        job_id: tools.job_id
+        fields[profile-suppression-bulk-delete-job]: tools.fields[profile-suppression-bulk-delete-job]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-profiles
+      description: Get Profiles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getprofiles
+      with:
+        additional-fields[profile]: tools.additional-fields[profile]
+        fields[profile]: tools.fields[profile]
+        fields[push-token]: tools.fields[push-token]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-profile
+      description: Create Profile
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.createprofile
+      with:
+        additional-fields[profile]: tools.additional-fields[profile]
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-profile
+      description: Get Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getprofile
+      with:
+        id: tools.id
+        additional-fields[profile]: tools.additional-fields[profile]
+        fields[list]: tools.fields[list]
+        fields[profile]: tools.fields[profile]
+        fields[push-token]: tools.fields[push-token]
+        fields[segment]: tools.fields[segment]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-profile
+      description: Update Profile
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.updateprofile
+      with:
+        id: tools.id
+        additional-fields[profile]: tools.additional-fields[profile]
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-conversation-profile
+      description: Get Conversation for Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getconversationforprofile
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-lists-profile
+      description: Get Lists for Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getlistsforprofile
+      with:
+        id: tools.id
+        fields[list]: tools.fields[list]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-push-tokens-profile
+      description: Get Push Tokens for Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getpushtokensforprofile
+      with:
+        id: tools.id
+        fields[push-token]: tools.fields[push-token]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-conversation-id-profile
+      description: Get Conversation ID for Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getconversationidforprofile
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-list-ids-profile
+      description: Get List IDs for Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getlistidsforprofile
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-push-token-ids-profile
+      description: Get Push Token IDs for Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getpushtokenidsforprofile
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-segment-ids-profile
+      description: Get Segment IDs for Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getsegmentidsforprofile
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-segments-profile
+      description: Get Segments for Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getsegmentsforprofile
+      with:
+        id: tools.id
+        fields[segment]: tools.fields[segment]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-push-tokens
+      description: Get Push Tokens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getpushtokens
+      with:
+        fields[profile]: tools.fields[profile]
+        fields[push-token]: tools.fields[push-token]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-push-token
+      description: Create or Update Push Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-profiles.createpushtoken
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-push-token
+      description: Get Push Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getpushtoken
+      with:
+        id: tools.id
+        fields[profile]: tools.fields[profile]
+        fields[push-token]: tools.fields[push-token]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-push-token
+      description: Delete Push Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-profiles.deletepushtoken
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-profile-push-token
+      description: Get Profile for Push Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getprofileforpushtoken
+      with:
+        id: tools.id
+        additional-fields[profile]: tools.additional-fields[profile]
+        fields[profile]: tools.fields[profile]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-profile-id-push-token
+      description: Get Profile ID for Push Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-profiles.getprofileidforpushtoken
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.

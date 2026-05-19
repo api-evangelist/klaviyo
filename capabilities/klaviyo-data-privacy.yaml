@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Data Privacy
+  description: 'Klaviyo API — Data Privacy. 1 operations. Lead operation: Request Profile Deletion. Self-contained Naftiko
+    capability covering one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Data Privacy
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-data-privacy
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Data Privacy business capability. Self-contained, no shared references.
+    resources:
+    - name: api-data-privacy-deletion-jobs
+      path: /api/data-privacy-deletion-jobs
+      operations:
+      - name: requestprofiledeletion
+        method: POST
+        description: Request Profile Deletion
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-data-privacy-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Data Privacy. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/data-privacy-deletion-jobs
+      name: api-data-privacy-deletion-jobs
+      description: REST surface for api-data-privacy-deletion-jobs.
+      operations:
+      - method: POST
+        name: requestprofiledeletion
+        description: Request Profile Deletion
+        call: klaviyo-data-privacy.requestprofiledeletion
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-data-privacy-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Data Privacy. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: request-profile-deletion
+      description: Request Profile Deletion
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-data-privacy.requestprofiledeletion
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

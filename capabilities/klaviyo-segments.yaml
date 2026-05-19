@@ -1,0 +1,707 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Klaviyo API — Segments
+  description: 'Klaviyo API — Segments. 11 operations. Lead operation: Get Segments. Self-contained Naftiko capability covering
+    one Klaviyo business surface.'
+  tags:
+  - Klaviyo
+  - Segments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KLAVIYO_API_KEY: KLAVIYO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: klaviyo-segments
+    baseUri: https://a.klaviyo.com
+    description: Klaviyo API — Segments business capability. Self-contained, no shared references.
+    resources:
+    - name: api-segments
+      path: /api/segments
+      operations:
+      - name: getsegments
+        method: GET
+        description: Get Segments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields[flow]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[segment]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[tag]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: 'For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`name`: `an'
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 10. Min: 1. Max: 10.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: createsegment
+        method: POST
+        description: Create Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-segments-id
+      path: /api/segments/{id}
+      operations:
+      - name: getsegment
+        method: GET
+        description: Get Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: additional-fields[segment]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''profile_count'''
+        - name: fields[flow]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[segment]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: fields[tag]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: include
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+      - name: updatesegment
+        method: PATCH
+        description: Update Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletesegment
+        method: DELETE
+        description: Delete Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-segments-id-flow-triggers
+      path: /api/segments/{id}/flow-triggers
+      operations:
+      - name: getflowstriggeredbysegment
+        method: GET
+        description: Get Flows Triggered by Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Primary key that uniquely identifies this segment. Generated by Klaviyo.
+          required: true
+        - name: fields[flow]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-segments-id-profiles
+      path: /api/segments/{id}/profiles
+      operations:
+      - name: getprofilesforsegment
+        method: GET
+        description: Get Profiles for Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Primary key that uniquely identifies this segment. Generated by Klaviyo.
+          required: true
+        - name: additional-fields[profile]
+          in: query
+          type: array
+          description: 'Request additional fields not included by default in the response. Supported values: ''subscriptions'',
+            ''predictive_analytics'''
+        - name: fields[profile]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: filter
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`profile_id
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-segments-id-relationships-flow-triggers
+      path: /api/segments/{id}/relationships/flow-triggers
+      operations:
+      - name: getidsforflowstriggeredbysegment
+        method: GET
+        description: Get IDs for Flows Triggered by Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Primary key that uniquely identifies this segment. Generated by Klaviyo.
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-segments-id-relationships-profiles
+      path: /api/segments/{id}/relationships/profiles
+      operations:
+      - name: getprofileidsforsegment
+        method: GET
+        description: Get Profile IDs for Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Primary key that uniquely identifies this segment. Generated by Klaviyo.
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed
+            field(s)/operator(s):<br>`profile_id
+        - name: page[cursor]
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+        - name: page[size]
+          in: query
+          type: integer
+          description: 'Default: 20. Min: 1. Max: 100.'
+        - name: sort
+          in: query
+          type: string
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-segments-id-relationships-tags
+      path: /api/segments/{id}/relationships/tags
+      operations:
+      - name: gettagidsforsegment
+        method: GET
+        description: Get Tag IDs for Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    - name: api-segments-id-tags
+      path: /api/segments/{id}/tags
+      operations:
+      - name: gettagsforsegment
+        method: GET
+        description: Get Tags for Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: fields[tag]
+          in: query
+          type: array
+          description: For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+        - name: revision
+          in: header
+          type: string
+          description: 'API endpoint revision (format: YYYY-MM-DD[.suffix])'
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KLAVIYO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: klaviyo-segments-rest
+    port: 8080
+    description: REST adapter for Klaviyo API — Segments. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/segments
+      name: api-segments
+      description: REST surface for api-segments.
+      operations:
+      - method: GET
+        name: getsegments
+        description: Get Segments
+        call: klaviyo-segments.getsegments
+        with:
+          fields[flow]: rest.fields[flow]
+          fields[segment]: rest.fields[segment]
+          fields[tag]: rest.fields[tag]
+          filter: rest.filter
+          include: rest.include
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsegment
+        description: Create Segment
+        call: klaviyo-segments.createsegment
+        with:
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/segments/{id}
+      name: api-segments-id
+      description: REST surface for api-segments-id.
+      operations:
+      - method: GET
+        name: getsegment
+        description: Get Segment
+        call: klaviyo-segments.getsegment
+        with:
+          id: rest.id
+          additional-fields[segment]: rest.additional-fields[segment]
+          fields[flow]: rest.fields[flow]
+          fields[segment]: rest.fields[segment]
+          fields[tag]: rest.fields[tag]
+          include: rest.include
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatesegment
+        description: Update Segment
+        call: klaviyo-segments.updatesegment
+        with:
+          id: rest.id
+          revision: rest.revision
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesegment
+        description: Delete Segment
+        call: klaviyo-segments.deletesegment
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/segments/{id}/flow-triggers
+      name: api-segments-id-flow-triggers
+      description: REST surface for api-segments-id-flow-triggers.
+      operations:
+      - method: GET
+        name: getflowstriggeredbysegment
+        description: Get Flows Triggered by Segment
+        call: klaviyo-segments.getflowstriggeredbysegment
+        with:
+          id: rest.id
+          fields[flow]: rest.fields[flow]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/segments/{id}/profiles
+      name: api-segments-id-profiles
+      description: REST surface for api-segments-id-profiles.
+      operations:
+      - method: GET
+        name: getprofilesforsegment
+        description: Get Profiles for Segment
+        call: klaviyo-segments.getprofilesforsegment
+        with:
+          id: rest.id
+          additional-fields[profile]: rest.additional-fields[profile]
+          fields[profile]: rest.fields[profile]
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/segments/{id}/relationships/flow-triggers
+      name: api-segments-id-relationships-flow-triggers
+      description: REST surface for api-segments-id-relationships-flow-triggers.
+      operations:
+      - method: GET
+        name: getidsforflowstriggeredbysegment
+        description: Get IDs for Flows Triggered by Segment
+        call: klaviyo-segments.getidsforflowstriggeredbysegment
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/segments/{id}/relationships/profiles
+      name: api-segments-id-relationships-profiles
+      description: REST surface for api-segments-id-relationships-profiles.
+      operations:
+      - method: GET
+        name: getprofileidsforsegment
+        description: Get Profile IDs for Segment
+        call: klaviyo-segments.getprofileidsforsegment
+        with:
+          id: rest.id
+          filter: rest.filter
+          page[cursor]: rest.page[cursor]
+          page[size]: rest.page[size]
+          sort: rest.sort
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/segments/{id}/relationships/tags
+      name: api-segments-id-relationships-tags
+      description: REST surface for api-segments-id-relationships-tags.
+      operations:
+      - method: GET
+        name: gettagidsforsegment
+        description: Get Tag IDs for Segment
+        call: klaviyo-segments.gettagidsforsegment
+        with:
+          id: rest.id
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/segments/{id}/tags
+      name: api-segments-id-tags
+      description: REST surface for api-segments-id-tags.
+      operations:
+      - method: GET
+        name: gettagsforsegment
+        description: Get Tags for Segment
+        call: klaviyo-segments.gettagsforsegment
+        with:
+          id: rest.id
+          fields[tag]: rest.fields[tag]
+          revision: rest.revision
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: klaviyo-segments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Klaviyo API — Segments. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-segments
+      description: Get Segments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.getsegments
+      with:
+        fields[flow]: tools.fields[flow]
+        fields[segment]: tools.fields[segment]
+        fields[tag]: tools.fields[tag]
+        filter: tools.filter
+        include: tools.include
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-segment
+      description: Create Segment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: klaviyo-segments.createsegment
+      with:
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-segment
+      description: Get Segment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.getsegment
+      with:
+        id: tools.id
+        additional-fields[segment]: tools.additional-fields[segment]
+        fields[flow]: tools.fields[flow]
+        fields[segment]: tools.fields[segment]
+        fields[tag]: tools.fields[tag]
+        include: tools.include
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-segment
+      description: Update Segment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.updatesegment
+      with:
+        id: tools.id
+        revision: tools.revision
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-segment
+      description: Delete Segment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: klaviyo-segments.deletesegment
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-flows-triggered-segment
+      description: Get Flows Triggered by Segment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.getflowstriggeredbysegment
+      with:
+        id: tools.id
+        fields[flow]: tools.fields[flow]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-profiles-segment
+      description: Get Profiles for Segment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.getprofilesforsegment
+      with:
+        id: tools.id
+        additional-fields[profile]: tools.additional-fields[profile]
+        fields[profile]: tools.fields[profile]
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ids-flows-triggered-segment
+      description: Get IDs for Flows Triggered by Segment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.getidsforflowstriggeredbysegment
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-profile-ids-segment
+      description: Get Profile IDs for Segment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.getprofileidsforsegment
+      with:
+        id: tools.id
+        filter: tools.filter
+        page[cursor]: tools.page[cursor]
+        page[size]: tools.page[size]
+        sort: tools.sort
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tag-ids-segment
+      description: Get Tag IDs for Segment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.gettagidsforsegment
+      with:
+        id: tools.id
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tags-segment
+      description: Get Tags for Segment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: klaviyo-segments.gettagsforsegment
+      with:
+        id: tools.id
+        fields[tag]: tools.fields[tag]
+        revision: tools.revision
+      outputParameters:
+      - type: object
+        mapping: $.
