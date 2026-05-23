@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscribedSMSIsRcsCapableFilter",
+  "title": "SubscribedSMSIsRcsCapableFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "is_rcs_capable"
+      ]
+    },
+    "filter": {
+      "$ref": "#/components/schemas/BooleanFilter"
+    }
+  },
+  "required": [
+    "field",
+    "filter"
+  ]
+}

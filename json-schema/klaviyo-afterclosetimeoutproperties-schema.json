@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AfterCloseTimeoutProperties",
+  "title": "AfterCloseTimeoutProperties",
+  "type": "object",
+  "properties": {
+    "timeout_days": {
+      "type": "integer",
+      "example": 5,
+      "default": 5
+    }
+  }
+}

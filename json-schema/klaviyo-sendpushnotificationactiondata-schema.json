@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendPushNotificationActionData",
+  "title": "SendPushNotificationActionData",
+  "type": "object",
+  "properties": {
+    "message": {
+      "$ref": "#/components/schemas/FlowPushNotification",
+      "nullable": true
+    },
+    "status": {
+      "description": "Flow action status.",
+      "type": "string",
+      "example": "draft",
+      "default": "draft",
+      "enum": [
+        "disabled",
+        "draft",
+        "live",
+        "manual"
+      ]
+    }
+  }
+}

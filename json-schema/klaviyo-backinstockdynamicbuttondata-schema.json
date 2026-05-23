@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackInStockDynamicButtonData",
+  "title": "BackInStockDynamicButtonData",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "default": ""
+    },
+    "display": {
+      "description": "Back In Stock Dynamic Button display type enumeration.",
+      "type": "string",
+      "example": "REPLACE",
+      "default": "REPLACE",
+      "enum": [
+        "NEXT_TO",
+        "REPLACE"
+      ]
+    },
+    "text_styles": {
+      "$ref": "#/components/schemas/BackInStockDynamicButtonTextStyles"
+    },
+    "button_styles": {
+      "$ref": "#/components/schemas/BackInStockDynamicButtonStyles"
+    }
+  }
+}

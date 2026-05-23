@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InvalidEmailDateFilter",
+  "title": "InvalidEmailDateFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "invalid_email_date"
+      ]
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeAnniversaryDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/CalendarDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/AnniversaryDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/IsSetExistenceFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "field",
+    "filter"
+  ]
+}

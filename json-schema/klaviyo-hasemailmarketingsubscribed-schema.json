@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HasEmailMarketingSubscribed",
+  "title": "HasEmailMarketingSubscribed",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "subscribed"
+      ]
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DoubleOptinFilter"
+          },
+          {
+            "$ref": "#/components/schemas/StatusDateFilter"
+          },
+          {
+            "$ref": "#/components/schemas/CustomSourceFilter"
+          },
+          {
+            "$ref": "#/components/schemas/FormMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/PreferencePageFilter"
+          },
+          {
+            "$ref": "#/components/schemas/APIMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/InboundMessageMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/BackInStockMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/SftpMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ManualImportManualMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ManualAddManualMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ShopifyIntegrationMethodFilter"
+          }
+        ]
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "subscription"
+  ]
+}

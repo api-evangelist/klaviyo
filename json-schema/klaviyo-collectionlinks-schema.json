@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CollectionLinks",
+  "title": "CollectionLinks",
+  "type": "object",
+  "properties": {
+    "self": {
+      "type": "string",
+      "format": "uri"
+    },
+    "first": {
+      "type": "string",
+      "format": "uri"
+    },
+    "last": {
+      "type": "string",
+      "format": "uri"
+    },
+    "prev": {
+      "type": "string",
+      "format": "uri"
+    },
+    "next": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "self"
+  ]
+}

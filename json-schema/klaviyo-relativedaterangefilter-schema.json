@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RelativeDateRangeFilter",
+  "title": "RelativeDateRangeFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "description": "Operators for relative date range filters.\n\ne.g. \"between 10 and 20 days ago\"",
+      "type": "string",
+      "enum": [
+        "between"
+      ]
+    },
+    "start": {
+      "type": "integer"
+    },
+    "end": {
+      "type": "integer"
+    },
+    "unit": {
+      "description": "Units for relative date filters.",
+      "type": "string",
+      "enum": [
+        "day",
+        "hour",
+        "week"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "start",
+    "end",
+    "unit"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SegmentCreateQuery",
+  "title": "SegmentCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/SegmentCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

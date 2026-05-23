@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignMessageImageUpdateQuery",
+  "title": "CampaignMessageImageUpdateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/ImageEnum"
+        },
+        "id": {
+          "description": "Campaign Message Image",
+          "type": "string",
+          "example": "14254"
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

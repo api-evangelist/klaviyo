@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RadioButtons",
+  "title": "RadioButtons",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "radio_buttons"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/RadioButtonsStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/RadioButtonsProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

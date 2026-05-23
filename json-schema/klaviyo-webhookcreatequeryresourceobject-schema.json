@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookCreateQueryResourceObject",
+  "title": "WebhookCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/WebhookEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A name for the webhook.",
+          "type": "string",
+          "example": "My Webhook"
+        },
+        "description": {
+          "description": "A description for the webhook.",
+          "type": "string",
+          "example": "A webhook for sms events",
+          "nullable": true
+        },
+        "endpoint_url": {
+          "description": "A url to send webhook calls to. Must be https.",
+          "type": "string",
+          "example": "https://www.example.com/example/path"
+        },
+        "secret_key": {
+          "description": "A secret key, that will be used for webhook request signing.",
+          "type": "string",
+          "example": "INSERT_SECRET_KEY"
+        }
+      },
+      "required": [
+        "name",
+        "endpoint_url",
+        "secret_key"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "webhook-topics": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/WebhookTopicEnum"
+                  },
+                  "id": {
+                    "description": "A list of topics to subscribe to.",
+                    "type": "string",
+                    "example": "event:klaviyo.sent_sms"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "webhook-topics"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes",
+    "relationships"
+  ]
+}

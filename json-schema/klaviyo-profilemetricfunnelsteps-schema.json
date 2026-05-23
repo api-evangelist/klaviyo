@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileMetricFunnelSteps",
+  "title": "ProfileMetricFunnelSteps",
+  "type": "object",
+  "properties": {
+    "metric_exists": {
+      "type": "boolean"
+    },
+    "metric_id": {
+      "type": "string"
+    },
+    "metric_filters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ProfileMetricPropertyFilter"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "metric_exists",
+    "metric_id"
+  ]
+}

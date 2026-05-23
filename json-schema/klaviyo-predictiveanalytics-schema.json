@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PredictiveAnalytics",
+  "title": "PredictiveAnalytics",
+  "type": "object",
+  "properties": {
+    "historic_clv": {
+      "description": "Total value of all historically placed orders",
+      "type": "number",
+      "example": 93.87,
+      "nullable": true
+    },
+    "predicted_clv": {
+      "description": "Predicted value of all placed orders in the next 365 days",
+      "type": "number",
+      "example": 27.24,
+      "nullable": true
+    },
+    "total_clv": {
+      "description": "Sum of historic and predicted CLV",
+      "type": "number",
+      "example": 121.11,
+      "nullable": true
+    },
+    "historic_number_of_orders": {
+      "description": "Number of already placed orders",
+      "type": "number",
+      "example": 2,
+      "nullable": true
+    },
+    "predicted_number_of_orders": {
+      "description": "Predicted number of placed orders in the next 365 days",
+      "type": "number",
+      "example": 0.54,
+      "nullable": true
+    },
+    "average_days_between_orders": {
+      "description": "Average number of days between orders (None if only one order has been placed)",
+      "type": "number",
+      "example": 189,
+      "nullable": true
+    },
+    "average_order_value": {
+      "description": "Average value of placed orders",
+      "type": "number",
+      "example": 46.94,
+      "nullable": true
+    },
+    "churn_probability": {
+      "description": "Probability the customer has churned",
+      "type": "number",
+      "example": 0.89,
+      "nullable": true
+    },
+    "expected_date_of_next_order": {
+      "description": "Expected date of next order, as calculated at the time of their most recent order",
+      "type": "string",
+      "format": "date-time",
+      "example": "2022-11-08T00:00:00+00:00",
+      "nullable": true
+    },
+    "ranked_channel_affinity": {
+      "description": "List of channels ranked by their predicted effectiveness for this profile, with the best channel being listed first at index 0",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "email",
+          "push",
+          "sms",
+          "whatsapp"
+        ],
+        "description": "Enum for channel name return values used in the V3 API for channel affinity for the field `ranked_channel_affinity`."
+      },
+      "example": [
+        "sms",
+        "email",
+        "push"
+      ],
+      "nullable": true
+    }
+  }
+}

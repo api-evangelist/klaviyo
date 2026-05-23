@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogVariantDeleteQueryResourceObject",
+  "title": "CatalogVariantDeleteQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CatalogVariantEnum"
+    },
+    "id": {
+      "description": "The catalog variant ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.",
+      "type": "string",
+      "example": "$custom:::$default:::SAMPLE-DATA-ITEM-1-VARIANT-MEDIUM"
+    }
+  },
+  "required": [
+    "type",
+    "id"
+  ]
+}

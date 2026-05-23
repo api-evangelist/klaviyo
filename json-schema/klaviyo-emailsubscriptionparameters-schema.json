@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailSubscriptionParameters",
+  "title": "EmailSubscriptionParameters",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The parameters to subscribe to on the \"EMAIL\" Channel. Currently supports \"MARKETING\".",
+      "$ref": "#/components/schemas/SubscriptionParameters"
+    }
+  },
+  "required": [
+    "marketing"
+  ]
+}

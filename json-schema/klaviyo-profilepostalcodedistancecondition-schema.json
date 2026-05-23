@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfilePostalCodeDistanceCondition",
+  "title": "ProfilePostalCodeDistanceCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-postal-code-distance"
+      ]
+    },
+    "country_code": {
+      "type": "string"
+    },
+    "postal_code": {
+      "type": "string"
+    },
+    "unit": {
+      "description": "Units for profile postal code distance conditions.",
+      "type": "string",
+      "enum": [
+        "kilometers",
+        "miles"
+      ]
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/GreaterThanPositiveNumericFilter"
+        },
+        {
+          "$ref": "#/components/schemas/LessThanPositiveNumericFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "country_code",
+    "postal_code",
+    "unit",
+    "filter"
+  ]
+}

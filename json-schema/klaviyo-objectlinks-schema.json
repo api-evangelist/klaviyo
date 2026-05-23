@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ObjectLinks",
+  "title": "ObjectLinks",
+  "type": "object",
+  "properties": {
+    "self": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "self"
+  ]
+}

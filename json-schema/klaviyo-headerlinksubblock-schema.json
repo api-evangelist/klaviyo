@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HeaderLinkSubBlock",
+  "title": "HeaderLinkSubBlock",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "header_link_bar_button"
+      ]
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "content": {
+      "nullable": true,
+      "type": "string"
+    },
+    "drop_shadow_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "href": {
+      "type": "string",
+      "nullable": true
+    },
+    "show_on": {
+      "description": "Show on.",
+      "type": "string",
+      "enum": [
+        "all",
+        "desktop",
+        "mobile"
+      ],
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

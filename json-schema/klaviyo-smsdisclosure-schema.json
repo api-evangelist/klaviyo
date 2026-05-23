@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSDisclosure",
+  "title": "SMSDisclosure",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "sms_disclosure"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/SMSDisclosureStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/SMSDisclosureProperties"
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

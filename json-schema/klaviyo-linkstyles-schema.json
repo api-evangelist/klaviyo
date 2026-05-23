@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkStyles",
+  "title": "LinkStyles",
+  "type": "object",
+  "properties": {
+    "color": {
+      "type": "string",
+      "example": "#0066cc",
+      "default": "#0066cc"
+    },
+    "decoration": {
+      "type": "string",
+      "example": "underline",
+      "default": "underline",
+      "enum": [
+        "underline"
+      ]
+    }
+  }
+}

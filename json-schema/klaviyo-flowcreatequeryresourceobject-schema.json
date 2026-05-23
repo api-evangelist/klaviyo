@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowCreateQueryResourceObject",
+  "title": "FlowCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FlowEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the Flow",
+          "type": "string",
+          "example": "Welcome Flow"
+        },
+        "definition": {
+          "description": "The encoded flow definition. New objects that do not yet exist, such as actions, need to use a `temporary_id`, not an `id`.",
+          "$ref": "#/components/schemas/FlowDefinition"
+        }
+      },
+      "required": [
+        "name",
+        "definition"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

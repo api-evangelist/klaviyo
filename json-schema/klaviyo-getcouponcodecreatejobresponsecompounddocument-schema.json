@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCouponCodeCreateJobResponseCompoundDocument",
+  "title": "GetCouponCodeCreateJobResponseCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CouponCodeCreateJobResponseObjectResource"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CouponCodeResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

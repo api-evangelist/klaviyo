@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewValuesReportResponseObjectResource",
+  "title": "ReviewValuesReportResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ReviewValuesReportEnum"
+    },
+    "id": {
+      "description": "The unique identifier for the reviews values report",
+      "type": "string",
+      "example": "925e385b52fb405715f3616c337cc65c"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "description": "The list of groupings and their corresponding statistics in the reviews values report",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ReviewValueReportGrouping"
+          },
+          "example": [
+            {
+              "groupings": {
+                "product_id": "id1"
+              },
+              "statistics": {
+                "total_ratings": 459,
+                "average_rating": 4.5
+              }
+            },
+            {
+              "groupings": {
+                "product_id": "id2"
+              },
+              "statistics": {
+                "total_ratings": 459,
+                "average_rating": 2.5
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "results"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

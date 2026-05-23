@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RichTextStyles",
+  "title": "RichTextStyles",
+  "type": "object",
+  "properties": {
+    "body": {
+      "$ref": "#/components/schemas/RichTextStyle"
+    },
+    "link": {
+      "$ref": "#/components/schemas/LinkStyles"
+    },
+    "h1": {
+      "$ref": "#/components/schemas/RichTextStyle"
+    },
+    "h2": {
+      "$ref": "#/components/schemas/RichTextStyle"
+    },
+    "h3": {
+      "$ref": "#/components/schemas/RichTextStyle"
+    },
+    "h4": {
+      "$ref": "#/components/schemas/RichTextStyle"
+    },
+    "h5": {
+      "$ref": "#/components/schemas/RichTextStyle"
+    },
+    "h6": {
+      "$ref": "#/components/schemas/RichTextStyle"
+    }
+  }
+}

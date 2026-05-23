@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormSeriesRequestDTO",
+  "title": "FormSeriesRequestDTO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/FormSeriesRequestDTOResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

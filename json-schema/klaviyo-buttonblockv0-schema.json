@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ButtonBlockV0",
+  "title": "ButtonBlockV0",
+  "type": "object",
+  "properties": {
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "button"
+      ]
+    },
+    "data": {
+      "nullable": true
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

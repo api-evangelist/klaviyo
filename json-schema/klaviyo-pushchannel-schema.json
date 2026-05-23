@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushChannel",
+  "title": "PushChannel",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The mobile push marketing subscription.",
+      "$ref": "#/components/schemas/PushMarketing",
+      "nullable": true
+    }
+  }
+}

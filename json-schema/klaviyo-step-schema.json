@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Step",
+  "title": "Step",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ColumnV0"
+      }
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Step"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "columns"
+  ]
+}

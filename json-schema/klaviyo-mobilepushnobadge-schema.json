@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobilePushNoBadge",
+  "title": "MobilePushNoBadge",
+  "type": "object",
+  "properties": {
+    "display": {
+      "description": "Whether to display a badge on the app icon",
+      "type": "boolean",
+      "enum": [
+        false
+      ]
+    }
+  },
+  "required": [
+    "display"
+  ]
+}

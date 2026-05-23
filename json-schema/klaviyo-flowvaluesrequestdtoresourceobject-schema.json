@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowValuesRequestDTOResourceObject",
+  "title": "FlowValuesRequestDTOResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FlowValuesReportEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "statistics": {
+          "description": "List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "average_order_value",
+              "bounce_rate",
+              "bounced",
+              "bounced_or_failed",
+              "bounced_or_failed_rate",
+              "click_rate",
+              "click_to_open_rate",
+              "clicks",
+              "clicks_unique",
+              "conversion_rate",
+              "conversion_uniques",
+              "conversion_value",
+              "conversions",
+              "delivered",
+              "delivery_rate",
+              "failed",
+              "failed_rate",
+              "message_segment_count_sum",
+              "open_rate",
+              "opens",
+              "opens_unique",
+              "recipients",
+              "revenue_per_recipient",
+              "spam_complaint_rate",
+              "spam_complaints",
+              "text_message_credit_usage_amount",
+              "text_message_roi",
+              "text_message_spend",
+              "unsubscribe_rate",
+              "unsubscribe_uniques",
+              "unsubscribes"
+            ],
+            "description": "Defined reporting metric"
+          },
+          "example": [
+            "opens",
+            "open_rate"
+          ]
+        },
+        "timeframe": {
+          "description": "The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).",
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/Timeframe"
+            },
+            {
+              "$ref": "#/components/schemas/CustomTimeframe"
+            }
+          ]
+        },
+        "conversion_metric_id": {
+          "description": "ID of the metric to be used for conversion statistics",
+          "type": "string",
+          "example": "RESQ6t"
+        },
+        "group_by": {
+          "description": "List of attributes to group the data by.\nAllowed group-bys are flow_id, flow_message_id, flow_message_name, flow_name, send_channel, tag_id, tag_name, text_message_format, variation, variation_name.\nIf not passed in, the data will be grouped by flow_id, flow_message_id, send_channel.\nThe following group by attributes are required: flow_message_id, flow_id.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "flow_id",
+              "flow_message_id",
+              "flow_message_name",
+              "flow_name",
+              "send_channel",
+              "tag_id",
+              "tag_name",
+              "text_message_format",
+              "variation",
+              "variation_name"
+            ],
+            "description": "Attributes to represent what is being grouped by for Flows"
+          },
+          "nullable": true
+        },
+        "filter": {
+          "description": "API filter string used to filter the query.\nScalar attributes (flow_id, flow_name, send_channel, flow_message_id, flow_message_name, text_message_format, variation, variation_name): Supported operators: equals, contains-any.\nList attributes (tag_id, tag_name): Supported operators: contains-any, contains-all.\nOnly one filter can be used per attribute.\nOnly AND can be used as a combination operator.\nMax of 100 items per list filter.\nWhen filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.",
+          "type": "string",
+          "example": "and(equals(flow_id,\"abc123\"),contains-any(send_channel,[\"email\",\"sms\"]))",
+          "nullable": true
+        }
+      },
+      "required": [
+        "statistics",
+        "timeframe",
+        "conversion_metric_id"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

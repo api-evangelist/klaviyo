@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSourceCreateQueryResourceObject",
+  "title": "DataSourceCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/DataSourceEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "description": "The title of the data source. Must be between 1 and 255 characters and unique within the namespace.",
+          "type": "string"
+        },
+        "visibility": {
+          "description": "Visibility of data source.",
+          "type": "string",
+          "example": "private",
+          "default": "private",
+          "enum": [
+            "private",
+            "shared"
+          ],
+          "nullable": true
+        },
+        "description": {
+          "type": "string",
+          "default": "",
+          "nullable": true
+        },
+        "namespace": {
+          "description": "The namespace of the data source.",
+          "type": "string",
+          "example": "custom-objects",
+          "default": "custom-objects",
+          "nullable": true
+        }
+      },
+      "required": [
+        "title"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

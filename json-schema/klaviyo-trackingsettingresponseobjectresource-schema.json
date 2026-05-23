@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TrackingSettingResponseObjectResource",
+  "title": "TrackingSettingResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TrackingSettingEnum"
+    },
+    "id": {
+      "description": "The id of the tracking setting (account ID).",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "auto_add_parameters": {
+          "description": "Whether tracking parameters are automatically added to campaigns and flows.",
+          "type": "boolean"
+        },
+        "utm_source": {
+          "description": "The utm_source tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO"
+        },
+        "utm_medium": {
+          "description": "The utm_medium tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO"
+        },
+        "utm_campaign": {
+          "description": "The utm_campaign tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO",
+          "nullable": true
+        },
+        "utm_id": {
+          "description": "The utm_id tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO",
+          "nullable": true
+        },
+        "utm_term": {
+          "description": "The utm_term tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO",
+          "nullable": true
+        },
+        "custom_parameters": {
+          "description": "Additional custom tracking parameters.",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/CustomTrackingParamDTO"
+          },
+          "nullable": true
+        }
+      },
+      "required": [
+        "auto_add_parameters",
+        "utm_source",
+        "utm_medium"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

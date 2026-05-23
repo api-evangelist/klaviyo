@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowWebhook",
+  "title": "FlowWebhook",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "nullable": true
+    },
+    "headers": {
+      "type": "object",
+      "nullable": true
+    },
+    "body": {
+      "type": "string",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "url"
+  ]
+}

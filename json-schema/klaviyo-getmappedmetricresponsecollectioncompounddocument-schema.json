@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetMappedMetricResponseCollectionCompoundDocument",
+  "title": "GetMappedMetricResponseCollectionCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MappedMetricResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MetricResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/CustomMetricResponseObjectResource"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileMarketingConsentCondition",
+  "title": "ProfileMarketingConsentCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-marketing-consent"
+      ]
+    },
+    "consent": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/HasEmailMarketingConsent"
+        },
+        {
+          "$ref": "#/components/schemas/NoEmailMarketingConsent"
+        },
+        {
+          "$ref": "#/components/schemas/HasSMSMarketingConsent"
+        },
+        {
+          "$ref": "#/components/schemas/NoSMSMarketingConsent"
+        },
+        {
+          "$ref": "#/components/schemas/HasPushMarketingConsent"
+        },
+        {
+          "$ref": "#/components/schemas/NoPushMarketingConsent"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "consent"
+  ]
+}

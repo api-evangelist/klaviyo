@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackgroundImageStyles",
+  "title": "BackgroundImageStyles",
+  "type": "object",
+  "properties": {
+    "horizontal_alignment": {
+      "description": "Horizontal alignment enumeration.",
+      "type": "string",
+      "example": "center",
+      "default": "center",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ]
+    },
+    "width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "position": {
+      "description": "Image position enumeration.",
+      "type": "string",
+      "example": "contain",
+      "default": "contain",
+      "enum": [
+        "contain",
+        "cover",
+        "custom"
+      ]
+    },
+    "vertical_alignment": {
+      "description": "Vertical alignment enumeration.",
+      "type": "string",
+      "example": "center",
+      "default": "center",
+      "enum": [
+        "bottom",
+        "center",
+        "top"
+      ]
+    },
+    "custom_width": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

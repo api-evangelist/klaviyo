@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HasEmailMarketing",
+  "title": "HasEmailMarketing",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "any"
+      ]
+    },
+    "filters": {
+      "nullable": true
+    }
+  },
+  "required": [
+    "subscription"
+  ]
+}

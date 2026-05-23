@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCampaignMessagesRelationshipsResponseCollection",
+  "title": "GetCampaignMessagesRelationshipsResponseCollection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/CampaignMessageEnum"
+          },
+          "id": {
+            "description": "The message ID",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

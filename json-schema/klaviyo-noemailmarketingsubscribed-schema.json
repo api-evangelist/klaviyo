@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NoEmailMarketingSubscribed",
+  "title": "NoEmailMarketingSubscribed",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "subscribed"
+      ]
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BounceDateFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ManualSuppressionDateFilter"
+          },
+          {
+            "$ref": "#/components/schemas/InvalidEmailDateFilter"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "subscription",
+    "filters"
+  ]
+}

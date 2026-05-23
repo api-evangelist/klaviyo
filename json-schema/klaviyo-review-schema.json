@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Review",
+  "title": "Review",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "review"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/ReviewStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/ReviewProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

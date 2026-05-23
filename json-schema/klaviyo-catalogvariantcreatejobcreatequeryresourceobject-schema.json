@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogVariantCreateJobCreateQueryResourceObject",
+  "title": "CatalogVariantCreateJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CatalogVariantBulkCreateJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "variants": {
+          "description": "Array of catalog variants to create.",
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CatalogVariantCreateQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "variants"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

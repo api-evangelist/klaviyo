@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetReviewResponseDTOCompoundDocument",
+  "title": "GetReviewResponseDTOCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ReviewResponseDTOObjectResource"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EventResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

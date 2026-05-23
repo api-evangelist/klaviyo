@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableImageSubBlock",
+  "title": "TableImageSubBlock",
+  "type": "object",
+  "properties": {
+    "dynamic": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "alt_text": {
+      "type": "string",
+      "nullable": true
+    },
+    "asset_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "href": {
+      "type": "string",
+      "nullable": true
+    },
+    "src": {
+      "type": "string",
+      "nullable": true
+    },
+    "width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "height": {
+      "type": "integer",
+      "nullable": true
+    },
+    "image_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "image_align": {
+      "description": "Image Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "show_on": {
+      "description": "Show on.",
+      "type": "string",
+      "enum": [
+        "all",
+        "desktop",
+        "mobile"
+      ],
+      "nullable": true
+    },
+    "table_column_width": {
+      "type": "string",
+      "nullable": true
+    },
+    "cell_text_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "cropped_asset_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "cropped_src": {
+      "type": "string",
+      "nullable": true
+    },
+    "cropping_aspect_ratio": {
+      "type": "string",
+      "nullable": true
+    },
+    "cropping_height": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cropping_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cropping_x": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cropping_y": {
+      "type": "integer",
+      "nullable": true
+    },
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "table_image"
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

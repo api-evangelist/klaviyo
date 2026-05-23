@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SpinToWinStyles",
+  "title": "SpinToWinStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "slice_styles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SpinToWinSliceStyle"
+      }
+    },
+    "text_styles": {
+      "$ref": "#/components/schemas/TextStyleV0"
+    },
+    "center_color": {
+      "type": "string",
+      "example": "rgba(255,255,255,1)",
+      "default": "rgba(255,255,255,1)"
+    },
+    "outline_color": {
+      "type": "string",
+      "example": "rgba(0,0,0,1)",
+      "default": "rgba(0,0,0,1)"
+    },
+    "outline_thickness": {
+      "type": "integer",
+      "example": 12,
+      "default": 12
+    },
+    "pin_color": {
+      "type": "string",
+      "example": "rgba(255,255,255,1)",
+      "default": "rgba(255,255,255,1)"
+    },
+    "wheel_size": {
+      "type": "integer",
+      "example": 400,
+      "default": 400
+    }
+  }
+}

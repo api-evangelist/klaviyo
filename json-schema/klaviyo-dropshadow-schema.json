@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DropShadow",
+  "title": "DropShadow",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "blur": {
+      "type": "integer",
+      "example": 30,
+      "default": 30
+    },
+    "color": {
+      "type": "string",
+      "example": "rgba(0,0,0,0.15)",
+      "default": "rgba(0,0,0,0.15)",
+      "nullable": true
+    }
+  }
+}

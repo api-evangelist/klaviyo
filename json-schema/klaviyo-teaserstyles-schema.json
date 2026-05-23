@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TeaserStyles",
+  "title": "TeaserStyles",
+  "type": "object",
+  "properties": {
+    "background_color": {
+      "type": "string",
+      "example": "#FFFFFF",
+      "default": "#FFFFFF"
+    },
+    "drop_shadow": {
+      "$ref": "#/components/schemas/DropShadow"
+    },
+    "corner_radius": {
+      "type": "integer",
+      "example": 4,
+      "default": 4
+    },
+    "background_image": {
+      "$ref": "#/components/schemas/BackgroundImage",
+      "nullable": true
+    },
+    "close_button": {
+      "$ref": "#/components/schemas/CloseButtonStyle"
+    },
+    "margin": {
+      "$ref": "#/components/schemas/Margin"
+    }
+  }
+}

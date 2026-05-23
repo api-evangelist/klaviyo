@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CouponCodeCreateQuery",
+  "title": "CouponCodeCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CouponCodeCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

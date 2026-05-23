@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailMessageDefinition",
+  "title": "EmailMessageDefinition",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "email"
+      ]
+    },
+    "label": {
+      "description": "The label or name on the message",
+      "type": "string",
+      "example": "My message name",
+      "nullable": true
+    },
+    "content": {
+      "$ref": "#/components/schemas/EmailContent",
+      "description": "Additional attributes relating to the content of the message",
+      "nullable": true
+    }
+  },
+  "required": [
+    "channel"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CountdownTimerProperties",
+  "title": "CountdownTimerProperties",
+  "type": "object",
+  "properties": {
+    "display_device": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      }
+    },
+    "classname": {
+      "type": "string",
+      "nullable": true
+    },
+    "clock_face": {
+      "description": "Options for displaying a timer.",
+      "type": "string",
+      "example": "simple",
+      "default": "simple",
+      "enum": [
+        "flip",
+        "simple"
+      ]
+    },
+    "animation": {
+      "description": "Options for timer completion animations.",
+      "type": "string",
+      "example": "heartbeat",
+      "default": "heartbeat",
+      "enum": [
+        "flash",
+        "heartbeat",
+        "pulse"
+      ],
+      "nullable": true
+    },
+    "configuration": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/FixedTimerConfiguration"
+        },
+        {
+          "$ref": "#/components/schemas/VariableTimerConfiguration"
+        }
+      ]
+    }
+  },
+  "required": [
+    "configuration"
+  ]
+}

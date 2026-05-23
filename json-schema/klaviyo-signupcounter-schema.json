@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SignupCounter",
+  "title": "SignupCounter",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "signup_counter"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/SignupCounterStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/SignupCounterProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscriptionDeleteJobCreateQueryResourceObject",
+  "title": "SubscriptionDeleteJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ProfileSubscriptionBulkDeleteJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "description": "The profile(s) to unsubscribe",
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProfileSubscriptionDeleteQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "profiles"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ListEnum"
+                },
+                "id": {
+                  "description": "The list to remove the profiles from",
+                  "type": "string",
+                  "example": "Y6nRLr"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

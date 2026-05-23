@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LocalStaticSend",
+  "title": "LocalStaticSend",
+  "type": "object",
+  "properties": {
+    "is_local": {
+      "description": "Whether the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.",
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "send_past_recipients_immediately": {
+      "description": "Determines if we should send to local recipient timezone if the given time has passed. Only applicable to local sends.",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "is_local"
+  ]
+}

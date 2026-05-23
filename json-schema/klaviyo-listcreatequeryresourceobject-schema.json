@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListCreateQueryResourceObject",
+  "title": "ListCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ListEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A helpful name to label the list",
+          "type": "string",
+          "example": "Newsletter"
+        },
+        "opt_in_process": {
+          "description": "The opt-in process for this list. Valid values: 'double_opt_in', 'single_opt_in'. If not provided, uses account default.",
+          "type": "string",
+          "example": "double_opt_in",
+          "enum": [
+            "double_opt_in",
+            "single_opt_in"
+          ],
+          "nullable": true
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

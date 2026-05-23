@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SkipToSuccess",
+  "title": "SkipToSuccess",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "skip_to_success"
+      ]
+    },
+    "submit": {
+      "type": "boolean",
+      "default": false,
+      "enum": [
+        false
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/SkipToSuccessProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

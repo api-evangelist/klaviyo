@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageBlockCroppingProperties",
+  "title": "ImageBlockCroppingProperties",
+  "type": "object",
+  "properties": {
+    "aspect_ratio": {
+      "type": "string",
+      "nullable": true
+    },
+    "asset_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "height": {
+      "type": "integer",
+      "nullable": true
+    },
+    "src": {
+      "type": "string",
+      "nullable": true
+    },
+    "width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "x": {
+      "type": "integer",
+      "nullable": true
+    },
+    "y": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

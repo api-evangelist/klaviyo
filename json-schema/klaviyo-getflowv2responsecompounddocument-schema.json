@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetFlowV2ResponseCompoundDocument",
+  "title": "GetFlowV2ResponseCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "allOf": [
+        {
+          "properties": {
+            "type": {
+              "$ref": "#/components/schemas/FlowEnum"
+            },
+            "attributes": {
+              "properties": {
+                "definition": {
+                  "description": "The encoded flow definition. Unsupported objects (triggers, actions, etc.) will be included but labeled as unsupported.",
+                  "$ref": "#/components/schemas/FlowDefinition",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/components/schemas/FlowV2ResponseObjectResource"
+        }
+      ]
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/FlowActionEncodedResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/TagResponseObjectResource"
+          }
+        ]
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowsProfileMetricCondition",
+  "title": "FlowsProfileMetricCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-metric"
+      ]
+    },
+    "metric_id": {
+      "type": "string"
+    },
+    "measurement": {
+      "description": "Measurements for profile metrics.",
+      "type": "string",
+      "enum": [
+        "count",
+        "sum"
+      ]
+    },
+    "measurement_filter": {
+      "$ref": "#/components/schemas/NumericOperatorNumericFilter"
+    },
+    "timeframe_filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeAnniversaryDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/AlltimeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/SinceFlowStartDateFilter"
+        }
+      ]
+    },
+    "metric_filters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ProfileMetricPropertyFilter"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "type",
+    "metric_id",
+    "measurement",
+    "measurement_filter",
+    "timeframe_filter"
+  ]
+}

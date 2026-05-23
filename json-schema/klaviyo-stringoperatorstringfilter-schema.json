@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StringOperatorStringFilter",
+  "title": "StringOperatorStringFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "string"
+      ]
+    },
+    "operator": {
+      "description": "Operators for string filters.",
+      "type": "string",
+      "enum": [
+        "contains",
+        "ends-with",
+        "equals",
+        "not-contains",
+        "not-ends-with",
+        "not-equals",
+        "not-starts-with",
+        "nregex",
+        "regex",
+        "starts-with"
+      ]
+    },
+    "value": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignCreateQueryResourceObject",
+  "title": "CampaignCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CampaignEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The campaign name",
+          "type": "string",
+          "example": "My new campaign"
+        },
+        "audiences": {
+          "description": "The audiences to be included and/or excluded from the campaign",
+          "$ref": "#/components/schemas/Audiences"
+        },
+        "send_strategy": {
+          "description": "The send strategy the campaign will send with. Defaults to 'Immediate' send strategy.",
+          "nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/StaticSendStrategy"
+            },
+            {
+              "$ref": "#/components/schemas/ThrottledSendStrategy"
+            },
+            {
+              "$ref": "#/components/schemas/ImmediateSendStrategy"
+            },
+            {
+              "$ref": "#/components/schemas/SmartSendTimeStrategy"
+            }
+          ]
+        },
+        "send_options": {
+          "description": "Options to use when sending a campaign",
+          "nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/EmailSendOptions"
+            },
+            {
+              "$ref": "#/components/schemas/SMSSendOptions"
+            },
+            {
+              "$ref": "#/components/schemas/PushSendOptions"
+            }
+          ]
+        },
+        "tracking_options": {
+          "description": "The tracking options associated with the campaign",
+          "nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/CampaignsEmailTrackingOptions"
+            },
+            {
+              "$ref": "#/components/schemas/CampaignsSMSTrackingOptions"
+            }
+          ]
+        },
+        "campaign-messages": {
+          "description": "The message(s) associated with the campaign",
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CampaignMessageCreateQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "audiences",
+        "campaign-messages"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

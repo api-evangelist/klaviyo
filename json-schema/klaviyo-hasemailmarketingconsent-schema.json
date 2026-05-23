@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HasEmailMarketingConsent",
+  "title": "HasEmailMarketingConsent",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "email"
+      ]
+    },
+    "can_receive_marketing": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "consent_status": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/HasEmailMarketing"
+        },
+        {
+          "$ref": "#/components/schemas/HasEmailMarketingSubscribed"
+        },
+        {
+          "$ref": "#/components/schemas/HasEmailMarketingNeverSubscribed"
+        }
+      ]
+    }
+  },
+  "required": [
+    "channel",
+    "can_receive_marketing",
+    "consent_status"
+  ]
+}

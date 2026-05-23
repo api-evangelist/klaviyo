@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImportErrorResponseObjectResource",
+  "title": "ImportErrorResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ImportErrorEnum"
+    },
+    "id": {
+      "description": "Unique identifier for the error.",
+      "type": "string",
+      "example": "e4eebb08-b055-4a6f-bb13-c8cb69c9eb94"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "A code for classifying the error type.",
+          "type": "string",
+          "example": "invalid"
+        },
+        "title": {
+          "description": "A high-level message about the error.",
+          "type": "string",
+          "example": "Invalid input"
+        },
+        "detail": {
+          "description": "Specific details about the error.",
+          "type": "string",
+          "example": "The payload provided in the request is invalid."
+        },
+        "source": {
+          "description": "Additional information on the source of the error.",
+          "$ref": "#/components/schemas/ErrorSource"
+        },
+        "original_payload": {
+          "type": "object",
+          "nullable": true
+        }
+      },
+      "required": [
+        "code",
+        "title",
+        "detail",
+        "source"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

@@ -1,0 +1,51 @@
+name: Klaviyo Domain Vocabulary
+provider: Klaviyo
+providerId: klaviyo
+description: Tag-derived vocabulary for the Klaviyo API surface; sourced from openapi/ tags.
+terms:
+- term: Accounts
+  description: accounts
+- term: Campaigns
+  description: campaigns
+- term: Catalogs
+  description: catalogs
+- term: Conversations
+  description: conversations
+- term: Coupons
+  description: coupons
+- term: Custom Objects
+  description: custom objects
+- term: Data Privacy
+  description: data privacy
+- term: Events
+  description: events
+- term: Flows
+  description: flows
+- term: Forms
+  description: forms
+- term: Images
+  description: images
+- term: Lists
+  description: lists
+- term: Metrics
+  description: metrics
+- term: Profiles
+  description: profiles
+- term: Reporting
+  description: reporting
+- term: Reviews
+  description: reviews
+- term: Segments
+  description: segments
+- term: Tags
+  description: tags
+- term: Templates
+  description: templates
+- term: Tracking Settings
+  description: tracking settings
+- term: Web Feeds
+  description: web feeds
+- term: Webhooks
+  description: webhooks
+- term: Client
+  description: client

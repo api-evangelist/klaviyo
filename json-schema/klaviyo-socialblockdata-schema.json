@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SocialBlockData",
+  "title": "SocialBlockData",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/components/schemas/SocialBlockProperties"
+    },
+    "display_options": {
+      "$ref": "#/components/schemas/DisplayOptions"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/SocialBlockStyles"
+    }
+  },
+  "required": [
+    "properties",
+    "display_options",
+    "styles"
+  ]
+}

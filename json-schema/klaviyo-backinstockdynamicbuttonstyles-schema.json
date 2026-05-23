@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackInStockDynamicButtonStyles",
+  "title": "BackInStockDynamicButtonStyles",
+  "type": "object",
+  "properties": {
+    "color": {
+      "type": "string",
+      "example": "#000000",
+      "default": "#000000"
+    },
+    "border_radius": {
+      "type": "integer",
+      "default": 0
+    },
+    "height": {
+      "type": "integer",
+      "example": 44,
+      "default": 44
+    },
+    "width": {
+      "description": "Back In Stock Dynamic Button display type enumeration.",
+      "type": "string",
+      "example": "fullWidth",
+      "default": "fullWidth",
+      "enum": [
+        "fitToText",
+        "fullWidth"
+      ]
+    },
+    "alignment": {
+      "description": "Horizontal alignment enumeration.",
+      "type": "string",
+      "example": "center",
+      "default": "center",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ]
+    },
+    "border": {
+      "$ref": "#/components/schemas/BackInStockDynamicButtonBorderStyles"
+    },
+    "drop_shadow": {
+      "$ref": "#/components/schemas/BackInStockDynamicButtonDropShadowStyles"
+    }
+  }
+}

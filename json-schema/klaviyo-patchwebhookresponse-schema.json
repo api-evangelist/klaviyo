@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchWebhookResponse",
+  "title": "PatchWebhookResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/WebhookEnum"
+        },
+        "id": {
+          "description": "The ID of the webhook.",
+          "type": "string",
+          "example": "01HF7AYTK76RHR4F17G6DGTRGF"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "A name for the webhook.",
+              "type": "string",
+              "example": "My Webhook"
+            },
+            "description": {
+              "description": "A description for the webhook.",
+              "type": "string",
+              "example": "A webhook for sms events",
+              "nullable": true
+            },
+            "endpoint_url": {
+              "description": "The url to send webhook requests to, truncated for security.",
+              "type": "string",
+              "example": "https://www.example.com"
+            },
+            "enabled": {
+              "description": "Is the webhook enabled.",
+              "type": "boolean"
+            },
+            "created_at": {
+              "description": "Date and time when the webhook was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T01:23:45+00:00",
+              "nullable": true
+            },
+            "updated_at": {
+              "description": "Date and time when the webhook was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T01:23:45+00:00",
+              "nullable": true
+            }
+          },
+          "required": [
+            "name",
+            "endpoint_url",
+            "enabled"
+          ]
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "webhook-topics": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/WebhookTopicEnum"
+                      },
+                      "id": {
+                        "description": "A topic the webhook is subscribed to.",
+                        "type": "string",
+                        "example": "event:klaviyo.sent_sms"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            }
+          }
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

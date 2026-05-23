@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetSegmentResponseCollection",
+  "title": "GetSegmentResponseCollection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SegmentResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

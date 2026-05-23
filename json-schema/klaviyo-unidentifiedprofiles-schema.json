@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UnidentifiedProfiles",
+  "title": "UnidentifiedProfiles",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "properties": {
+      "$ref": "#/components/schemas/TriggerBaseProperties"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "unidentified_profiles"
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

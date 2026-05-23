@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetBulkProfileSuppressionsRemoveJobResponseCollection",
+  "title": "GetBulkProfileSuppressionsRemoveJobResponseCollection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BulkProfileSuppressionsRemoveJobResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

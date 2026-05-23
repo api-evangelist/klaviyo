@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NoPushMarketing",
+  "title": "NoPushMarketing",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "any"
+      ]
+    }
+  },
+  "required": [
+    "subscription"
+  ]
+}

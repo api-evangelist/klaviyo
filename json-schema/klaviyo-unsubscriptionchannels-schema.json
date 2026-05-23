@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UnsubscriptionChannels",
+  "title": "UnsubscriptionChannels",
+  "type": "object",
+  "properties": {
+    "email": {
+      "description": "The subscription parameters to unsubscribe from the \"EMAIL\" Channel.",
+      "$ref": "#/components/schemas/EmailUnsubscriptionParameters",
+      "nullable": true
+    },
+    "sms": {
+      "description": "The subscription parameters to unsubscribe from the \"SMS\" Channel.",
+      "$ref": "#/components/schemas/SMSUnsubscriptionParameters",
+      "nullable": true
+    },
+    "whatsapp": {
+      "description": "The subscription parameters to unsubscribe from the \"WhatsApp\" Channel.",
+      "$ref": "#/components/schemas/WhatsAppUnsubscriptionParameters",
+      "nullable": true
+    },
+    "push": {
+      "description": "The subscription parameters to unsubscribe from the \"Push\" Channel.",
+      "$ref": "#/components/schemas/PushUnsubscriptionParameters",
+      "nullable": true
+    }
+  }
+}

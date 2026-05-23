@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailProperties",
+  "title": "EmailProperties",
+  "type": "object",
+  "properties": {
+    "display_device": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      }
+    },
+    "classname": {
+      "type": "string",
+      "nullable": true
+    },
+    "label": {
+      "type": "string",
+      "nullable": true
+    },
+    "show_label": {
+      "type": "boolean",
+      "default": false
+    },
+    "placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "nullable": true
+    },
+    "error_messages": {
+      "$ref": "#/components/schemas/ErrorMessages",
+      "nullable": true
+    },
+    "property_name": {
+      "type": "string",
+      "example": "$email",
+      "default": "$email",
+      "enum": [
+        "$email"
+      ]
+    }
+  }
+}

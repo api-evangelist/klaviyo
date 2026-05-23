@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostSegmentValuesResponseDTO",
+  "title": "PostSegmentValuesResponseDTO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/SegmentValuesReportEnum"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "description": "An array of all the returned values data.\nEach object in the array represents one unique grouping and the results for that grouping.",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ValuesData"
+              },
+              "example": [
+                {
+                  "groupings": {
+                    "segment_id": "abc123"
+                  },
+                  "statistics": {
+                    "total_members": 120,
+                    "net_members_changed": 53
+                  }
+                },
+                {
+                  "groupings": {
+                    "segment_id": "def123"
+                  },
+                  "statistics": {
+                    "total_members": 250,
+                    "net_members_changed": 113
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "results"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewProperties",
+  "title": "ReviewProperties",
+  "type": "object",
+  "properties": {
+    "display_device": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      }
+    },
+    "classname": {
+      "type": "string",
+      "nullable": true
+    },
+    "author": {
+      "type": "string",
+      "nullable": true
+    },
+    "content": {
+      "nullable": true,
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer",
+      "example": 5,
+      "default": 5
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false
+    },
+    "review_id": {
+      "type": "integer",
+      "nullable": true
+    },
+    "show_rating": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    },
+    "show_author": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    },
+    "show_verified": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    }
+  }
+}

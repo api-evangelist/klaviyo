@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetImageResponse",
+  "title": "GetImageResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ImageResponseObjectResource"
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

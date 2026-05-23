@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StaticCouponConfig",
+  "title": "StaticCouponConfig",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "static"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

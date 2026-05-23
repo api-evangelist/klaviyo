@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushActionButton",
+  "title": "PushActionButton",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string"
+    },
+    "action_type": {
+      "description": "The action type for a push notification action button.",
+      "type": "string",
+      "enum": [
+        "deep_link",
+        "dismiss",
+        "open_app",
+        "open_url"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "nullable": true
+    },
+    "icon": {
+      "type": "string",
+      "nullable": true
+    },
+    "custom_action_id": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "label",
+    "action_type"
+  ]
+}

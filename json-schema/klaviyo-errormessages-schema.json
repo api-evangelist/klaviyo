@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorMessages",
+  "title": "ErrorMessages",
+  "type": "object",
+  "properties": {
+    "required": {
+      "type": "string",
+      "example": "This field is required",
+      "default": "This field is required"
+    },
+    "invalid": {
+      "type": "string",
+      "example": "This field is invalid",
+      "default": "This field is invalid"
+    }
+  }
+}

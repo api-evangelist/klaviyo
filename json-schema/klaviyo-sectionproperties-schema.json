@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SectionProperties",
+  "title": "SectionProperties",
+  "type": "object",
+  "properties": {
+    "is_ai_generated": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "is_prebuilt_content": {
+      "type": "boolean",
+      "nullable": true
+    }
+  }
+}

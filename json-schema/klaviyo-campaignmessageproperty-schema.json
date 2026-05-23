@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignMessageProperty",
+  "title": "CampaignMessageProperty",
+  "type": "object",
+  "properties": {
+    "badge_config": {
+      "type": "string",
+      "enum": [
+        "set_property"
+      ]
+    },
+    "set_from_property": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "badge_config",
+    "set_from_property"
+  ]
+}

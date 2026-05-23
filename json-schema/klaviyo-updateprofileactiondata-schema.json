@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateProfileActionData",
+  "title": "UpdateProfileActionData",
+  "type": "object",
+  "properties": {
+    "profile_operations": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ProfileOperationUpdateOrCreateString"
+          },
+          {
+            "$ref": "#/components/schemas/ProfileOperationUpdateOrCreateBoolean"
+          },
+          {
+            "$ref": "#/components/schemas/ProfileOperationUpdateOrCreateNumeric"
+          },
+          {
+            "$ref": "#/components/schemas/ProfileOperationUpdateOrCreateDate"
+          },
+          {
+            "$ref": "#/components/schemas/ProfileOperationUpdateOrCreateList"
+          },
+          {
+            "$ref": "#/components/schemas/ProfileOperationDelete"
+          }
+        ]
+      }
+    },
+    "status": {
+      "description": "Flow action status.",
+      "type": "string",
+      "example": "draft",
+      "default": "draft",
+      "enum": [
+        "disabled",
+        "draft",
+        "live",
+        "manual"
+      ]
+    }
+  },
+  "required": [
+    "profile_operations"
+  ]
+}

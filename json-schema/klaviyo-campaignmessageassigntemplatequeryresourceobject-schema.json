@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignMessageAssignTemplateQueryResourceObject",
+  "title": "CampaignMessageAssignTemplateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CampaignMessageEnum"
+    },
+    "id": {
+      "description": "The message ID to be assigned to",
+      "type": "string"
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/TemplateEnum"
+                },
+                "id": {
+                  "description": "The template ID to assign",
+                  "type": "string",
+                  "example": "RipRmi"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "template"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "relationships"
+  ]
+}

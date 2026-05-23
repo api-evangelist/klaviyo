@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManualImportManualMethodFilter",
+  "title": "ManualImportManualMethodFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "method"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "manual_import"
+      ]
+    },
+    "filter": {
+      "description": "Optional filter on a specific list of user email addresses who initiated the manual action",
+      "$ref": "#/components/schemas/InStringArrayFilter",
+      "nullable": true
+    }
+  },
+  "required": [
+    "field",
+    "method"
+  ]
+}

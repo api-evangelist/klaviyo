@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TrackingParamDTO",
+  "title": "TrackingParamDTO",
+  "type": "object",
+  "properties": {
+    "flow": {
+      "description": "The value of the tracking parameter when applied to a flow.",
+      "nullable": true,
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/FlowTrackingSettingDynamicParam"
+        },
+        {
+          "$ref": "#/components/schemas/FlowTrackingSettingStaticParam"
+        }
+      ]
+    },
+    "campaign": {
+      "description": "The value of the tracking parameter when applied to a campaign.",
+      "nullable": true,
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/CampaignTrackingSettingDynamicParam"
+        },
+        {
+          "$ref": "#/components/schemas/CampaignTrackingSettingStaticParam"
+        }
+      ]
+    }
+  }
+}

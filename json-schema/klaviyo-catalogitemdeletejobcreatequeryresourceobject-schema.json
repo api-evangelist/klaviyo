@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogItemDeleteJobCreateQueryResourceObject",
+  "title": "CatalogItemDeleteJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CatalogItemBulkDeleteJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Array of catalog items to delete.",
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CatalogItemDeleteQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "items"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

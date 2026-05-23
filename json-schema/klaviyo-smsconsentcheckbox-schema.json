@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSConsentCheckbox",
+  "title": "SMSConsentCheckbox",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "promotional_sms_checkbox"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/SMSConsentCheckboxStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/SMSConsentCheckboxProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

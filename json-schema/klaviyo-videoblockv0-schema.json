@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VideoBlockV0",
+  "title": "VideoBlockV0",
+  "type": "object",
+  "properties": {
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "video"
+      ]
+    },
+    "data": {
+      "nullable": true,
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

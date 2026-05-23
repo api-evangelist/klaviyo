@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Image",
+  "title": "Image",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "image"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/ImageStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/ImageProperties"
+    },
+    "action": {
+      "nullable": true,
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/Close"
+        },
+        {
+          "$ref": "#/components/schemas/NextStep"
+        },
+        {
+          "$ref": "#/components/schemas/OpenForm"
+        },
+        {
+          "$ref": "#/components/schemas/PromotionalSMSSubscription"
+        },
+        {
+          "$ref": "#/components/schemas/Redirect"
+        },
+        {
+          "$ref": "#/components/schemas/ResendOptInCode"
+        },
+        {
+          "$ref": "#/components/schemas/SubmitOptInCode"
+        },
+        {
+          "$ref": "#/components/schemas/SubscribeViaSMS"
+        },
+        {
+          "$ref": "#/components/schemas/SubscribeViaWhatsApp"
+        },
+        {
+          "$ref": "#/components/schemas/GoToInbox"
+        },
+        {
+          "$ref": "#/components/schemas/SubmitBackInStock"
+        },
+        {
+          "$ref": "#/components/schemas/SkipToSuccess"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

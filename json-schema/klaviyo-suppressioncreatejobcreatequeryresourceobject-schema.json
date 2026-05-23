@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuppressionCreateJobCreateQueryResourceObject",
+  "title": "SuppressionCreateJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ProfileSuppressionBulkCreateJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "description": "The profile(s) to create suppressions for.",
+          "type": "object",
+          "nullable": true,
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProfileSuppressionCreateQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ListEnum"
+                },
+                "id": {
+                  "description": "Suppress all profiles in this list",
+                  "type": "string",
+                  "example": "Y6nRLr"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        },
+        "segment": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/SegmentEnum"
+                },
+                "id": {
+                  "description": "Suppress all profiles in this segment",
+                  "type": "string",
+                  "example": "Y6nRLr"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

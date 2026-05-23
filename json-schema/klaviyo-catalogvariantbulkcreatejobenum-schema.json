@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogVariantBulkCreateJobEnum",
+  "title": "CatalogVariantBulkCreateJobEnum",
+  "type": "string",
+  "enum": [
+    "catalog-variant-bulk-create-job"
+  ]
+}

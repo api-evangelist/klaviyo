@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableTextSubBlock",
+  "title": "TableTextSubBlock",
+  "type": "object",
+  "properties": {
+    "content": {
+      "nullable": true,
+      "type": "string"
+    },
+    "cell_text_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "color": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "show_on": {
+      "description": "Show on.",
+      "type": "string",
+      "enum": [
+        "all",
+        "desktop",
+        "mobile"
+      ],
+      "nullable": true
+    },
+    "table_column_width": {
+      "type": "string",
+      "nullable": true
+    },
+    "text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "table_text"
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

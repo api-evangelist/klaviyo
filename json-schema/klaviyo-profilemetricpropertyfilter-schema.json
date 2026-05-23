@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileMetricPropertyFilter",
+  "title": "ProfileMetricPropertyFilter",
+  "type": "object",
+  "properties": {
+    "property": {
+      "type": "string"
+    },
+    "filter": {
+      "nullable": true,
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StringOperatorStringFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StringArrayOperatorStringArrayFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ExistenceOperatorExistenceFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ListSetFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ListLengthFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ListSubstringFilter"
+        },
+        {
+          "$ref": "#/components/schemas/BooleanFilter"
+        },
+        {
+          "$ref": "#/components/schemas/NumericOperatorNumericFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "property"
+  ]
+}

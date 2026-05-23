@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogVariantDeleteJobCreateQuery",
+  "title": "CatalogVariantDeleteJobCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CatalogVariantDeleteJobCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

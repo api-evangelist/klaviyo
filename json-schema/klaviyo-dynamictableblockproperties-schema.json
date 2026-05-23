@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicTableBlockProperties",
+  "title": "DynamicTableBlockProperties",
+  "type": "object",
+  "properties": {
+    "dynamic": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "num_columns": {
+      "type": "integer",
+      "nullable": true
+    },
+    "row_content_repeat": {
+      "$ref": "#/components/schemas/ContentRepeatV1",
+      "nullable": true
+    },
+    "show_headers": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_fallback_content": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_static_row": {
+      "type": "boolean",
+      "nullable": true
+    }
+  },
+  "required": [
+    "dynamic"
+  ]
+}

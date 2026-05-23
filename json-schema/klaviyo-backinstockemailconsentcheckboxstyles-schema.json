@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackInStockEmailConsentCheckboxStyles",
+  "title": "BackInStockEmailConsentCheckboxStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "horizontal_alignment": {
+      "description": "Horizontal alignment enumeration.",
+      "type": "string",
+      "example": "left",
+      "default": "left",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ]
+    }
+  }
+}

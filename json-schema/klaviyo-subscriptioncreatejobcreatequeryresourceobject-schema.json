@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscriptionCreateJobCreateQueryResourceObject",
+  "title": "SubscriptionCreateJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ProfileSubscriptionBulkCreateJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "custom_source": {
+          "description": "A custom method detail or source to store on the consent records.",
+          "type": "string",
+          "example": "Marketing Event",
+          "nullable": true
+        },
+        "profiles": {
+          "description": "The profile(s) to subscribe",
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProfileSubscriptionCreateQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "historical_import": {
+          "description": "Whether this subscription is part of a historical import. If true, the consented_at field must be provided for each profile.",
+          "type": "boolean",
+          "default": false,
+          "nullable": true
+        }
+      },
+      "required": [
+        "profiles"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ListEnum"
+                },
+                "id": {
+                  "description": "The list to add the newly subscribed profiles to",
+                  "type": "string",
+                  "example": "Y6nRLr"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

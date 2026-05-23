@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Date",
+  "title": "Date",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/DateStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/DateProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

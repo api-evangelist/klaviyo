@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewBlockData",
+  "title": "ReviewBlockData",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticReviewBlockProperties"
+        },
+        {
+          "$ref": "#/components/schemas/DynamicReviewBlockProperties"
+        }
+      ]
+    },
+    "display_options": {
+      "$ref": "#/components/schemas/DisplayOptions"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/ReviewBlockStyles"
+    }
+  },
+  "required": [
+    "properties",
+    "display_options",
+    "styles"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SeriesData",
+  "title": "SeriesData",
+  "type": "object",
+  "properties": {
+    "groupings": {
+      "description": "Applied groupings and the values for this object",
+      "type": "object"
+    },
+    "statistics": {
+      "description": "Requested statistics and their series result",
+      "type": "object"
+    }
+  },
+  "required": [
+    "groupings",
+    "statistics"
+  ]
+}

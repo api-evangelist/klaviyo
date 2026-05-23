@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushSubscriptionParameters",
+  "title": "PushSubscriptionParameters",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The parameters to subscribe to marketing on the \"Push\" channel.",
+      "$ref": "#/components/schemas/SubscriptionParameters"
+    },
+    "tokens": {
+      "description": "A list of push tokens to register for this profile.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PushTokenEntry"
+      },
+      "nullable": true
+    },
+    "anonymous_id": {
+      "description": "An anonymous identifier for push-only profiles with no email/phone.",
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "marketing"
+  ]
+}

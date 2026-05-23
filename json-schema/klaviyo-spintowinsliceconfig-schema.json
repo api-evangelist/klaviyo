@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SpinToWinSliceConfig",
+  "title": "SpinToWinSliceConfig",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string"
+    },
+    "probability": {
+      "type": "integer"
+    },
+    "step_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "label",
+    "probability",
+    "step_id"
+  ]
+}

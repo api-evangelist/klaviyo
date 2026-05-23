@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SegmentsProfileMetricFunnelCondition",
+  "title": "SegmentsProfileMetricFunnelCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-metric-funnel"
+      ]
+    },
+    "timeframe_filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter"
+        }
+      ]
+    },
+    "completion_window_seconds": {
+      "description": "Allowed completion window durations for funnel conditions (in\n    seconds).",
+      "type": "string",
+      "enum": [
+        "DAYS_1",
+        "DAYS_180",
+        "DAYS_3",
+        "DAYS_30",
+        "DAYS_5",
+        "DAYS_90",
+        "HOURS_1",
+        "WEEKS_1",
+        "YEARS_1"
+      ],
+      "nullable": true
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ProfileMetricFunnelSteps"
+      }
+    }
+  },
+  "required": [
+    "type",
+    "timeframe_filter",
+    "steps"
+  ]
+}

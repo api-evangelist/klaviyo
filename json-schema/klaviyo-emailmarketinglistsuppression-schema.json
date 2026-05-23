@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailMarketingListSuppression",
+  "title": "EmailMarketingListSuppression",
+  "type": "object",
+  "properties": {
+    "list_id": {
+      "description": "The ID of list to which the suppression applies.",
+      "type": "string",
+      "example": "Y6nRLr"
+    },
+    "reason": {
+      "description": "The reason the profile was suppressed from the list.",
+      "type": "string",
+      "example": "USER_SUPPRESSED"
+    },
+    "timestamp": {
+      "description": "The timestamp when the profile was suppressed from the list, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00"
+    }
+  },
+  "required": [
+    "list_id",
+    "reason",
+    "timestamp"
+  ]
+}

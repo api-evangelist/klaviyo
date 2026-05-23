@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PageVisitsProperties",
+  "title": "PageVisitsProperties",
+  "type": "object",
+  "properties": {
+    "pages": {
+      "type": "integer",
+      "example": 3,
+      "default": 3
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BaseStyle",
+  "title": "BaseStyle",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "style_type": {
+      "type": "string",
+      "enum": [
+        "base-styles"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/BaseStyleProperties"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/BaseStyleStyles"
+    }
+  },
+  "required": [
+    "style_type",
+    "properties",
+    "styles"
+  ]
+}

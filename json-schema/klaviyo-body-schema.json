@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Body",
+  "title": "Body",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "properties": {
+      "$ref": "#/components/schemas/BodyProperties"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/BodyStyles"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SectionV1"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "properties",
+    "styles"
+  ]
+}

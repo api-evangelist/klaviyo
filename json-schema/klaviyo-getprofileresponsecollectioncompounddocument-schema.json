@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetProfileResponseCollectionCompoundDocument",
+  "title": "GetProfileResponseCollectionCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/ProfileEnum"
+              },
+              "attributes": {
+                "properties": {
+                  "subscriptions": {
+                    "$ref": "#/components/schemas/Subscriptions",
+                    "nullable": true
+                  },
+                  "predictive_analytics": {
+                    "$ref": "#/components/schemas/PredictiveAnalytics",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/ProfileResponseObjectResource"
+          }
+        ]
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ConversationResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/PushTokenResponseObjectResource"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

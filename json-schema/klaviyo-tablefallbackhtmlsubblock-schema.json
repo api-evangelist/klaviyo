@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableFallbackHtmlSubBlock",
+  "title": "TableFallbackHtmlSubBlock",
+  "type": "object",
+  "properties": {
+    "content": {
+      "nullable": true,
+      "type": "string"
+    },
+    "show_on": {
+      "description": "Show on.",
+      "type": "string",
+      "enum": [
+        "all",
+        "desktop",
+        "mobile"
+      ],
+      "nullable": true
+    },
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "table_fallback_html"
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

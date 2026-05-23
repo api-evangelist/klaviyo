@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HTMLText",
+  "title": "HTMLText",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "html_text"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/HTMLTextStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/HTMLTextProperties"
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

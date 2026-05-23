@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ButtonBlockProperties",
+  "title": "ButtonBlockProperties",
+  "type": "object",
+  "properties": {
+    "href": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

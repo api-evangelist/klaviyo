@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchCampaignMessageResponse",
+  "title": "PatchCampaignMessageResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/CampaignMessageEnum"
+        },
+        "id": {
+          "description": "The message ID",
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "definition": {
+              "nullable": true,
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/EmailMessageDefinition"
+                },
+                {
+                  "$ref": "#/components/schemas/SMSMessageDefinition"
+                },
+                {
+                  "$ref": "#/components/schemas/MobilePushMessageStandardDefinition"
+                },
+                {
+                  "$ref": "#/components/schemas/MobilePushMessageSilentDefinition"
+                }
+              ]
+            },
+            "send_times": {
+              "description": "The list of appropriate Send Time Sub-objects associated with the message",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SendTime"
+              },
+              "nullable": true
+            },
+            "created_at": {
+              "description": "The datetime when the message was created",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00",
+              "nullable": true
+            },
+            "updated_at": {
+              "description": "The datetime when the message was last updated",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00",
+              "nullable": true
+            }
+          }
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "campaign": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "$ref": "#/components/schemas/CampaignEnum"
+                    },
+                    "id": {
+                      "description": "The parent campaign id",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id"
+                  ]
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "template": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "$ref": "#/components/schemas/TemplateEnum"
+                    },
+                    "id": {
+                      "description": "The associated template id",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id"
+                  ]
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "image": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "$ref": "#/components/schemas/ImageEnum"
+                    },
+                    "id": {
+                      "description": "The associated image id",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id"
+                  ]
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            }
+          }
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormDefinition",
+  "title": "FormDefinition",
+  "type": "object",
+  "properties": {
+    "versions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Version"
+      }
+    }
+  },
+  "required": [
+    "versions"
+  ]
+}

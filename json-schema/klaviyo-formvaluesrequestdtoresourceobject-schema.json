@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormValuesRequestDTOResourceObject",
+  "title": "FormValuesRequestDTOResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FormValuesReportEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "statistics": {
+          "description": "List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "closed_form",
+              "closed_form_uniques",
+              "qualified_form",
+              "qualified_form_uniques",
+              "submit_rate",
+              "submits",
+              "submitted_form_step",
+              "submitted_form_step_uniques",
+              "viewed_form",
+              "viewed_form_step",
+              "viewed_form_step_uniques",
+              "viewed_form_uniques"
+            ],
+            "description": "Defined form reporting metric"
+          },
+          "example": [
+            "viewed_form",
+            "submit_rate"
+          ]
+        },
+        "timeframe": {
+          "description": "The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).",
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/Timeframe"
+            },
+            {
+              "$ref": "#/components/schemas/CustomTimeframe"
+            }
+          ]
+        },
+        "group_by": {
+          "description": "List of attributes to group the data by.\nAllowed group-bys are form_id, form_version_id.\nIf not passed in, the data will be grouped by form_id.\nIf a group by has prerequisites, they must be passed in together. The prerequisites for form_version_id is form_id",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "form_id",
+              "form_version_id"
+            ],
+            "description": "Attributes to represent what is being grouped by for Forms"
+          },
+          "nullable": true
+        },
+        "filter": {
+          "description": "API filter string used to filter the query.\nAllowed filters are form_id, form_version_id.\nAllowed operators are equals, any.\nOnly one filter can be used per attribute, only AND can be used as a combination operator.\nMax of 100 messages per ANY filter.",
+          "type": "string",
+          "example": "and(equals(form_id,\"abc123\"),any(form_version_id,[\"xyz123\",\"ghi456\"]))",
+          "nullable": true
+        }
+      },
+      "required": [
+        "statistics",
+        "timeframe"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

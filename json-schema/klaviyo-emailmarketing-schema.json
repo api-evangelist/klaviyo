@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailMarketing",
+  "title": "EmailMarketing",
+  "type": "object",
+  "properties": {
+    "can_receive_email_marketing": {
+      "description": "Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.",
+      "type": "boolean"
+    },
+    "consent": {
+      "description": "The consent status for email marketing.",
+      "type": "string",
+      "example": "SUBSCRIBED"
+    },
+    "consent_timestamp": {
+      "description": "The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00",
+      "nullable": true
+    },
+    "last_updated": {
+      "description": "The timestamp when a field on the email marketing object was last modified.",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00",
+      "nullable": true
+    },
+    "method": {
+      "description": "The method by which the profile was subscribed to email marketing.",
+      "type": "string",
+      "example": "PREFERENCE_PAGE",
+      "nullable": true
+    },
+    "method_detail": {
+      "description": "Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.",
+      "type": "string",
+      "example": "mydomain.com/signup",
+      "default": "",
+      "nullable": true
+    },
+    "custom_method_detail": {
+      "description": "Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.",
+      "type": "string",
+      "example": "marketing drive",
+      "nullable": true
+    },
+    "double_optin": {
+      "description": "Whether the profile was subscribed to email marketing using a double opt-in.",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "suppression": {
+      "description": "The global email marketing suppression for this profile.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EmailMarketingSuppression"
+      },
+      "nullable": true
+    },
+    "list_suppressions": {
+      "description": "The list suppressions for this profile.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EmailMarketingListSuppression"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "can_receive_email_marketing",
+    "consent"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowUpdateQueryResourceObject",
+  "title": "FlowUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FlowEnum"
+    },
+    "id": {
+      "description": "ID of the Flow to update. Ex: XVTP5Q",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Status you want to update the flow to. ['draft', 'manual', or 'live']",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

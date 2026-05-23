@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Teaser",
+  "title": "Teaser",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "content": {
+      "type": "string"
+    },
+    "display_order": {
+      "description": "Teaser display order enumeration.",
+      "type": "string",
+      "example": "after",
+      "default": "after",
+      "enum": [
+        "after",
+        "before",
+        "before_and_after"
+      ]
+    },
+    "teaser_type": {
+      "description": "Teaser display order enumeration.",
+      "type": "string",
+      "example": "rectangle",
+      "default": "rectangle",
+      "enum": [
+        "circle",
+        "corner",
+        "rectangle"
+      ]
+    },
+    "location": {
+      "description": "Display location enumeration.",
+      "type": "string",
+      "example": "bottom_left",
+      "default": "bottom_left",
+      "enum": [
+        "bottom_center",
+        "bottom_left",
+        "bottom_right",
+        "center_left",
+        "center_right",
+        "top_center",
+        "top_left",
+        "top_right"
+      ]
+    },
+    "size": {
+      "description": "Teaser size enumeration.",
+      "type": "string",
+      "example": "small",
+      "default": "small",
+      "enum": [
+        "custom",
+        "large",
+        "medium",
+        "small"
+      ]
+    },
+    "custom_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "styles": {
+      "$ref": "#/components/schemas/TeaserStyles"
+    },
+    "close_button": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    },
+    "device_type": {
+      "description": "Enumeration for mobile and desktop.",
+      "type": "string",
+      "example": "both",
+      "default": "both",
+      "enum": [
+        "both",
+        "desktop",
+        "mobile"
+      ]
+    }
+  },
+  "required": [
+    "content"
+  ]
+}

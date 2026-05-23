@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventsBulkCreateQueryResourceObject",
+  "title": "EventsBulkCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/EventBulkCreateEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "backfill": {
+          "description": "When true, the event is recorded but does NOT trigger flows. Use this when backfilling\nhistorical events so existing flow definitions do not re-fire on events that already\nfired in the past.",
+          "type": "boolean",
+          "default": false,
+          "nullable": true
+        },
+        "profile": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/OnsiteProfileCreateQueryResourceObject"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "events": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/BaseEventCreateQueryBulkEntryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "profile",
+        "events"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

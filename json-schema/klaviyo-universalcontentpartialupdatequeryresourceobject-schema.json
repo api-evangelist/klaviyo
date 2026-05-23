@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UniversalContentPartialUpdateQueryResourceObject",
+  "title": "UniversalContentPartialUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TemplateUniversalContentEnum"
+    },
+    "id": {
+      "description": "The ID of the template universal content",
+      "type": "string",
+      "example": "01HWWWKAW4RHXQJCMW4R2KRYR4"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name for this template universal content",
+          "type": "string",
+          "nullable": true
+        },
+        "definition": {
+          "nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/ButtonBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/DropShadowBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/HorizontalRuleBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/HTMLBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/ImageBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/SpacerBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/TextBlockV0"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

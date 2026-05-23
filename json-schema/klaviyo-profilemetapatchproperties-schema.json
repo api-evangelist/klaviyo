@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileMetaPatchProperties",
+  "title": "ProfileMetaPatchProperties",
+  "type": "object",
+  "properties": {
+    "append": {
+      "description": "Append a simple value or values to this property array",
+      "type": "object",
+      "example": {
+        "skus": "92538"
+      },
+      "nullable": true
+    },
+    "unappend": {
+      "description": "Remove a simple value or values from this property array",
+      "type": "object",
+      "example": {
+        "skus": "40571"
+      },
+      "nullable": true
+    },
+    "unset": {
+      "description": "Remove a key or keys (and their values) completely from properties",
+      "example": "skus",
+      "nullable": true,
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  }
+}

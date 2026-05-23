@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UniqueCouponConfig",
+  "title": "UniqueCouponConfig",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "unique"
+      ]
+    },
+    "id": {
+      "type": "integer",
+      "nullable": true
+    },
+    "code": {
+      "type": "string",
+      "nullable": true
+    },
+    "fallback_coupon_code": {
+      "type": "string",
+      "nullable": true
+    },
+    "integration": {
+      "description": "Coupon integration types for unique coupon blocks.",
+      "type": "string",
+      "example": "shopify",
+      "default": "shopify",
+      "enum": [
+        "api",
+        "magento_two",
+        "prestashop",
+        "shopify",
+        "uploaded",
+        "woocommerce"
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

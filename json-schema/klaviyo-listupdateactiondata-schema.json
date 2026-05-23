@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListUpdateActionData",
+  "title": "ListUpdateActionData",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "on_execution": {
+      "description": "The enum for whether the action will add/remove from the list in the\n    List Update Action.",
+      "type": "boolean",
+      "enum": [
+        false,
+        true
+      ],
+      "nullable": true
+    },
+    "list_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "status": {
+      "description": "Flow action status.",
+      "type": "string",
+      "example": "draft",
+      "default": "draft",
+      "enum": [
+        "disabled",
+        "draft",
+        "live",
+        "manual"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "on_execution",
+    "list_id"
+  ]
+}

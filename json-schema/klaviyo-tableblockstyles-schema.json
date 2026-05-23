@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableBlockStyles",
+  "title": "TableBlockStyles",
+  "type": "object",
+  "properties": {
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "block_border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cell_horizontal_border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "cell_horizontal_border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "cell_horizontal_border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cell_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cell_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cell_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cell_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "cell_vertical_align": {
+      "description": "Vertical alignment.",
+      "type": "string",
+      "enum": [
+        "baseline",
+        "bottom",
+        "middle",
+        "top"
+      ],
+      "nullable": true
+    },
+    "cell_vertical_border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "cell_vertical_border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "cell_vertical_border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "header_font_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "header_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "header_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "header_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "header_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_line_height": {
+      "type": "number",
+      "nullable": true
+    },
+    "header_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "table_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "table_font_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "table_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "table_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "table_text_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "use_legacy_mobile_padding": {
+      "type": "boolean",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCampaignResponse",
+  "title": "PostCampaignResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/CampaignEnum"
+        },
+        "id": {
+          "description": "The campaign ID",
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "The campaign name",
+              "type": "string"
+            },
+            "status": {
+              "description": "The current status of the campaign",
+              "type": "string",
+              "enum": [
+                "Adding Recipients",
+                "Cancelled",
+                "Cancelled: Account Disabled",
+                "Cancelled: Billing Limit",
+                "Cancelled: Internal Error",
+                "Cancelled: Misconfigured",
+                "Cancelled: No Recipients",
+                "Cancelled: Smart Sending",
+                "Draft",
+                "Preparing to schedule",
+                "Preparing to send",
+                "Queued without Recipients",
+                "Scheduled",
+                "Sending",
+                "Sending Segments",
+                "Sent",
+                "Unknown",
+                "Variations Sent"
+              ]
+            },
+            "archived": {
+              "description": "Whether the campaign has been archived or not",
+              "type": "boolean"
+            },
+            "audiences": {
+              "description": "The audiences to be included and/or excluded from the campaign",
+              "$ref": "#/components/schemas/Audiences"
+            },
+            "send_options": {
+              "description": "Options to use when sending a campaign",
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/EmailSendOptions"
+                },
+                {
+                  "$ref": "#/components/schemas/SMSSendOptions"
+                },
+                {
+                  "$ref": "#/components/schemas/PushSendOptions"
+                }
+              ]
+            },
+            "tracking_options": {
+              "description": "The tracking options associated with the campaign",
+              "nullable": true,
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/CampaignsEmailTrackingOptions"
+                },
+                {
+                  "$ref": "#/components/schemas/CampaignsSMSTrackingOptions"
+                }
+              ]
+            },
+            "send_strategy": {
+              "description": "The send strategy the campaign will send with",
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/StaticSendStrategy"
+                },
+                {
+                  "$ref": "#/components/schemas/SmartSendTimeStrategy"
+                },
+                {
+                  "$ref": "#/components/schemas/ThrottledSendStrategy"
+                },
+                {
+                  "$ref": "#/components/schemas/ImmediateSendStrategy"
+                },
+                {
+                  "$ref": "#/components/schemas/ABTestSendStrategy"
+                },
+                {
+                  "$ref": "#/components/schemas/UnsupportedSendStrategy"
+                }
+              ]
+            },
+            "created_at": {
+              "description": "The datetime when the campaign was created",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00"
+            },
+            "scheduled_at": {
+              "description": "The datetime when the campaign was scheduled for future sending",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00",
+              "nullable": true
+            },
+            "updated_at": {
+              "description": "The datetime when the campaign was last updated by a user or the system",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00"
+            },
+            "send_time": {
+              "description": "The datetime when the campaign will be / was sent or None if not yet scheduled by a send_job.",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00",
+              "nullable": true
+            }
+          },
+          "required": [
+            "name",
+            "status",
+            "archived",
+            "audiences",
+            "send_options",
+            "send_strategy",
+            "created_at",
+            "updated_at"
+          ]
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "campaign-messages": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/CampaignMessageEnum"
+                      },
+                      "id": {
+                        "description": "The message(s) associated with the campaign",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "tags": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/TagEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            }
+          }
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

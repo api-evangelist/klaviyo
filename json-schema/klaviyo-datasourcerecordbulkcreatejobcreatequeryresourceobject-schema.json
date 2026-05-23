@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSourceRecordBulkCreateJobCreateQueryResourceObject",
+  "title": "DataSourceRecordBulkCreateJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/DataSourceRecordBulkCreateJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "data-source-records": {
+          "description": "The records to ingest.",
+          "type": "object",
+          "example": {
+            "data": [
+              {
+                "type": "data-source-record",
+                "attributes": {
+                  "record": {
+                    "key1": "value1",
+                    "key2": "value2"
+                  }
+                }
+              }
+            ]
+          },
+          "nullable": true,
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DataSourceRecordResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "data-source": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/DataSourceEnum"
+                },
+                "id": {
+                  "description": "The data source to which the records belong.",
+                  "type": "string",
+                  "example": "01J7C23V8XWMRG13FMD7VZN6GW"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

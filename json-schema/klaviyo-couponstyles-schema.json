@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CouponStyles",
+  "title": "CouponStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "text_styles": {
+      "$ref": "#/components/schemas/TextStyleV0"
+    },
+    "border_styles": {
+      "$ref": "#/components/schemas/BorderStyle",
+      "nullable": true
+    },
+    "coupon_background_color": {
+      "type": "string",
+      "example": "#EEEEEE",
+      "default": "#EEEEEE",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BorderStyle",
+  "title": "BorderStyle",
+  "type": "object",
+  "properties": {
+    "radius": {
+      "type": "integer",
+      "example": 8,
+      "default": 8
+    },
+    "color": {
+      "type": "string",
+      "nullable": true
+    },
+    "style": {
+      "description": "Border pattern enumeration.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "thickness": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

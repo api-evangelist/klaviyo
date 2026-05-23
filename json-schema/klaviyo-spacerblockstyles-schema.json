@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SpacerBlockStyles",
+  "title": "SpacerBlockStyles",
+  "type": "object",
+  "properties": {
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "height": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

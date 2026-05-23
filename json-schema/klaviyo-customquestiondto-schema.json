@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomQuestionDTO",
+  "title": "CustomQuestionDTO",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The ID of the custom question",
+      "type": "string",
+      "example": "9ff0d32e-0edb-4513-a6a5-12814a6cb755"
+    },
+    "answers": {
+      "description": "The answers to the custom question",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "M",
+        "L"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "answers"
+  ]
+}

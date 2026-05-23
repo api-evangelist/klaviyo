@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Text",
+  "title": "Text",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "text"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/TextStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/TextProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

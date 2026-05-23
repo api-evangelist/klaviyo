@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetDataSourceResponseCollection",
+  "title": "GetDataSourceResponseCollection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DataSourceResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

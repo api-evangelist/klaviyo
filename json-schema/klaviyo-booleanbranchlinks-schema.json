@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BooleanBranchLinks",
+  "title": "BooleanBranchLinks",
+  "type": "object",
+  "properties": {
+    "next_if_true": {
+      "type": "string",
+      "nullable": true
+    },
+    "next_if_false": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "next_if_true",
+    "next_if_false"
+  ]
+}

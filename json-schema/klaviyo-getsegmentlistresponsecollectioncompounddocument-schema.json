@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetSegmentListResponseCollectionCompoundDocument",
+  "title": "GetSegmentListResponseCollectionCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SegmentListResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TagResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/FlowResponseObjectResource"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

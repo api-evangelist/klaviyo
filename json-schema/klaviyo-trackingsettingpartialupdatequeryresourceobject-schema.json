@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TrackingSettingPartialUpdateQueryResourceObject",
+  "title": "TrackingSettingPartialUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TrackingSettingEnum"
+    },
+    "id": {
+      "description": "The id of the tracking setting (account ID).",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "auto_add_parameters": {
+          "description": "Whether tracking parameters are automatically added to campaigns and flows.",
+          "type": "boolean",
+          "nullable": true
+        },
+        "utm_source": {
+          "description": "The utm_source tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO",
+          "nullable": true
+        },
+        "utm_medium": {
+          "description": "The utm_medium tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO",
+          "nullable": true
+        },
+        "utm_campaign": {
+          "description": "The utm_campaign tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO",
+          "nullable": true
+        },
+        "utm_id": {
+          "description": "The utm_id tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO",
+          "nullable": true
+        },
+        "utm_term": {
+          "description": "The utm_term tracking parameter.",
+          "$ref": "#/components/schemas/TrackingParamDTO",
+          "nullable": true
+        },
+        "custom_parameters": {
+          "description": "List of custom tracking parameters.",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/CustomTrackingParamDTO"
+          },
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

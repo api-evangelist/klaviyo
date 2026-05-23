@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetWebFeedResponse",
+  "title": "GetWebFeedResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/WebFeedResponseObjectResource"
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

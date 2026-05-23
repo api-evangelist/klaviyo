@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StaticImageBlockProperties",
+  "title": "StaticImageBlockProperties",
+  "type": "object",
+  "properties": {
+    "dynamic": {
+      "type": "boolean",
+      "enum": [
+        false
+      ],
+      "nullable": true
+    },
+    "alt_text": {
+      "type": "string",
+      "nullable": true
+    },
+    "asset_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "cropping_properties": {
+      "$ref": "#/components/schemas/ImageBlockCroppingProperties",
+      "nullable": true,
+      "readOnly": true
+    },
+    "href": {
+      "type": "string",
+      "nullable": true
+    },
+    "src": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "dynamic"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Timeframe",
+  "title": "Timeframe",
+  "type": "object",
+  "properties": {
+    "key": {
+      "description": "Pre-defined key that represents a set timeframe",
+      "type": "string",
+      "enum": [
+        "last_12_months",
+        "last_30_days",
+        "last_365_days",
+        "last_3_months",
+        "last_7_days",
+        "last_90_days",
+        "last_month",
+        "last_week",
+        "last_year",
+        "this_month",
+        "this_week",
+        "this_year",
+        "today",
+        "yesterday"
+      ]
+    }
+  },
+  "required": [
+    "key"
+  ]
+}

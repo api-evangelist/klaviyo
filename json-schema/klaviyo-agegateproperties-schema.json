@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgeGateProperties",
+  "title": "AgeGateProperties",
+  "type": "object",
+  "properties": {
+    "display_device": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      }
+    },
+    "classname": {
+      "type": "string",
+      "nullable": true
+    },
+    "label": {
+      "type": "string",
+      "nullable": true
+    },
+    "show_label": {
+      "type": "boolean",
+      "default": false
+    },
+    "placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "error_messages": {
+      "$ref": "#/components/schemas/ErrorMessages",
+      "nullable": true
+    },
+    "property_name": {
+      "type": "string",
+      "example": "$age_gated_date_of_birth",
+      "default": "$age_gated_date_of_birth",
+      "enum": [
+        "$age_gated_date_of_birth"
+      ]
+    },
+    "date_format": {
+      "type": "string",
+      "example": "MM/DD/YYYY",
+      "default": "MM/DD/YYYY"
+    },
+    "sms_country_code": {
+      "description": "SMS County Code Enum.",
+      "type": "string",
+      "example": "US",
+      "default": "US",
+      "enum": [
+        "AT",
+        "AU",
+        "CH",
+        "DE",
+        "ES",
+        "FR",
+        "GB",
+        "IE",
+        "IT",
+        "PT",
+        "US"
+      ]
+    },
+    "required": {
+      "type": "boolean",
+      "example": true,
+      "default": true,
+      "enum": [
+        true
+      ]
+    }
+  }
+}

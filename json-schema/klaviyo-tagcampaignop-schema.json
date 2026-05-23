@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TagCampaignOp",
+  "title": "TagCampaignOp",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/CampaignEnum"
+          },
+          "id": {
+            "description": "The IDs of the campaigns to link or unlink with the given Tag ID",
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

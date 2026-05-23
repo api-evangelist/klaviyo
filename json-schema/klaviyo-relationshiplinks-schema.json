@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RelationshipLinks",
+  "title": "RelationshipLinks",
+  "type": "object",
+  "properties": {
+    "self": {
+      "type": "string",
+      "format": "uri"
+    },
+    "related": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "self",
+    "related"
+  ]
+}

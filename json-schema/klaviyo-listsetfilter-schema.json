@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListSetFilter",
+  "title": "ListSetFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "list"
+      ]
+    },
+    "operator": {
+      "description": "Operators for list contains set filters.",
+      "type": "string",
+      "enum": [
+        "contains-all",
+        "contains-any",
+        "not-contains-all",
+        "not-contains-any"
+      ]
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

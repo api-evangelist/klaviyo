@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormVersionABTest",
+  "title": "FormVersionABTest",
+  "type": "object",
+  "properties": {
+    "variation_name": {
+      "description": "This is the name of the AB test variation.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "variation_name"
+  ]
+}

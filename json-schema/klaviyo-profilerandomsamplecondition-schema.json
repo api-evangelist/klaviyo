@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileRandomSampleCondition",
+  "title": "ProfileRandomSampleCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-sample"
+      ]
+    },
+    "percentage": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type",
+    "percentage"
+  ]
+}

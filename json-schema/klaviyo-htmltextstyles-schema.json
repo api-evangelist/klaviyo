@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HTMLTextStyles",
+  "title": "HTMLTextStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

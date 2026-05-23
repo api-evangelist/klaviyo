@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileMeta",
+  "title": "ProfileMeta",
+  "type": "object",
+  "properties": {
+    "patch_properties": {
+      "description": "Specify one or more patch operations to apply to existing property data",
+      "example": {
+        "append": {
+          "skus": "92538"
+        }
+      },
+      "$ref": "#/components/schemas/ProfileMetaPatchProperties",
+      "nullable": true
+    },
+    "patch_identifiers": {
+      "description": "Specify one or more patch operations to apply to existing identifier data. Currently only `email` is supported, and it is used to add or remove secondary email addresses on a profile.",
+      "example": {
+        "append": {
+          "email": [
+            "example@test.com",
+            "another@example.com"
+          ]
+        }
+      },
+      "$ref": "#/components/schemas/PatchIdentifiers",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCustomMetricResponse",
+  "title": "GetCustomMetricResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CustomMetricResponseObjectResource"
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

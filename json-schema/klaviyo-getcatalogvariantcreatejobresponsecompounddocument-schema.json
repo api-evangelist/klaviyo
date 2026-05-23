@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCatalogVariantCreateJobResponseCompoundDocument",
+  "title": "GetCatalogVariantCreateJobResponseCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CatalogVariantCreateJobResponseObjectResource"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CatalogVariantResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobilePushOptions",
+  "title": "MobilePushOptions",
+  "type": "object",
+  "properties": {
+    "on_open": {
+      "nullable": true,
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/PushOnOpenApp"
+        },
+        {
+          "$ref": "#/components/schemas/PushOnOpenDeepLink"
+        }
+      ]
+    },
+    "badge": {
+      "description": "Only supported on iOS.",
+      "nullable": true,
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/MobilePushBadge"
+        },
+        {
+          "$ref": "#/components/schemas/MobilePushNoBadge"
+        }
+      ]
+    },
+    "play_sound": {
+      "description": "Only supported on iOS.",
+      "type": "boolean",
+      "default": false,
+      "nullable": true
+    }
+  }
+}

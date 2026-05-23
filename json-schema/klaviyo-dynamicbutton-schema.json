@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicButton",
+  "title": "DynamicButton",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "description": "Dynamic Button type enumeration.",
+      "type": "string",
+      "enum": [
+        "BACK_IN_STOCK_OPEN"
+      ]
+    },
+    "data": {
+      "$ref": "#/components/schemas/BackInStockDynamicButtonData"
+    }
+  },
+  "required": [
+    "type",
+    "data"
+  ]
+}

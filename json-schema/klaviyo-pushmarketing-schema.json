@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushMarketing",
+  "title": "PushMarketing",
+  "type": "object",
+  "properties": {
+    "can_receive_push_marketing": {
+      "description": "Whether or not this profile is subscribed to receive mobile push.",
+      "type": "boolean"
+    },
+    "consent": {
+      "description": "The consent status for mobile push marketing.",
+      "type": "string",
+      "example": "SUBSCRIBED"
+    },
+    "consent_timestamp": {
+      "description": "The timestamp when the consent was last changed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00",
+      "nullable": true
+    }
+  },
+  "required": [
+    "can_receive_push_marketing",
+    "consent"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HeaderLogoSubBlock",
+  "title": "HeaderLogoSubBlock",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "header_link_bar_logo"
+      ]
+    },
+    "alt_text": {
+      "type": "string",
+      "nullable": true
+    },
+    "asset_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "height": {
+      "type": "integer",
+      "nullable": true
+    },
+    "href": {
+      "type": "string",
+      "nullable": true
+    },
+    "max_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "show_on": {
+      "description": "Show on.",
+      "type": "string",
+      "enum": [
+        "all",
+        "desktop",
+        "mobile"
+      ],
+      "nullable": true
+    },
+    "src": {
+      "type": "string",
+      "nullable": true
+    },
+    "width": {
+      "type": "integer",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

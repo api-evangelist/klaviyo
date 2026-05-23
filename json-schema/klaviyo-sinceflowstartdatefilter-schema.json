@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SinceFlowStartDateFilter",
+  "title": "SinceFlowStartDateFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "description": "Possible operators for since flow start date.",
+      "type": "string",
+      "enum": [
+        "flow-start"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "operator"
+  ]
+}

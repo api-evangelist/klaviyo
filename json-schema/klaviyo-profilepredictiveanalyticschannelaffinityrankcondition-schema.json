@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfilePredictiveAnalyticsChannelAffinityRankCondition",
+  "title": "ProfilePredictiveAnalyticsChannelAffinityRankCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-predictive-analytics"
+      ]
+    },
+    "dimension": {
+      "description": "Possible dimension for channel affinity criterion.",
+      "type": "string",
+      "enum": [
+        "channel_affinity"
+      ]
+    },
+    "measurement": {
+      "type": "string",
+      "enum": [
+        "rank"
+      ]
+    },
+    "predicted_channel": {
+      "description": "Possible channels in a channel affinity definition.",
+      "type": "string",
+      "enum": [
+        "email",
+        "push",
+        "sms"
+      ]
+    },
+    "filter": {
+      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsChannelAffinityRankFilter"
+    }
+  },
+  "required": [
+    "type",
+    "dimension",
+    "measurement",
+    "predicted_channel",
+    "filter"
+  ]
+}

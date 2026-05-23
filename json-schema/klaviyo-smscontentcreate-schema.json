@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSContentCreate",
+  "title": "SMSContentCreate",
+  "type": "object",
+  "properties": {
+    "body": {
+      "description": "The message body",
+      "type": "string",
+      "example": "My preview sms",
+      "nullable": true
+    }
+  }
+}

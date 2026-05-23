@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CouponCodeCreateJobCreateQueryResourceObject",
+  "title": "CouponCodeCreateJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CouponCodeBulkCreateJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "coupon-codes": {
+          "description": "Array of coupon codes to create.",
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CouponCodeCreateQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "coupon-codes"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

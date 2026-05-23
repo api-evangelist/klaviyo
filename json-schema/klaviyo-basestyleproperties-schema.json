@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BaseStyleProperties",
+  "title": "BaseStyleProperties",
+  "type": "object",
+  "properties": {
+    "currency": {
+      "type": "string",
+      "nullable": true
+    },
+    "currency_set_on_template": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "disable_websafe_fonts": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "is_user_draggable": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "mobile_optimizations": {
+      "type": "boolean",
+      "nullable": true
+    }
+  }
+}

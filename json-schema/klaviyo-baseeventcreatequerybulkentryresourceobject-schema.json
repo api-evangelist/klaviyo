@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BaseEventCreateQueryBulkEntryResourceObject",
+  "title": "BaseEventCreateQueryBulkEntryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/EventEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "description": "Properties of this event (must not exceed 400 properties). The size of the event payload must not exceed 5 MB,\nand each string cannot be larger than 100 KB. For a full list of data limits on event payloads,\nsee [Limitations](https://developers.klaviyo.com/en/reference/events_api_overview#limitations).\n\nNote any top-level property that is not an object can be\nused to create segments. The `$extra` property records any\nnon-segmentable values that can be referenced later, e.g., HTML templates are\nuseful on a segment but are not used to create a segment.",
+          "type": "object",
+          "example": {
+            "Brand": "Kids Book",
+            "ProductID": 1111,
+            "ProductName": "Winnie the Pooh"
+          }
+        },
+        "time": {
+          "description": "When this event occurred. By default, the time the request was received will be used.\nThe time is truncated to the second. The time must be after the year 2000 and can only\nbe up to 1 year in the future.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T00:00:00+00:00",
+          "nullable": true
+        },
+        "value": {
+          "description": "A numeric, monetary value to associate with this event. For example, the dollar amount of a purchase.",
+          "type": "number",
+          "example": 9.99,
+          "nullable": true
+        },
+        "value_currency": {
+          "description": "The ISO 4217 currency code of the value associated with the event.",
+          "type": "string",
+          "example": "USD",
+          "nullable": true
+        },
+        "backfill": {
+          "description": "When true, the event is recorded but does NOT trigger flows. Use this when backfilling\nhistorical events so existing flow definitions do not re-fire on events that already\nfired in the past.",
+          "type": "boolean",
+          "default": false,
+          "nullable": true
+        },
+        "metric": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/MetricCreateQueryResourceObject"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        },
+        "unique_id": {
+          "description": "A unique identifier for an event. If a unique_id is repeated for the same profile and metric,\nthe request will fail and no events will be processed. If this field is not\npresent, this field will use the time to the second. Using the default, this limits only one\nevent per profile per second.",
+          "type": "string",
+          "nullable": true
+        }
+      },
+      "required": [
+        "properties",
+        "metric"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

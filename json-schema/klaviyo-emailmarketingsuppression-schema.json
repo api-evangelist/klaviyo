@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailMarketingSuppression",
+  "title": "EmailMarketingSuppression",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "description": "The reason the profile was suppressed.",
+      "type": "string",
+      "example": "HARD_BOUNCE",
+      "enum": [
+        "HARD_BOUNCE",
+        "INVALID_EMAIL",
+        "SPAM_COMPLAINT",
+        "UNSUBSCRIBE",
+        "USER_SUPPRESSED"
+      ]
+    },
+    "timestamp": {
+      "description": "The timestamp when the profile was suppressed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00"
+    }
+  },
+  "required": [
+    "reason",
+    "timestamp"
+  ]
+}

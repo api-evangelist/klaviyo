@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobilePushBadge",
+  "title": "MobilePushBadge",
+  "type": "object",
+  "properties": {
+    "display": {
+      "description": "Whether to display a badge on the app icon",
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "badge_options": {
+      "description": "Badge options",
+      "nullable": true,
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/CampaignMessageIncrement"
+        },
+        {
+          "$ref": "#/components/schemas/CampaignMessageStaticCount"
+        },
+        {
+          "$ref": "#/components/schemas/CampaignMessageProperty"
+        }
+      ]
+    }
+  },
+  "required": [
+    "display"
+  ]
+}

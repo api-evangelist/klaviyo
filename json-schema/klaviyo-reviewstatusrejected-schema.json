@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewStatusRejected",
+  "title": "ReviewStatusRejected",
+  "type": "object",
+  "properties": {
+    "value": {
+      "description": "Rejected review status",
+      "type": "string",
+      "enum": [
+        "rejected"
+      ]
+    },
+    "rejection_reason": {
+      "description": "The updated status intended for the review with this ID",
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/RejectReasonOther"
+        },
+        {
+          "$ref": "#/components/schemas/RejectReasonFake"
+        },
+        {
+          "$ref": "#/components/schemas/RejectReasonMisleading"
+        },
+        {
+          "$ref": "#/components/schemas/RejectReasonPrivateInformation"
+        },
+        {
+          "$ref": "#/components/schemas/RejectReasonProfanity"
+        },
+        {
+          "$ref": "#/components/schemas/RejectReasonUnrelated"
+        }
+      ]
+    }
+  },
+  "required": [
+    "value",
+    "rejection_reason"
+  ]
+}

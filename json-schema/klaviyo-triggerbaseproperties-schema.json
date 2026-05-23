@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TriggerBaseProperties",
+  "title": "TriggerBaseProperties",
+  "type": "object",
+  "maxProperties": 0
+}

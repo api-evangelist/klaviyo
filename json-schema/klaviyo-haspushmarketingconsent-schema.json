@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HasPushMarketingConsent",
+  "title": "HasPushMarketingConsent",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "push"
+      ]
+    },
+    "can_receive_marketing": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "consent_status": {
+      "$ref": "#/components/schemas/HasPushMarketing"
+    }
+  },
+  "required": [
+    "channel",
+    "can_receive_marketing",
+    "consent_status"
+  ]
+}

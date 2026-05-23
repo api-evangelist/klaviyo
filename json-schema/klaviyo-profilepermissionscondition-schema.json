@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfilePermissionsCondition",
+  "title": "ProfilePermissionsCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-permissions"
+      ]
+    },
+    "permission": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/ExplicitlyReachable"
+        },
+        {
+          "$ref": "#/components/schemas/ImplicitlyReachable"
+        },
+        {
+          "$ref": "#/components/schemas/ImplicitlyOrExplicitlyReachable"
+        },
+        {
+          "$ref": "#/components/schemas/ExplicitlyUnreachable"
+        },
+        {
+          "$ref": "#/components/schemas/ImplicitlyUnreachable"
+        },
+        {
+          "$ref": "#/components/schemas/ImplicitlyOrExplicitlyUnreachable"
+        }
+      ]
+    },
+    "channel": {
+      "description": "Possible channels for profile permissions criterion.",
+      "type": "string",
+      "enum": [
+        "whatsapp_marketing",
+        "whatsapp_transactional"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "permission",
+    "channel"
+  ]
+}

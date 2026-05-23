@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileImportJobCreateQuery",
+  "title": "ProfileImportJobCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ProfileImportJobCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

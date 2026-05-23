@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CarrierDeactivationMethodFilter",
+  "title": "CarrierDeactivationMethodFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "method"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "carrier_deactivation"
+      ]
+    }
+  },
+  "required": [
+    "field",
+    "method"
+  ]
+}

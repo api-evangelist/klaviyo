@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomMetricCondition",
+  "title": "CustomMetricCondition",
+  "type": "object",
+  "properties": {
+    "property": {
+      "type": "string"
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/NumericOperatorNumericFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StringInArrayFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ExistenceOperatorExistenceFilter"
+        },
+        {
+          "$ref": "#/components/schemas/BooleanFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StringOperatorStringFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ListContainsOperatorListContainsFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ListRegexOperatorListContainsFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ListSubstringFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "property",
+    "filter"
+  ]
+}

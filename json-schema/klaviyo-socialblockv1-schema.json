@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SocialBlockV1",
+  "title": "SocialBlockV1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "universal_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "social"
+      ]
+    },
+    "data": {
+      "$ref": "#/components/schemas/SocialBlockData",
+      "nullable": true
+    },
+    "subblocks": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/SocialIconSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/SocialSpacerSubBlock"
+          }
+        ]
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

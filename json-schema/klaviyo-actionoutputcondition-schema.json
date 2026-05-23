@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActionOutputCondition",
+  "title": "ActionOutputCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "action-output"
+      ]
+    },
+    "output_config_id": {
+      "type": "integer"
+    },
+    "field": {
+      "type": "string"
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StringOperatorStringFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StringArrayOperatorStringArrayFilter"
+        },
+        {
+          "$ref": "#/components/schemas/NumericOperatorNumericFilter"
+        },
+        {
+          "$ref": "#/components/schemas/NumericRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/BooleanFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ExistenceOperatorExistenceFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "output_config_id",
+    "field",
+    "filter"
+  ]
+}

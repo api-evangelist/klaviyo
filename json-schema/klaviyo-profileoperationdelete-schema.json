@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileOperationDelete",
+  "title": "ProfileOperationDelete",
+  "type": "object",
+  "properties": {
+    "operator": {
+      "description": "The type of operation to perform on a profile property.",
+      "type": "string",
+      "enum": [
+        "delete"
+      ]
+    },
+    "property_key": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "operator",
+    "property_key"
+  ]
+}

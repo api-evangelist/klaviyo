@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BodyProperties",
+  "title": "BodyProperties",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true
+    },
+    "css_class": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageUploadQuery",
+  "title": "ImageUploadQuery",
+  "type": "object",
+  "properties": {
+    "file": {
+      "description": "The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.",
+      "type": "string",
+      "format": "binary"
+    },
+    "name": {
+      "description": "A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.",
+      "type": "string"
+    },
+    "hidden": {
+      "description": "If true, this image is not shown in the asset library.",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "file"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetTagFlowRelationshipsResponseCollection",
+  "title": "GetTagFlowRelationshipsResponseCollection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/FlowEnum"
+          },
+          "id": {
+            "description": "The IDs of all flows that are associated with the Tag",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

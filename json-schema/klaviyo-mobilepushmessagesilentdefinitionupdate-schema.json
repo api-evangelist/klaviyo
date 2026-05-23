@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobilePushMessageSilentDefinitionUpdate",
+  "title": "MobilePushMessageSilentDefinitionUpdate",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "mobile_push"
+      ]
+    },
+    "kv_pairs": {
+      "description": "The key-value pairs to be sent with the push notification",
+      "type": "object"
+    },
+    "notification_type": {
+      "description": "The type of notification to send",
+      "type": "string",
+      "example": "silent",
+      "default": "silent",
+      "enum": [
+        "silent"
+      ]
+    }
+  },
+  "required": [
+    "channel"
+  ]
+}

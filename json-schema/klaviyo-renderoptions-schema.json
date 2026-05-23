@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RenderOptions",
+  "title": "RenderOptions",
+  "type": "object",
+  "properties": {
+    "shorten_links": {
+      "type": "boolean",
+      "example": true,
+      "default": true,
+      "nullable": true
+    },
+    "add_org_prefix": {
+      "type": "boolean",
+      "example": true,
+      "default": true,
+      "nullable": true
+    },
+    "add_info_link": {
+      "type": "boolean",
+      "example": true,
+      "default": true,
+      "nullable": true
+    },
+    "add_opt_out_language": {
+      "type": "boolean",
+      "default": false,
+      "nullable": true
+    }
+  }
+}

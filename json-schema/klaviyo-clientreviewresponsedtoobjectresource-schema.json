@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClientReviewResponseDTOObjectResource",
+  "title": "ClientReviewResponseDTOObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ReviewEnum"
+    },
+    "id": {
+      "description": "The ID of the review",
+      "type": "string",
+      "example": "925e385b52fb405715f3616c337cc65c"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "The status of this review",
+          "nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/ReviewStatusRejected"
+            },
+            {
+              "$ref": "#/components/schemas/ReviewStatusFeatured"
+            },
+            {
+              "$ref": "#/components/schemas/ReviewStatusPublished"
+            },
+            {
+              "$ref": "#/components/schemas/ReviewStatusUnpublished"
+            },
+            {
+              "$ref": "#/components/schemas/ReviewStatusPending"
+            }
+          ]
+        },
+        "verified": {
+          "description": "The verification status of this review (aka whether or not we have confirmation that the customer bought the product)",
+          "type": "boolean",
+          "example": true
+        },
+        "review_type": {
+          "description": "The type of this review \u2014 either a review, question, or rating",
+          "type": "string",
+          "example": "review",
+          "enum": [
+            "question",
+            "rating",
+            "review",
+            "store"
+          ]
+        },
+        "created": {
+          "description": "The datetime when this review was created",
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T00:00:00+00:00"
+        },
+        "updated": {
+          "description": "The datetime when this review was updated",
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T00:00:00+00:00"
+        },
+        "images": {
+          "description": "The list of images submitted with this review (represented as a list of urls). If there are no images, this field will be an empty list.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "https://example.com/image1.jpg",
+            "https://example.com/image2.jpg"
+          ]
+        },
+        "product": {
+          "description": "The product associated with this review",
+          "$ref": "#/components/schemas/ReviewProductDTO",
+          "nullable": true
+        },
+        "rating": {
+          "description": "The rating of this review on a scale from 1-5. If the review type is \"question\", this field will be null.",
+          "type": "integer",
+          "example": 2,
+          "nullable": true
+        },
+        "author": {
+          "description": "The author of this review",
+          "type": "string",
+          "example": "John D",
+          "nullable": true
+        },
+        "content": {
+          "description": "The content of this review",
+          "example": "Great product! I love the smell. I will be buying again.",
+          "nullable": true,
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of this review",
+          "type": "string",
+          "example": "Smells great, would recommend",
+          "nullable": true
+        },
+        "smart_quote": {
+          "description": "A quote from this review that summarizes the content",
+          "type": "string",
+          "example": "I love the smell",
+          "nullable": true
+        },
+        "public_reply": {
+          "description": "The public reply to this review (if one exists)",
+          "$ref": "#/components/schemas/ReviewPublicReply",
+          "nullable": true
+        }
+      },
+      "required": [
+        "verified",
+        "review_type",
+        "created",
+        "updated",
+        "images"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

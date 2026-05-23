@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MappedMetricResponseObjectResource",
+  "title": "MappedMetricResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/MappedMetricEnum"
+    },
+    "id": {
+      "description": "The type of mapping.",
+      "type": "string",
+      "example": "revenue",
+      "enum": [
+        "added_to_cart",
+        "cancelled_sales",
+        "ordered_product",
+        "refunded_sales",
+        "revenue",
+        "started_checkout",
+        "viewed_product"
+      ]
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "updated": {
+          "description": "The datetime when this mapping was last updated.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2025-04-15T00:00:00Z"
+        }
+      },
+      "required": [
+        "updated"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "metric": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/MetricEnum"
+                },
+                "id": {
+                  "description": "The ID of the metric for this mapping.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        },
+        "custom-metric": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/CustomMetricEnum"
+                },
+                "id": {
+                  "description": "The ID of the custom metric for this mapping.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

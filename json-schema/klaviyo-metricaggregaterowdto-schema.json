@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricAggregateRowDTO",
+  "title": "MetricAggregateRowDTO",
+  "type": "object",
+  "properties": {
+    "dimensions": {
+      "description": "List of dimensions associated with this set of measurements",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "measurements": {
+      "description": "Dictionary of measurement_key, values",
+      "type": "object"
+    }
+  },
+  "required": [
+    "dimensions",
+    "measurements"
+  ]
+}

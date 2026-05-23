@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendWhatsAppAction",
+  "title": "SendWhatsAppAction",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The real ID of an action. Not allowed on create.",
+      "type": "string",
+      "example": "123",
+      "nullable": true
+    },
+    "temporary_id": {
+      "description": "A temporary ID to use only during a create operation. Existing actions should use the id field.",
+      "type": "string",
+      "example": "action-1",
+      "nullable": true,
+      "writeOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "send-whatsapp"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/Link",
+      "nullable": true
+    },
+    "data": {
+      "$ref": "#/components/schemas/SendWhatsAppActionData",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

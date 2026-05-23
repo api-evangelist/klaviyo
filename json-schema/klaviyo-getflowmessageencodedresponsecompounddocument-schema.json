@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetFlowMessageEncodedResponseCompoundDocument",
+  "title": "GetFlowMessageEncodedResponseCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/FlowMessageEncodedResponseObjectResource"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/FlowActionEncodedResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/TemplateResponseObjectResource"
+          }
+        ]
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

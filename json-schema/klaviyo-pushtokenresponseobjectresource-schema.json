@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushTokenResponseObjectResource",
+  "title": "PushTokenResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/PushTokenEnum"
+    },
+    "id": {
+      "description": "ID of push token",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "description": "The time at which the token was created",
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T00:00:00+00:00"
+        },
+        "token": {
+          "description": "The push token",
+          "type": "string"
+        },
+        "enablement_status": {
+          "description": "The enablement status of the push token",
+          "type": "string",
+          "enum": [
+            "AUTHORIZED",
+            "DENIED",
+            "NOT_DETERMINED",
+            "PROVISIONAL",
+            "UNAUTHORIZED"
+          ]
+        },
+        "platform": {
+          "description": "The platform of the push token('ios', 'android')",
+          "type": "string",
+          "enum": [
+            "android",
+            "ios"
+          ]
+        },
+        "vendor": {
+          "description": "The vendor of the push token('APNs', 'FCM')",
+          "type": "string"
+        },
+        "background": {
+          "description": "The background state of the push token",
+          "type": "string"
+        },
+        "recorded_date": {
+          "description": "The date the push token was recorded",
+          "type": "string"
+        },
+        "metadata": {
+          "description": "Metadata of device",
+          "$ref": "#/components/schemas/DeviceMetadata",
+          "nullable": true
+        }
+      },
+      "required": [
+        "created",
+        "token",
+        "enablement_status",
+        "platform",
+        "vendor",
+        "background",
+        "recorded_date"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ProfileEnum"
+                },
+                "id": {
+                  "description": "The profile associated with the push token",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

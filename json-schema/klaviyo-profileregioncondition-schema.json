@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileRegionCondition",
+  "title": "ProfileRegionCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-region"
+      ]
+    },
+    "in_region": {
+      "type": "boolean"
+    },
+    "region": {
+      "description": "Regions for profile region conditions.",
+      "type": "string",
+      "enum": [
+        "european_union",
+        "united_states"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "in_region",
+    "region"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Visibility",
+  "title": "Visibility",
+  "type": "object",
+  "properties": {
+    "check": {
+      "type": "string",
+      "nullable": true
+    },
+    "definition": {
+      "type": "string",
+      "nullable": true
+    },
+    "is_code_only": {
+      "type": "boolean",
+      "nullable": true
+    }
+  }
+}

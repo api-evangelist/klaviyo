@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhatsAppSubscriptionParameters",
+  "title": "WhatsAppSubscriptionParameters",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The parameters to subscribe to marketing on the \"WhatsApp\" Channel.",
+      "$ref": "#/components/schemas/SubscriptionParameters",
+      "nullable": true
+    },
+    "transactional": {
+      "description": "The parameters to subscribe to transactional messaging on the \"WhatsApp\" Channel.",
+      "$ref": "#/components/schemas/SubscriptionParameters",
+      "nullable": true
+    }
+  }
+}

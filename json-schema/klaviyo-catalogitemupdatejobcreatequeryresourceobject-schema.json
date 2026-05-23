@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogItemUpdateJobCreateQueryResourceObject",
+  "title": "CatalogItemUpdateJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CatalogItemBulkUpdateJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Array of catalog items to update.",
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CatalogItemUpdateQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "items"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

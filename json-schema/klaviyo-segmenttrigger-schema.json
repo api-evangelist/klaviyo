@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SegmentTrigger",
+  "title": "SegmentTrigger",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "segment"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

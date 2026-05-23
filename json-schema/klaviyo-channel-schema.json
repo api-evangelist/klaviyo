@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Channel",
+  "title": "Channel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "channel"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/ChannelProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

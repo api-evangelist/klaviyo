@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobilePushMessageSilentDefinitionCreate",
+  "title": "MobilePushMessageSilentDefinitionCreate",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "mobile_push"
+      ]
+    },
+    "kv_pairs": {
+      "description": "The key-value pairs to be sent with the push notification",
+      "type": "object",
+      "nullable": true
+    },
+    "notification_type": {
+      "description": "The type of notification to send",
+      "type": "string",
+      "example": "silent",
+      "default": "silent",
+      "enum": [
+        "silent"
+      ]
+    }
+  },
+  "required": [
+    "channel"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AlltimeDateFilter",
+  "title": "AlltimeDateFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "description": "Operators for alltime date filters.",
+      "type": "string",
+      "enum": [
+        "alltime"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "operator"
+  ]
+}

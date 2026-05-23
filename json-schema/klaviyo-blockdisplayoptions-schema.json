@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BlockDisplayOptions",
+  "title": "BlockDisplayOptions",
+  "type": "object",
+  "properties": {
+    "show_on": {
+      "description": "Show on.",
+      "type": "string",
+      "enum": [
+        "all",
+        "desktop",
+        "mobile"
+      ],
+      "nullable": true
+    },
+    "visible_check": {
+      "type": "string",
+      "nullable": true
+    },
+    "content_repeat": {
+      "$ref": "#/components/schemas/ContentRepeatV0",
+      "nullable": true
+    }
+  }
+}

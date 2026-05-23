@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HasEmailMarketingNeverSubscribed",
+  "title": "HasEmailMarketingNeverSubscribed",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "never_subscribed"
+      ]
+    },
+    "filters": {
+      "nullable": true
+    }
+  },
+  "required": [
+    "subscription"
+  ]
+}

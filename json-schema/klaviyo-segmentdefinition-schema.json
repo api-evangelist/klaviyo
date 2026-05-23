@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SegmentDefinition",
+  "title": "SegmentDefinition",
+  "type": "object",
+  "properties": {
+    "condition_groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ConditionGroup"
+      }
+    }
+  },
+  "required": [
+    "condition_groups"
+  ]
+}

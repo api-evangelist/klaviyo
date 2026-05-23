@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfilePredictiveAnalyticsStringFilter",
+  "title": "ProfilePredictiveAnalyticsStringFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "string"
+      ]
+    },
+    "operator": {
+      "oneOf": [
+        {
+          "enum": [
+            "equals"
+          ],
+          "type": "string"
+        },
+        {
+          "enum": [
+            "not-equals"
+          ],
+          "type": "string"
+        }
+      ]
+    },
+    "value": {
+      "description": "Values for profile predictive analytics gender conditions.",
+      "type": "string",
+      "enum": [
+        "likely_female",
+        "likely_male",
+        "uncertain"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

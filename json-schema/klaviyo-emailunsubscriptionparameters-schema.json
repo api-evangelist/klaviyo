@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailUnsubscriptionParameters",
+  "title": "EmailUnsubscriptionParameters",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The parameters to unsubscribe from marketing on the \"EMAIL\" channel.",
+      "$ref": "#/components/schemas/UnsubscriptionParameters"
+    }
+  },
+  "required": [
+    "marketing"
+  ]
+}

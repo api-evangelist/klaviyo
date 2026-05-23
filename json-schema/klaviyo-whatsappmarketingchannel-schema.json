@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhatsappMarketingChannel",
+  "title": "WhatsappMarketingChannel",
+  "type": "object",
+  "properties": {
+    "consent": {
+      "description": "The consent status for the channel.",
+      "type": "string",
+      "example": "SUBSCRIBED"
+    },
+    "consent_timestamp": {
+      "description": "The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00",
+      "nullable": true
+    },
+    "last_updated": {
+      "description": "The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00",
+      "nullable": true
+    },
+    "created_timestamp": {
+      "description": "The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00",
+      "nullable": true
+    },
+    "metadata": {
+      "description": "Channel-specific metadata containing additional information about the permission.",
+      "type": "object",
+      "nullable": true
+    },
+    "can_receive": {
+      "description": "Whether the profile can receive messages on this channel.",
+      "type": "boolean"
+    },
+    "valid_until": {
+      "description": "Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-02-21T20:07:38+00:00",
+      "nullable": true
+    },
+    "phone_number": {
+      "description": "Phone number to which the consent was granted for.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "consent",
+    "can_receive",
+    "phone_number"
+  ]
+}

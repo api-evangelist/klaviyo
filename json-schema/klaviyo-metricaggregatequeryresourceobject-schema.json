@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricAggregateQueryResourceObject",
+  "title": "MetricAggregateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/MetricAggregateEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "metric_id": {
+          "description": "The metric ID used in the aggregation.",
+          "type": "string",
+          "example": "0rG4eQ"
+        },
+        "page_cursor": {
+          "description": "Optional pagination cursor to iterate over large result sets",
+          "type": "string"
+        },
+        "measurements": {
+          "description": "Measurement key, e.g. `unique`, `sum_value`, `count`",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "count",
+              "sum_value",
+              "unique"
+            ],
+            "description": "Supported measurements for aggregation"
+          },
+          "example": [
+            "count"
+          ]
+        },
+        "interval": {
+          "description": "Aggregation interval, e.g. \"hour\", \"day\", \"week\", \"month\"",
+          "type": "string",
+          "example": "day",
+          "default": "day",
+          "enum": [
+            "day",
+            "hour",
+            "month",
+            "week"
+          ],
+          "nullable": true
+        },
+        "page_size": {
+          "description": "Alter the maximum number of returned rows in a single page of aggregation results",
+          "type": "integer",
+          "example": 500,
+          "default": 500,
+          "nullable": true
+        },
+        "by": {
+          "description": "Optional attribute(s) used for partitioning by the aggregation function",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "$attributed_channel",
+              "$attributed_flow",
+              "$attributed_message",
+              "$attributed_variation",
+              "$campaign_channel",
+              "$flow",
+              "$flow_channel",
+              "$message",
+              "$message_send_cohort",
+              "$usage_amount",
+              "$value_currency",
+              "$variation",
+              "$variation_send_cohort",
+              "Bot Click",
+              "Bounce Type",
+              "Campaign Name",
+              "Client Canonical",
+              "Client Name",
+              "Client Type",
+              "Email Domain",
+              "Failure Source",
+              "Failure Type",
+              "From Number",
+              "From Phone Region",
+              "Inbox Provider",
+              "List",
+              "Message Name",
+              "Message Type",
+              "Method",
+              "Segment Count",
+              "Subject",
+              "To Number",
+              "To Phone Region",
+              "URL",
+              "form_id"
+            ],
+            "description": "Supported dimensions for grouping and filtering.\n\nIf adding a new dimension, the following will also need to be updated:\n    - adding the key in keys.py\n    - adding an AppMetricDimension to library.py\n    - adding a new entry to the dict in the __init__ method of StaticSchema using the key from keys.py and the\n        AppMetricDimension from library.py"
+          },
+          "example": [
+            "$message"
+          ],
+          "nullable": true
+        },
+        "return_fields": {
+          "description": "Provide fields to limit the returned data",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "nullable": true
+        },
+        "filter": {
+          "description": "List of filters, must include time range using ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).\n            These filters follow a similar format to those in `GET` requests, the primary difference is that this endpoint asks for a list.\n            The time range can be filtered by providing a `greater-or-equal` and a `less-than` filter on the `datetime` field.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "greater-or-equal(datetime,2022-12-01T00:00:00)",
+            "less-than(datetime,2022-12-08T00:00:00"
+          ]
+        },
+        "timezone": {
+          "description": "The timezone used for processing the query, e.g. `'America/New_York'`.\n            This field is validated against a list of common timezones from the [IANA Time Zone Database](https://www.iana.org/time-zones).\n            While most are supported, a few notable exceptions are `Factory`, `Europe/Kyiv` and `Pacific/Kanton`. This field is case-sensitive.",
+          "type": "string",
+          "example": "America/New_York",
+          "default": "UTC",
+          "nullable": true
+        },
+        "sort": {
+          "description": "Provide a sort key (e.g. -$message)",
+          "type": "string",
+          "enum": [
+            "$attributed_channel",
+            "-$attributed_channel",
+            "$attributed_flow",
+            "-$attributed_flow",
+            "$attributed_message",
+            "-$attributed_message",
+            "$attributed_variation",
+            "-$attributed_variation",
+            "$campaign_channel",
+            "-$campaign_channel",
+            "$flow",
+            "-$flow",
+            "$flow_channel",
+            "-$flow_channel",
+            "$message",
+            "-$message",
+            "$message_send_cohort",
+            "-$message_send_cohort",
+            "$usage_amount",
+            "-$usage_amount",
+            "$value_currency",
+            "-$value_currency",
+            "$variation",
+            "-$variation",
+            "$variation_send_cohort",
+            "-$variation_send_cohort",
+            "Bot Click",
+            "-Bot Click",
+            "Bounce Type",
+            "-Bounce Type",
+            "Campaign Name",
+            "-Campaign Name",
+            "Client Canonical",
+            "-Client Canonical",
+            "Client Name",
+            "-Client Name",
+            "Client Type",
+            "-Client Type",
+            "Email Domain",
+            "-Email Domain",
+            "Failure Source",
+            "-Failure Source",
+            "Failure Type",
+            "-Failure Type",
+            "From Number",
+            "-From Number",
+            "From Phone Region",
+            "-From Phone Region",
+            "Inbox Provider",
+            "-Inbox Provider",
+            "List",
+            "-List",
+            "Message Name",
+            "-Message Name",
+            "Message Type",
+            "-Message Type",
+            "Method",
+            "-Method",
+            "Segment Count",
+            "-Segment Count",
+            "Subject",
+            "-Subject",
+            "To Number",
+            "-To Number",
+            "To Phone Region",
+            "-To Phone Region",
+            "URL",
+            "-URL",
+            "count",
+            "-count",
+            "form_id",
+            "-form_id",
+            "sum_value",
+            "-sum_value",
+            "unique",
+            "-unique"
+          ]
+        }
+      },
+      "required": [
+        "metric_id",
+        "measurements",
+        "filter"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

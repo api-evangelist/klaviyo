@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TagSegmentOp",
+  "title": "TagSegmentOp",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SegmentEnum"
+          },
+          "id": {
+            "description": "The IDs of the segments to link or unlink with the given Tag ID",
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

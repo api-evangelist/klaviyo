@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileMergeQueryResourceObject",
+  "title": "ProfileMergeQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ProfileMergeEnum"
+    },
+    "id": {
+      "description": "The ID of the destination profile to merge into",
+      "type": "string",
+      "example": "01GDDKASAP8TKDDA2GRZDSVP4H"
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/ProfileEnum"
+                  },
+                  "id": {
+                    "description": "The ID of a source profile to merge into the destination profile",
+                    "type": "string",
+                    "example": "01GDDKASAP8TKDDA2GRZDSVP4I"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "profiles"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "relationships"
+  ]
+}

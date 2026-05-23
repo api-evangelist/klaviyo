@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewCreateDTOResourceObject",
+  "title": "ReviewCreateDTOResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ReviewEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "review_type": {
+          "description": "The type of this review -- either a review or a question",
+          "type": "string",
+          "example": "review",
+          "enum": [
+            "question",
+            "rating",
+            "review",
+            "store"
+          ]
+        },
+        "email": {
+          "description": "The email of the author of this review",
+          "type": "string",
+          "example": "random.123@gmail.com"
+        },
+        "author": {
+          "description": "The author of this review",
+          "type": "string",
+          "example": "John Doe"
+        },
+        "content": {
+          "description": "The content of this review",
+          "example": "This was an absolutely amazing t-shirt. I loved the color and the fit.",
+          "type": "string"
+        },
+        "incentive_type": {
+          "description": "The incentive type for the review",
+          "type": "string",
+          "enum": [
+            "coupon_or_discount",
+            "employee_review",
+            "free_product",
+            "loyalty_points",
+            "other",
+            "paid_promotion",
+            "sweepstakes_entry"
+          ],
+          "nullable": true
+        },
+        "product": {
+          "description": "The product associated with this review",
+          "$ref": "#/components/schemas/ReviewProductExternalId",
+          "nullable": true
+        },
+        "rating": {
+          "description": "The rating of this review on a scale from 1-5. If the review type is \"question\", this field will be null.",
+          "type": "integer",
+          "example": 2,
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "nullable": true
+        },
+        "title": {
+          "description": "The title of this review",
+          "type": "string",
+          "example": "Great product!",
+          "nullable": true
+        },
+        "custom_questions": {
+          "description": "Custom question and answers for the review",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/CustomQuestionDTO"
+          },
+          "example": [
+            {
+              "id": "9ff0d32e-0edb-4513-a6a5-12814a6cb755",
+              "answers": [
+                "M",
+                "L"
+              ]
+            }
+          ],
+          "nullable": true
+        },
+        "images": {
+          "description": "The list of images submitted with this review (represented as a list of urls or base-64 encoded data-uri). If there are no images, this field will be an empty list.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "https://example.com/image1.jpg",
+            "https://example.com/image2.jpg"
+          ],
+          "nullable": true
+        }
+      },
+      "required": [
+        "review_type",
+        "email",
+        "author",
+        "content"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/OrderEnum"
+                },
+                "id": {
+                  "description": "The Order ID related to the review",
+                  "type": "string",
+                  "example": "42439497119686"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

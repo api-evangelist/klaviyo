@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NoEmailMarketingUnsubscribed",
+  "title": "NoEmailMarketingUnsubscribed",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "unsubscribed"
+      ]
+    },
+    "filters": {
+      "nullable": true,
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/StatusDateFilter"
+              },
+              {
+                "$ref": "#/components/schemas/APIMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/InboundMessageMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/PreferencePageMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/ManualRemoveMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/SpamComplaintMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/MailboxProviderMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/OneClickUnsubscribeMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/ManualImportMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/SftpMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/DataWarehouseImportMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileModificationMethodFilter"
+              },
+              {
+                "$ref": "#/components/schemas/ConstantContactIntegrationMethodFilter"
+              }
+            ]
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BounceDateFilter"
+              },
+              {
+                "$ref": "#/components/schemas/ManualSuppressionDateFilter"
+              },
+              {
+                "$ref": "#/components/schemas/InvalidEmailDateFilter"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "subscription"
+  ]
+}

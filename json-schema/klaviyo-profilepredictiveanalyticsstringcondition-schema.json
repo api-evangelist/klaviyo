@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfilePredictiveAnalyticsStringCondition",
+  "title": "ProfilePredictiveAnalyticsStringCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-predictive-analytics"
+      ]
+    },
+    "dimension": {
+      "description": "Dimension for string profile predictive analytics conditions.",
+      "type": "string",
+      "enum": [
+        "predicted_gender"
+      ]
+    },
+    "filter": {
+      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsStringFilter"
+    }
+  },
+  "required": [
+    "type",
+    "dimension",
+    "filter"
+  ]
+}

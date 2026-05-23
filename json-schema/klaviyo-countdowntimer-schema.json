@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CountdownTimer",
+  "title": "CountdownTimer",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "countdown_timer"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/CountdownTimerStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/CountdownTimerProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

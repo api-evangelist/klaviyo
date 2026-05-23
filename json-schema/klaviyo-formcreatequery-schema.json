@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormCreateQuery",
+  "title": "FormCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/FormCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

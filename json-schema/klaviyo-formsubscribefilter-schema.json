@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormSubscribeFilter",
+  "title": "FormSubscribeFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "subscribe_method"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "form"
+      ]
+    },
+    "filter": {
+      "description": "Optional filter on a specific list of form IDs",
+      "$ref": "#/components/schemas/InStringArrayFilter",
+      "nullable": true
+    }
+  },
+  "required": [
+    "field",
+    "method"
+  ]
+}

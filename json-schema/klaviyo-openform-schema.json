@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpenForm",
+  "title": "OpenForm",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "open_form"
+      ]
+    },
+    "submit": {
+      "type": "boolean",
+      "example": true,
+      "default": true,
+      "enum": [
+        true
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/OpenFormProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

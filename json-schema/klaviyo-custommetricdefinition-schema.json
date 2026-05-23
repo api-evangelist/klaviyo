@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomMetricDefinition",
+  "title": "CustomMetricDefinition",
+  "type": "object",
+  "properties": {
+    "aggregation_method": {
+      "description": "Method of aggregation for custom metric measurements. If a metric has a `value` aggregation method, it will be treated as a revenue metric, such as a Placed Order metric. If a metric has a `count` aggregation method, it will only be able to report on conversions like an Active on Site metric.\n",
+      "type": "string",
+      "enum": [
+        "count",
+        "value"
+      ]
+    },
+    "metric_groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomMetricGroup"
+      }
+    }
+  },
+  "required": [
+    "aggregation_method",
+    "metric_groups"
+  ]
+}

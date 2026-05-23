@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileLocation",
+  "title": "ProfileLocation",
+  "type": "object",
+  "properties": {
+    "address1": {
+      "description": "First line of street address",
+      "type": "string",
+      "example": "89 E 42nd St",
+      "nullable": true
+    },
+    "address2": {
+      "description": "Second line of street address",
+      "type": "string",
+      "example": "1st floor",
+      "nullable": true
+    },
+    "city": {
+      "description": "City name",
+      "type": "string",
+      "example": "New York",
+      "nullable": true
+    },
+    "country": {
+      "description": "Country name",
+      "type": "string",
+      "example": "United States",
+      "nullable": true
+    },
+    "latitude": {
+      "description": "Latitude coordinate. We recommend providing a precision of four decimal places.",
+      "example": "40.7128",
+      "nullable": true,
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "longitude": {
+      "description": "Longitude coordinate. We recommend providing a precision of four decimal places.",
+      "example": "74.0060",
+      "nullable": true,
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "region": {
+      "description": "Region within a country, such as state or province",
+      "type": "string",
+      "example": "NY",
+      "nullable": true
+    },
+    "zip": {
+      "description": "Zip code",
+      "type": "string",
+      "example": "10017",
+      "nullable": true
+    },
+    "timezone": {
+      "description": "Time zone name. We recommend using time zones from the IANA Time Zone Database.",
+      "type": "string",
+      "example": "America/New_York",
+      "nullable": true
+    },
+    "ip": {
+      "description": "IP Address",
+      "type": "string",
+      "example": "127.0.0.1",
+      "nullable": true
+    }
+  }
+}

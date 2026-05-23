@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Heading3Style",
+  "title": "Heading3Style",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "style_type": {
+      "type": "string",
+      "enum": [
+        "heading-3-styles"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/HeadingStyleStyles"
+    }
+  },
+  "required": [
+    "style_type",
+    "styles"
+  ]
+}

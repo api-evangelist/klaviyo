@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LessThanPositiveNumericFilter",
+  "title": "LessThanPositiveNumericFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "numeric"
+      ]
+    },
+    "operator": {
+      "type": "string",
+      "enum": [
+        "less-than"
+      ]
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

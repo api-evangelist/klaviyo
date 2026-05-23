@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListLengthFilter",
+  "title": "ListLengthFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "list"
+      ]
+    },
+    "operator": {
+      "description": "Operators for list length filters.",
+      "type": "string",
+      "enum": [
+        "length-equals",
+        "length-greater-than",
+        "length-greater-than-or-equal",
+        "length-less-than",
+        "length-less-than-or-equal"
+      ]
+    },
+    "value": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

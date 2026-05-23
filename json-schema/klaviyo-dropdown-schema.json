@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Dropdown",
+  "title": "Dropdown",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "dropdown"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/DropdownStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/DropdownProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSourceRecordBulkCreateJobEnum",
+  "title": "DataSourceRecordBulkCreateJobEnum",
+  "type": "string",
+  "enum": [
+    "data-source-record-bulk-create-job"
+  ]
+}

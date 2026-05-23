@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCouponResponse",
+  "title": "PostCouponResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/CouponEnum"
+        },
+        "id": {
+          "description": "The internal id of a Coupon is equivalent to its external id stored within an integration.",
+          "type": "string",
+          "example": "10OFF"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "external_id": {
+              "description": "This is the id that is stored in an integration such as Shopify or Magento.",
+              "type": "string",
+              "example": "10OFF"
+            },
+            "description": {
+              "description": "A description of the coupon.",
+              "type": "string",
+              "example": "10% off for purchases over $50",
+              "nullable": true
+            },
+            "monitor_configuration": {
+              "description": "The monitor configuration for the coupon.",
+              "type": "object",
+              "example": {
+                "low_balance_threshold": 500
+              },
+              "nullable": true
+            }
+          },
+          "required": [
+            "external_id"
+          ]
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/URLPatterns",
+  "title": "URLPatterns",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "url_patterns"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/URLPatternsProperties"
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowDefinition",
+  "title": "FlowDefinition",
+  "type": "object",
+  "properties": {
+    "triggers": {
+      "description": "Corresponds to the object which triggers the flow. Only one trigger is supported.",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ListTrigger"
+          },
+          {
+            "$ref": "#/components/schemas/SegmentTrigger"
+          },
+          {
+            "$ref": "#/components/schemas/MetricTrigger"
+          },
+          {
+            "$ref": "#/components/schemas/ProfilePropertyDateTrigger"
+          },
+          {
+            "$ref": "#/components/schemas/PriceDropTrigger"
+          },
+          {
+            "$ref": "#/components/schemas/LowInventoryTrigger"
+          }
+        ]
+      }
+    },
+    "profile_filter": {
+      "description": "Filters for users entering the flow. These filters are used on every action in the flow.",
+      "type": "object",
+      "nullable": true,
+      "properties": {
+        "condition_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ProfilePropertyCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileHasGroupMembershipCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileNoGroupMembershipCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileRegionCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePostalCodeDistanceCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsDateCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsStringCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsNumericCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileMarketingConsentCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlowsProfileMetricCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileRandomSampleCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileHasCustomObjectCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePermissionsCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileNotInFlowCondition"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "conditions"
+            ]
+          }
+        }
+      },
+      "required": [
+        "condition_groups"
+      ]
+    },
+    "actions": {
+      "description": "A list of actions that make up the flow. Actions are linked to each other by their ids.",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ActionOutputSplitAction"
+          },
+          {
+            "$ref": "#/components/schemas/BackInStockDelayAction"
+          },
+          {
+            "$ref": "#/components/schemas/ConditionalBranchAction"
+          },
+          {
+            "$ref": "#/components/schemas/ContentExperimentAction"
+          },
+          {
+            "$ref": "#/components/schemas/SendEmailAction"
+          },
+          {
+            "$ref": "#/components/schemas/SendPushNotificationAction"
+          },
+          {
+            "$ref": "#/components/schemas/SendSmsAction"
+          },
+          {
+            "$ref": "#/components/schemas/SendWebhookAction"
+          },
+          {
+            "$ref": "#/components/schemas/SendInternalAlertAction"
+          },
+          {
+            "$ref": "#/components/schemas/SendWhatsAppAction"
+          },
+          {
+            "$ref": "#/components/schemas/TimeDelayAction"
+          },
+          {
+            "$ref": "#/components/schemas/TriggerBranchAction"
+          },
+          {
+            "$ref": "#/components/schemas/UpdateProfileAction"
+          },
+          {
+            "$ref": "#/components/schemas/TargetDateAction"
+          },
+          {
+            "$ref": "#/components/schemas/CountdownDelayAction"
+          },
+          {
+            "$ref": "#/components/schemas/AbTestAction"
+          },
+          {
+            "$ref": "#/components/schemas/InternalServiceAction"
+          },
+          {
+            "$ref": "#/components/schemas/CodeAction"
+          },
+          {
+            "$ref": "#/components/schemas/MultiBranchSplitAction"
+          },
+          {
+            "$ref": "#/components/schemas/ListUpdateAction"
+          }
+        ]
+      }
+    },
+    "entry_action_id": {
+      "description": "The ID of the action that is the entry point of the flow.",
+      "type": "string",
+      "example": "123",
+      "nullable": true
+    },
+    "reentry_criteria": {
+      "description": "Controls when a customer can re-enter the flow. If unit is 'alltime', a duration of 1 means no re-entry, while a duration of 0 means re-entry is allowed.",
+      "$ref": "#/components/schemas/ReentryCriteria",
+      "nullable": true
+    }
+  },
+  "required": [
+    "triggers",
+    "actions",
+    "entry_action_id"
+  ]
+}

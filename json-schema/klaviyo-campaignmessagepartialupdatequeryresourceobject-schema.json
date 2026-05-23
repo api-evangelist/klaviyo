@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignMessagePartialUpdateQueryResourceObject",
+  "title": "CampaignMessagePartialUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CampaignMessageEnum"
+    },
+    "id": {
+      "description": "The message ID to be retrieved",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "description": "The contents and settings of the campaign message",
+          "nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/EmailMessageDefinition"
+            },
+            {
+              "$ref": "#/components/schemas/SMSMessageDefinitionCreate"
+            },
+            {
+              "$ref": "#/components/schemas/MobilePushMessageStandardDefinitionUpdate"
+            },
+            {
+              "$ref": "#/components/schemas/MobilePushMessageSilentDefinitionUpdate"
+            }
+          ]
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ImageEnum"
+                },
+                "id": {
+                  "description": "The associated image for mobile_push messages",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

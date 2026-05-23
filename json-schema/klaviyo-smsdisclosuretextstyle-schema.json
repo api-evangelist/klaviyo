@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSDisclosureTextStyle",
+  "title": "SMSDisclosureTextStyle",
+  "type": "object",
+  "properties": {
+    "font_family": {
+      "example": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+      "default": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "Arial Black,Arial",
+            "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+            "Century Gothic,AppleGothic,Arial",
+            "Comic Sans MS,Comic Sans,cursive",
+            "Courier",
+            "Courier New",
+            "Geneva,Arial",
+            "Georgia",
+            "Helvetica,Arial",
+            "Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif",
+            "Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif",
+            "Lucida,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif",
+            "MS Serif,Georgia",
+            "New York,Georgia",
+            "Palatino Linotype,Palatino,Georgia",
+            "Palatino,Georgia",
+            "Tahoma,sans-serif",
+            "Times New Roman",
+            "Trebuchet MS",
+            "Verdana"
+          ],
+          "description": "Web safe font enumeration."
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "font_size": {
+      "type": "integer",
+      "example": 16,
+      "default": 16
+    },
+    "font_weight": {
+      "description": "Font weight enumeration.",
+      "type": "integer",
+      "example": 400,
+      "default": 400,
+      "enum": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "nullable": true
+    },
+    "text_color": {
+      "type": "string",
+      "example": "#000000",
+      "default": "#000000"
+    },
+    "character_spacing": {
+      "type": "integer",
+      "default": 0,
+      "nullable": true
+    },
+    "font_style": {
+      "type": "string",
+      "nullable": true
+    },
+    "text_decoration": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

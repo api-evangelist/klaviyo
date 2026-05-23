@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookTopicResponseObjectResource",
+  "title": "WebhookTopicResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/WebhookTopicEnum"
+    },
+    "id": {
+      "description": "The ID of the webhook topic.",
+      "type": "string",
+      "example": "event:klaviyo.sent_sms"
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "links"
+  ]
+}

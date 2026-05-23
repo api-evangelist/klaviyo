@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCampaignSendJobResponse",
+  "title": "PostCampaignSendJobResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/CampaignSendJobEnum"
+        },
+        "id": {
+          "description": "The ID of the campaign to send",
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "The status of the send job",
+              "type": "string",
+              "enum": [
+                "cancelled",
+                "complete",
+                "processing",
+                "queued"
+              ]
+            }
+          },
+          "required": [
+            "status"
+          ]
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

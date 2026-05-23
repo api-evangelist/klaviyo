@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SpinToWin",
+  "title": "SpinToWin",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "properties": {
+      "$ref": "#/components/schemas/SpinToWinProperties"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "spin_to_win"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/SpinToWinStyles"
+    }
+  },
+  "required": [
+    "properties",
+    "type"
+  ]
+}

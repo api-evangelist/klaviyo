@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TemplateCloneQueryResourceObject",
+  "title": "TemplateCloneQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TemplateEnum"
+    },
+    "id": {
+      "description": "The ID of template to be cloned",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the template",
+          "type": "string",
+          "example": "Clone of Monthly Newsletter Template",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

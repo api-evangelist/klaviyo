@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DropShadowBlockV0",
+  "title": "DropShadowBlockV0",
+  "type": "object",
+  "properties": {
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "drop_shadow"
+      ]
+    },
+    "data": {
+      "nullable": true
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

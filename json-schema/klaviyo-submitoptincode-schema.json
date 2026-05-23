@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubmitOptInCode",
+  "title": "SubmitOptInCode",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "submit": {
+      "type": "boolean",
+      "example": true,
+      "default": true,
+      "enum": [
+        true
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "submit_opt_in_code"
+      ]
+    },
+    "properties": {
+      "enum": [
+        null
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

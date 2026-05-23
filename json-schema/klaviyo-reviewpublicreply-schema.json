@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewPublicReply",
+  "title": "ReviewPublicReply",
+  "type": "object",
+  "properties": {
+    "content": {
+      "description": "The content of the public reply",
+      "example": "Thanks for the review!",
+      "type": "string"
+    },
+    "author": {
+      "description": "The author of the public reply",
+      "type": "string",
+      "example": "Company X"
+    },
+    "updated": {
+      "description": "The datetime when this public reply was updated",
+      "type": "string",
+      "format": "date-time",
+      "example": "2022-11-08T00:00:00+00:00"
+    }
+  },
+  "required": [
+    "content",
+    "author",
+    "updated"
+  ]
+}

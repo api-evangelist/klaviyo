@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostDataSourceResponse",
+  "title": "PostDataSourceResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/DataSourceEnum"
+        },
+        "id": {
+          "description": "The ID of the data source",
+          "type": "string",
+          "example": "01KH1D6P9Y8TJ7Q6MHXWZMPDN3"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "The title of the data source",
+              "type": "string",
+              "example": "My Data Source"
+            },
+            "visibility": {
+              "description": "The status of the data source",
+              "type": "string",
+              "enum": [
+                "private",
+                "shared"
+              ]
+            },
+            "description": {
+              "description": "The description of the data source",
+              "type": "string",
+              "example": "This is a data source"
+            },
+            "namespace": {
+              "description": "The namespace of the data source",
+              "type": "string",
+              "example": "custom-objects"
+            }
+          },
+          "required": [
+            "title",
+            "visibility",
+            "description",
+            "namespace"
+          ]
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

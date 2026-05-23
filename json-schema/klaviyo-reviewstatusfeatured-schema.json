@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewStatusFeatured",
+  "title": "ReviewStatusFeatured",
+  "type": "object",
+  "properties": {
+    "value": {
+      "description": "Featured review status",
+      "type": "string",
+      "enum": [
+        "featured"
+      ]
+    }
+  },
+  "required": [
+    "value"
+  ]
+}

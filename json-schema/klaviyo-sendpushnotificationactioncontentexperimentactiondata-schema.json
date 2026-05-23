@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendPushNotificationActionContentExperimentActionData",
+  "title": "SendPushNotificationActionContentExperimentActionData",
+  "type": "object",
+  "properties": {
+    "status": {
+      "description": "Flow action status.",
+      "type": "string",
+      "example": "draft",
+      "default": "draft",
+      "enum": [
+        "disabled",
+        "draft",
+        "live",
+        "manual"
+      ]
+    },
+    "experiment_status": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "enum": [
+        "completed",
+        "draft",
+        "live"
+      ],
+      "nullable": true
+    },
+    "main_action": {
+      "$ref": "#/components/schemas/SendPushNotificationAction"
+    },
+    "current_experiment": {
+      "$ref": "#/components/schemas/SendPushNotificationActionCurrentExperiment",
+      "nullable": true
+    }
+  },
+  "required": [
+    "main_action"
+  ]
+}

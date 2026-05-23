@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableHtmlSubBlock",
+  "title": "TableHtmlSubBlock",
+  "type": "object",
+  "properties": {
+    "content": {
+      "nullable": true,
+      "type": "string"
+    },
+    "show_on": {
+      "description": "Show on.",
+      "type": "string",
+      "enum": [
+        "all",
+        "desktop",
+        "mobile"
+      ],
+      "nullable": true
+    },
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "table_html"
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

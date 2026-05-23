@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowResponseObjectResource",
+  "title": "FlowResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FlowEnum"
+    },
+    "id": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "nullable": true
+        },
+        "status": {
+          "type": "string",
+          "nullable": true
+        },
+        "archived": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T00:00:00+00:00",
+          "nullable": true
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T00:00:00+00:00",
+          "nullable": true
+        },
+        "trigger_type": {
+          "description": "Corresponds to the object which triggered the flow.",
+          "type": "string",
+          "enum": [
+            "Added to List",
+            "Date Based",
+            "Low Inventory",
+            "Metric",
+            "Price Drop",
+            "Unconfigured"
+          ],
+          "nullable": true
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "flow-actions": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/FlowActionEnum"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        },
+        "tags": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/TagEnum"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkStyle",
+  "title": "LinkStyle",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "style_type": {
+      "type": "string",
+      "enum": [
+        "link-styles"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/LinkStyleStyles"
+    }
+  },
+  "required": [
+    "style_type",
+    "styles"
+  ]
+}

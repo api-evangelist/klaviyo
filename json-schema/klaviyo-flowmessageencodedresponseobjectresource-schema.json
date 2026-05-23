@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowMessageEncodedResponseObjectResource",
+  "title": "FlowMessageEncodedResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FlowMessageEnum"
+    },
+    "id": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "nullable": true
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T00:00:00+00:00",
+          "nullable": true
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T00:00:00+00:00",
+          "nullable": true
+        },
+        "definition": {
+          "description": "The encoded flow message definition.",
+          "nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/FlowEmail"
+            },
+            {
+              "$ref": "#/components/schemas/FlowInternalAlert"
+            },
+            {
+              "$ref": "#/components/schemas/FlowPushNotification"
+            },
+            {
+              "$ref": "#/components/schemas/FlowSms"
+            },
+            {
+              "$ref": "#/components/schemas/FlowWebhook"
+            },
+            {
+              "$ref": "#/components/schemas/FlowWhatsApp"
+            }
+          ]
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "flow-action": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/FlowActionEnum"
+                },
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        },
+        "template": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/TemplateEnum"
+                },
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

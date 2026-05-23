@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PreviouslySubmitted",
+  "title": "PreviouslySubmitted",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "properties": {
+      "$ref": "#/components/schemas/TriggerBaseProperties"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "previously_submitted"
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

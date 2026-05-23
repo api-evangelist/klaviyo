@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DropShadowBlockStyles",
+  "title": "DropShadowBlockStyles",
+  "type": "object",
+  "properties": {
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_stretch_content": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "shadow_color": {
+      "description": "Shadow color.",
+      "type": "string",
+      "enum": [
+        "dark",
+        "light",
+        "medium"
+      ],
+      "nullable": true
+    }
+  }
+}

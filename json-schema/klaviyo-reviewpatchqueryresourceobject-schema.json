@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewPatchQueryResourceObject",
+  "title": "ReviewPatchQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ReviewEnum"
+    },
+    "id": {
+      "description": "The id of the review (review ID).",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "The updated status intended for the review with this ID",
+          "nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/ReviewStatusRejected"
+            },
+            {
+              "$ref": "#/components/schemas/ReviewStatusFeatured"
+            },
+            {
+              "$ref": "#/components/schemas/ReviewStatusPublished"
+            },
+            {
+              "$ref": "#/components/schemas/ReviewStatusUnpublished"
+            },
+            {
+              "$ref": "#/components/schemas/ReviewStatusPending"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

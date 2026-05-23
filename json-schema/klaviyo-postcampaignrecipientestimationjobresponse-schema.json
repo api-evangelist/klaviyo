@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCampaignRecipientEstimationJobResponse",
+  "title": "PostCampaignRecipientEstimationJobResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/CampaignRecipientEstimationJobEnum"
+        },
+        "id": {
+          "description": "The ID of the campaign used for estimating recipients",
+          "type": "string",
+          "example": "01GMRWDSA0ARTAKE1SFX8JGXAY"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "The status of the recipient estimation job",
+              "type": "string",
+              "enum": [
+                "cancelled",
+                "complete",
+                "processing",
+                "queued"
+              ]
+            }
+          },
+          "required": [
+            "status"
+          ]
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

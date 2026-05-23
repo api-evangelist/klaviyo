@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackInStockProperties",
+  "title": "BackInStockProperties",
+  "type": "object",
+  "properties": {
+    "tag_allowlist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tag_blocklist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

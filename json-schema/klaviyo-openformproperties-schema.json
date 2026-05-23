@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpenFormProperties",
+  "title": "OpenFormProperties",
+  "type": "object",
+  "properties": {
+    "close_form": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    },
+    "form_id_to_open": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "form_id_to_open"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicReviewBlockProperties",
+  "title": "DynamicReviewBlockProperties",
+  "type": "object",
+  "properties": {
+    "show_rating": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_reviewer_name": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_product_name": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_variant_name": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_verified_badge": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "author_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "quote_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_name_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_variant_name_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "verified_badge_language": {
+      "description": "Review block verified badge language.",
+      "type": "string",
+      "enum": [
+        "dutch",
+        "english",
+        "french",
+        "german",
+        "hungarian",
+        "italian",
+        "japanese",
+        "korean",
+        "portuguese",
+        "spanish"
+      ],
+      "nullable": true
+    },
+    "dynamic": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "fallback_options": {
+      "description": "Review block fallback options for dynamic selection.",
+      "type": "string",
+      "enum": [
+        "high-quality-review",
+        "high-quality-review-or-static",
+        "no-review",
+        "recent",
+        "static-only"
+      ],
+      "nullable": true
+    },
+    "fallback_content_type": {
+      "description": "Review block fallback content type.",
+      "type": "string",
+      "enum": [
+        "full",
+        "quote"
+      ],
+      "nullable": true
+    },
+    "fallback_review_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_selection_mode": {
+      "description": "Review block product selection mode.",
+      "type": "string",
+      "enum": [
+        "automatic",
+        "manual"
+      ],
+      "nullable": true
+    },
+    "product_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_event_variable": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "dynamic"
+  ]
+}

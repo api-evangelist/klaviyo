@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetListMemberResponseCollection",
+  "title": "GetListMemberResponseCollection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/ProfileEnum"
+              },
+              "attributes": {
+                "properties": {
+                  "subscriptions": {
+                    "$ref": "#/components/schemas/Subscriptions",
+                    "nullable": true
+                  },
+                  "predictive_analytics": {
+                    "$ref": "#/components/schemas/PredictiveAnalytics",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/ListMemberResponseObjectResource"
+          }
+        ]
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

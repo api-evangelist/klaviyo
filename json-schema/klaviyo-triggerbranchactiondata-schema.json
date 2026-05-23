@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TriggerBranchActionData",
+  "title": "TriggerBranchActionData",
+  "type": "object",
+  "properties": {
+    "trigger_filter": {
+      "type": "object",
+      "nullable": true,
+      "properties": {
+        "condition_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/MetricPropertyCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CustomObjectTriggerCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CustomObjectPropertyCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PriceDropCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/LowInventoryCondition"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "conditions"
+            ]
+          }
+        }
+      },
+      "required": [
+        "condition_groups"
+      ]
+    },
+    "trigger_id": {
+      "type": "string"
+    },
+    "trigger_type": {
+      "description": "Trigger type.",
+      "type": "string",
+      "enum": [
+        "date",
+        "list",
+        "low-inventory",
+        "metric",
+        "price-drop",
+        "scheduled",
+        "segment"
+      ]
+    },
+    "trigger_subtype": {
+      "description": "Date trigger type.",
+      "type": "string",
+      "enum": [
+        "custom-object",
+        "legacy-custom-object",
+        "profile-property",
+        "profile-trait"
+      ],
+      "nullable": true
+    }
+  },
+  "required": [
+    "trigger_filter",
+    "trigger_id",
+    "trigger_type"
+  ]
+}

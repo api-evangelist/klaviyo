@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InputStyles",
+  "title": "InputStyles",
+  "type": "object",
+  "properties": {
+    "text_styles": {
+      "$ref": "#/components/schemas/TextStyleV0"
+    },
+    "label_color": {
+      "type": "string",
+      "example": "#303B43",
+      "default": "#303B43"
+    },
+    "text_color": {
+      "type": "string",
+      "example": "#000000",
+      "default": "#000000"
+    },
+    "placeholder_color": {
+      "type": "string",
+      "example": "#949596",
+      "default": "#949596"
+    },
+    "background_color": {
+      "type": "string",
+      "example": "#FFFFFF",
+      "default": "#FFFFFF"
+    },
+    "border_color": {
+      "type": "string",
+      "example": "#949596",
+      "default": "#949596"
+    },
+    "border_focus_color": {
+      "type": "string",
+      "example": "#000000",
+      "default": "#000000"
+    },
+    "focus_outline_color": {
+      "type": "string",
+      "example": "#1C65AD",
+      "default": "#1C65AD"
+    },
+    "corner_radius": {
+      "type": "integer",
+      "example": 2,
+      "default": 2
+    },
+    "field_height": {
+      "type": "integer",
+      "example": 38,
+      "default": 38
+    }
+  }
+}

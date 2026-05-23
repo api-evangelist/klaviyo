@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricPropertyConditionConditionGroup",
+  "title": "MetricPropertyConditionConditionGroup",
+  "type": "object",
+  "properties": {
+    "conditions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MetricPropertyCondition"
+      }
+    }
+  },
+  "required": [
+    "conditions"
+  ]
+}

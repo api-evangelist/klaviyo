@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OnsiteSubscriptionCreateQueryResourceObject",
+  "title": "OnsiteSubscriptionCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/SubscriptionEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "custom_source": {
+          "description": "A custom method detail or source to store on the consent records for this subscription.",
+          "type": "string",
+          "example": "Homepage footer signup form",
+          "nullable": true
+        },
+        "profile": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/ProfileUpsertQueryWithSubscriptionsResourceObject"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "profile"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ListEnum"
+                },
+                "id": {
+                  "description": "The list ID to add the newly subscribed profile to.",
+                  "type": "string",
+                  "example": "Y6nRLr"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "list"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes",
+    "relationships"
+  ]
+}

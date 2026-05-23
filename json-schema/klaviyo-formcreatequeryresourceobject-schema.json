@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FormCreateQueryResourceObject",
+  "title": "FormCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FormEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "description": "The encoded form definition.",
+          "$ref": "#/components/schemas/FormDefinition"
+        },
+        "status": {
+          "description": "The status of the form.",
+          "type": "string",
+          "example": "draft",
+          "enum": [
+            "draft",
+            "live"
+          ]
+        },
+        "ab_test": {
+          "description": "Whether the form has an A/B test configured.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the form.",
+          "type": "string",
+          "example": "Cyber Monday Deals"
+        }
+      },
+      "required": [
+        "definition",
+        "status",
+        "ab_test",
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

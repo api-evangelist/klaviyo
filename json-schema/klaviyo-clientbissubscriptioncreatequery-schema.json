@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClientBISSubscriptionCreateQuery",
+  "title": "ClientBISSubscriptionCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ClientBISSubscriptionCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

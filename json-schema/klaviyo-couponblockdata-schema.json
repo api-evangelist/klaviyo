@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CouponBlockData",
+  "title": "CouponBlockData",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/CouponBlockProperties"
+    },
+    "display_options": {
+      "$ref": "#/components/schemas/DisplayOptions"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/CouponBlockStyles"
+    }
+  },
+  "required": [
+    "content",
+    "properties",
+    "display_options",
+    "styles"
+  ]
+}

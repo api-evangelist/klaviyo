@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobilePushMessageStandardDefinitionUpdate",
+  "title": "MobilePushMessageStandardDefinitionUpdate",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "mobile_push"
+      ]
+    },
+    "kv_pairs": {
+      "description": "The key-value pairs to be sent with the push notification",
+      "type": "object",
+      "nullable": true
+    },
+    "content": {
+      "$ref": "#/components/schemas/MobilePushContentUpdate",
+      "description": "Additional attributes relating to the content of the message",
+      "nullable": true
+    },
+    "options": {
+      "description": "Additional device specific options for the push notification",
+      "$ref": "#/components/schemas/MobilePushOptions",
+      "nullable": true
+    },
+    "notification_type": {
+      "description": "The type of notification to send",
+      "type": "string",
+      "example": "standard",
+      "default": "standard",
+      "enum": [
+        "standard"
+      ]
+    }
+  },
+  "required": [
+    "channel"
+  ]
+}

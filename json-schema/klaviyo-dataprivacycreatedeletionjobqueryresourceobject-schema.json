@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataPrivacyCreateDeletionJobQueryResourceObject",
+  "title": "DataPrivacyCreateDeletionJobQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/DataPrivacyDeletionJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/DataPrivacyProfileQueryResourceObject"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "profile"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

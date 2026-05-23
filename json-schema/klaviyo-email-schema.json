@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Email",
+  "title": "Email",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "email"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/EmailStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/EmailProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

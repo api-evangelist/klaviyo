@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReentryCriteria",
+  "title": "ReentryCriteria",
+  "type": "object",
+  "properties": {
+    "duration": {
+      "type": "integer"
+    },
+    "unit": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "day",
+            "hour",
+            "week"
+          ],
+          "description": "Units for relative date filters."
+        },
+        {
+          "type": "string",
+          "enum": [
+            "alltime"
+          ],
+          "description": "Operators for alltime date filters."
+        }
+      ]
+    }
+  },
+  "required": [
+    "duration",
+    "unit"
+  ]
+}

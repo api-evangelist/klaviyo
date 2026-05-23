@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BannerStyles",
+  "title": "BannerStyles",
+  "type": "object",
+  "properties": {
+    "desktop_position": {
+      "description": "Positioning of banner forms.",
+      "type": "string",
+      "example": "top",
+      "default": "top",
+      "enum": [
+        "bottom",
+        "top"
+      ]
+    },
+    "mobile_position": {
+      "description": "Positioning of banner forms.",
+      "type": "string",
+      "example": "top",
+      "default": "top",
+      "enum": [
+        "bottom",
+        "top"
+      ]
+    },
+    "scroll_with_page": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    }
+  }
+}

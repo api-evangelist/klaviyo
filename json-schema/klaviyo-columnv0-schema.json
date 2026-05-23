@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ColumnV0",
+  "title": "ColumnV0",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RowV0"
+      }
+    },
+    "styles": {
+      "$ref": "#/components/schemas/ColumnStyles",
+      "nullable": true
+    }
+  }
+}

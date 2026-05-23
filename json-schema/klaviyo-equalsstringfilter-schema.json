@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EqualsStringFilter",
+  "title": "EqualsStringFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "string"
+      ]
+    },
+    "operator": {
+      "type": "string",
+      "enum": [
+        "equals"
+      ]
+    },
+    "value": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

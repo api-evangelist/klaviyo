@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignSendJobCreateQueryResourceObject",
+  "title": "CampaignSendJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CampaignSendJobEnum"
+    },
+    "id": {
+      "description": "The ID of the campaign to send",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "id"
+  ]
+}

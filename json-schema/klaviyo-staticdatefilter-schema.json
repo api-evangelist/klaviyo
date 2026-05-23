@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StaticDateFilter",
+  "title": "StaticDateFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "description": "Operators for static date filters.\n\nE.g. \"before 2023-01-01\"",
+      "type": "string",
+      "enum": [
+        "after",
+        "before"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2022-11-08T00:00:00+00:00"
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "date"
+  ]
+}

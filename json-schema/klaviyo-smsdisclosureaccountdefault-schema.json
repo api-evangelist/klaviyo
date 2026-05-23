@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSDisclosureAccountDefault",
+  "title": "SMSDisclosureAccountDefault",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "account_default"
+      ]
+    },
+    "html": {
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

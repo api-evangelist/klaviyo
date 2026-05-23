@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RedirectProperties",
+  "title": "RedirectProperties",
+  "type": "object",
+  "properties": {
+    "list_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "new_window": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "url"
+  ]
+}

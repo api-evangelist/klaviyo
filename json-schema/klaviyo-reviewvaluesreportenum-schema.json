@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewValuesReportEnum",
+  "title": "ReviewValuesReportEnum",
+  "type": "string",
+  "enum": [
+    "review-values-report"
+  ]
+}

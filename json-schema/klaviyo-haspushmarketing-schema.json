@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HasPushMarketing",
+  "title": "HasPushMarketing",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "any"
+      ]
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/StatusDateFilter"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "subscription"
+  ]
+}

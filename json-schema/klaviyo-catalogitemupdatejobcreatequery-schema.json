@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogItemUpdateJobCreateQuery",
+  "title": "CatalogItemUpdateJobCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CatalogItemUpdateJobCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Button",
+  "title": "Button",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "button"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/ButtonStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/ButtonProperties"
+    },
+    "action": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/Close"
+        },
+        {
+          "$ref": "#/components/schemas/NextStep"
+        },
+        {
+          "$ref": "#/components/schemas/OpenForm"
+        },
+        {
+          "$ref": "#/components/schemas/PromotionalSMSSubscription"
+        },
+        {
+          "$ref": "#/components/schemas/Redirect"
+        },
+        {
+          "$ref": "#/components/schemas/ResendOptInCode"
+        },
+        {
+          "$ref": "#/components/schemas/SubmitOptInCode"
+        },
+        {
+          "$ref": "#/components/schemas/SubscribeViaSMS"
+        },
+        {
+          "$ref": "#/components/schemas/SubscribeViaWhatsApp"
+        },
+        {
+          "$ref": "#/components/schemas/GoToInbox"
+        },
+        {
+          "$ref": "#/components/schemas/SubmitBackInStock"
+        },
+        {
+          "$ref": "#/components/schemas/SkipToSuccess"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

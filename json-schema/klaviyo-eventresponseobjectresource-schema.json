@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventResponseObjectResource",
+  "title": "EventResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/EventEnum"
+    },
+    "id": {
+      "description": "The Event ID",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "description": "Event timestamp in seconds",
+          "type": "integer",
+          "nullable": true
+        },
+        "event_properties": {
+          "description": "Event properties, can include identifiers and extra properties",
+          "type": "object",
+          "nullable": true
+        },
+        "datetime": {
+          "description": "Event timestamp in ISO8601 format (YYYY-MM-DDTHH:MM:SS+hh:mm)",
+          "type": "string",
+          "format": "date-time",
+          "example": "2022-11-08T01:23:45+00:00",
+          "nullable": true
+        },
+        "uuid": {
+          "description": "A unique identifier for the event, this can be used as a cursor in pagination",
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ProfileEnum"
+                },
+                "id": {
+                  "description": "Profile ID of the associated profile, if available",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        },
+        "metric": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/MetricEnum"
+                },
+                "id": {
+                  "description": "The Metric ID",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        },
+        "attributions": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/AttributionEnum"
+                  },
+                  "id": {
+                    "description": "Attributions for this event",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetListRetrieveResponseCompoundDocument",
+  "title": "GetListRetrieveResponseCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "allOf": [
+        {
+          "properties": {
+            "type": {
+              "$ref": "#/components/schemas/ListEnum"
+            },
+            "attributes": {
+              "properties": {
+                "profile_count": {
+                  "type": "integer",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/components/schemas/ListRetrieveResponseObjectResource"
+        }
+      ]
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TagResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/FlowResponseObjectResource"
+          }
+        ]
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

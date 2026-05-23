@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductSubBlock",
+  "title": "ProductSubBlock",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "product"
+      ]
+    },
+    "product_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "external_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "autogenerate_link": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "button_text": {
+      "type": "string",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "image_url": {
+      "type": "string",
+      "nullable": true
+    },
+    "link": {
+      "type": "string",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "original_price": {
+      "type": "string",
+      "nullable": true
+    },
+    "price": {
+      "type": "string",
+      "nullable": true
+    },
+    "currency_code": {
+      "type": "string",
+      "nullable": true
+    },
+    "title": {
+      "type": "string",
+      "nullable": true
+    },
+    "url": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

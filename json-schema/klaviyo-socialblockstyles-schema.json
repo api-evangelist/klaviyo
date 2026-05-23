@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SocialBlockStyles",
+  "title": "SocialBlockStyles",
+  "type": "object",
+  "properties": {
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "icon_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "icon_color": {
+      "description": "Social block icon color.",
+      "type": "string",
+      "enum": [
+        "black",
+        "default",
+        "grey",
+        "white"
+      ],
+      "nullable": true
+    },
+    "icon_size": {
+      "description": "Social block icon size.",
+      "type": "string",
+      "enum": [
+        "large",
+        "medium",
+        "small"
+      ],
+      "nullable": true
+    },
+    "icon_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "label_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "label_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "label_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "label_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "label_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "label_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "stack_on_mobile": {
+      "type": "boolean",
+      "nullable": true
+    }
+  }
+}

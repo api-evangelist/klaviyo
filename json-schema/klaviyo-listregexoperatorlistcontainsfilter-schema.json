@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListRegexOperatorListContainsFilter",
+  "title": "ListRegexOperatorListContainsFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "list"
+      ]
+    },
+    "operator": {
+      "description": "Operators for list regex filters.",
+      "type": "string",
+      "enum": [
+        "contains-ends-with",
+        "contains-starts-with",
+        "not-contains-ends-with",
+        "not-contains-starts-with"
+      ]
+    },
+    "value": {
+      "nullable": true,
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

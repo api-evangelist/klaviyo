@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ThrottledSendStrategy",
+  "title": "ThrottledSendStrategy",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "enum": [
+        "throttled"
+      ]
+    },
+    "datetime": {
+      "description": "The time to send at",
+      "type": "string",
+      "format": "date-time"
+    },
+    "throttle_percentage": {
+      "description": "The percentage of recipients per hour to send to.",
+      "type": "integer",
+      "enum": [
+        10,
+        11,
+        13,
+        14,
+        17,
+        20,
+        25,
+        33,
+        50
+      ]
+    }
+  },
+  "required": [
+    "method",
+    "datetime",
+    "throttle_percentage"
+  ]
+}

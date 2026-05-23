@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChannelProperties",
+  "title": "ChannelProperties",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "description": "Channel type enumeration.",
+      "type": "string",
+      "enum": [
+        "email",
+        "sms"
+      ]
+    }
+  },
+  "required": [
+    "channel"
+  ]
+}

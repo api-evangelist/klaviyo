@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CountdownTimerStyles",
+  "title": "CountdownTimerStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "text_styles": {
+      "$ref": "#/components/schemas/TextStyleV0"
+    },
+    "card_color": {
+      "type": "string",
+      "example": "rgba(100,100,100, 1.0)",
+      "default": "rgba(100,100,100, 1.0)"
+    },
+    "label_font_size": {
+      "type": "integer",
+      "example": 12,
+      "default": 12
+    },
+    "label_font_weight": {
+      "description": "Font weight enumeration.",
+      "type": "integer",
+      "example": 400,
+      "default": 400,
+      "enum": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ]
+    }
+  }
+}

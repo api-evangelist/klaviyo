@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSConsentCheckboxProperties",
+  "title": "SMSConsentCheckboxProperties",
+  "type": "object",
+  "properties": {
+    "display_device": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      }
+    },
+    "classname": {
+      "type": "string",
+      "nullable": true
+    },
+    "label": {
+      "type": "string",
+      "nullable": true
+    },
+    "show_label": {
+      "type": "boolean",
+      "default": false
+    },
+    "error_messages": {
+      "$ref": "#/components/schemas/ErrorMessages",
+      "nullable": true
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "enum": [
+        false
+      ]
+    },
+    "property_name": {
+      "type": "string",
+      "example": "opt_in_promotional_sms",
+      "default": "opt_in_promotional_sms",
+      "enum": [
+        "opt_in_promotional_sms"
+      ]
+    },
+    "checkbox_text": {
+      "type": "string"
+    },
+    "placeholder": {
+      "enum": [
+        null
+      ]
+    },
+    "channels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "sms",
+          "whatsapp"
+        ],
+        "description": "Consent channel enumeration."
+      }
+    }
+  },
+  "required": [
+    "checkbox_text"
+  ]
+}

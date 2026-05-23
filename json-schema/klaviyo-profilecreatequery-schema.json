@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileCreateQuery",
+  "title": "ProfileCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ProfileCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

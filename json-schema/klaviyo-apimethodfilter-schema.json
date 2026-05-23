@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/APIMethodFilter",
+  "title": "APIMethodFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "method"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "api"
+      ]
+    },
+    "filter": {
+      "description": "Optional filter on a specific list of API keys (using last 4 digits of the key)",
+      "$ref": "#/components/schemas/InStringArrayFilter",
+      "nullable": true
+    }
+  },
+  "required": [
+    "field",
+    "method"
+  ]
+}

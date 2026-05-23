@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NumericRangeFilter",
+  "title": "NumericRangeFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "numeric"
+      ]
+    },
+    "operator": {
+      "description": "Operators for numeric range filters.",
+      "type": "string",
+      "enum": [
+        "between"
+      ]
+    },
+    "start": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "end": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "start",
+    "end"
+  ]
+}

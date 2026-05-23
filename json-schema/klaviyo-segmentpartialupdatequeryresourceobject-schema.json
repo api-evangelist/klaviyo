@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SegmentPartialUpdateQueryResourceObject",
+  "title": "SegmentPartialUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/SegmentEnum"
+    },
+    "id": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "$ref": "#/components/schemas/SegmentDefinition",
+          "nullable": true
+        },
+        "name": {
+          "type": "string",
+          "nullable": true
+        },
+        "is_starred": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "is_active": {
+          "description": "Set to false to deactivate the segment. When deactivating, this must be the only attribute in the request body. Deactivation cannot be combined with other updates. Marking a segment inactive will impact campaigns, flows, ad syncs, forms, helpdesk routing, and other features that reference this segment. Set to true to reactivate a deactivated segment.",
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

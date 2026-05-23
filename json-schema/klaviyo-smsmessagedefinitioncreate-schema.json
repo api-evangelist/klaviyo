@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSMessageDefinitionCreate",
+  "title": "SMSMessageDefinitionCreate",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "sms"
+      ]
+    },
+    "content": {
+      "$ref": "#/components/schemas/SMSContentCreate",
+      "description": "Additional attributes relating to the content of the message",
+      "nullable": true
+    },
+    "render_options": {
+      "description": "Additional options for rendering the message",
+      "$ref": "#/components/schemas/RenderOptions",
+      "nullable": true
+    }
+  },
+  "required": [
+    "channel"
+  ]
+}

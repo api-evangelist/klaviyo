@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SectionV1",
+  "title": "SectionV1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "universal_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "section"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "section"
+      ]
+    },
+    "data": {
+      "$ref": "#/components/schemas/SectionData"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RowV1"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

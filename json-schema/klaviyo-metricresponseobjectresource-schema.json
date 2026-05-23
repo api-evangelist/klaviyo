@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricResponseObjectResource",
+  "title": "MetricResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/MetricEnum"
+    },
+    "id": {
+      "description": "The Metric ID",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the metric",
+          "type": "string",
+          "nullable": true
+        },
+        "created": {
+          "description": "Creation time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)",
+          "type": "string",
+          "nullable": true
+        },
+        "updated": {
+          "description": "Last updated time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)",
+          "type": "string",
+          "nullable": true
+        },
+        "integration": {
+          "description": "The integration associated with the event",
+          "type": "object",
+          "nullable": true
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "flow-triggers": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/FlowEnum"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

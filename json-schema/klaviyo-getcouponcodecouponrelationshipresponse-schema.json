@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCouponCodeCouponRelationshipResponse",
+  "title": "GetCouponCodeCouponRelationshipResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/CouponEnum"
+        },
+        "id": {
+          "description": "The internal id of a Coupon is equivalent to its external id stored within an integration.",
+          "type": "string",
+          "example": "10OFF"
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

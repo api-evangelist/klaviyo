@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventCreateQueryV2",
+  "title": "EventCreateQueryV2",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/EventCreateQueryV2ResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

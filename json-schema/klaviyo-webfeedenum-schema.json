@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebFeedEnum",
+  "title": "WebFeedEnum",
+  "type": "string",
+  "enum": [
+    "web-feed"
+  ]
+}

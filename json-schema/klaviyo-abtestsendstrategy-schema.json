@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ABTestSendStrategy",
+  "title": "ABTestSendStrategy",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "enum": [
+        "ab_test_campaign"
+      ]
+    }
+  },
+  "required": [
+    "method"
+  ]
+}

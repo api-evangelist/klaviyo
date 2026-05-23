@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileHasGroupMembershipCondition",
+  "title": "ProfileHasGroupMembershipCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-group-membership"
+      ]
+    },
+    "is_member": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "group_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timeframe_filter": {
+      "nullable": true,
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateRangeFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "is_member",
+    "group_ids"
+  ]
+}

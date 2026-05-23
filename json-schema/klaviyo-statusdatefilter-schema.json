@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StatusDateFilter",
+  "title": "StatusDateFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "status_date"
+      ]
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeAnniversaryDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/CalendarDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/AnniversaryDateFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "field",
+    "filter"
+  ]
+}

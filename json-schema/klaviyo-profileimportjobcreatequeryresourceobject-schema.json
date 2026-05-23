@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileImportJobCreateQueryResourceObject",
+  "title": "ProfileImportJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ProfileBulkImportJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "description": "Array of profiles to create or update",
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProfileUpsertQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "profiles"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "lists": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/ListEnum"
+                  },
+                  "id": {
+                    "description": "Optional list to add the profiles to",
+                    "type": "string",
+                    "example": "VRgFBd"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

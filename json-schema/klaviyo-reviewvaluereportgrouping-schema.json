@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewValueReportGrouping",
+  "title": "ReviewValueReportGrouping",
+  "type": "object",
+  "properties": {
+    "groupings": {
+      "description": "Grouping details, either by product or company",
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/GroupingProduct"
+        },
+        {
+          "$ref": "#/components/schemas/GroupingCompany"
+        }
+      ]
+    },
+    "statistics": {
+      "description": "Statistics related to the grouping",
+      "example": {
+        "average_rating": 4.5,
+        "total_reviews": 100,
+        "total_questions": 50,
+        "total_ratings": 200,
+        "total_store_reviews": 5000,
+        "average_store_rating": 2
+      },
+      "$ref": "#/components/schemas/StatisticsDTO"
+    }
+  },
+  "required": [
+    "groupings",
+    "statistics"
+  ]
+}

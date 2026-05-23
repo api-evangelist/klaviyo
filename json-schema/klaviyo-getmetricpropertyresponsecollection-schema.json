@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetMetricPropertyResponseCollection",
+  "title": "GetMetricPropertyResponseCollection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/MetricPropertyEnum"
+              },
+              "attributes": {
+                "properties": {
+                  "sample_values": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/MetricPropertyResponseObjectResource"
+          }
+        ]
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

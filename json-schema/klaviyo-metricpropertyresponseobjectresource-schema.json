@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricPropertyResponseObjectResource",
+  "title": "MetricPropertyResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/MetricPropertyEnum"
+    },
+    "id": {
+      "description": "The ID of the metric property",
+      "type": "string",
+      "example": "925e385b52fb405715f3616c337cc65c"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "description": "The label for this metric property",
+          "type": "string",
+          "example": "Categories"
+        },
+        "property": {
+          "description": "The property for this metric property",
+          "type": "string",
+          "example": "Categories"
+        },
+        "inferred_type": {
+          "description": "Inferred type for this metric property",
+          "type": "string",
+          "example": "List"
+        }
+      },
+      "required": [
+        "label",
+        "property",
+        "inferred_type"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "metric": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/MetricEnum"
+                },
+                "id": {
+                  "description": "Related Metric",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "links": {
+              "$ref": "#/components/schemas/RelationshipLinks"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

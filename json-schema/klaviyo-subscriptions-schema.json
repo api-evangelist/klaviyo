@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Subscriptions",
+  "title": "Subscriptions",
+  "type": "object",
+  "properties": {
+    "email": {
+      "description": "The email channel subscription.",
+      "$ref": "#/components/schemas/EmailChannel",
+      "nullable": true
+    },
+    "sms": {
+      "description": "The SMS channel subscription.",
+      "$ref": "#/components/schemas/SMSChannel",
+      "nullable": true
+    },
+    "mobile_push": {
+      "description": "The mobile push channel subscription.",
+      "$ref": "#/components/schemas/PushChannel",
+      "nullable": true
+    },
+    "whatsapp": {
+      "description": "The whatsapp channel subscription.",
+      "$ref": "#/components/schemas/WhatsappChannel",
+      "nullable": true
+    }
+  }
+}

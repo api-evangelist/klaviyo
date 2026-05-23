@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CheckboxesStyles",
+  "title": "CheckboxesStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "arrangement": {
+      "description": "Arrangement enumeration.",
+      "type": "string",
+      "example": "vertical",
+      "default": "vertical",
+      "enum": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "alignment": {
+      "description": "Horizontal alignment enumeration.",
+      "type": "string",
+      "example": "left",
+      "default": "left",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ]
+    }
+  }
+}

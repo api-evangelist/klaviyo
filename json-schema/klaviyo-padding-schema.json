@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Padding",
+  "title": "Padding",
+  "type": "object",
+  "properties": {
+    "left": {
+      "type": "integer",
+      "default": 0
+    },
+    "right": {
+      "type": "integer",
+      "default": 0
+    },
+    "top": {
+      "type": "integer",
+      "default": 0
+    },
+    "bottom": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

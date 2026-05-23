@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhatsappChannel",
+  "title": "WhatsappChannel",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The Whatsapp marketing subscription.",
+      "$ref": "#/components/schemas/WhatsappMarketingChannel",
+      "nullable": true
+    },
+    "transactional": {
+      "description": "The Whatsapp transactional subscription.",
+      "$ref": "#/components/schemas/WhatsappTransactionalChannel",
+      "nullable": true
+    },
+    "conversational": {
+      "description": "The Whatsapp conversational subscription.",
+      "$ref": "#/components/schemas/WhatsappConversationalChannel",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendEmailActionData",
+  "title": "SendEmailActionData",
+  "type": "object",
+  "properties": {
+    "message": {
+      "$ref": "#/components/schemas/FlowEmail",
+      "nullable": true
+    },
+    "status": {
+      "description": "Flow action status.",
+      "type": "string",
+      "example": "draft",
+      "default": "draft",
+      "enum": [
+        "disabled",
+        "draft",
+        "live",
+        "manual"
+      ]
+    }
+  }
+}

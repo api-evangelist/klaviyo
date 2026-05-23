@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SmartSendTimeStrategy",
+  "title": "SmartSendTimeStrategy",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "enum": [
+        "smart_send_time"
+      ]
+    },
+    "date": {
+      "description": "The day to send on",
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "method",
+    "date"
+  ]
+}

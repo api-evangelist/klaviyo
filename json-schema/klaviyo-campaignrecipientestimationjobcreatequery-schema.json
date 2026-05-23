@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignRecipientEstimationJobCreateQuery",
+  "title": "CampaignRecipientEstimationJobCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CampaignRecipientEstimationJobCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

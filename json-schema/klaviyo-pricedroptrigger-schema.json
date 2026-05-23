@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PriceDropTrigger",
+  "title": "PriceDropTrigger",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "price-drop"
+      ]
+    },
+    "trigger_filter": {
+      "$ref": "#/components/schemas/PriceDropConditionFilter",
+      "nullable": true
+    },
+    "price_drop_amount_value": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "price_drop_amount_unit": {
+      "description": "Price Drop amount type.",
+      "type": "string",
+      "example": "currency",
+      "default": "currency",
+      "enum": [
+        "currency",
+        "percent"
+      ]
+    },
+    "audience": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "checkout-started",
+          "viewed"
+        ],
+        "description": "The profiles which the price drop trigger applies to."
+      }
+    },
+    "timeframe_days": {
+      "type": "integer",
+      "example": 30,
+      "default": 30
+    },
+    "currency_type": {
+      "description": "Currency type.",
+      "type": "string",
+      "example": "usd",
+      "default": "usd",
+      "enum": [
+        "usd"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "trigger_filter",
+    "price_drop_amount_value",
+    "audience"
+  ]
+}

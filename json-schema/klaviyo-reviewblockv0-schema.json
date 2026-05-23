@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewBlockV0",
+  "title": "ReviewBlockV0",
+  "type": "object",
+  "properties": {
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "review"
+      ]
+    },
+    "data": {
+      "nullable": true,
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

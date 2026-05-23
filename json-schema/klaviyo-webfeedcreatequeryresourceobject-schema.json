@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebFeedCreateQueryResourceObject",
+  "title": "WebFeedCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/WebFeedEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name for this web feed",
+          "type": "string",
+          "example": "Blog_posts"
+        },
+        "url": {
+          "description": "The URL of the web feed",
+          "type": "string",
+          "example": "https://help.klaviyo.com/api/v2/help_center/en-us/articles.json"
+        },
+        "request_method": {
+          "description": "The HTTP method for requesting the web feed",
+          "type": "string",
+          "example": "get",
+          "enum": [
+            "get",
+            "post"
+          ]
+        },
+        "content_type": {
+          "description": "The content-type of the web feed",
+          "type": "string",
+          "example": "json",
+          "enum": [
+            "json",
+            "xml"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "url",
+        "request_method",
+        "content_type"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

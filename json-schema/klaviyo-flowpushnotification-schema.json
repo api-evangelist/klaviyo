@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowPushNotification",
+  "title": "FlowPushNotification",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "nullable": true
+    },
+    "body": {
+      "type": "string"
+    },
+    "sound": {
+      "type": "boolean",
+      "default": false
+    },
+    "badge": {
+      "type": "boolean",
+      "default": false
+    },
+    "badge_options": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/Increment"
+        },
+        {
+          "$ref": "#/components/schemas/StaticCount"
+        },
+        {
+          "$ref": "#/components/schemas/Property"
+        }
+      ]
+    },
+    "image_id": {
+      "description": "The id of an ImageAsset. If provided, this will take precedence over a dynamic_image.",
+      "type": "string",
+      "example": "123",
+      "nullable": true
+    },
+    "dynamic_image": {
+      "description": "A dynamic image asset to include in the push notification.",
+      "type": "string",
+      "example": "{{ event.items.0.url }}",
+      "nullable": true
+    },
+    "video_asset_id": {
+      "description": "The ULID of a video asset. If provided, videos and images are mutually exclusive.",
+      "type": "string",
+      "example": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+      "nullable": true
+    },
+    "on_open": {
+      "description": "See PushLinkAction in app.\n\nThis is not a flow action, but the literal action that should be\n    taken when the push notification is tapped.",
+      "type": "string",
+      "example": "home",
+      "default": "home",
+      "enum": [
+        "home",
+        "link"
+      ]
+    },
+    "ios_link": {
+      "type": "string",
+      "nullable": true
+    },
+    "android_link": {
+      "type": "string",
+      "nullable": true
+    },
+    "push_type": {
+      "description": "The type of push notification to send.",
+      "type": "string",
+      "enum": [
+        "silent",
+        "standard"
+      ],
+      "nullable": true
+    },
+    "kv_pairs": {
+      "type": "object",
+      "nullable": true
+    },
+    "conversion_metric_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "smart_sending_enabled": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    },
+    "additional_filters": {
+      "type": "object",
+      "nullable": true,
+      "properties": {
+        "condition_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ProfilePropertyCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileHasGroupMembershipCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileNoGroupMembershipCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileRegionCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePostalCodeDistanceCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsDateCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsStringCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsNumericCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileMarketingConsentCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlowsProfileMetricCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileRandomSampleCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileHasCustomObjectCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePermissionsCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileHasNotReceivedPushMessageCondition"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "conditions"
+            ]
+          }
+        }
+      },
+      "required": [
+        "condition_groups"
+      ]
+    },
+    "action_buttons": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PushActionButton"
+      },
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "body"
+  ]
+}

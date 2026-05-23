@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendWebhookActionData",
+  "title": "SendWebhookActionData",
+  "type": "object",
+  "properties": {
+    "message": {
+      "$ref": "#/components/schemas/FlowWebhook"
+    },
+    "status": {
+      "description": "Flow action status.",
+      "type": "string",
+      "example": "draft",
+      "default": "draft",
+      "enum": [
+        "disabled",
+        "draft",
+        "live",
+        "manual"
+      ]
+    }
+  },
+  "required": [
+    "message"
+  ]
+}

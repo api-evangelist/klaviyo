@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UniversalContentCreateQueryResourceObject",
+  "title": "UniversalContentCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TemplateUniversalContentEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name for this universal content",
+          "type": "string"
+        },
+        "definition": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/ButtonBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/DropShadowBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/HorizontalRuleBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/HTMLBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/ImageBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/SpacerBlockV0"
+            },
+            {
+              "$ref": "#/components/schemas/TextBlockV0"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "definition"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

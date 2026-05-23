@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostTagResponse",
+  "title": "PostTagResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/TagEnum"
+        },
+        "id": {
+          "description": "The Tag ID",
+          "type": "string",
+          "example": "abcd1234-ef56-gh78-ij90-abcdef123456"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "The Tag name",
+              "type": "string",
+              "example": "My Tag"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "tag-group": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "$ref": "#/components/schemas/TagGroupEnum"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id"
+                  ]
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "lists": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/ListEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "segments": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/SegmentEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "campaigns": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/CampaignEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "flows": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/FlowEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            }
+          }
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

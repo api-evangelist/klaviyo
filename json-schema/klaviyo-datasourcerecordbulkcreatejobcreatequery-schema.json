@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSourceRecordBulkCreateJobCreateQuery",
+  "title": "DataSourceRecordBulkCreateJobCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/DataSourceRecordBulkCreateJobCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

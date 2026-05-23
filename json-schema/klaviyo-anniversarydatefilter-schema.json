@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AnniversaryDateFilter",
+  "title": "AnniversaryDateFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "description": "Operators for anniversary date filters.",
+      "type": "string",
+      "enum": [
+        "anniversary",
+        "anniversary-month"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "operator"
+  ]
+}

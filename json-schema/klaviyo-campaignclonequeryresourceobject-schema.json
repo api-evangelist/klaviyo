@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignCloneQueryResourceObject",
+  "title": "CampaignCloneQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CampaignEnum"
+    },
+    "id": {
+      "description": "The campaign ID to be cloned",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "new_name": {
+          "description": "The name for the new cloned campaign",
+          "type": "string",
+          "example": "My cloned campaign's new name",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

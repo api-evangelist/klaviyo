@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BooleanFilter",
+  "title": "BooleanFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "boolean"
+      ]
+    },
+    "operator": {
+      "description": "Operators for boolean filters.",
+      "type": "string",
+      "enum": [
+        "equals"
+      ]
+    },
+    "value": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

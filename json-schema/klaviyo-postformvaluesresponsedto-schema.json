@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostFormValuesResponseDTO",
+  "title": "PostFormValuesResponseDTO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/FormValuesReportEnum"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "description": "An array of all the returned values data.\nEach object in the array represents one unique grouping and the results for that grouping.",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ValuesData"
+              },
+              "example": [
+                {
+                  "groupings": {
+                    "form_id": "abc123",
+                    "form_version_id": "012tuy"
+                  },
+                  "statistics": {
+                    "viewed_form": 90,
+                    "submits": 9,
+                    "submit_rate": 0.1
+                  }
+                },
+                {
+                  "groupings": {
+                    "form_id": "abc123",
+                    "form_version_id": "756ghi"
+                  },
+                  "statistics": {
+                    "viewed_form": 10,
+                    "submits": 1,
+                    "submit_rate": 0.1
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "results"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookPartialUpdateQueryResourceObject",
+  "title": "WebhookPartialUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/WebhookEnum"
+    },
+    "id": {
+      "description": "The ID of the webhook.",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A name for the webhook.",
+          "type": "string",
+          "nullable": true
+        },
+        "description": {
+          "description": "A description for the webhook.",
+          "type": "string",
+          "nullable": true
+        },
+        "endpoint_url": {
+          "description": "A url to send webhook calls to. Must be https.",
+          "type": "string",
+          "example": "https://www.example.com/example/path",
+          "nullable": true
+        },
+        "secret_key": {
+          "description": "A secret key, that will be used for webhook request signing.",
+          "type": "string",
+          "nullable": true
+        },
+        "enabled": {
+          "description": "Is the webhook enabled.",
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "webhook-topics": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/WebhookTopicEnum"
+                  },
+                  "id": {
+                    "description": "A list of topics to subscribe to.",
+                    "type": "string",
+                    "example": "event:klaviyo.sent_sms"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

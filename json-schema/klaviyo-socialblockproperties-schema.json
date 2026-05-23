@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SocialBlockProperties",
+  "title": "SocialBlockProperties",
+  "type": "object",
+  "properties": {
+    "show_labels": {
+      "type": "boolean",
+      "nullable": true
+    }
+  }
+}

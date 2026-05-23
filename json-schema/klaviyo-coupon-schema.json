@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Coupon",
+  "title": "Coupon",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "coupon"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/CouponStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/CouponProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

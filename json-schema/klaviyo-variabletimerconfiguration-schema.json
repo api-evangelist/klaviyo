@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VariableTimerConfiguration",
+  "title": "VariableTimerConfiguration",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "variable"
+      ]
+    },
+    "days": {
+      "type": "integer"
+    },
+    "hours": {
+      "type": "integer"
+    },
+    "minutes": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type",
+    "days",
+    "hours",
+    "minutes"
+  ]
+}

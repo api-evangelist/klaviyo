@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Delay",
+  "title": "Delay",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "delay"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/DelayProperties"
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

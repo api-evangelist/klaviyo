@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhatsAppUnsubscriptionParameters",
+  "title": "WhatsAppUnsubscriptionParameters",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The parameters to unsubscribe from marketing on the \"WhatsApp\" channel.",
+      "$ref": "#/components/schemas/UnsubscriptionParameters",
+      "nullable": true
+    },
+    "transactional": {
+      "description": "The parameters to unsubscribe from transactional messaging on the \"WhatsApp\" channel.",
+      "$ref": "#/components/schemas/UnsubscriptionParameters",
+      "nullable": true
+    },
+    "conversational": {
+      "description": "The parameters to unsubscribe from conversational messaging on the \"WhatsApp\" channel.",
+      "$ref": "#/components/schemas/UnsubscriptionParameters",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RowV0",
+  "title": "RowV0",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Button"
+          },
+          {
+            "$ref": "#/components/schemas/AgeGate"
+          },
+          {
+            "$ref": "#/components/schemas/Coupon"
+          },
+          {
+            "$ref": "#/components/schemas/Date"
+          },
+          {
+            "$ref": "#/components/schemas/Email"
+          },
+          {
+            "$ref": "#/components/schemas/HTMLText"
+          },
+          {
+            "$ref": "#/components/schemas/OptInCode"
+          },
+          {
+            "$ref": "#/components/schemas/PhoneNumber"
+          },
+          {
+            "$ref": "#/components/schemas/SMSConsentCheckbox"
+          },
+          {
+            "$ref": "#/components/schemas/Text"
+          },
+          {
+            "$ref": "#/components/schemas/Checkboxes"
+          },
+          {
+            "$ref": "#/components/schemas/RadioButtons"
+          },
+          {
+            "$ref": "#/components/schemas/Dropdown"
+          },
+          {
+            "$ref": "#/components/schemas/Image"
+          },
+          {
+            "$ref": "#/components/schemas/CountdownTimer"
+          },
+          {
+            "$ref": "#/components/schemas/SignupCounter"
+          },
+          {
+            "$ref": "#/components/schemas/SpinToWin"
+          },
+          {
+            "$ref": "#/components/schemas/SMSDisclosure"
+          },
+          {
+            "$ref": "#/components/schemas/BackInStockEmailConsentCheckbox"
+          },
+          {
+            "$ref": "#/components/schemas/Review"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "blocks"
+  ]
+}

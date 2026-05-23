@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscribeViaSMSProperties",
+  "title": "SubscribeViaSMSProperties",
+  "type": "object",
+  "properties": {
+    "opt_in_keyword": {
+      "type": "string",
+      "nullable": true
+    },
+    "opt_in_message": {
+      "type": "string"
+    },
+    "sending_number": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "opt_in_keyword",
+    "opt_in_message",
+    "sending_number"
+  ]
+}

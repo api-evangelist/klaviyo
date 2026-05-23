@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextBlockStylesV0",
+  "title": "TextBlockStylesV0",
+  "type": "object",
+  "properties": {
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "block_border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "color": {
+      "type": "string",
+      "nullable": true
+    },
+    "extra_css_class": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "inner_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "line_height": {
+      "type": "number",
+      "nullable": true
+    },
+    "mobile_stretch_content": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "text_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "text_table_layout": {
+      "description": "Text table layout.",
+      "type": "string",
+      "enum": [
+        "auto",
+        "fixed",
+        "inherit",
+        "initial"
+      ],
+      "nullable": true
+    }
+  }
+}

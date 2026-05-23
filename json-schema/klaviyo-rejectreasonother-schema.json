@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RejectReasonOther",
+  "title": "RejectReasonOther",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "description": "reject reason is other",
+      "type": "string",
+      "enum": [
+        "other"
+      ]
+    },
+    "status_explanation": {
+      "description": "If review reject reason is other, we can provide further explanation",
+      "type": "string",
+      "example": "This review is just really poorly detailed and there is another with the same content",
+      "nullable": true
+    }
+  },
+  "required": [
+    "reason"
+  ]
+}

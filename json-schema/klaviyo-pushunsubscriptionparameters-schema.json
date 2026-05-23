@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushUnsubscriptionParameters",
+  "title": "PushUnsubscriptionParameters",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The parameters to unsubscribe from marketing on the \"Push\" channel.",
+      "$ref": "#/components/schemas/UnsubscriptionParameters"
+    },
+    "tokens": {
+      "description": "A list of push tokens to unsubscribe/remove.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PushTokenEntry"
+      }
+    }
+  },
+  "required": [
+    "marketing",
+    "tokens"
+  ]
+}

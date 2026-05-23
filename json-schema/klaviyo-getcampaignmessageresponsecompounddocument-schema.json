@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCampaignMessageResponseCompoundDocument",
+  "title": "GetCampaignMessageResponseCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CampaignMessageResponseObjectResource"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TemplateResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/CampaignResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/ImageResponseObjectResource"
+          }
+        ]
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

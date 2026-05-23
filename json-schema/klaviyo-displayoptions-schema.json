@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DisplayOptions",
+  "title": "DisplayOptions",
+  "type": "object",
+  "properties": {
+    "show_on": {
+      "description": "Show on.",
+      "type": "string",
+      "enum": [
+        "all",
+        "desktop",
+        "mobile"
+      ],
+      "nullable": true
+    },
+    "content_repeat": {
+      "$ref": "#/components/schemas/ContentRepeatV1",
+      "nullable": true
+    },
+    "visibility": {
+      "$ref": "#/components/schemas/Visibility",
+      "nullable": true
+    }
+  }
+}

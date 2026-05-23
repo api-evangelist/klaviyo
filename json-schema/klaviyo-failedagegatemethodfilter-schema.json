@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FailedAgeGateMethodFilter",
+  "title": "FailedAgeGateMethodFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "method"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "failed_age_gate"
+      ]
+    }
+  },
+  "required": [
+    "field",
+    "method"
+  ]
+}

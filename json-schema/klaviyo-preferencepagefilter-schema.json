@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PreferencePageFilter",
+  "title": "PreferencePageFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "method"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "preference_page"
+      ]
+    },
+    "filter": {
+      "description": "Optional filter on a specific subscribe page url",
+      "$ref": "#/components/schemas/EqualsStringFilter",
+      "nullable": true
+    }
+  },
+  "required": [
+    "field",
+    "method"
+  ]
+}

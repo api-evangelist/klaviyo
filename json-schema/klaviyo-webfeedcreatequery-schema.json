@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebFeedCreateQuery",
+  "title": "WebFeedCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/WebFeedCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

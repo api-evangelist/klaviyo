@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobileStyleStyles",
+  "title": "MobileStyleStyles",
+  "type": "object",
+  "properties": {
+    "mobile_block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_margin": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_padding_top": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

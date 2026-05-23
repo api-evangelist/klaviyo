@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageAssetProperties",
+  "title": "ImageAssetProperties",
+  "type": "object",
+  "properties": {
+    "src": {
+      "type": "string",
+      "nullable": true
+    },
+    "alt_text": {
+      "type": "string",
+      "nullable": true
+    },
+    "original_image_url": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "type": "integer",
+      "nullable": true
+    },
+    "asset_id": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

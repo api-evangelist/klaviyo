@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushTokenCreateQueryResourceObject",
+  "title": "PushTokenCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/PushTokenEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "description": "A push token from APNS or FCM.",
+          "type": "string",
+          "example": "1234567890"
+        },
+        "platform": {
+          "description": "The platform on which the push token was created.",
+          "type": "string",
+          "enum": [
+            "android",
+            "ios"
+          ]
+        },
+        "enablement_status": {
+          "description": "This is the enablement status for the individual push token.",
+          "type": "string",
+          "example": "AUTHORIZED",
+          "default": "AUTHORIZED",
+          "enum": [
+            "AUTHORIZED",
+            "DENIED",
+            "NOT_DETERMINED",
+            "PROVISIONAL",
+            "UNAUTHORIZED"
+          ],
+          "nullable": true
+        },
+        "vendor": {
+          "description": "The vendor of the push token.",
+          "type": "string",
+          "example": "apns",
+          "enum": [
+            "apns",
+            "fcm"
+          ]
+        },
+        "background": {
+          "description": "The background state of the push token.",
+          "type": "string",
+          "example": "AVAILABLE",
+          "default": "AVAILABLE",
+          "enum": [
+            "AVAILABLE",
+            "DENIED",
+            "RESTRICTED"
+          ],
+          "nullable": true
+        },
+        "device_metadata": {
+          "description": "Metadata about the device that created the push token",
+          "$ref": "#/components/schemas/DeviceMetadata",
+          "nullable": true
+        },
+        "profile": {
+          "description": "The profile associated with the push token to create/update",
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/PushProfileUpsertQueryResourceObject"
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "token",
+        "platform",
+        "vendor",
+        "profile"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

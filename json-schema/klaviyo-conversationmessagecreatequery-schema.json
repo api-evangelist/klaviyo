@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConversationMessageCreateQuery",
+  "title": "ConversationMessageCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ConversationMessageCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

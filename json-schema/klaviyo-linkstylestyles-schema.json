@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkStyleStyles",
+  "title": "LinkStyleStyles",
+  "type": "object",
+  "properties": {
+    "color": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "text_decoration": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

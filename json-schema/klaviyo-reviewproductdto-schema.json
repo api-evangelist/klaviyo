@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewProductDTO",
+  "title": "ReviewProductDTO",
+  "type": "object",
+  "properties": {
+    "url": {
+      "description": "The URL of the product",
+      "type": "string",
+      "example": "https://example.com/product/123"
+    },
+    "name": {
+      "description": "The name of the product",
+      "type": "string"
+    },
+    "image_url": {
+      "description": "The URL of the product image",
+      "type": "string",
+      "example": "https://example.com/image.jpg",
+      "nullable": true
+    },
+    "external_id": {
+      "description": "The external ID of the product",
+      "type": "string",
+      "example": "123456789",
+      "nullable": true
+    }
+  },
+  "required": [
+    "url",
+    "name"
+  ]
+}

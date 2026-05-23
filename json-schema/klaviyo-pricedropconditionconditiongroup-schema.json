@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PriceDropConditionConditionGroup",
+  "title": "PriceDropConditionConditionGroup",
+  "type": "object",
+  "properties": {
+    "conditions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PriceDropCondition"
+      }
+    }
+  },
+  "required": [
+    "conditions"
+  ]
+}

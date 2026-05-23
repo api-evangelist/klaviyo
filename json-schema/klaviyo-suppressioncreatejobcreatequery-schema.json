@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuppressionCreateJobCreateQuery",
+  "title": "SuppressionCreateJobCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/SuppressionCreateJobCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

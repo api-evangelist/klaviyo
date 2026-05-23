@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TagGroupUpdateQuery",
+  "title": "TagGroupUpdateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/TagGroupUpdateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

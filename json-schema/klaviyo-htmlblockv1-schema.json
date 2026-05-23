@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HTMLBlockV1",
+  "title": "HTMLBlockV1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "universal_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "html"
+      ]
+    },
+    "data": {
+      "$ref": "#/components/schemas/HTMLBlockDataV1"
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

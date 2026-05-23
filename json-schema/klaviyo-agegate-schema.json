@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgeGate",
+  "title": "AgeGate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "age_gate"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/AgeGateStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/AgeGateProperties"
+    },
+    "display_device": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      }
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

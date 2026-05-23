@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobileOverlay",
+  "title": "MobileOverlay",
+  "type": "object",
+  "properties": {
+    "color": {
+      "type": "string",
+      "example": "rgba(20, 20, 20, 0.5)",
+      "default": "rgba(20, 20, 20, 0.5)",
+      "nullable": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false,
+      "enum": [
+        false
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataPrivacyCreateDeletionJobQuery",
+  "title": "DataPrivacyCreateDeletionJobQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/DataPrivacyCreateDeletionJobQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

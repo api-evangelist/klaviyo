@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConversationMessageCreateQueryResourceObject",
+  "title": "ConversationMessageCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ConversationMessageEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "body"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ConversationEnum"
+                },
+                "id": {
+                  "description": "Related Conversation",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "conversation"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes",
+    "relationships"
+  ]
+}

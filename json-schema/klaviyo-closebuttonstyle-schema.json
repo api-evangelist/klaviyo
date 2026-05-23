@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CloseButtonStyle",
+  "title": "CloseButtonStyle",
+  "type": "object",
+  "properties": {
+    "background_color": {
+      "type": "string",
+      "example": "rgba(180, 187, 195, 0.65)",
+      "default": "rgba(180, 187, 195, 0.65)"
+    },
+    "outline_color": {
+      "type": "string",
+      "example": "#FFFFFF",
+      "default": "#FFFFFF"
+    },
+    "color": {
+      "type": "string",
+      "example": "#FFFFFF",
+      "default": "#FFFFFF"
+    },
+    "stroke": {
+      "type": "number",
+      "example": 2,
+      "default": 2
+    },
+    "size": {
+      "type": "integer",
+      "example": 20,
+      "default": 20
+    },
+    "margin": {
+      "$ref": "#/components/schemas/Margin"
+    }
+  }
+}

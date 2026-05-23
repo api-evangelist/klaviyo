@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SocialIconSubBlock",
+  "title": "SocialIconSubBlock",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "social_link_icon"
+      ]
+    },
+    "custom_asset_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "custom_src": {
+      "type": "string",
+      "nullable": true
+    },
+    "custom_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "label": {
+      "type": "string",
+      "nullable": true
+    },
+    "link_type": {
+      "description": "Social block link type.",
+      "type": "string",
+      "enum": [
+        "android",
+        "apple",
+        "custom",
+        "discord",
+        "email",
+        "facebook",
+        "google-plus",
+        "instagram",
+        "linkedin",
+        "pinterest",
+        "rss",
+        "snapchat",
+        "threads",
+        "tiktok",
+        "twitch",
+        "twitter",
+        "whatsapp",
+        "x-twitter",
+        "yelp",
+        "youtube"
+      ],
+      "nullable": true
+    },
+    "link_url": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

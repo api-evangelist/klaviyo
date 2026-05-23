@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSTransactional",
+  "title": "SMSTransactional",
+  "type": "object",
+  "properties": {
+    "can_receive_sms_transactional": {
+      "description": "Whether or not this profile is subscribed to receive transactional SMS.",
+      "type": "boolean"
+    },
+    "consent": {
+      "description": "The consent status for SMS Transactional.",
+      "type": "string",
+      "example": "SUBSCRIBED"
+    },
+    "consent_timestamp": {
+      "description": "The timestamp when consent was recorded or updated for Transactional SMS messaging , in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00",
+      "nullable": true
+    },
+    "method": {
+      "description": "The method by which the profile was subscribed to Transactional SMS messaging .",
+      "type": "string",
+      "example": "TEXT",
+      "nullable": true
+    },
+    "method_detail": {
+      "description": "Additional details about the method which the profile was subscribed to Transactional SMS messaging. This may be empty if no details were provided.",
+      "type": "string",
+      "example": "JOIN",
+      "default": "",
+      "nullable": true
+    },
+    "last_updated": {
+      "description": "The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).",
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-02-21T20:07:38+00:00",
+      "nullable": true
+    }
+  },
+  "required": [
+    "can_receive_sms_transactional",
+    "consent"
+  ]
+}

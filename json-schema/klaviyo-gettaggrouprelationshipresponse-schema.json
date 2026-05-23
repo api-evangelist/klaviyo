@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetTagGroupRelationshipResponse",
+  "title": "GetTagGroupRelationshipResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/TagGroupEnum"
+        },
+        "id": {
+          "description": "The Tag Group ID",
+          "type": "string",
+          "example": "zyxw9876-vu54-ts32-rq10-zyxwvu654321"
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

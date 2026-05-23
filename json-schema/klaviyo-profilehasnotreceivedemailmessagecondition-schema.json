@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileHasNotReceivedEmailMessageCondition",
+  "title": "ProfileHasNotReceivedEmailMessageCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-not-sent-email"
+      ]
+    },
+    "timeframe_filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/AlltimeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/InTheLastBaseRelativeDateFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "timeframe_filter"
+  ]
+}

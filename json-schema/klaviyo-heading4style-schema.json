@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Heading4Style",
+  "title": "Heading4Style",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "style_type": {
+      "type": "string",
+      "enum": [
+        "heading-4-styles"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/HeadingStyleStyles"
+    }
+  },
+  "required": [
+    "style_type",
+    "styles"
+  ]
+}

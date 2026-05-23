@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ColumnV1",
+  "title": "ColumnV1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data": {
+      "$ref": "#/components/schemas/ColumnData",
+      "nullable": true
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ButtonBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/CouponBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/DropShadowBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/HeaderBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/HorizontalRuleBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/HTMLBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/ImageBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/ProductBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/ReviewBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/SocialBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/SpacerBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/SplitBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/TableBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/TextBlockV1"
+          },
+          {
+            "$ref": "#/components/schemas/VideoBlockV1"
+          }
+        ]
+      },
+      "nullable": true
+    }
+  }
+}

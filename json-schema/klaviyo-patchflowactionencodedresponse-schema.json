@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchFlowActionEncodedResponse",
+  "title": "PatchFlowActionEncodedResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/FlowActionEnum"
+        },
+        "id": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "created": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00",
+              "nullable": true
+            },
+            "updated": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00",
+              "nullable": true
+            },
+            "definition": {
+              "description": "The encoded flow action definition.",
+              "nullable": true,
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/ActionOutputSplitAction"
+                },
+                {
+                  "$ref": "#/components/schemas/BackInStockDelayAction"
+                },
+                {
+                  "$ref": "#/components/schemas/ConditionalBranchAction"
+                },
+                {
+                  "$ref": "#/components/schemas/ContentExperimentAction"
+                },
+                {
+                  "$ref": "#/components/schemas/SendEmailAction"
+                },
+                {
+                  "$ref": "#/components/schemas/SendPushNotificationAction"
+                },
+                {
+                  "$ref": "#/components/schemas/SendSmsAction"
+                },
+                {
+                  "$ref": "#/components/schemas/SendWebhookAction"
+                },
+                {
+                  "$ref": "#/components/schemas/SendInternalAlertAction"
+                },
+                {
+                  "$ref": "#/components/schemas/SendWhatsAppAction"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeDelayAction"
+                },
+                {
+                  "$ref": "#/components/schemas/TriggerBranchAction"
+                },
+                {
+                  "$ref": "#/components/schemas/UpdateProfileAction"
+                },
+                {
+                  "$ref": "#/components/schemas/TargetDateAction"
+                },
+                {
+                  "$ref": "#/components/schemas/CountdownDelayAction"
+                },
+                {
+                  "$ref": "#/components/schemas/AbTestAction"
+                },
+                {
+                  "$ref": "#/components/schemas/InternalServiceAction"
+                },
+                {
+                  "$ref": "#/components/schemas/CodeAction"
+                },
+                {
+                  "$ref": "#/components/schemas/MultiBranchSplitAction"
+                },
+                {
+                  "$ref": "#/components/schemas/ListUpdateAction"
+                }
+              ]
+            }
+          }
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "flow": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "$ref": "#/components/schemas/FlowEnum"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id"
+                  ]
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "flow-messages": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/FlowMessageEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            }
+          }
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

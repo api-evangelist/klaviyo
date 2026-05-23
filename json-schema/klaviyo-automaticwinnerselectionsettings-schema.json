@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutomaticWinnerSelectionSettings",
+  "title": "AutomaticWinnerSelectionSettings",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "automatic_end_date": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2022-11-08T00:00:00+00:00",
+      "nullable": true
+    },
+    "automatic_end_statistical_certainty": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "enabled",
+    "automatic_end_statistical_certainty"
+  ]
+}

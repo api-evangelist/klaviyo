@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignRecipientEstimationJobEnum",
+  "title": "CampaignRecipientEstimationJobEnum",
+  "type": "string",
+  "enum": [
+    "campaign-recipient-estimation-job"
+  ]
+}

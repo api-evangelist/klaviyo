@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushSendOptions",
+  "title": "PushSendOptions",
+  "type": "object",
+  "properties": {
+    "use_smart_sending": {
+      "description": "Use smart sending.",
+      "type": "boolean",
+      "example": true,
+      "default": true,
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowEmail",
+  "title": "FlowEmail",
+  "type": "object",
+  "properties": {
+    "from_email": {
+      "type": "string",
+      "nullable": true
+    },
+    "from_label": {
+      "type": "string",
+      "nullable": true
+    },
+    "reply_to_email": {
+      "type": "string",
+      "nullable": true
+    },
+    "cc_email": {
+      "type": "string",
+      "nullable": true
+    },
+    "bcc_email": {
+      "type": "string",
+      "nullable": true
+    },
+    "subject_line": {
+      "type": "string",
+      "nullable": true
+    },
+    "preview_text": {
+      "type": "string",
+      "nullable": true
+    },
+    "template_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "smart_sending_enabled": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    },
+    "transactional": {
+      "type": "boolean",
+      "default": false
+    },
+    "add_tracking_params": {
+      "type": "boolean",
+      "default": false
+    },
+    "custom_tracking_params": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UtmParam"
+      },
+      "nullable": true
+    },
+    "additional_filters": {
+      "type": "object",
+      "nullable": true,
+      "properties": {
+        "condition_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ProfilePropertyCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileHasGroupMembershipCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileNoGroupMembershipCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileRegionCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePostalCodeDistanceCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsDateCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsStringCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePredictiveAnalyticsNumericCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileMarketingConsentCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlowsProfileMetricCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileRandomSampleCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileHasCustomObjectCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfilePermissionsCondition"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileHasNotReceivedEmailMessageCondition"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "conditions"
+            ]
+          }
+        }
+      },
+      "required": [
+        "condition_groups"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "from_email",
+    "from_label",
+    "reply_to_email",
+    "cc_email",
+    "bcc_email",
+    "subject_line",
+    "preview_text"
+  ]
+}

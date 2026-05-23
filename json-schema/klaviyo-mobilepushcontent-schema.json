@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MobilePushContent",
+  "title": "MobilePushContent",
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "The title of the message",
+      "type": "string",
+      "nullable": true
+    },
+    "body": {
+      "description": "The message body",
+      "type": "string",
+      "example": "My preview push notification",
+      "nullable": true
+    },
+    "dynamic_image": {
+      "description": "The dynamic image to be used in the push notification",
+      "type": "string",
+      "nullable": true
+    },
+    "action_buttons": {
+      "description": "Action buttons for the push notification",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PushActionButtonDefinition"
+      },
+      "nullable": true
+    }
+  }
+}

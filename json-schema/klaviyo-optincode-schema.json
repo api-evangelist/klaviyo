@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OptInCode",
+  "title": "OptInCode",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "opt_in_code"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/OptInCodeStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/OptInCodeProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

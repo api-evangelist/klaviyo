@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SegmentCreateQueryResourceObject",
+  "title": "SegmentCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/SegmentEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "definition": {
+          "$ref": "#/components/schemas/SegmentDefinition"
+        },
+        "is_starred": {
+          "type": "boolean",
+          "default": false,
+          "nullable": true
+        }
+      },
+      "required": [
+        "name",
+        "definition"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

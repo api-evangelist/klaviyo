@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetMappedMetricCustomMetricRelationshipResponse",
+  "title": "GetMappedMetricCustomMetricRelationshipResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/CustomMetricEnum"
+        },
+        "id": {
+          "description": "The ID of the custom metric",
+          "type": "string",
+          "example": "925e385b52fb405715f3616c337cc65c"
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

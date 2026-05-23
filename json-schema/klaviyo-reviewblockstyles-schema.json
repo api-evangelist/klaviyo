@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewBlockStyles",
+  "title": "ReviewBlockStyles",
+  "type": "object",
+  "properties": {
+    "author_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "author_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "author_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "author_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "author_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "author_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "author_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "author_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "border_radius": {
+      "type": "integer",
+      "nullable": true
+    },
+    "border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "empty_star_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "layout": {
+      "description": "Review block layout options.",
+      "type": "string",
+      "enum": [
+        "big-quotes",
+        "centered-in-quote-bubble",
+        "centered-rating-first",
+        "centered-review-first",
+        "clean",
+        "left-aligned",
+        "message-bubble",
+        "rating-highlight",
+        "right-aligned-with-quotation-icon",
+        "square",
+        "stacked-card",
+        "subtle-background"
+      ],
+      "nullable": true
+    },
+    "product_name_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "product_name_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_name_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_name_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "product_name_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "product_name_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_name_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "product_name_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "quote_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "quote_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "quote_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "quote_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "quote_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "quote_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "quote_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "quote_line_height": {
+      "type": "number",
+      "nullable": true
+    },
+    "quote_style": {
+      "description": "Review block quote style.",
+      "type": "string",
+      "enum": [
+        "line",
+        "square",
+        "standard"
+      ],
+      "nullable": true
+    },
+    "quote_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "shadow_color": {
+      "description": "Shadow color.",
+      "type": "string",
+      "enum": [
+        "dark",
+        "light",
+        "medium"
+      ],
+      "nullable": true
+    },
+    "star_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "star_size": {
+      "description": "Review block star size.",
+      "type": "string",
+      "enum": [
+        "large",
+        "medium",
+        "small"
+      ],
+      "nullable": true
+    },
+    "star_rating_shape": {
+      "description": "Review block star rating shape.",
+      "type": "string",
+      "enum": [
+        "circle",
+        "heart",
+        "star"
+      ],
+      "nullable": true
+    },
+    "star_icon_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "star_alignment": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "text_area_bg_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "text_area_border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "verified_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "verified_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "verified_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "verified_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "verified_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "verified_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "verified_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "verified_badge_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "verified_badge_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "verified_badge_style": {
+      "description": "Review block verified badge style.",
+      "type": "string",
+      "enum": [
+        "badge-and-text",
+        "badge-only",
+        "text-only"
+      ],
+      "nullable": true
+    }
+  }
+}

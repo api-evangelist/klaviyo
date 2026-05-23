@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignMessageCreateQueryResourceObject",
+  "title": "CampaignMessageCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CampaignMessageEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/EmailMessageDefinition"
+            },
+            {
+              "$ref": "#/components/schemas/SMSMessageDefinitionCreate"
+            },
+            {
+              "$ref": "#/components/schemas/MobilePushMessageStandardDefinitionCreate"
+            },
+            {
+              "$ref": "#/components/schemas/MobilePushMessageSilentDefinitionCreate"
+            }
+          ]
+        }
+      },
+      "required": [
+        "definition"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ImageEnum"
+                },
+                "id": {
+                  "description": "The associated image for mobile_push messages",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EncodedFormResponseObjectResource",
+  "title": "EncodedFormResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FormEnum"
+    },
+    "id": {
+      "description": "The ID of the form",
+      "type": "string",
+      "example": "Y6nRLr"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "The status of the form.",
+          "type": "string",
+          "example": "draft",
+          "enum": [
+            "draft",
+            "live"
+          ]
+        },
+        "ab_test": {
+          "description": "Whether the form has an A/B test configured.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the form.",
+          "type": "string",
+          "example": "Cyber Monday Deals"
+        },
+        "definition": {
+          "description": "The encoded form definition.",
+          "$ref": "#/components/schemas/FormDefinition"
+        },
+        "created_at": {
+          "description": "The ISO8601 timestamp when the form was created.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2024-03-04T00:00:00Z"
+        },
+        "updated_at": {
+          "description": "The ISO8601 timestamp when the form was last updated.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2024-03-04T00:00:00Z"
+        }
+      },
+      "required": [
+        "status",
+        "ab_test",
+        "name",
+        "definition",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

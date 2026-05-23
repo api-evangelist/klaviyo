@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableBlockData",
+  "title": "TableBlockData",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticTableBlockProperties"
+        },
+        {
+          "$ref": "#/components/schemas/DynamicTableBlockProperties"
+        }
+      ]
+    },
+    "display_options": {
+      "$ref": "#/components/schemas/DisplayOptions"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/TableBlockStyles"
+    }
+  },
+  "required": [
+    "properties",
+    "display_options",
+    "styles"
+  ]
+}

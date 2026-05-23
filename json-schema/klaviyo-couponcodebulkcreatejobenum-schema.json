@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CouponCodeBulkCreateJobEnum",
+  "title": "CouponCodeBulkCreateJobEnum",
+  "type": "string",
+  "enum": [
+    "coupon-code-bulk-create-job"
+  ]
+}

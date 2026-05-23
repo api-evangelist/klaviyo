@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RatingStyle",
+  "title": "RatingStyle",
+  "type": "object",
+  "properties": {
+    "color": {
+      "type": "string",
+      "example": "#F8BE00",
+      "default": "#F8BE00"
+    },
+    "empty_color": {
+      "type": "string",
+      "example": "#EBEEEF",
+      "default": "#EBEEEF"
+    },
+    "font_size": {
+      "type": "integer",
+      "example": 16,
+      "default": 16
+    },
+    "shape": {
+      "description": "Enumeration for review shapes.",
+      "type": "string",
+      "example": "star",
+      "default": "star",
+      "enum": [
+        "circle",
+        "heart",
+        "star"
+      ]
+    },
+    "alignment": {
+      "description": "Horizontal alignment enumeration.",
+      "type": "string",
+      "example": "center",
+      "default": "center",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ]
+    },
+    "character_spacing": {
+      "type": "number",
+      "default": 0
+    }
+  }
+}

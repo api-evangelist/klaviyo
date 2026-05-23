@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CartItemCountProperties",
+  "title": "CartItemCountProperties",
+  "type": "object",
+  "properties": {
+    "comparison": {
+      "description": "Number comparison enumeration.",
+      "type": "string",
+      "enum": [
+        "equals",
+        "greater_than",
+        "less_than"
+      ],
+      "nullable": true
+    },
+    "value": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

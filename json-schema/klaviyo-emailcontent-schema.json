@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailContent",
+  "title": "EmailContent",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "description": "The subject of the message",
+      "type": "string",
+      "example": "Buy our product!",
+      "nullable": true
+    },
+    "preview_text": {
+      "description": "Preview text associated with the message",
+      "type": "string",
+      "example": "My preview text",
+      "nullable": true
+    },
+    "from_email": {
+      "description": "The email the message should be sent from",
+      "type": "string",
+      "example": "store@my-company.com",
+      "nullable": true
+    },
+    "from_label": {
+      "description": "The label associated with the from_email",
+      "type": "string",
+      "example": "My Company",
+      "nullable": true
+    },
+    "reply_to_email": {
+      "description": "Optional Reply-To email address",
+      "type": "string",
+      "example": "reply-to@my-company.com",
+      "nullable": true
+    },
+    "cc_email": {
+      "description": "Optional CC email address",
+      "type": "string",
+      "example": "cc@my-company.com",
+      "nullable": true
+    },
+    "bcc_email": {
+      "description": "Optional BCC email address",
+      "type": "string",
+      "example": "bcc@my-company.com",
+      "nullable": true
+    }
+  }
+}

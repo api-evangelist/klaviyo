@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CartProductProperties",
+  "title": "CartProductProperties",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "Product descriptor enumeration.",
+      "type": "string",
+      "enum": [
+        "brand",
+        "categories",
+        "id",
+        "name"
+      ],
+      "nullable": true
+    },
+    "value": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

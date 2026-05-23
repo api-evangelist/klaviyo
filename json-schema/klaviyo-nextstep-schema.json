@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NextStep",
+  "title": "NextStep",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "submit": {
+      "type": "boolean"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "next_step"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/NextStepProperties",
+      "nullable": true
+    }
+  },
+  "required": [
+    "submit",
+    "type"
+  ]
+}

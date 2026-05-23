@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Redirect",
+  "title": "Redirect",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "submit": {
+      "type": "boolean"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "redirect"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/RedirectProperties"
+    }
+  },
+  "required": [
+    "submit",
+    "type",
+    "properties"
+  ]
+}

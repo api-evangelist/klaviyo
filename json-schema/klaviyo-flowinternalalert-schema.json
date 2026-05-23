@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowInternalAlert",
+  "title": "FlowInternalAlert",
+  "type": "object",
+  "properties": {
+    "from_email": {
+      "type": "string",
+      "nullable": true
+    },
+    "from_label": {
+      "type": "string",
+      "nullable": true
+    },
+    "to_emails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subject_line": {
+      "type": "string",
+      "nullable": true
+    },
+    "template_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "from_email",
+    "from_label",
+    "to_emails",
+    "subject_line"
+  ]
+}

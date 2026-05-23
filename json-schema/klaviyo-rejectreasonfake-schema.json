@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RejectReasonFake",
+  "title": "RejectReasonFake",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "description": "rejected due to fake content",
+      "type": "string",
+      "enum": [
+        "fake"
+      ]
+    }
+  },
+  "required": [
+    "reason"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlowActionUpdateQueryResourceObject",
+  "title": "FlowActionUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/FlowActionEnum"
+    },
+    "id": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "description": "The encoded flow action definition.",
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/ActionOutputSplitAction"
+            },
+            {
+              "$ref": "#/components/schemas/BackInStockDelayAction"
+            },
+            {
+              "$ref": "#/components/schemas/ConditionalBranchAction"
+            },
+            {
+              "$ref": "#/components/schemas/ContentExperimentAction"
+            },
+            {
+              "$ref": "#/components/schemas/SendEmailAction"
+            },
+            {
+              "$ref": "#/components/schemas/SendPushNotificationAction"
+            },
+            {
+              "$ref": "#/components/schemas/SendSmsAction"
+            },
+            {
+              "$ref": "#/components/schemas/SendWebhookAction"
+            },
+            {
+              "$ref": "#/components/schemas/SendInternalAlertAction"
+            },
+            {
+              "$ref": "#/components/schemas/SendWhatsAppAction"
+            },
+            {
+              "$ref": "#/components/schemas/TimeDelayAction"
+            },
+            {
+              "$ref": "#/components/schemas/TriggerBranchAction"
+            },
+            {
+              "$ref": "#/components/schemas/UpdateProfileAction"
+            },
+            {
+              "$ref": "#/components/schemas/TargetDateAction"
+            },
+            {
+              "$ref": "#/components/schemas/CountdownDelayAction"
+            },
+            {
+              "$ref": "#/components/schemas/AbTestAction"
+            },
+            {
+              "$ref": "#/components/schemas/InternalServiceAction"
+            },
+            {
+              "$ref": "#/components/schemas/CodeAction"
+            },
+            {
+              "$ref": "#/components/schemas/MultiBranchSplitAction"
+            },
+            {
+              "$ref": "#/components/schemas/ListUpdateAction"
+            }
+          ]
+        }
+      },
+      "required": [
+        "definition"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

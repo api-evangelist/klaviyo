@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileMergeEnum",
+  "title": "ProfileMergeEnum",
+  "type": "string",
+  "enum": [
+    "profile-merge"
+  ]
+}

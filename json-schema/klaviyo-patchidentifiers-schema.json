@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchIdentifiers",
+  "title": "PatchIdentifiers",
+  "type": "object",
+  "properties": {
+    "append": {
+      "type": "object"
+    },
+    "unappend": {
+      "type": "object"
+    }
+  }
+}

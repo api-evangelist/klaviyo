@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RowData",
+  "title": "RowData",
+  "type": "object",
+  "properties": {
+    "styles": {
+      "$ref": "#/components/schemas/RowStyles"
+    }
+  },
+  "required": [
+    "styles"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OnlyRelatedLinks",
+  "title": "OnlyRelatedLinks",
+  "type": "object",
+  "properties": {
+    "related": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "related"
+  ]
+}

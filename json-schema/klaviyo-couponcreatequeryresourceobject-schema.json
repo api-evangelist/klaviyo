@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CouponCreateQueryResourceObject",
+  "title": "CouponCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CouponEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "external_id": {
+          "description": "This is the id that is stored in an integration such as Shopify or Magento.",
+          "type": "string",
+          "example": "10OFF"
+        },
+        "description": {
+          "description": "A description of the coupon.",
+          "type": "string",
+          "example": "10% off for purchases over $50",
+          "nullable": true
+        },
+        "monitor_configuration": {
+          "description": "The monitor configuration for the coupon.",
+          "type": "object",
+          "example": {
+            "low_balance_threshold": 500
+          },
+          "nullable": true
+        }
+      },
+      "required": [
+        "external_id"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

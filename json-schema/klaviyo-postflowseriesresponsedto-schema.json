@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostFlowSeriesResponseDTO",
+  "title": "PostFlowSeriesResponseDTO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/FlowSeriesReportEnum"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "description": "An array of all the returned values data.\nEach object in the array represents one unique grouping and the results for that grouping.\nEach value in the results array corresponds to the date time at the same index.",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SeriesData"
+              },
+              "example": [
+                {
+                  "groupings": {
+                    "flow_id": "XVTP5Q",
+                    "send_channel": "email",
+                    "flow_message_id": "01GMRWDSA0ARTAKE1SFX8JGXAY"
+                  },
+                  "statistics": {
+                    "opens": [
+                      123,
+                      156,
+                      144
+                    ],
+                    "open_rate": [
+                      0.8253,
+                      0.8722,
+                      0.8398
+                    ]
+                  }
+                },
+                {
+                  "groupings": {
+                    "flow_id": "XVTP5Q",
+                    "send_channel": "email",
+                    "flow_message_id": "01GJTHNWVG93F3KNX71SJ4FDBB"
+                  },
+                  "statistics": {
+                    "opens": [
+                      97,
+                      98,
+                      65
+                    ],
+                    "open_rate": [
+                      0.7562,
+                      0.761,
+                      0.688
+                    ]
+                  }
+                }
+              ]
+            },
+            "date_times": {
+              "description": "An array of date times which correspond to the equivalent index in the results data.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "example": [
+                "2024-01-05T00:00:00+00:00",
+                "2024-01-06T00:00:00+00:00",
+                "2024-01-07T00:00:00+00:00"
+              ]
+            }
+          },
+          "required": [
+            "results",
+            "date_times"
+          ]
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "flows": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/FlowEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "flow-messages": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/FlowMessageEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RowStyles",
+  "title": "RowStyles",
+  "type": "object",
+  "properties": {
+    "column_layout": {
+      "description": "Column layout.",
+      "type": "string",
+      "enum": [
+        "1-column-full-width",
+        "2-columns-25%-75%",
+        "2-columns-33%-67%",
+        "2-columns-67%-33%",
+        "2-columns-75%-25%",
+        "2-columns-equal-width",
+        "3-columns-25%-25%-50%",
+        "3-columns-25%-50%-25%",
+        "3-columns-50%-25%-25%",
+        "3-columns-equal-width",
+        "4-columns-equal-width"
+      ],
+      "nullable": true
+    }
+  }
+}

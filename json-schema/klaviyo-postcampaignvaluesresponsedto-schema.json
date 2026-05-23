@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCampaignValuesResponseDTO",
+  "title": "PostCampaignValuesResponseDTO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/CampaignValuesReportEnum"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "description": "An array of all the returned values data.\nEach object in the array represents one unique grouping and the results for that grouping.",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ValuesData"
+              },
+              "example": [
+                {
+                  "groupings": {
+                    "send_channel": "email",
+                    "campaign_id": "01GMRWDSA0ARTAKE1SFX8JGXAY",
+                    "campaign_message_id": "01GMRWDSA0ARTAKE1SFX8JGXAY"
+                  },
+                  "statistics": {
+                    "opens": 123,
+                    "open_rate": 0.8253
+                  }
+                },
+                {
+                  "groupings": {
+                    "send_channel": "email",
+                    "campaign_id": "01GJTHNWVG93F3KNX71SJ4FDBB",
+                    "campaign_message_id": "01GJTHNWVG93F3KNX71SJ4FDBB"
+                  },
+                  "statistics": {
+                    "opens": 97,
+                    "open_rate": 0.7562
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "results"
+          ]
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "campaigns": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/CampaignEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

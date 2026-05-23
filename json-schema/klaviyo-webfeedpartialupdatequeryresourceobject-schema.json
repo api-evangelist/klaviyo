@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebFeedPartialUpdateQueryResourceObject",
+  "title": "WebFeedPartialUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/WebFeedEnum"
+    },
+    "id": {
+      "description": "The ID of the web feed",
+      "type": "string",
+      "example": "925e385b52fb"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of this web feed",
+          "type": "string",
+          "example": "Blog_posts",
+          "nullable": true
+        },
+        "url": {
+          "description": "The URL of the web feed",
+          "type": "string",
+          "example": "https://help.klaviyo.com/api/v2/help_center/en-us/articles.json",
+          "nullable": true
+        },
+        "request_method": {
+          "description": "The HTTP method for requesting the web feed",
+          "type": "string",
+          "example": "get",
+          "enum": [
+            "get",
+            "post"
+          ],
+          "nullable": true
+        },
+        "content_type": {
+          "description": "The content-type of the web feed",
+          "type": "string",
+          "example": "json",
+          "enum": [
+            "json",
+            "xml"
+          ],
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

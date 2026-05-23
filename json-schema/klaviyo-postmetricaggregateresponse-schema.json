@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostMetricAggregateResponse",
+  "title": "PostMetricAggregateResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/MetricAggregateEnum"
+        },
+        "id": {
+          "description": "Ephemeral ID associated with the aggregation query",
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "dates": {
+              "description": "The dates of the query range",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "data": {
+              "description": "Aggregation result data",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/MetricAggregateRowDTO"
+              }
+            }
+          },
+          "required": [
+            "dates",
+            "data"
+          ]
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

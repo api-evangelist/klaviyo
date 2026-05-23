@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscriptionCreateJobCreateQuery",
+  "title": "SubscriptionCreateJobCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/SubscriptionCreateJobCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

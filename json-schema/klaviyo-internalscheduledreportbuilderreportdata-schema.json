@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InternalScheduledReportBuilderReportData",
+  "title": "InternalScheduledReportBuilderReportData",
+  "type": "object",
+  "properties": {
+    "service_method_type": {
+      "type": "string",
+      "enum": [
+        "schedule-report-builder-report"
+      ]
+    },
+    "report_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "service_method_type",
+    "report_id"
+  ]
+}

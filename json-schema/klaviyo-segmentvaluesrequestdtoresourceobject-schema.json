@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SegmentValuesRequestDTOResourceObject",
+  "title": "SegmentValuesRequestDTOResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/SegmentValuesReportEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "statistics": {
+          "description": "List of statistics to query for.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "members_added",
+              "members_removed",
+              "net_members_changed",
+              "total_members"
+            ],
+            "description": "Defined segment reporting metric"
+          },
+          "example": [
+            "total_members",
+            "net_members_changed"
+          ]
+        },
+        "timeframe": {
+          "description": "The time frame to pull data from (Max length: 1 year). Data is unavailable before June 1st, 2023. Please use a time frame after this date. See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).",
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/Timeframe"
+            },
+            {
+              "$ref": "#/components/schemas/CustomTimeframe"
+            }
+          ]
+        },
+        "filter": {
+          "description": "API filter string used to filter the query.\nAllowed filters are segment_id.\nAllowed operators are equals, any.\nOnly one filter can be used per attribute.\nMax of 100 messages per ANY filter.",
+          "type": "string",
+          "example": "any(segment_id,[\"xyz123\",\"ghi456\"])",
+          "nullable": true
+        }
+      },
+      "required": [
+        "statistics",
+        "timeframe"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

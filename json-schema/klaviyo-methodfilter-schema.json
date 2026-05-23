@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MethodFilter",
+  "title": "MethodFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "subscribe_method"
+      ]
+    },
+    "method": {
+      "description": "Method for subscribing / unsubscribing.",
+      "type": "string",
+      "enum": [
+        "api",
+        "back_in_stock",
+        "bigcommerce",
+        "bulk_remove",
+        "campaign_monitor",
+        "carrier_deactivation",
+        "checkout",
+        "constant_contact",
+        "exact_target",
+        "facebook",
+        "failed_age_gate",
+        "inbound_message",
+        "integration",
+        "mad_mimi",
+        "magento_two",
+        "mailbox_provider",
+        "manual_add",
+        "manual_import",
+        "manual_remove",
+        "message_blocked",
+        "netsuite",
+        "preference_page",
+        "provided_landline",
+        "provided_no_age",
+        "sftp",
+        "shopify",
+        "social_instagram_message",
+        "spam_complaint",
+        "square",
+        "wix",
+        "woocommerce"
+      ]
+    }
+  },
+  "required": [
+    "field",
+    "method"
+  ]
+}

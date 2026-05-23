@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileSubscriptionDeleteQueryResourceObject",
+  "title": "ProfileSubscriptionDeleteQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ProfileEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "description": "The email address to unsubscribe.",
+          "type": "string",
+          "example": "matt-kemp@klaviyo-demo.com",
+          "nullable": true
+        },
+        "phone_number": {
+          "description": "The phone number to unsubscribe. This must be in E.164 format.",
+          "type": "string",
+          "example": "+15005550006",
+          "nullable": true
+        },
+        "subscriptions": {
+          "description": "Specifies the channel and message types that the profile will have consent revoked from.",
+          "$ref": "#/components/schemas/UnsubscriptionChannels"
+        }
+      },
+      "required": [
+        "subscriptions"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

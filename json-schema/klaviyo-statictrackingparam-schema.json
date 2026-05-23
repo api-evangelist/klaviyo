@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StaticTrackingParam",
+  "title": "StaticTrackingParam",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of the tracking parameter",
+      "type": "string",
+      "enum": [
+        "static"
+      ]
+    },
+    "value": {
+      "description": "The value of the tracking parameter",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name of the tracking param",
+      "type": "string",
+      "example": "utm_medium"
+    }
+  },
+  "required": [
+    "type",
+    "value",
+    "name"
+  ]
+}

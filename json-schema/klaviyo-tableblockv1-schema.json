@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableBlockV1",
+  "title": "TableBlockV1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "universal_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "table"
+      ]
+    },
+    "data": {
+      "$ref": "#/components/schemas/TableBlockData",
+      "nullable": true
+    },
+    "subblocks": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TableHeaderSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/TableHtmlSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/TableImageSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/TableTextSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/TableFallbackHtmlSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/TableFallbackImageSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/TableFallbackTextSubBlock"
+          }
+        ]
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

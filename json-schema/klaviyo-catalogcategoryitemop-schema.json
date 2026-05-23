@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogCategoryItemOp",
+  "title": "CatalogCategoryItemOp",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/CatalogItemEnum"
+          },
+          "id": {
+            "description": "A list of catalog item IDs that are in the given category.",
+            "type": "string",
+            "example": "$custom:::$default:::SAMPLE-DATA-ITEM-1"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

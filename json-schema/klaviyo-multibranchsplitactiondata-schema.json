@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MultiBranchSplitActionData",
+  "title": "MultiBranchSplitActionData",
+  "type": "object",
+  "properties": {
+    "branches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MultiBranchSplitBranch"
+      }
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "branches",
+    "name"
+  ]
+}

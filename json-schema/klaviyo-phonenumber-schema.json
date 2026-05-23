@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PhoneNumber",
+  "title": "PhoneNumber",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "phone_number"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/PhoneNumberStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/PhoneNumberProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

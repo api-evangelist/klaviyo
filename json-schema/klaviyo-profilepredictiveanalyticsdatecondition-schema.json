@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfilePredictiveAnalyticsDateCondition",
+  "title": "ProfilePredictiveAnalyticsDateCondition",
+  "type": "object",
+  "properties": {
+    "dimension": {
+      "description": "Dimension for date profile predictive analytics conditions.",
+      "type": "string",
+      "enum": [
+        "expected_date_of_next_purchase"
+      ]
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeAnniversaryDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/CalendarDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/AnniversaryDateFilter"
+        }
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile-predictive-analytics"
+      ]
+    }
+  },
+  "required": [
+    "dimension",
+    "filter",
+    "type"
+  ]
+}

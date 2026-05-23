@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Audiences",
+  "title": "Audiences",
+  "type": "object",
+  "properties": {
+    "included": {
+      "description": "A list of included audiences",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "Y6nRLr"
+      ]
+    },
+    "excluded": {
+      "description": "An optional list of excluded audiences",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "UTd5ui"
+      ],
+      "nullable": true
+    }
+  },
+  "required": [
+    "included"
+  ]
+}

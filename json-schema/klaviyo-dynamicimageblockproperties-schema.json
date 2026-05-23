@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicImageBlockProperties",
+  "title": "DynamicImageBlockProperties",
+  "type": "object",
+  "properties": {
+    "dynamic": {
+      "type": "boolean",
+      "enum": [
+        true
+      ]
+    },
+    "alt_text": {
+      "type": "string",
+      "nullable": true
+    },
+    "href": {
+      "type": "string",
+      "nullable": true
+    },
+    "src": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "dynamic"
+  ]
+}

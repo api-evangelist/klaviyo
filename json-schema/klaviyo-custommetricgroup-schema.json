@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomMetricGroup",
+  "title": "CustomMetricGroup",
+  "type": "object",
+  "properties": {
+    "metric_id": {
+      "description": "The ID of the metric that composes the custom metric.",
+      "type": "string"
+    },
+    "metric_filters": {
+      "description": "An optional array of objects for filtering on properties of the metric.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomMetricCondition"
+      },
+      "nullable": true
+    },
+    "value_property": {
+      "description": "\nIf the custom metric has a `value` aggregation method, the `value_property` of each `metric_group` of the `definition` should specify the property to calculate the conversion value. If null, the default `$value` property will be used.\n",
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "metric_id"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogCategoryBulkDeleteJobEnum",
+  "title": "CatalogCategoryBulkDeleteJobEnum",
+  "type": "string",
+  "enum": [
+    "catalog-category-bulk-delete-job"
+  ]
+}

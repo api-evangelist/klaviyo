@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NoEmailMarketingConsent",
+  "title": "NoEmailMarketingConsent",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "email"
+      ]
+    },
+    "can_receive_marketing": {
+      "type": "boolean",
+      "enum": [
+        false
+      ]
+    },
+    "consent_status": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/NoEmailMarketing"
+        },
+        {
+          "$ref": "#/components/schemas/NoEmailMarketingUnsubscribed"
+        },
+        {
+          "$ref": "#/components/schemas/NoEmailMarketingNeverSubscribed"
+        },
+        {
+          "$ref": "#/components/schemas/NoEmailMarketingSubscribed"
+        }
+      ]
+    }
+  },
+  "required": [
+    "channel",
+    "can_receive_marketing",
+    "consent_status"
+  ]
+}

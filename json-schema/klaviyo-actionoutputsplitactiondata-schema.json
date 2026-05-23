@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActionOutputSplitActionData",
+  "title": "ActionOutputSplitActionData",
+  "type": "object",
+  "properties": {
+    "action_output_filter": {
+      "$ref": "#/components/schemas/ActionOutputConditionFilter",
+      "nullable": true
+    }
+  },
+  "required": [
+    "action_output_filter"
+  ]
+}

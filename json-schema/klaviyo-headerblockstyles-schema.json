@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HeaderBlockStyles",
+  "title": "HeaderBlockStyles",
+  "type": "object",
+  "properties": {
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "border_radius": {
+      "type": "integer",
+      "nullable": true
+    },
+    "border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "color": {
+      "type": "string",
+      "nullable": true
+    },
+    "desktop_layout": {
+      "description": "Header block desktop layout.",
+      "type": "string",
+      "enum": [
+        "centered",
+        "inline",
+        "links",
+        "stacked"
+      ],
+      "nullable": true
+    },
+    "font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "inner_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "item_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "item_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "item_spacing_type": {
+      "description": "Header block item spacing type.",
+      "type": "string",
+      "enum": [
+        "auto",
+        "manual"
+      ],
+      "nullable": true
+    },
+    "letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "logo_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "logo_link_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_layout": {
+      "description": "Header block mobile layout.",
+      "type": "string",
+      "enum": [
+        "inline",
+        "links",
+        "links-stacked",
+        "logo-stacked",
+        "stacked"
+      ],
+      "nullable": true
+    },
+    "mobile_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_wrap": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "vertical_align": {
+      "description": "Vertical alignment.",
+      "type": "string",
+      "enum": [
+        "baseline",
+        "bottom",
+        "middle",
+        "top"
+      ],
+      "nullable": true
+    }
+  }
+}

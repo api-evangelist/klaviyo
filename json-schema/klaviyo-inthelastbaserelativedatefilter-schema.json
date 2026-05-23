@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InTheLastBaseRelativeDateFilter",
+  "title": "InTheLastBaseRelativeDateFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "type": "string",
+      "enum": [
+        "in-the-last"
+      ]
+    },
+    "unit": {
+      "description": "Units for relative date filters.",
+      "type": "string",
+      "enum": [
+        "day",
+        "hour",
+        "week"
+      ]
+    },
+    "quantity": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "unit",
+    "quantity"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ButtonProperties",
+  "title": "ButtonProperties",
+  "type": "object",
+  "properties": {
+    "display_device": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      }
+    },
+    "classname": {
+      "type": "string",
+      "nullable": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "additional_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AdditionalField"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "label"
+  ]
+}

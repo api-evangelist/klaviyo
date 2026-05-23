@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageProperties",
+  "title": "ImageProperties",
+  "type": "object",
+  "properties": {
+    "display_device": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      }
+    },
+    "classname": {
+      "type": "string",
+      "nullable": true
+    },
+    "image": {
+      "$ref": "#/components/schemas/ImageAssetProperties",
+      "nullable": true
+    },
+    "additional_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AdditionalField"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "image"
+  ]
+}

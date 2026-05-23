@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextStyleStyles",
+  "title": "TextStyleStyles",
+  "type": "object",
+  "properties": {
+    "color": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "line_height": {
+      "type": "number",
+      "nullable": true
+    },
+    "mobile_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_line_height": {
+      "type": "number",
+      "nullable": true
+    },
+    "text_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "text_decoration": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

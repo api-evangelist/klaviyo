@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StreetAddress",
+  "title": "StreetAddress",
+  "type": "object",
+  "properties": {
+    "address1": {
+      "type": "string",
+      "example": "125 Summer Street",
+      "nullable": true
+    },
+    "address2": {
+      "type": "string",
+      "example": "5th Floor",
+      "nullable": true
+    },
+    "city": {
+      "type": "string",
+      "example": "Boston"
+    },
+    "region": {
+      "description": "State, province, or region.",
+      "type": "string",
+      "example": "MA",
+      "nullable": true
+    },
+    "country": {
+      "description": "Two-letter [ISO country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)",
+      "type": "string",
+      "example": "US",
+      "nullable": true
+    },
+    "zip": {
+      "type": "string",
+      "example": "04323",
+      "nullable": true
+    }
+  },
+  "required": [
+    "city"
+  ]
+}

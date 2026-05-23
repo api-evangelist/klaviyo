@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageBlockStyles",
+  "title": "ImageBlockStyles",
+  "type": "object",
+  "properties": {
+    "align": {
+      "description": "Image Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "block_border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "full_width_mobile": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "height": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "max_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_stretch_content": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "width": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StaticProductBlockProperties",
+  "title": "StaticProductBlockProperties",
+  "type": "object",
+  "properties": {
+    "is_ai_generated": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "is_prebuilt_content": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "item_subtype_id": {
+      "type": "integer",
+      "nullable": true
+    },
+    "show_button": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_original_price": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_price": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_rating": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_rating_count": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_title": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_title_links": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "title_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "dynamic": {
+      "type": "boolean",
+      "enum": [
+        false
+      ],
+      "nullable": true
+    },
+    "show_description": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "localize_for_recipient": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "language": {
+      "type": "string",
+      "nullable": true
+    },
+    "region": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "dynamic"
+  ]
+}

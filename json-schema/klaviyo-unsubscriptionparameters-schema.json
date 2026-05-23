@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UnsubscriptionParameters",
+  "title": "UnsubscriptionParameters",
+  "type": "object",
+  "properties": {
+    "consent": {
+      "description": "The Consent status to be set as part of the unsubscribe call. Currently supports \"UNSUBSCRIBED\".",
+      "type": "string",
+      "example": "UNSUBSCRIBED",
+      "enum": [
+        "UNSUBSCRIBED"
+      ]
+    }
+  },
+  "required": [
+    "consent"
+  ]
+}

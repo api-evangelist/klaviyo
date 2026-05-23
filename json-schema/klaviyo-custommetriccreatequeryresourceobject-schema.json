@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomMetricCreateQueryResourceObject",
+  "title": "CustomMetricCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CustomMetricEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.",
+          "type": "string",
+          "example": "My custom metric"
+        },
+        "definition": {
+          "description": "The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.",
+          "example": {
+            "aggregation_method": "value",
+            "metric_groups": [
+              {
+                "metric_id": "AAAAAA",
+                "metric_filters": [
+                  {
+                    "property": "my_string_property",
+                    "filter": {
+                      "type": "string",
+                      "operator": "starts-with",
+                      "value": "some_substring"
+                    }
+                  },
+                  {
+                    "property": "my_numeric_property",
+                    "filter": {
+                      "type": "numeric",
+                      "operator": "greater-than-or-equal",
+                      "value": 999
+                    }
+                  }
+                ],
+                "value_property": "$value"
+              },
+              {
+                "metric_id": "BBBBBB",
+                "metric_filters": [
+                  {
+                    "property": "my_boolean_property",
+                    "filter": {
+                      "type": "boolean",
+                      "operator": "equals",
+                      "value": false
+                    }
+                  },
+                  {
+                    "property": "my_list_property",
+                    "filter": {
+                      "type": "list",
+                      "operator": "contains",
+                      "value": "some_value_in_a_list"
+                    }
+                  }
+                ],
+                "value_property": "my_numeric_property"
+              }
+            ]
+          },
+          "$ref": "#/components/schemas/CustomMetricDefinition"
+        }
+      },
+      "required": [
+        "name",
+        "definition"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

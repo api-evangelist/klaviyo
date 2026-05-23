@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeviceProperties",
+  "title": "DeviceProperties",
+  "type": "object",
+  "properties": {
+    "device": {
+      "description": "Enumeration for mobile and desktop.",
+      "type": "string",
+      "example": "desktop",
+      "default": "desktop",
+      "enum": [
+        "both",
+        "desktop",
+        "mobile"
+      ]
+    }
+  }
+}

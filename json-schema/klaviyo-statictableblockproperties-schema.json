@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StaticTableBlockProperties",
+  "title": "StaticTableBlockProperties",
+  "type": "object",
+  "properties": {
+    "dynamic": {
+      "type": "boolean",
+      "enum": [
+        false
+      ],
+      "nullable": true
+    },
+    "num_columns": {
+      "type": "integer",
+      "nullable": true
+    },
+    "show_headers": {
+      "type": "boolean",
+      "nullable": true
+    }
+  },
+  "required": [
+    "dynamic"
+  ]
+}

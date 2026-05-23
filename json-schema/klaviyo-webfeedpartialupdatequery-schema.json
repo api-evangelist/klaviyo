@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebFeedPartialUpdateQuery",
+  "title": "WebFeedPartialUpdateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/WebFeedPartialUpdateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

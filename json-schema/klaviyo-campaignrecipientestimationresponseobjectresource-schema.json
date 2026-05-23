@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignRecipientEstimationResponseObjectResource",
+  "title": "CampaignRecipientEstimationResponseObjectResource",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CampaignRecipientEstimationEnum"
+    },
+    "id": {
+      "description": "The ID of the campaign for which to get the estimated number of recipients",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "estimated_recipient_count": {
+          "description": "The estimated number of unique recipients the campaign will send to",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "estimated_recipient_count"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes",
+    "links"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CouponBlockProperties",
+  "title": "CouponBlockProperties",
+  "type": "object",
+  "properties": {
+    "coupon_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "coupon": {
+      "type": "string",
+      "nullable": true
+    },
+    "header_enabled": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "href": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

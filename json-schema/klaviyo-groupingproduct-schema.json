@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GroupingProduct",
+  "title": "GroupingProduct",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "description": "The ID of the product",
+      "type": "string",
+      "example": "12345"
+    }
+  },
+  "required": [
+    "product_id"
+  ]
+}

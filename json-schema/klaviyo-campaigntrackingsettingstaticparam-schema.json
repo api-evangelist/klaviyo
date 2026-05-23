@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignTrackingSettingStaticParam",
+  "title": "CampaignTrackingSettingStaticParam",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of the tracking parameter",
+      "type": "string",
+      "enum": [
+        "static"
+      ]
+    },
+    "value": {
+      "description": "The value of the tracking parameter",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "value"
+  ]
+}

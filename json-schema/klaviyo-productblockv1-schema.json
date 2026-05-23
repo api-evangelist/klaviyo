@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductBlockV1",
+  "title": "ProductBlockV1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "universal_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "product"
+      ]
+    },
+    "data": {
+      "$ref": "#/components/schemas/ProductBlockData",
+      "nullable": true
+    },
+    "subblocks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ProductSubBlock"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

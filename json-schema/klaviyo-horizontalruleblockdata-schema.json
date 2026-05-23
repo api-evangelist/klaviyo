@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HorizontalRuleBlockData",
+  "title": "HorizontalRuleBlockData",
+  "type": "object",
+  "properties": {
+    "display_options": {
+      "$ref": "#/components/schemas/DisplayOptions"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/HorizontalRuleBlockStyles"
+    }
+  },
+  "required": [
+    "display_options",
+    "styles"
+  ]
+}

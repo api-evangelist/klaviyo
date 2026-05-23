@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TagFlowOp",
+  "title": "TagFlowOp",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/FlowEnum"
+          },
+          "id": {
+            "description": "The IDs of the flows to link or unlink with the given Tag ID",
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

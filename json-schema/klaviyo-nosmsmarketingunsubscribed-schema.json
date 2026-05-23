@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NoSMSMarketingUnsubscribed",
+  "title": "NoSMSMarketingUnsubscribed",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "unsubscribed"
+      ]
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/StatusDateFilter"
+          },
+          {
+            "$ref": "#/components/schemas/FormMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ManualImportManualMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ManualAddManualMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ManualRemoveMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/BulkRemoveMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/CheckoutMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/InboundMessageMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/PreferencePageMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/SftpMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/CarrierDeactivationMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ProvidedLandlineMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/MessageBlockedMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ProvidedNoAgeMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/FailedAgeGateMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ShopifyIntegrationMethodFilter"
+          }
+        ]
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "subscription"
+  ]
+}

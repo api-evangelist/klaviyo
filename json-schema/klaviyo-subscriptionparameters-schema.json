@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscriptionParameters",
+  "title": "SubscriptionParameters",
+  "type": "object",
+  "properties": {
+    "consent": {
+      "description": "The Consent status to be set as part of the subscribe call. Currently supports \"SUBSCRIBED\".",
+      "type": "string",
+      "example": "SUBSCRIBED",
+      "enum": [
+        "SUBSCRIBED"
+      ]
+    },
+    "consented_at": {
+      "description": "The timestamp of when the profile's consent was gathered. This should only be used when syncing over historical consent info to Klaviyo; if the `historical_import` flag is not included, providing any value for this field will raise an error.",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    }
+  },
+  "required": [
+    "consent"
+  ]
+}

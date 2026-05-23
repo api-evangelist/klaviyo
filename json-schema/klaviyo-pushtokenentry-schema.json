@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PushTokenEntry",
+  "title": "PushTokenEntry",
+  "type": "object",
+  "properties": {
+    "token": {
+      "description": "A push token from APNS or FCM.",
+      "type": "string",
+      "example": "1234567890abcdef"
+    },
+    "platform": {
+      "description": "The platform on which the push token was created. Either \"ios\" or \"android\".",
+      "type": "string",
+      "enum": [
+        "android",
+        "ios"
+      ]
+    },
+    "vendor": {
+      "description": "The vendor of the push token. Either \"apns\" or \"fcm\".",
+      "type": "string",
+      "example": "apns",
+      "enum": [
+        "apns",
+        "fcm"
+      ]
+    },
+    "enablement_status": {
+      "description": "The enablement status for the push token.",
+      "type": "string",
+      "example": "AUTHORIZED",
+      "enum": [
+        "AUTHORIZED",
+        "DENIED",
+        "NOT_DETERMINED",
+        "PROVISIONAL",
+        "UNAUTHORIZED"
+      ],
+      "nullable": true
+    },
+    "background": {
+      "description": "The background state of the push token.",
+      "type": "string",
+      "example": "AVAILABLE",
+      "enum": [
+        "AVAILABLE",
+        "DENIED",
+        "RESTRICTED"
+      ],
+      "nullable": true
+    },
+    "device_metadata": {
+      "description": "Metadata about the device that created the push token.",
+      "$ref": "#/components/schemas/PushTokenDeviceMetadata",
+      "nullable": true
+    }
+  },
+  "required": [
+    "token",
+    "platform",
+    "vendor"
+  ]
+}

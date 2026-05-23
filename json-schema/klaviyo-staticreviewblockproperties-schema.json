@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StaticReviewBlockProperties",
+  "title": "StaticReviewBlockProperties",
+  "type": "object",
+  "properties": {
+    "show_rating": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_reviewer_name": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_product_name": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_variant_name": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "show_verified_badge": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "author_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "quote_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_name_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_variant_name_placeholder": {
+      "type": "string",
+      "nullable": true
+    },
+    "verified_badge_language": {
+      "description": "Review block verified badge language.",
+      "type": "string",
+      "enum": [
+        "dutch",
+        "english",
+        "french",
+        "german",
+        "hungarian",
+        "italian",
+        "japanese",
+        "korean",
+        "portuguese",
+        "spanish"
+      ],
+      "nullable": true
+    },
+    "dynamic": {
+      "type": "boolean",
+      "enum": [
+        false
+      ],
+      "nullable": true
+    },
+    "author": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_name": {
+      "type": "string",
+      "nullable": true
+    },
+    "product_variant_name": {
+      "type": "string",
+      "nullable": true
+    },
+    "quote": {
+      "type": "string",
+      "nullable": true
+    },
+    "stars": {
+      "type": "integer",
+      "nullable": true
+    },
+    "verified": {
+      "type": "boolean",
+      "nullable": true
+    }
+  },
+  "required": [
+    "dynamic"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StatisticsDTO",
+  "title": "StatisticsDTO",
+  "type": "object",
+  "properties": {
+    "average_rating": {
+      "description": "The average rating",
+      "type": "number",
+      "example": 4.5,
+      "nullable": true
+    },
+    "total_reviews": {
+      "description": "The total number of reviews",
+      "type": "integer",
+      "example": 100,
+      "nullable": true
+    },
+    "total_questions": {
+      "description": "The total number of questions",
+      "type": "integer",
+      "example": 50,
+      "nullable": true
+    },
+    "total_ratings": {
+      "description": "The total number of ratings",
+      "type": "integer",
+      "example": 200,
+      "nullable": true
+    },
+    "total_store_reviews": {
+      "description": "The total number of store reviews",
+      "type": "integer",
+      "example": 5000,
+      "nullable": true
+    },
+    "average_store_rating": {
+      "description": "The average rating of store reviews",
+      "type": "number",
+      "example": 2,
+      "nullable": true
+    }
+  }
+}

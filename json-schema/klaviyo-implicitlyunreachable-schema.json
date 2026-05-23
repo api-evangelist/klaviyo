@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImplicitlyUnreachable",
+  "title": "ImplicitlyUnreachable",
+  "type": "object",
+  "properties": {
+    "reachable_status": {
+      "type": "string",
+      "enum": [
+        "implicitly_unreachable"
+      ]
+    }
+  },
+  "required": [
+    "reachable_status"
+  ]
+}

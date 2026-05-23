@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Close",
+  "title": "Close",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "submit": {
+      "type": "boolean"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "close"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/CloseProperties",
+      "nullable": true
+    }
+  },
+  "required": [
+    "submit",
+    "type"
+  ]
+}

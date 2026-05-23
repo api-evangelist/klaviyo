@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignsEmailTrackingOptions",
+  "title": "CampaignsEmailTrackingOptions",
+  "type": "object",
+  "properties": {
+    "add_tracking_params": {
+      "description": "Whether the campaign needs custom tracking parameters. If set to False, tracking params will not be used.",
+      "type": "boolean",
+      "nullable": true
+    },
+    "custom_tracking_params": {
+      "description": "A list of custom tracking parameters. If an empty list is given and add_tracking_params is True, uses company defaults.",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DynamicTrackingParam"
+          },
+          {
+            "$ref": "#/components/schemas/StaticTrackingParam"
+          }
+        ]
+      },
+      "nullable": true
+    },
+    "is_tracking_clicks": {
+      "description": "Whether the campaign is tracking click events. If not specified, uses company defaults.",
+      "type": "boolean",
+      "nullable": true
+    },
+    "is_tracking_opens": {
+      "description": "Whether the campaign is tracking open events. If not specified, uses company defaults.",
+      "type": "boolean",
+      "nullable": true
+    }
+  }
+}

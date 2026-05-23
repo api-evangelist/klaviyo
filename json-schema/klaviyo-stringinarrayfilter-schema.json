@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StringInArrayFilter",
+  "title": "StringInArrayFilter",
+  "type": "object",
+  "properties": {
+    "operator": {
+      "type": "string",
+      "enum": [
+        "in"
+      ]
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "string"
+      ]
+    }
+  },
+  "required": [
+    "operator",
+    "value",
+    "type"
+  ]
+}

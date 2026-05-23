@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetricCreateQueryResourceObject",
+  "title": "MetricCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/MetricEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the event. Must be less than 128 characters.",
+          "type": "string",
+          "example": "Viewed Product"
+        },
+        "service": {
+          "description": "This is for advanced usage. For api requests, this should use the default, which is set to api.",
+          "type": "string",
+          "nullable": true
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

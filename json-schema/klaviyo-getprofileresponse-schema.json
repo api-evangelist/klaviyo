@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetProfileResponse",
+  "title": "GetProfileResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "allOf": [
+        {
+          "properties": {
+            "type": {
+              "$ref": "#/components/schemas/ProfileEnum"
+            },
+            "attributes": {
+              "properties": {
+                "subscriptions": {
+                  "$ref": "#/components/schemas/Subscriptions",
+                  "nullable": true
+                },
+                "predictive_analytics": {
+                  "$ref": "#/components/schemas/PredictiveAnalytics",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/components/schemas/ProfileResponseObjectResource"
+        }
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

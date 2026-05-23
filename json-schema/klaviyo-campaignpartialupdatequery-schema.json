@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignPartialUpdateQuery",
+  "title": "CampaignPartialUpdateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CampaignPartialUpdateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

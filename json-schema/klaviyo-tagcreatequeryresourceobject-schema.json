@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TagCreateQueryResourceObject",
+  "title": "TagCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TagEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The Tag name",
+          "type": "string",
+          "example": "My Tag"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "tag-group": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/TagGroupEnum"
+                },
+                "id": {
+                  "description": "The ID of the Tag Group to associate the Tag with. If this field is not specified, the Tag will be associated with the company's Default Tag Group.",
+                  "type": "string",
+                  "example": "zyxw9876-vu54-ts32-rq10-zyxwvu654321"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

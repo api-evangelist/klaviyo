@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TemplateDefinition",
+  "title": "TemplateDefinition",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "template_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "body": {
+      "$ref": "#/components/schemas/Body"
+    },
+    "styles": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BaseStyle"
+          },
+          {
+            "$ref": "#/components/schemas/TextStyleV1"
+          },
+          {
+            "$ref": "#/components/schemas/Heading1Style"
+          },
+          {
+            "$ref": "#/components/schemas/Heading2Style"
+          },
+          {
+            "$ref": "#/components/schemas/Heading3Style"
+          },
+          {
+            "$ref": "#/components/schemas/Heading4Style"
+          },
+          {
+            "$ref": "#/components/schemas/LinkStyle"
+          },
+          {
+            "$ref": "#/components/schemas/MobileStyle"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "body",
+    "styles"
+  ]
+}

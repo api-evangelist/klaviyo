@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogCategoryUpdateQueryResourceObject",
+  "title": "CatalogCategoryUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/CatalogCategoryEnum"
+    },
+    "id": {
+      "description": "The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.",
+      "type": "string",
+      "example": "$custom:::$default:::SAMPLE-DATA-CATEGORY-APPAREL"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the catalog category.",
+          "type": "string",
+          "example": "Sample Data Category Apparel",
+          "nullable": true
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "id"
+                ],
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/CatalogItemEnum"
+                  },
+                  "id": {
+                    "description": "A list of catalog item IDs that are in the given category.",
+                    "type": "string",
+                    "example": "$custom:::$default:::SAMPLE-DATA-ITEM-1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

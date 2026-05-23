@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListsAndSegments",
+  "title": "ListsAndSegments",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "lists_and_segments"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/ListsAndSegmentsProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImagePartialUpdateQuery",
+  "title": "ImagePartialUpdateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ImagePartialUpdateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

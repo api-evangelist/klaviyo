@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackInStockEmailConsentCheckbox",
+  "title": "BackInStockEmailConsentCheckbox",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "bis_promotional_email_checkbox"
+      ]
+    },
+    "styles": {
+      "$ref": "#/components/schemas/BackInStockEmailConsentCheckboxStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/BackInStockEmailConsentCheckboxProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileOperationUpdateOrCreateString",
+  "title": "ProfileOperationUpdateOrCreateString",
+  "type": "object",
+  "properties": {
+    "operator": {
+      "description": "The type of operation to perform on a profile property.",
+      "type": "string",
+      "enum": [
+        "create",
+        "update"
+      ]
+    },
+    "property_type": {
+      "type": "string",
+      "enum": [
+        "string"
+      ]
+    },
+    "property_key": {
+      "type": "string"
+    },
+    "property_value": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "operator",
+    "property_type",
+    "property_key",
+    "property_value"
+  ]
+}

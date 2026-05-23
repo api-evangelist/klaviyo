@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackInStockDynamicButtonDropShadowStyles",
+  "title": "BackInStockDynamicButtonDropShadowStyles",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string",
+      "example": "#000000",
+      "default": "#000000"
+    },
+    "blur": {
+      "type": "integer",
+      "example": 15,
+      "default": 15
+    },
+    "x_offset": {
+      "type": "integer",
+      "default": 0
+    },
+    "y_offset": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

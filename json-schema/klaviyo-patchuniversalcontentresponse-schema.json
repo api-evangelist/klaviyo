@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchUniversalContentResponse",
+  "title": "PatchUniversalContentResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/TemplateUniversalContentEnum"
+        },
+        "id": {
+          "description": "The ID of the universal content",
+          "type": "string",
+          "example": "01HWWWKAW4RHXQJCMW4R2KRYR4"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "The name for this universal content",
+              "type": "string"
+            },
+            "definition": {
+              "nullable": true,
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/ButtonBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/CouponBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/DropShadowBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/HeaderBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/HorizontalRuleBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/HTMLBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/ImageBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/ProductBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/ReviewBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/SocialBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/SpacerBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/SplitBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/TableBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/TextBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/UnsupportedBlock"
+                },
+                {
+                  "$ref": "#/components/schemas/VideoBlockV0"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionV0"
+                }
+              ]
+            },
+            "created": {
+              "description": "The datetime when this universal content was created",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00"
+            },
+            "updated": {
+              "description": "The datetime when this universal content was updated",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00"
+            },
+            "screenshot_status": {
+              "description": "The status of a universal content screenshot.",
+              "type": "string",
+              "enum": [
+                "completed",
+                "failed",
+                "generating",
+                "never_generated",
+                "not_renderable",
+                "stale"
+              ]
+            },
+            "screenshot_url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "created",
+            "updated",
+            "screenshot_status",
+            "screenshot_url"
+          ]
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

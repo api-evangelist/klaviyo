@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostSegmentSeriesResponseDTO",
+  "title": "PostSegmentSeriesResponseDTO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/SegmentSeriesReportEnum"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "description": "An array of all the returned values data.\nEach object in the array represents one unique grouping and the results for that grouping.\nEach value in the results array corresponds to the date time at the same index.",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SeriesData"
+              },
+              "example": [
+                {
+                  "groupings": {
+                    "segment_id": "abc123"
+                  },
+                  "statistics": {
+                    "total_members": [
+                      120,
+                      185,
+                      240
+                    ],
+                    "net_members_changed": [
+                      40,
+                      62,
+                      88
+                    ]
+                  }
+                },
+                {
+                  "groupings": {
+                    "segment_id": "def456"
+                  },
+                  "statistics": {
+                    "total_members": [
+                      103,
+                      163,
+                      213
+                    ],
+                    "net_members_changed": [
+                      36,
+                      66,
+                      86
+                    ]
+                  }
+                }
+              ]
+            },
+            "date_times": {
+              "description": "An array of date times which correspond to the equivalent index in the results data.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "example": [
+                "2024-01-05T00:00:00+00:00",
+                "2024-01-06T00:00:00+00:00",
+                "2024-01-07T00:00:00+00:00"
+              ]
+            }
+          },
+          "required": [
+            "results",
+            "date_times"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NextStepProperties",
+  "title": "NextStepProperties",
+  "type": "object",
+  "properties": {
+    "list_id": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

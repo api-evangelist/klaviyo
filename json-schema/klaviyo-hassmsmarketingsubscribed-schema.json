@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HasSMSMarketingSubscribed",
+  "title": "HasSMSMarketingSubscribed",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "string",
+      "enum": [
+        "subscribed"
+      ]
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/StatusDateFilter"
+          },
+          {
+            "$ref": "#/components/schemas/FormMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ManualImportManualMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ManualAddManualMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/CheckoutMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/InboundMessageMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/PreferencePageMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/SftpMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/ShopifyIntegrationMethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/SubscribedSMSIsRcsCapableFilter"
+          }
+        ]
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "subscription"
+  ]
+}

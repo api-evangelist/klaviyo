@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HeaderBlockV1",
+  "title": "HeaderBlockV1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "universal_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "header"
+      ]
+    },
+    "data": {
+      "$ref": "#/components/schemas/HeaderBlockData",
+      "nullable": true
+    },
+    "subblocks": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/HeaderLinkSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/HeaderImageSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/HeaderLogoSubBlock"
+          }
+        ]
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TagGroupCreateQueryResourceObject",
+  "title": "TagGroupCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TagGroupEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The Tag Group name",
+          "type": "string",
+          "example": "My Tag Group"
+        },
+        "exclusive": {
+          "type": "boolean",
+          "default": false,
+          "nullable": true
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

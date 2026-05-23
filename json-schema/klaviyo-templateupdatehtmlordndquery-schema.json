@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TemplateUpdateHtmlOrDndQuery",
+  "title": "TemplateUpdateHtmlOrDndQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/TemplateUpdateHtmlOrDndQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

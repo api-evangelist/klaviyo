@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CalendarDateFilter",
+  "title": "CalendarDateFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "description": "Operators for calendar date filters.",
+      "type": "string",
+      "enum": [
+        "calendar-month"
+      ]
+    },
+    "value": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmailChannel",
+  "title": "EmailChannel",
+  "type": "object",
+  "properties": {
+    "marketing": {
+      "description": "The email marketing subscription.",
+      "$ref": "#/components/schemas/EmailMarketing",
+      "nullable": true
+    }
+  }
+}

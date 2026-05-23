@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CouponBlockStyles",
+  "title": "CouponBlockStyles",
+  "type": "object",
+  "properties": {
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "border_radius": {
+      "type": "integer",
+      "nullable": true
+    },
+    "border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "color": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "header_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "header_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "header_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "mobile_stretch_content": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "stretch": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "text_align": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "text_decoration": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

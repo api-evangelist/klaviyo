@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RelativeAnniversaryDateFilter",
+  "title": "RelativeAnniversaryDateFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "description": "Operators for relative date filters.\n\ne.g. \"anniversary in the last 10 days\"",
+      "type": "string",
+      "enum": [
+        "anniversary-last",
+        "anniversary-next"
+      ]
+    },
+    "unit": {
+      "description": "Units for relative date filters.",
+      "type": "string",
+      "enum": [
+        "day",
+        "hour",
+        "week"
+      ]
+    },
+    "quantity": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "unit",
+    "quantity"
+  ]
+}

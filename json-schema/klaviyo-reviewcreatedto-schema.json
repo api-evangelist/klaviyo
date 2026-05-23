@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewCreateDTO",
+  "title": "ReviewCreateDTO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/ReviewCreateDTOResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ColumnStyles",
+  "title": "ColumnStyles",
+  "type": "object",
+  "properties": {
+    "background_image": {
+      "$ref": "#/components/schemas/BackgroundImage",
+      "nullable": true
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

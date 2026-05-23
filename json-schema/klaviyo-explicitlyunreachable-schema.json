@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExplicitlyUnreachable",
+  "title": "ExplicitlyUnreachable",
+  "type": "object",
+  "properties": {
+    "reachable_status": {
+      "type": "string",
+      "enum": [
+        "explicitly_unreachable"
+      ]
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/EffectiveDateFilter"
+          },
+          {
+            "$ref": "#/components/schemas/RecordedDateFilter"
+          },
+          {
+            "$ref": "#/components/schemas/MethodFilter"
+          },
+          {
+            "$ref": "#/components/schemas/FormSubscribeFilter"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "reachable_status",
+    "filters"
+  ]
+}

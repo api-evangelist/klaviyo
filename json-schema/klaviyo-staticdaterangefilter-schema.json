@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StaticDateRangeFilter",
+  "title": "StaticDateRangeFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "date"
+      ]
+    },
+    "operator": {
+      "description": "Operators for static date range filters.\n\nE.g. \"between 2023-01-01 and 2023-02-01\"",
+      "type": "string",
+      "enum": [
+        "between-static"
+      ]
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2022-11-08T00:00:00+00:00"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2022-11-08T00:00:00+00:00"
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "start",
+    "end"
+  ]
+}

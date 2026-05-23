@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicTrackingParam",
+  "title": "DynamicTrackingParam",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of the tracking parameter",
+      "type": "string",
+      "enum": [
+        "dynamic"
+      ]
+    },
+    "value": {
+      "description": "The value of the tracking parameter",
+      "type": "string",
+      "enum": [
+        "campaign_id",
+        "campaign_name",
+        "campaign_name_id",
+        "campaign_name_send_day",
+        "email_subject",
+        "group_id",
+        "group_name",
+        "group_name_id",
+        "link_alt_text",
+        "message_type",
+        "profile_external_id",
+        "profile_id"
+      ]
+    },
+    "name": {
+      "description": "Name of the tracking param",
+      "type": "string",
+      "example": "utm_medium"
+    }
+  },
+  "required": [
+    "type",
+    "value",
+    "name"
+  ]
+}

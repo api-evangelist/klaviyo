@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogVariantCreateQuery",
+  "title": "CatalogVariantCreateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CatalogVariantCreateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

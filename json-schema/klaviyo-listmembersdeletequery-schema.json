@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListMembersDeleteQuery",
+  "title": "ListMembersDeleteQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ProfileEnum"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

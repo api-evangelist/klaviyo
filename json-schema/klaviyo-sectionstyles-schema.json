@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SectionStyles",
+  "title": "SectionStyles",
+  "type": "object",
+  "properties": {
+    "background_asset_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "background_format": {
+      "description": "Background format.",
+      "type": "string",
+      "enum": [
+        "auto",
+        "contain",
+        "cover",
+        "initial",
+        "repeat"
+      ],
+      "nullable": true
+    },
+    "background_image_full_width": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "background_position": {
+      "description": "Background position.",
+      "type": "string",
+      "enum": [
+        "center-bottom",
+        "center-center",
+        "center-top",
+        "left-bottom",
+        "left-center",
+        "left-top",
+        "right-bottom",
+        "right-center",
+        "right-top"
+      ],
+      "nullable": true
+    },
+    "background_repeat": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "background_url": {
+      "type": "string",
+      "nullable": true
+    },
+    "border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "column_align": {
+      "description": "Vertical alignment.",
+      "type": "string",
+      "enum": [
+        "baseline",
+        "bottom",
+        "middle",
+        "top"
+      ],
+      "nullable": true
+    },
+    "column_direction": {
+      "description": "Stacking direction.",
+      "type": "string",
+      "enum": [
+        "ltr",
+        "no-stack",
+        "rtl"
+      ],
+      "nullable": true
+    },
+    "content_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "content_color_type": {
+      "description": "Content color type.",
+      "type": "string",
+      "enum": [
+        "none",
+        "section",
+        "template"
+      ],
+      "nullable": true
+    },
+    "inner_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "inner_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "stack_on_mobile": {
+      "type": "boolean",
+      "nullable": true
+    }
+  }
+}

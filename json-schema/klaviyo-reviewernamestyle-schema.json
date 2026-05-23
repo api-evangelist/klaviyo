@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewerNameStyle",
+  "title": "ReviewerNameStyle",
+  "type": "object",
+  "properties": {
+    "layout": {
+      "description": "Enumeration for review name layouts.",
+      "type": "string",
+      "example": "stacked",
+      "default": "stacked",
+      "enum": [
+        "inline",
+        "stacked"
+      ]
+    },
+    "font_family": {
+      "type": "string",
+      "example": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+      "default": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+    },
+    "font_size": {
+      "type": "integer",
+      "example": 16,
+      "default": 16
+    },
+    "text_color": {
+      "type": "string",
+      "example": "#000000",
+      "default": "#000000"
+    },
+    "character_spacing": {
+      "type": "integer",
+      "default": 0
+    },
+    "font_weight": {
+      "type": "integer",
+      "example": 400,
+      "default": 400
+    },
+    "alignment": {
+      "description": "Horizontal alignment enumeration.",
+      "type": "string",
+      "example": "center",
+      "default": "center",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ]
+    },
+    "line_height": {
+      "type": "number",
+      "example": 1.5,
+      "default": 1.5
+    }
+  }
+}

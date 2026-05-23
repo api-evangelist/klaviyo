@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SplitBlockStyles",
+  "title": "SplitBlockStyles",
+  "type": "object",
+  "properties": {
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "column_widths": {
+      "type": "string",
+      "nullable": true
+    },
+    "mobile_stack_order": {
+      "description": "Stacking direction.",
+      "type": "string",
+      "enum": [
+        "ltr",
+        "no-stack",
+        "rtl"
+      ],
+      "nullable": true
+    },
+    "padding_in_between": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

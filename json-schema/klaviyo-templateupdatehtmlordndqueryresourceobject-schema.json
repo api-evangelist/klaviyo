@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TemplateUpdateHtmlOrDndQueryResourceObject",
+  "title": "TemplateUpdateHtmlOrDndQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TemplateEnum"
+    },
+    "id": {
+      "description": "The ID of template",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the template",
+          "type": "string",
+          "example": "Monthly Newsletter Template",
+          "nullable": true
+        },
+        "html": {
+          "description": "The HTML contents of the template. Not allowed for SYSTEM_DRAGGABLE templates.",
+          "type": "string",
+          "example": "\n              <html>\n                  <body>\n                      hello world\n                  </body>\n              </html>\n          ",
+          "nullable": true
+        },
+        "definition": {
+          "description": "The template definition for SYSTEM_DRAGGABLE templates. Entirely replaces the existing definition. Not allowed for CODE/USER_DRAGGABLE.",
+          "$ref": "#/components/schemas/TemplateDefinition",
+          "nullable": true
+        },
+        "text": {
+          "description": "The plaintext of the template",
+          "type": "string",
+          "example": "hello world",
+          "nullable": true
+        },
+        "amp": {
+          "description": "The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo Not allowed for SYSTEM_DRAGGABLE.",
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

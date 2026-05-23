@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Device",
+  "title": "Device",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "device"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/DeviceProperties"
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

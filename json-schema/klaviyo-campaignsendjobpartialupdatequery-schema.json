@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignSendJobPartialUpdateQuery",
+  "title": "CampaignSendJobPartialUpdateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CampaignSendJobPartialUpdateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

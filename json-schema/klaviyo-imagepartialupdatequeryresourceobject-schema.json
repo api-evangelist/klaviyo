@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImagePartialUpdateQueryResourceObject",
+  "title": "ImagePartialUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ImageEnum"
+    },
+    "id": {
+      "description": "The ID of the image",
+      "type": "string",
+      "example": "7"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A name for the image.",
+          "type": "string",
+          "nullable": true
+        },
+        "hidden": {
+          "description": "If true, this image is not shown in the asset library.",
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

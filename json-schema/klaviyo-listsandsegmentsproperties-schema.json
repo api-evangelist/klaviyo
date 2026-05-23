@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListsAndSegmentsProperties",
+  "title": "ListsAndSegmentsProperties",
+  "type": "object",
+  "properties": {
+    "allow_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "nullable": true
+    },
+    "deny_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "nullable": true
+    }
+  }
+}

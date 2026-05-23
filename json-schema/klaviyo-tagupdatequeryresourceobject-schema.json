@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TagUpdateQueryResourceObject",
+  "title": "TagUpdateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TagEnum"
+    },
+    "id": {
+      "description": "The Tag ID",
+      "type": "string",
+      "example": "abcd1234-ef56-gh78-ij90-abcdef123456"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The Tag name",
+          "type": "string",
+          "example": "My Tag"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

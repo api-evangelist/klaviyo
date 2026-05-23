@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VersionStyles",
+  "title": "VersionStyles",
+  "type": "object",
+  "properties": {
+    "wrap_content": {
+      "type": "boolean",
+      "default": false,
+      "enum": [
+        false
+      ]
+    },
+    "border_styles": {
+      "$ref": "#/components/schemas/BorderStyle",
+      "nullable": true
+    },
+    "close_button": {
+      "$ref": "#/components/schemas/CloseButtonStyle"
+    },
+    "margin": {
+      "$ref": "#/components/schemas/Margin"
+    },
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "minimum_height": {
+      "type": "integer",
+      "example": 250,
+      "default": 250
+    },
+    "width": {
+      "description": "Version width enumeration.",
+      "type": "string",
+      "example": "medium",
+      "default": "medium",
+      "enum": [
+        "custom",
+        "large",
+        "medium",
+        "small"
+      ]
+    },
+    "custom_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "background_image": {
+      "$ref": "#/components/schemas/BackgroundImage",
+      "nullable": true
+    },
+    "background_color": {
+      "type": "string",
+      "example": "#FFFFFF",
+      "default": "#FFFFFF",
+      "nullable": true
+    },
+    "input_styles": {
+      "$ref": "#/components/schemas/InputStyles"
+    },
+    "drop_shadow": {
+      "$ref": "#/components/schemas/DropShadow"
+    },
+    "overlay_color": {
+      "type": "string",
+      "example": "rgba(20,20,20,0.6)",
+      "default": "rgba(20,20,20,0.6)"
+    },
+    "rich_text_styles": {
+      "$ref": "#/components/schemas/RichTextStyles"
+    },
+    "mobile_overlay": {
+      "$ref": "#/components/schemas/MobileOverlay",
+      "nullable": true
+    },
+    "banner_styles": {
+      "$ref": "#/components/schemas/BannerStyles",
+      "nullable": true
+    },
+    "custom_css": {
+      "$ref": "#/components/schemas/CustomCss"
+    }
+  }
+}

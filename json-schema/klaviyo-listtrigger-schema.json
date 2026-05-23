@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListTrigger",
+  "title": "ListTrigger",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "list"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

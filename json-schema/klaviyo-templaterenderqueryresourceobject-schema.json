@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TemplateRenderQueryResourceObject",
+  "title": "TemplateRenderQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/TemplateEnum"
+    },
+    "id": {
+      "description": "The ID of template",
+      "type": "string"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "description": "The context for the template render. This must be a JSON object which has values for any tags used in the template. See [this doc](https://help.klaviyo.com/hc/en-us/articles/4408802648731) for more details.",
+          "type": "object",
+          "example": {
+            "first_name": "Jane",
+            "last_name": "Smith"
+          }
+        }
+      },
+      "required": [
+        "context"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "attributes"
+  ]
+}

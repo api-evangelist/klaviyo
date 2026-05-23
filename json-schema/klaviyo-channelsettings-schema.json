@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChannelSettings",
+  "title": "ChannelSettings",
+  "type": "object",
+  "properties": {
+    "sms": {
+      "$ref": "#/components/schemas/PhoneNumberConsentChannelSettings"
+    },
+    "whatsapp": {
+      "$ref": "#/components/schemas/PhoneNumberConsentChannelSettings"
+    }
+  }
+}

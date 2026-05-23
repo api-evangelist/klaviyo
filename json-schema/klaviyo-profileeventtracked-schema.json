@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileEventTracked",
+  "title": "ProfileEventTracked",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "profile_event_tracked"
+      ]
+    },
+    "properties": {
+      "$ref": "#/components/schemas/ProfileEventTrackedProperties"
+    }
+  },
+  "required": [
+    "type",
+    "properties"
+  ]
+}

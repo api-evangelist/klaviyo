@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubmitBackInStockProperties",
+  "title": "SubmitBackInStockProperties",
+  "type": "object",
+  "properties": {
+    "list_id": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

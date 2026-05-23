@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostSegmentCreateResponse",
+  "title": "PostSegmentCreateResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/SegmentEnum"
+        },
+        "id": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "A helpful name to label the segment",
+              "type": "string",
+              "example": "Repeat Purchasers",
+              "nullable": true
+            },
+            "definition": {
+              "$ref": "#/components/schemas/SegmentDefinition",
+              "nullable": true
+            },
+            "created": {
+              "description": "Date and time when the segment was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00",
+              "nullable": true
+            },
+            "updated": {
+              "description": "Date and time when the segment was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)",
+              "type": "string",
+              "format": "date-time",
+              "example": "2022-11-08T00:00:00+00:00",
+              "nullable": true
+            },
+            "is_active": {
+              "description": "Whether the segment is active. Inactive segments are not processed and their membership does not update.",
+              "type": "boolean"
+            },
+            "is_processing": {
+              "type": "boolean"
+            },
+            "is_starred": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "is_active",
+            "is_processing",
+            "is_starred"
+          ]
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "profiles": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/ProfileEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "tags": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/TagEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            },
+            "flow-triggers": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "$ref": "#/components/schemas/FlowEnum"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "links": {
+                  "$ref": "#/components/schemas/RelationshipLinks"
+                }
+              }
+            }
+          }
+        },
+        "links": {
+          "$ref": "#/components/schemas/ObjectLinks"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes",
+        "links"
+      ]
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

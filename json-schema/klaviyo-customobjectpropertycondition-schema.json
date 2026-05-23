@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectPropertyCondition",
+  "title": "CustomObjectPropertyCondition",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "custom-object-property"
+      ]
+    },
+    "custom_object_label": {
+      "type": "string"
+    },
+    "field": {
+      "type": "string"
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StringOperatorStringFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StringArrayOperatorStringArrayFilter"
+        },
+        {
+          "$ref": "#/components/schemas/NumericOperatorNumericFilter"
+        },
+        {
+          "$ref": "#/components/schemas/NumericRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/BooleanFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeAnniversaryDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/CalendarDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/AnniversaryDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ListContainsOperatorListContainsFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ListLengthFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ExistenceOperatorExistenceFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "custom_object_label",
+    "field",
+    "filter"
+  ]
+}

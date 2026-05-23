@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuppressionDeleteJobCreateQueryResourceObject",
+  "title": "SuppressionDeleteJobCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ProfileSuppressionBulkDeleteJobEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "description": "The profile(s) to remove suppressions for.",
+          "type": "object",
+          "nullable": true,
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProfileSuppressionDeleteQueryResourceObject"
+              }
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/ListEnum"
+                },
+                "id": {
+                  "description": "The list to pull the profiles to remove suppressions from",
+                  "type": "string",
+                  "example": "Y6nRLr"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        },
+        "segment": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/components/schemas/SegmentEnum"
+                },
+                "id": {
+                  "description": "The segment to pull the profiles to remove suppressions from",
+                  "type": "string",
+                  "example": "Y6nRLr"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileSuppressionCreateQueryResourceObject",
+  "title": "ProfileSuppressionCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ProfileEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "description": "The email of the profile to suppress.",
+          "type": "string",
+          "example": "matt-kemp@klaviyo-demo.com"
+        }
+      },
+      "required": [
+        "email"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

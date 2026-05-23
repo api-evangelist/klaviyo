@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VersionProperties",
+  "title": "VersionProperties",
+  "type": "object",
+  "properties": {
+    "side_image_settings": {
+      "$ref": "#/components/schemas/SideImageSettings",
+      "nullable": true
+    },
+    "click_outside_to_close": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "both",
+          "desktop",
+          "mobile"
+        ],
+        "description": "Enumeration for mobile and desktop."
+      },
+      "nullable": true
+    },
+    "rule_based_trigger_evaluation": {
+      "description": "Side image alignment enumeration.",
+      "type": "string",
+      "example": "any",
+      "default": "any",
+      "enum": [
+        "all",
+        "any"
+      ],
+      "nullable": true
+    },
+    "record_utm_params_on_submit": {
+      "type": "boolean",
+      "default": false
+    },
+    "show_close_button": {
+      "type": "boolean",
+      "example": true,
+      "default": true
+    }
+  }
+}

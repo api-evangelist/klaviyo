@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ButtonStyles",
+  "title": "ButtonStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "width": {
+      "description": "Valid button block widths.",
+      "type": "string",
+      "example": "fill",
+      "default": "fill",
+      "enum": [
+        "fill",
+        "fit"
+      ]
+    },
+    "height": {
+      "example": 50,
+      "default": 50,
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "enum": [
+            "auto"
+          ],
+          "type": "string"
+        }
+      ]
+    },
+    "alignment": {
+      "description": "Horizontal alignment enumeration.",
+      "type": "string",
+      "example": "center",
+      "default": "center",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ]
+    },
+    "hover_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "hover_text_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "border_styles": {
+      "$ref": "#/components/schemas/BorderStyle"
+    },
+    "text_styles": {
+      "$ref": "#/components/schemas/TextStyleV0"
+    },
+    "color": {
+      "type": "string",
+      "nullable": true
+    },
+    "drop_shadow": {
+      "$ref": "#/components/schemas/ButtonDropShadowStyles"
+    }
+  }
+}

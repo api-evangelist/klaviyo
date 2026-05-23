@@ -1,0 +1,390 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductBlockStyles",
+  "title": "ProductBlockStyles",
+  "type": "object",
+  "properties": {
+    "block_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "block_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "block_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_alignment": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "button_background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "button_border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "button_border_radius": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "button_border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_drop_shadow_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "button_font_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "button_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "button_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "button_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "button_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "button_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "description_font_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "description_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "description_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "description_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "description_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "description_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "description_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "description_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "description_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "item_border_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "item_border_style": {
+      "description": "Border style.",
+      "type": "string",
+      "enum": [
+        "dashed",
+        "dotted",
+        "groove",
+        "inset",
+        "none",
+        "outset",
+        "ridge",
+        "solid"
+      ],
+      "nullable": true
+    },
+    "item_border_width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "item_max_height": {
+      "type": "integer",
+      "nullable": true
+    },
+    "item_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "item_padding_left": {
+      "type": "integer",
+      "nullable": true
+    },
+    "item_padding_right": {
+      "type": "integer",
+      "nullable": true
+    },
+    "item_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "item_text_alignment": {
+      "description": "Text Alignment.",
+      "type": "string",
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "nullable": true
+    },
+    "layout": {
+      "description": "Product layout options.",
+      "type": "string",
+      "enum": [
+        "horizontal",
+        "vertical-left-image",
+        "vertical-right-image"
+      ],
+      "nullable": true
+    },
+    "num_columns": {
+      "type": "integer",
+      "nullable": true
+    },
+    "num_rows": {
+      "type": "integer",
+      "nullable": true
+    },
+    "original_price_font_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "original_price_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "original_price_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "original_price_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "original_price_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "original_price_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "price_font_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "price_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "price_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "price_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "price_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "price_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "price_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "price_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "price_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "rating_font_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "rating_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "rating_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "rating_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "rating_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "rating_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "rating_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "rating_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "rating_text_decoration": {
+      "type": "string",
+      "nullable": true
+    },
+    "stack_on_mobile": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "title_font_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "title_font_family": {
+      "type": "string",
+      "nullable": true
+    },
+    "title_font_size": {
+      "type": "integer",
+      "nullable": true
+    },
+    "title_font_style": {
+      "description": "Font style.",
+      "type": "string",
+      "enum": [
+        "italic",
+        "normal"
+      ],
+      "nullable": true
+    },
+    "title_font_weight": {
+      "type": "string",
+      "nullable": true
+    },
+    "title_letter_spacing": {
+      "type": "integer",
+      "nullable": true
+    },
+    "title_padding_bottom": {
+      "type": "integer",
+      "nullable": true
+    },
+    "title_padding_top": {
+      "type": "integer",
+      "nullable": true
+    },
+    "title_text_decoration": {
+      "type": "string",
+      "nullable": true
+    }
+  }
+}

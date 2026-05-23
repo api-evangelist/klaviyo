@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageCreateQueryResourceObject",
+  "title": "ImageCreateQueryResourceObject",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/ImageEnum"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.",
+          "type": "string",
+          "nullable": true
+        },
+        "import_from_url": {
+          "description": "An existing image url to import the image from. Alternatively, you may specify a base-64 encoded data-uri (`data:image/...`). Supported image formats: jpeg,png,gif. Maximum image size: 5MB.",
+          "type": "string",
+          "example": "https://www.example.com/example.jpg"
+        },
+        "hidden": {
+          "description": "If true, this image is not shown in the asset library.",
+          "type": "boolean",
+          "default": false,
+          "nullable": true
+        }
+      },
+      "required": [
+        "import_from_url"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "attributes"
+  ]
+}

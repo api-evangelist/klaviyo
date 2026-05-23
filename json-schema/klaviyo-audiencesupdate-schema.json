@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AudiencesUpdate",
+  "title": "AudiencesUpdate",
+  "type": "object",
+  "properties": {
+    "included": {
+      "description": "An optional list of included audiences, will override existing included audiences",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "Y6nRLr"
+      ],
+      "nullable": true
+    },
+    "excluded": {
+      "description": "An optional list of excluded audiences, will override exising excluded audiences",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "UTd5ui"
+      ],
+      "nullable": true
+    }
+  }
+}

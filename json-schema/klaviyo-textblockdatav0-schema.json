@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextBlockDataV0",
+  "title": "TextBlockDataV0",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string"
+    },
+    "display_options": {
+      "$ref": "#/components/schemas/BlockDisplayOptions"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/TextBlockStylesV0"
+    }
+  },
+  "required": [
+    "content",
+    "display_options",
+    "styles"
+  ]
+}

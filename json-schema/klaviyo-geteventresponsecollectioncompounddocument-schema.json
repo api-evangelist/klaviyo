@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetEventResponseCollectionCompoundDocument",
+  "title": "GetEventResponseCollectionCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EventResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/CollectionLinks"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MetricResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/ProfileResponseObjectResource"
+          },
+          {
+            "$ref": "#/components/schemas/AttributionResponseObjectResource"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

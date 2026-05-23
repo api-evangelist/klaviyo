@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RichTextMargin",
+  "title": "RichTextMargin",
+  "type": "object",
+  "properties": {
+    "left": {
+      "type": "integer",
+      "default": 0,
+      "enum": [
+        0
+      ]
+    },
+    "right": {
+      "type": "integer",
+      "default": 0,
+      "enum": [
+        0
+      ]
+    },
+    "top": {
+      "type": "integer",
+      "default": 0,
+      "enum": [
+        0
+      ]
+    },
+    "bottom": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

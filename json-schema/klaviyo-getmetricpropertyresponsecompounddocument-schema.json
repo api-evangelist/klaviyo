@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetMetricPropertyResponseCompoundDocument",
+  "title": "GetMetricPropertyResponseCompoundDocument",
+  "type": "object",
+  "properties": {
+    "data": {
+      "allOf": [
+        {
+          "properties": {
+            "type": {
+              "$ref": "#/components/schemas/MetricPropertyEnum"
+            },
+            "attributes": {
+              "properties": {
+                "sample_values": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  },
+                  "nullable": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/components/schemas/MetricPropertyResponseObjectResource"
+        }
+      ]
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MetricResponseObjectResource"
+      }
+    },
+    "links": {
+      "$ref": "#/components/schemas/ObjectLinks"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

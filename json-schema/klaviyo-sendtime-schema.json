@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendTime",
+  "title": "SendTime",
+  "type": "object",
+  "properties": {
+    "datetime": {
+      "description": "The datetime that the message is to be sent",
+      "type": "string",
+      "format": "date-time",
+      "example": "2022-11-08T00:00:00+00:00"
+    },
+    "is_local": {
+      "description": "Whether that datetime is to be a local datetime for the recipient",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "datetime",
+    "is_local"
+  ]
+}

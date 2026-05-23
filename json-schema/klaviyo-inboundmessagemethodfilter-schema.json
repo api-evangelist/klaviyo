@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InboundMessageMethodFilter",
+  "title": "InboundMessageMethodFilter",
+  "type": "object",
+  "properties": {
+    "field": {
+      "type": "string",
+      "enum": [
+        "method"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "inbound_message"
+      ]
+    }
+  },
+  "required": [
+    "field",
+    "method"
+  ]
+}

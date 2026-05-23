@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfileHasCustomObjectFilter",
+  "title": "ProfileHasCustomObjectFilter",
+  "type": "object",
+  "properties": {
+    "property_id": {
+      "type": "integer"
+    },
+    "filter": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StringOperatorStringFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StringArrayOperatorStringArrayFilter"
+        },
+        {
+          "$ref": "#/components/schemas/NumericOperatorNumericFilter"
+        },
+        {
+          "$ref": "#/components/schemas/NumericRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/BooleanFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/StaticDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeAnniversaryDateFilter"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeDateRangeFilter"
+        },
+        {
+          "$ref": "#/components/schemas/ExistenceOperatorExistenceFilter"
+        }
+      ]
+    }
+  },
+  "required": [
+    "property_id",
+    "filter"
+  ]
+}

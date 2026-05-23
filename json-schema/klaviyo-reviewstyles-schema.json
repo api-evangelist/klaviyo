@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewStyles",
+  "title": "ReviewStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "rating_style": {
+      "$ref": "#/components/schemas/RatingStyle"
+    },
+    "quote_style": {
+      "$ref": "#/components/schemas/QuoteStyle"
+    },
+    "reviewer_name_style": {
+      "$ref": "#/components/schemas/ReviewerNameStyle"
+    },
+    "block_background_color": {
+      "type": "string",
+      "example": "rgba(255, 255, 255, 0)",
+      "default": "rgba(255, 255, 255, 0)"
+    }
+  }
+}

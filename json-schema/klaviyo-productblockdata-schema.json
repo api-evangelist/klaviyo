@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductBlockData",
+  "title": "ProductBlockData",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StaticProductBlockProperties"
+        },
+        {
+          "$ref": "#/components/schemas/DynamicProductBlockProperties"
+        }
+      ]
+    },
+    "display_options": {
+      "$ref": "#/components/schemas/DisplayOptions"
+    },
+    "styles": {
+      "$ref": "#/components/schemas/ProductBlockStyles"
+    }
+  },
+  "required": [
+    "properties",
+    "display_options",
+    "styles"
+  ]
+}

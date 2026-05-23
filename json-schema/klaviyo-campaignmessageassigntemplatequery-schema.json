@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CampaignMessageAssignTemplateQuery",
+  "title": "CampaignMessageAssignTemplateQuery",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/CampaignMessageAssignTemplateQueryResourceObject"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

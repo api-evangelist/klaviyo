@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RejectReasonProfanity",
+  "title": "RejectReasonProfanity",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "description": "rejected due to profanity or inappropriate content",
+      "type": "string",
+      "enum": [
+        "profanity_or_inappropriate"
+      ]
+    }
+  },
+  "required": [
+    "reason"
+  ]
+}

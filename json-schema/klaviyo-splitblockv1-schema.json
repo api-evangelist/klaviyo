@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SplitBlockV1",
+  "title": "SplitBlockV1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "data_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "universal_id": {
+      "type": "string",
+      "nullable": true,
+      "readOnly": true
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "block"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "split"
+      ]
+    },
+    "data": {
+      "$ref": "#/components/schemas/SplitBlockData",
+      "nullable": true
+    },
+    "subblocks": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TableTextSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/TableImageSubBlock"
+          },
+          {
+            "$ref": "#/components/schemas/TableHtmlSubBlock"
+          }
+        ]
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "content_type",
+    "type",
+    "data"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReviewProductExternalId",
+  "title": "ReviewProductExternalId",
+  "type": "object",
+  "properties": {
+    "external_id": {
+      "description": "The external ID of the product",
+      "type": "string",
+      "example": "7549950034135"
+    },
+    "integration_key": {
+      "description": "The integration key of the product in lowercase",
+      "type": "string",
+      "example": "shopify",
+      "enum": [
+        "shopify",
+        "woocommerce"
+      ]
+    }
+  },
+  "required": [
+    "external_id",
+    "integration_key"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SMSDisclosureStyles",
+  "title": "SMSDisclosureStyles",
+  "type": "object",
+  "properties": {
+    "padding": {
+      "$ref": "#/components/schemas/Padding"
+    },
+    "background_color": {
+      "type": "string",
+      "nullable": true
+    },
+    "link_styles": {
+      "$ref": "#/components/schemas/SMSDisclosureTextStyle"
+    },
+    "text_styles": {
+      "$ref": "#/components/schemas/SMSDisclosureTextStyle"
+    }
+  }
+}

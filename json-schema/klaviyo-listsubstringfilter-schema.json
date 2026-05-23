@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListSubstringFilter",
+  "title": "ListSubstringFilter",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "list"
+      ]
+    },
+    "operator": {
+      "description": "Operators for list substring filters.",
+      "type": "string",
+      "enum": [
+        "contains-substring",
+        "not-contains-substring"
+      ]
+    },
+    "value": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "type",
+    "operator",
+    "value"
+  ]
+}

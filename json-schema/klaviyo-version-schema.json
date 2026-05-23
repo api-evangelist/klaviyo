@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Version",
+  "title": "Version",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Not allowed on create.",
+      "type": "integer",
+      "nullable": true
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Step"
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AfterCloseTimeout"
+          },
+          {
+            "$ref": "#/components/schemas/CartItemCount"
+          },
+          {
+            "$ref": "#/components/schemas/CartProduct"
+          },
+          {
+            "$ref": "#/components/schemas/CartValue"
+          },
+          {
+            "$ref": "#/components/schemas/Channel"
+          },
+          {
+            "$ref": "#/components/schemas/CustomJavascript"
+          },
+          {
+            "$ref": "#/components/schemas/Delay"
+          },
+          {
+            "$ref": "#/components/schemas/Device"
+          },
+          {
+            "$ref": "#/components/schemas/ExitIntent"
+          },
+          {
+            "$ref": "#/components/schemas/IdentifiedProfiles"
+          },
+          {
+            "$ref": "#/components/schemas/ListsAndSegments"
+          },
+          {
+            "$ref": "#/components/schemas/Location"
+          },
+          {
+            "$ref": "#/components/schemas/PageVisits"
+          },
+          {
+            "$ref": "#/components/schemas/PreviouslySubmitted"
+          },
+          {
+            "$ref": "#/components/schemas/ProfileEventTracked"
+          },
+          {
+            "$ref": "#/components/schemas/Scroll"
+          },
+          {
+            "$ref": "#/components/schemas/UnidentifiedProfiles"
+          },
+          {
+            "$ref": "#/components/schemas/URLPatterns"
+          },
+          {
+            "$ref": "#/components/schemas/BackInStock"
+          }
+        ]
+      }
+    },
+    "teasers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Teaser"
+      }
+    },
+    "dynamic_button": {
+      "$ref": "#/components/schemas/DynamicButton",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "nullable": true
+    },
+    "styles": {
+      "$ref": "#/components/schemas/VersionStyles"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/VersionProperties"
+    },
+    "type": {
+      "description": "Form type enumeration.",
+      "type": "string",
+      "example": "popup",
+      "default": "popup",
+      "enum": [
+        "banner",
+        "embed",
+        "flyout",
+        "full_screen",
+        "popup"
+      ]
+    },
+    "location": {
+      "description": "Display location enumeration.",
+      "type": "string",
+      "enum": [
+        "bottom_center",
+        "bottom_left",
+        "bottom_right",
+        "center_left",
+        "center_right",
+        "top_center",
+        "top_left",
+        "top_right"
+      ],
+      "nullable": true
+    },
+    "status": {
+      "description": "Form status enumeration.",
+      "type": "string",
+      "example": "draft",
+      "default": "draft",
+      "enum": [
+        "draft",
+        "live"
+      ]
+    },
+    "ab_test": {
+      "type": "boolean",
+      "default": false
+    },
+    "specialties": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "BACK_IN_STOCK"
+        ],
+        "description": "Form specialty enumeration."
+      }
+    }
+  },
+  "required": [
+    "steps"
+  ]
+}
