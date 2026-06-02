@@ -17,7 +17,7 @@ tags:
 - Ecommerce
 - Automation
 created: '2024-11-07T00:00:00.000Z'
-modified: '2026-05-19'
+modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
 - aid: klaviyo:klaviyo-api
@@ -48,6 +48,8 @@ apis:
     url: https://developers.klaviyo.com/
   - type: OpenAPI
     url: openapi/klaviyo-openapi.json
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
   - type: Reference
     url: https://developers.klaviyo.com/en/reference/api_overview
   - type: Authentication

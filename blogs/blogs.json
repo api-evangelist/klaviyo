@@ -2,13 +2,13 @@
   "repo": "klaviyo",
   "feeds": [
     {
-      "source": "https://www.klaviyo.com/blog",
-      "feed_url": "",
+      "source": "https://status.klaviyo.com/",
+      "feed_url": "https://status.klaviyo.com/history.atom",
       "title": "",
       "saved": 0,
-      "error": "no_feed"
+      "method": "discovered"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
+  "fetched": "2026-06-01T23:35:02Z",
   "post_count": 0
 }

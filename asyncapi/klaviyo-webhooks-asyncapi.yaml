@@ -1,0 +1,603 @@
+asyncapi: 2.6.0
+info:
+  title: Klaviyo Webhooks
+  version: '2026-04-15'
+  description: |
+    AsyncAPI 2.6 description of Klaviyo's system webhook surface. Klaviyo
+    delivers webhook events to subscriber URLs configured via the Webhooks
+    API (POST /api/webhooks). Each delivery is an HTTP POST with a JSON
+    body containing one or more events under `data`, plus a `meta` block
+    with the Klaviyo webhook ID, account ID, and dispatch timestamp.
+
+    Authenticity is verified using an HMAC-SHA256 signature carried in the
+    `Klaviyo-Signature` request header, signed with the webhook's shared
+    secret (minimum 16 characters) configured at webhook creation time.
+
+    Source: https://developers.klaviyo.com/en/docs/working_with_system_webhooks
+  contact:
+    name: Klaviyo Developer Experience Team
+    url: https://developers.klaviyo.com
+    email: developers@klaviyo.com
+  license:
+    name: Klaviyo Legal
+    url: https://www.klaviyo.com/legal
+  termsOfService: https://www.klaviyo.com/legal/api-terms
+  x-apis-io:
+    aid: klaviyo:klaviyo-api:webhooks
+    sourceDocs:
+      - https://developers.klaviyo.com/en/docs/working_with_system_webhooks
+      - https://developers.klaviyo.com/en/reference/webhooks_api_overview
+      - https://developers.klaviyo.com/en/reference/get_webhook_topics
+
+defaultContentType: application/json
+
+servers:
+  subscriber:
+    url: '{subscriberUrl}'
+    protocol: https
+    description: |
+      Subscriber-supplied HTTPS endpoint that Klaviyo POSTs webhook
+      deliveries to. The URL is configured via the Webhooks API
+      (POST https://a.klaviyo.com/api/webhooks) and is truncated when
+      returned by GET endpoints.
+    variables:
+      subscriberUrl:
+        description: Fully qualified HTTPS URL operated by the subscriber.
+        default: https://example.com/webhooks/klaviyo
+
+channels:
+  /klaviyo/webhooks:
+    description: |
+      Single delivery channel. Klaviyo POSTs a `WebhookDelivery` envelope to
+      the subscriber URL for every subscribed topic. The envelope's `data[]`
+      array contains one entry per event, each carrying its `topic` string.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: 0.3.0
+    publish:
+      operationId: receiveKlaviyoWebhook
+      summary: Receive a Klaviyo webhook delivery
+      description: |
+        Klaviyo sends a POST request containing a `WebhookDelivery` envelope.
+        Subscribers must verify the `Klaviyo-Signature` HMAC-SHA256 header
+        using the shared secret before processing.
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: 0.3.0
+      message:
+        oneOf:
+          - $ref: '#/components/messages/BouncedEmail'
+          - $ref: '#/components/messages/ClickedEmail'
+          - $ref: '#/components/messages/DroppedEmail'
+          - $ref: '#/components/messages/ReceivedEmail'
+          - $ref: '#/components/messages/OpenedEmail'
+          - $ref: '#/components/messages/MarkedEmailAsSpam'
+          - $ref: '#/components/messages/SubscribedToEmailMarketing'
+          - $ref: '#/components/messages/UnsubscribedFromEmailMarketing'
+          - $ref: '#/components/messages/ManuallySuppressedFromEmailMarketing'
+          - $ref: '#/components/messages/ManuallyUnsuppressedFromEmailMarketing'
+          - $ref: '#/components/messages/UpdatedEmailPreferences'
+          - $ref: '#/components/messages/SentSms'
+          - $ref: '#/components/messages/ReceivedSms'
+          - $ref: '#/components/messages/ClickedSms'
+          - $ref: '#/components/messages/FailedToDeliverSms'
+          - $ref: '#/components/messages/SubscribedToSmsMarketing'
+          - $ref: '#/components/messages/UnsubscribedFromSmsMarketing'
+          - $ref: '#/components/messages/ReceivedPush'
+          - $ref: '#/components/messages/BouncedPush'
+          - $ref: '#/components/messages/OpenedPush'
+          - $ref: '#/components/messages/ReadyToReview'
+          - $ref: '#/components/messages/SubmittedRating'
+          - $ref: '#/components/messages/SubmittedReview'
+
+components:
+  securitySchemes:
+    klaviyoSignature:
+      type: httpApiKey
+      name: Klaviyo-Signature
+      in: header
+      description: |
+        HMAC-SHA256 signature of the raw request body computed with the
+        webhook's shared secret (set at webhook creation; minimum 16
+        characters). Subscribers must compute the HMAC over the verbatim
+        request body and compare to this header before trusting the
+        payload. The companion `Klaviyo-Timestamp` and `Klaviyo-Webhook-Id`
+        headers convey dispatch time and the webhook identifier.
+
+  messageTraits:
+    KlaviyoWebhookHeaders:
+      headers:
+        type: object
+        required:
+          - Klaviyo-Signature
+          - Klaviyo-Timestamp
+          - Klaviyo-Webhook-Id
+        properties:
+          Klaviyo-Signature:
+            type: string
+            description: HMAC-SHA256 of the request body, signed with the webhook's shared secret.
+          Klaviyo-Timestamp:
+            type: string
+            description: Dispatch time of the webhook request.
+          Klaviyo-Webhook-Id:
+            type: string
+            description: Identifier of the Klaviyo webhook configuration that produced this delivery.
+          Content-Type:
+            type: string
+            enum:
+              - application/json
+            default: application/json
+
+  messages:
+    BouncedEmail:
+      name: BouncedEmail
+      title: Bounced Email
+      summary: Email soft or hard bounced.
+      description: Topic event:klaviyo.bounced_email — delivered when an email soft or hard bounces.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+      examples:
+        - name: BouncedEmailExample
+          summary: Minimal envelope carrying a bounced_email event.
+          payload:
+            data:
+              - external_id: 4L3cwQae2TX
+                topic: event:klaviyo.bounced_email
+                payload:
+                  data:
+                    type: event
+                    id: 4L3cwQae2TX
+                    attributes:
+                      timestamp: 1700503941
+                      event_properties: {}
+                      datetime: '2023-11-20 18:12:21+00:00'
+                      uuid: 58edf080-87d0-11ee-8001-895ec29a6280
+                    relationships:
+                      profile:
+                        data:
+                          type: profile
+                          id: 01H123...
+                      metric:
+                        data:
+                          type: metric
+                          id: ABC123
+            meta:
+              klaviyo_webhook_id: 0123abc
+              timestamp: '2024-01-04T13:05:25.891446+00:00'
+              klaviyo_account_id: abc123
+
+    ClickedEmail:
+      name: ClickedEmail
+      title: Clicked Email
+      summary: Recipient clicked a link in an email.
+      description: Topic event:klaviyo.clicked_email.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    DroppedEmail:
+      name: DroppedEmail
+      title: Dropped Email
+      summary: Email delivery dropped (delivery discrepancy).
+      description: Topic event:klaviyo.dropped_email.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    ReceivedEmail:
+      name: ReceivedEmail
+      title: Received Email
+      summary: Email delivered to the recipient.
+      description: Topic event:klaviyo.received_email.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    OpenedEmail:
+      name: OpenedEmail
+      title: Opened Email
+      summary: Recipient opened an email.
+      description: Topic event:klaviyo.opened_email.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    MarkedEmailAsSpam:
+      name: MarkedEmailAsSpam
+      title: Marked Email as Spam
+      summary: Recipient marked an email as spam.
+      description: Topic event:klaviyo.marked_email_as_spam.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    SubscribedToEmailMarketing:
+      name: SubscribedToEmailMarketing
+      title: Subscribed to Email Marketing
+      summary: Profile granted email marketing consent.
+      description: Topic event:klaviyo.subscribed_to_email_marketing.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    UnsubscribedFromEmailMarketing:
+      name: UnsubscribedFromEmailMarketing
+      title: Unsubscribed from Email Marketing
+      summary: Profile revoked email marketing consent.
+      description: Topic event:klaviyo.unsubscribed_from_email_marketing.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    ManuallySuppressedFromEmailMarketing:
+      name: ManuallySuppressedFromEmailMarketing
+      title: Manually Suppressed from Email Marketing
+      summary: Profile manually suppressed from email marketing.
+      description: Topic event:klaviyo.manually_suppressed_from_email_marketing.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    ManuallyUnsuppressedFromEmailMarketing:
+      name: ManuallyUnsuppressedFromEmailMarketing
+      title: Manually Unsuppressed from Email Marketing
+      summary: Profile manually unsuppressed for email marketing.
+      description: Topic event:klaviyo.manually_unsuppressed_from_email_marketing.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    UpdatedEmailPreferences:
+      name: UpdatedEmailPreferences
+      title: Updated Email Preferences
+      summary: Profile updated their email preferences.
+      description: Topic event:klaviyo.updated_email_preferences.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    SentSms:
+      name: SentSms
+      title: Sent SMS
+      summary: SMS was sent to the recipient.
+      description: Topic event:klaviyo.sent_sms.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+      examples:
+        - name: SentSmsExample
+          summary: Minimal envelope carrying a sent_sms event.
+          payload:
+            data:
+              - external_id: 4L3cwQae2TX
+                topic: event:klaviyo.sent_sms
+                payload:
+                  data:
+                    type: event
+                    id: 4L3cwQae2TX
+                    attributes:
+                      timestamp: 1700503941
+                      event_properties: {}
+                      datetime: '2023-11-20 18:12:21+00:00'
+                      uuid: 58edf080-87d0-11ee-8001-895ec29a6280
+                    relationships:
+                      profile:
+                        data:
+                          type: profile
+                          id: 01H123...
+                      metric:
+                        data:
+                          type: metric
+                          id: SMS001
+            meta:
+              klaviyo_webhook_id: 0123abc
+              timestamp: '2024-01-04T13:05:25.891446+00:00'
+              klaviyo_account_id: abc123
+
+    ReceivedSms:
+      name: ReceivedSms
+      title: Received SMS
+      summary: Inbound SMS received from a profile.
+      description: Topic event:klaviyo.received_sms.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    ClickedSms:
+      name: ClickedSms
+      title: Clicked SMS
+      summary: Recipient clicked a link within an SMS.
+      description: Topic event:klaviyo.clicked_sms.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    FailedToDeliverSms:
+      name: FailedToDeliverSms
+      title: Failed to Deliver SMS
+      summary: SMS could not be delivered.
+      description: Topic event:klaviyo.failed_to_deliver_sms.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    SubscribedToSmsMarketing:
+      name: SubscribedToSmsMarketing
+      title: Subscribed to SMS Marketing
+      summary: Profile granted SMS marketing consent.
+      description: Topic event:klaviyo.subscribed_to_sms_marketing.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    UnsubscribedFromSmsMarketing:
+      name: UnsubscribedFromSmsMarketing
+      title: Unsubscribed from SMS Marketing
+      summary: Profile revoked SMS marketing consent.
+      description: Topic event:klaviyo.unsubscribed_from_sms_marketing.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    ReceivedPush:
+      name: ReceivedPush
+      title: Received Push
+      summary: Recipient received a push notification.
+      description: Topic event:klaviyo.received_push.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    BouncedPush:
+      name: BouncedPush
+      title: Bounced Push
+      summary: Push notification sent but not delivered.
+      description: Topic event:klaviyo.bounced_push.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    OpenedPush:
+      name: OpenedPush
+      title: Opened Push
+      summary: Recipient tapped on a push notification.
+      description: Topic event:klaviyo.opened_push.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    ReadyToReview:
+      name: ReadyToReview
+      title: Ready to Review
+      summary: Product is ready for the customer to review.
+      description: Topic event:klaviyo.ready_to_review.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    SubmittedRating:
+      name: SubmittedRating
+      title: Submitted Rating
+      summary: Customer submitted a product rating.
+      description: Topic event:klaviyo.submitted_rating.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+    SubmittedReview:
+      name: SubmittedReview
+      title: Submitted Review
+      summary: Customer submitted a product review.
+      description: Topic event:klaviyo.submitted_review.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/KlaviyoWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/WebhookDelivery'
+
+  schemas:
+    WebhookDelivery:
+      type: object
+      description: |
+        Top-level envelope POSTed by Klaviyo to subscriber URLs. Contains an
+        array of events under `data` and delivery metadata under `meta`.
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          description: One entry per delivered event.
+          items:
+            $ref: '#/components/schemas/WebhookEventEntry'
+        meta:
+          $ref: '#/components/schemas/WebhookMeta'
+
+    WebhookEventEntry:
+      type: object
+      description: A single event entry within a `WebhookDelivery.data` array.
+      required:
+        - topic
+        - payload
+      properties:
+        external_id:
+          type: string
+          description: Klaviyo-assigned identifier echoed back to the subscriber for this event entry.
+        topic:
+          type: string
+          description: Topic identifier (e.g. event:klaviyo.sent_sms) indicating which event triggered the delivery.
+          enum:
+            - event:klaviyo.bounced_email
+            - event:klaviyo.clicked_email
+            - event:klaviyo.dropped_email
+            - event:klaviyo.received_email
+            - event:klaviyo.opened_email
+            - event:klaviyo.marked_email_as_spam
+            - event:klaviyo.subscribed_to_email_marketing
+            - event:klaviyo.unsubscribed_from_email_marketing
+            - event:klaviyo.manually_suppressed_from_email_marketing
+            - event:klaviyo.manually_unsuppressed_from_email_marketing
+            - event:klaviyo.updated_email_preferences
+            - event:klaviyo.sent_sms
+            - event:klaviyo.received_sms
+            - event:klaviyo.clicked_sms
+            - event:klaviyo.failed_to_deliver_sms
+            - event:klaviyo.subscribed_to_sms_marketing
+            - event:klaviyo.unsubscribed_from_sms_marketing
+            - event:klaviyo.received_push
+            - event:klaviyo.bounced_push
+            - event:klaviyo.opened_push
+            - event:klaviyo.ready_to_review
+            - event:klaviyo.submitted_rating
+            - event:klaviyo.submitted_review
+        payload:
+          $ref: '#/components/schemas/WebhookEventPayload'
+
+    WebhookEventPayload:
+      type: object
+      description: JSON:API style document wrapping the event resource.
+      required:
+        - data
+      properties:
+        data:
+          $ref: '#/components/schemas/EventResource'
+
+    EventResource:
+      type: object
+      description: Klaviyo event resource (type=event).
+      required:
+        - type
+        - id
+        - attributes
+      properties:
+        type:
+          type: string
+          enum:
+            - event
+        id:
+          type: string
+          description: Unique event identifier.
+        attributes:
+          $ref: '#/components/schemas/EventAttributes'
+        relationships:
+          $ref: '#/components/schemas/EventRelationships'
+
+    EventAttributes:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          description: Unix epoch seconds for when the event occurred.
+        event_properties:
+          type: object
+          additionalProperties: true
+          description: Topic-specific properties associated with the event.
+        datetime:
+          type: string
+          description: ISO 8601-style datetime of the event.
+        uuid:
+          type: string
+          description: UUID for the event occurrence.
+
+    EventRelationships:
+      type: object
+      description: JSON:API relationship pointers to the related profile and metric.
+      properties:
+        profile:
+          type: object
+          properties:
+            data:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - profile
+                id:
+                  type: string
+        metric:
+          type: object
+          properties:
+            data:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - metric
+                id:
+                  type: string
+
+    WebhookMeta:
+      type: object
+      description: Delivery metadata accompanying the events.
+      required:
+        - klaviyo_webhook_id
+        - timestamp
+        - klaviyo_account_id
+      properties:
+        klaviyo_webhook_id:
+          type: string
+          description: Identifier of the Klaviyo webhook configuration that emitted this delivery.
+        timestamp:
+          type: string
+          description: ISO 8601 timestamp when Klaviyo dispatched the delivery.
+        klaviyo_account_id:
+          type: string
+          description: Klaviyo account identifier the events originated from.
