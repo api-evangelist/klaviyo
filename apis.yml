@@ -1,10 +1,12 @@
 aid: klaviyo
 name: Klaviyo
 url: https://raw.githubusercontent.com/api-evangelist/klaviyo/refs/heads/main/apis.yml
-description: Klaviyo is a marketing automation and customer data platform built for ecommerce. Build custom integrations to
-  bring data into Klaviyo to create personalized experiences across email, SMS, mobile push, and more. The Klaviyo API exposes
-  profiles, events, lists, segments, campaigns, flows, catalogs, coupons, metrics, reviews, templates, webhooks, and reporting
-  endpoints for building rich integrations and data pipelines.
+description: Klaviyo is a marketing automation and customer data platform built for
+  ecommerce. Build custom integrations to bring data into Klaviyo to create personalized
+  experiences across email, SMS, mobile push, and more. The Klaviyo API exposes profiles,
+  events, lists, segments, campaigns, flows, catalogs, coupons, metrics, reviews,
+  templates, webhooks, and reporting endpoints for building rich integrations and
+  data pipelines.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 kind: contract
 position: Consuming
@@ -22,10 +24,11 @@ specificationVersion: '0.19'
 apis:
 - aid: klaviyo:klaviyo-api
   name: Klaviyo API
-  description: The Klaviyo API provides programmatic access to profiles, events, lists, segments, campaigns, flows, templates,
-    catalogs, coupons, metrics, reviews, forms, images, tags, webhooks, tracking settings, custom objects, conversations,
-    web feeds, data privacy, and reporting. It is used to build personalized customer experiences across email, SMS, mobile
-    push, and other channels for ecommerce brands.
+  description: The Klaviyo API provides programmatic access to profiles, events, lists,
+    segments, campaigns, flows, templates, catalogs, coupons, metrics, reviews, forms,
+    images, tags, webhooks, tracking settings, custom objects, conversations, web
+    feeds, data privacy, and reporting. It is used to build personalized customer
+    experiences across email, SMS, mobile push, and other channels for ecommerce brands.
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
@@ -64,52 +67,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-accounts.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-campaigns.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-catalogs.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-client.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-conversations.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-coupons.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-custom-objects.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-data-privacy.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-events.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-flows.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-forms.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-images.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-lists.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-metrics.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-profiles.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-reporting.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-reviews.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-segments.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-tags.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-templates.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-tracking-settings.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-web-feeds.yaml
-  - type: NaftikoCapability
-    url: capabilities/klaviyo-webhooks.yaml
+  - url: graphql/klaviyo-graphql.md
+    type: GraphQL
 common:
 - type: LinkedIn
   url: https://www.linkedin.com/company/klaviyo

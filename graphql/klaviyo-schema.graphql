@@ -1,0 +1,1090 @@
+"""
+Klaviyo GraphQL Schema
+Conceptual schema modelling the Klaviyo marketing automation and customer data platform API.
+Source: https://developers.klaviyo.com/en/reference/api_overview
+"""
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+scalar URL
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum APIRevision {
+  REV_2024_10_15
+  REV_2024_07_15
+  REV_2024_02_15
+}
+
+enum ChannelType {
+  EMAIL
+  SMS
+  MOBILE_PUSH
+  IN_APP
+  WEB
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  CANCELLED
+}
+
+enum FlowStatus {
+  DRAFT
+  MANUAL
+  LIVE
+  ARCHIVED
+}
+
+enum FlowActionType {
+  SEND_EMAIL
+  SEND_SMS
+  TIME_DELAY
+  CONDITIONAL_SPLIT
+  TRIGGER_SPLIT
+  WEBHOOK
+  EXIT
+}
+
+enum SegmentOperator {
+  AND
+  OR
+}
+
+enum ConditionType {
+  PROPERTY
+  METRIC
+  LIST
+  LOCATION
+  PREDICTIVE
+}
+
+enum ConditionOperator {
+  EQUALS
+  NOT_EQUALS
+  CONTAINS
+  NOT_CONTAINS
+  GREATER_THAN
+  LESS_THAN
+  IS_SET
+  IS_NOT_SET
+  STARTS_WITH
+  ENDS_WITH
+}
+
+enum SuppressionReason {
+  UNSUBSCRIBED
+  BOUNCED
+  SPAM_COMPLAINT
+  INVALID_EMAIL
+  ADMIN_SUPPRESSED
+}
+
+enum DataPrivacyAction {
+  DELETION
+  SUPPRESSION
+  ACCESS
+}
+
+enum DataPrivacyStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETE
+  ERROR
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum CouponCodeStatus {
+  AVAILABLE
+  ASSIGNED
+  REDEEMED
+  EXPIRED
+}
+
+enum AggregateFunction {
+  COUNT
+  SUM
+  AVG
+  MIN
+  MAX
+  UNIQUE
+}
+
+enum AggregateInterval {
+  DAY
+  WEEK
+  MONTH
+  QUARTER
+  YEAR
+}
+
+enum WebhookEventType {
+  PROFILE_CREATED
+  PROFILE_UPDATED
+  LIST_MEMBER_ADDED
+  LIST_MEMBER_REMOVED
+  METRIC_TRIGGERED
+  CAMPAIGN_SENT
+  FLOW_EMAIL_SENT
+  FLOW_SMS_SENT
+  SUBSCRIPTION_CREATED
+  SUBSCRIPTION_UPDATED
+  ORDER_PLACED
+  ORDER_FULFILLED
+  REVIEW_SUBMITTED
+}
+
+enum SubscriptionStatus {
+  SUBSCRIBED
+  UNSUBSCRIBED
+  PENDING
+  NEVER_SUBSCRIBED
+}
+
+enum IntegrationType {
+  ECOMMERCE
+  CRM
+  HELPDESK
+  ANALYTICS
+  LOYALTY
+  SOCIAL
+  CUSTOM
+}
+
+# ---------------------------------------------------------------------------
+# Identity & Access
+# ---------------------------------------------------------------------------
+
+"""Top-level Klaviyo account."""
+type Account {
+  id: ID!
+  name: String!
+  contactEmail: String
+  timezone: String
+  currency: String
+  industry: String
+  website: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  apiKeys: [APIKey!]!
+  clientTokens: [ClientToken!]!
+}
+
+"""Server-side private API key."""
+type APIKey {
+  id: ID!
+  name: String
+  scopes: [String!]!
+  createdAt: DateTime!
+  expiresAt: DateTime
+  lastUsedAt: DateTime
+  active: Boolean!
+}
+
+"""Public client token for browser/mobile track calls."""
+type ClientToken {
+  id: ID!
+  token: String!
+  name: String
+  createdAt: DateTime!
+  active: Boolean!
+}
+
+# ---------------------------------------------------------------------------
+# Profiles
+# ---------------------------------------------------------------------------
+
+"""A Klaviyo profile representing a single contactable person."""
+type Profile {
+  id: ID!
+  email: String
+  phone: String
+  externalId: String
+  firstName: String
+  lastName: String
+  organization: String
+  title: String
+  image: URL
+  location: ProfileLocation
+  properties: JSON
+  subscriptions: [Subscription!]!
+  suppressions: [Suppression!]!
+  bounceRecords: [BounceRecord!]!
+  lists: [List!]!
+  segments: [Segment!]!
+  events: [Event!]!
+  tags: [Tag!]!
+  predictiveAnalytics: PredictiveAnalytics
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Address and geo information for a profile."""
+type ProfileLocation {
+  address1: String
+  address2: String
+  city: String
+  region: String
+  zip: String
+  country: String
+  latitude: Float
+  longitude: Float
+  timezone: String
+}
+
+"""Composite identifier used when upserting a profile."""
+type ProfileIdentifier {
+  email: String
+  phone: String
+  externalId: String
+  klaviyoId: String
+}
+
+"""Klaviyo predictive analytics computed for a profile."""
+type PredictiveAnalytics {
+  historicClv: Float
+  predictedClv: Float
+  totalClv: Float
+  churnProbability: Float
+  expectedDateOfNextOrder: DateTime
+  averageOrderValue: Float
+  historicNumberOfOrders: Int
+  predictedNumberOfOrders: Int
+}
+
+"""A profile that has been suppressed from marketing communications."""
+type SuppressedProfile {
+  id: ID!
+  profile: Profile!
+  suppressions: [Suppression!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A single suppression record attached to a profile."""
+type Suppression {
+  id: ID!
+  reason: SuppressionReason!
+  timestamp: DateTime!
+  channel: ChannelType!
+}
+
+"""A hard or soft bounce record for a profile's email address."""
+type BounceRecord {
+  id: ID!
+  profile: Profile!
+  bounceType: String!
+  bounceCode: String
+  bounceMessage: String
+  occurredAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Events & Metrics
+# ---------------------------------------------------------------------------
+
+"""An action taken by a profile that Klaviyo tracks."""
+type Event {
+  id: ID!
+  profile: Profile!
+  metric: EventMetric!
+  properties: JSON
+  value: Float
+  occurredAt: DateTime!
+  uniqueId: String
+}
+
+"""The metric type referenced by an Event (lightweight reference)."""
+type EventMetric {
+  id: ID!
+  name: String!
+}
+
+"""A Klaviyo metric definition (custom or integration-sourced)."""
+type Metric {
+  id: ID!
+  name: String!
+  integration: Integration
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Aggregated metric data returned from a reporting query."""
+type MetricAggregate {
+  metricId: ID!
+  by: [String!]
+  interval: AggregateInterval
+  results: [MetricAggregateResult!]!
+}
+
+"""A single result row in a metric aggregation."""
+type MetricAggregateResult {
+  dimensions: [String!]
+  dates: [String!]!
+  values: [Float!]!
+}
+
+# ---------------------------------------------------------------------------
+# Lists
+# ---------------------------------------------------------------------------
+
+"""A manually managed list of profiles."""
+type List {
+  id: ID!
+  name: String!
+  optInProcess: String
+  created: DateTime!
+  updated: DateTime!
+  profiles: [ListProfile!]!
+  tags: [Tag!]!
+}
+
+"""The membership record linking a profile to a list."""
+type ListProfile {
+  profileId: ID!
+  profile: Profile!
+  list: List!
+  addedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Segments
+# ---------------------------------------------------------------------------
+
+"""A dynamic, rule-based group of profiles."""
+type Segment {
+  id: ID!
+  name: String!
+  definition: SegmentDefinition!
+  created: DateTime!
+  updated: DateTime!
+  profiles: [SegmentProfile!]!
+  tags: [Tag!]!
+}
+
+"""The membership record linking a profile to a segment."""
+type SegmentProfile {
+  profileId: ID!
+  profile: Profile!
+  segment: Segment!
+}
+
+"""The full rule definition for a segment."""
+type SegmentDefinition {
+  id: ID!
+  conditions: [ConditionalGroup!]!
+  operator: SegmentOperator!
+}
+
+"""A grouped set of conditions joined by an operator."""
+type ConditionalGroup {
+  id: ID!
+  operator: SegmentOperator!
+  conditions: [Condition!]!
+}
+
+"""A single segment filter condition."""
+type Condition {
+  id: ID!
+  type: ConditionType!
+  field: String
+  operator: ConditionOperator!
+  value: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Campaigns
+# ---------------------------------------------------------------------------
+
+"""A one-time or recurring marketing send."""
+type Campaign {
+  id: ID!
+  name: String!
+  status: CampaignStatus!
+  channel: ChannelType!
+  audiences: CampaignAudiences!
+  sendStrategy: CampaignSchedule
+  messages: [CampaignMessage!]!
+  sendJobs: [CampaignSendJob!]!
+  tags: [Tag!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  scheduledAt: DateTime
+  sentAt: DateTime
+}
+
+"""Inclusion and exclusion audience configuration for a campaign."""
+type CampaignAudiences {
+  included: [ID!]!
+  excluded: [ID!]!
+}
+
+"""A single message variant within a campaign."""
+type CampaignMessage {
+  id: ID!
+  campaign: Campaign!
+  channel: ChannelType!
+  template: Template
+  label: String
+  fromEmail: String
+  fromName: String
+  replyToEmail: String
+  subject: String
+  previewText: String
+  content: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""The async job tracking a campaign send operation."""
+type CampaignSendJob {
+  id: ID!
+  campaign: Campaign!
+  status: String!
+  percentComplete: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Scheduling configuration for a campaign."""
+type CampaignSchedule {
+  sendTime: DateTime
+  useSmartSend: Boolean!
+  isLocal: Boolean!
+  batchSize: Int
+}
+
+# ---------------------------------------------------------------------------
+# Flows
+# ---------------------------------------------------------------------------
+
+"""An automated, trigger-based messaging sequence."""
+type Flow {
+  id: ID!
+  name: String!
+  status: FlowStatus!
+  triggerType: String!
+  trigger: FlowTrigger
+  actions: [FlowAction!]!
+  filters: [FlowFilter!]!
+  tags: [Tag!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A step inside a flow (email, SMS, delay, split, webhook, etc.)."""
+type FlowAction {
+  id: ID!
+  flow: Flow!
+  actionType: FlowActionType!
+  settings: JSON
+  messages: [FlowMessage!]!
+  nextActions: [FlowAction!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A message sent by a flow action."""
+type FlowMessage {
+  id: ID!
+  flowAction: FlowAction!
+  channel: ChannelType!
+  template: Template
+  subject: String
+  previewText: String
+  fromEmail: String
+  fromName: String
+  content: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A filter applied to a flow to restrict which profiles enter."""
+type FlowFilter {
+  id: ID!
+  flow: Flow!
+  conditions: [Condition!]!
+}
+
+"""The event or condition that starts a flow."""
+type FlowTrigger {
+  id: ID!
+  type: String!
+  metricId: String
+  listId: String
+  segmentId: String
+  properties: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Templates
+# ---------------------------------------------------------------------------
+
+"""A reusable HTML/text email or SMS template."""
+type Template {
+  id: ID!
+  name: String!
+  html: String
+  text: String
+  blocks: [TemplateBlock!]!
+  editorType: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A drag-and-drop block within a template."""
+type TemplateBlock {
+  id: ID!
+  template: Template!
+  blockType: String!
+  content: JSON
+  order: Int!
+}
+
+# ---------------------------------------------------------------------------
+# Images
+# ---------------------------------------------------------------------------
+
+"""An image asset stored in the Klaviyo image library."""
+type Image {
+  id: ID!
+  name: String
+  imageUrl: URL!
+  format: String
+  width: Int
+  height: Int
+  size: Int
+  hidden: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Catalog
+# ---------------------------------------------------------------------------
+
+"""The root catalog object for an account."""
+type Catalog {
+  id: ID!
+  items: [CatalogItem!]!
+  categories: [CatalogCategory!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A product or service in the catalog."""
+type CatalogItem {
+  id: ID!
+  externalId: String!
+  title: String!
+  description: String
+  url: URL!
+  imageFullUrl: URL
+  imageSmallUrl: URL
+  customMetadata: JSON
+  price: Float
+  published: Boolean!
+  category: CatalogCategory
+  variants: [CatalogVariant!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A specific variant (SKU) of a catalog item."""
+type CatalogVariant {
+  id: ID!
+  externalId: String!
+  catalogItem: CatalogItem!
+  title: String!
+  description: String
+  sku: String
+  price: Float
+  url: URL!
+  imageUrl: URL
+  customMetadata: JSON
+  published: Boolean!
+  inventoryPolicy: Int
+  inventoryQuantity: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A grouping category within the catalog."""
+type CatalogCategory {
+  id: ID!
+  externalId: String!
+  name: String!
+  items: [CatalogItem!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Coupons
+# ---------------------------------------------------------------------------
+
+"""A Klaviyo coupon definition."""
+type Coupon {
+  id: ID!
+  externalId: String
+  name: String!
+  description: String
+  codes: [CouponCode!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A single unique coupon code tied to a coupon definition."""
+type CouponCode {
+  id: ID!
+  coupon: Coupon!
+  code: String!
+  status: CouponCodeStatus!
+  expiresAt: DateTime
+  assignedToProfile: Profile
+  redeemedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Reviews
+# ---------------------------------------------------------------------------
+
+"""A request sent to a profile to submit a product review."""
+type ReviewRequest {
+  id: ID!
+  profile: Profile!
+  catalogItem: CatalogItem!
+  sentAt: DateTime!
+  expiresAt: DateTime
+  review: Review
+}
+
+"""A product review submitted by a profile."""
+type Review {
+  id: ID!
+  reviewRequest: ReviewRequest
+  profile: Profile!
+  catalogItem: CatalogItem!
+  rating: Int!
+  title: String
+  body: String
+  status: ReviewStatus!
+  verifiedPurchase: Boolean!
+  submittedAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Alerts
+# ---------------------------------------------------------------------------
+
+"""A back-in-stock alert subscription for a catalog variant."""
+type BackInStockAlert {
+  id: ID!
+  profile: Profile!
+  catalogVariant: CatalogVariant!
+  channel: ChannelType!
+  createdAt: DateTime!
+}
+
+"""A price-drop alert subscription for a catalog variant."""
+type PriceDropAlert {
+  id: ID!
+  profile: Profile!
+  catalogVariant: CatalogVariant!
+  channel: ChannelType!
+  thresholdPrice: Float
+  createdAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Tags
+# ---------------------------------------------------------------------------
+
+"""A label that can be attached to campaigns, flows, lists, and segments."""
+type Tag {
+  id: ID!
+  name: String!
+  tagGroup: TagGroup
+  campaigns: [Campaign!]!
+  flows: [Flow!]!
+  lists: [List!]!
+  segments: [Segment!]!
+}
+
+"""An optional grouping for tags."""
+type TagGroup {
+  id: ID!
+  name: String!
+  exclusive: Boolean!
+  defaultGroup: Boolean!
+  tags: [Tag!]!
+}
+
+# ---------------------------------------------------------------------------
+# Webhooks
+# ---------------------------------------------------------------------------
+
+"""A webhook endpoint registered to receive Klaviyo events."""
+type WebhookSubscription {
+  id: ID!
+  name: String
+  endpointUrl: URL!
+  eventTypes: [WebhookEventType!]!
+  enabled: Boolean!
+  secret: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A single webhook delivery payload."""
+type WebhookEvent {
+  id: ID!
+  type: WebhookEventType!
+  data: JSON!
+  subscription: WebhookSubscription
+  sentAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Subscriptions
+# ---------------------------------------------------------------------------
+
+"""A profile's opt-in or opt-out record for a channel and list."""
+type Subscription {
+  id: ID!
+  profile: Profile!
+  channel: ChannelType!
+  list: List
+  status: SubscriptionStatus!
+  optInMethod: String
+  optedInAt: DateTime
+  optedOutAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""The opt-in confirmation detail for a subscription."""
+type SubscriptionOptIn {
+  id: ID!
+  subscription: Subscription!
+  optInMessage: String
+  confirmedAt: DateTime
+  ipAddress: String
+}
+
+# ---------------------------------------------------------------------------
+# Integrations
+# ---------------------------------------------------------------------------
+
+"""A third-party integration connected to a Klaviyo account."""
+type Integration {
+  id: ID!
+  name: String!
+  category: IntegrationType!
+  enabled: Boolean!
+  settings: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Web Feeds
+# ---------------------------------------------------------------------------
+
+"""An RSS or web feed used to power dynamic content blocks."""
+type WebFeed {
+  id: ID!
+  name: String!
+  url: URL!
+  params: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Data Privacy
+# ---------------------------------------------------------------------------
+
+"""A GDPR/CCPA data privacy request (deletion, suppression, or access)."""
+type DataPrivacyRequest {
+  id: ID!
+  action: DataPrivacyAction!
+  status: DataPrivacyStatus!
+  identifiers: ProfileIdentifier!
+  requestedAt: DateTime!
+  completedAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Relationships
+# ---------------------------------------------------------------------------
+
+"""Generic relationship edge between two Klaviyo objects."""
+type Relationship {
+  id: ID!
+  fromType: String!
+  fromId: ID!
+  toType: String!
+  toId: ID!
+}
+
+# ---------------------------------------------------------------------------
+# Input Types
+# ---------------------------------------------------------------------------
+
+input ProfileInput {
+  email: String
+  phone: String
+  externalId: String
+  firstName: String
+  lastName: String
+  organization: String
+  title: String
+  properties: JSON
+}
+
+input MetricAggregateQueryInput {
+  metricId: ID!
+  measurements: [AggregateFunction!]!
+  interval: AggregateInterval!
+  by: [String!]
+  dateRange: DateRangeInput!
+  filter: String
+}
+
+input DateRangeInput {
+  start: DateTime!
+  end: DateTime!
+}
+
+input EventInput {
+  profileId: ID
+  profileIdentifier: ProfileIdentifier
+  metricName: String!
+  value: Float
+  properties: JSON
+  occurredAt: DateTime
+  uniqueId: String
+}
+
+input SubscriptionInput {
+  profileId: ID!
+  listId: ID
+  channel: ChannelType!
+  optInMethod: String
+}
+
+input CouponCodeInput {
+  couponId: ID!
+  code: String!
+  expiresAt: DateTime
+}
+
+input DataPrivacyRequestInput {
+  action: DataPrivacyAction!
+  email: String
+  phone: String
+  externalId: String
+}
+
+# ---------------------------------------------------------------------------
+# Query Root
+# ---------------------------------------------------------------------------
+
+type Query {
+  # Account
+  account: Account
+
+  # Profiles
+  profile(id: ID!): Profile
+  profileByEmail(email: String!): Profile
+  profileByPhone(phone: String!): Profile
+  profiles(filter: String, page: Int, pageSize: Int): [Profile!]!
+  suppressedProfiles(page: Int, pageSize: Int): [SuppressedProfile!]!
+
+  # Events & Metrics
+  event(id: ID!): Event
+  events(profileId: ID, metricId: ID, page: Int, pageSize: Int): [Event!]!
+  metric(id: ID!): Metric
+  metrics(page: Int, pageSize: Int): [Metric!]!
+  metricAggregate(query: MetricAggregateQueryInput!): MetricAggregate!
+
+  # Lists
+  list(id: ID!): List
+  lists(page: Int, pageSize: Int): [List!]!
+  listProfiles(listId: ID!, page: Int, pageSize: Int): [ListProfile!]!
+
+  # Segments
+  segment(id: ID!): Segment
+  segments(page: Int, pageSize: Int): [Segment!]!
+  segmentProfiles(segmentId: ID!, page: Int, pageSize: Int): [SegmentProfile!]!
+
+  # Campaigns
+  campaign(id: ID!): Campaign
+  campaigns(status: CampaignStatus, page: Int, pageSize: Int): [Campaign!]!
+
+  # Flows
+  flow(id: ID!): Flow
+  flows(status: FlowStatus, page: Int, pageSize: Int): [Flow!]!
+
+  # Templates
+  template(id: ID!): Template
+  templates(page: Int, pageSize: Int): [Template!]!
+
+  # Images
+  image(id: ID!): Image
+  images(page: Int, pageSize: Int): [Image!]!
+
+  # Catalog
+  catalogItem(id: ID!): CatalogItem
+  catalogItems(categoryId: ID, page: Int, pageSize: Int): [CatalogItem!]!
+  catalogVariant(id: ID!): CatalogVariant
+  catalogCategory(id: ID!): CatalogCategory
+  catalogCategories(page: Int, pageSize: Int): [CatalogCategory!]!
+
+  # Coupons
+  coupon(id: ID!): Coupon
+  coupons(page: Int, pageSize: Int): [Coupon!]!
+  couponCode(id: ID!): CouponCode
+
+  # Reviews
+  review(id: ID!): Review
+  reviews(status: ReviewStatus, page: Int, pageSize: Int): [Review!]!
+
+  # Tags
+  tag(id: ID!): Tag
+  tags(page: Int, pageSize: Int): [Tag!]!
+  tagGroup(id: ID!): TagGroup
+  tagGroups(page: Int, pageSize: Int): [TagGroup!]!
+
+  # Webhooks
+  webhookSubscription(id: ID!): WebhookSubscription
+  webhookSubscriptions(page: Int, pageSize: Int): [WebhookSubscription!]!
+
+  # Web Feeds
+  webFeed(id: ID!): WebFeed
+  webFeeds(page: Int, pageSize: Int): [WebFeed!]!
+
+  # Integrations
+  integration(id: ID!): Integration
+  integrations(page: Int, pageSize: Int): [Integration!]!
+
+  # Data Privacy
+  dataPrivacyRequest(id: ID!): DataPrivacyRequest
+  dataPrivacyRequests(page: Int, pageSize: Int): [DataPrivacyRequest!]!
+
+  # API Keys
+  apiKey(id: ID!): APIKey
+  apiKeys: [APIKey!]!
+}
+
+# ---------------------------------------------------------------------------
+# Mutation Root
+# ---------------------------------------------------------------------------
+
+type Mutation {
+  # Profiles
+  createProfile(input: ProfileInput!): Profile!
+  updateProfile(id: ID!, input: ProfileInput!): Profile!
+  upsertProfile(input: ProfileInput!): Profile!
+  deleteProfile(id: ID!): Boolean!
+  mergeProfiles(masterId: ID!, duplicateId: ID!): Profile!
+
+  # Subscriptions
+  subscribeProfile(input: SubscriptionInput!): Subscription!
+  unsubscribeProfile(profileId: ID!, channel: ChannelType!, listId: ID): Boolean!
+
+  # Events
+  createEvent(input: EventInput!): Event!
+
+  # Lists
+  addProfilesToList(listId: ID!, profileIds: [ID!]!): Boolean!
+  removeProfilesFromList(listId: ID!, profileIds: [ID!]!): Boolean!
+
+  # Campaigns
+  createCampaign(name: String!, channel: ChannelType!): Campaign!
+  updateCampaign(id: ID!, name: String, status: CampaignStatus): Campaign!
+  scheduleCampaign(id: ID!, sendTime: DateTime!): CampaignSendJob!
+  sendCampaign(id: ID!): CampaignSendJob!
+  cancelCampaignSend(id: ID!): Boolean!
+
+  # Flows
+  updateFlowStatus(id: ID!, status: FlowStatus!): Flow!
+
+  # Templates
+  createTemplate(name: String!, html: String, text: String): Template!
+  updateTemplate(id: ID!, name: String, html: String, text: String): Template!
+  deleteTemplate(id: ID!): Boolean!
+  cloneTemplate(id: ID!, name: String!): Template!
+
+  # Images
+  deleteImage(id: ID!): Boolean!
+  updateImage(id: ID!, name: String, hidden: Boolean): Image!
+
+  # Catalog
+  createCatalogItem(externalId: String!, title: String!, url: URL!, price: Float): CatalogItem!
+  updateCatalogItem(id: ID!, title: String, price: Float, published: Boolean): CatalogItem!
+  deleteCatalogItem(id: ID!): Boolean!
+  createCatalogVariant(catalogItemId: ID!, externalId: String!, title: String!, price: Float): CatalogVariant!
+  updateCatalogVariant(id: ID!, price: Float, inventoryQuantity: Int, published: Boolean): CatalogVariant!
+  deleteCatalogVariant(id: ID!): Boolean!
+  createCatalogCategory(externalId: String!, name: String!): CatalogCategory!
+  updateCatalogCategory(id: ID!, name: String): CatalogCategory!
+  deleteCatalogCategory(id: ID!): Boolean!
+
+  # Coupons
+  createCoupon(name: String!, description: String): Coupon!
+  createCouponCode(input: CouponCodeInput!): CouponCode!
+  deleteCouponCode(id: ID!): Boolean!
+
+  # Coupons – bulk
+  bulkCreateCouponCodes(couponId: ID!, codes: [String!]!): [CouponCode!]!
+
+  # Tags
+  createTag(name: String!, tagGroupId: ID): Tag!
+  deleteTag(id: ID!): Boolean!
+  tagCampaign(tagId: ID!, campaignId: ID!): Boolean!
+  tagFlow(tagId: ID!, flowId: ID!): Boolean!
+  tagList(tagId: ID!, listId: ID!): Boolean!
+  tagSegment(tagId: ID!, segmentId: ID!): Boolean!
+
+  # Webhooks
+  createWebhookSubscription(endpointUrl: URL!, eventTypes: [WebhookEventType!]!, name: String): WebhookSubscription!
+  updateWebhookSubscription(id: ID!, endpointUrl: URL, eventTypes: [WebhookEventType!], enabled: Boolean): WebhookSubscription!
+  deleteWebhookSubscription(id: ID!): Boolean!
+
+  # Web Feeds
+  createWebFeed(name: String!, url: URL!): WebFeed!
+  updateWebFeed(id: ID!, name: String, url: URL): WebFeed!
+  deleteWebFeed(id: ID!): Boolean!
+
+  # Data Privacy
+  createDataPrivacyRequest(input: DataPrivacyRequestInput!): DataPrivacyRequest!
+
+  # Back In Stock / Price Drop
+  createBackInStockAlert(profileId: ID!, catalogVariantId: ID!, channel: ChannelType!): BackInStockAlert!
+  createPriceDropAlert(profileId: ID!, catalogVariantId: ID!, channel: ChannelType!, thresholdPrice: Float): PriceDropAlert!
+  deleteBackInStockAlert(id: ID!): Boolean!
+  deletePriceDropAlert(id: ID!): Boolean!
+
+  # API Keys
+  createAPIKey(name: String!, scopes: [String!]!): APIKey!
+  deleteAPIKey(id: ID!): Boolean!
+}
