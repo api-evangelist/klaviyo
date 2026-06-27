@@ -9,13 +9,20 @@
       "method": "none"
     },
     {
+      "source": "https://status.klaviyo.com/history.atom",
+      "feed_url": "https://status.klaviyo.com/history.atom",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://status.klaviyo.com/",
       "feed_url": "https://status.klaviyo.com/history.atom",
       "title": "",
-      "saved": 3,
+      "saved": 0,
       "method": "discovered"
     }
   ],
-  "post_count": 6,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 8,
+  "fetched": "2026-06-27T12:03:07Z"
 }

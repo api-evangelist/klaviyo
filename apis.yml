@@ -92,7 +92,7 @@ common:
   url: https://status.klaviyo.com/
 - type: Blog
   url: https://www.klaviyo.com/blog
-- type: SignUp
+- type: Signup
   url: https://www.klaviyo.com/signup
 - type: Pricing
   url: https://www.klaviyo.com/pricing
