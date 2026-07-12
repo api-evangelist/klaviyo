@@ -70,6 +70,12 @@ apis:
   - url: graphql/klaviyo-graphql.md
     type: GraphQL
 common:
+- type: TrustCenter
+  url: security/klaviyo-trust-center.yml
+- type: DomainSecurity
+  url: security/klaviyo-domain-security.yml
+- type: Authentication
+  url: authentication/klaviyo-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/klaviyo
 - type: Website

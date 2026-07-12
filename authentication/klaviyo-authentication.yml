@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/klaviyo-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Klaviyo-API-Key
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Private key authentication for /api/ endpoints is performed by setting the `Authorization`
+    header to `Klaviyo-API-Key your-private-api-key`<br>For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#authentication
+  sources:
+  - openapi/klaviyo-openapi.json
