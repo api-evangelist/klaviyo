@@ -7,7 +7,20 @@ description: Klaviyo is a marketing automation and customer data platform built 
   events, lists, segments, campaigns, flows, catalogs, coupons, metrics, reviews,
   templates, webhooks, and reporting endpoints for building rich integrations and
   data pipelines.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/klaviyo.png
 kind: contract
 position: Consuming
 access: 3rd-Party
@@ -22,35 +35,18 @@ created: '2024-11-07T00:00:00.000Z'
 modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
-- aid: klaviyo:klaviyo-api
-  name: Klaviyo API
-  description: The Klaviyo API provides programmatic access to profiles, events, lists,
-    segments, campaigns, flows, templates, catalogs, coupons, metrics, reviews, forms,
-    images, tags, webhooks, tracking settings, custom objects, conversations, web
-    feeds, data privacy, and reporting. It is used to build personalized customer
-    experiences across email, SMS, mobile push, and other channels for ecommerce brands.
+- aid: klaviyo:klaviyo-accounts-api
+  name: Klaviyo Accounts API
+  description: accounts
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
-  - Profiles
-  - Events
-  - Lists
-  - Segments
-  - Campaigns
-  - Flows
-  - Catalogs
-  - Coupons
-  - Metrics
-  - Reviews
-  - Templates
-  - Webhooks
-  - Forms
-  - Reporting
+  - Accounts
   properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-accounts-api-openapi.yml
   - type: Documentation
     url: https://developers.klaviyo.com/
-  - type: OpenAPI
-    url: openapi/klaviyo-openapi.json
   - type: AsyncAPI
     url: asyncapi/klaviyo-webhooks-asyncapi.yaml
   - type: Reference
@@ -67,9 +63,671 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - url: graphql/klaviyo-graphql.md
-    type: GraphQL
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-campaigns-api
+  name: Klaviyo Campaigns API
+  description: campaigns
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-catalogs-api
+  name: Klaviyo Catalogs API
+  description: catalogs
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Catalogs
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-catalogs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-client-api
+  name: Klaviyo Client API
+  description: client
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Client
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-client-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-conversations-api
+  name: Klaviyo Conversations API
+  description: conversations
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-coupons-api
+  name: Klaviyo Coupons API
+  description: coupons
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Coupons
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-coupons-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-custom-objects-api
+  name: Klaviyo Custom Objects API
+  description: custom objects
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Custom Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-custom-objects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-data-privacy-api
+  name: Klaviyo Data Privacy API
+  description: data privacy
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Data Privacy
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-data-privacy-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-events-api
+  name: Klaviyo Events API
+  description: events
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-events-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-flows-api
+  name: Klaviyo Flows API
+  description: flows
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-flows-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-forms-api
+  name: Klaviyo Forms API
+  description: forms
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-forms-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-images-api
+  name: Klaviyo Images API
+  description: images
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-images-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-lists-api
+  name: Klaviyo Lists API
+  description: lists
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-lists-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-metrics-api
+  name: Klaviyo Metrics API
+  description: metrics
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-profiles-api
+  name: Klaviyo Profiles API
+  description: profiles
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-reporting-api
+  name: Klaviyo Reporting API
+  description: reporting
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-reporting-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-reviews-api
+  name: Klaviyo Reviews API
+  description: reviews
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-reviews-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-segments-api
+  name: Klaviyo Segments API
+  description: segments
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Segments
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-segments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-tags-api
+  name: Klaviyo Tags API
+  description: tags
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-tags-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-templates-api
+  name: Klaviyo Templates API
+  description: templates
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-templates-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-tracking-settings-api
+  name: Klaviyo Tracking Settings API
+  description: tracking settings
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Tracking Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-tracking-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-web-feeds-api
+  name: Klaviyo Web Feeds API
+  description: web feeds
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Web Feeds
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-web-feeds-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
+- aid: klaviyo:klaviyo-webhooks-api
+  name: Klaviyo Webhooks API
+  description: webhooks
+  humanURL: https://developers.klaviyo.com/
+  baseURL: https://a.klaviyo.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/klaviyo-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.klaviyo.com/
+  - type: AsyncAPI
+    url: asyncapi/klaviyo-webhooks-asyncapi.yaml
+  - type: Reference
+    url: https://developers.klaviyo.com/en/reference/api_overview
+  - type: Authentication
+    url: https://developers.klaviyo.com/en/docs/authenticate_
+  - type: RateLimits
+    url: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - type: Versioning
+    url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - type: ChangeLog
+    url: https://developers.klaviyo.com/en/docs/changelog_
+  - type: SDKs
+    url: https://developers.klaviyo.com/en/docs/sdk_overview
+  - type: GitHub
+    url: https://github.com/klaviyo/openapi
+  - type: GraphQL
+    url: graphql/klaviyo-graphql.md
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/klaviyo/overview
 - type: AgenticAccess
   url: agentic-access/klaviyo-agentic-access.yml
 - type: TrustCenter
