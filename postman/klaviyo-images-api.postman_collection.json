@@ -1,0 +1,1388 @@
+{
+  "info": {
+    "_postman_id": "60bfd872-1b0b-48ba-83de-400a23c25aa0",
+    "name": "Klaviyo Accounts Images API",
+    "description": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:00:49.000Z",
+    "updatedAt": "2026-07-28T02:00:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-60bfd872-1b0b-48ba-83de-400a23c25aa0"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "images",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get Image",
+                  "id": "3433889b-2502-4404-b98c-10102b01137c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/images/:id?fields[image]=size,updated_at",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "images",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[image]",
+                          "value": "size,updated_at"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "0dea2eb0-6e47-4278-b15d-b6642e8ddbf6",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the image"
+                        }
+                      ]
+                    },
+                    "description": "Get the image with the given image ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`images:read`"
+                  },
+                  "response": [
+                    {
+                      "id": "21ee412f-7a28-4631-8024-e38c84af272f",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/images/:id?fields[image]=size,updated_at",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "images",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[image]",
+                              "value": "size,updated_at"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"image_url\": \"<string>\",\n      \"format\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"hidden\": \"<boolean>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"links\": {\n      \"self\": \"<uri>\"\n    }\n  },\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:49.000Z",
+                      "updatedAt": "2026-07-28T02:00:49.000Z",
+                      "uid": "35240-21ee412f-7a28-4631-8024-e38c84af272f"
+                    },
+                    {
+                      "id": "6b47a108-f308-4508-867e-eb9d5bf1b94c",
+                      "name": "Client Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/images/:id?fields[image]=size,updated_at",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "images",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[image]",
+                              "value": "size,updated_at"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:49.000Z",
+                      "updatedAt": "2026-07-28T02:00:49.000Z",
+                      "uid": "35240-6b47a108-f308-4508-867e-eb9d5bf1b94c"
+                    },
+                    {
+                      "id": "5179aa9e-418a-43a5-be20-5f029713e9f9",
+                      "name": "Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/images/:id?fields[image]=size,updated_at",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "images",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[image]",
+                              "value": "size,updated_at"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:49.000Z",
+                      "updatedAt": "2026-07-28T02:00:49.000Z",
+                      "uid": "35240-5179aa9e-418a-43a5-be20-5f029713e9f9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-3433889b-2502-4404-b98c-10102b01137c"
+                },
+                {
+                  "name": "Update Image",
+                  "id": "d3dfd25c-b5eb-4273-89fb-e112001b8566",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"hidden\": \"<boolean>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/images/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "images",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ae5bd9a5-952f-44c9-9343-31bab81ee7f2",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the image"
+                        }
+                      ]
+                    },
+                    "description": "Update the image with the given image ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`images:write`"
+                  },
+                  "response": [
+                    {
+                      "id": "fdc27bfc-76d4-4af7-bbe1-f9af190a3f82",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"hidden\": \"<boolean>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/images/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "images",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"image_url\": \"<string>\",\n      \"format\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"hidden\": \"<boolean>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"links\": {\n      \"self\": \"<uri>\"\n    }\n  },\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:49.000Z",
+                      "updatedAt": "2026-07-28T02:00:49.000Z",
+                      "uid": "35240-fdc27bfc-76d4-4af7-bbe1-f9af190a3f82"
+                    },
+                    {
+                      "id": "39265cfc-0ab9-4244-9fe6-6aae4d92be56",
+                      "name": "Client Error",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"hidden\": \"<boolean>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/images/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "images",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:49.000Z",
+                      "updatedAt": "2026-07-28T02:00:49.000Z",
+                      "uid": "35240-39265cfc-0ab9-4244-9fe6-6aae4d92be56"
+                    },
+                    {
+                      "id": "1f9bb947-194f-4ca6-b7b7-94efcbffa188",
+                      "name": "Server Error",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"hidden\": \"<boolean>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/images/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "images",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:49.000Z",
+                      "updatedAt": "2026-07-28T02:00:49.000Z",
+                      "uid": "35240-1f9bb947-194f-4ca6-b7b7-94efcbffa188"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-d3dfd25c-b5eb-4273-89fb-e112001b8566"
+                }
+              ],
+              "id": "a1613d84-aa0d-42fa-a6ce-a1989302dbf6",
+              "createdAt": "2026-07-28T02:00:49.000Z",
+              "updatedAt": "2026-07-28T02:00:49.000Z",
+              "uid": "35240-a1613d84-aa0d-42fa-a6ce-a1989302dbf6"
+            },
+            {
+              "name": "Get Images",
+              "id": "3d1bbded-93e7-45de-aff3-088b9e3a27cc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/images?fields[image]=size,updated_at&filter=<string>&page[cursor]=<string>&page[size]=20&sort=-format",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "images"
+                  ],
+                  "query": [
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                      "key": "fields[image]",
+                      "value": "size,updated_at"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`, `equals`<br>`updated_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`format`: `any`, `equals`<br>`name`: `any`, `contains`, `ends-with`, `equals`, `starts-with`<br>`size`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`hidden`: `any`, `equals`",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination",
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Default: 20. Min: 1. Max: 100.",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting",
+                      "key": "sort",
+                      "value": "-format"
+                    }
+                  ]
+                },
+                "description": "Get all images in an account.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`images:read`"
+              },
+              "response": [
+                {
+                  "id": "7b394186-19e5-4284-a2e5-2ab5b5715082",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/images?fields[image]=size,updated_at&filter=<string>&page[cursor]=<string>&page[size]=20&sort=-format",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "images"
+                      ],
+                      "query": [
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[image]",
+                          "value": "size,updated_at"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`, `equals`<br>`updated_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`format`: `any`, `equals`<br>`name`: `any`, `contains`, `ends-with`, `equals`, `starts-with`<br>`size`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`hidden`: `any`, `equals`",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination",
+                          "key": "page[cursor]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Default: 20. Min: 1. Max: 100.",
+                          "key": "page[size]",
+                          "value": "20"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting",
+                          "key": "sort",
+                          "value": "-format"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"type\": \"image\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"image_url\": \"<string>\",\n        \"format\": \"<string>\",\n        \"size\": \"<integer>\",\n        \"hidden\": \"<boolean>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"links\": {\n        \"self\": \"<uri>\"\n      }\n    },\n    {\n      \"type\": \"image\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"image_url\": \"<string>\",\n        \"format\": \"<string>\",\n        \"size\": \"<integer>\",\n        \"hidden\": \"<boolean>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"links\": {\n        \"self\": \"<uri>\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"last\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-7b394186-19e5-4284-a2e5-2ab5b5715082"
+                },
+                {
+                  "id": "5870b57b-9721-4393-8b82-085a78029299",
+                  "name": "Client Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/images?fields[image]=size,updated_at&filter=<string>&page[cursor]=<string>&page[size]=20&sort=-format",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "images"
+                      ],
+                      "query": [
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[image]",
+                          "value": "size,updated_at"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`, `equals`<br>`updated_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`format`: `any`, `equals`<br>`name`: `any`, `contains`, `ends-with`, `equals`, `starts-with`<br>`size`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`hidden`: `any`, `equals`",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination",
+                          "key": "page[cursor]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Default: 20. Min: 1. Max: 100.",
+                          "key": "page[size]",
+                          "value": "20"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting",
+                          "key": "sort",
+                          "value": "-format"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-5870b57b-9721-4393-8b82-085a78029299"
+                },
+                {
+                  "id": "ad288031-5341-49cc-8c41-700319e486ec",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/images?fields[image]=size,updated_at&filter=<string>&page[cursor]=<string>&page[size]=20&sort=-format",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "images"
+                      ],
+                      "query": [
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[image]",
+                          "value": "size,updated_at"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`, `equals`<br>`updated_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`format`: `any`, `equals`<br>`name`: `any`, `contains`, `ends-with`, `equals`, `starts-with`<br>`size`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`hidden`: `any`, `equals`",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination",
+                          "key": "page[cursor]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Default: 20. Min: 1. Max: 100.",
+                          "key": "page[size]",
+                          "value": "20"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting",
+                          "key": "sort",
+                          "value": "-format"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-ad288031-5341-49cc-8c41-700319e486ec"
+                }
+              ],
+              "createdAt": "2026-07-28T02:00:49.000Z",
+              "updatedAt": "2026-07-28T02:00:49.000Z",
+              "uid": "35240-3d1bbded-93e7-45de-aff3-088b9e3a27cc"
+            },
+            {
+              "name": "Upload Image From URL",
+              "id": "57cbd4e3-0d0c-4552-9f31-1062264d54a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"attributes\": {\n      \"import_from_url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"hidden\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/images",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "images"
+                  ]
+                },
+                "description": "Import an image from a url or data uri.\n\nIf you want to upload an image from a file, use the Upload Image From File endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`\n\n**Scopes:**\n`images:write`"
+              },
+              "response": [
+                {
+                  "id": "768c5ce5-3c1a-487d-af52-a9f7b1a477fa",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"attributes\": {\n      \"import_from_url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"hidden\": false\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/images",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "images"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"image_url\": \"<string>\",\n      \"format\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"hidden\": \"<boolean>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"links\": {\n      \"self\": \"<uri>\"\n    }\n  },\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-768c5ce5-3c1a-487d-af52-a9f7b1a477fa"
+                },
+                {
+                  "id": "4e9bb678-9d8e-4a6d-b770-461fe3413c52",
+                  "name": "Client Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"attributes\": {\n      \"import_from_url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"hidden\": false\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/images",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "images"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-4e9bb678-9d8e-4a6d-b770-461fe3413c52"
+                },
+                {
+                  "id": "e6e766c7-bef7-4c68-8c64-2ca6dd497688",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"attributes\": {\n      \"import_from_url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"hidden\": false\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/images",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "images"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-e6e766c7-bef7-4c68-8c64-2ca6dd497688"
+                }
+              ],
+              "createdAt": "2026-07-28T02:00:49.000Z",
+              "updatedAt": "2026-07-28T02:00:49.000Z",
+              "uid": "35240-57cbd4e3-0d0c-4552-9f31-1062264d54a4"
+            }
+          ],
+          "id": "2ddf8b0f-4fa1-4748-a7cd-1ab07b22d21e",
+          "createdAt": "2026-07-28T02:00:49.000Z",
+          "updatedAt": "2026-07-28T02:00:49.000Z",
+          "uid": "35240-2ddf8b0f-4fa1-4748-a7cd-1ab07b22d21e"
+        },
+        {
+          "name": "image-upload",
+          "item": [
+            {
+              "name": "Upload Image From File",
+              "id": "4a1e5d50-ae0d-492d-b51f-cd755411184d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.",
+                      "key": "file",
+                      "type": "file",
+                      "value": null
+                    },
+                    {
+                      "description": "A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.",
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "If true, this image is not shown in the asset library.",
+                      "key": "hidden",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/image-upload",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "image-upload"
+                  ]
+                },
+                "description": "Upload an image from a file.\n\nIf you want to import an image from an existing url or a data uri, use the Upload Image From URL endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`\n\n**Scopes:**\n`images:write`"
+              },
+              "response": [
+                {
+                  "id": "dd2fe23d-d2fb-483e-bb47-f9e5130e7f1b",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.",
+                          "key": "file",
+                          "type": "file"
+                        },
+                        {
+                          "description": "A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "If true, this image is not shown in the asset library.",
+                          "key": "hidden",
+                          "value": "false",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/image-upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "image-upload"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"type\": \"image\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"image_url\": \"<string>\",\n      \"format\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"hidden\": \"<boolean>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"links\": {\n      \"self\": \"<uri>\"\n    }\n  },\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-dd2fe23d-d2fb-483e-bb47-f9e5130e7f1b"
+                },
+                {
+                  "id": "c9cb8f04-62e0-4b95-8bc5-5984438a4b67",
+                  "name": "Client Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.",
+                          "key": "file",
+                          "type": "file"
+                        },
+                        {
+                          "description": "A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "If true, this image is not shown in the asset library.",
+                          "key": "hidden",
+                          "value": "false",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/image-upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "image-upload"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-c9cb8f04-62e0-4b95-8bc5-5984438a4b67"
+                },
+                {
+                  "id": "354f4c84-8f0d-4fbc-85f0-deb745403cb4",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.",
+                          "key": "file",
+                          "type": "file"
+                        },
+                        {
+                          "description": "A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "If true, this image is not shown in the asset library.",
+                          "key": "hidden",
+                          "value": "false",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/image-upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "image-upload"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:49.000Z",
+                  "updatedAt": "2026-07-28T02:00:49.000Z",
+                  "uid": "35240-354f4c84-8f0d-4fbc-85f0-deb745403cb4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:00:49.000Z",
+              "updatedAt": "2026-07-28T02:00:49.000Z",
+              "uid": "35240-4a1e5d50-ae0d-492d-b51f-cd755411184d"
+            }
+          ],
+          "id": "cfb1f653-aa28-499e-aecb-bb87cc2c1fa3",
+          "createdAt": "2026-07-28T02:00:49.000Z",
+          "updatedAt": "2026-07-28T02:00:49.000Z",
+          "uid": "35240-cfb1f653-aa28-499e-aecb-bb87cc2c1fa3"
+        }
+      ],
+      "id": "2f22327f-b036-4c3c-ab59-206f3ce7a651",
+      "createdAt": "2026-07-28T02:00:49.000Z",
+      "updatedAt": "2026-07-28T02:00:49.000Z",
+      "uid": "35240-2f22327f-b036-4c3c-ab59-206f3ce7a651"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://a.klaviyo.com"
+    }
+  ]
+}

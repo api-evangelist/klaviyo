@@ -1,0 +1,2154 @@
+{
+  "info": {
+    "_postman_id": "e52eb929-0082-4afe-a628-f134d7ce145f",
+    "name": "Klaviyo Accounts Events API",
+    "description": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:00:42.000Z",
+    "updatedAt": "2026-07-28T02:00:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e52eb929-0082-4afe-a628-f134d7ce145f"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "events",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "metric",
+                  "item": [
+                    {
+                      "name": "Get Metric for Event",
+                      "id": "278444f8-1d17-4e73-81bb-26097a8e7ff1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/events/:id/metric?fields[metric]=name,created",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "events",
+                            ":id",
+                            "metric"
+                          ],
+                          "query": [
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[metric]",
+                              "value": "name,created"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "0091ddd7-c62f-466a-a2bc-91aa48988c9c",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) ID of the event"
+                            }
+                          ]
+                        },
+                        "description": "Get the metric for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`\n`metrics:read`"
+                      },
+                      "response": [
+                        {
+                          "id": "46e3f124-3898-4f21-be55-b84924722218",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                "key": "revision",
+                                "value": "2026-04-15"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/events/:id/metric?fields[metric]=name,created",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "events",
+                                ":id",
+                                "metric"
+                              ],
+                              "query": [
+                                {
+                                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                                  "key": "fields[metric]",
+                                  "value": "name,created"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"type\": \"metric\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"created\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"integration\": {}\n    },\n    \"links\": {\n      \"self\": \"<uri>\"\n    },\n    \"relationships\": {\n      \"flow-triggers\": {\n        \"data\": [\n          {\n            \"type\": \"flow\",\n            \"id\": \"<string>\"\n          },\n          {\n            \"type\": \"flow\",\n            \"id\": \"<string>\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"<uri>\",\n          \"related\": \"<uri>\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:00:42.000Z",
+                          "updatedAt": "2026-07-28T02:00:42.000Z",
+                          "uid": "35240-46e3f124-3898-4f21-be55-b84924722218"
+                        },
+                        {
+                          "id": "dd277522-838e-440e-94ed-073c11f6a06c",
+                          "name": "Client Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                "key": "revision",
+                                "value": "2026-04-15"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/events/:id/metric?fields[metric]=name,created",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "events",
+                                ":id",
+                                "metric"
+                              ],
+                              "query": [
+                                {
+                                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                                  "key": "fields[metric]",
+                                  "value": "name,created"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:00:42.000Z",
+                          "updatedAt": "2026-07-28T02:00:42.000Z",
+                          "uid": "35240-dd277522-838e-440e-94ed-073c11f6a06c"
+                        },
+                        {
+                          "id": "c9088438-c7e1-4776-bffb-f56b32cd4aca",
+                          "name": "Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                "key": "revision",
+                                "value": "2026-04-15"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/events/:id/metric?fields[metric]=name,created",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "events",
+                                ":id",
+                                "metric"
+                              ],
+                              "query": [
+                                {
+                                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                                  "key": "fields[metric]",
+                                  "value": "name,created"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:00:42.000Z",
+                          "updatedAt": "2026-07-28T02:00:42.000Z",
+                          "uid": "35240-c9088438-c7e1-4776-bffb-f56b32cd4aca"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:00:42.000Z",
+                      "updatedAt": "2026-07-28T02:00:42.000Z",
+                      "uid": "35240-278444f8-1d17-4e73-81bb-26097a8e7ff1"
+                    }
+                  ],
+                  "id": "563e516f-5116-4e55-b313-b93ea70262ca",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-563e516f-5116-4e55-b313-b93ea70262ca"
+                },
+                {
+                  "name": "relationships",
+                  "item": [
+                    {
+                      "name": "metric",
+                      "item": [
+                        {
+                          "name": "Get Metric ID for Event",
+                          "id": "b197a5b9-c068-47e3-8e6d-f9072f877a4a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                "key": "revision",
+                                "value": "2026-04-15"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/events/:id/relationships/metric",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "events",
+                                ":id",
+                                "relationships",
+                                "metric"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7606c274-75e6-4495-b723-4cd6946cbafa",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) ID of the event"
+                                }
+                              ]
+                            },
+                            "description": "Get a list of related Metrics for an Event<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`\n`metrics:read`"
+                          },
+                          "response": [
+                            {
+                              "id": "a3f965ef-9cc8-42bd-aa0e-e0bf9dc480c7",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                    "key": "revision",
+                                    "value": "2026-04-15"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/events/:id/relationships/metric",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "events",
+                                    ":id",
+                                    "relationships",
+                                    "metric"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"type\": \"metric\",\n    \"id\": \"<string>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:00:42.000Z",
+                              "updatedAt": "2026-07-28T02:00:42.000Z",
+                              "uid": "35240-a3f965ef-9cc8-42bd-aa0e-e0bf9dc480c7"
+                            },
+                            {
+                              "id": "84c0e96e-297d-47f6-adde-b0d71dc5f686",
+                              "name": "Client Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                    "key": "revision",
+                                    "value": "2026-04-15"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/events/:id/relationships/metric",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "events",
+                                    ":id",
+                                    "relationships",
+                                    "metric"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:00:42.000Z",
+                              "updatedAt": "2026-07-28T02:00:42.000Z",
+                              "uid": "35240-84c0e96e-297d-47f6-adde-b0d71dc5f686"
+                            },
+                            {
+                              "id": "89c60340-0bfd-4b28-bae6-e568726d2ad7",
+                              "name": "Server Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                    "key": "revision",
+                                    "value": "2026-04-15"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/events/:id/relationships/metric",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "events",
+                                    ":id",
+                                    "relationships",
+                                    "metric"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:00:42.000Z",
+                              "updatedAt": "2026-07-28T02:00:42.000Z",
+                              "uid": "35240-89c60340-0bfd-4b28-bae6-e568726d2ad7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:00:42.000Z",
+                          "updatedAt": "2026-07-28T02:00:42.000Z",
+                          "uid": "35240-b197a5b9-c068-47e3-8e6d-f9072f877a4a"
+                        }
+                      ],
+                      "id": "0c48a8d4-9d32-4056-b23d-dccb9d28d139",
+                      "createdAt": "2026-07-28T02:00:42.000Z",
+                      "updatedAt": "2026-07-28T02:00:42.000Z",
+                      "uid": "35240-0c48a8d4-9d32-4056-b23d-dccb9d28d139"
+                    },
+                    {
+                      "name": "profile",
+                      "item": [
+                        {
+                          "name": "Get Profile ID for Event",
+                          "id": "59729648-6fa5-4d2b-b28c-1fe4d62e5157",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                "key": "revision",
+                                "value": "2026-04-15"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/events/:id/relationships/profile",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "events",
+                                ":id",
+                                "relationships",
+                                "profile"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9cedef87-49a3-41bf-9df1-9e773ca6ed75",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) ID of the event"
+                                }
+                              ]
+                            },
+                            "description": "Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`\n`profiles:read`"
+                          },
+                          "response": [
+                            {
+                              "id": "54b50d86-5ad2-4de7-9bf4-3906e943fe5c",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                    "key": "revision",
+                                    "value": "2026-04-15"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/events/:id/relationships/profile",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "events",
+                                    ":id",
+                                    "relationships",
+                                    "profile"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"type\": \"profile\",\n    \"id\": \"<string>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:00:42.000Z",
+                              "updatedAt": "2026-07-28T02:00:42.000Z",
+                              "uid": "35240-54b50d86-5ad2-4de7-9bf4-3906e943fe5c"
+                            },
+                            {
+                              "id": "acd16e2c-b279-418a-a52c-8d927c01feb5",
+                              "name": "Client Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                    "key": "revision",
+                                    "value": "2026-04-15"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/events/:id/relationships/profile",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "events",
+                                    ":id",
+                                    "relationships",
+                                    "profile"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:00:42.000Z",
+                              "updatedAt": "2026-07-28T02:00:42.000Z",
+                              "uid": "35240-acd16e2c-b279-418a-a52c-8d927c01feb5"
+                            },
+                            {
+                              "id": "c1ab7b2c-69f1-417a-baf5-85c1e4696c60",
+                              "name": "Server Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                    "key": "revision",
+                                    "value": "2026-04-15"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/events/:id/relationships/profile",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "events",
+                                    ":id",
+                                    "relationships",
+                                    "profile"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:00:42.000Z",
+                              "updatedAt": "2026-07-28T02:00:42.000Z",
+                              "uid": "35240-c1ab7b2c-69f1-417a-baf5-85c1e4696c60"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:00:42.000Z",
+                          "updatedAt": "2026-07-28T02:00:42.000Z",
+                          "uid": "35240-59729648-6fa5-4d2b-b28c-1fe4d62e5157"
+                        }
+                      ],
+                      "id": "a7d4d8a7-0807-4aec-8348-74943a8e74d6",
+                      "createdAt": "2026-07-28T02:00:42.000Z",
+                      "updatedAt": "2026-07-28T02:00:42.000Z",
+                      "uid": "35240-a7d4d8a7-0807-4aec-8348-74943a8e74d6"
+                    }
+                  ],
+                  "id": "14ed787d-dbd5-49ba-bb88-4c2ca09cf197",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-14ed787d-dbd5-49ba-bb88-4c2ca09cf197"
+                },
+                {
+                  "name": "profile",
+                  "item": [
+                    {
+                      "name": "Get Profile for Event",
+                      "id": "a115aace-5896-43fe-956d-f58be3f1ee7d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/events/:id/profile?additional-fields[profile]=subscriptions,predictive_analytics&fields[profile]=subscriptions.whatsapp.conversational.last_updated,subscriptions.email.marketing.custom_method_detail",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "events",
+                            ":id",
+                            "profile"
+                          ],
+                          "query": [
+                            {
+                              "description": "Request additional fields not included by default in the response. Supported values: 'subscriptions', 'predictive_analytics'",
+                              "key": "additional-fields[profile]",
+                              "value": "subscriptions,predictive_analytics"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[profile]",
+                              "value": "subscriptions.whatsapp.conversational.last_updated,subscriptions.email.marketing.custom_method_detail"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "d0d13b69-01c5-44f2-87f5-b56def3bdd6f",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) ID of the event"
+                            }
+                          ]
+                        },
+                        "description": "Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`\n`profiles:read`"
+                      },
+                      "response": [
+                        {
+                          "id": "fb386578-9c3a-4dcf-ac8b-a9097f6759a1",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                "key": "revision",
+                                "value": "2026-04-15"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/events/:id/profile?additional-fields[profile]=subscriptions,predictive_analytics&fields[profile]=subscriptions.whatsapp.conversational.last_updated,subscriptions.email.marketing.custom_method_detail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "events",
+                                ":id",
+                                "profile"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Request additional fields not included by default in the response. Supported values: 'subscriptions', 'predictive_analytics'",
+                                  "key": "additional-fields[profile]",
+                                  "value": "subscriptions,predictive_analytics"
+                                },
+                                {
+                                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                                  "key": "fields[profile]",
+                                  "value": "subscriptions.whatsapp.conversational.last_updated,subscriptions.email.marketing.custom_method_detail"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"type\": \"profile\",\n    \"attributes\": {\n      \"subscriptions\": {\n        \"email\": {\n          \"marketing\": {\n            \"can_receive_email_marketing\": \"<boolean>\",\n            \"consent\": \"<string>\",\n            \"consent_timestamp\": \"<dateTime>\",\n            \"last_updated\": \"<dateTime>\",\n            \"method\": \"<string>\",\n            \"method_detail\": \"\",\n            \"custom_method_detail\": \"<string>\",\n            \"double_optin\": \"<boolean>\",\n            \"suppression\": [\n              {\n                \"reason\": \"UNSUBSCRIBE\",\n                \"timestamp\": \"<dateTime>\"\n              },\n              {\n                \"reason\": \"SPAM_COMPLAINT\",\n                \"timestamp\": \"<dateTime>\"\n              }\n            ],\n            \"list_suppressions\": [\n              {\n                \"list_id\": \"<string>\",\n                \"reason\": \"<string>\",\n                \"timestamp\": \"<dateTime>\"\n              },\n              {\n                \"list_id\": \"<string>\",\n                \"reason\": \"<string>\",\n                \"timestamp\": \"<dateTime>\"\n              }\n            ]\n          }\n        },\n        \"sms\": {\n          \"marketing\": {\n            \"can_receive_sms_marketing\": \"<boolean>\",\n            \"consent\": \"<string>\",\n            \"consent_timestamp\": \"<dateTime>\",\n            \"method\": \"<string>\",\n            \"method_detail\": \"\",\n            \"last_updated\": \"<dateTime>\"\n          },\n          \"transactional\": {\n            \"can_receive_sms_transactional\": \"<boolean>\",\n            \"consent\": \"<string>\",\n            \"consent_timestamp\": \"<dateTime>\",\n            \"method\": \"<string>\",\n            \"method_detail\": \"\",\n            \"last_updated\": \"<dateTime>\"\n          }\n        },\n        \"mobile_push\": {\n          \"marketing\": {\n            \"can_receive_push_marketing\": \"<boolean>\",\n            \"consent\": \"<string>\",\n            \"consent_timestamp\": \"<dateTime>\"\n          }\n        },\n        \"whatsapp\": {\n          \"marketing\": {\n            \"consent\": \"<string>\",\n            \"can_receive\": \"<boolean>\",\n            \"phone_number\": \"<string>\",\n            \"consent_timestamp\": \"<dateTime>\",\n            \"last_updated\": \"<dateTime>\",\n            \"created_timestamp\": \"<dateTime>\",\n            \"metadata\": {},\n            \"valid_until\": \"<dateTime>\"\n          },\n          \"transactional\": {\n            \"consent\": \"<string>\",\n            \"can_receive\": \"<boolean>\",\n            \"phone_number\": \"<string>\",\n            \"consent_timestamp\": \"<dateTime>\",\n            \"last_updated\": \"<dateTime>\",\n            \"created_timestamp\": \"<dateTime>\",\n            \"metadata\": {},\n            \"valid_until\": \"<dateTime>\"\n          },\n          \"conversational\": {\n            \"consent\": \"<string>\",\n            \"can_receive\": \"<boolean>\",\n            \"phone_number\": \"<string>\",\n            \"consent_timestamp\": \"<dateTime>\",\n            \"last_updated\": \"<dateTime>\",\n            \"created_timestamp\": \"<dateTime>\",\n            \"metadata\": {},\n            \"valid_until\": \"<dateTime>\"\n          }\n        }\n      },\n      \"predictive_analytics\": {\n        \"historic_clv\": \"<number>\",\n        \"predicted_clv\": \"<number>\",\n        \"total_clv\": \"<number>\",\n        \"historic_number_of_orders\": \"<number>\",\n        \"predicted_number_of_orders\": \"<number>\",\n        \"average_days_between_orders\": \"<number>\",\n        \"average_order_value\": \"<number>\",\n        \"churn_probability\": \"<number>\",\n        \"expected_date_of_next_order\": \"<dateTime>\",\n        \"ranked_channel_affinity\": [\n          \"whatsapp\",\n          \"email\"\n        ]\n      },\n      \"email\": \"<string>\",\n      \"phone_number\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"locale\": \"<string>\",\n      \"title\": \"<string>\",\n      \"image\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\",\n      \"last_event_date\": \"<dateTime>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<string>\",\n        \"longitude\": \"<string>\",\n        \"region\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"ip\": \"<string>\"\n      },\n      \"properties\": {}\n    },\n    \"links\": {\n      \"self\": \"<uri>\"\n    },\n    \"id\": \"<string>\",\n    \"relationships\": {\n      \"lists\": {\n        \"data\": [\n          {\n            \"type\": \"list\",\n            \"id\": \"<string>\"\n          },\n          {\n            \"type\": \"list\",\n            \"id\": \"<string>\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"<uri>\",\n          \"related\": \"<uri>\"\n        }\n      },\n      \"segments\": {\n        \"data\": [\n          {\n            \"type\": \"segment\",\n            \"id\": \"<string>\"\n          },\n          {\n            \"type\": \"segment\",\n            \"id\": \"<string>\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"<uri>\",\n          \"related\": \"<uri>\"\n        }\n      },\n      \"push-tokens\": {\n        \"data\": [\n          {\n            \"type\": \"push-token\",\n            \"id\": \"<string>\"\n          },\n          {\n            \"type\": \"push-token\",\n            \"id\": \"<string>\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"<uri>\",\n          \"related\": \"<uri>\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:00:42.000Z",
+                          "updatedAt": "2026-07-28T02:00:42.000Z",
+                          "uid": "35240-fb386578-9c3a-4dcf-ac8b-a9097f6759a1"
+                        },
+                        {
+                          "id": "470a9ff3-fa53-434b-975c-e7559b03c027",
+                          "name": "Client Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                "key": "revision",
+                                "value": "2026-04-15"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/events/:id/profile?additional-fields[profile]=subscriptions,predictive_analytics&fields[profile]=subscriptions.whatsapp.conversational.last_updated,subscriptions.email.marketing.custom_method_detail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "events",
+                                ":id",
+                                "profile"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Request additional fields not included by default in the response. Supported values: 'subscriptions', 'predictive_analytics'",
+                                  "key": "additional-fields[profile]",
+                                  "value": "subscriptions,predictive_analytics"
+                                },
+                                {
+                                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                                  "key": "fields[profile]",
+                                  "value": "subscriptions.whatsapp.conversational.last_updated,subscriptions.email.marketing.custom_method_detail"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:00:42.000Z",
+                          "updatedAt": "2026-07-28T02:00:42.000Z",
+                          "uid": "35240-470a9ff3-fa53-434b-975c-e7559b03c027"
+                        },
+                        {
+                          "id": "3d0104cd-46af-4ae7-96cd-0f82a5ecf6d9",
+                          "name": "Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                                "key": "revision",
+                                "value": "2026-04-15"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/events/:id/profile?additional-fields[profile]=subscriptions,predictive_analytics&fields[profile]=subscriptions.whatsapp.conversational.last_updated,subscriptions.email.marketing.custom_method_detail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "events",
+                                ":id",
+                                "profile"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Request additional fields not included by default in the response. Supported values: 'subscriptions', 'predictive_analytics'",
+                                  "key": "additional-fields[profile]",
+                                  "value": "subscriptions,predictive_analytics"
+                                },
+                                {
+                                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                                  "key": "fields[profile]",
+                                  "value": "subscriptions.whatsapp.conversational.last_updated,subscriptions.email.marketing.custom_method_detail"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:00:42.000Z",
+                          "updatedAt": "2026-07-28T02:00:42.000Z",
+                          "uid": "35240-3d0104cd-46af-4ae7-96cd-0f82a5ecf6d9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:00:42.000Z",
+                      "updatedAt": "2026-07-28T02:00:42.000Z",
+                      "uid": "35240-a115aace-5896-43fe-956d-f58be3f1ee7d"
+                    }
+                  ],
+                  "id": "88bfc1e3-7edc-4b6c-a9df-8bc2f3d62ba2",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-88bfc1e3-7edc-4b6c-a9df-8bc2f3d62ba2"
+                },
+                {
+                  "name": "Get Event",
+                  "id": "4454e07c-4bf1-4419-8d09-fde7e85c3b01",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events/:id?fields[event]=uuid,datetime&fields[metric]=name,created&fields[profile]=last_event_date,location.city&include=attributions,attributions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[event]",
+                          "value": "uuid,datetime"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[metric]",
+                          "value": "name,created"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[profile]",
+                          "value": "last_event_date,location.city"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships",
+                          "key": "include",
+                          "value": "attributions,attributions"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "128f14ba-f999-4c61-979a-2ded91f46862",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of the event"
+                        }
+                      ]
+                    },
+                    "description": "Get an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`events:read`"
+                  },
+                  "response": [
+                    {
+                      "id": "23fee610-608e-4e76-8809-8c337a8462bd",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/events/:id?fields[event]=uuid,datetime&fields[metric]=name,created&fields[profile]=last_event_date,location.city&include=attributions,attributions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "events",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[event]",
+                              "value": "uuid,datetime"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[metric]",
+                              "value": "name,created"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[profile]",
+                              "value": "last_event_date,location.city"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships",
+                              "key": "include",
+                              "value": "attributions,attributions"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"type\": \"event\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"timestamp\": \"<integer>\",\n      \"event_properties\": {},\n      \"datetime\": \"<dateTime>\",\n      \"uuid\": \"<string>\"\n    },\n    \"links\": {\n      \"self\": \"<uri>\"\n    },\n    \"relationships\": {\n      \"profile\": {\n        \"data\": {\n          \"type\": \"profile\",\n          \"id\": \"<string>\"\n        },\n        \"links\": {\n          \"self\": \"<uri>\",\n          \"related\": \"<uri>\"\n        }\n      },\n      \"metric\": {\n        \"data\": {\n          \"type\": \"metric\",\n          \"id\": \"<string>\"\n        },\n        \"links\": {\n          \"self\": \"<uri>\",\n          \"related\": \"<uri>\"\n        }\n      },\n      \"attributions\": {\n        \"data\": [\n          {\n            \"type\": \"attribution\",\n            \"id\": \"<string>\"\n          },\n          {\n            \"type\": \"attribution\",\n            \"id\": \"<string>\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"<uri>\",\n          \"related\": \"<uri>\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"metric\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"created\": \"<string>\",\n        \"updated\": \"<string>\",\n        \"integration\": {}\n      },\n      \"links\": {\n        \"self\": \"<uri>\"\n      },\n      \"relationships\": {\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": \"flow\",\n              \"id\": \"<string>\"\n            },\n            {\n              \"type\": \"flow\",\n              \"id\": \"<string>\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"metric\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"created\": \"<string>\",\n        \"updated\": \"<string>\",\n        \"integration\": {}\n      },\n      \"links\": {\n        \"self\": \"<uri>\"\n      },\n      \"relationships\": {\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": \"flow\",\n              \"id\": \"<string>\"\n            },\n            {\n              \"type\": \"flow\",\n              \"id\": \"<string>\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:42.000Z",
+                      "updatedAt": "2026-07-28T02:00:42.000Z",
+                      "uid": "35240-23fee610-608e-4e76-8809-8c337a8462bd"
+                    },
+                    {
+                      "id": "b6b2e1d4-9b77-444f-b5da-66ea75778294",
+                      "name": "Client Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/events/:id?fields[event]=uuid,datetime&fields[metric]=name,created&fields[profile]=last_event_date,location.city&include=attributions,attributions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "events",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[event]",
+                              "value": "uuid,datetime"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[metric]",
+                              "value": "name,created"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[profile]",
+                              "value": "last_event_date,location.city"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships",
+                              "key": "include",
+                              "value": "attributions,attributions"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:42.000Z",
+                      "updatedAt": "2026-07-28T02:00:42.000Z",
+                      "uid": "35240-b6b2e1d4-9b77-444f-b5da-66ea75778294"
+                    },
+                    {
+                      "id": "dd0296f6-709f-47e8-88c1-8f1221d405b3",
+                      "name": "Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                            "key": "revision",
+                            "value": "2026-04-15"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/events/:id?fields[event]=uuid,datetime&fields[metric]=name,created&fields[profile]=last_event_date,location.city&include=attributions,attributions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "events",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[event]",
+                              "value": "uuid,datetime"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[metric]",
+                              "value": "name,created"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                              "key": "fields[profile]",
+                              "value": "last_event_date,location.city"
+                            },
+                            {
+                              "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships",
+                              "key": "include",
+                              "value": "attributions,attributions"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:42.000Z",
+                      "updatedAt": "2026-07-28T02:00:42.000Z",
+                      "uid": "35240-dd0296f6-709f-47e8-88c1-8f1221d405b3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-4454e07c-4bf1-4419-8d09-fde7e85c3b01"
+                }
+              ],
+              "id": "1442b616-f54e-4c8c-b903-2130f7b40c5c",
+              "createdAt": "2026-07-28T02:00:42.000Z",
+              "updatedAt": "2026-07-28T02:00:42.000Z",
+              "uid": "35240-1442b616-f54e-4c8c-b903-2130f7b40c5c"
+            },
+            {
+              "name": "Get Events",
+              "id": "0d277227-6df6-42e9-a269-202dfeea2264",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/events?fields[event]=uuid,datetime&fields[metric]=name,created&fields[profile]=last_event_date,location.city&filter=<string>&include=attributions,attributions&page[cursor]=<string>&page[size]=200&sort=timestamp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                      "key": "fields[event]",
+                      "value": "uuid,datetime"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                      "key": "fields[metric]",
+                      "value": "name,created"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                      "key": "fields[profile]",
+                      "value": "last_event_date,location.city"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`metric_id`: `equals`<br>`profile_id`: `equals`<br>`profile`: `has`<br>`datetime`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`timestamp`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships",
+                      "key": "include",
+                      "value": "attributions,attributions"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination",
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Default: 200. Min: 1. Max: 1000.",
+                      "key": "page[size]",
+                      "value": "200"
+                    },
+                    {
+                      "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting",
+                      "key": "sort",
+                      "value": "timestamp"
+                    }
+                  ]
+                },
+                "description": "Get all events in an account\n\nRequests can be sorted by the following fields:\n`datetime`, `timestamp`\n\n[Custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview) are not supported in the `metric_id` filter.\n\nReturns a maximum of 200 events per page.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`"
+              },
+              "response": [
+                {
+                  "id": "b22f7e3c-13e3-48b8-b8ad-96e5e23685f5",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events?fields[event]=uuid,datetime&fields[metric]=name,created&fields[profile]=last_event_date,location.city&filter=<string>&include=attributions,attributions&page[cursor]=<string>&page[size]=200&sort=timestamp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[event]",
+                          "value": "uuid,datetime"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[metric]",
+                          "value": "name,created"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[profile]",
+                          "value": "last_event_date,location.city"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`metric_id`: `equals`<br>`profile_id`: `equals`<br>`profile`: `has`<br>`datetime`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`timestamp`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships",
+                          "key": "include",
+                          "value": "attributions,attributions"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination",
+                          "key": "page[cursor]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Default: 200. Min: 1. Max: 1000.",
+                          "key": "page[size]",
+                          "value": "200"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting",
+                          "key": "sort",
+                          "value": "timestamp"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"type\": \"event\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"timestamp\": \"<integer>\",\n        \"event_properties\": {},\n        \"datetime\": \"<dateTime>\",\n        \"uuid\": \"<string>\"\n      },\n      \"links\": {\n        \"self\": \"<uri>\"\n      },\n      \"relationships\": {\n        \"profile\": {\n          \"data\": {\n            \"type\": \"profile\",\n            \"id\": \"<string>\"\n          },\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        },\n        \"metric\": {\n          \"data\": {\n            \"type\": \"metric\",\n            \"id\": \"<string>\"\n          },\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        },\n        \"attributions\": {\n          \"data\": [\n            {\n              \"type\": \"attribution\",\n              \"id\": \"<string>\"\n            },\n            {\n              \"type\": \"attribution\",\n              \"id\": \"<string>\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"event\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"timestamp\": \"<integer>\",\n        \"event_properties\": {},\n        \"datetime\": \"<dateTime>\",\n        \"uuid\": \"<string>\"\n      },\n      \"links\": {\n        \"self\": \"<uri>\"\n      },\n      \"relationships\": {\n        \"profile\": {\n          \"data\": {\n            \"type\": \"profile\",\n            \"id\": \"<string>\"\n          },\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        },\n        \"metric\": {\n          \"data\": {\n            \"type\": \"metric\",\n            \"id\": \"<string>\"\n          },\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        },\n        \"attributions\": {\n          \"data\": [\n            {\n              \"type\": \"attribution\",\n              \"id\": \"<string>\"\n            },\n            {\n              \"type\": \"attribution\",\n              \"id\": \"<string>\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"last\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\"\n  },\n  \"included\": [\n    {\n      \"type\": \"metric\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"created\": \"<string>\",\n        \"updated\": \"<string>\",\n        \"integration\": {}\n      },\n      \"links\": {\n        \"self\": \"<uri>\"\n      },\n      \"relationships\": {\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": \"flow\",\n              \"id\": \"<string>\"\n            },\n            {\n              \"type\": \"flow\",\n              \"id\": \"<string>\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"metric\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"created\": \"<string>\",\n        \"updated\": \"<string>\",\n        \"integration\": {}\n      },\n      \"links\": {\n        \"self\": \"<uri>\"\n      },\n      \"relationships\": {\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": \"flow\",\n              \"id\": \"<string>\"\n            },\n            {\n              \"type\": \"flow\",\n              \"id\": \"<string>\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"<uri>\",\n            \"related\": \"<uri>\"\n          }\n        }\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-b22f7e3c-13e3-48b8-b8ad-96e5e23685f5"
+                },
+                {
+                  "id": "d37a6acc-0b09-410b-9597-7fe5ab1cf552",
+                  "name": "Client Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events?fields[event]=uuid,datetime&fields[metric]=name,created&fields[profile]=last_event_date,location.city&filter=<string>&include=attributions,attributions&page[cursor]=<string>&page[size]=200&sort=timestamp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[event]",
+                          "value": "uuid,datetime"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[metric]",
+                          "value": "name,created"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[profile]",
+                          "value": "last_event_date,location.city"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`metric_id`: `equals`<br>`profile_id`: `equals`<br>`profile`: `has`<br>`datetime`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`timestamp`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships",
+                          "key": "include",
+                          "value": "attributions,attributions"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination",
+                          "key": "page[cursor]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Default: 200. Min: 1. Max: 1000.",
+                          "key": "page[size]",
+                          "value": "200"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting",
+                          "key": "sort",
+                          "value": "timestamp"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-d37a6acc-0b09-410b-9597-7fe5ab1cf552"
+                },
+                {
+                  "id": "0f3d3133-a710-47ca-9b97-bf5fc4c00fef",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events?fields[event]=uuid,datetime&fields[metric]=name,created&fields[profile]=last_event_date,location.city&filter=<string>&include=attributions,attributions&page[cursor]=<string>&page[size]=200&sort=timestamp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[event]",
+                          "value": "uuid,datetime"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[metric]",
+                          "value": "name,created"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets",
+                          "key": "fields[profile]",
+                          "value": "last_event_date,location.city"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`metric_id`: `equals`<br>`profile_id`: `equals`<br>`profile`: `has`<br>`datetime`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`timestamp`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships",
+                          "key": "include",
+                          "value": "attributions,attributions"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination",
+                          "key": "page[cursor]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Default: 200. Min: 1. Max: 1000.",
+                          "key": "page[size]",
+                          "value": "200"
+                        },
+                        {
+                          "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting",
+                          "key": "sort",
+                          "value": "timestamp"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-0f3d3133-a710-47ca-9b97-bf5fc4c00fef"
+                }
+              ],
+              "createdAt": "2026-07-28T02:00:42.000Z",
+              "updatedAt": "2026-07-28T02:00:42.000Z",
+              "uid": "35240-0d277227-6df6-42e9-a269-202dfeea2264"
+            },
+            {
+              "name": "Create Event",
+              "id": "58744d49-297f-4a69-b7bc-2796fc923046",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"event\",\n    \"attributes\": {\n      \"properties\": {},\n      \"metric\": {\n        \"data\": {\n          \"type\": \"metric\",\n          \"attributes\": {\n            \"name\": \"<string>\",\n            \"service\": \"<string>\"\n          }\n        }\n      },\n      \"profile\": {\n        \"data\": {\n          \"type\": \"profile\",\n          \"attributes\": {\n            \"email\": \"<string>\",\n            \"phone_number\": \"<string>\",\n            \"external_id\": \"<string>\",\n            \"anonymous_id\": \"<string>\",\n            \"_kx\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"organization\": \"<string>\",\n            \"locale\": \"<string>\",\n            \"title\": \"<string>\",\n            \"image\": \"<string>\",\n            \"location\": {\n              \"address1\": \"<string>\",\n              \"address2\": \"<string>\",\n              \"city\": \"<string>\",\n              \"country\": \"<string>\",\n              \"latitude\": \"<string>\",\n              \"longitude\": \"<string>\",\n              \"region\": \"<string>\",\n              \"zip\": \"<string>\",\n              \"timezone\": \"<string>\",\n              \"ip\": \"<string>\"\n            },\n            \"properties\": {},\n            \"meta\": {\n              \"patch_properties\": {\n                \"append\": {},\n                \"unappend\": {},\n                \"unset\": \"<string>\"\n              },\n              \"patch_identifiers\": {\n                \"append\": {},\n                \"unappend\": {}\n              }\n            }\n          },\n          \"id\": \"<string>\"\n        }\n      },\n      \"time\": \"<dateTime>\",\n      \"value\": \"<number>\",\n      \"value_currency\": \"<string>\",\n      \"unique_id\": \"<string>\",\n      \"backfill\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "events"
+                  ]
+                },
+                "description": "Create a new event to track a profile's activity.\n\nNote that this endpoint allows you to create a new profile or update an existing profile's properties.\n\nAt a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.\n\nSuccessful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:write`"
+              },
+              "response": [
+                {
+                  "id": "ee863d37-63e3-4179-bd5a-2268ca637f86",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"event\",\n    \"attributes\": {\n      \"properties\": {},\n      \"metric\": {\n        \"data\": {\n          \"type\": \"metric\",\n          \"attributes\": {\n            \"name\": \"<string>\",\n            \"service\": \"<string>\"\n          }\n        }\n      },\n      \"profile\": {\n        \"data\": {\n          \"type\": \"profile\",\n          \"attributes\": {\n            \"email\": \"<string>\",\n            \"phone_number\": \"<string>\",\n            \"external_id\": \"<string>\",\n            \"anonymous_id\": \"<string>\",\n            \"_kx\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"organization\": \"<string>\",\n            \"locale\": \"<string>\",\n            \"title\": \"<string>\",\n            \"image\": \"<string>\",\n            \"location\": {\n              \"address1\": \"<string>\",\n              \"address2\": \"<string>\",\n              \"city\": \"<string>\",\n              \"country\": \"<string>\",\n              \"latitude\": \"<string>\",\n              \"longitude\": \"<string>\",\n              \"region\": \"<string>\",\n              \"zip\": \"<string>\",\n              \"timezone\": \"<string>\",\n              \"ip\": \"<string>\"\n            },\n            \"properties\": {},\n            \"meta\": {\n              \"patch_properties\": {\n                \"append\": {},\n                \"unappend\": {},\n                \"unset\": \"<string>\"\n              },\n              \"patch_identifiers\": {\n                \"append\": {},\n                \"unappend\": {}\n              }\n            }\n          },\n          \"id\": \"<string>\"\n        }\n      },\n      \"time\": \"<dateTime>\",\n      \"value\": \"<number>\",\n      \"value_currency\": \"<string>\",\n      \"unique_id\": \"<string>\",\n      \"backfill\": false\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-ee863d37-63e3-4179-bd5a-2268ca637f86"
+                },
+                {
+                  "id": "28e19a51-1c19-4b7a-8518-aa8e10f6cab0",
+                  "name": "Client Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"event\",\n    \"attributes\": {\n      \"properties\": {},\n      \"metric\": {\n        \"data\": {\n          \"type\": \"metric\",\n          \"attributes\": {\n            \"name\": \"<string>\",\n            \"service\": \"<string>\"\n          }\n        }\n      },\n      \"profile\": {\n        \"data\": {\n          \"type\": \"profile\",\n          \"attributes\": {\n            \"email\": \"<string>\",\n            \"phone_number\": \"<string>\",\n            \"external_id\": \"<string>\",\n            \"anonymous_id\": \"<string>\",\n            \"_kx\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"organization\": \"<string>\",\n            \"locale\": \"<string>\",\n            \"title\": \"<string>\",\n            \"image\": \"<string>\",\n            \"location\": {\n              \"address1\": \"<string>\",\n              \"address2\": \"<string>\",\n              \"city\": \"<string>\",\n              \"country\": \"<string>\",\n              \"latitude\": \"<string>\",\n              \"longitude\": \"<string>\",\n              \"region\": \"<string>\",\n              \"zip\": \"<string>\",\n              \"timezone\": \"<string>\",\n              \"ip\": \"<string>\"\n            },\n            \"properties\": {},\n            \"meta\": {\n              \"patch_properties\": {\n                \"append\": {},\n                \"unappend\": {},\n                \"unset\": \"<string>\"\n              },\n              \"patch_identifiers\": {\n                \"append\": {},\n                \"unappend\": {}\n              }\n            }\n          },\n          \"id\": \"<string>\"\n        }\n      },\n      \"time\": \"<dateTime>\",\n      \"value\": \"<number>\",\n      \"value_currency\": \"<string>\",\n      \"unique_id\": \"<string>\",\n      \"backfill\": false\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-28e19a51-1c19-4b7a-8518-aa8e10f6cab0"
+                },
+                {
+                  "id": "474c8a94-24cc-4694-9ffb-470e1470300a",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"event\",\n    \"attributes\": {\n      \"properties\": {},\n      \"metric\": {\n        \"data\": {\n          \"type\": \"metric\",\n          \"attributes\": {\n            \"name\": \"<string>\",\n            \"service\": \"<string>\"\n          }\n        }\n      },\n      \"profile\": {\n        \"data\": {\n          \"type\": \"profile\",\n          \"attributes\": {\n            \"email\": \"<string>\",\n            \"phone_number\": \"<string>\",\n            \"external_id\": \"<string>\",\n            \"anonymous_id\": \"<string>\",\n            \"_kx\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"organization\": \"<string>\",\n            \"locale\": \"<string>\",\n            \"title\": \"<string>\",\n            \"image\": \"<string>\",\n            \"location\": {\n              \"address1\": \"<string>\",\n              \"address2\": \"<string>\",\n              \"city\": \"<string>\",\n              \"country\": \"<string>\",\n              \"latitude\": \"<string>\",\n              \"longitude\": \"<string>\",\n              \"region\": \"<string>\",\n              \"zip\": \"<string>\",\n              \"timezone\": \"<string>\",\n              \"ip\": \"<string>\"\n            },\n            \"properties\": {},\n            \"meta\": {\n              \"patch_properties\": {\n                \"append\": {},\n                \"unappend\": {},\n                \"unset\": \"<string>\"\n              },\n              \"patch_identifiers\": {\n                \"append\": {},\n                \"unappend\": {}\n              }\n            }\n          },\n          \"id\": \"<string>\"\n        }\n      },\n      \"time\": \"<dateTime>\",\n      \"value\": \"<number>\",\n      \"value_currency\": \"<string>\",\n      \"unique_id\": \"<string>\",\n      \"backfill\": false\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "events"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-474c8a94-24cc-4694-9ffb-470e1470300a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:00:42.000Z",
+              "updatedAt": "2026-07-28T02:00:42.000Z",
+              "uid": "35240-58744d49-297f-4a69-b7bc-2796fc923046"
+            }
+          ],
+          "id": "fcb874d0-86f0-4f24-8bab-274239c3012c",
+          "createdAt": "2026-07-28T02:00:42.000Z",
+          "updatedAt": "2026-07-28T02:00:42.000Z",
+          "uid": "35240-fcb874d0-86f0-4f24-8bab-274239c3012c"
+        },
+        {
+          "name": "event-bulk-create-jobs",
+          "item": [
+            {
+              "name": "Bulk Create Events",
+              "id": "3d95e35f-80e2-420c-9100-8e4cdf4b0cae",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"event-bulk-create-job\",\n    \"attributes\": {\n      \"events-bulk-create\": {\n        \"data\": [\n          {\n            \"type\": \"event-bulk-create\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"type\": \"profile\",\n                  \"attributes\": {\n                    \"email\": \"<string>\",\n                    \"phone_number\": \"<string>\",\n                    \"external_id\": \"<string>\",\n                    \"anonymous_id\": \"<string>\",\n                    \"_kx\": \"<string>\",\n                    \"first_name\": \"<string>\",\n                    \"last_name\": \"<string>\",\n                    \"organization\": \"<string>\",\n                    \"locale\": \"<string>\",\n                    \"title\": \"<string>\",\n                    \"image\": \"<string>\",\n                    \"location\": {\n                      \"address1\": \"<string>\",\n                      \"address2\": \"<string>\",\n                      \"city\": \"<string>\",\n                      \"country\": \"<string>\",\n                      \"latitude\": \"<string>\",\n                      \"longitude\": \"<string>\",\n                      \"region\": \"<string>\",\n                      \"zip\": \"<string>\",\n                      \"timezone\": \"<string>\",\n                      \"ip\": \"<string>\"\n                    },\n                    \"properties\": {}\n                  },\n                  \"id\": \"<string>\",\n                  \"meta\": {\n                    \"patch_properties\": {\n                      \"append\": {},\n                      \"unappend\": {},\n                      \"unset\": \"<string>\"\n                    },\n                    \"patch_identifiers\": {\n                      \"append\": {},\n                      \"unappend\": {}\n                    }\n                  }\n                }\n              },\n              \"events\": {\n                \"data\": [\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              \"backfill\": false\n            }\n          },\n          {\n            \"type\": \"event-bulk-create\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"type\": \"profile\",\n                  \"attributes\": {\n                    \"email\": \"<string>\",\n                    \"phone_number\": \"<string>\",\n                    \"external_id\": \"<string>\",\n                    \"anonymous_id\": \"<string>\",\n                    \"_kx\": \"<string>\",\n                    \"first_name\": \"<string>\",\n                    \"last_name\": \"<string>\",\n                    \"organization\": \"<string>\",\n                    \"locale\": \"<string>\",\n                    \"title\": \"<string>\",\n                    \"image\": \"<string>\",\n                    \"location\": {\n                      \"address1\": \"<string>\",\n                      \"address2\": \"<string>\",\n                      \"city\": \"<string>\",\n                      \"country\": \"<string>\",\n                      \"latitude\": \"<string>\",\n                      \"longitude\": \"<string>\",\n                      \"region\": \"<string>\",\n                      \"zip\": \"<string>\",\n                      \"timezone\": \"<string>\",\n                      \"ip\": \"<string>\"\n                    },\n                    \"properties\": {}\n                  },\n                  \"id\": \"<string>\",\n                  \"meta\": {\n                    \"patch_properties\": {\n                      \"append\": {},\n                      \"unappend\": {},\n                      \"unset\": \"<string>\"\n                    },\n                    \"patch_identifiers\": {\n                      \"append\": {},\n                      \"unappend\": {}\n                    }\n                  }\n                }\n              },\n              \"events\": {\n                \"data\": [\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              \"backfill\": false\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/event-bulk-create-jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "event-bulk-create-jobs"
+                  ]
+                },
+                "description": "Create a batch of events for one or more profiles.\n\nNote that this endpoint allows you to create new profiles or update existing profile properties.\n\nAt a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.\n\nAccepts up to 1,000 events per request. The maximum allowed payload size is 5MB. A single string cannot exceed 100KB.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`events:write`"
+              },
+              "response": [
+                {
+                  "id": "e84fe931-7bbb-4472-8501-c7dcfe91753e",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"event-bulk-create-job\",\n    \"attributes\": {\n      \"events-bulk-create\": {\n        \"data\": [\n          {\n            \"type\": \"event-bulk-create\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"type\": \"profile\",\n                  \"attributes\": {\n                    \"email\": \"<string>\",\n                    \"phone_number\": \"<string>\",\n                    \"external_id\": \"<string>\",\n                    \"anonymous_id\": \"<string>\",\n                    \"_kx\": \"<string>\",\n                    \"first_name\": \"<string>\",\n                    \"last_name\": \"<string>\",\n                    \"organization\": \"<string>\",\n                    \"locale\": \"<string>\",\n                    \"title\": \"<string>\",\n                    \"image\": \"<string>\",\n                    \"location\": {\n                      \"address1\": \"<string>\",\n                      \"address2\": \"<string>\",\n                      \"city\": \"<string>\",\n                      \"country\": \"<string>\",\n                      \"latitude\": \"<string>\",\n                      \"longitude\": \"<string>\",\n                      \"region\": \"<string>\",\n                      \"zip\": \"<string>\",\n                      \"timezone\": \"<string>\",\n                      \"ip\": \"<string>\"\n                    },\n                    \"properties\": {}\n                  },\n                  \"id\": \"<string>\",\n                  \"meta\": {\n                    \"patch_properties\": {\n                      \"append\": {},\n                      \"unappend\": {},\n                      \"unset\": \"<string>\"\n                    },\n                    \"patch_identifiers\": {\n                      \"append\": {},\n                      \"unappend\": {}\n                    }\n                  }\n                }\n              },\n              \"events\": {\n                \"data\": [\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              \"backfill\": false\n            }\n          },\n          {\n            \"type\": \"event-bulk-create\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"type\": \"profile\",\n                  \"attributes\": {\n                    \"email\": \"<string>\",\n                    \"phone_number\": \"<string>\",\n                    \"external_id\": \"<string>\",\n                    \"anonymous_id\": \"<string>\",\n                    \"_kx\": \"<string>\",\n                    \"first_name\": \"<string>\",\n                    \"last_name\": \"<string>\",\n                    \"organization\": \"<string>\",\n                    \"locale\": \"<string>\",\n                    \"title\": \"<string>\",\n                    \"image\": \"<string>\",\n                    \"location\": {\n                      \"address1\": \"<string>\",\n                      \"address2\": \"<string>\",\n                      \"city\": \"<string>\",\n                      \"country\": \"<string>\",\n                      \"latitude\": \"<string>\",\n                      \"longitude\": \"<string>\",\n                      \"region\": \"<string>\",\n                      \"zip\": \"<string>\",\n                      \"timezone\": \"<string>\",\n                      \"ip\": \"<string>\"\n                    },\n                    \"properties\": {}\n                  },\n                  \"id\": \"<string>\",\n                  \"meta\": {\n                    \"patch_properties\": {\n                      \"append\": {},\n                      \"unappend\": {},\n                      \"unset\": \"<string>\"\n                    },\n                    \"patch_identifiers\": {\n                      \"append\": {},\n                      \"unappend\": {}\n                    }\n                  }\n                }\n              },\n              \"events\": {\n                \"data\": [\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              \"backfill\": false\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/event-bulk-create-jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "event-bulk-create-jobs"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-e84fe931-7bbb-4472-8501-c7dcfe91753e"
+                },
+                {
+                  "id": "09f107f2-be36-4355-9c2f-28754af5ab0d",
+                  "name": "Client Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"event-bulk-create-job\",\n    \"attributes\": {\n      \"events-bulk-create\": {\n        \"data\": [\n          {\n            \"type\": \"event-bulk-create\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"type\": \"profile\",\n                  \"attributes\": {\n                    \"email\": \"<string>\",\n                    \"phone_number\": \"<string>\",\n                    \"external_id\": \"<string>\",\n                    \"anonymous_id\": \"<string>\",\n                    \"_kx\": \"<string>\",\n                    \"first_name\": \"<string>\",\n                    \"last_name\": \"<string>\",\n                    \"organization\": \"<string>\",\n                    \"locale\": \"<string>\",\n                    \"title\": \"<string>\",\n                    \"image\": \"<string>\",\n                    \"location\": {\n                      \"address1\": \"<string>\",\n                      \"address2\": \"<string>\",\n                      \"city\": \"<string>\",\n                      \"country\": \"<string>\",\n                      \"latitude\": \"<string>\",\n                      \"longitude\": \"<string>\",\n                      \"region\": \"<string>\",\n                      \"zip\": \"<string>\",\n                      \"timezone\": \"<string>\",\n                      \"ip\": \"<string>\"\n                    },\n                    \"properties\": {}\n                  },\n                  \"id\": \"<string>\",\n                  \"meta\": {\n                    \"patch_properties\": {\n                      \"append\": {},\n                      \"unappend\": {},\n                      \"unset\": \"<string>\"\n                    },\n                    \"patch_identifiers\": {\n                      \"append\": {},\n                      \"unappend\": {}\n                    }\n                  }\n                }\n              },\n              \"events\": {\n                \"data\": [\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              \"backfill\": false\n            }\n          },\n          {\n            \"type\": \"event-bulk-create\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"type\": \"profile\",\n                  \"attributes\": {\n                    \"email\": \"<string>\",\n                    \"phone_number\": \"<string>\",\n                    \"external_id\": \"<string>\",\n                    \"anonymous_id\": \"<string>\",\n                    \"_kx\": \"<string>\",\n                    \"first_name\": \"<string>\",\n                    \"last_name\": \"<string>\",\n                    \"organization\": \"<string>\",\n                    \"locale\": \"<string>\",\n                    \"title\": \"<string>\",\n                    \"image\": \"<string>\",\n                    \"location\": {\n                      \"address1\": \"<string>\",\n                      \"address2\": \"<string>\",\n                      \"city\": \"<string>\",\n                      \"country\": \"<string>\",\n                      \"latitude\": \"<string>\",\n                      \"longitude\": \"<string>\",\n                      \"region\": \"<string>\",\n                      \"zip\": \"<string>\",\n                      \"timezone\": \"<string>\",\n                      \"ip\": \"<string>\"\n                    },\n                    \"properties\": {}\n                  },\n                  \"id\": \"<string>\",\n                  \"meta\": {\n                    \"patch_properties\": {\n                      \"append\": {},\n                      \"unappend\": {},\n                      \"unset\": \"<string>\"\n                    },\n                    \"patch_identifiers\": {\n                      \"append\": {},\n                      \"unappend\": {}\n                    }\n                  }\n                }\n              },\n              \"events\": {\n                \"data\": [\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              \"backfill\": false\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/event-bulk-create-jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "event-bulk-create-jobs"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-09f107f2-be36-4355-9c2f-28754af5ab0d"
+                },
+                {
+                  "id": "f4180917-3cb5-440e-9235-324af9a5e05c",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"event-bulk-create-job\",\n    \"attributes\": {\n      \"events-bulk-create\": {\n        \"data\": [\n          {\n            \"type\": \"event-bulk-create\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"type\": \"profile\",\n                  \"attributes\": {\n                    \"email\": \"<string>\",\n                    \"phone_number\": \"<string>\",\n                    \"external_id\": \"<string>\",\n                    \"anonymous_id\": \"<string>\",\n                    \"_kx\": \"<string>\",\n                    \"first_name\": \"<string>\",\n                    \"last_name\": \"<string>\",\n                    \"organization\": \"<string>\",\n                    \"locale\": \"<string>\",\n                    \"title\": \"<string>\",\n                    \"image\": \"<string>\",\n                    \"location\": {\n                      \"address1\": \"<string>\",\n                      \"address2\": \"<string>\",\n                      \"city\": \"<string>\",\n                      \"country\": \"<string>\",\n                      \"latitude\": \"<string>\",\n                      \"longitude\": \"<string>\",\n                      \"region\": \"<string>\",\n                      \"zip\": \"<string>\",\n                      \"timezone\": \"<string>\",\n                      \"ip\": \"<string>\"\n                    },\n                    \"properties\": {}\n                  },\n                  \"id\": \"<string>\",\n                  \"meta\": {\n                    \"patch_properties\": {\n                      \"append\": {},\n                      \"unappend\": {},\n                      \"unset\": \"<string>\"\n                    },\n                    \"patch_identifiers\": {\n                      \"append\": {},\n                      \"unappend\": {}\n                    }\n                  }\n                }\n              },\n              \"events\": {\n                \"data\": [\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              \"backfill\": false\n            }\n          },\n          {\n            \"type\": \"event-bulk-create\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"type\": \"profile\",\n                  \"attributes\": {\n                    \"email\": \"<string>\",\n                    \"phone_number\": \"<string>\",\n                    \"external_id\": \"<string>\",\n                    \"anonymous_id\": \"<string>\",\n                    \"_kx\": \"<string>\",\n                    \"first_name\": \"<string>\",\n                    \"last_name\": \"<string>\",\n                    \"organization\": \"<string>\",\n                    \"locale\": \"<string>\",\n                    \"title\": \"<string>\",\n                    \"image\": \"<string>\",\n                    \"location\": {\n                      \"address1\": \"<string>\",\n                      \"address2\": \"<string>\",\n                      \"city\": \"<string>\",\n                      \"country\": \"<string>\",\n                      \"latitude\": \"<string>\",\n                      \"longitude\": \"<string>\",\n                      \"region\": \"<string>\",\n                      \"zip\": \"<string>\",\n                      \"timezone\": \"<string>\",\n                      \"ip\": \"<string>\"\n                    },\n                    \"properties\": {}\n                  },\n                  \"id\": \"<string>\",\n                  \"meta\": {\n                    \"patch_properties\": {\n                      \"append\": {},\n                      \"unappend\": {},\n                      \"unset\": \"<string>\"\n                    },\n                    \"patch_identifiers\": {\n                      \"append\": {},\n                      \"unappend\": {}\n                    }\n                  }\n                }\n              },\n              \"events\": {\n                \"data\": [\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  },\n                  {\n                    \"type\": \"event\",\n                    \"attributes\": {\n                      \"properties\": {},\n                      \"metric\": {\n                        \"data\": {\n                          \"type\": \"metric\",\n                          \"attributes\": {\n                            \"name\": \"<string>\",\n                            \"service\": \"<string>\"\n                          }\n                        }\n                      },\n                      \"time\": \"<dateTime>\",\n                      \"value\": \"<number>\",\n                      \"value_currency\": \"<string>\",\n                      \"backfill\": false,\n                      \"unique_id\": \"<string>\"\n                    }\n                  }\n                ]\n              },\n              \"backfill\": false\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/event-bulk-create-jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "event-bulk-create-jobs"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:42.000Z",
+                  "updatedAt": "2026-07-28T02:00:42.000Z",
+                  "uid": "35240-f4180917-3cb5-440e-9235-324af9a5e05c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:00:42.000Z",
+              "updatedAt": "2026-07-28T02:00:42.000Z",
+              "uid": "35240-3d95e35f-80e2-420c-9100-8e4cdf4b0cae"
+            }
+          ],
+          "id": "d2bf8c21-a178-46b9-9b75-d0e88dc0ed3a",
+          "createdAt": "2026-07-28T02:00:42.000Z",
+          "updatedAt": "2026-07-28T02:00:42.000Z",
+          "uid": "35240-d2bf8c21-a178-46b9-9b75-d0e88dc0ed3a"
+        }
+      ],
+      "id": "83485e7e-4c92-4bc9-8966-5172ffa83fdf",
+      "createdAt": "2026-07-28T02:00:42.000Z",
+      "updatedAt": "2026-07-28T02:00:42.000Z",
+      "uid": "35240-83485e7e-4c92-4bc9-8966-5172ffa83fdf"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://a.klaviyo.com"
+    }
+  ]
+}

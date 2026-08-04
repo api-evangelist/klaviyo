@@ -1,0 +1,286 @@
+{
+  "info": {
+    "_postman_id": "432e2119-0ab4-45f9-a9f6-274f3e32bfdf",
+    "name": "Klaviyo Accounts Conversations API",
+    "description": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:00:36.000Z",
+    "updatedAt": "2026-07-28T02:00:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-432e2119-0ab4-45f9-a9f6-274f3e32bfdf"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "conversation-messages",
+          "item": [
+            {
+              "name": "Create Conversation Message",
+              "id": "0b2f9037-2b40-4791-bd28-edc1b17a7a10",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.api+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"conversation-message\",\n    \"attributes\": {\n      \"body\": \"<string>\"\n    },\n    \"relationships\": {\n      \"conversation\": {\n        \"data\": {\n          \"type\": \"conversation\",\n          \"id\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/conversation-messages",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "conversation-messages"
+                  ]
+                },
+                "description": "Send an outbound message to a conversation.\n\nRequires OAuth authentication and account-level enablement. To request access, reach out in the [developer community](https://community.klaviyo.com/groups/developer-group-64).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`conversations:write`"
+              },
+              "response": [
+                {
+                  "id": "a4e885b2-8b3c-4c9b-b632-fd86c753f112",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"conversation-message\",\n    \"attributes\": {\n      \"body\": \"<string>\"\n    },\n    \"relationships\": {\n      \"conversation\": {\n        \"data\": {\n          \"type\": \"conversation\",\n          \"id\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/conversation-messages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "conversation-messages"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:00:36.000Z",
+                  "updatedAt": "2026-07-28T02:00:36.000Z",
+                  "uid": "35240-a4e885b2-8b3c-4c9b-b632-fd86c753f112"
+                },
+                {
+                  "id": "5da91941-c0ad-4712-9e61-241ce94683cb",
+                  "name": "Client Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"conversation-message\",\n    \"attributes\": {\n      \"body\": \"<string>\"\n    },\n    \"relationships\": {\n      \"conversation\": {\n        \"data\": {\n          \"type\": \"conversation\",\n          \"id\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/conversation-messages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "conversation-messages"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:36.000Z",
+                  "updatedAt": "2026-07-28T02:00:36.000Z",
+                  "uid": "35240-5da91941-c0ad-4712-9e61-241ce94683cb"
+                },
+                {
+                  "id": "278a441c-ff80-4297-8a7a-3c3f07443b55",
+                  "name": "Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                        "key": "revision",
+                        "value": "2026-04-15"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"conversation-message\",\n    \"attributes\": {\n      \"body\": \"<string>\"\n    },\n    \"relationships\": {\n      \"conversation\": {\n        \"data\": {\n          \"type\": \"conversation\",\n          \"id\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/conversation-messages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "conversation-messages"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:00:36.000Z",
+                  "updatedAt": "2026-07-28T02:00:36.000Z",
+                  "uid": "35240-278a441c-ff80-4297-8a7a-3c3f07443b55"
+                }
+              ],
+              "createdAt": "2026-07-28T02:00:36.000Z",
+              "updatedAt": "2026-07-28T02:00:36.000Z",
+              "uid": "35240-0b2f9037-2b40-4791-bd28-edc1b17a7a10"
+            }
+          ],
+          "id": "b4f03dd6-0a16-43bb-92bf-c134a76b706a",
+          "createdAt": "2026-07-28T02:00:36.000Z",
+          "updatedAt": "2026-07-28T02:00:36.000Z",
+          "uid": "35240-b4f03dd6-0a16-43bb-92bf-c134a76b706a"
+        }
+      ],
+      "id": "1a7ab9f1-5717-42ae-a53b-25ceaaaddb24",
+      "createdAt": "2026-07-28T02:00:36.000Z",
+      "updatedAt": "2026-07-28T02:00:36.000Z",
+      "uid": "35240-1a7ab9f1-5717-42ae-a53b-25ceaaaddb24"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://a.klaviyo.com"
+    }
+  ]
+}
