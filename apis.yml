@@ -1,12 +1,11 @@
 aid: klaviyo
 name: Klaviyo
 url: https://raw.githubusercontent.com/api-evangelist/klaviyo/refs/heads/main/apis.yml
-description: Klaviyo is a marketing automation and customer data platform built for
-  ecommerce. Build custom integrations to bring data into Klaviyo to create personalized
-  experiences across email, SMS, mobile push, and more. The Klaviyo API exposes profiles,
-  events, lists, segments, campaigns, flows, catalogs, coupons, metrics, reviews,
-  templates, webhooks, and reporting endpoints for building rich integrations and
-  data pipelines.
+description: Klaviyo is a marketing automation and customer data platform built for ecommerce. Build custom
+  integrations to bring data into Klaviyo to create personalized experiences across email, SMS, mobile
+  push, and more. The Klaviyo API exposes profiles, events, lists, segments, campaigns, flows, catalogs,
+  coupons, metrics, reviews, templates, webhooks, and reporting endpoints for building rich integrations
+  and data pipelines.
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -32,7 +31,7 @@ tags:
 - Ecommerce
 - Automation
 created: '2024-11-07T00:00:00.000Z'
-modified: '2026-05-30'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
 - aid: klaviyo:klaviyo-accounts-api
@@ -63,8 +62,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-accounts-api-overlay.yaml
 - aid: klaviyo:klaviyo-campaigns-api
   name: Klaviyo Campaigns API
   description: campaigns
@@ -93,8 +92,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-campaigns-api-overlay.yaml
 - aid: klaviyo:klaviyo-catalogs-api
   name: Klaviyo Catalogs API
   description: catalogs
@@ -123,8 +122,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-catalogs-api-overlay.yaml
 - aid: klaviyo:klaviyo-client-api
   name: Klaviyo Client API
   description: client
@@ -153,8 +152,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-client-api-overlay.yaml
 - aid: klaviyo:klaviyo-conversations-api
   name: Klaviyo Conversations API
   description: conversations
@@ -183,8 +182,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-conversations-api-overlay.yaml
 - aid: klaviyo:klaviyo-coupons-api
   name: Klaviyo Coupons API
   description: coupons
@@ -213,8 +212,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-coupons-api-overlay.yaml
 - aid: klaviyo:klaviyo-custom-objects-api
   name: Klaviyo Custom Objects API
   description: custom objects
@@ -243,8 +242,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-custom-objects-api-overlay.yaml
 - aid: klaviyo:klaviyo-data-privacy-api
   name: Klaviyo Data Privacy API
   description: data privacy
@@ -273,8 +272,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-data-privacy-api-overlay.yaml
 - aid: klaviyo:klaviyo-events-api
   name: Klaviyo Events API
   description: events
@@ -303,8 +302,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-events-api-overlay.yaml
 - aid: klaviyo:klaviyo-flows-api
   name: Klaviyo Flows API
   description: flows
@@ -333,8 +332,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-flows-api-overlay.yaml
 - aid: klaviyo:klaviyo-forms-api
   name: Klaviyo Forms API
   description: forms
@@ -363,8 +362,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-forms-api-overlay.yaml
 - aid: klaviyo:klaviyo-images-api
   name: Klaviyo Images API
   description: images
@@ -393,8 +392,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-images-api-overlay.yaml
 - aid: klaviyo:klaviyo-lists-api
   name: Klaviyo Lists API
   description: lists
@@ -423,8 +422,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-lists-api-overlay.yaml
 - aid: klaviyo:klaviyo-metrics-api
   name: Klaviyo Metrics API
   description: metrics
@@ -453,8 +452,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-metrics-api-overlay.yaml
 - aid: klaviyo:klaviyo-profiles-api
   name: Klaviyo Profiles API
   description: profiles
@@ -483,8 +482,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-profiles-api-overlay.yaml
 - aid: klaviyo:klaviyo-reporting-api
   name: Klaviyo Reporting API
   description: reporting
@@ -513,8 +512,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-reporting-api-overlay.yaml
 - aid: klaviyo:klaviyo-reviews-api
   name: Klaviyo Reviews API
   description: reviews
@@ -543,8 +542,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-reviews-api-overlay.yaml
 - aid: klaviyo:klaviyo-segments-api
   name: Klaviyo Segments API
   description: segments
@@ -573,8 +572,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-segments-api-overlay.yaml
 - aid: klaviyo:klaviyo-tags-api
   name: Klaviyo Tags API
   description: tags
@@ -603,8 +602,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-tags-api-overlay.yaml
 - aid: klaviyo:klaviyo-templates-api
   name: Klaviyo Templates API
   description: templates
@@ -633,8 +632,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-templates-api-overlay.yaml
 - aid: klaviyo:klaviyo-tracking-settings-api
   name: Klaviyo Tracking Settings API
   description: tracking settings
@@ -663,8 +662,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-tracking-settings-api-overlay.yaml
 - aid: klaviyo:klaviyo-web-feeds-api
   name: Klaviyo Web Feeds API
   description: web feeds
@@ -693,8 +692,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-web-feeds-api-overlay.yaml
 - aid: klaviyo:klaviyo-webhooks-api
   name: Klaviyo Webhooks API
   description: webhooks
@@ -723,8 +722,8 @@ apis:
     url: https://developers.klaviyo.com/en/docs/sdk_overview
   - type: GitHub
     url: https://github.com/klaviyo/openapi
-  - type: GraphQL
-    url: graphql/klaviyo-graphql.md
+  - type: Overlay
+    url: overlays/klaviyo-webhooks-api-overlay.yaml
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/klaviyo/overview
@@ -759,7 +758,7 @@ common:
 - type: Blog
   url: https://www.klaviyo.com/blog
 - type: Signup
-  url: https://www.klaviyo.com/signup
+  url: https://www.klaviyo.com/sign-up
 - type: Pricing
   url: https://www.klaviyo.com/pricing
 - type: TermsOfService
@@ -776,8 +775,8 @@ common:
   - Email plan from $20/mo (500 profiles) up to $720+/mo (50K profiles)
   - Email + SMS from $35/mo (500 profiles) with 1,250 SMS credits
   - 'SMS credits: 1=domestic SMS, 3=MMS, 3-12=international'
-  - Public API at api.klaviyo.com
-  - Default 75 req/s burst, 700 req/min steady-state
+  - Public API at a.klaviyo.com (verified 2026-08-13; api.klaviyo.com does not serve the API)
+  - 'Rate limits tiered XS-XL per endpoint: 1/s-15/m (XS) through 350/s-3500/m (XL); L tier is 75/s, 700/m'
   - OAuth 2.0 (private apps) and API keys
   - Webhooks for profile, event, and metric updates
   - Profile and event APIs (track, identify)
@@ -793,6 +792,64 @@ common:
   updated: '2026-05-04'
 - type: Integrations
   url: https://www.klaviyo.com/partners
+- type: Packages
+  url: packages/klaviyo-packages.yml
+- type: SDKs
+  url: packages/klaviyo-packages.yml
+- type: WellKnown
+  url: well-known/klaviyo-well-known.yml
+- type: MCPServer
+  url: mcp/klaviyo-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/klaviyo-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/klaviyo-llms.txt
+- type: Conformance
+  url: conformance/klaviyo-conformance.yml
+- type: Compliance
+  url: https://trust.klaviyo.com/
+- type: ErrorCatalog
+  url: errors/klaviyo-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/klaviyo-lifecycle.yml
+- type: Deprecation
+  url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+- type: OAuthScopes
+  url: scopes/klaviyo-scopes.yml
+- type: VulnerabilityDisclosure
+  url: security/klaviyo-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.klaviyo.com/security/bug-reporting
+- type: Sandbox
+  url: sandbox/klaviyo-sandbox.yml
+- type: Conventions
+  url: conventions/klaviyo-conventions.yml
+- type: Idempotency
+  url: conventions/klaviyo-conventions.yml
+- type: ChangeLog
+  url: changelog/klaviyo-changelog.yml
+- type: Components
+  url: components/klaviyo-components.yml
+- type: DataModel
+  url: data-model/klaviyo-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Webhooks
+  url: https://developers.klaviyo.com/en/docs/working_with_system_webhooks
+- type: GettingStarted
+  url: https://developers.klaviyo.com/en/docs/get_started
+- type: SignUp
+  url: https://www.klaviyo.com/sign-up
+- type: Login
+  url: https://www.klaviyo.com/login
+- type: Postman
+  url: https://www.postman.com/kinlaneapi/klaviyo/overview
+- type: DeveloperPortal
+  url: https://developers.klaviyo.com/
+- type: APIReference
+  url: https://developers.klaviyo.com/en/reference/api_overview
+- type: GitHubOrganization
+  url: https://github.com/klaviyo
 integrations:
 - name: Email subject line generator
 - name: Email & SMS ROI calculator
@@ -800,3 +857,8 @@ integrations:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 50
+  pass: local-v1
