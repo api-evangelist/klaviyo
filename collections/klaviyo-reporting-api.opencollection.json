@@ -1,0 +1,197 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts Reporting API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reporting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Campaign Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/campaign-values-reports",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_cursor",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the requested campaign analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Query Flow Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/flow-values-reports",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_cursor",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Query Flow Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/flow-series-reports",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_cursor",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Query Form Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/form-values-reports",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the requested form analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`forms:read`"
+        },
+        {
+          "info": {
+            "name": "Query Form Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/form-series-reports",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the requested form analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`forms:read`"
+        },
+        {
+          "info": {
+            "name": "Query Segment Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/segment-values-reports",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the requested segment analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`segments:read`"
+        },
+        {
+          "info": {
+            "name": "Query Segment Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/segment-series-reports",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the requested segment analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`segments:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

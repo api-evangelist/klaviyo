@@ -1,0 +1,804 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts Metrics API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metrics",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`integration.name`: `equals`<br>`integration.category`: `equals`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              }
+            ]
+          },
+          "docs": "Get all metrics in an account.\n\nRequests can be filtered by the following fields:\nintegration `name`, integration `category`\n\nReturns a maximum of 200 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metrics/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Metric ID"
+              },
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get a metric with the given metric ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Metric Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metric-properties/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the metric property"
+              },
+              {
+                "name": "additional-fields[metric-property]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'sample_values'"
+              },
+              {
+                "name": "fields[metric-property]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get a metric property with the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Custom Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/custom-metrics",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[custom-metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get all custom metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Create Custom Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/custom-metrics",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom metric.\n\nCustom metric objects must include a `name` and `definition`.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `15/d`\n\n**Scopes:**\n`metrics:write`"
+        },
+        {
+          "info": {
+            "name": "Get Custom Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/custom-metrics/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the custom metric"
+              },
+              {
+                "name": "fields[custom-metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Update Custom Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/custom-metrics/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the custom metric"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `15/d`\n\n**Scopes:**\n`metrics:write`"
+        },
+        {
+          "info": {
+            "name": "Delete Custom Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://a.klaviyo.com/api/custom-metrics/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the custom metric"
+              }
+            ]
+          },
+          "docs": "Delete a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:write`"
+        },
+        {
+          "info": {
+            "name": "Get Mapped Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/mapped-metrics",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[custom-metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[mapped-metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get all mapped metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Mapped Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/mapped-metrics/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The type of mapping."
+              },
+              {
+                "name": "fields[custom-metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[mapped-metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Update Mapped Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/mapped-metrics/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The type of mapping."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `30/d`\n\n**Scopes:**\n`metrics:write`"
+        },
+        {
+          "info": {
+            "name": "Query Metric Aggregates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/metric-aggregates",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query and aggregate event data associated with a metric, including native Klaviyo metrics, integration-specific metrics, and custom events (not to be confused with [custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview), which are not supported at this time). Queries must be passed in the JSON body of your `POST` request.\n\nTo request campaign and flow performance data that matches the data shown in Klaviyo's UI, we recommend the [Reporting API](https://developer"
+        },
+        {
+          "info": {
+            "name": "Get Flows Triggered by Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metrics/:id/flow-triggers",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`flows:read`\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get IDs for Flows Triggered by Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metrics/:id/relationships/flow-triggers",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the IDs of all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`flows:read`\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Properties for Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metrics/:id/metric-properties",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the metric"
+              },
+              {
+                "name": "additional-fields[metric-property]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'sample_values'"
+              },
+              {
+                "name": "fields[metric-property]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get the metric properties for the given metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Property IDs for Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metrics/:id/relationships/metric-properties",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the metric"
+              }
+            ]
+          },
+          "docs": "Get the IDs of metric properties for the given metric.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Metric for Metric Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metric-properties/:id/metric",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the metric property"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get the metric for the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Metric ID for Metric Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/metric-properties/:id/relationships/metric",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the metric property"
+              }
+            ]
+          },
+          "docs": "Get the ID of the metric for the given metric property.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Metrics for Custom Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/custom-metrics/:id/metrics",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the custom metric"
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get all metrics for the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Metric IDs for Custom Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/custom-metrics/:id/relationships/metrics",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the custom metric"
+              }
+            ]
+          },
+          "docs": "Get all metrics for the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Metric for Mapped Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/mapped-metrics/:id/metric",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The type of mapping."
+              },
+              {
+                "name": "fields[metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get the metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Metric ID for Mapped Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/mapped-metrics/:id/relationships/metric",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The type of mapping."
+              }
+            ]
+          },
+          "docs": "Get the ID of the metric for the given mapped metric.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Custom Metric for Mapped Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/mapped-metrics/:id/custom-metric",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The type of mapping."
+              },
+              {
+                "name": "fields[custom-metric]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get the custom metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        },
+        {
+          "info": {
+            "name": "Get Custom Metric ID for Mapped Metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/mapped-metrics/:id/relationships/custom-metric",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The type of mapping."
+              }
+            ]
+          },
+          "docs": "Get the ID of the custom metric for the given mapped metric.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`metrics:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

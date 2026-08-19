@@ -1,0 +1,168 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/docs/sdk_overview
+notes: >-
+  Versions and publish dates read from each registry's unauthenticated metadata
+  endpoint on 2026-08-13 (registry.npmjs.org, pypi.org/pypi/<pkg>/json,
+  rubygems.org/api/v1/gems/<pkg>.json, repo.packagist.org, pub.dev/api/packages,
+  api.github.com releases for the mobile SDKs). Klaviyo's server-side SDKs are
+  generated from the same OpenAPI at https://github.com/klaviyo/openapi and are
+  released in lockstep — node/python/php/ruby all shipped on 2026-07-15, matching
+  the 2026-07-15 API revision. Android and Swift are distributed through Maven
+  Central / Swift Package Manager respectively; Maven Central has no `com.klaviyo`
+  group published (repo1.maven.org/maven2/com/klaviyo/ returns 404), so the Android
+  version is read from the GitHub release tag instead and `registry` is recorded as
+  `github-releases`.
+packages:
+  - language: javascript
+    registry: npm
+    name: klaviyo-api
+    url: https://www.npmjs.com/package/klaviyo-api
+    install: npm install klaviyo-api
+    repository: https://github.com/klaviyo/klaviyo-api-node
+    version: 23.0.0
+    published: '2026-07-15'
+    official: true
+    note: TypeScript client for the Klaviyo REST API; generated from klaviyo/openapi.
+
+  - language: python
+    registry: pypi
+    name: klaviyo-api
+    url: https://pypi.org/project/klaviyo-api/
+    install: pip install klaviyo-api
+    repository: https://github.com/klaviyo/klaviyo-api-python
+    version: 24.0.0
+    published: '2026-07-15'
+    official: true
+
+  - language: php
+    registry: packagist
+    name: klaviyo/api
+    url: https://packagist.org/packages/klaviyo/api
+    install: composer require klaviyo/api
+    repository: https://github.com/klaviyo/klaviyo-api-php
+    version: 20.0.0
+    published: '2026-07-15'
+    official: true
+
+  - language: ruby
+    registry: rubygems
+    name: klaviyo-api-sdk
+    url: https://rubygems.org/gems/klaviyo-api-sdk
+    install: gem install klaviyo-api-sdk
+    repository: https://github.com/klaviyo/klaviyo-api-ruby
+    version: 18.0.0
+    published: '2026-07-15'
+    official: true
+
+  - language: kotlin
+    registry: github-releases
+    name: klaviyo-android-sdk
+    url: https://github.com/klaviyo/klaviyo-android-sdk
+    install: 'implementation "com.klaviyo.analytics:analytics:4.4.1"'
+    repository: https://github.com/klaviyo/klaviyo-android-sdk
+    version: 4.4.1
+    published: '2026-06-29'
+    official: true
+    note: >-
+      Mobile SDK (push, in-app messages, geofencing, event + profile tracking).
+      No `com.klaviyo` group is published on Maven Central
+      (repo1.maven.org/maven2/com/klaviyo/ -> HTTP 404), so no registry metadata
+      endpoint could be queried; version and date come from the GitHub release tag.
+
+  - language: swift
+    registry: swift-package-manager
+    name: klaviyo-swift-sdk
+    url: https://github.com/klaviyo/klaviyo-swift-sdk
+    install: 'https://github.com/klaviyo/klaviyo-swift-sdk.git (SPM)'
+    repository: https://github.com/klaviyo/klaviyo-swift-sdk
+    version: 5.3.1
+    published: '2026-04-30'
+    official: true
+    note: >-
+      Swift Package Manager resolves from the git tag directly; SPM has no central
+      registry metadata endpoint, so version/date come from the GitHub release tag.
+
+  - language: javascript
+    registry: npm
+    name: klaviyo-react-native-sdk
+    url: https://www.npmjs.com/package/klaviyo-react-native-sdk
+    install: npm install klaviyo-react-native-sdk
+    repository: https://github.com/klaviyo/klaviyo-react-native-sdk
+    version: 2.4.1
+    published: '2026-05-05'
+    official: true
+
+  - language: javascript
+    registry: npm
+    name: klaviyo-expo-plugin
+    url: https://www.npmjs.com/package/klaviyo-expo-plugin
+    install: npx expo install klaviyo-expo-plugin
+    repository: https://github.com/klaviyo/klaviyo-expo-plugin
+    version: 0.4.0
+    published: '2026-04-17'
+    official: true
+    note: Expo config plugin wrapping klaviyo-react-native-sdk.
+
+  - language: dart
+    registry: pub.dev
+    name: klaviyo_flutter_sdk
+    url: https://pub.dev/packages/klaviyo_flutter_sdk
+    install: flutter pub add klaviyo_flutter_sdk
+    repository: https://github.com/klaviyo/klaviyo-flutter-sdk
+    version: 0.2.0
+    published: '2026-05-05'
+    official: true
+
+  - language: python
+    registry: pypi
+    name: klaviyo-mcp-server
+    url: https://pypi.org/project/klaviyo-mcp-server/
+    install: uvx klaviyo-mcp-server@latest
+    repository: https://developers.klaviyo.com/en/docs/klaviyo_mcp_server
+    version: 0.4.1
+    published: '2026-03-05'
+    official: true
+    kind: mcp-server
+    note: >-
+      First-party — PyPI author is "Klaviyo Developer Experience Team
+      <developers@klaviyo.com>". This is the LOCAL stdio MCP distribution; the
+      hosted remote server is https://mcp.klaviyo.com/mcp. Last published
+      2026-03-05, four months behind the 2026-07-15 SDK/API release train.
+
+  - language: javascript
+    registry: cdn
+    name: klaviyo.js (Onsite tracking snippet)
+    url: https://static.klaviyo.com/onsite/js/klaviyo.js
+    install: '<script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PUBLIC_API_KEY"></script>'
+    version: null
+    published: null
+    official: true
+    note: >-
+      Browser tracking + onsite forms loader, served from Klaviyo's CDN (HTTP 200
+      on 2026-08-13). The script URL is UNPINNED — it carries no version segment
+      and floats to whatever Klaviyo currently serves, so a consumer cannot
+      determine which build they are running. version/published recorded as null
+      for that reason, not because they were unchecked.
+
+third_party_noted:
+  - language: javascript
+    registry: npm
+    name: klaviyo-mcp
+    url: https://www.npmjs.com/package/klaviyo-mcp
+    version: 1.0.0
+    published: '2026-02-08'
+    official: false
+    note: >-
+      NOT first-party — published from github.com/doinglean/klaviyo-mcp. Recorded
+      only so it is not mistaken for Klaviyo's own MCP distribution, which is the
+      PyPI package klaviyo-mcp-server plus the hosted mcp.klaviyo.com endpoint.
+
+summary:
+  official_count: 11
+  languages: [javascript, typescript, python, php, ruby, kotlin, swift, dart]
+  registries: [npm, pypi, packagist, rubygems, pub.dev, github-releases, swift-package-manager, cdn]
+  release_train: >-
+    The four server-side SDKs (node, python, php, ruby) are generated from
+    klaviyo/openapi and all released 2026-07-15, the same date as the current API
+    revision — no abandonment signal on the core SDK surface.

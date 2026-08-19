@@ -1,0 +1,1303 @@
+{
+  "item": [
+    {
+      "id": "d4fdc362-557e-4f4d-8f67-e1d0accf5ff1",
+      "name": "Web Feeds",
+      "description": {
+        "content": "web feeds",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff74719f-b604-4d36-a899-788c57b19268",
+          "name": "Get Web Feeds",
+          "request": {
+            "name": "Get Web Feeds",
+            "description": {
+              "content": "Get all web feeds for an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`web-feeds:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "web-feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[web-feed]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`name`: `any`, `contains`, `equals`<br>`created`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[cursor]",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "5",
+                  "description": "Default: 5. Min: 1. Max: 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f716556-e863-41ec-b9c0-948a6c0d0c3a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[web-feed]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(name,'Blog_posts')"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "5"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"web-feed\",\n      \"id\": \"925e385b52fb\",\n      \"attributes\": {\n        \"name\": \"Blog_posts\",\n        \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n        \"request_method\": \"get\",\n        \"content_type\": \"json\",\n        \"created\": \"2022-11-08T00:00:00+00:00\",\n        \"updated\": \"2022-11-08T00:00:00+00:00\",\n        \"status\": \"ok\"\n      },\n      \"links\": {\n        \"self\": \"https://jrTVUaeKaeTtGCCRVlCOcpBZoNA.vgpMWo4YLma0-q.y6e5uxFAKCwfUGO+F7lT\"\n      }\n    },\n    {\n      \"type\": \"web-feed\",\n      \"id\": \"925e385b52fb\",\n      \"attributes\": {\n        \"name\": \"Blog_posts\",\n        \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n        \"request_method\": \"get\",\n        \"content_type\": \"json\",\n        \"created\": \"2022-11-08T00:00:00+00:00\",\n        \"updated\": \"2022-11-08T00:00:00+00:00\",\n        \"status\": \"ok\"\n      },\n      \"links\": {\n        \"self\": \"http://qECrJvOFXoEQFeGiCOxiyh.ohwjSHejGXOJ-WWz889kzHzFdM5\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://PtbJrtkqbYMBTZeAULrK.sgpWqTkjLrXpkP-AfzTDJWQVJBwKYHrae1g,j9sPliPTpy8AOE+QLi+1W86Qx\",\n    \"first\": \"http://uElYgrsaCycTPzMCFdGKWyMdErlgbIbbO.xgmltCPLMktFmhLTtSselr61w5dwsliY85LOeE+tuv6-Vk7iBRCG1GYRXtVa7zd.TTB8yfLGcA+rrJGcaW\",\n    \"last\": \"https://DMFBSkLchjXfxiugnPDaVsBS.glosQKGLhNVnJgsSM0n.CGoJzMK4LNMgzkK22VrCflq2tNF+7Zg\",\n    \"prev\": \"http://mJXNriyKRzuaMp.xorh1,YBALXaE,BcRkAy5B3lB\",\n    \"next\": \"https://qOQBLPYmLKPdUasRONEQaoqDuZghVxeuH.uvjG9W1AK2Gst9HSLKN9ZdrmLX.qmQriJFM4AF,Zm3Etw+H\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "871aad01-5bb8-4101-b3f2-4270d6fa234f",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[web-feed]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(name,'Blog_posts')"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "5"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ab4decb-51c7-45c9-b434-652a406f65f4",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[web-feed]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(name,'Blog_posts')"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "5"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "612e25a0-8294-4236-8555-5a6a5bc20579",
+          "name": "Create Web Feed",
+          "request": {
+            "name": "Create Web Feed",
+            "description": {
+              "content": "Create a web feed.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`web-feeds:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "web-feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"request_method\": \"<string>\",\n      \"content_type\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f89eb567-31f1-42e9-980d-1db0fcda69e3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"925e385b52fb\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\",\n      \"created\": \"2022-11-08T00:00:00+00:00\",\n      \"updated\": \"2022-11-08T00:00:00+00:00\",\n      \"status\": \"ok\"\n    },\n    \"links\": {\n      \"self\": \"https://YVrhWyMVbfqqLojgMTtwMbhWfYT.fmkkYStpr7W4KCjVpWO8Desm3Iw.ecdu1,r1mzfbvNA6kPk0O16Ux\"\n    }\n  },\n  \"links\": {\n    \"self\": \"http://eLlOWCSkUjyGiD.yxrpOvyt56b6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84a712f7-de32-4d91-b545-9626ef23fa9d",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b77888ba-a8c9-4967-b783-4d62dd3cfb8c",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a4f9bd2-f4e8-485a-a253-5441ba172927",
+          "name": "Get Web Feed",
+          "request": {
+            "name": "Get Web Feed",
+            "description": {
+              "content": "Get the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`web-feeds:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "web-feeds",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[web-feed]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the web feed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c28ac538-dc7b-48eb-9451-f0e429e51bdc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[web-feed]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"925e385b52fb\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\",\n      \"created\": \"2022-11-08T00:00:00+00:00\",\n      \"updated\": \"2022-11-08T00:00:00+00:00\",\n      \"status\": \"ok\"\n    },\n    \"links\": {\n      \"self\": \"https://YVrhWyMVbfqqLojgMTtwMbhWfYT.fmkkYStpr7W4KCjVpWO8Desm3Iw.ecdu1,r1mzfbvNA6kPk0O16Ux\"\n    }\n  },\n  \"links\": {\n    \"self\": \"http://eLlOWCSkUjyGiD.yxrpOvyt56b6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "319a021f-5ca9-4793-95bf-cea978db12f3",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[web-feed]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b84c7eda-7bb8-47fe-851b-f93472f0c404",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[web-feed]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f21ea96-cf0a-4f58-a3c3-40aca22a69c0",
+          "name": "Update Web Feed",
+          "request": {
+            "name": "Update Web Feed",
+            "description": {
+              "content": "Update the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`web-feeds:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "web-feeds",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the web feed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"request_method\": \"<string>\",\n      \"content_type\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9d1f46b-3f0f-4c14-bd32-97b81203cc64",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"925e385b52fb\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"925e385b52fb\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\",\n      \"created\": \"2022-11-08T00:00:00+00:00\",\n      \"updated\": \"2022-11-08T00:00:00+00:00\",\n      \"status\": \"ok\"\n    },\n    \"links\": {\n      \"self\": \"https://YVrhWyMVbfqqLojgMTtwMbhWfYT.fmkkYStpr7W4KCjVpWO8Desm3Iw.ecdu1,r1mzfbvNA6kPk0O16Ux\"\n    }\n  },\n  \"links\": {\n    \"self\": \"http://eLlOWCSkUjyGiD.yxrpOvyt56b6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c1b2753-1c7e-4dc3-8108-f787f08fcecb",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"925e385b52fb\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c09910c5-c481-4a5f-92d4-eb15d13ae24b",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"925e385b52fb\",\n    \"attributes\": {\n      \"name\": \"Blog_posts\",\n      \"url\": \"https://help.klaviyo.com/api/v2/help_center/en-us/articles.json\",\n      \"request_method\": \"get\",\n      \"content_type\": \"json\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c384c372-5c5a-4faf-9e13-7c5b2aa2cf87",
+          "name": "Delete Web Feed",
+          "request": {
+            "name": "Delete Web Feed",
+            "description": {
+              "content": "Delete the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`web-feeds:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "web-feeds",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the web feed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7752618-a70f-4707-addd-de287ed19c56",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58ae2449-7c8d-45a4-a116-5a32b79e9a48",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae1334b8-0d42-4277-afbe-30cf10b316a3",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "web-feeds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the web feed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://a.klaviyo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eaa40d65-1d62-4573-9853-b2ebb0445787",
+    "name": "Klaviyo Accounts Web Feeds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+      "type": "text/plain"
+    }
+  }
+}

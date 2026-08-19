@@ -1,0 +1,774 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts Flows API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flows",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[flow-action]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`<br>`name`: `contains`, `ends-with`, `equals`, `starts-with`<br>`status`: `equals`<br>`archived`: `equals`<br>`created`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`trigger_type`: `equals`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 50. Min: 1. Max: 50."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all flows in an account.\n\nReturns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Create Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/flows",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "additional-fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'definition'"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new flow using an encoded flow definition.\n\nNew objects within the flow definition, such as actions, will need to use a\n`temporary_id` field for identification. These will be replaced with traditional `id` fields\nafter successful creation.\n\nA successful request will return the new definition to you.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `100/d`\n\n**Scopes:**\n`flows:write`"
+        },
+        {
+          "info": {
+            "name": "Get Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flows/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "additional-fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'definition'"
+              },
+              {
+                "name": "fields[flow-action]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get a flow with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Update Flow Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/flows/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Flow to update. Ex: XVTP5Q"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of a flow with the given flow ID, and all actions in that flow.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:write`"
+        },
+        {
+          "info": {
+            "name": "Delete Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://a.klaviyo.com/api/flows/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Flow to delete. Ex: XVTP5Q"
+              }
+            ]
+          },
+          "docs": "Delete a flow with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:write`"
+        },
+        {
+          "info": {
+            "name": "Get Flow Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-actions/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[flow-action]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[flow-message]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get a flow action from a flow with the given flow action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Update Flow Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/flow-actions/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a flow action.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:write`"
+        },
+        {
+          "info": {
+            "name": "Get Flow Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-messages/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[flow-action]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[flow-message]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get a flow message from a flow with the given flow message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Actions for Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flows/:id/flow-actions",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[flow-action]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`<br>`action_type`: `any`, `equals`<br>`status`: `equals`<br>`created`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 50. Min: 1. Max: 50."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all flow actions associated with the given flow ID.\n\nReturns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Action IDs for Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flows/:id/relationships/flow-actions",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`<br>`action_type`: `any`, `equals`<br>`status`: `equals`<br>`created`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 50. Min: 1. Max: 50."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.\n\nReturns a maximum of 100 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Tags for Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flows/:id/tags",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Return all tags associated with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`\n`tags:read`"
+        },
+        {
+          "info": {
+            "name": "Get Tag IDs for Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flows/:id/relationships/tags",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return the tag IDs of all tags associated with the given flow.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`\n`tags:read`"
+        },
+        {
+          "info": {
+            "name": "Get Flow for Flow Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-actions/:id/flow",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Flow ID for Flow Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-actions/:id/relationships/flow",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Messages For Flow Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-actions/:id/flow-messages",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[flow-message]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`<br>`name`: `contains`, `ends-with`, `equals`, `starts-with`<br>`created`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 50. Min: 1. Max: 50."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all flow messages associated with the given flow action ID.\n\nReturns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Message IDs for Flow Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-actions/:id/relationships/flow-messages",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`name`: `contains`, `ends-with`, `equals`, `starts-with`<br>`created`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 50. Min: 1. Max: 50."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all relationships for flow messages associated with the given flow action ID.\n\nReturns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Action for Flow Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-messages/:id/flow-action",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[flow-action]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get the flow action for a flow message with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Action ID for Flow Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-messages/:id/relationships/flow-action",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a flow message's flow action, given the flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`"
+        },
+        {
+          "info": {
+            "name": "Get Template for Flow Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-messages/:id/template",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Return the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`templates:read`"
+        },
+        {
+          "info": {
+            "name": "Get Template ID for Flow Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/flow-messages/:id/relationships/template",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`templates:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,83 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/docs/create_a_test_account
+
+model: separate-test-account
+model_detail: >-
+  Klaviyo has NO test-mode key prefix and NO parallel sandbox host. There is one API
+  surface (https://a.klaviyo.com) and one key format; isolation is achieved by creating
+  a SECOND Klaviyo account and flagging it as a test account. This is materially
+  different from a Stripe-style test/live key split — nothing in a request or a key
+  tells you which environment you are in, so an agent cannot detect test-vs-live from
+  the credential.
+
+test_vs_live_separation:
+  key_prefix_differs: false
+  host_differs: false
+  mode_parameter: false
+  detection: >-
+    The only way to confirm you are calling a test account is to check which account the
+    key belongs to (GET /api/accounts). Klaviyo's own docs make this the first
+    troubleshooting step: "If you are using a sandbox account, first check the key is
+    associated with your sandbox account."
+
+setup:
+  docs: https://developers.klaviyo.com/en/docs/create_a_test_account
+  steps:
+    - >-
+      The account owner signs up for an additional free Klaviyo account using the SAME
+      email address and password as the production account but a DIFFERENT company name
+      (Klaviyo links the two by the shared credentials).
+    - >-
+      Convert it: account selector (bottom left) > Settings > Account > Testing >
+      "Convert to test account".
+    - >-
+      A converted test account has the same features and functionality as production,
+      with minor visual differences to signal it is a test account.
+  cost: free
+  api_key: A test account issues its own private API key; there is no shared key.
+
+test_data:
+  tool: Sample Data Generation Tool
+  docs: https://developers.klaviyo.com/en/v1-2/docs/generate-sample-data
+  generates:
+    - Klaviyo data (profiles, events)
+    - Custom ecommerce integration data
+    - Catalog data
+  note: Populates a test/sandbox account with data so flows, segments and reports have something to act on.
+
+magic_values:
+  published: false
+  detail: >-
+    Klaviyo publishes NO magic test identifiers — no reserved test email addresses, no
+    reserved phone numbers, no simulator values that force a bounce, a delivery failure
+    or a specific event outcome. Nothing of that shape was found on the testing docs as
+    of 2026-08-13, and none is invented here. Deliverability and SMS behaviour must be
+    exercised against real addresses/numbers in a test account.
+
+time_simulation:
+  supported: false
+  detail: >-
+    No test clocks or time-travel tooling. Flow timing, delays and scheduled sends run
+    on wall-clock time in a test account exactly as in production. The 2026-07-15
+    Events API `backfill` flag lets you write historical events WITHOUT triggering
+    flows, which is a migration/replay affordance rather than a time simulator.
+
+webhook_testing:
+  detail: >-
+    Webhooks are configured per account (POST /api/webhooks), so a test account gets its
+    own subscriptions pointed at whatever endpoint you choose. Klaviyo publishes no
+    webhook event-trigger/replay tool and no CLI forwarder.
+
+related_safety_controls:
+  - control: MCP read-only mode
+    detail: >-
+      The hosted MCP server accepts ?read-only=true and the local stdio server accepts
+      READ_ONLY=true, disabling all write tools. This is the closest thing Klaviyo ships
+      to a safe-by-default agent sandbox, and it is the recommended way to point an
+      agent at a production account without risk of writes.
+    source: https://developers.klaviyo.com/en/docs/klaviyo_mcp_server
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/create_a_test_account', http_status: 200}
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/klaviyo_mcp_server', http_status: 200}

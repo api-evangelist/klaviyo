@@ -1,0 +1,143 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://developers.klaviyo.com/en/docs/klaviyo_mcp_server
+
+server:
+  name: Klaviyo MCP Server
+  vendor: Klaviyo
+  first_party: true
+  maturity: beta
+  documentation: https://developers.klaviyo.com/en/docs/klaviyo_mcp_server
+
+deployment:
+  mode: both
+  endpoint: https://mcp.klaviyo.com/mcp
+  install: uvx klaviyo-mcp-server@latest
+  package: https://pypi.org/project/klaviyo-mcp-server/
+  auth: oauth
+  verified: probed
+
+deployment_detail:
+  remote:
+    endpoint: https://mcp.klaviyo.com/mcp
+    transport: streamable-http
+    auth: oauth
+    auth_evidence: >-
+      POST tools/list to https://mcp.klaviyo.com/mcp returned HTTP 401 with
+      `WWW-Authenticate: Bearer realm="OAuth", error="invalid_token"` on 2026-08-13.
+      The endpoint is live and OAuth-protected.
+    dynamic_client_registration: true
+    authorization_server: https://mcp.klaviyo.com
+    authorization_endpoint: https://mcp.klaviyo.com/authorize
+    token_endpoint: https://mcp.klaviyo.com/token
+    registration_endpoint: https://mcp.klaviyo.com/register
+    pkce: [S256, plain]
+    protected_resource_metadata: well-known/klaviyo-mcp-oauth-protected-resource.json
+    authorization_server_metadata: well-known/klaviyo-mcp-oauth-authorization-server.json
+    query_parameters:
+      - name: read-only
+        value: 'true'
+        effect: Disables all write operations on the session.
+      - name: core-tools-only
+        value: 'true'
+        effect: Restricts the session to roughly 40 core tools instead of the full set.
+      - name: toolsets
+        value: 'profiles:read,campaigns:read'
+        effect: >-
+          Scope-shaped allow-list that filters the exposed tools to the named
+          toolsets. Uses the same <resource>:<read|write> vocabulary as the OAuth
+          scopes in scopes/klaviyo-scopes.yml.
+  local_stdio:
+    install: uvx klaviyo-mcp-server@latest
+    package: https://pypi.org/project/klaviyo-mcp-server/
+    package_version: 0.4.1
+    package_published: '2026-03-05'
+    prerequisite: uv (https://docs.astral.sh/uv/getting-started/installation/)
+    auth: api-key
+    auth_detail: >-
+      Private API key supplied as the PRIVATE_API_KEY environment variable; the
+      READ_ONLY env var toggles write access. This is a DIFFERENT auth model from the
+      remote endpoint, which uses OAuth.
+    client_config: |
+      {
+        "mcpServers": {
+          "klaviyo": {
+            "command": "uvx",
+            "args": ["klaviyo-mcp-server@latest"],
+            "env": {
+              "PRIVATE_API_KEY": "YOUR_API_KEY",
+              "READ_ONLY": "false"
+            }
+          }
+        }
+      }
+    required_key_scopes:
+      accounts: read
+      campaigns: full
+      catalogs: read
+      events: full
+      flows: read
+      images: full
+      lists: read
+      metrics: read
+      profiles: full
+      tags: read
+      templates: full
+
+tools_introspection:
+  attempted: '2026-08-13'
+  method: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"} with Accept: application/json, text/event-stream'
+  result: gated
+  http_status: 401
+  detail: >-
+    The live tool set with real inputSchema requires an authenticated OAuth session.
+    The tools[] below are the tool NAMES AND DESCRIPTIONS Klaviyo publishes verbatim in
+    the klaviyo-mcp-server package README (PyPI, v0.4.1) for the LOCAL stdio server.
+    Input schemas are NOT recorded because they were not observable — see
+    mcp/klaviyo-tool-crosswalk.yml, where each tool is bound to the OpenAPI operation
+    that carries its real parameter contract.
+  surface_divergence: >-
+    IMPORTANT — the remote and local servers do not expose the same tool set. Klaviyo's
+    docs describe the REMOTE server as exposing "over 200 tools" (with core-tools-only
+    trimming to ~40), while the local stdio package documents the 28 tools listed below.
+    Only the 28 are enumerated here because only they are published as a list; the
+    remote catalogue is not published anywhere anonymous and would have to be
+    introspected with a token.
+
+tools:
+  - {name: get_account_details, category: Accounts, description: Get details of your account.}
+  - {name: get_campaigns, category: Campaigns, description: List your campaigns.}
+  - {name: get_campaign, category: Campaigns, description: Get details of a campaign.}
+  - {name: create_campaign, category: Campaigns, description: Create a campaign.}
+  - {name: assign_template_to_campaign_message, category: Campaigns, description: Assign an email template to a campaign message.}
+  - {name: get_catalog_items, category: Catalogs, description: List your catalog items.}
+  - {name: get_events, category: Events, description: List events.}
+  - {name: create_event, category: Events, description: Create an event for a profile.}
+  - {name: get_metrics, category: Events, description: List event metrics.}
+  - {name: get_metric, category: Events, description: Get details of an event metric.}
+  - {name: get_flows, category: Flows, description: List your flows.}
+  - {name: get_flow, category: Flows, description: Get details of a flow.}
+  - {name: get_lists, category: Groups, description: List your lists.}
+  - {name: get_list, category: Groups, description: Get details of a list.}
+  - {name: get_segments, category: Groups, description: List your segments.}
+  - {name: get_segment, category: Groups, description: Get details of a segment.}
+  - {name: upload_image_from_file, category: Images, description: Upload image from a local file.}
+  - {name: upload_image_from_url, category: Images, description: Upload image from a URL.}
+  - {name: get_profiles, category: Profiles, description: List your profiles.}
+  - {name: get_profile, category: Profiles, description: Get details of a profile.}
+  - {name: create_profile, category: Profiles, description: Create a profile.}
+  - {name: update_profile, category: Profiles, description: Update a profile.}
+  - {name: subscribe_profile_to_marketing, category: Profiles, description: Subscribe a profile to marketing for a given channel and list.}
+  - {name: unsubscribe_profile_from_marketing, category: Profiles, description: Unsubscribe a profile from marketing for a given channel and list.}
+  - {name: get_campaign_report, category: Reporting, description: Get a report of your campaign performance.}
+  - {name: get_flow_report, category: Reporting, description: Get a report of your flow performance.}
+  - {name: create_email_template, category: Templates, description: Create an HTML email template.}
+  - {name: get_email_template, category: Templates, description: Get the details of an email template.}
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://mcp.klaviyo.com/mcp', method: POST, http_status: 401, note: 'WWW-Authenticate: Bearer realm="OAuth", error="invalid_token"'}
+  - {fetched: '2026-08-13', url: 'https://mcp.klaviyo.com/.well-known/oauth-protected-resource', http_status: 200, note: 'resource_name "Klaviyo MCP Server"'}
+  - {fetched: '2026-08-13', url: 'https://mcp.klaviyo.com/.well-known/oauth-authorization-server', http_status: 200}
+  - {fetched: '2026-08-13', url: 'https://pypi.org/pypi/klaviyo-mcp-server/json', http_status: 200, note: 'author "Klaviyo Developer Experience Team <developers@klaviyo.com>"; v0.4.1'}
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/klaviyo_mcp_server', http_status: 200}

@@ -1,0 +1,440 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts Segments API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/segments",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[segment]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`name`: `any`, `equals`<br>`id`: `any`, `equals`<br>`created`: `greater-than`<br>`updated`: `greater-than`<br>`is_active`: `any`, `equals`<br>`is_starred`: `equals`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 10. Min: 1. Max: 10."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all segments in an account.\n\nFilter to request a subset of all segments. Segments can be filtered by `name`, `created`, and `updated` fields.\n\nReturns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`segments:read`"
+        },
+        {
+          "info": {
+            "name": "Create Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/segments",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a segment.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `100/d`\n\n**Scopes:**\n`segments:write`"
+        },
+        {
+          "info": {
+            "name": "Get Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/segments/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "additional-fields[segment]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'profile_count'"
+              },
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[segment]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Get a segment with the given segment ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `additional-fields[segment]=profile_count` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.\n\n**Scopes:**\n`segments:read`"
+        },
+        {
+          "info": {
+            "name": "Update Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/segments/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a segment with the given segment ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `100/d`\n\n**Scopes:**\n`segments:write`"
+        },
+        {
+          "info": {
+            "name": "Delete Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://a.klaviyo.com/api/segments/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a segment with the given segment ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`segments:write`"
+        },
+        {
+          "info": {
+            "name": "Get Tags for Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/segments/:id/tags",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Return all tags associated with the given segment ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`segments:read`\n`tags:read`"
+        },
+        {
+          "info": {
+            "name": "Get Tag IDs for Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/segments/:id/relationships/tags",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "If `related_resource` is `tags`, returns the tag IDs of all tags associated with the given segment ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`segments:read`\n`tags:read`"
+        },
+        {
+          "info": {
+            "name": "Get Profiles for Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/segments/:id/profiles",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Primary key that uniquely identifies this segment. Generated by Klaviyo."
+              },
+              {
+                "name": "additional-fields[profile]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'subscriptions', 'predictive_analytics'"
+              },
+              {
+                "name": "fields[profile]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`profile_id`: `any`, `equals`<br>`email`: `any`, `equals`<br>`phone_number`: `any`, `equals`<br>`push_token`: `any`, `equals`<br>`_kx`: `equals`<br>`joined_group_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 20. Min: 1. Max: 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all profiles within a segment with the given segment ID.\n\nFilter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, `push_token`, and `joined_group_at` fields. Profiles can be sorted by the following fields, in ascending and descending order: `joined_group_at`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`profiles:read`\n`segments:read`"
+        },
+        {
+          "info": {
+            "name": "Get Profile IDs for Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/segments/:id/relationships/profiles",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Primary key that uniquely identifies this segment. Generated by Klaviyo."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`profile_id`: `any`, `equals`<br>`email`: `any`, `equals`<br>`phone_number`: `any`, `equals`<br>`push_token`: `any`, `equals`<br>`_kx`: `equals`<br>`joined_group_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 20. Min: 1. Max: 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given segment ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`profiles:read`\n`segments:read`"
+        },
+        {
+          "info": {
+            "name": "Get Flows Triggered by Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/segments/:id/flow-triggers",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Primary key that uniquely identifies this segment. Generated by Klaviyo."
+              },
+              {
+                "name": "fields[flow]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get all flows where the given segment ID is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`\n`segments:read`"
+        },
+        {
+          "info": {
+            "name": "Get IDs for Flows Triggered by Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/segments/:id/relationships/flow-triggers",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Primary key that uniquely identifies this segment. Generated by Klaviyo."
+              }
+            ]
+          },
+          "docs": "Get the IDs of all flows where the given segment is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`\n`segments:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

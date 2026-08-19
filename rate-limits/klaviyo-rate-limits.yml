@@ -4,37 +4,148 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Klaviyo
 providerId: klaviyo
 created: '2026-05-04'
-modified: '2026-05-04'
-reconciled: true
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+supersedes: >-
+  The 2026-05-04 bulk-sweep version of this file, which was method:generated and
+  recorded only the L tier (75/s, 700/m) as if it were the single global limit. It is
+  replaced here by the full five-tier table Klaviyo publishes, the real response
+  headers, and the query-parameter limit.
 tags:
   - Rate Limiting
   - Email
   - SMS
-description: 'Klaviyo Public API: per-endpoint burst and steady-state rate limits.'
+description: >-
+  Klaviyo enforces rate limits per account using a fixed-window algorithm with two
+  windows running simultaneously: a 1-second BURST window and a 1-minute STEADY window.
+  Each endpoint is assigned one of five tiers (XS through XL) and both of that tier's
+  windows apply. The tier for a given endpoint is published on that endpoint's reference
+  page, so there is no single account-wide number.
 sources:
-  - https://www.klaviyo.com/pricing
   - https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+  - https://developers.klaviyo.com/en/reference/api_overview
+
+algorithm: fixed-window
+scope: per-account, per-endpoint-tier
+windows:
+  - {name: burst, duration: 1 second}
+  - {name: steady, duration: 1 minute}
+
 headers:
+  onSuccess:
+    - {name: RateLimit-Limit, meaning: Requests allowed per period.}
+    - {name: RateLimit-Remaining, meaning: Approximate requests remaining in the current window.}
+    - {name: RateLimit-Reset, meaning: Seconds until the window resets.}
+  onExhaustion:
+    - {name: Retry-After, meaning: Integer seconds before the caller is eligible to retry.}
   retryAfter: Retry-After
+  spelling_note: >-
+    Klaviyo uses the IETF draft `RateLimit-*` spelling, NOT `X-RateLimit-*`. On a 429 the
+    RateLimit-* triplet is REPLACED by Retry-After — a client must handle both header
+    shapes or it will lose its rate-limit signal at exactly the moment it needs it.
 responseCodes:
   throttled: 429
+  throttled_title: Rate Limit
+
+limit_count: 11
+
 limits:
-  - name: Default burst
+  - name: XS tier — burst
+    tier: XS
+    scope: account/endpoint
+    metric: requests_per_second
+    limit: 1
+    timeFrame: second
+  - name: XS tier — steady
+    tier: XS
+    scope: account/endpoint
+    metric: requests_per_minute
+    limit: 15
+    timeFrame: minute
+    note: >-
+      Applied to the most expensive/sensitive endpoints. The API Keys API introduced in
+      the 2026-07-15 revision is explicitly XS.
+
+  - name: S tier — burst
+    tier: S
+    scope: account/endpoint
+    metric: requests_per_second
+    limit: 3
+    timeFrame: second
+  - name: S tier — steady
+    tier: S
+    scope: account/endpoint
+    metric: requests_per_minute
+    limit: 60
+    timeFrame: minute
+
+  - name: M tier — burst
+    tier: M
+    scope: account/endpoint
+    metric: requests_per_second
+    limit: 10
+    timeFrame: second
+  - name: M tier — steady
+    tier: M
+    scope: account/endpoint
+    metric: requests_per_minute
+    limit: 150
+    timeFrame: minute
+
+  - name: L tier — burst
+    tier: L
     scope: account/endpoint
     metric: requests_per_second
     limit: 75
     timeFrame: second
-  - name: Default steady-state
+  - name: L tier — steady
+    tier: L
     scope: account/endpoint
     metric: requests_per_minute
     limit: 700
     timeFrame: minute
-  - name: Profile create-or-update burst
-    scope: account
+
+  - name: XL tier — burst
+    tier: XL
+    scope: account/endpoint
     metric: requests_per_second
-    limit: 75
+    limit: 350
     timeFrame: second
-  - name: Bulk profile import
-    scope: account
-    metric: concurrent_jobs
-    limit: 1
+  - name: XL tier — steady
+    tier: XL
+    scope: account/endpoint
+    metric: requests_per_minute
+    limit: 3500
+    timeFrame: minute
+
+  - name: Query-parameter limit (include / additional-fields)
+    scope: account/global
+    metric: requests
+    limit: null
+    timeFrame: null
+    note: >-
+      Requests using the `additional-fields` or `include` query parameters are subject to
+      a stricter limit that is enforced GLOBALLY across every endpoint using those
+      parameters — not per endpoint. Klaviyo documents the existence and the global scope
+      of this limit but does not publish the numeric value, so `limit` is null rather
+      than guessed. Practical consequence: adding `include` to a high-volume loop can
+      throttle unrelated calls elsewhere in your integration.
+
+per_endpoint_tiers:
+  published: true
+  where: Each endpoint's tier is stated on its own page in the API reference.
+  note: >-
+    Tier assignment is not present in the OpenAPI documents — no x- extension carries it
+    — so a machine consumer cannot determine an operation's tier from the spec alone and
+    must read the reference page. This is a genuine machine-readability gap.
+
+guidance:
+  - Read Retry-After on every 429 and back off for exactly that many seconds.
+  - Do not add `include` or `additional-fields` to high-throughput loops.
+  - Prefer bulk job endpoints over per-record calls for imports and catalog syncs.
+  - Reporting endpoints sit in the lower tiers; cache rather than poll.
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling', http_status: 200}

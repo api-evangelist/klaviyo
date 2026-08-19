@@ -1,0 +1,332 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/*.yml (23 files, 308 operations, revision 2026-04-15)
+derivation: Relationships were read off Klaviyo's own JSON:API `/relationships/` routes rather than inferred from field names.
+  Every `/api/<entity>/{id}/relationships/<target>` and its `/api/<entity>/{id}/<target>` sibling in the spec is an edge the
+  provider itself declares, so this graph is a transcription of the contract, not a guess.
+docs: https://developers.klaviyo.com/en/reference/api_overview
+conventions:
+  id_type: string
+  id_format: Mixed. Most Klaviyo resources use an opaque alphanumeric ID (e.g. profiles use a 26-character ULID-like string);
+    jobs and some newer resources use UUIDs. Klaviyo does NOT use typed id-prefixes (no cus_/inv_ style), so an ID is not
+    self-describing — the `type` member of the JSON:API resource object is what identifies the entity.
+  resource_envelope: 'data: {type, id, attributes, relationships, links}'
+  type_member: Present on every resource object and required on every write body.
+core_entities:
+- entity: profile
+  collection: profiles
+  domain: Customer data
+  description: The unit of identity — a person, keyed by email, phone number and/or external_id.
+- entity: event
+  collection: events
+  domain: Customer data
+  description: A timestamped action taken by a profile, classified by a metric.
+- entity: metric
+  collection: metrics
+  domain: Customer data
+  description: The definition/classification of an event type (e.g. "Placed Order").
+- entity: list
+  collection: lists
+  domain: Audiences
+  description: Static membership collection of profiles.
+- entity: segment
+  collection: segments
+  domain: Audiences
+  description: Dynamic, definition-driven membership collection of profiles.
+- entity: campaign
+  collection: campaigns
+  domain: Messaging
+  description: A one-time send across a channel.
+- entity: campaign-message
+  collection: campaign-messages
+  domain: Messaging
+  description: The per-channel content of a campaign.
+- entity: flow
+  collection: flows
+  domain: Messaging
+  description: An automation triggered by a metric, list or segment.
+- entity: flow-action
+  collection: flow-actions
+  domain: Messaging
+  description: A single step within a flow.
+- entity: flow-message
+  collection: flow-messages
+  domain: Messaging
+  description: The message content attached to a flow action.
+- entity: template
+  collection: templates
+  domain: Content
+  description: Reusable HTML/message template.
+- entity: image
+  collection: images
+  domain: Content
+  description: Uploaded image asset.
+- entity: catalog-item
+  collection: catalog-items
+  domain: Commerce
+  description: A product in the catalog.
+- entity: catalog-variant
+  collection: catalog-variants
+  domain: Commerce
+  description: A purchasable variant of a catalog item.
+- entity: catalog-category
+  collection: catalog-categories
+  domain: Commerce
+  description: Grouping of catalog items.
+- entity: coupon
+  collection: coupons
+  domain: Commerce
+  description: A coupon definition.
+- entity: coupon-code
+  collection: coupon-codes
+  domain: Commerce
+  description: An individual code issued against a coupon.
+- entity: tag
+  collection: tags
+  domain: Organization
+  description: Cross-cutting label applied to campaigns, flows, lists and segments.
+- entity: tag-group
+  collection: tag-groups
+  domain: Organization
+  description: Namespace grouping for tags.
+- entity: form
+  collection: forms
+  domain: Acquisition
+  description: Signup form.
+- entity: form-version
+  collection: form-versions
+  domain: Acquisition
+  description: A published version of a form.
+- entity: webhook
+  collection: webhooks
+  domain: Integration
+  description: Outbound event subscription.
+- entity: review
+  collection: reviews
+  domain: Commerce
+  description: A customer product review.
+- entity: push-token
+  collection: push-tokens
+  domain: Mobile
+  description: A device push token bound to a profile.
+- entity: account
+  collection: accounts
+  domain: Platform
+  description: The Klaviyo account a key is scoped to.
+- entity: custom-metric
+  collection: custom-metrics
+  domain: Customer data
+  description: A metric derived from other metrics.
+- entity: mapped-metric
+  collection: mapped-metrics
+  domain: Customer data
+  description: Mapping between a custom metric and an underlying metric.
+- entity: metric-property
+  collection: metric-properties
+  domain: Customer data
+  description: A property key observed on a metric's events.
+- entity: web-feed
+  collection: web-feeds
+  domain: Content
+  description: External feed used for dynamic message content.
+- entity: data-source
+  collection: data-sources
+  domain: Custom objects
+  description: A custom object type definition and its records.
+relationships:
+- from: profile
+  type: has_many
+  to: list
+  via: /api/profiles/{id}/relationships/lists
+- from: profile
+  type: has_many
+  to: segment
+  via: /api/profiles/{id}/relationships/segments
+- from: profile
+  type: has_many
+  to: push-token
+  via: /api/profiles/{id}/relationships/push-tokens
+- from: profile
+  type: has_one
+  to: conversation
+  via: /api/profiles/{id}/relationships/conversation
+  note: Became has_many in the 2026-07-15 revision — one conversation per channel.
+- from: push-token
+  type: belongs_to
+  to: profile
+  via: /api/push-tokens/{id}/relationships/profile
+- from: event
+  type: belongs_to
+  to: metric
+  via: /api/events/{id}/relationships/metric
+- from: event
+  type: belongs_to
+  to: profile
+  via: /api/events/{id}/relationships/profile
+- from: metric
+  type: has_many
+  to: metric-property
+  via: /api/metrics/{id}/relationships/metric-properties
+- from: metric
+  type: has_many
+  to: flow
+  via: /api/metrics/{id}/relationships/flow-triggers
+  note: Flows this metric triggers.
+- from: metric-property
+  type: belongs_to
+  to: metric
+  via: /api/metric-properties/{id}/relationships/metric
+- from: custom-metric
+  type: has_many
+  to: metric
+  via: /api/custom-metrics/{id}/relationships/metrics
+- from: mapped-metric
+  type: belongs_to
+  to: custom-metric
+  via: /api/mapped-metrics/{id}/relationships/custom-metric
+- from: mapped-metric
+  type: belongs_to
+  to: metric
+  via: /api/mapped-metrics/{id}/relationships/metric
+- from: list
+  type: has_many
+  to: profile
+  via: /api/lists/{id}/relationships/profiles
+- from: list
+  type: has_many
+  to: flow
+  via: /api/lists/{id}/relationships/flow-triggers
+- from: list
+  type: has_many
+  to: tag
+  via: /api/lists/{id}/relationships/tags
+- from: segment
+  type: has_many
+  to: profile
+  via: /api/segments/{id}/relationships/profiles
+- from: segment
+  type: has_many
+  to: flow
+  via: /api/segments/{id}/relationships/flow-triggers
+- from: segment
+  type: has_many
+  to: tag
+  via: /api/segments/{id}/relationships/tags
+- from: campaign
+  type: has_many
+  to: campaign-message
+  via: /api/campaigns/{id}/relationships/campaign-messages
+- from: campaign
+  type: has_many
+  to: tag
+  via: /api/campaigns/{id}/relationships/tags
+- from: campaign-message
+  type: belongs_to
+  to: campaign
+  via: /api/campaign-messages/{id}/relationships/campaign
+- from: campaign-message
+  type: has_one
+  to: template
+  via: /api/campaign-messages/{id}/relationships/template
+- from: campaign-message
+  type: has_one
+  to: image
+  via: /api/campaign-messages/{id}/relationships/image
+- from: flow
+  type: has_many
+  to: flow-action
+  via: /api/flows/{id}/relationships/flow-actions
+- from: flow
+  type: has_many
+  to: tag
+  via: /api/flows/{id}/relationships/tags
+- from: flow-action
+  type: belongs_to
+  to: flow
+  via: /api/flow-actions/{id}/relationships/flow
+- from: flow-action
+  type: has_many
+  to: flow-message
+  via: /api/flow-actions/{id}/relationships/flow-messages
+- from: flow-message
+  type: belongs_to
+  to: flow-action
+  via: /api/flow-messages/{id}/relationships/flow-action
+- from: flow-message
+  type: has_one
+  to: template
+  via: /api/flow-messages/{id}/relationships/template
+- from: catalog-item
+  type: has_many
+  to: catalog-variant
+  via: /api/catalog-items/{id}/relationships/variants
+- from: catalog-item
+  type: has_many
+  to: catalog-category
+  via: /api/catalog-items/{id}/relationships/categories
+- from: catalog-category
+  type: has_many
+  to: catalog-item
+  via: /api/catalog-categories/{id}/relationships/items
+- from: coupon
+  type: has_many
+  to: coupon-code
+  via: /api/coupons/{id}/relationships/coupon-codes
+- from: coupon-code
+  type: belongs_to
+  to: coupon
+  via: /api/coupon-codes/{id}/relationships/coupon
+- from: form
+  type: has_many
+  to: form-version
+  via: /api/forms/{id}/relationships/form-versions
+- from: form-version
+  type: belongs_to
+  to: form
+  via: /api/form-versions/{id}/relationships/form
+- from: tag
+  type: has_many
+  to: campaign
+  via: /api/tags/{id}/relationships/campaigns
+- from: tag
+  type: has_many
+  to: flow
+  via: /api/tags/{id}/relationships/flows
+- from: tag
+  type: has_many
+  to: list
+  via: /api/tags/{id}/relationships/lists
+- from: tag
+  type: has_many
+  to: segment
+  via: /api/tags/{id}/relationships/segments
+- from: tag
+  type: belongs_to
+  to: tag-group
+  via: /api/tags/{id}/relationships/tag-group
+- from: tag-group
+  type: has_many
+  to: tag
+  via: /api/tag-groups/{id}/relationships/tags
+- from: profile-bulk-import-job
+  type: has_many
+  to: profile
+  via: /api/profile-bulk-import-jobs/{id}/relationships/profiles
+- from: profile-bulk-import-job
+  type: has_many
+  to: list
+  via: /api/profile-bulk-import-jobs/{id}/relationships/lists
+- from: profile-bulk-import-job
+  type: has_many
+  to: import-error
+  via: /api/profile-bulk-import-jobs/{id}/relationships/import-errors
+spine: profile is the hub. Events attach to a profile and are classified by a metric; metrics trigger flows; lists and segments
+  group profiles and also trigger flows; campaigns and flows carry messages that reference templates and images. Tags cut
+  across campaigns, flows, lists and segments. Commerce (catalog, coupons, reviews) attaches to the same profile/event core
+  through metrics.
+counts:
+  entities: 30
+  declared_relationships: 46
+  relationship_routes_in_spec: 46
+render: null
+render_note: No subway/ diagram in this repo yet.

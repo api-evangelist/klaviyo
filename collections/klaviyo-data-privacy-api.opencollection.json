@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts Data Privacy API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Privacy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request Profile Deletion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/data-privacy-deletion-jobs",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request a deletion for the profiles corresponding to one of the following identifiers: `email`, `phone_number`, or `id`. If multiple identifiers are provided, we will return an error.\n\nAll profiles that match the provided identifier will be deleted.\n\nThe deletion occurs asynchronously; however, once it has completed, the deleted profile will appear on the [Deleted Profiles page](https://www.klaviyo.com/account/deleted).\n\nFor more information on the deletion process, please refer to our [Help Cen"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

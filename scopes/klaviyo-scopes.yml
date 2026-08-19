@@ -1,0 +1,394 @@
+generated: '2026-08-13'
+method: searched
+source: openapi/*.yml (x-klaviyo-scopes on 302 of 308 operations)
+docs: https://developers.klaviyo.com/en/docs/set_up_oauth
+additional_docs:
+- https://developers.klaviyo.com/en/docs/authenticate_
+- https://developers.klaviyo.com/en/docs/create_a_public_oauth_app
+- https://developers.klaviyo.com/en/docs/update_your_oauth_scopes
+note: 'Klaviyo''s OpenAPI declares only the apiKey scheme (Klaviyo-API-Key), so a securitySchemes-only
+  derivation finds zero scopes — derive-oauth-scopes.py correctly reported ''providers with oauth2: 0''.
+  The real scope vocabulary is published by Klaviyo as an x-klaviyo-scopes vendor extension on each operation,
+  and this file is derived from that plus the OAuth setup docs. All 46 scopes below are provider-published,
+  not inferred.'
+schemes:
+- name: Klaviyo OAuth 2.0
+  type: oauth2
+  source: https://developers.klaviyo.com/en/docs/set_up_oauth
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.klaviyo.com/oauth/authorize
+    tokenUrl: https://a.klaviyo.com/oauth/token
+    revocationUrl: https://a.klaviyo.com/oauth/revoke
+    pkce_required: true
+    code_challenge_method: S256
+    access_token_ttl: 1 hour (rely on expires_in)
+    refresh_token_ttl: valid until app uninstall; revoked if unused for 90 days
+    authorization_code_ttl: 5 minutes
+scope_format: <resource>:<read|write>
+scope_count: 46
+scopes:
+- scope: accounts:read
+  resource: accounts
+  access: read
+  description: Read access to account metadata (company name, timezone, contact info, public API key).
+  operation_count: 2
+  sources:
+  - openapi/klaviyo-accounts-api-openapi.yml
+- scope: campaigns:read
+  resource: campaigns
+  access: read
+  description: Read access to email/SMS/push campaigns, campaign messages, send jobs and recipient estimations.
+  operation_count: 18
+  sources:
+  - openapi/klaviyo-campaigns-api-openapi.yml
+  - openapi/klaviyo-reporting-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: campaigns:write
+  resource: campaigns
+  access: write
+  description: Write access to email/SMS/push campaigns, campaign messages, send jobs and recipient estimations.
+  operation_count: 12
+  sources:
+  - openapi/klaviyo-campaigns-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: catalogs:read
+  resource: catalogs
+  access: read
+  description: Read access to product catalogs — items, variants and categories, including bulk jobs.
+  operation_count: 30
+  sources:
+  - openapi/klaviyo-catalogs-api-openapi.yml
+- scope: catalogs:write
+  resource: catalogs
+  access: write
+  description: Write access to product catalogs — items, variants and categories, including bulk jobs.
+  operation_count: 26
+  sources:
+  - openapi/klaviyo-catalogs-api-openapi.yml
+  - openapi/klaviyo-client-api-openapi.yml
+- scope: conversations:read
+  resource: conversations
+  access: read
+  description: Read access to two-way customer conversations (SMS, WhatsApp, Instagram) and their messages.
+  operation_count: 2
+  sources:
+  - openapi/klaviyo-profiles-api-openapi.yml
+- scope: conversations:write
+  resource: conversations
+  access: write
+  description: Write access to two-way customer conversations (SMS, WhatsApp, Instagram) and their messages.
+  operation_count: 1
+  sources:
+  - openapi/klaviyo-conversations-api-openapi.yml
+- scope: coupon-codes:read
+  resource: coupon-codes
+  access: read
+  description: Read access to individual coupon codes issued against a coupon.
+  operation_count: 6
+  sources:
+  - openapi/klaviyo-coupons-api-openapi.yml
+- scope: coupon-codes:write
+  resource: coupon-codes
+  access: write
+  description: Write access to individual coupon codes issued against a coupon.
+  operation_count: 4
+  sources:
+  - openapi/klaviyo-coupons-api-openapi.yml
+- scope: coupons:read
+  resource: coupons
+  access: read
+  description: Read access to coupon definitions.
+  operation_count: 4
+  sources:
+  - openapi/klaviyo-coupons-api-openapi.yml
+- scope: coupons:write
+  resource: coupons
+  access: write
+  description: Write access to coupon definitions.
+  operation_count: 3
+  sources:
+  - openapi/klaviyo-coupons-api-openapi.yml
+- scope: custom-objects:read
+  resource: custom-objects
+  access: read
+  description: Read access to custom object type definitions and their records.
+  operation_count: 2
+  sources:
+  - openapi/klaviyo-custom-objects-api-openapi.yml
+- scope: custom-objects:write
+  resource: custom-objects
+  access: write
+  description: Write access to custom object type definitions and their records.
+  operation_count: 4
+  sources:
+  - openapi/klaviyo-custom-objects-api-openapi.yml
+- scope: data-privacy:write
+  resource: data-privacy
+  access: write
+  description: Write access to gDPR/CCPA profile deletion and data-privacy requests.
+  operation_count: 1
+  sources:
+  - openapi/klaviyo-data-privacy-api-openapi.yml
+- scope: events:read
+  resource: events
+  access: read
+  description: Read access to customer events and the event stream.
+  operation_count: 6
+  sources:
+  - openapi/klaviyo-events-api-openapi.yml
+- scope: events:write
+  resource: events
+  access: write
+  description: Write access to customer events and the event stream.
+  operation_count: 4
+  sources:
+  - openapi/klaviyo-client-api-openapi.yml
+  - openapi/klaviyo-events-api-openapi.yml
+- scope: flows:read
+  resource: flows
+  access: read
+  description: Read access to automations — flows, flow actions and flow messages.
+  operation_count: 23
+  sources:
+  - openapi/klaviyo-flows-api-openapi.yml
+  - openapi/klaviyo-lists-api-openapi.yml
+  - openapi/klaviyo-metrics-api-openapi.yml
+  - openapi/klaviyo-reporting-api-openapi.yml
+  - openapi/klaviyo-segments-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: flows:write
+  resource: flows
+  access: write
+  description: Write access to automations — flows, flow actions and flow messages.
+  operation_count: 6
+  sources:
+  - openapi/klaviyo-flows-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: forms:read
+  resource: forms
+  access: read
+  description: Read access to signup forms and form versions.
+  operation_count: 9
+  sources:
+  - openapi/klaviyo-forms-api-openapi.yml
+  - openapi/klaviyo-reporting-api-openapi.yml
+- scope: forms:write
+  resource: forms
+  access: write
+  description: Write access to signup forms and form versions.
+  operation_count: 2
+  sources:
+  - openapi/klaviyo-forms-api-openapi.yml
+- scope: images:read
+  resource: images
+  access: read
+  description: Read access to image assets uploaded to Klaviyo.
+  operation_count: 5
+  sources:
+  - openapi/klaviyo-campaigns-api-openapi.yml
+  - openapi/klaviyo-images-api-openapi.yml
+- scope: images:write
+  resource: images
+  access: write
+  description: Write access to image assets uploaded to Klaviyo.
+  operation_count: 3
+  sources:
+  - openapi/klaviyo-images-api-openapi.yml
+- scope: lists:read
+  resource: lists
+  access: read
+  description: Read access to lists and list membership.
+  operation_count: 15
+  sources:
+  - openapi/klaviyo-lists-api-openapi.yml
+  - openapi/klaviyo-profiles-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: lists:write
+  resource: lists
+  access: write
+  description: Write access to lists and list membership.
+  operation_count: 10
+  sources:
+  - openapi/klaviyo-lists-api-openapi.yml
+  - openapi/klaviyo-profiles-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: metrics:read
+  resource: metrics
+  access: read
+  description: Read access to metrics, metric properties, custom metrics and mapped metrics.
+  operation_count: 22
+  sources:
+  - openapi/klaviyo-events-api-openapi.yml
+  - openapi/klaviyo-metrics-api-openapi.yml
+- scope: metrics:write
+  resource: metrics
+  access: write
+  description: Write access to metrics, metric properties, custom metrics and mapped metrics.
+  operation_count: 4
+  sources:
+  - openapi/klaviyo-metrics-api-openapi.yml
+- scope: profiles:read
+  resource: profiles
+  access: read
+  description: Read access to customer profiles and their attributes.
+  operation_count: 25
+  sources:
+  - openapi/klaviyo-events-api-openapi.yml
+  - openapi/klaviyo-lists-api-openapi.yml
+  - openapi/klaviyo-profiles-api-openapi.yml
+  - openapi/klaviyo-segments-api-openapi.yml
+- scope: profiles:write
+  resource: profiles
+  access: write
+  description: Write access to customer profiles and their attributes.
+  operation_count: 14
+  sources:
+  - openapi/klaviyo-catalogs-api-openapi.yml
+  - openapi/klaviyo-client-api-openapi.yml
+  - openapi/klaviyo-lists-api-openapi.yml
+  - openapi/klaviyo-profiles-api-openapi.yml
+- scope: push-tokens:read
+  resource: push-tokens
+  access: read
+  description: Read access to mobile push tokens registered against a profile.
+  operation_count: 4
+  sources:
+  - openapi/klaviyo-profiles-api-openapi.yml
+- scope: push-tokens:write
+  resource: push-tokens
+  access: write
+  description: Write access to mobile push tokens registered against a profile.
+  operation_count: 2
+  sources:
+  - openapi/klaviyo-profiles-api-openapi.yml
+- scope: reviews:read
+  resource: reviews
+  access: read
+  description: Read access to product reviews and review requests.
+  operation_count: 2
+  sources:
+  - openapi/klaviyo-reviews-api-openapi.yml
+- scope: reviews:write
+  resource: reviews
+  access: write
+  description: Write access to product reviews and review requests.
+  operation_count: 1
+  sources:
+  - openapi/klaviyo-reviews-api-openapi.yml
+- scope: segments:read
+  resource: segments
+  access: read
+  description: Read access to dynamic segments and segment membership.
+  operation_count: 13
+  sources:
+  - openapi/klaviyo-profiles-api-openapi.yml
+  - openapi/klaviyo-reporting-api-openapi.yml
+  - openapi/klaviyo-segments-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: segments:write
+  resource: segments
+  access: write
+  description: Write access to dynamic segments and segment membership.
+  operation_count: 5
+  sources:
+  - openapi/klaviyo-segments-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: subscriptions:read
+  resource: subscriptions
+  access: read
+  description: Read access to marketing subscription and suppression state for a profile.
+  operation_count: 4
+  sources:
+  - openapi/klaviyo-profiles-api-openapi.yml
+- scope: subscriptions:write
+  resource: subscriptions
+  access: write
+  description: Write access to marketing subscription and suppression state for a profile.
+  operation_count: 5
+  sources:
+  - openapi/klaviyo-client-api-openapi.yml
+  - openapi/klaviyo-profiles-api-openapi.yml
+- scope: tags:read
+  resource: tags
+  access: read
+  description: Read access to tags and tag associations on campaigns, flows, lists and segments.
+  operation_count: 26
+  sources:
+  - openapi/klaviyo-campaigns-api-openapi.yml
+  - openapi/klaviyo-flows-api-openapi.yml
+  - openapi/klaviyo-lists-api-openapi.yml
+  - openapi/klaviyo-segments-api-openapi.yml
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: tags:write
+  resource: tags
+  access: write
+  description: Write access to tags and tag associations on campaigns, flows, lists and segments.
+  operation_count: 14
+  sources:
+  - openapi/klaviyo-tags-api-openapi.yml
+- scope: templates:read
+  resource: templates
+  access: read
+  description: Read access to email/message templates, render and clone.
+  operation_count: 9
+  sources:
+  - openapi/klaviyo-campaigns-api-openapi.yml
+  - openapi/klaviyo-flows-api-openapi.yml
+  - openapi/klaviyo-templates-api-openapi.yml
+- scope: templates:write
+  resource: templates
+  access: write
+  description: Write access to email/message templates, render and clone.
+  operation_count: 7
+  sources:
+  - openapi/klaviyo-templates-api-openapi.yml
+- scope: tracking-settings:read
+  resource: tracking-settings
+  access: read
+  description: Read access to uTM and web-tracking configuration.
+  operation_count: 2
+  sources:
+  - openapi/klaviyo-tracking-settings-api-openapi.yml
+- scope: tracking-settings:write
+  resource: tracking-settings
+  access: write
+  description: Write access to uTM and web-tracking configuration.
+  operation_count: 1
+  sources:
+  - openapi/klaviyo-tracking-settings-api-openapi.yml
+- scope: web-feeds:read
+  resource: web-feeds
+  access: read
+  description: Read access to web feeds used for dynamic content in messages.
+  operation_count: 2
+  sources:
+  - openapi/klaviyo-web-feeds-api-openapi.yml
+- scope: web-feeds:write
+  resource: web-feeds
+  access: write
+  description: Write access to web feeds used for dynamic content in messages.
+  operation_count: 3
+  sources:
+  - openapi/klaviyo-web-feeds-api-openapi.yml
+- scope: webhooks:read
+  resource: webhooks
+  access: read
+  description: Read access to webhook subscriptions and topics.
+  operation_count: 4
+  sources:
+  - openapi/klaviyo-webhooks-api-openapi.yml
+- scope: webhooks:write
+  resource: webhooks
+  access: write
+  description: Write access to webhook subscriptions and topics.
+  operation_count: 3
+  sources:
+  - openapi/klaviyo-webhooks-api-openapi.yml
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://developers.klaviyo.com/en/docs/set_up_oauth
+  http_status: 200
+- fetched: '2026-08-13'
+  url: https://developers.klaviyo.com/en/docs/authenticate_
+  http_status: 200

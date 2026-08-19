@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/accounts",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[account]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.\n\nYou can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`accounts:read`"
+        },
+        {
+          "info": {
+            "name": "Get Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/accounts/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the account"
+              },
+              {
+                "name": "fields[account]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Retrieve a single account object by its account ID. You can only request the account by which the private API key was generated.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`accounts:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

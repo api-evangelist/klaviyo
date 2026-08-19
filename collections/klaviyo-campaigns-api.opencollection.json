@@ -1,0 +1,829 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts Campaigns API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaigns",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[campaign-message]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[campaign]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`<br>`messages.channel`: `equals`<br>`name`: `contains`<br>`status`: `any`, `equals`<br>`archived`: `equals`<br>`created_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`scheduled_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 100. Min: 1. Max: 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Returns some or all campaigns based on filters.\n\nA channel filter is required to list campaigns. Please provide either:\n`?filter=equals(messages.channel,'email')` to list email campaigns, or\n`?filter=equals(messages.channel,'sms')` to list SMS campaigns.\n`?filter=equals(messages.channel,'mobile_push')` to list mobile push campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Create Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/campaigns",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a campaign given a set of parameters, then returns it.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Get Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaigns/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The campaign ID to be retrieved"
+              },
+              {
+                "name": "fields[campaign-message]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[campaign]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Returns a specific campaign based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Update Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/campaigns/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The campaign ID to be retrieved"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Delete Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://a.klaviyo.com/api/campaigns/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The campaign ID to be deleted"
+              }
+            ]
+          },
+          "docs": "Delete a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Get Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The message ID to be retrieved"
+              },
+              {
+                "name": "fields[campaign-message]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[campaign]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[image]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Returns a specific message based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Update Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The message ID to be retrieved"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a campaign message<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Get Campaign Send Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-send-jobs/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign to send"
+              },
+              {
+                "name": "fields[campaign-send-job]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get a campaign send job<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Cancel Campaign Send",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/campaign-send-jobs/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the currently sending campaign to cancel or revert"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently cancel the campaign, setting the status to CANCELED or\nrevert the campaign, setting the status back to DRAFT<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Get Campaign Recipient Estimation Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-recipient-estimation-jobs/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign to get recipient estimation status"
+              },
+              {
+                "name": "fields[campaign-recipient-estimation-job]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Retrieve the status of a recipient estimation job triggered\nwith the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Get Campaign Recipient Estimation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-recipient-estimations/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign for which to get the estimated number of recipients"
+              },
+              {
+                "name": "fields[campaign-recipient-estimation]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get the estimated recipient count for a campaign with the provided campaign ID.\nYou can refresh this count by using the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Create Campaign Clone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/campaign-clone",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clones an existing campaign, returning a new campaign based on the original with a new ID and name.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Assign Template to Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/campaign-message-assign-template",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a non-reusable version of the template and assigns it to the message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Send Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/campaign-send-jobs",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a campaign to send asynchronously<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Refresh Campaign Recipient Estimation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/campaign-recipient-estimation-jobs",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger an asynchronous job to update the estimated number of recipients\nfor the given campaign ID. Use the `Get Campaign Recipient Estimation\nJob` endpoint to retrieve the status of this estimation job. Use the\n`Get Campaign Recipient Estimation` endpoint to retrieve the estimated\nrecipient count for a given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`"
+        },
+        {
+          "info": {
+            "name": "Get Campaign for Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id/campaign",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[campaign]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Return the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Get Campaign ID for Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id/relationships/campaign",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the ID of the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Get Template for Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id/template",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Return the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`\n`templates:read`"
+        },
+        {
+          "info": {
+            "name": "Get Template ID for Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id/relationships/template",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`\n`templates:read`"
+        },
+        {
+          "info": {
+            "name": "Get Image for Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id/image",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[image]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Return the related image for a given campaign message<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`\n`images:read`"
+        },
+        {
+          "info": {
+            "name": "Get Image ID for Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id/relationships/image",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the ID of the related image<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`\n`images:read`"
+        },
+        {
+          "info": {
+            "name": "Update Image for Campaign Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/campaign-messages/:id/relationships/image",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a campaign message image<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:write`\n`images:read`"
+        },
+        {
+          "info": {
+            "name": "Get Tags for Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaigns/:id/tags",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[tag]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Return all tags that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`campaigns:read`\n`tags:read`"
+        },
+        {
+          "info": {
+            "name": "Get Tag IDs for Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaigns/:id/relationships/tags",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`campaigns:read`\n`tags:read`"
+        },
+        {
+          "info": {
+            "name": "Get Messages for Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaigns/:id/campaign-messages",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fields[campaign-message]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[campaign]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[image]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+              }
+            ]
+          },
+          "docs": "Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        },
+        {
+          "info": {
+            "name": "Get Message IDs for Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/campaigns/:id/relationships/campaign-messages",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the IDs of all messages associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`campaigns:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

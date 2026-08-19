@@ -1,0 +1,274 @@
+{
+  "item": [
+    {
+      "id": "7e173142-6625-4985-a482-d5871dbf5e28",
+      "name": "Data Privacy",
+      "description": {
+        "content": "data privacy",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37fb5fb5-89ac-4a4e-9757-5f9a5d877f33",
+          "name": "Request Profile Deletion",
+          "request": {
+            "name": "Request Profile Deletion",
+            "description": {
+              "content": "Request a deletion for the profiles corresponding to one of the following identifiers: `email`, `phone_number`, or `id`. If multiple identifiers are provided, we will return an error.\n\nAll profiles that match the provided identifier will be deleted.\n\nThe deletion occurs asynchronously; however, once it has completed, the deleted profile will appear on the [Deleted Profiles page](https://www.klaviyo.com/account/deleted).\n\nFor more information on the deletion process, please refer to our [Help Center docs on how to handle GDPR and CCPA deletion requests](https://help.klaviyo.com/hc/en-us/articles/360004217631-How-to-Handle-GDPR-Requests#record-gdpr-and-ccpa%20%20-deletion-requests2).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`data-privacy:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data-privacy-deletion-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"email\": \"<string>\",\n            \"phone_number\": \"<string>\"\n          },\n          \"id\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "babe49bf-2c34-477a-831c-31c8c4bd4788",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data-privacy-deletion-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"email\": \"sarah.mason@klaviyo-demo.com\",\n            \"phone_number\": \"+15005550006\"\n          },\n          \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4fa56f8-fb3f-4fcf-b750-13a92aed277f",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data-privacy-deletion-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"email\": \"sarah.mason@klaviyo-demo.com\",\n            \"phone_number\": \"+15005550006\"\n          },\n          \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "707dd6b6-d9cf-4338-ae04-e40afe91ee70",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data-privacy-deletion-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"email\": \"sarah.mason@klaviyo-demo.com\",\n            \"phone_number\": \"+15005550006\"\n          },\n          \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://a.klaviyo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "063d42a9-3a1b-437c-ab84-eac4e7e34b5c",
+    "name": "Klaviyo Accounts Data Privacy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+      "type": "text/plain"
+    }
+  }
+}

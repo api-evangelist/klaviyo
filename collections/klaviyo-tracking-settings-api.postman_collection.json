@@ -1,0 +1,814 @@
+{
+  "item": [
+    {
+      "id": "f1ee76f3-0933-49d3-bade-d3a84c1cddf7",
+      "name": "Tracking Settings",
+      "description": {
+        "content": "tracking settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e516bef-f861-4bb8-adcc-f3984e999a81",
+          "name": "Get Tracking Settings",
+          "request": {
+            "name": "Get Tracking Settings",
+            "description": {
+              "content": "Get all UTM tracking settings in an account. Returns an array with a single tracking setting.\n\nMore information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`tracking-settings:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "tracking-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[tracking-setting]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[cursor]",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "1",
+                  "description": "Default: 1. Min: 1. Max: 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8bff817-d595-4610-b4fd-343f57d398b8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tracking-setting]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"tracking-setting\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"auto_add_parameters\": false,\n        \"utm_source\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"utm_medium\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"utm_campaign\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"utm_id\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"utm_term\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"custom_parameters\": [\n          {\n            \"name\": \"string\",\n            \"flow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"campaign\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"string\",\n            \"flow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"campaign\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"links\": {\n        \"self\": \"https://WwBXfzPcpLQblPAyOK.jiLL,A73AvD89-6g7C3xVl0k-EZsNg9we1,5DNcXf4i\"\n      }\n    },\n    {\n      \"type\": \"tracking-setting\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"auto_add_parameters\": true,\n        \"utm_source\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"utm_medium\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"utm_campaign\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"utm_id\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"utm_term\": {\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"custom_parameters\": [\n          {\n            \"name\": \"string\",\n            \"flow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"campaign\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"string\",\n            \"flow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"campaign\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"links\": {\n        \"self\": \"http://FkqQOcAXSODRyLtDFfZgnuPPmyqHiKmh.kvwguVgrmuh1nwgoeh6\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://iRhfLgAQKBheitGvQAaRR.qyWd0kJKSPJys4-Vu2RgKEMzgKHHBa,HxENq3sBtFeUId1.ma\",\n    \"first\": \"http://JNxgfiiiMjkYFdPPXmaYz.awyZ,G8DyCXDfCS3fMuc5TpGh-d\",\n    \"last\": \"http://fSiupSQnlHVM.ddt.lZE\",\n    \"prev\": \"https://Q.czdzMpjwPgwKbyn7JJ\",\n    \"next\": \"http://xSoBga.yeVG3,JW2tSwLsKCwvESQxCNt\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd6c5026-91aa-4011-889d-df4cef8e15f8",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tracking-setting]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1ae26fa-72fa-4c01-bd15-f4e4045fa157",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tracking-setting]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7f60d5c-83b7-4df6-82de-9a4292afe6ed",
+          "name": "Get Tracking Setting",
+          "request": {
+            "name": "Get Tracking Setting",
+            "description": {
+              "content": "Get the UTM tracking setting with the given account ID.\n\nMore information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`tracking-settings:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "tracking-settings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[tracking-setting]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the tracking setting (account ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "849768ba-a47f-42a5-8b45-6118e47cc254",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tracking-setting]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the tracking setting (account ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"tracking-setting\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"auto_add_parameters\": false,\n      \"utm_source\": {\n        \"flow\": {\n          \"type\": \"dynamic\",\n          \"value\": \"message_name\"\n        },\n        \"campaign\": {\n          \"type\": \"dynamic\",\n          \"value\": \"group_id\"\n        }\n      },\n      \"utm_medium\": {\n        \"flow\": {\n          \"type\": \"dynamic\",\n          \"value\": \"flow_id\"\n        },\n        \"campaign\": {\n          \"type\": \"dynamic\",\n          \"value\": \"profile_id\"\n        }\n      },\n      \"utm_campaign\": {\n        \"flow\": {\n          \"type\": \"dynamic\",\n          \"value\": \"profile_id\"\n        },\n        \"campaign\": {\n          \"type\": \"dynamic\",\n          \"value\": \"profile_external_id\"\n        }\n      },\n      \"utm_id\": {\n        \"flow\": {\n          \"type\": \"dynamic\",\n          \"value\": \"profile_external_id\"\n        },\n        \"campaign\": {\n          \"type\": \"dynamic\",\n          \"value\": \"campaign_id\"\n        }\n      },\n      \"utm_term\": {\n        \"flow\": {\n          \"type\": \"dynamic\",\n          \"value\": \"flow_name\"\n        },\n        \"campaign\": {\n          \"type\": \"dynamic\",\n          \"value\": \"group_name_id\"\n        }\n      },\n      \"custom_parameters\": [\n        {\n          \"name\": \"string\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"links\": {\n      \"self\": \"https://zKayqEJkJHIaiSBbcdPzHGda.kjuYeRhyGAgl5uOrfkE41rDfXAgdEOFHfifInG3X7xLCvZF\"\n    }\n  },\n  \"links\": {\n    \"self\": \"http://TRdf.cujbVsF7KYmxvWniAnWQUvSjAbeBq5uoWE0iM1OTP5WtlVtOXgDEdsmXqvNF-NR\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7685d885-7760-4b15-90a5-3ebbe51acc14",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tracking-setting]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the tracking setting (account ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1eb5d4df-3925-4237-ad00-5ab90706b5c3",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tracking-setting]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the tracking setting (account ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43052fe1-0501-4cdf-98e3-c6d5a1f1a98a",
+          "name": "Update Tracking Setting",
+          "request": {
+            "name": "Update Tracking Setting",
+            "description": {
+              "content": "Update the UTM tracking setting with the given account ID.\n\nMore information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`tracking-settings:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "tracking-settings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the tracking setting (account ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"auto_add_parameters\": \"<boolean>\",\n      \"utm_source\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_medium\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_campaign\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_id\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_term\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"custom_parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71950b5d-4d3a-4390-ae01-534e366af698",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the tracking setting (account ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"auto_add_parameters\": \"<boolean>\",\n      \"utm_source\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_medium\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_campaign\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_id\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_term\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"custom_parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"auto_add_parameters\": false,\n      \"utm_source\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_medium\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_campaign\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_id\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_term\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"custom_parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          \"campaign\": {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          \"campaign\": {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"links\": {\n      \"self\": \"https://VMrCQoLBTIsERYkDDeNNvHyPL.ipohiim5yxV9vkAsYBDsBk,vwTWDomfbsML5tFKJllhGhPqOKY97KCh0gFmgi4l,FE\"\n    }\n  },\n  \"links\": {\n    \"self\": \"https://WUiekfcSPJ.qfpl2lAVqWSSgAhV7r4T-YY1dsWAuYD5TTtQMfk,\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66b20ce8-f5e0-4d90-a25f-af3645cbe7d5",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the tracking setting (account ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"auto_add_parameters\": \"<boolean>\",\n      \"utm_source\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_medium\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_campaign\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_id\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_term\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"custom_parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b17f816f-cd29-40c1-93bf-8d5e720654ba",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tracking-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the tracking setting (account ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"auto_add_parameters\": \"<boolean>\",\n      \"utm_source\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_medium\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_campaign\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_id\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"utm_term\": {\n        \"flow\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"campaign\": {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      \"custom_parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"flow\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"campaign\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://a.klaviyo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "419a3c4e-36ba-4fab-a5e6-d6c5c1fee761",
+    "name": "Klaviyo Accounts Tracking Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+      "type": "text/plain"
+    }
+  }
+}

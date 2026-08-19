@@ -1,0 +1,95 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Authored by the API Evangelist enrichment pipeline against openapi/*.yml (23 files,
+  308 operations, Klaviyo API revision 2026-04-15) plus conventions/, errors/,
+  lifecycle/, scopes/ and rate-limits/ in this repo. Every operationId referenced in
+  every skill was verified to exist verbatim in the specs before the skill was written.
+provider: Klaviyo
+base_url: https://a.klaviyo.com
+auth: 'Authorization: Klaviyo-API-Key <private-key>  (+ required `revision` date header)'
+searched_for_provider_published_skills:
+  result: none
+  detail: >-
+    No AGENTS.md, skills/ directory or provider-published agent skill was found in
+    github.com/klaviyo/openapi or on developers.klaviyo.com as of 2026-08-13. Klaviyo's
+    agent-facing publication is its MCP server (mcp/klaviyo-mcp.yml) and its llms.txt
+    (llms/klaviyo-llms.txt), neither of which is a skill. These skills are therefore
+    generated, not harvested.
+
+skills:
+  - file: klaviyo-ingest-customer-events.md
+    name: Ingest customer profiles and events into Klaviyo
+    summary: >-
+      Upsert profiles and record events safely, including the unique_id deduplication
+      key that makes create_event retry-safe.
+    api: openapi/klaviyo-profiles-api-openapi.yml, openapi/klaviyo-events-api-openapi.yml
+    operations: [create_or_update_profile, create_event, bulk_create_events, get_profiles, get_profile, merge_profiles]
+    scopes: [profiles:write, profiles:read, events:write]
+
+  - file: klaviyo-build-audience-and-manage-consent.md
+    name: Build a Klaviyo audience and manage marketing consent
+    summary: >-
+      Lists vs segments, why list membership is not consent, and how to load an audience
+      at scale with the bulk import job and its error read-back.
+    api: openapi/klaviyo-lists-api-openapi.yml, openapi/klaviyo-segments-api-openapi.yml
+    operations: [create_list, add_profiles_to_list, get_profiles_for_list, create_segment, bulk_subscribe_profiles, bulk_unsubscribe_profiles, bulk_suppress_profiles, bulk_import_profiles, get_bulk_import_profiles_job, get_errors_for_bulk_import_profiles_job]
+    scopes: [lists:read, lists:write, segments:read, profiles:write, subscriptions:write]
+
+  - file: klaviyo-create-and-send-campaign.md
+    name: Create and send a Klaviyo email campaign
+    summary: >-
+      The five-call ordered sequence from template to send job, with recipient estimation
+      as the pre-send guardrail and an explicit human-in-the-loop note on send_campaign.
+    api: openapi/klaviyo-campaigns-api-openapi.yml, openapi/klaviyo-templates-api-openapi.yml
+    operations: [create_template, render_template, create_campaign, get_messages_for_campaign, assign_template_to_campaign_message, update_campaign_message, refresh_campaign_recipient_estimation, get_campaign_recipient_estimation, send_campaign, get_campaign_send_job, cancel_campaign_send]
+    scopes: [templates:write, campaigns:write, campaigns:read]
+    consequence: high
+
+  - file: klaviyo-sync-product-catalog.md
+    name: Sync a product catalog into Klaviyo
+    summary: >-
+      Items, variants and categories loaded through the bulk job pattern, in dependency
+      order, with the create-vs-update distinction that catches recurring syncs out.
+    api: openapi/klaviyo-catalogs-api-openapi.yml
+    operations: [bulk_create_catalog_items, get_bulk_create_catalog_items_job, bulk_update_catalog_items, bulk_create_catalog_variants, bulk_create_catalog_categories, add_categories_to_catalog_item, get_catalog_items]
+    scopes: [catalogs:read, catalogs:write]
+
+  - file: klaviyo-subscribe-to-webhooks.md
+    name: Subscribe to Klaviyo webhooks and verify deliveries
+    summary: >-
+      Topic discovery, HMAC-SHA256 signature verification on Klaviyo-Signature, the
+      5-second response budget, batched payloads up to 1,000 events, and the 48-hour
+      auto-disable.
+    api: openapi/klaviyo-webhooks-api-openapi.yml
+    operations: [get_webhook_topics, get_webhook_topic, create_webhook, get_webhooks, get_webhook, update_webhook, delete_webhook]
+    scopes: [webhooks:read, webhooks:write, events:read]
+
+  - file: klaviyo-report-on-performance.md
+    name: Report on Klaviyo campaign, flow and metric performance
+    summary: >-
+      The reporting endpoints are POSTs; values vs series; resolving the conversion
+      metric id per account; and query_metric_aggregates for cuts the canned reports
+      do not cover.
+    api: openapi/klaviyo-reporting-api-openapi.yml, openapi/klaviyo-metrics-api-openapi.yml
+    operations: [query_campaign_values, query_flow_values, query_flow_series, query_segment_values, query_segment_series, query_form_values, query_form_series, query_metric_aggregates, get_metrics, get_metric]
+    scopes: [campaigns:read, flows:read, segments:read, metrics:read]
+
+  - file: klaviyo-handle-data-privacy-requests.md
+    name: Handle a Klaviyo data privacy deletion request
+    summary: >-
+      GDPR/CCPA erasure via request_profile_deletion, why it must not be confused with
+      suppression, and why data-privacy:write belongs on its own key.
+    api: openapi/klaviyo-data-privacy-api-openapi.yml
+    operations: [request_profile_deletion, get_profiles, get_profile, bulk_suppress_profiles]
+    scopes: [data-privacy:write, profiles:read]
+    consequence: high
+
+cross_cutting_rules:
+  - Send the `revision` header on every request; it is required and its absence silently falls forward.
+  - 'Write bodies are JSON:API — application/vnd.api+json, with a data object carrying type and attributes.'
+  - Pagination is cursor-based; follow links.next, never compute offsets.
+  - Honour Retry-After on 429; the RateLimit-* triplet is replaced by Retry-After on exhaustion.
+  - 'The include and additional-fields query parameters carry a stricter, globally enforced rate limit.'
+  - Idempotency exists only on event creation, via the body field unique_id. There is no Idempotency-Key header.
+  - Long-running work returns 202 with a job resource; poll it, and read its errors before declaring success.

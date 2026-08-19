@@ -1,0 +1,121 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probe of every apis.yml baseURL host, the OpenAPI servers[] host, the docs host and the MCP host
+probed: '2026-08-13'
+summary:
+  paths_probed: 20
+  documents_found: 4
+  hosts_with_documents: 2
+  note: >-
+    Klaviyo serves a real OAuth 2.0 / OIDC discovery surface on TWO hosts: the API
+    host a.klaviyo.com and the hosted MCP host mcp.klaviyo.com. It publishes NO
+    security.txt, NO api-catalog, NO ai-plugin.json and NO agent card on any host.
+    The two 200s recorded on developers.klaviyo.com are the ReadMe.io single-page-app
+    catch-all returning an HTML shell for every /.well-known/* path — they are NOT
+    documents and are recorded as misses.
+
+hosts:
+  - host: https://mcp.klaviyo.com
+    role: hosted MCP server (Klaviyo MCP Server)
+    documents:
+      - path: /.well-known/oauth-protected-resource
+        spec: RFC 9728 (OAuth 2.0 Protected Resource Metadata)
+        status: 200
+        content_type: application/json
+        file: klaviyo-mcp-oauth-protected-resource.json
+        highlights:
+          resource_name: Klaviyo MCP Server
+          resource_documentation: https://developers.klaviyo.com/en/docs/klaviyo_mcp_server
+      - path: /.well-known/oauth-authorization-server
+        spec: RFC 8414 (OAuth 2.0 Authorization Server Metadata)
+        status: 200
+        content_type: application/json
+        file: klaviyo-mcp-oauth-authorization-server.json
+        highlights:
+          issuer: https://mcp.klaviyo.com
+          registration_endpoint: https://mcp.klaviyo.com/register
+          dynamic_client_registration: true
+          code_challenge_methods_supported: [plain, S256]
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/oauth-protected-resource/mcp
+        status: 404
+
+  - host: https://a.klaviyo.com
+    role: API host (OpenAPI servers[] + apis.yml baseURL)
+    documents:
+      - path: /.well-known/openid-configuration
+        spec: OpenID Connect Discovery 1.0
+        status: 200
+        content_type: application/json
+        file: klaviyo-openid-configuration.json
+        highlights:
+          issuer: https://a.klaviyo.com
+          token_endpoint: https://auth.services.klaviyo.com/oauth/v2/token
+          jwks_uri: https://auth.services.klaviyo.com/oauth/v2/keys
+          scopes_supported: [openid, profile, email, phone]
+      - path: /.well-known/oauth-authorization-server
+        spec: RFC 8414
+        status: 200
+        content_type: application/json
+        file: klaviyo-oauth-authorization-server.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+
+  - host: https://www.klaviyo.com
+    role: marketing site / Website property
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+
+  - host: https://developers.klaviyo.com
+    role: developer portal (ReadMe.io)
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/html
+        recorded_as: miss
+        note: >-
+          HTML SPA shell, not a document. The ReadMe.io catch-all answers 200 with
+          the docs app for every unmatched path (/openapi.json and
+          /.well-known/agent-card.json return the identical shell). Not a served
+          security.txt.
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: text/html
+        recorded_as: miss
+        note: Same SPA catch-all shell; rejected per the agent-card HTML-body rule.
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+
+pointers_emitted:
+  - type: WellKnown
+    reason: >-
+      Four real JSON documents were served with HTTP 200 across two Klaviyo-controlled
+      hosts (a.klaviyo.com and mcp.klaviyo.com).
+pointers_withheld:
+  - type: SecurityTxt
+    reason: >-
+      No host serves an RFC 9116 security.txt. Every /.well-known/security.txt probe
+      returned 404, except the developers.klaviyo.com SPA shell which is not a document.
+  - type: APICatalog
+    reason: /.well-known/api-catalog returned 404 on every host.
+  - type: AgentCard
+    reason: >-
+      No A2A agent card on any host. See a2a/ — nothing written, per the search-only rule.

@@ -1,0 +1,134 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+derived_from: openapi/*.yml (23 files, 308 operations; every operation declares 4XX and 5XX responses)
+
+format: json:api-errors
+rfc9457: false
+media_type: application/vnd.api+json
+envelope_note: >-
+  Klaviyo does NOT use RFC 9457 application/problem+json. It returns a JSON:API-style
+  top-level `errors` array. Each element carries id, status, code, title, detail,
+  source and meta. Coverage in the spec is by class, not by individual status: every
+  one of the 308 operations declares a single `4XX` response ($ref ClientError) and a
+  single `5XX` response ($ref ServerError), so the per-status catalogue below comes
+  from Klaviyo's published status table, not from distinct spec responses.
+
+envelope_example: |
+  {
+     "errors": [
+         {
+             "id": "2c76424d-b1ff-4afd-a2a1-728d85dac775",
+             "status": 400,
+             "code": "invalid",
+             "title": "Invalid input.",
+             "detail": "'profiless' is not an allowed include parameter for this resource.",
+             "source": {
+                 "parameter": "include"
+             },
+             "meta": {}
+         }
+     ]
+  }
+
+fields:
+  - {name: id, type: string, description: UUID unique to this error occurrence — quote it to Klaviyo support.}
+  - {name: status, type: integer, description: HTTP status code, repeated inside the body.}
+  - {name: code, type: string, description: Machine-readable classification of the error type.}
+  - {name: title, type: string, description: Short human-readable summary.}
+  - {name: detail, type: string, description: Specific explanation of what went wrong.}
+  - {name: source, type: object, description: '{pointer} — JSON Pointer into the request payload (e.g. /data), or {parameter} — the offending query parameter.'}
+  - {name: meta, type: object, description: Additional context; frequently empty.}
+
+problems:
+  - status: 400
+    title: Bad Request
+    code: invalid
+    meaning: The request was malformed or contained invalid/unsupported parameters.
+    remediation: >-
+      Read errors[].source — it names either the JSON Pointer in the body or the query
+      parameter at fault. Common causes are an unsupported `include` value, a bad
+      `filter` expression, or a datetime not in RFC 3339 form.
+    retryable: false
+  - status: 401
+    title: Not Authorized
+    meaning: Missing, malformed or invalid credentials.
+    remediation: >-
+      Confirm the Authorization header is exactly `Klaviyo-API-Key <private-key>` and
+      that the key belongs to the account you intend to call. For OAuth, refresh the
+      access token — they expire after 1 hour.
+    retryable: false
+  - status: 403
+    title: Forbidden
+    meaning: Authenticated, but the key or token lacks the scope for this operation.
+    remediation: >-
+      Check the operation's x-klaviyo-scopes requirement against the scopes granted to
+      the key/token. See scopes/klaviyo-scopes.yml for all 46 scopes.
+    retryable: false
+  - status: 404
+    title: Not Found
+    meaning: The addressed resource does not exist or is not visible to this account.
+    retryable: false
+  - status: 405
+    title: Method not Allowed
+    meaning: The HTTP method is not supported on this path.
+    retryable: false
+  - status: 409
+    title: Conflict
+    meaning: >-
+      The request conflicts with current state — most often a duplicate. On
+      bulk_create_events a repeated unique_id for the same profile+metric fails the
+      whole request rather than deduplicating.
+    remediation: Re-read the resource before retrying; do not blind-retry.
+    retryable: false
+  - status: 410
+    title: Gone
+    meaning: >-
+      The API revision named in the `revision` header has been RETIRED. Klaviyo supports
+      a revision for 2 years (1 stable + 1 deprecated); past that, requests may 410.
+    remediation: Move the `revision` header to a supported revision. See lifecycle/klaviyo-lifecycle.yml.
+    retryable: false
+  - status: 415
+    title: Unsupported Media Type
+    meaning: The Content-Type is not accepted. Klaviyo expects application/vnd.api+json on write operations.
+    retryable: false
+  - status: 429
+    title: Rate Limit
+    meaning: >-
+      The account's burst (1-second) or steady (1-minute) window for this endpoint is
+      exhausted. Endpoints using `include` or `additional-fields` are subject to a
+      stricter, globally enforced limit.
+    remediation: >-
+      Honour the Retry-After header (integer seconds). Note the RateLimit-Limit /
+      RateLimit-Remaining / RateLimit-Reset triplet is REPLACED by Retry-After on a 429.
+    retryable: true
+    backoff: Retry-After header
+  - status: 500
+    title: Server Error
+    meaning: Unexpected server-side failure.
+    remediation: Retry with exponential backoff; if persistent, quote errors[].id to support.
+    retryable: true
+  - status: 503
+    title: Service Unavailable
+    meaning: Klaviyo is temporarily unable to serve the request.
+    remediation: Retry with exponential backoff; check https://status.klaviyo.com/.
+    retryable: true
+
+success_statuses:
+  - {status: 200, title: OK, count_in_spec: 212}
+  - {status: 201, title: Created, count_in_spec: 25}
+  - {status: 202, title: Accepted, count_in_spec: 31, note: Async job accepted — poll the job resource.}
+  - {status: 204, title: No Content, count_in_spec: 41}
+
+code_vocabulary:
+  published: partial
+  detail: >-
+    Klaviyo documents that every error carries a machine-readable `code` but does NOT
+    publish the enumerated vocabulary. The only code shown in the docs is `invalid`;
+    the OpenAPI's APIJobErrorPayload and ImportErrorResponseObjectResource schemas also
+    example `invalid`. No fuller list was found on any public page as of 2026-08-13, so
+    no vocabulary is asserted here. This is a real gap in Klaviyo's error documentation
+    — an agent cannot branch on `code` without an enumerated list.
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling', http_status: 200}

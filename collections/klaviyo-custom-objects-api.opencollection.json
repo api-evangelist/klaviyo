@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts Custom Objects API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Data Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/data-sources",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[data-source]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 20. Min: 1. Max: 100."
+              }
+            ]
+          },
+          "docs": "Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`custom-objects:read`"
+        },
+        {
+          "info": {
+            "name": "Create Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/data-sources",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data source in an account<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`custom-objects:write`"
+        },
+        {
+          "info": {
+            "name": "Get Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/data-sources/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source"
+              },
+              {
+                "name": "fields[data-source]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`custom-objects:read`"
+        },
+        {
+          "info": {
+            "name": "Delete Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://a.klaviyo.com/api/data-sources/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source to delete"
+              }
+            ]
+          },
+          "docs": "Delete a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`custom-objects:write`"
+        },
+        {
+          "info": {
+            "name": "Bulk Create Data Source Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/data-source-record-bulk-create-jobs",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a bulk data source record import job to create a batch of records.\n\nAccepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.\n\nTo learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `15/m`\n\n**Scopes:**\n`custom-objects:write`"
+        },
+        {
+          "info": {
+            "name": "Create Data Source Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/data-source-record-create-jobs",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a data source record import job to create a single record.\n\nThe maximum allowed payload size per-record is 512KB.\n\nTo learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`custom-objects:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

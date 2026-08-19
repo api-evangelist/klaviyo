@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+
+versioning:
+  scheme: date-header-revision
+  header: revision
+  format: ISO 8601 date representing the revision's release date
+  required: true
+  current_in_repo: '2026-04-15'
+  latest_published: '2026-07-15'
+  docs: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  note: >-
+    The OpenAPI documents in openapi/ are pinned at revision 2026-04-15. Klaviyo's
+    changelog shows a 2026-07-15 revision shipped since (Custom Objects GA, Events
+    backfill flag, plus a breaking change to profile conversations). A future harvest
+    should re-pull https://github.com/klaviyo/openapi at 2026-07-15.
+
+release_train:
+  cadence: quarterly-ish, dated revisions
+  fall_forward:
+    default: true
+    detail: >-
+      Requests naming a retired or unknown revision fall forward to a supported one by
+      default. Opt out with the header `X-Klaviyo-Revision-Fall-Forward-Opt-Out: 1`,
+      which makes an unsupported revision fail loudly instead of silently changing
+      behaviour.
+
+deprecation:
+  policy_url: https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  policy_published: true
+  lifecycle_phases:
+    - {phase: stable, duration: 1 year, meaning: Non-breaking changes only.}
+    - {phase: deprecated, duration: 1 year, meaning: Still served; upgrade window.}
+    - {phase: retired, duration: null, meaning: Unsupported; requests may return 410 Gone.}
+  total_support_window: 2 years per revision
+  breaking_change_notice: 30 days notice before a breaking change is applied to an existing revision
+  sunset_header: false
+  deprecation_header: false
+  rfc8594_compliant: false
+  rfc8594_note: >-
+    Klaviyo publishes a written 2-year deprecation policy but does NOT emit RFC 8594
+    Sunset or Deprecation response headers. The retirement signal an agent receives at
+    runtime is a 410 Gone, after the fact — there is no machine-readable advance warning
+    on the wire.
+
+status_page:
+  url: https://status.klaviyo.com/
+  provider: Statuspage
+  rss: https://status.klaviyo.com/history.rss
+  note: >-
+    Actively used. 30+ incident posts from this status page are harvested into blogs/
+    in this repo, spanning 2025-11 to 2026-08.
+
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public uptime SLA. Klaviyo publishes a status page and legal terms
+    (https://www.klaviyo.com/legal/terms-of-service) but no numeric availability
+    commitment on a public page. Enterprise agreements are not public.
+
+changelog:
+  url: https://developers.klaviyo.com/en/docs/changelog_
+  artifact: changelog/klaviyo-changelog.yml
+
+deprecated_operations: []
+deprecated_operations_note: >-
+  Zero operations in the 308-operation OpenAPI carry `deprecated: true`. Klaviyo retires
+  at the REVISION level rather than the operation level — an endpoint disappears from a
+  later revision instead of being flagged deprecated within the current one.
+
+beta_surfaces:
+  note: >-
+    The 2026-07-15 revision introduced several APIs Klaviyo labels Beta, which are
+    subject to change without the stable-revision guarantees.
+  apis: [Customer Agent, Brand, Sending Domains, Template Preview Send, Billing Usage, Bulk Export, Applications, Text Messaging, API Keys]
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy', http_status: 200}
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/changelog_', http_status: 200}

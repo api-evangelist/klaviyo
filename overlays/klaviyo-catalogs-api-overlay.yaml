@@ -1,0 +1,59 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Klaviyo Accounts Catalogs API
+  version: 1.0.0
+extends: openapi/klaviyo-catalogs-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: API Evangelist enrichment pipeline (local-v1) — artifacts in this repo
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: klaviyo
+    x-apievangelist-artifacts:
+      authentication: authentication/klaviyo-authentication.yml
+      scopes: scopes/klaviyo-scopes.yml
+      conventions: conventions/klaviyo-conventions.yml
+      errors: errors/klaviyo-problem-types.yml
+      lifecycle: lifecycle/klaviyo-lifecycle.yml
+      rate_limits: rate-limits/klaviyo-rate-limits.yml
+      data_model: data-model/klaviyo-data-model.yml
+      mcp: mcp/klaviyo-mcp.yml
+      tool_crosswalk: mcp/klaviyo-tool-crosswalk.yml
+      packages: packages/klaviyo-packages.yml
+      sandbox: sandbox/klaviyo-sandbox.yml
+      conformance: conformance/klaviyo-conformance.yml
+      changelog: changelog/klaviyo-changelog.yml
+      skills: skills/_index.yml
+    x-apievangelist-conventions:
+      standard: JSON:API
+      media_type: application/vnd.api+json
+      version_header: revision
+      version_format: ISO 8601 date
+      pagination: cursor via page[cursor] / page[size]
+      error_envelope: json:api errors[] (NOT RFC 9457)
+      rate_limit_headers:
+      - RateLimit-Limit
+      - RateLimit-Remaining
+      - RateLimit-Reset
+      - Retry-After
+      idempotency: partial — Create Event accepts a body unique_id dedupe key; no Idempotency-Key header
+    x-apievangelist-operation-count: 55
+- target: $.servers
+  update:
+  - url: https://a.klaviyo.com
+    description: Production
+    x-apievangelist-verified: '2026-08-13'
+- target: $.components.securitySchemes
+  update:
+    KlaviyoOAuth2:
+      type: oauth2
+      description: Klaviyo OAuth 2.0 (Authorization Code + PKCE S256). Documented at https://developers.klaviyo.com/en/docs/set_up_oauth
+        but NOT declared in the published OpenAPI; added here so the OAuth surface is machine-readable. Scope vocabulary
+        comes from Klaviyo's own x-klaviyo-scopes extension — see scopes/klaviyo-scopes.yml.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.klaviyo.com/oauth/authorize
+          tokenUrl: https://a.klaviyo.com/oauth/token
+          refreshUrl: https://a.klaviyo.com/oauth/token
+          scopes: {}

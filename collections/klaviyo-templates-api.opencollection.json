@@ -1,0 +1,404 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Klaviyo Accounts Templates API",
+    "version": "2026-04-15"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/templates",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "additional-fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'definition'"
+              },
+              {
+                "name": "fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`, `equals`<br>`name`: `any`, `contains`, `equals`<br>`created`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated`: `equals`, `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 10. Min: 1. Max: 10."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all templates in an account.\n\nUse `additional-fields[template]=definition` to include the full template\ndefinition for SYSTEM_DRAGGABLE templates.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/templates",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "additional-fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'definition'"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new HTML or drag-and-drop template.\n\nIf there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates\nthat can be created via the API.\n\nRequest specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:write`"
+        },
+        {
+          "info": {
+            "name": "Get Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/templates/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of template"
+              },
+              {
+                "name": "additional-fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'definition'"
+              },
+              {
+                "name": "fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:read`"
+        },
+        {
+          "info": {
+            "name": "Update Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/templates/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of template"
+              },
+              {
+                "name": "additional-fields[template]",
+                "value": "",
+                "type": "query",
+                "description": "Request additional fields not included by default in the response. Supported values: 'definition'"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:write`"
+        },
+        {
+          "info": {
+            "name": "Delete Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://a.klaviyo.com/api/templates/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of template"
+              }
+            ]
+          },
+          "docs": "Delete a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:write`"
+        },
+        {
+          "info": {
+            "name": "Get All Universal Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/template-universal-content",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fields[template-universal-content]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`id`: `any`, `equals`<br>`name`: `any`, `equals`<br>`created`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`updated`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`definition.content_type`: `equals`<br>`definition.type`: `equals`"
+              },
+              {
+                "name": "page[cursor]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Default: 20. Min: 1. Max: 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+              }
+            ]
+          },
+          "docs": "Get all universal content in an account.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create Universal Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/template-universal-content",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create universal content. Currently supported block types are: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:write`"
+        },
+        {
+          "info": {
+            "name": "Get Universal Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://a.klaviyo.com/api/template-universal-content/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the universal content"
+              },
+              {
+                "name": "fields[template-universal-content]",
+                "value": "",
+                "type": "query",
+                "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+              }
+            ]
+          },
+          "docs": "Get the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:read`"
+        },
+        {
+          "info": {
+            "name": "Update Universal Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://a.klaviyo.com/api/template-universal-content/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the template universal content"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update universal content. The `definition` field can only be updated on the following block types at this time: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:write`"
+        },
+        {
+          "info": {
+            "name": "Delete Universal Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://a.klaviyo.com/api/template-universal-content/:id",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the template universal content"
+              }
+            ]
+          },
+          "docs": "Delete the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:write`"
+        },
+        {
+          "info": {
+            "name": "Render Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/template-render",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Render a template with the given template ID and context attribute. Returns the AMP, HTML, and plain text versions of the email template.\n\n**Request body parameters** (nested under `attributes`):\n\n* `return_fields`: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).\n\n* `context`: This is the context your email template will be rendered with. You must pass in a `context` object as a JSON object.\n\nEmail templates are rendere"
+        },
+        {
+          "info": {
+            "name": "Clone Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://a.klaviyo.com/api/template-clone",
+            "headers": [
+              {
+                "name": "revision",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a clone of a template with the given template ID.\n\nIf there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates\nthat can be created via the API.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`templates:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,4 +1,4 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -11,7 +11,7 @@ hosts:
 - host: developers.klaviyo.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Sep  9 05:58:03 2026 GMT
+  cert_expires: Nov  7 06:17:48 2026 GMT
   hsts: true
   hsts_max_age: 31536000
 - host: a.klaviyo.com

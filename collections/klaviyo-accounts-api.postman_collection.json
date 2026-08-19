@@ -1,0 +1,513 @@
+{
+  "item": [
+    {
+      "id": "d00a23f7-9214-493b-bb56-5695de6f98a8",
+      "name": "Accounts",
+      "description": {
+        "content": "accounts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87f2f535-8184-45de-8fed-4a261b622935",
+          "name": "Get Accounts",
+          "request": {
+            "name": "Get Accounts",
+            "description": {
+              "content": "Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.\n\nYou can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`accounts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[account]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bef95b65-2cda-4cf1-92bb-d6dcd050f903",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[account]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"account\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"test_account\": false,\n        \"contact_information\": {\n          \"default_sender_name\": \"Klaviyo Demo\",\n          \"default_sender_email\": \"contact@klaviyo-demo.com\",\n          \"organization_name\": \"Klaviyo Demo\",\n          \"street_address\": {\n            \"city\": \"Boston\",\n            \"address1\": \"125 Summer Street\",\n            \"address2\": \"5th Floor\",\n            \"region\": \"MA\",\n            \"country\": \"US\",\n            \"zip\": \"04323\"\n          },\n          \"website_url\": \"https://www.klaviyo.com\"\n        },\n        \"timezone\": \"US/Eastern\",\n        \"preferred_currency\": \"USD\",\n        \"public_api_key\": \"AbC123\",\n        \"locale\": \"en-US\",\n        \"industry\": \"Software / SaaS\"\n      },\n      \"links\": {\n        \"self\": \"https://L.dfnY7ke0Ji-sKbrMe3NkRadXoo1AsBrPhn5SOoReQPntJg8jZe\"\n      }\n    },\n    {\n      \"type\": \"account\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"test_account\": false,\n        \"contact_information\": {\n          \"default_sender_name\": \"Klaviyo Demo\",\n          \"default_sender_email\": \"contact@klaviyo-demo.com\",\n          \"organization_name\": \"Klaviyo Demo\",\n          \"street_address\": {\n            \"city\": \"Boston\",\n            \"address1\": \"125 Summer Street\",\n            \"address2\": \"5th Floor\",\n            \"region\": \"MA\",\n            \"country\": \"US\",\n            \"zip\": \"04323\"\n          },\n          \"website_url\": \"https://www.klaviyo.com\"\n        },\n        \"timezone\": \"US/Eastern\",\n        \"preferred_currency\": \"USD\",\n        \"public_api_key\": \"AbC123\",\n        \"locale\": \"en-US\",\n        \"industry\": \"Software / SaaS\"\n      },\n      \"links\": {\n        \"self\": \"http://VHzFgVJcSvNbutJEdFikIVnxrXSe.uhtfu.qOTZGaYQsFIEKUcifplg36idpfZ\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://ylumabLTfAhYKKnRwICUkqqJDa.ultQyNT5bvr7I4fp0+wWUopTLSE82crZ6sSSr+COJFPDkgV\",\n    \"first\": \"https://qXliClstxLuDNwhcAfxZDzwTQBqzp.xdwWGfsXaJfKqIux,DIBfceMY8Auaf\",\n    \"last\": \"http://k.qcnU4rNeTu.7Rinx+G1DCYEwZ0hvLSdE7QsHvkgId-5QQLcY\",\n    \"prev\": \"https://xeVVAIzfijjvqluMR.jwlcxG3AJq-d9wHAEU+RHUPyJsyVA6xuSKfwOdvTujE6KL,XOk\",\n    \"next\": \"https://PGaAApvD.pumdXzdxWXiZxK3eGI5xDofNDXAZ++PSBorSKmtyfZ8Wklw4L5tE+zHI90ZXrNHx5ow.3TCTb\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeb82bd9-7dd7-454f-8a18-fafe99e48a30",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[account]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ef1d8c3-0401-4e82-a554-43817a4d2d5f",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[account]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aced0e4c-c35e-4207-b1b2-726982d8b464",
+          "name": "Get Account",
+          "request": {
+            "name": "Get Account",
+            "description": {
+              "content": "Retrieve a single account object by its account ID. You can only request the account by which the private API key was generated.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`\n\n**Scopes:**\n`accounts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[account]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d4a6011-9014-4c0d-bf77-3f5cf5f4d733",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[account]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"account\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"test_account\": true,\n      \"contact_information\": {\n        \"default_sender_name\": \"Klaviyo Demo\",\n        \"default_sender_email\": \"contact@klaviyo-demo.com\",\n        \"organization_name\": \"Klaviyo Demo\",\n        \"street_address\": {\n          \"city\": \"Boston\",\n          \"address1\": \"125 Summer Street\",\n          \"address2\": \"5th Floor\",\n          \"region\": \"MA\",\n          \"country\": \"US\",\n          \"zip\": \"04323\"\n        },\n        \"website_url\": \"https://www.klaviyo.com\"\n      },\n      \"timezone\": \"US/Eastern\",\n      \"preferred_currency\": \"USD\",\n      \"public_api_key\": \"AbC123\",\n      \"locale\": \"en-US\",\n      \"industry\": \"Software / SaaS\"\n    },\n    \"links\": {\n      \"self\": \"https://PKpzMVyasOUwIWXHHtcuJHmhTXCxP.viabKZdsWcxeEpnGuz5PjnpxTM-xkENcmizptmF1qgS+fxMDv6.SeBdi,QVXQol5N8TIGnWAfgYSb4E\"\n    }\n  },\n  \"links\": {\n    \"self\": \"http://qjxTKMdChTIUaYPVXGxBRoHRLyOsmJ.ryvhSaVoH,gp0Dpyf6IGOTreBVi\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5953b65-9b0d-47a3-bc7d-487afab57c2c",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[account]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f47caff2-11a2-4b2d-9687-9425f3db34af",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[account]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://a.klaviyo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0137efa-bfde-4fc9-82b2-4d5600fa511d",
+    "name": "Klaviyo Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+      "type": "text/plain"
+    }
+  }
+}

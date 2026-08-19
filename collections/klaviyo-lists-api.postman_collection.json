@@ -1,0 +1,3603 @@
+{
+  "item": [
+    {
+      "id": "8abc1d57-f621-4d15-af1c-41232ddbff29",
+      "name": "Lists",
+      "description": {
+        "content": "lists",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "efdfc006-656d-40bf-b4f0-550d5e7cdca7",
+          "name": "Get Lists",
+          "request": {
+            "name": "Get Lists",
+            "description": {
+              "content": "Get all lists in an account.\n\nFilter to request a subset of all lists. Lists can be filtered by `id`, `name`, `created`, and `updated` fields.\n\nReturns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`\n\n**Scopes:**\n`lists:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[flow]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[list]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[tag]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`name`: `any`, `equals`<br>`id`: `any`, `equals`<br>`created`: `greater-than`<br>`updated`: `greater-than`"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[cursor]",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "10",
+                  "description": "Default: 10. Min: 1. Max: 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "326335ff-2fee-414e-b446-2d098fb7e2e3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(name,['example'])"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"list\",\n      \"id\": \"Y6nRLr\",\n      \"attributes\": {\n        \"name\": \"Newsletter\",\n        \"created\": \"2022-11-08T00:00:00+00:00\",\n        \"updated\": \"2022-11-08T00:00:00+00:00\",\n        \"opt_in_process\": \"double_opt_in\"\n      },\n      \"links\": {\n        \"self\": \"http://aMUFTbvWNRV.rrmgyvQ-f8ox1UIZsTSKN9chCQeSZ2rvBM\"\n      },\n      \"relationships\": {\n        \"profiles\": {\n          \"data\": [\n            {\n              \"type\": \"profile\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"profile\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://fLTCKWwXQ.zyxFLFtpg3gLxIOvJxnA+2UEElSvrpXxveH\",\n            \"related\": \"https://aiblkciXwnlwvnfkSo.ebgdjlcZ2qFQ.mf9F2nO+FQdK\"\n          }\n        },\n        \"tags\": {\n          \"data\": [\n            {\n              \"type\": \"tag\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"tag\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://UMkoXOSSFesAwupytfJn.yhuuvGkeBY+48k1MBo41NlbPEpUtpz-h3ZbCA8vbHWvJS5iORLfwQZjC\",\n            \"related\": \"http://M.obakvULjrfU-8LRbnwVz6W\"\n          }\n        },\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": \"flow\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"flow\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://tINywDbkyjWFgWwCoCOG.rokn2GXlpfUBsMojMzcKnXaIi9xxXQ83LEFaLJo3N26+viyTo0jH77Q\",\n            \"related\": \"http://ZGwHkWiQli.jsxk7GovckKNNbDDwG4RWPK+4EWc+.MgXYES6N9o3B0V8Euh0bvpbBVSsyE+E\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"list\",\n      \"id\": \"Y6nRLr\",\n      \"attributes\": {\n        \"name\": \"Newsletter\",\n        \"created\": \"2022-11-08T00:00:00+00:00\",\n        \"updated\": \"2022-11-08T00:00:00+00:00\",\n        \"opt_in_process\": \"double_opt_in\"\n      },\n      \"links\": {\n        \"self\": \"http://cKxg.iwsAkmFaOeTCDamxIkG,BBPAuzXsnuL\"\n      },\n      \"relationships\": {\n        \"profiles\": {\n          \"data\": [\n            {\n              \"type\": \"profile\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"profile\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://tRZ.kfI07ThWXWnLykcMySm4y4HOcGFd9BftQJ485fhnG9VOBiKiB+H.wuK+Hln.o\",\n            \"related\": \"http://OENBJg.ybjiI.-BmzXyvImxA3Fb\"\n          }\n        },\n        \"tags\": {\n          \"data\": [\n            {\n              \"type\": \"tag\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"tag\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://ApSpoArapSnDJkkyiTatEUN.vavOh6W+ZSV6A5ASGAUybB\",\n            \"related\": \"https://VWtIvLMRWHuVzlrTEXgmiaZZYlTdnUrh.kgeliZpBEsKHlHxn5nQe-S7r.UPeNmYTa1R\"\n          }\n        },\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": \"flow\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"flow\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://vGmaWHMskPMEHakeQFw.vgmKRl.kje0B-afLu5AI9rqy,BDTHqyObYj-wAlJtDm3VPZ+ecktwMhvKKJ\",\n            \"related\": \"http://ZaHMiqmWpvg.xzfmZJdmgkgwX7qmL4wGsGqKFn2LRs1lMu9YrFAPBJ1fx1Jxh9I,6WJ7G\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://VVEAWflbbsohPXbrzQPn.lblpuerMWrdQ4MPP\",\n    \"first\": \"http://Kiibh.qpqIosb0tA3qTwtGBmr0x8dLWAWv8niIsoDR3C4.I\",\n    \"last\": \"http://JpSkoUBwEBsmbtkLC.mmkAI1zCeV,cxveaBm3PFSljlnrAalo-GsHjBDPoScR64LSA7eJRLe4Pw9WxL\",\n    \"prev\": \"https://fVcZCGvNOQwNg.zgpfC+DRRjaQ6cgNYeYiFPEKmoTcEAPuPMgAI\",\n    \"next\": \"http://yquNBcnd.jandLrJcvGLjSVbTTgQaUErMdRiRys0pEmFDPuh\"\n  },\n  \"included\": [\n    {\n      \"type\": \"tag\",\n      \"id\": \"abcd1234-ef56-gh78-ij90-abcdef123456\",\n      \"attributes\": {\n        \"name\": \"My Tag\"\n      },\n      \"links\": {\n        \"self\": \"https://oAVVKuJvFRsQLSDh.wbfjGiN4EkfSO0xUhRw0hvp9FMBtXH2FRNdi2jaXsjnJwUPKr46uSmTSN6IxDV7w.W,3\"\n      },\n      \"relationships\": {\n        \"tag-group\": {\n          \"data\": {\n            \"type\": \"tag-group\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"http://LZEYMtqCfgsYGbmewziWHJQtfcqFegq.mxvlnuysVcjsKl5r\",\n            \"related\": \"http://BNJzrrojazHdZgmKcTCEhKMwiDLSfF.kcZC,POf8mIZeWPy6JiUU2\"\n          }\n        },\n        \"lists\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://pBYOWsDtbXaaJSopLkuntwuZIPXocDyke.vineX6dul6PoGZHdrHRUHmHfSfAaQTzL8xqdB7HRb9SpV6E5aNBWYHfk\",\n            \"related\": \"http://dAIBNgtQiDEdeddhdIWrr.gyeqydbu7dniY.YnTl38OFFDb+KQ0eCkK0SWsTsGCPcjRdYb1oCrROyv+zXGki0fyJe\"\n          }\n        },\n        \"segments\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://bNzFqveVkOJbgTLHx.tixffD39cETBdrP4MdR6ZNje\",\n            \"related\": \"https://sqEojgD.nribjGtr0.e+Xq7HxyH+mG8NtMoWnxZ2Fj1+OpAE-QpVL9G0I8E3OohUnz8yaGGXBesjCFWK.+Vv\"\n          }\n        },\n        \"campaigns\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://Efvsbm.zcpgXFuI+fkuc6HQmPc5XMe\",\n            \"related\": \"https://aGCAyCtYFFJ.ooQYjV+QZUMhNmMp-2myj1Ft8SdZ1z.YvmKXwuGvS+8HlQ1vmluWEtcE,LBOEhHiXokX7EA\"\n          }\n        },\n        \"flows\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://EzpBWHpWJaxKOAuOsYNaEFENQZiG.oilpaFhpuRO5Szg41P5V\",\n            \"related\": \"https://x.xvytjGE30OozvcHYBQaCsBt2JrzXhyspbwJpuh,rcsC3Hb0S\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"tag\",\n      \"id\": \"abcd1234-ef56-gh78-ij90-abcdef123456\",\n      \"attributes\": {\n        \"name\": \"My Tag\"\n      },\n      \"links\": {\n        \"self\": \"https://AwmUD.bahhuHlwr,E9KpXsKbO99VRGxjURNschoB0Km4gbYIDoKKJYBeKdj5URMT,kRF\"\n      },\n      \"relationships\": {\n        \"tag-group\": {\n          \"data\": {\n            \"type\": \"tag-group\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"https://bKdTPaKGVYsjLzyLWlDi.lgfhJWnL1XFDD,Imu88n9pxG4GynFEy7FIDykFjyPX4xdpoxnbJpf8ywTlu4\",\n            \"related\": \"http://dxEhfaNVKOFpjS.psgeCamVuqz8sTchkR5g,ZQQehfrMbq1XWLbpGUz\"\n          }\n        },\n        \"lists\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://xxEMNTATFqODdHZvooBNlZCeSAJlaxsfi.kzeqIDsstnH-Bp\",\n            \"related\": \"http://xVoPKMFxENX.sjFOui\"\n          }\n        },\n        \"segments\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://pvwyZrRzQyrSxNmLzBIT.ukzEFTmtamn7567XOTCOc.BWwee-OAeBNg8vK-KMdOTq9e5dra3o7NtZIb-vnepWGrjGIqfAP1UAtfxHp\",\n            \"related\": \"http://DpulqNRrkFvzWPLEgyZmVB.lfyWOluPCrz5rJvaFYyBFudY7lcYK\"\n          }\n        },\n        \"campaigns\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://pqHpKCdAfTOYNeUorBUDdKHTGOIdBGiD.kruZ5blzDX3O3RVcaPRuuA+sxU1FfH1sFPY\",\n            \"related\": \"https://lsQVReTHBCseOpYzIXzmFDGA.rknivw3hNMzbuGp8-7SsQStyEsG.XEPmdO8kbMQua05J5ZJSRqosfmbYsd8I48CIIrM\"\n          }\n        },\n        \"flows\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://XiS.pbzcqh1mXZCrmeoxvLIKiTM\",\n            \"related\": \"https://EVNARp.qbndOzLeN5XuU5BknOw1HkQO-6zi+K.z2ghMx\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64deb123-dbc0-418c-9e59-f1a667998573",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(name,['example'])"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a410a5f-0fcc-4247-9f95-38fce2a67f42",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(name,['example'])"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cfe40c5-657a-499f-98db-251b9606090d",
+          "name": "Create List",
+          "request": {
+            "name": "Create List",
+            "description": {
+              "content": "Create a new list.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`<br>Daily: `150/d`\n\n**Scopes:**\n`lists:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"opt_in_process\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64748258-2306-49d5-b856-215ff1f4f178",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"Newsletter\",\n      \"opt_in_process\": \"double_opt_in\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"Y6nRLr\",\n    \"attributes\": {\n      \"name\": \"Newsletter\",\n      \"created\": \"2022-11-08T00:00:00+00:00\",\n      \"updated\": \"2022-11-08T00:00:00+00:00\",\n      \"opt_in_process\": \"double_opt_in\"\n    },\n    \"links\": {\n      \"self\": \"http://dxeLvRV.htNTfW.kCGdbhi11.sYixsHBk0GSHZyeie-0YpxS0YSZyhDr.kQL4TXRRuY\"\n    },\n    \"relationships\": {\n      \"profiles\": {\n        \"data\": [\n          {\n            \"type\": \"profile\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"profile\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"https://XAmqYCCWDlUlnt.bkjsW.D0vNn3dwyBH-zD5sswBKQBZNYy\",\n          \"related\": \"http://mfnDXMIMFYtVknqIiTl.ymdifmUE2dH4rx1yiPxdaQPGBMAI,ziJUHo-QAXtB\"\n        }\n      },\n      \"tags\": {\n        \"data\": [\n          {\n            \"type\": \"tag\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"tag\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://hbMNxhmXrLREdCnpOKTOitpH.mdGRrc7WdblMS.Sn2-mz+5cJDcLeGNj+zeMmCP1\",\n          \"related\": \"https://acHhClsbkbZVHBxqqUBwfgLOq.rsLScMnwrmOyYD6fp.U8H8p-gmIphgRUNL7i3DVFv3UcKGMZt\"\n        }\n      },\n      \"flow-triggers\": {\n        \"data\": [\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"https://GsRMnMnYyrJIHiFnph.xoiEDPEnx.Zm-ZoLw09sLa\",\n          \"related\": \"https://qCamhVEcpIfTYkkgsEVh.djholbWtvpkga4pw\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"http://zZoHgJgsTFXMgGRRNJSfTW.ehcMI\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a3f4ffa-560f-48a0-8a78-583292d60509",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"Newsletter\",\n      \"opt_in_process\": \"double_opt_in\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "821cd8eb-03d3-43a0-a500-ee9d52604253",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"Newsletter\",\n      \"opt_in_process\": \"double_opt_in\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cadeb267-ccbf-4bfa-871e-76791ae836b4",
+          "name": "Get List",
+          "request": {
+            "name": "Get List",
+            "description": {
+              "content": "Get a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `additional-fields[list]=profile_count` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.\n\n**Scopes:**\n`lists:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "additional-fields[list]",
+                  "value": "<string>,<string>",
+                  "description": "Request additional fields not included by default in the response. Supported values: 'profile_count'"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[flow]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[list]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[tag]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b851104a-9dc0-4870-b432-f9d77a90bc98",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"Y6nRLr\",\n    \"attributes\": {\n      \"profile_count\": 4197,\n      \"name\": \"Newsletter\",\n      \"created\": \"2022-11-08T00:00:00+00:00\",\n      \"updated\": \"2022-11-08T00:00:00+00:00\",\n      \"opt_in_process\": \"double_opt_in\"\n    },\n    \"links\": {\n      \"self\": \"https://AwodraJtMshbtLtzmIvJFOUSrwYPwlvx.nipZ8JkYhAnHvNUnG57EVDCyDLYmxMDp8mkInzs6Z3AooFz9zUCKtmsH1VysTm\"\n    },\n    \"relationships\": {\n      \"profiles\": {\n        \"data\": [\n          {\n            \"type\": \"profile\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"profile\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://fpygRhofWidqwPMnKyTXaMQqJrkKYCN.btoxCfk5,OPOG1SnJEJznWacMf7yTHBVBRLod\",\n          \"related\": \"https://raERkv.dwykeKQW\"\n        }\n      },\n      \"tags\": {\n        \"data\": [\n          {\n            \"type\": \"tag\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"tag\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"https://MR.muyaHicsh,pl6fGh14OYash5lKlt8o1FIwe\",\n          \"related\": \"https://fVcTaSFghGHqlRzrZKxdebpHTbD.hbclT5H,bjeYQWMsQYUaQrFPPRBBRYA3-mV3qRvcS2\"\n        }\n      },\n      \"flow-triggers\": {\n        \"data\": [\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://q.nuhpBjvLUKa,sixYnKSp20pbVkq+oYWhh3cAlB0iY4ddkwZ1QvbTmWJv+J8j-xDbKMHRN5\",\n          \"related\": \"http://zKppYkZSkcpzdPMMAOcDQ.phdyvQsRDakd.cxhj\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"tag\",\n      \"id\": \"abcd1234-ef56-gh78-ij90-abcdef123456\",\n      \"attributes\": {\n        \"name\": \"My Tag\"\n      },\n      \"links\": {\n        \"self\": \"http://SYCHlUgySElxD.qdNpK+QGU4h8TFwVy5OPxdA6GOqg2G1nufbuFXxuVCZP.HrKdHOI\"\n      },\n      \"relationships\": {\n        \"tag-group\": {\n          \"data\": {\n            \"type\": \"tag-group\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"http://xUGro.gofnnv.e.HQZFeFOFEJN\",\n            \"related\": \"https://bQQIoqGOuLHLqeBMVecHMsqj.qzihqddRZL6rHnO.tfuTBQ8UuE+ICBli4,Gxeg0z-,Vr,1YPAK3-Fq8Uf8Y.52LXTfNUrTc-93OqwKZ+\"\n          }\n        },\n        \"lists\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://VPxwRh.jaNEfWN,gEZf5qDoVjRMOEw0SHR7dyfByJguRd.Ujfw7grSRbDU2uU5dSJQpkCwq\",\n            \"related\": \"http://rwDVXjTPH.hnhiGAwV-lLXSzqgf6Hmcw1LmUbrIwd7JuTXG50.\"\n          }\n        },\n        \"segments\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://ggQcvlttZqdHCVTIDs.njD.,ZeE1.J4CDrz\",\n            \"related\": \"https://gEd.nrpnD27xxChU1fbbyN2FK04yDN,0CAyYcqPrDFLytN.TQuk+5GjeeG9-D.PlaMnZOwmyT\"\n          }\n        },\n        \"campaigns\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://rSlhXSHf.qlinveANOOES2,kKljop0ojIebqi-CsRkoLONcqHaca3qrfZYgFzkMwQoJTCqbKM6bdqM++mGCBk\",\n            \"related\": \"https://VBVl.mynU9eq+778HxeGB92lxETnmSS8SFsrU4u74T6bq0U9\"\n          }\n        },\n        \"flows\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://mtMEKzYQVMgBZ.xiafiHm-T2DXeCTI5wt6KtlQ,cfS3R0yU109VaCTnQMbD8em.YubEdHXLa3xpbWe\",\n            \"related\": \"https://FaOYSJqdodqMqHv.nlwkQSRtfOXwQpE25Fjdr8u4fYUBKbNuZQwY624\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"tag\",\n      \"id\": \"abcd1234-ef56-gh78-ij90-abcdef123456\",\n      \"attributes\": {\n        \"name\": \"My Tag\"\n      },\n      \"links\": {\n        \"self\": \"http://UVNKfZYAsLdkEirhTAhvSiveFgkAZ.nneDeFA41.iWBBejj,zqNGQgqKHnUvGui\"\n      },\n      \"relationships\": {\n        \"tag-group\": {\n          \"data\": {\n            \"type\": \"tag-group\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"http://iaxCBOdoVu.bdhS41ttH1FdJjzpd.UtimHvLpkJciOrbdAepSxhVOn59nsgOch+Iem\",\n            \"related\": \"https://xOEEIBFGNWIqWrCOeaGNYhNozjNLELn.cqf7iXcLF8cPmsU0QInNXAnL0uIr4uYrwmJhcTqCoL4r6GfiwwILW0Dh\"\n          }\n        },\n        \"lists\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://xmChUuHmWhLmILrWhbs.gofosiEsRXWLwid0adqKrrHoRuQiuDxpEg.RoZtRJvDmVfIuEHZ.\",\n            \"related\": \"https://P.rqbZi6pBiGnGAtuIic8dpW7X4RD3uNCB9V9f3q8,QiDfDIryODck,-vidhk\"\n          }\n        },\n        \"segments\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://gnMEZDpctKyvBpxoHvyAAqpwFRp.wxbgfEDj4hQlSzWSt3RtUI+RQL.IOTmPBkMn\",\n            \"related\": \"http://ziSIkwUatNEljTEfunUOXzDCczuw.ppGvezUrxJ\"\n          }\n        },\n        \"campaigns\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://XFmceAWNXUpoxHcaQVBt.cwfxFtuyHXt+n8HUL1Lxj.2\",\n            \"related\": \"https://fETfmwjcpXcSqPla.oefLpd9cjtDpUowmXvZTICJ.8,E0w,Iwbvo.KExvx3gPdS+3FpiQl7GaVUt8mX\"\n          }\n        },\n        \"flows\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://zKyiQYGlgwvqQ.uuxnvyhMSe3D3lwqcrwH4rYFeKvUZfKOjRV9gCoktYFhN8Uj+az1.bl-lVtng3SW-xk6FQAO\",\n            \"related\": \"http://ZrgGwlUJWerCimhp.enbaOxA22gJ2U-IJnDGEH8\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://jDRZaRVmYLAVtRSaT.lfegQqhO5TJawWTJltYM-pm,\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cf84af0-cb1c-4666-9b05-1270f84259ec",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa0a39ae-3ee7-4e91-b72b-370374c27b0b",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[list]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a1c0c07-cb5e-4e39-8be7-ba8491704f84",
+          "name": "Update List",
+          "request": {
+            "name": "Update List",
+            "description": {
+              "content": "Update the name of a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`lists:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"opt_in_process\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3c33725-37f3-4cd5-ab41-a55586ce0823",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"Y6nRLr\",\n    \"attributes\": {\n      \"name\": \"Newsletter\",\n      \"opt_in_process\": \"double_opt_in\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"Y6nRLr\",\n    \"attributes\": {\n      \"name\": \"Newsletter\",\n      \"created\": \"2022-11-08T00:00:00+00:00\",\n      \"updated\": \"2022-11-08T00:00:00+00:00\",\n      \"opt_in_process\": \"double_opt_in\"\n    },\n    \"links\": {\n      \"self\": \"http://dxeLvRV.htNTfW.kCGdbhi11.sYixsHBk0GSHZyeie-0YpxS0YSZyhDr.kQL4TXRRuY\"\n    },\n    \"relationships\": {\n      \"profiles\": {\n        \"data\": [\n          {\n            \"type\": \"profile\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"profile\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"https://XAmqYCCWDlUlnt.bkjsW.D0vNn3dwyBH-zD5sswBKQBZNYy\",\n          \"related\": \"http://mfnDXMIMFYtVknqIiTl.ymdifmUE2dH4rx1yiPxdaQPGBMAI,ziJUHo-QAXtB\"\n        }\n      },\n      \"tags\": {\n        \"data\": [\n          {\n            \"type\": \"tag\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"tag\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://hbMNxhmXrLREdCnpOKTOitpH.mdGRrc7WdblMS.Sn2-mz+5cJDcLeGNj+zeMmCP1\",\n          \"related\": \"https://acHhClsbkbZVHBxqqUBwfgLOq.rsLScMnwrmOyYD6fp.U8H8p-gmIphgRUNL7i3DVFv3UcKGMZt\"\n        }\n      },\n      \"flow-triggers\": {\n        \"data\": [\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"https://GsRMnMnYyrJIHiFnph.xoiEDPEnx.Zm-ZoLw09sLa\",\n          \"related\": \"https://qCamhVEcpIfTYkkgsEVh.djholbWtvpkga4pw\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"http://zZoHgJgsTFXMgGRRNJSfTW.ehcMI\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "299a07aa-242a-472b-941f-adfd009b5601",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"Y6nRLr\",\n    \"attributes\": {\n      \"name\": \"Newsletter\",\n      \"opt_in_process\": \"double_opt_in\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf570341-d2e6-4394-926c-67c4eff5f04d",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"Y6nRLr\",\n    \"attributes\": {\n      \"name\": \"Newsletter\",\n      \"opt_in_process\": \"double_opt_in\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bbc2b79-3e98-4bec-8641-10e974888389",
+          "name": "Delete List",
+          "request": {
+            "name": "Delete List",
+            "description": {
+              "content": "Delete a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`lists:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36b78473-6bd1-4c9b-a827-36acadc21cd0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a810dc1-16d4-4c20-8117-ce902941beb3",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c28f5637-9a7e-40b5-aaea-7d788e1263fe",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90348d72-7878-42eb-b5a9-59d8593b5fb5",
+          "name": "Get Tags for List",
+          "request": {
+            "name": "Get Tags for List",
+            "description": {
+              "content": "Return all tags associated with the given list ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`lists:read`\n`tags:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[tag]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a7dd39c-7959-4c09-b8f5-a61769ad4efa",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"tag\",\n      \"id\": \"abcd1234-ef56-gh78-ij90-abcdef123456\",\n      \"attributes\": {\n        \"name\": \"My Tag\"\n      },\n      \"links\": {\n        \"self\": \"http://qaIF.olKMfWmgtRg\"\n      },\n      \"relationships\": {\n        \"tag-group\": {\n          \"data\": {\n            \"type\": \"tag-group\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"http://IfApqFLcw.jpNAJxf70Z8Eicp+7FdDBV89TSRtopep2bwW.aK5oc5,zpZ6PYhPr\",\n            \"related\": \"http://mUDXAiVc.wsI9LejqwaKYlJvA0EJo1fmgF,txns2XLjYjffoSm76PxXJkzg,HpverpynLD6eSleYj\"\n          }\n        },\n        \"lists\": {\n          \"data\": [\n            {\n              \"type\": \"<string>\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://ITsFDmwbePbIlyKcfczC.hnJz-DQYIljiVA.Ra,zP,GQ0gU\",\n            \"related\": \"https://RAwcWx.tqjax5rqfBUYMwdqmCrPRfoL4hoX4vK\"\n          }\n        },\n        \"segments\": {\n          \"data\": [\n            {\n              \"type\": \"segment\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"segment\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://YybqXOGlSqCjkfiYgRebIbki.rpjbX7UF5AxBNaA6CcA,hugvUq4NaY,KF0KZEzLjPGOAN9nr0LPFkrAsB,V\",\n            \"related\": \"https://ztbSFuuSOFNZPaeMeGXGCcVnjAgOfKs.kgnyyKsfzaI\"\n          }\n        },\n        \"campaigns\": {\n          \"data\": [\n            {\n              \"type\": \"campaign\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"campaign\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://btbZqopFraZiVVqtYKrdTOyLOZO.zsGWE7l94CGhXKLE4M+JCo5nt.XzX-V\",\n            \"related\": \"http://mDuyai.zhrlaTqCsFVu0j.EokPAsq0e9l-hFqFAUzbBEcCP2Qsxzrua-FjZF2RVrwvwQFf,AdX+fXw5\"\n          }\n        },\n        \"flows\": {\n          \"data\": [\n            {\n              \"type\": \"flow\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"flow\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://gBCs.acfHYXtI9g6VEOIM-ndxoKOqkViLju8763\",\n            \"related\": \"http://aCtqu.skioyEndVrIVndW8MqjuKmRd0ImljN8.mKWIT,TpxlxlPgBL2\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"tag\",\n      \"id\": \"abcd1234-ef56-gh78-ij90-abcdef123456\",\n      \"attributes\": {\n        \"name\": \"My Tag\"\n      },\n      \"links\": {\n        \"self\": \"http://unjWKGiwjPZTclCyVBvGBQEveofqRU.crommIYKJQZgBCe0da2OYAGcwPq.rZKV2w0UOQ\"\n      },\n      \"relationships\": {\n        \"tag-group\": {\n          \"data\": {\n            \"type\": \"tag-group\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"http://shFVE.irL7CPzWRgd2D6HAOQA6C5nxbnhvIRxni4Sxk2RLI92UwKNOHakM8\",\n            \"related\": \"http://GRavQFbbwbGDYjm.vhgxlq8+Hlv3DJQexE+fv8\"\n          }\n        },\n        \"lists\": {\n          \"data\": [\n            {\n              \"type\": \"<string>\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"<string>\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://yJJEHaCTLnfGjWzWeXlRgrUaUZgb.sfkfDUg9zOeYWRm9pQ\",\n            \"related\": \"http://hDHSYkuzlFkaVahGiUaOJLBHtxOjR.sgatMYCv2GMAj,.\"\n          }\n        },\n        \"segments\": {\n          \"data\": [\n            {\n              \"type\": \"segment\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"segment\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://Ohc.gho.1nvHQ8mwfIM5wnyk7O7hrVvexiczXxAmxGLEzq8jj9W1V-LOt.8veU\",\n            \"related\": \"https://ksXqfYKCFFKhujULFQStxFxwVmwVOChrL.jhcubk+WoiAsEQCq85EXDxcIuXj9sQb0fciw2elZYhMlk.mfrnGi72Sbe3\"\n          }\n        },\n        \"campaigns\": {\n          \"data\": [\n            {\n              \"type\": \"campaign\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"campaign\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://CpjZzOp.ucqia,GjtYSwfJaaUV-6DwvNT7cYxDLs2JLk\",\n            \"related\": \"https://dbdkPWDfnzSSvWP.bks1BA0okdTQSOGVdfqybS,Cz.eBDPhjoChHa\"\n          }\n        },\n        \"flows\": {\n          \"data\": [\n            {\n              \"type\": \"flow\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"flow\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://XkmqAWeOgvZTOALhnGHWSq.ktoffg,9DO2hT4VG8\",\n            \"related\": \"https://UZuDTSHcpYdr.hlyuX3l\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://t.cdmdeQI84Pk0wPOfvN\",\n    \"first\": \"http://BjIohHGRRwfRyDMQEVcIYatWOgmvjTZfP.uinHjPmMTfYvwcEj7yuX.7kIXrn\",\n    \"last\": \"http://gEmYIduqMYapKJowXktoiffXZ.nwtlYR3+d-YiYH1jCvD4LE1N6Iw-OXLw+\",\n    \"prev\": \"https://nUayxfhiJCkfReqfwBGGMcpDAbya.wvky95zE4jMTEdzJVwupW9olCRXLvCiTaUqoepBOzAipln\",\n    \"next\": \"https://WCexVczwth.rfpQI99vsoDVpfN.OPkp6ZQ2UspsyCXJxO,Rjsc.8mQEkbP.h-O3r0IzoWHQE9pnsV\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca8a479c-17c9-49a5-8eb9-225c23b76672",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4de11fea-0d36-4667-90e0-a761dda42022",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[tag]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "268288d4-e2b9-424a-afb1-828925d721c1",
+          "name": "Get Tag IDs for List",
+          "request": {
+            "name": "Get Tag IDs for List",
+            "description": {
+              "content": "Return all tags associated with the given list ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`lists:read`\n`tags:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id",
+                "relationships",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5aa7f70-db1e-42f3-a7e1-5b4b39f05d69",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"tag\",\n      \"id\": \"abcd1234-ef56-gh78-ij90-abcdef123456\"\n    },\n    {\n      \"type\": \"tag\",\n      \"id\": \"abcd1234-ef56-gh78-ij90-abcdef123456\"\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://VW.shmuWM3gXi28Knjhw7izmj8FRPWRgJaJ3lumt5Ruh0m1+wJCU3581x1cJotRUZJy8G7ig\",\n    \"first\": \"https://GzSwwRPLceMscOjDyV.muafo0+E8LLFpMWA5vp\",\n    \"last\": \"http://kvsOGY.hxrts\",\n    \"prev\": \"http://xXjzzUcZcZhdvWFyUzqUPaseaFCjCcaWO.oqtiuL36ThdIEP85f.aaX8kB,-l\",\n    \"next\": \"https://xJtRpVCClgSueELEXyaoDGXmhv.izrEJS9rXRYlfLOIrSuwXO,1.SdJ2WNk+SVvx2YC.4mYcpuJKvTjaP\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "950a8aac-0f92-4519-877a-c492fdef9a27",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b60e60ee-3a06-4ad8-93c0-f25e1445ed09",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc0787f3-bdbc-4163-8d4c-2dd9c8130574",
+          "name": "Get Profiles for List",
+          "request": {
+            "name": "Get Profiles for List",
+            "description": {
+              "content": "Get all profiles within a list with the given list ID.\n\nFilter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, `push_token`, and `joined_group_at` fields. Profiles can be sorted by the following fields, in ascending and descending order: `joined_group_at`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.\n\n**Scopes:**\n`lists:read`\n`profiles:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "additional-fields[profile]",
+                  "value": "<string>,<string>",
+                  "description": "Request additional fields not included by default in the response. Supported values: 'subscriptions', 'predictive_analytics'"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[profile]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`email`: `any`, `equals`<br>`phone_number`: `any`, `equals`<br>`push_token`: `any`, `equals`<br>`_kx`: `equals`<br>`joined_group_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[cursor]",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Default: 20. Min: 1. Max: 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be6f4deb-d6c0-487b-a56d-a9e121712b8c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(email,['example'])"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"profile\",\n      \"attributes\": {\n        \"joined_group_at\": \"2022-11-08T00:00:00+00:00\",\n        \"subscriptions\": {\n          \"email\": {\n            \"marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sms\": {\n            \"marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transactional\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"mobile_push\": {\n            \"marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"whatsapp\": {\n            \"marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transactional\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"conversational\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"predictive_analytics\": {\n          \"historic_clv\": 93.87,\n          \"predicted_clv\": 27.24,\n          \"total_clv\": 121.11,\n          \"historic_number_of_orders\": 2,\n          \"predicted_number_of_orders\": 0.54,\n          \"average_days_between_orders\": 189,\n          \"average_order_value\": 46.94,\n          \"churn_probability\": 0.89,\n          \"expected_date_of_next_order\": \"2022-11-08T00:00:00+00:00\",\n          \"ranked_channel_affinity\": [\n            \"sms\",\n            \"email\",\n            \"push\"\n          ]\n        },\n        \"email\": \"sarah.mason@klaviyo-demo.com\",\n        \"phone_number\": \"+15005550006\",\n        \"external_id\": \"string\",\n        \"first_name\": \"Sarah\",\n        \"last_name\": \"Mason\",\n        \"organization\": \"Example Corporation\",\n        \"locale\": \"en-US\",\n        \"title\": \"Regional Manager\",\n        \"image\": \"https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg\",\n        \"created\": \"2022-11-08T00:00:00+00:00\",\n        \"updated\": \"2022-11-08T00:00:00+00:00\",\n        \"last_event_date\": \"2022-11-08T00:00:00+00:00\",\n        \"location\": {\n          \"address1\": \"89 E 42nd St\",\n          \"address2\": \"1st floor\",\n          \"city\": \"New York\",\n          \"country\": \"United States\",\n          \"latitude\": \"string\",\n          \"longitude\": \"string\",\n          \"region\": \"NY\",\n          \"zip\": \"10017\",\n          \"timezone\": \"America/New_York\",\n          \"ip\": \"127.0.0.1\"\n        },\n        \"properties\": {\n          \"pseudonym\": \"Dr. Octopus\"\n        }\n      },\n      \"links\": {\n        \"self\": \"https://tHHYTAYHlUefPc.ryeoj9iOrJYHnjyB0AH,zT,OzNSkciCEgWQcsSbxK71NEBnzTQ7b\"\n      },\n      \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\",\n      \"relationships\": {\n        \"lists\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://DgyWpovahPxomhckq.nbhbZc4jlA2EdY5dhppEtf,NKrs.jIQkJxTuv.1yS0XDHCqwS4,u.\",\n            \"related\": \"https://HawT.nex0MUO99.\"\n          }\n        },\n        \"segments\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://iMWKaRzyLuwmUtJNYNZZqxbvAV.wmbgLjI2n,42SQzdTcsO1lGI1r\",\n            \"related\": \"https://jC.xnrouak3c9tyAYN-fAiFDZBDKN2qcu4M\"\n          }\n        },\n        \"push-tokens\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://kPhvLrybslXCWnmKnSzO.midCdbSVtJH\",\n            \"related\": \"http://dNI.srhUFu0cqzXCpD9Q1CLj1jgMQJg2G1dH4H1yvAFiBNHWpJ.umqWAT4T3tJ9H5.qoT+HkhJ\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"profile\",\n      \"attributes\": {\n        \"joined_group_at\": \"2022-11-08T00:00:00+00:00\",\n        \"subscriptions\": {\n          \"email\": {\n            \"marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sms\": {\n            \"marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transactional\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"mobile_push\": {\n            \"marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"whatsapp\": {\n            \"marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transactional\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"conversational\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"predictive_analytics\": {\n          \"historic_clv\": 93.87,\n          \"predicted_clv\": 27.24,\n          \"total_clv\": 121.11,\n          \"historic_number_of_orders\": 2,\n          \"predicted_number_of_orders\": 0.54,\n          \"average_days_between_orders\": 189,\n          \"average_order_value\": 46.94,\n          \"churn_probability\": 0.89,\n          \"expected_date_of_next_order\": \"2022-11-08T00:00:00+00:00\",\n          \"ranked_channel_affinity\": [\n            \"sms\",\n            \"email\",\n            \"push\"\n          ]\n        },\n        \"email\": \"sarah.mason@klaviyo-demo.com\",\n        \"phone_number\": \"+15005550006\",\n        \"external_id\": \"string\",\n        \"first_name\": \"Sarah\",\n        \"last_name\": \"Mason\",\n        \"organization\": \"Example Corporation\",\n        \"locale\": \"en-US\",\n        \"title\": \"Regional Manager\",\n        \"image\": \"https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg\",\n        \"created\": \"2022-11-08T00:00:00+00:00\",\n        \"updated\": \"2022-11-08T00:00:00+00:00\",\n        \"last_event_date\": \"2022-11-08T00:00:00+00:00\",\n        \"location\": {\n          \"address1\": \"89 E 42nd St\",\n          \"address2\": \"1st floor\",\n          \"city\": \"New York\",\n          \"country\": \"United States\",\n          \"latitude\": \"string\",\n          \"longitude\": \"string\",\n          \"region\": \"NY\",\n          \"zip\": \"10017\",\n          \"timezone\": \"America/New_York\",\n          \"ip\": \"127.0.0.1\"\n        },\n        \"properties\": {\n          \"pseudonym\": \"Dr. Octopus\"\n        }\n      },\n      \"links\": {\n        \"self\": \"http://bSRu.bwxicZFPB\"\n      },\n      \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\",\n      \"relationships\": {\n        \"lists\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://PFbwmSqFHMKkKLVddUaUsvo.srauMh8Ja+vQWlP1PFhS6TJOl.MWZ1WSplsTTrBvgiVdJBCldIrMlECc1\",\n            \"related\": \"https://TZloToM.zfDiksBPMXv4Igy,hrSB-aXCp4XL8.Qrxb,ytowGQNWEHuIY-TS1MAj5bue,uSCk4O27Q\"\n          }\n        },\n        \"segments\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://eSGHfy.giurLKET4F4rEDfqCY7hptaQ+7eKMXu8B+jj2.3UQw\",\n            \"related\": \"http://Cn.klnvLPkXKnVEdcflzGA2Ji7erzi4u\"\n          }\n        },\n        \"push-tokens\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://OMPUkhe.cycvRGQAHFIdKRdDFZmey,RUhXye-S4aRCbsim1R8hNNxFMVSpbDKo3uOM4\",\n            \"related\": \"https://wXwSdhxuwpjmRYQKXeu.lzgacM4poo9+J48+VhLg,zx9ebz0o7bxuDX+WxHQc\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://VOJzkzgnMuqC.leupI5N-tNSk3HyXiqrvxwoXqg\",\n    \"first\": \"https://IU.ksxnjKSh,g2zSqPkgx.A,Dw9WLKrWbhJ0qSRc\",\n    \"last\": \"http://oldKrnQFXMBGmKGFnus.wwdkDaGhPgXgTzY5U56raSxIahxbBS6qHj4rUuEYxzkicG3N5Jd6,9fa5.t9NgM\",\n    \"prev\": \"http://qdWipRiZpFtsPqXYyMuCXiRv.vqmp9q9DCEUIyxuWxdCcjbFHnLjRumJ9PnqYUusE\",\n    \"next\": \"http://YIZYSSqwAVFWHUzZNQjMjZYTCUcyOGl.fiuEvq0AmwD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8daab9da-1f17-4c57-92f3-1814c24aabc2",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(email,['example'])"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7228ecd7-5c80-46f0-8000-b3b13100d843",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(email,['example'])"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cafc49a2-82da-45c1-b68e-719a75998518",
+          "name": "Get Profile IDs for List",
+          "request": {
+            "name": "Get Profile IDs for List",
+            "description": {
+              "content": "Get profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.\n\n**Scopes:**\n`lists:read`\n`profiles:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id",
+                "relationships",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`email`: `any`, `equals`<br>`phone_number`: `any`, `equals`<br>`push_token`: `any`, `equals`<br>`_kx`: `equals`<br>`joined_group_at`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[cursor]",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Default: 20. Min: 1. Max: 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79e88746-1e89-4ea9-8265-9580ae653de5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "equals(email,['example'])"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"profile\",\n      \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\"\n    },\n    {\n      \"type\": \"profile\",\n      \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\"\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://yQpIxUutlDzVoDeNhGq.gdyHvzDT0F3FrKG,N9NAZLpY2vRU4d148yF1gyehGR9AuCZu5b\",\n    \"first\": \"https://uDiSyGtUSnbVoEBVcPRzNDN.yfnggfds--8TaW\",\n    \"last\": \"http://pWy.yhD8,8RhMTyT1u.+oLyINN3bvaKgjYK03bQIeviliK9gVaF7EPSjSdopLfulrrF+4UY4,MYT\",\n    \"prev\": \"http://wNWXWk.baiO.64DCOjZTBtFgODjWIDlxqfD\",\n    \"next\": \"https://XOaV.azneNxzMU5nlHe-5e.ZhRGEgp8RxGZZV\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffd5038e-52a4-4632-b792-353d6f264912",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "equals(email,['example'])"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9747ed84-e4a5-432e-8320-8ef584c9931e",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "equals(email,['example'])"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa47f7b5-0f4e-43a4-9196-4fa21786b489",
+          "name": "Add Profiles to List",
+          "request": {
+            "name": "Add Profiles to List",
+            "description": {
+              "content": "Add a profile to a list with the given list ID.\n\nIt is recommended that you use the [Subscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/subscribe_profiles) if you're trying to give a profile [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api) to receive email marketing, SMS marketing, or both.\n\nThis endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`lists:write`\n`profiles:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id",
+                "relationships",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d0071ee-40bb-46bd-a612-07cfb84e510d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f16d1da3-9bc0-4206-88ff-dfda94d9be79",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d471fb2f-7221-4c5b-99fa-090a0c95c461",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68599c7a-ace5-409a-9901-6e04a51f99a1",
+          "name": "Remove Profiles from List",
+          "request": {
+            "name": "Remove Profiles from List",
+            "description": {
+              "content": "Remove a profile from a list with the given list ID.\n\nThe provided profile will no longer receive marketing from this particular list once removed.\n\nRemoving a profile from a list will not impact the profile's [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api) status or subscription status in general.\nTo update a profile's subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles).\n\nThis endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`lists:write`\n`profiles:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id",
+                "relationships",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63c1ff09-1924-4afb-90a9-be763954a662",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b098c73c-f5ee-4369-825e-916ced460f85",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78685ba2-0dbd-4d80-bbf5-91001a9aac2c",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e9f2dd6-f622-4b10-abb6-26de1f65a706",
+          "name": "Get Flows Triggered by List",
+          "request": {
+            "name": "Get Flows Triggered by List",
+            "description": {
+              "content": "Get all flows where the given list ID is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`\n`lists:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id",
+                "flow-triggers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[flow]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ca252da-42bf-4184-95cd-a05824ed3fb9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "flow-triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"flow\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"archived\": false,\n        \"created\": \"2022-11-08T00:00:00+00:00\",\n        \"updated\": \"2022-11-08T00:00:00+00:00\",\n        \"trigger_type\": \"Low Inventory\"\n      },\n      \"links\": {\n        \"self\": \"https://jUxpsvVrTiuivqDgQyqwm.fvfuAq.vq8q5VkPZHFEfhqM4WzrFbH7J--GWdZPp+73PDioe2HofVB\"\n      },\n      \"relationships\": {\n        \"flow-actions\": {\n          \"data\": [\n            {\n              \"type\": \"flow-action\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"flow-action\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://ROCfhQSYlbkttaVnSSEAXZnzrEa.psjkz1QUU0minN7-0BDOQzPJbUEd4QQnOCiBBNrAihRbowi.iFTw8+-\",\n            \"related\": \"https://UjWO.jmileK.J-Wv.5.lp4D\"\n          }\n        },\n        \"tags\": {\n          \"data\": [\n            {\n              \"type\": \"tag\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"tag\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://OYBnTyaHGCTZHtmVZBbPnErHSno.cemtiQ,C.AgCY-2UV4lCbhKUUHmB+hBHBQH6.w8l,DAZsCko+EN-8guXhr-CUheVGrDLdj\",\n            \"related\": \"http://eoAzVCwEGCAfpsksTqMjEbMGBUKk.vqhjEGewXnLU\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"flow\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"archived\": true,\n        \"created\": \"2022-11-08T00:00:00+00:00\",\n        \"updated\": \"2022-11-08T00:00:00+00:00\",\n        \"trigger_type\": \"Low Inventory\"\n      },\n      \"links\": {\n        \"self\": \"http://drItwQQeqRRCTlvsNbDDMRXj.rhOcxA0u5dqAOKPuAY1ghRKV.\"\n      },\n      \"relationships\": {\n        \"flow-actions\": {\n          \"data\": [\n            {\n              \"type\": \"flow-action\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"flow-action\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://uJRGOXOZs.hllMxIG+QN\",\n            \"related\": \"https://IqJdAtaRZigCqSgiZKkeA.esrCbfxkzkjFg7vDqv542RKEabmFD6QEcDazP3U6qB+q5oMkLt9vmB,QA\"\n          }\n        },\n        \"tags\": {\n          \"data\": [\n            {\n              \"type\": \"tag\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"tag\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://kGUPkzeDrZWlzDEfmUxcKZGOu.fgqHaGG0REsbWh1sssK.WE.f\",\n            \"related\": \"http://Ghnrl.ahAUTv+LtR+idxbfF93RNZnSSf0Az7udVmzPToVJx4pw\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://Gw.zziWfG3KtH1EW3dAQHClUUPtoHeFhxfxLL3buugGZcywdFL.BMuml,nCiaRAdmZz,dx7Rh9\",\n    \"first\": \"http://MpHAHdxQxiRsRFi.lapvmhLM8zYZW\",\n    \"last\": \"http://fkizxOKeqfbBbCgzqYUMYG.ooilDTSzE\",\n    \"prev\": \"https://na.gwquwEMhX3nwuh6d5jIItWyYyozaNGjJXQZDNgFLnrLNuZe3OSZ2C2h9\",\n    \"next\": \"http://aFGWaMcUkx.ghwEU+tfPLYR.BJt3CBJ.zbX2JZ9VsEuDE.LhjoFhaJgBuL6n.eTS1MLJR\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5b75fa1-fa72-4c70-bac0-f444681a2bd6",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "flow-triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f829649-16ca-4343-9d05-b4ec2e9d71f1",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "flow-triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[flow]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "641fa3e4-1fa6-46fc-b729-1139980fa9e0",
+          "name": "Get IDs for Flows Triggered by List",
+          "request": {
+            "name": "Get IDs for Flows Triggered by List",
+            "description": {
+              "content": "Get the IDs of all flows where the given list is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`\n\n**Scopes:**\n`flows:read`\n`lists:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "lists",
+                ":id",
+                "relationships",
+                "flow-triggers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1faf3aa-31b4-4aaf-bbb1-f509842b37e1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "flow-triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"flow\",\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"flow\",\n      \"id\": \"string\"\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://JKoNguVawPbIPAlm.ljuBeFe9QE-+DvQYVLzvnOORZujDw0j6fEItr\",\n    \"first\": \"https://JSCv.asp3yU0YHMdVWx6jCOAoxdUq0YfbDwB0IcKCQI8znlz\",\n    \"last\": \"http://lbB.jhBA6okL.3WFXgKxS1FFmNO382wjCh3E.gSGt\",\n    \"prev\": \"https://jJixYbMyvNJvaaVHkiBvDkG.osmoiOpTWqaWcfbEa.+,iSGqpxtypiqq4v\",\n    \"next\": \"http://HRnWK.ovZLOrsy5aYLXCDvN\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0af68b93-2e9b-4b4b-bc8d-65be7cc147c3",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "flow-triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3defc29-0b9e-45f4-9b88-3060c8a415b6",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "lists",
+                    ":id",
+                    "relationships",
+                    "flow-triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Primary key that uniquely identifies this list. Generated by Klaviyo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://a.klaviyo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "435dd8c8-2ca3-4677-b986-03f50fc839f6",
+    "name": "Klaviyo Accounts Lists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+      "type": "text/plain"
+    }
+  }
+}

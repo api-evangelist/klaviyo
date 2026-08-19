@@ -1,0 +1,96 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/docs/changelog_
+also: https://github.com/klaviyo/openapi/blob/main/CHANGELOG.md
+
+scheme: dated-revision
+format: ISO 8601 date (the revision release date), passed in the `revision` request header
+current_version: '2026-07-15'
+current_version_in_repo: '2026-04-15'
+window: recent — the live changelog is the source of truth for full history
+
+note: >-
+  Two changelogs exist and they are NOT the same. The developer-portal changelog
+  (developers.klaviyo.com/en/docs/changelog_) is current through 2026-07-15. The
+  CHANGELOG.md in github.com/klaviyo/openapi has not been updated past 2023-02-22 and
+  should not be read as current.
+
+entries:
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: GA
+    breaking: false
+    type: addition
+    highlight: Custom Objects metadata and record APIs are generally available — object types, schemas and relationships.
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: GA
+    breaking: false
+    type: addition
+    highlight: Events API gains a `backfill` flag to record historical events without triggering flows (migrations and replays).
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: GA
+    breaking: true
+    type: breaking-change
+    highlight: >-
+      Profile conversations moved from singular to plural across channels — responses
+      now return a list with one conversation per channel (SMS, WhatsApp, Instagram).
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: Customer Agent API — programmatic configuration and observation of Klaviyo's AI agent (skills, tools, knowledge).
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: Brand APIs — create/read/update/delete brand logos, colors, buttons and social groups.
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: Sending Domains API — automate domain registration and DKIM setup, with separate verification and activation steps.
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: Template Preview Send API — send test emails via a Create Template Preview Send Job endpoint, capped at 100 requests/day.
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: Billing Usage API — current-period metered usage against plan caps, account-level.
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: Bulk Export APIs — large-scale export of events by metric and profiles by audience, job-based with polling and download.
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: Applications API — list published applications in Klaviyo's integrations marketplace, with filtering and cursor pagination.
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: Text Messaging API — provision SMS senders and manage carrier registration.
+  - version: '2026-07-15'
+    date: '2026-07-15'
+    status: Beta
+    breaking: false
+    type: addition
+    highlight: API Keys API — get, list and update private keys programmatically (XS rate-limit tier).
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/changelog_', http_status: 200}
+  - {fetched: '2026-08-13', url: 'https://raw.githubusercontent.com/klaviyo/openapi/main/CHANGELOG.md', http_status: 200, note: stale — last entry 2023-02-22}

@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/docs/javascript_api
+docs:
+  - https://developers.klaviyo.com/en/docs/javascript_api
+  - https://developers.klaviyo.com/en/docs/klaviyo_reviews_css_class_reference
+  - https://developers.klaviyo.com/en/docs/use_css_to_style_klaviyo_reviews_widgets
+  - https://help.klaviyo.com/hc/en-us/articles/360006897412
+
+note: >-
+  Klaviyo's embeddable surface is a mount-point model, not a web-component or React
+  element library: you load one CDN script keyed to the account's PUBLIC API key, then
+  place empty div elements with reserved ids/classes where you want a widget, and the
+  loader hydrates them. That means these components are configured through data-*
+  attributes and the Klaviyo UI, not through a typed npm package. Distinct from the
+  server-side SDKs in packages/klaviyo-packages.yml.
+
+loader_libraries:
+  - name: Klaviyo Onsite JS (klaviyo.js)
+    url_pattern: 'https://static.klaviyo.com/onsite/js/PUBLIC_API_KEY/klaviyo.js'
+    alternate_url: 'https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PUBLIC_API_KEY'
+    auth: public API key / company ID (6-character alphanumeric, safe to expose)
+    versioned: false
+    versioning_note: >-
+      The loader URL carries no version segment and floats to whatever Klaviyo currently
+      serves. A consumer cannot pin a build. See packages/klaviyo-packages.yml.
+    global_object: klaviyo
+    legacy_global: _learnq
+    queue_semantics: >-
+      Klaviyo's docs state the syntax "allows your API calls to work even when our script
+      hasn't loaded on the page yet" — calls queue against the global and flush on load.
+    methods:
+      - {name: identify, description: 'Identify a visitor and set profile properties. Requires either `email` or, for SMS-only contacts, `phone_number`. Accepts first_name, last_name, phone_number, title, organization plus arbitrary custom properties. Supports a callback.'}
+      - {name: track, description: 'Record an event/action taken on the site. Takes an event name plus an optional properties object. Supports a callback.'}
+
+families:
+  - family: Onsite tracking
+    description: >-
+      Browser-side identification and event capture that writes into the same profile and
+      event objects the REST API reads. The client-side counterpart is the /client/
+      endpoint family in the OpenAPI (create_client_event, create_client_profile,
+      bulk_create_client_events), which is the no-JS way to do the same thing.
+    components:
+      - {name: klaviyo.identify, kind: js-method}
+      - {name: klaviyo.track, kind: js-method}
+    related_rest_ops: [create_client_event, create_client_profile, bulk_create_client_events]
+
+  - family: Signup forms
+    description: >-
+      Popups, flyouts and embedded forms authored in the Klaviyo form editor. Popup and
+      flyout forms render automatically once onsite tracking is installed; an EMBEDDED
+      form additionally requires pasting the form's embed code (copied from the form
+      editor's "Targeting & behaviors" tab) into the page HTML at the location it should
+      appear.
+    components:
+      - {name: embedded form, kind: embed-snippet, mount: form-specific embed code from the form editor}
+      - {name: popup / flyout form, kind: auto-rendered, mount: none — rendered by the loader per targeting rules}
+    related_rest_ops: [get_forms, get_form_versions]
+    note: The embed code is generated per form in the Klaviyo UI, so there is no single static snippet to record.
+
+  - family: Klaviyo Reviews widgets
+    description: >-
+      Product review display widgets, mounted on reserved element ids/classes and
+      hydrated by the loader. Styleable via a published CSS class reference.
+    components:
+      - {name: Star rating, kind: mount-point, mount: '<div class="klaviyo-star-rating-widget" data-id="PRODUCT_ID" data-product-title="..." data-product-type="..."></div>'}
+      - {name: Reviews (summary + list combined), kind: mount-point, mount: '<div id="klaviyo-reviews-all" data-id="PRODUCT_ID"></div>'}
+      - {name: Reviews summary, kind: mount-point, mount: '<div id="klaviyo-reviews-summary" data-id="PRODUCT_ID"></div>'}
+      - {name: Reviews list, kind: mount-point, mount: '<div id="klaviyo-reviews-list" data-id="PRODUCT_ID"></div>'}
+      - {name: Featured reviews carousel, kind: mount-point, mount: '<div id="klaviyo-featured-reviews-carousel"></div>'}
+      - {name: All reviews / SEO widget, kind: mount-point, mount: '<div id="klaviyo-reviews-all" data-id="all"></div>'}
+    styling:
+      css_class_reference: https://developers.klaviyo.com/en/docs/klaviyo_reviews_css_class_reference
+      advanced_css_guide: https://developers.klaviyo.com/en/docs/use_css_to_style_klaviyo_reviews_widgets
+    related_rest_ops: [get_reviews, get_review]
+
+  - family: Mobile in-app
+    description: >-
+      In-app forms and push rendered by the native mobile SDKs rather than by the web
+      loader. Shipped as packages, not embeds — see packages/klaviyo-packages.yml for
+      klaviyo-android-sdk, klaviyo-swift-sdk, klaviyo-react-native-sdk,
+      klaviyo-expo-plugin and klaviyo_flutter_sdk.
+    components:
+      - {name: In-app forms, kind: native-sdk-surface}
+      - {name: Push notifications, kind: native-sdk-surface}
+    bridge_repo: https://github.com/klaviyo/klaviyo-in-app-js-bridge
+
+platform_installers:
+  note: >-
+    First-party platform plugins that install the loader and the widgets without hand-editing
+    templates. Catalogued here rather than in packages/ because they are host-platform
+    extensions, not client libraries.
+  items:
+    - {platform: Shopify, mechanism: Klaviyo Shopify app + theme app extensions}
+    - {platform: Magento 2, repo: https://github.com/klaviyo/magento2-klaviyo, version: 5.1.0, released: '2026-07-09'}
+    - {platform: Shopware, repo: https://github.com/klaviyo/shopware-klaviyo, version: 4.3.0, released: '2026-07-23'}
+    - {platform: Salesforce Commerce Cloud, repo: https://github.com/klaviyo/SFCC_Klaviyo, note: SFRA and SiteGenesis certified cartridges}
+    - {platform: commercetools, repo: https://github.com/klaviyo/commercetools-klaviyo}
+    - {platform: WooCommerce, note: Klaviyo WooCommerce plugin (installed from the WordPress plugin directory)}
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/javascript_api', http_status: 200}
+  - {fetched: '2026-08-13', url: 'https://static.klaviyo.com/onsite/js/klaviyo.js', http_status: 200}

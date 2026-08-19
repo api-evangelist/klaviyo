@@ -1,0 +1,2141 @@
+{
+  "item": [
+    {
+      "id": "c4811ae3-8a2d-4701-801d-0155e93405aa",
+      "name": "Events",
+      "description": {
+        "content": "events",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e8975cb-fbe8-47ef-809b-787ccdb5a88a",
+          "name": "Get Events",
+          "request": {
+            "name": "Get Events",
+            "description": {
+              "content": "Get all events in an account\n\nRequests can be sorted by the following fields:\n`datetime`, `timestamp`\n\n[Custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview) are not supported in the `metric_id` filter.\n\nReturns a maximum of 200 events per page.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[event]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[metric]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[profile]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering<br>Allowed field(s)/operator(s):<br>`metric_id`: `equals`<br>`profile_id`: `equals`<br>`profile`: `has`<br>`datetime`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`<br>`timestamp`: `greater-or-equal`, `greater-than`, `less-or-equal`, `less-than`"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[cursor]",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "200",
+                  "description": "Default: 200. Min: 1. Max: 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8aa11a33-6ef7-4ae4-ac8c-6f4e0c1e651f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[event]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(metric_id,'example')"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "200"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"event\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"timestamp\": 8999,\n        \"event_properties\": {},\n        \"datetime\": \"2022-11-08T01:23:45+00:00\",\n        \"uuid\": \"string\"\n      },\n      \"links\": {\n        \"self\": \"http://QQlSSztTdSYUCnJnrYkoLQLXjXUaM.xnqawtu0Johh6eNDgigGAjyWcfU\"\n      },\n      \"relationships\": {\n        \"profile\": {\n          \"data\": {\n            \"type\": \"profile\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"http://NhwawM.iulHav-dlfrz,Cv5tVewQ\",\n            \"related\": \"https://IwmHeFvpgOzdhGPesdQ.kfynayxctQWTIB0.Azre2mbl7mVkxE9muHleIHjc\"\n          }\n        },\n        \"metric\": {\n          \"data\": {\n            \"type\": \"metric\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"http://jltNlYQBQ.xtbbFRSE.cFupF7V0fKcT-kiAyjiF-,taRfsN4e-rag+0BFeuxAKIBVF0a+I2pvYyFzV7JSywM-P3jW+c4MAfIZiNrn\",\n            \"related\": \"https://grNzwgIh.vvP7PpS0S6-alC+M\"\n          }\n        },\n        \"attributions\": {\n          \"data\": [\n            {\n              \"type\": \"attribution\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"attribution\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://Zajbno.jgZ8idRyM3KjvfgC\",\n            \"related\": \"http://tPOfepfHfsplJHZfCNqOgynUoVNAcCpq.odrnXL.fBgy-z-rBhLJI\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"event\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"timestamp\": 6412,\n        \"event_properties\": {},\n        \"datetime\": \"2022-11-08T01:23:45+00:00\",\n        \"uuid\": \"string\"\n      },\n      \"links\": {\n        \"self\": \"http://hc.xgapGDjFRTJ+Dr8WkLnGKwgDr1IDguSJfIHWB4t.YWTeP.RByRKXaTEiDKymmPx\"\n      },\n      \"relationships\": {\n        \"profile\": {\n          \"data\": {\n            \"type\": \"profile\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"http://KwuRM.fwfwcjYp+vO7nZaYE49uxn5g,XuCjahu-cWBFalGRF8B5CTpGi4rJVSH8g1EWEHGS9yJG7Tjwl8d\",\n            \"related\": \"http://AmGSoiKFHaOIEDt.updyrczMwVwODcilowUXbfDAkez\"\n          }\n        },\n        \"metric\": {\n          \"data\": {\n            \"type\": \"metric\",\n            \"id\": \"string\"\n          },\n          \"links\": {\n            \"self\": \"https://HvKzxTZlhcZxeSqwRGe.rtR\",\n            \"related\": \"https://MOMkpdHebwxocveSn.sevzulKq0HoRW1Vaqg.XbVtdRvRvNnC19h18lsqHs6JipXQEXTnKOfxsB.-gfTH9m\"\n          }\n        },\n        \"attributions\": {\n          \"data\": [\n            {\n              \"type\": \"attribution\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"attribution\",\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://svZgDsPlqlWMaKOueJErPDehYQUWG.ksgxN88H+SrQOtaYuqG-BGBhGjgcf6-.n6R\",\n            \"related\": \"https://qkahHeAxyAUkEbCTuQjlJOOaEbKD.hgtgQHe6XKJh9\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://bdfzr.ysqpErsQLK1e5do5LJ\",\n    \"first\": \"https://DMxJalfEOjEAhDirFeo.kbfcQ09.49+e9TEDqBi3GAaZTXA6Mz1.0QViSGbey5GkgcCdv8XGAiezSkjfaSFKWs+bKOVYaZvxWcO1d6\",\n    \"last\": \"https://eEQixRKdeHYfnhWnDqYQUh.eikF8m-iO99s.,-IRgpM,w,WCdS\",\n    \"prev\": \"https://hmMfclGJJzGFhwLgU.xdpqlKE-e9lHoRrJMR4OvSlG3,S4QQeiFF9Sqi1s\",\n    \"next\": \"https://apKBEnhohJnDtAguDyVRpkRcWIP.ogwyxWj2\"\n  },\n  \"included\": [\n    {\n      \"type\": \"metric\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"created\": \"string\",\n        \"updated\": \"string\",\n        \"integration\": {}\n      },\n      \"links\": {\n        \"self\": \"https://iMzFY.kjjd16ZW\"\n      },\n      \"relationships\": {\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://ElluIzkCAvAfErNay.ksihZzgICO9us7u2rN0YbV\",\n            \"related\": \"https://NiUcAtCehuKoKldFQhNPWWjClMCGOj.axVTtTIoK+yXp\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"metric\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"created\": \"string\",\n        \"updated\": \"string\",\n        \"integration\": {}\n      },\n      \"links\": {\n        \"self\": \"http://vRoHiTlogBfwAj.donGZtHaHZFikGZvcdrQsmHk\"\n      },\n      \"relationships\": {\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://AdUtCVbsyitEVzW.dbDZvHIk+Vw3G0txw\",\n            \"related\": \"https://LKkS.oeyB69F,O5No8MiVGDmoQhOITGt+4O6AK\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41bd5c21-b3ce-48e1-93fa-723000847a42",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[event]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(metric_id,'example')"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "200"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ed9f579-0ef7-465b-b644-79f0d64df2da",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[event]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "equals(metric_id,'example')"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "page[cursor]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "200"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6525d119-0a14-4615-b9a0-cb891640d545",
+          "name": "Create Event",
+          "request": {
+            "name": "Create Event",
+            "description": {
+              "content": "Create a new event to track a profile's activity.\n\nNote that this endpoint allows you to create a new profile or update an existing profile's properties.\n\nAt a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.\n\nSuccessful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"properties\": \"<object>\",\n      \"metric\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"name\": \"<string>\",\n            \"service\": \"<string>\"\n          }\n        }\n      },\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"email\": \"<string>\",\n            \"phone_number\": \"<string>\",\n            \"external_id\": \"<string>\",\n            \"anonymous_id\": \"<string>\",\n            \"_kx\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"organization\": \"<string>\",\n            \"locale\": \"<string>\",\n            \"title\": \"<string>\",\n            \"image\": \"<string>\",\n            \"location\": {\n              \"address1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"address2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"city\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"country\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"region\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"timezone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"properties\": \"<object>\",\n            \"meta\": {\n              \"patch_properties\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"patch_identifiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"<string>\"\n        }\n      },\n      \"time\": \"<dateTime>\",\n      \"value\": \"<number>\",\n      \"value_currency\": \"<string>\",\n      \"unique_id\": \"<string>\",\n      \"backfill\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d781d0ed-2462-491c-81d8-05cdb197fc4e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"properties\": {\n        \"Brand\": \"Kids Book\",\n        \"ProductID\": 1111,\n        \"ProductName\": \"Winnie the Pooh\"\n      },\n      \"metric\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"name\": \"Viewed Product\",\n            \"service\": \"<string>\"\n          }\n        }\n      },\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"email\": \"sarah.mason@klaviyo-demo.com\",\n            \"phone_number\": \"+15005550006\",\n            \"external_id\": \"<string>\",\n            \"anonymous_id\": \"<string>\",\n            \"_kx\": \"<string>\",\n            \"first_name\": \"Sarah\",\n            \"last_name\": \"Mason\",\n            \"organization\": \"Example Corporation\",\n            \"locale\": \"en-US\",\n            \"title\": \"Regional Manager\",\n            \"image\": \"https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg\",\n            \"location\": {\n              \"address1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"address2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"city\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"country\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"region\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"timezone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"properties\": {\n              \"pseudonym\": \"Dr. Octopus\"\n            },\n            \"meta\": {\n              \"patch_properties\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"patch_identifiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"<string>\"\n        }\n      },\n      \"time\": \"2022-11-08T00:00:00+00:00\",\n      \"value\": 9.99,\n      \"value_currency\": \"USD\",\n      \"unique_id\": \"<string>\",\n      \"backfill\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "218cc770-4e6b-4381-8e65-b23987d5d3a8",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"properties\": {\n        \"Brand\": \"Kids Book\",\n        \"ProductID\": 1111,\n        \"ProductName\": \"Winnie the Pooh\"\n      },\n      \"metric\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"name\": \"Viewed Product\",\n            \"service\": \"<string>\"\n          }\n        }\n      },\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"email\": \"sarah.mason@klaviyo-demo.com\",\n            \"phone_number\": \"+15005550006\",\n            \"external_id\": \"<string>\",\n            \"anonymous_id\": \"<string>\",\n            \"_kx\": \"<string>\",\n            \"first_name\": \"Sarah\",\n            \"last_name\": \"Mason\",\n            \"organization\": \"Example Corporation\",\n            \"locale\": \"en-US\",\n            \"title\": \"Regional Manager\",\n            \"image\": \"https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg\",\n            \"location\": {\n              \"address1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"address2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"city\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"country\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"region\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"timezone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"properties\": {\n              \"pseudonym\": \"Dr. Octopus\"\n            },\n            \"meta\": {\n              \"patch_properties\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"patch_identifiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"<string>\"\n        }\n      },\n      \"time\": \"2022-11-08T00:00:00+00:00\",\n      \"value\": 9.99,\n      \"value_currency\": \"USD\",\n      \"unique_id\": \"<string>\",\n      \"backfill\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a63c0e4-854d-4682-9bb9-cfb94a56298b",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"properties\": {\n        \"Brand\": \"Kids Book\",\n        \"ProductID\": 1111,\n        \"ProductName\": \"Winnie the Pooh\"\n      },\n      \"metric\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"name\": \"Viewed Product\",\n            \"service\": \"<string>\"\n          }\n        }\n      },\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"attributes\": {\n            \"email\": \"sarah.mason@klaviyo-demo.com\",\n            \"phone_number\": \"+15005550006\",\n            \"external_id\": \"<string>\",\n            \"anonymous_id\": \"<string>\",\n            \"_kx\": \"<string>\",\n            \"first_name\": \"Sarah\",\n            \"last_name\": \"Mason\",\n            \"organization\": \"Example Corporation\",\n            \"locale\": \"en-US\",\n            \"title\": \"Regional Manager\",\n            \"image\": \"https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg\",\n            \"location\": {\n              \"address1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"address2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"city\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"country\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"region\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"timezone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"properties\": {\n              \"pseudonym\": \"Dr. Octopus\"\n            },\n            \"meta\": {\n              \"patch_properties\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"patch_identifiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"<string>\"\n        }\n      },\n      \"time\": \"2022-11-08T00:00:00+00:00\",\n      \"value\": 9.99,\n      \"value_currency\": \"USD\",\n      \"unique_id\": \"<string>\",\n      \"backfill\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a5f1df8-2106-4c28-a97f-32e053db8941",
+          "name": "Get Event",
+          "request": {
+            "name": "Get Event",
+            "description": {
+              "content": "Get an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`events:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[event]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[metric]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[profile]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e72628f-f87c-4a33-b244-efb5f02ec3cd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[event]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"timestamp\": 1111,\n      \"event_properties\": {},\n      \"datetime\": \"2022-11-08T01:23:45+00:00\",\n      \"uuid\": \"string\"\n    },\n    \"links\": {\n      \"self\": \"https://mEOsq.tsPH.J8Q4SgXlC-N7IijFmP1LKn5GF3k5eqxt.m6x-H\"\n    },\n    \"relationships\": {\n      \"profile\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"id\": \"string\"\n        },\n        \"links\": {\n          \"self\": \"http://azsrbSZDJQMyuWcXAqrjqPxIwVdGsga.oeqqNrFFME9c\",\n          \"related\": \"http://hlxlHwOfmepjydkirhRYPc.mdk7CEUajyZX6M+TdpByBA,IIm\"\n        }\n      },\n      \"metric\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"id\": \"string\"\n        },\n        \"links\": {\n          \"self\": \"http://joZJBYHJukDTrnxHg.bhzeFtejStI\",\n          \"related\": \"https://kNfRYYUhZEcZWWzHCLgMFbdE.xnxlJx-7,mUtFMSLdqEaLfe6mP1IKzJk6W-SUq+K3y-ts\"\n        }\n      },\n      \"attributions\": {\n        \"data\": [\n          {\n            \"type\": \"attribution\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"attribution\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://rXSnqxVLBYPScLBvvVqMU.xezgx+6rHPC4LLnqjUY\",\n          \"related\": \"https://wKPOwNufhlXfOGbSKSDLYZrxCzTfMMzs.oonjfSKcB0R96\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"created\": \"string\",\n        \"updated\": \"string\",\n        \"integration\": {}\n      },\n      \"links\": {\n        \"self\": \"https://chfSOxUPMXLuukzDCAdnmH.akrnVwgt2EfDU9qG1hDTHeSfJ.iGgWPVnZTGmjT-Bg8KBA\"\n      },\n      \"relationships\": {\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"http://inSHJRIXwvFtTFViHeMfgeB.ejMJU9xi6rt4BfADHaWRL35EcUXSxtM8x2JaP,xXovYLB\",\n            \"related\": \"https://duneflyREP.huhptQggREgHZhzwX6+uUV,NEbymUXzTQaZO5\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"created\": \"string\",\n        \"updated\": \"string\",\n        \"integration\": {}\n      },\n      \"links\": {\n        \"self\": \"https://UdacCaulJKahjTTjMXLxOQoWEShDDD.gdjEwHRbwMO8QIQ96.GBYiiDPfju1Q0eapAtLEsviuBMVLoQX.E1sYeK\"\n      },\n      \"relationships\": {\n        \"flow-triggers\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ],\n          \"links\": {\n            \"self\": \"https://tfevwbvVpZheRnRPZJNMfvzF.nqWPeku-9K-BmvT6p12\",\n            \"related\": \"https://spAUGN.mvrb5RW,j9FajKtVq5IscaRZ-wRWn2iw,iMQm3fIeX6+FOuCb-WJBkCeG5ZzV3Jqf+HSgsXC2\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://XqhvqfH.qyaqzpexJjhDuY+2TjyeUie,WYU9Jul2a-US8SbBq5dr-0K3LirSh0oOMR1CdLNXHEyFykcej\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33d8f8b7-1aec-4c25-b870-d7fa33af9d28",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[event]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed2e1347-82d1-4f97-b0c2-06a6122e4943",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[event]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42f7c77f-060c-4c45-971f-387c01bcc1cc",
+          "name": "Bulk Create Events",
+          "request": {
+            "name": "Bulk Create Events",
+            "description": {
+              "content": "Create a batch of events for one or more profiles.\n\nNote that this endpoint allows you to create new profiles or update existing profile properties.\n\nAt a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.\n\nAccepts up to 1,000 events per request. The maximum allowed payload size is 5MB. A single string cannot exceed 100KB.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`\n\n**Scopes:**\n`events:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "event-bulk-create-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"events-bulk-create\": {\n        \"data\": [\n          {\n            \"type\": \"<string>\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"events\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"backfill\": false\n            }\n          },\n          {\n            \"type\": \"<string>\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"events\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"backfill\": false\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d3fbdbe-107d-420b-8dfc-c53fdaa9ff2f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "event-bulk-create-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"events-bulk-create\": {\n        \"data\": [\n          {\n            \"type\": \"<string>\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"events\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"backfill\": false\n            }\n          },\n          {\n            \"type\": \"<string>\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"events\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"backfill\": false\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "205b2da7-bf80-4e2d-ba9b-f5758c87a8e1",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "event-bulk-create-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"events-bulk-create\": {\n        \"data\": [\n          {\n            \"type\": \"<string>\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"events\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"backfill\": false\n            }\n          },\n          {\n            \"type\": \"<string>\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"events\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"backfill\": false\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86bcd866-26fd-462a-8fdb-a3119b967353",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "event-bulk-create-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"events-bulk-create\": {\n        \"data\": [\n          {\n            \"type\": \"<string>\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"events\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"backfill\": false\n            }\n          },\n          {\n            \"type\": \"<string>\",\n            \"attributes\": {\n              \"profile\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"events\": {\n                \"data\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"backfill\": false\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a111919c-70e9-47e5-9bad-078efd5ba28c",
+          "name": "Get Metric for Event",
+          "request": {
+            "name": "Get Metric for Event",
+            "description": {
+              "content": "Get the metric for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`\n`metrics:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events",
+                ":id",
+                "metric"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields[metric]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dc8c273-d249-4588-9da9-83746d51ec14",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "metric"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"string\",\n    \"attributes\": {\n      \"name\": \"string\",\n      \"created\": \"string\",\n      \"updated\": \"string\",\n      \"integration\": {}\n    },\n    \"links\": {\n      \"self\": \"https://KCdavMPyNchCtQjmQSLyEnETmvlfpzS.fnvtgsyy6\"\n    },\n    \"relationships\": {\n      \"flow-triggers\": {\n        \"data\": [\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://dGEoxRohyMZzAJ.svJPRF-oRDNYrJd,\",\n          \"related\": \"https://tIRHPWmTnDlqrLczvdVVm.vpgnFJnf9z-5fbe9kDyBE3OdgtGxypL\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"https://YbEAKcPBHjqtJIuve.ijLWoF0PW48HfsuSwSUl0xsOJj4Em+WjMXjsPXOdaw5A\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b523373-1809-450e-96d6-8aee6d4606e2",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "metric"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f6197bf-cd0b-4f78-9cd9-aead4634c1b1",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "metric"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields[metric]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9835e211-7be0-4565-a050-7aec1beb3f6f",
+          "name": "Get Metric ID for Event",
+          "request": {
+            "name": "Get Metric ID for Event",
+            "description": {
+              "content": "Get a list of related Metrics for an Event<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`\n`metrics:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events",
+                ":id",
+                "relationships",
+                "metric"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e33da32-94e2-4252-a0bf-b05a07705ebf",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "relationships",
+                    "metric"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"string\"\n  },\n  \"links\": {\n    \"self\": \"http://yB.hggH7vMA\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0538ce78-2e01-4cac-a311-94c63409eded",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "relationships",
+                    "metric"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "367fd0ef-be23-4803-a395-9a625754ce4c",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "relationships",
+                    "metric"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2647f388-10bb-4a57-bce9-68083e9b47b9",
+          "name": "Get Profile for Event",
+          "request": {
+            "name": "Get Profile for Event",
+            "description": {
+              "content": "Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`\n`profiles:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events",
+                ":id",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "additional-fields[profile]",
+                  "value": "<string>,<string>",
+                  "description": "Request additional fields not included by default in the response. Supported values: 'subscriptions', 'predictive_analytics'"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields[profile]",
+                  "value": "<string>,<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0e866b5-2625-49b9-9373-d3b4f334440e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"subscriptions\": {\n        \"email\": {\n          \"marketing\": {\n            \"can_receive_email_marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"last_updated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method_detail\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_method_detail\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"double_optin\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"suppression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"list_suppressions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"sms\": {\n          \"marketing\": {\n            \"can_receive_sms_marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method_detail\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"last_updated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"transactional\": {\n            \"can_receive_sms_transactional\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method_detail\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"last_updated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"mobile_push\": {\n          \"marketing\": {\n            \"can_receive_push_marketing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"whatsapp\": {\n          \"marketing\": {\n            \"consent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"can_receive\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"last_updated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"metadata\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"valid_until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"transactional\": {\n            \"consent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"can_receive\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"last_updated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"metadata\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"valid_until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"conversational\": {\n            \"consent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"can_receive\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"consent_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"last_updated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"metadata\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"valid_until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"predictive_analytics\": {\n        \"historic_clv\": 93.87,\n        \"predicted_clv\": 27.24,\n        \"total_clv\": 121.11,\n        \"historic_number_of_orders\": 2,\n        \"predicted_number_of_orders\": 0.54,\n        \"average_days_between_orders\": 189,\n        \"average_order_value\": 46.94,\n        \"churn_probability\": 0.89,\n        \"expected_date_of_next_order\": \"2022-11-08T00:00:00+00:00\",\n        \"ranked_channel_affinity\": [\n          \"sms\",\n          \"email\",\n          \"push\"\n        ]\n      },\n      \"email\": \"sarah.mason@klaviyo-demo.com\",\n      \"phone_number\": \"+15005550006\",\n      \"external_id\": \"string\",\n      \"first_name\": \"Sarah\",\n      \"last_name\": \"Mason\",\n      \"organization\": \"Example Corporation\",\n      \"locale\": \"en-US\",\n      \"title\": \"Regional Manager\",\n      \"image\": \"https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg\",\n      \"created\": \"2022-11-08T00:00:00+00:00\",\n      \"updated\": \"2022-11-08T00:00:00+00:00\",\n      \"last_event_date\": \"2022-11-08T00:00:00+00:00\",\n      \"location\": {\n        \"address1\": \"89 E 42nd St\",\n        \"address2\": \"1st floor\",\n        \"city\": \"New York\",\n        \"country\": \"United States\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\",\n        \"region\": \"NY\",\n        \"zip\": \"10017\",\n        \"timezone\": \"America/New_York\",\n        \"ip\": \"127.0.0.1\"\n      },\n      \"properties\": {\n        \"pseudonym\": \"Dr. Octopus\"\n      }\n    },\n    \"links\": {\n      \"self\": \"https://PWoFIspfDaDhcvRSnrov.vfbJLM5PDVovowTyHbYDINqTImMlFZKz+UC+S1\"\n    },\n    \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\",\n    \"relationships\": {\n      \"lists\": {\n        \"data\": [\n          {\n            \"type\": \"list\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"list\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://RdQvbXrlZWuKxHX.wkA9mJL3F.QbN4m,+dHMT39ezmUgtwug3Owv5fu0EK0u\",\n          \"related\": \"https://UMXHXzETvwcmVCdnCPUpCtMpROisk.ubcvyLEJSfxpNYnxG4EIuE\"\n        }\n      },\n      \"segments\": {\n        \"data\": [\n          {\n            \"type\": \"segment\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"segment\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"https://f.casiXnFMveyQ9mD0BPEQzBTC\",\n          \"related\": \"https://UyIrsCkbBxtRByYHDVZE.cjjGJEY09YowFOyUDKmxo\"\n        }\n      },\n      \"push-tokens\": {\n        \"data\": [\n          {\n            \"type\": \"push-token\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"push-token\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://AQTZzb.gvrYkPGQ9d1wp8zR1pYS9MLb3D2SJ2jG.zpduD-RQzUIUXXD2FpT2N\",\n          \"related\": \"http://CDPKXeodEHQGdpL.ffZGVZcXapnX-qpRiwPo1.8R42L31j-ZJjykT7Fj\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"http://CWnlYVMdJFoqvLe.bhvpZYAieiWKbfr3Q8Hu1vDL6pw5,q0a9G4lBQqLEj.Tr8Ua12xpx--I85mD-WIpPTgc\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87cc3796-2af8-460a-a955-61e9fbd113fa",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "968da464-8909-4c93-89c9-c05569283fc2",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "additional-fields[profile]",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields[profile]",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29725dbc-763e-4a61-8f17-1a26540ba013",
+          "name": "Get Profile ID for Event",
+          "request": {
+            "name": "Get Profile ID for Event",
+            "description": {
+              "content": "Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`\n\n**Scopes:**\n`events:read`\n`profiles:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "events",
+                ":id",
+                "relationships",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the event"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c30d6eab-7edc-4725-b781-811ed40bf730",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "relationships",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"01GDDKASAP8TKDDA2GRZDSVP4H\"\n  },\n  \"links\": {\n    \"self\": \"http://VqbgyTxftTybJTtclwPNTn.dccWWn\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e57f9365-ae00-4c59-81cc-d0c17ba85d06",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "relationships",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62312670-2bb2-4796-93de-0bd3adc395fb",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "events",
+                    ":id",
+                    "relationships",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the event"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://a.klaviyo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3c030db7-b06c-4ae6-a3c3-a8bc92530a80",
+    "name": "Klaviyo Accounts Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+      "type": "text/plain"
+    }
+  }
+}

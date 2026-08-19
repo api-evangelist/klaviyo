@@ -1,0 +1,1718 @@
+{
+  "item": [
+    {
+      "id": "8a6dba23-8f2b-42ec-9eef-b2af9d60bac3",
+      "name": "Reporting",
+      "description": {
+        "content": "reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9cccc001-202e-444c-a095-6f572742a322",
+          "name": "Query Campaign Values",
+          "request": {
+            "name": "Query Campaign Values",
+            "description": {
+              "content": "Returns the requested campaign analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`campaigns:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "campaign-values-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_cursor",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"conversion_metric_id\": \"<string>\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5486192-7b85-4e6f-a68c-8d31a51b9bb3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "campaign-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(campaign_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"results\": [\n        {\n          \"groupings\": {\n            \"send_channel\": \"email\",\n            \"campaign_id\": \"01GMRWDSA0ARTAKE1SFX8JGXAY\",\n            \"campaign_message_id\": \"01GMRWDSA0ARTAKE1SFX8JGXAY\"\n          },\n          \"statistics\": {\n            \"opens\": 123,\n            \"open_rate\": 0.8253\n          }\n        },\n        {\n          \"groupings\": {\n            \"send_channel\": \"email\",\n            \"campaign_id\": \"01GJTHNWVG93F3KNX71SJ4FDBB\",\n            \"campaign_message_id\": \"01GJTHNWVG93F3KNX71SJ4FDBB\"\n          },\n          \"statistics\": {\n            \"opens\": 97,\n            \"open_rate\": 0.7562\n          }\n        }\n      ]\n    },\n    \"relationships\": {\n      \"campaigns\": {\n        \"data\": [\n          {\n            \"type\": \"campaign\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"campaign\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://KnTznjsr.aroyZW,Qp15DgUuCRAvBODvrMeB-KrQmNPzbBALPS2x2i23O4odvugHnY8Sb6aACB7\",\n          \"related\": \"http://pFtkvEqWOolGqhSSjGBihiCZ.ulguwW7MPXfZnQfN\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"http://fZxtAhHjLeNJN.qmxztH17DtS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5f90489-944f-47c0-b053-d139e5205e70",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "campaign-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(campaign_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d38f1cff-3189-4266-b0e5-33ae2b36fc10",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "campaign-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(campaign_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c979ac2-00c6-45d3-ad9c-98ea5d762205",
+          "name": "Query Flow Values",
+          "request": {
+            "name": "Query Flow Values",
+            "description": {
+              "content": "Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`flows:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "flow-values-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_cursor",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"conversion_metric_id\": \"<string>\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d93a4c5d-1caa-49ec-a7f2-8783650888fc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "flow-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(flow_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"results\": [\n        {\n          \"groupings\": {\n            \"flow_id\": \"XVTP5Q\",\n            \"send_channel\": \"email\",\n            \"flow_message_id\": \"01GMRWDSA0ARTAKE1SFX8JGXAY\"\n          },\n          \"statistics\": {\n            \"opens\": 123,\n            \"open_rate\": 0.8253\n          }\n        },\n        {\n          \"groupings\": {\n            \"flow_id\": \"XVTP5Q\",\n            \"send_channel\": \"email\",\n            \"flow_message_id\": \"01GJTHNWVG93F3KNX71SJ4FDBB\"\n          },\n          \"statistics\": {\n            \"opens\": 97,\n            \"open_rate\": 0.7562\n          }\n        }\n      ]\n    },\n    \"relationships\": {\n      \"flows\": {\n        \"data\": [\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://KYSDVOgrTGgbMiMUPYbGTdu.bwoqo\",\n          \"related\": \"https://R.atpnFzzNckiZM.adpDkL5k5qkXtwz2AaMVD4O8en,e-xO4HGfivv\"\n        }\n      },\n      \"flow-messages\": {\n        \"data\": [\n          {\n            \"type\": \"flow-message\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"flow-message\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://NXLKlvuEWXvAaoBPQOvqzEPQQkLbCEn.jsDuENsp7BcT,eVodggLRQarPFjDCOi3Z,pQoeBCTuDCD.73HnW0mM7jtD8X.N\",\n          \"related\": \"https://wPLamnbVPnIYEdNuVviICHLINKavRrLWE.oatjJQM.IyC5jjgzmNM41JBam0jnPUtB3fMOlghiIlwT6eL+uzODKKL8DBbIO,O\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"https://iFcaPpsXBYjHnhqsaNtgENeVfB.gnmy,01ceuxAqkh\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea0bb00f-85eb-40d4-8bb2-9dbec0f4822a",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "flow-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(flow_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89e54d33-d4fb-445f-ba59-fd53429a816c",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "flow-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(flow_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80e98e88-9436-455c-bdf0-415ea64edb90",
+          "name": "Query Flow Series",
+          "request": {
+            "name": "Query Flow Series",
+            "description": {
+              "content": "Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`flows:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "flow-series-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_cursor",
+                  "value": "<string>",
+                  "description": "For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"<string>\",\n      \"conversion_metric_id\": \"<string>\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a37575dc-6491-4ea3-9127-5a1e5cda424e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "flow-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(flow_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"results\": [\n        {\n          \"groupings\": {\n            \"flow_id\": \"XVTP5Q\",\n            \"send_channel\": \"email\",\n            \"flow_message_id\": \"01GMRWDSA0ARTAKE1SFX8JGXAY\"\n          },\n          \"statistics\": {\n            \"opens\": [\n              123,\n              156,\n              144\n            ],\n            \"open_rate\": [\n              0.8253,\n              0.8722,\n              0.8398\n            ]\n          }\n        },\n        {\n          \"groupings\": {\n            \"flow_id\": \"XVTP5Q\",\n            \"send_channel\": \"email\",\n            \"flow_message_id\": \"01GJTHNWVG93F3KNX71SJ4FDBB\"\n          },\n          \"statistics\": {\n            \"opens\": [\n              97,\n              98,\n              65\n            ],\n            \"open_rate\": [\n              0.7562,\n              0.761,\n              0.688\n            ]\n          }\n        }\n      ],\n      \"date_times\": [\n        \"2024-01-05T00:00:00+00:00\",\n        \"2024-01-06T00:00:00+00:00\",\n        \"2024-01-07T00:00:00+00:00\"\n      ]\n    },\n    \"relationships\": {\n      \"flows\": {\n        \"data\": [\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"flow\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"https://ReEVDVDrBRzgHdyaCBhmXSrkWeSqf.mdYSOIyyeb\",\n          \"related\": \"https://XOSNcsKb.wtba9sWFra6W.hKiENnv3UI7\"\n        }\n      },\n      \"flow-messages\": {\n        \"data\": [\n          {\n            \"type\": \"flow-message\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"flow-message\",\n            \"id\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"http://dAS.hlvmUki.v0lDxlry8zg.56WP3yMfiK1PfSyQQr5gt7RnIH3Dqm34XSHRAJhOHsZN\",\n          \"related\": \"http://eummcqMVGxQTLkvdMyVQjCHyCXUnF.tfhYJU2gTUel90VlGf,IIHncc\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"http://njxXSqrzUqqGcrXlHQ.lsnxcHwu6o6,rSvghwVcc2owZRZRJhMd,DTxddNNuUd9twqTZhDEz,\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e386787c-3e85-405a-9073-ba1b9e52d9ae",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "flow-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(flow_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07bed13d-a644-4da2-8afb-8c70458955b0",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "flow-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"opens\",\n        \"open_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"conversion_metric_id\": \"RESQ6t\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(flow_id,\\\"abc123\\\"),contains-any(send_channel,[\\\"email\\\",\\\"sms\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e471e3e7-3f88-4b58-9719-4e04d122f853",
+          "name": "Query Form Values",
+          "request": {
+            "name": "Query Form Values",
+            "description": {
+              "content": "Returns the requested form analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`forms:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "form-values-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe541e3f-eb4b-460f-93f6-983580489be6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "form-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"viewed_form\",\n        \"submit_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(form_id,\\\"abc123\\\"),any(form_version_id,[\\\"xyz123\\\",\\\"ghi456\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"results\": [\n        {\n          \"groupings\": {\n            \"form_id\": \"abc123\",\n            \"form_version_id\": \"012tuy\"\n          },\n          \"statistics\": {\n            \"viewed_form\": 90,\n            \"submits\": 9,\n            \"submit_rate\": 0.1\n          }\n        },\n        {\n          \"groupings\": {\n            \"form_id\": \"abc123\",\n            \"form_version_id\": \"756ghi\"\n          },\n          \"statistics\": {\n            \"viewed_form\": 10,\n            \"submits\": 1,\n            \"submit_rate\": 0.1\n          }\n        }\n      ]\n    }\n  },\n  \"links\": {\n    \"self\": \"http://DgbnNMAZWNclEJEeWXPVIyui.qgg6yghuxVSDdfRhsUcqPyd+OCSWezbmLJpBDSXGLoq8ZJN4t82pCwhZ2JTt89R1VpBfMOoZP,1pewI\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e89e82f9-0f64-439b-be99-59b8cb7b4d1f",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "form-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"viewed_form\",\n        \"submit_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(form_id,\\\"abc123\\\"),any(form_version_id,[\\\"xyz123\\\",\\\"ghi456\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9e56535-c537-4196-ae41-c5e50a01f3bf",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "form-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"viewed_form\",\n        \"submit_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(form_id,\\\"abc123\\\"),any(form_version_id,[\\\"xyz123\\\",\\\"ghi456\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ff138ae-e6ad-4d63-acf4-5035bd9e76f6",
+          "name": "Query Form Series",
+          "request": {
+            "name": "Query Form Series",
+            "description": {
+              "content": "Returns the requested form analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`forms:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "form-series-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"<string>\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6465699b-ed44-466a-a727-eb0b1a24b8c8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "form-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"viewed_form\",\n        \"submit_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(form_id,\\\"abc123\\\"),any(form_version_id,[\\\"xyz123\\\",\\\"ghi456\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"results\": [\n        {\n          \"groupings\": {\n            \"form_id\": \"abc123\"\n          },\n          \"statistics\": {\n            \"viewed_form\": [\n              100,\n              120,\n              140\n            ],\n            \"submits\": [\n              20,\n              22,\n              28\n            ]\n          }\n        },\n        {\n          \"groupings\": {\n            \"form_id\": \"def456\"\n          },\n          \"statistics\": {\n            \"viewed_form\": [\n              200,\n              300,\n              400\n            ],\n            \"submits\": [\n              20,\n              25,\n              30\n            ]\n          }\n        }\n      ],\n      \"date_times\": [\n        \"2024-01-05T00:00:00+00:00\",\n        \"2024-01-06T00:00:00+00:00\",\n        \"2024-01-07T00:00:00+00:00\"\n      ]\n    }\n  },\n  \"links\": {\n    \"self\": \"http://jjKqns.bgrhUEBGfbl5eqRC-pdqI6Q4aTJrce8alO8obW-sUClKbE4y4HOWv\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "028e37d8-d84a-41b7-8b61-e2f0180486b3",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "form-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"viewed_form\",\n        \"submit_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(form_id,\\\"abc123\\\"),any(form_version_id,[\\\"xyz123\\\",\\\"ghi456\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "302cc326-6e5c-4ea6-8168-f7c9177cd387",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "form-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"viewed_form\",\n        \"submit_rate\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"group_by\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"filter\": \"and(equals(form_id,\\\"abc123\\\"),any(form_version_id,[\\\"xyz123\\\",\\\"ghi456\\\"]))\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a56c0d9c-77f5-41fd-8815-c08a970afab1",
+          "name": "Query Segment Values",
+          "request": {
+            "name": "Query Segment Values",
+            "description": {
+              "content": "Returns the requested segment analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`segments:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "segment-values-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"filter\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29f09b51-eca1-408f-b9fa-29d7d93ef7b3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "segment-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"total_members\",\n        \"net_members_changed\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"filter\": \"any(segment_id,[\\\"xyz123\\\",\\\"ghi456\\\"])\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"results\": [\n        {\n          \"groupings\": {\n            \"segment_id\": \"abc123\"\n          },\n          \"statistics\": {\n            \"total_members\": 120,\n            \"net_members_changed\": 53\n          }\n        },\n        {\n          \"groupings\": {\n            \"segment_id\": \"def123\"\n          },\n          \"statistics\": {\n            \"total_members\": 250,\n            \"net_members_changed\": 113\n          }\n        }\n      ]\n    }\n  },\n  \"links\": {\n    \"self\": \"http://fAhrZNBjCqbB.gbtpBLDZqkT5t3zHQ\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2e1d231-5876-416f-b607-9d9624a8675e",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "segment-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"total_members\",\n        \"net_members_changed\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"filter\": \"any(segment_id,[\\\"xyz123\\\",\\\"ghi456\\\"])\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11598e0b-1d3e-47ab-8b0e-41045072cb89",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "segment-values-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"total_members\",\n        \"net_members_changed\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"filter\": \"any(segment_id,[\\\"xyz123\\\",\\\"ghi456\\\"])\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9d6ef1f-2c48-44fd-874b-8f76de99ee1d",
+          "name": "Query Segment Series",
+          "request": {
+            "name": "Query Segment Series",
+            "description": {
+              "content": "Returns the requested segment analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`\n\n**Scopes:**\n`segments:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "segment-series-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                "key": "revision",
+                "value": "2026-04-15"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"<string>\",\n      \"filter\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0210dea4-9415-421d-8540-580783be5d45",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "segment-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"total_members\",\n        \"net_members_changed\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"filter\": \"any(segment_id,[\\\"xyz123\\\",\\\"ghi456\\\"])\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"results\": [\n        {\n          \"groupings\": {\n            \"segment_id\": \"abc123\"\n          },\n          \"statistics\": {\n            \"total_members\": [\n              120,\n              185,\n              240\n            ],\n            \"net_members_changed\": [\n              40,\n              62,\n              88\n            ]\n          }\n        },\n        {\n          \"groupings\": {\n            \"segment_id\": \"def456\"\n          },\n          \"statistics\": {\n            \"total_members\": [\n              103,\n              163,\n              213\n            ],\n            \"net_members_changed\": [\n              36,\n              66,\n              86\n            ]\n          }\n        }\n      ],\n      \"date_times\": [\n        \"2024-01-05T00:00:00+00:00\",\n        \"2024-01-06T00:00:00+00:00\",\n        \"2024-01-07T00:00:00+00:00\"\n      ]\n    }\n  },\n  \"links\": {\n    \"self\": \"http://SDVBcsfXJgiKqxAGYPW.obVVgU-6rvvYj+wSfJ+IV4P077.,yDJFg.Zq34iIAt8pYnrfrmVt80uBlR59RwrDu\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a82ca82-8a80-439a-ab2a-65e2ccd4c95d",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "segment-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"total_members\",\n        \"net_members_changed\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"filter\": \"any(segment_id,[\\\"xyz123\\\",\\\"ghi456\\\"])\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9b93898-2a32-4b97-bdeb-0c3c4b4835d5",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "segment-series-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API endpoint revision (format: YYYY-MM-DD[.suffix])",
+                    "key": "revision",
+                    "value": "2026-04-15"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"statistics\": [\n        \"total_members\",\n        \"net_members_changed\"\n      ],\n      \"timeframe\": {\n        \"key\": \"<string>\"\n      },\n      \"interval\": \"weekly\",\n      \"filter\": \"any(segment_id,[\\\"xyz123\\\",\\\"ghi456\\\"])\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://a.klaviyo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "af6047ed-c7b8-4acc-a505-e13105c3ea4d",
+    "name": "Klaviyo Accounts Reporting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.\n\nContact Support:\n Name: Klaviyo Developer Experience Team\n Email: developers@klaviyo.com",
+      "type": "text/plain"
+    }
+  }
+}

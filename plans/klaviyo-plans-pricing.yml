@@ -4,171 +4,109 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Klaviyo
 providerId: klaviyo
 created: '2026-05-04'
-modified: '2026-05-04'
-reconciled: true
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: https://www.klaviyo.com/pricing
+supersedes: >-
+  The 2026-05-04 bulk-sweep version (method:generated) which recorded three tiers —
+  Free / Email ($20/mo from 251 profiles) / Email+SMS ($35/mo, 1,250 SMS credits). Those
+  figures could not be re-verified on the live pricing page on 2026-08-13 and the Free
+  tier's own allowances have changed (mobile messaging is now expressed as a $5/month
+  budget, not 150 SMS credits, and a Composer credit allowance has been added). The
+  unverifiable paid-tier numbers are removed rather than carried forward.
 tags:
   - Email Marketing
   - SMS
   - CDP
-description: Klaviyo pricing scales with active profiles. Email + SMS plans differ by send budget.
+description: >-
+  Klaviyo prices on active profiles, with separate metered allowances for email sends and
+  mobile messages. There is a permanent free tier. Paid pricing is quoted through an
+  interactive calculator on the pricing page rather than published as a static tier
+  table, so exact paid-tier prices are not machine-readable.
+
 sources:
   - https://www.klaviyo.com/pricing
+
+pricing_model:
+  basis: active profiles
+  metered_dimensions: [active profiles, email sends, mobile messages, Composer credits]
+  billing_period: month
+  currency: USD
+  product_lines:
+    - Klaviyo Marketing
+    - Data + Analytics
+    - Service (Customer Hub, Helpdesk, Customer Agent)
+    - Composer
+    - Professional Services
+    - Enterprise
+
+plan_count: 1
+plan_count_note: >-
+  ONE plan is fully published with concrete figures — the Free tier, transcribed below
+  verbatim from the pricing page. Paid tiers exist but are priced by a calculator that
+  computes a total from the profile count and product mix selected; no static per-tier
+  price table is rendered on the page, and no machine-readable pricing endpoint was
+  found. Recording plan_count: 1 rather than inflating it with unverified tiers.
+
 plans:
   - id: klaviyo-free
     name: Free
     type: freemium
-    description: Up to 250 active profiles; 500 email sends/mo; 150 SMS credits/mo.
+    price: '0.00'
+    currency: USD
+    billing_period: month
+    duration: indefinite — no time limit
+    description: >-
+      Permanent free tier. Sending is restricted (rather than overage-billed) once the
+      profile or send allowance is exceeded, until the next billing cycle or an upgrade.
+    verified: '2026-08-13'
     entries:
-      - label: Active profiles
-        name: profiles
-        type: quota
-        metric: profile
-        limit: 250
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Email sends
-        name: emails
-        type: quota
-        metric: email
-        limit: 500
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: SMS credits
-        name: sms_credits
-        type: quota
-        metric: credit
-        limit: 150
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: All features included
-      - name: 60 days email/chat support
-  - id: klaviyo-email
-    name: Email
-    type: paid
-    description: Starts $20/mo (251-500 profiles).
-    entries:
-      - label: Base 251-500 profiles
-        name: tier_500
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '20.00'
-        userMultiplied: false
-      - label: 1,000 profiles
-        name: tier_1k
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '30.00'
-        userMultiplied: false
-      - label: 5,000 profiles
-        name: tier_5k
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '70.00'
-        userMultiplied: false
-      - label: 10,000 profiles
-        name: tier_10k
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '130.00'
-        userMultiplied: false
-      - label: 50,000 profiles
-        name: tier_50k
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '720.00'
-        userMultiplied: false
-    elements:
-      - name: 5,000 monthly emails (at base)
-      - name: 150 SMS credits
-      - name: Unified profiles
-      - name: 350+ integrations
-      - name: AI segments and content
-  - id: klaviyo-email-sms
-    name: Email + SMS
-    type: paid
-    description: Starts $35/mo (251-500 profiles); 1,250 SMS credits.
-    entries:
-      - label: Base 251-500 profiles
-        name: tier_500
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '35.00'
-        userMultiplied: false
-      - label: SMS credits included
-        name: sms_credits
-        type: quota
-        metric: credit
-        limit: 1250
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Domestic SMS (1 credit)
-        name: sms_credit_cost
-        type: metered
-        metric: credit
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: varies
-        userMultiplied: false
-      - label: MMS (3 credits)
-        name: mms_credit_cost
-        type: metered
-        metric: credit
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: varies
-        userMultiplied: false
-      - label: International SMS (3-12 credits)
-        name: intl_sms
-        type: metered
-        metric: credit
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: varies
-        userMultiplied: false
-    elements:
-      - name: Mobile push notifications
-      - name: All Email features
-      - name: Email/chat support
+      - {label: Active profiles, name: profiles, type: quota, metric: profile, limit: 250, timeFrame: month, unit: 1, price: '0.00', geo: global, userMultiplied: false}
+      - {label: Email sends, name: emails, type: quota, metric: email, limit: 500, timeFrame: month, unit: 1, price: '0.00', geo: global, userMultiplied: false}
+      - {label: Mobile messages, name: mobile_messages, type: quota, metric: usd_budget, limit: 5, timeFrame: month, unit: 1, price: '0.00', geo: global, userMultiplied: false, note: 'Published as "$5 of mobile messages/month" — a spend budget, not a message count.'}
+      - {label: Composer credits, name: composer_credits, type: quota, metric: credit, limit: 10000, timeFrame: month, unit: 1, price: '0.00', geo: global, userMultiplied: false}
+    features:
+      - Built-in reporting
+      - Basic segmentation
+      - Customer Hub (basic self-service portal)
+      - Basic Helpdesk (ticket management)
+      - Email support for the first 60 days only
+    overage:
+      model: restrict
+      detail: >-
+        Exceeding 250 profiles or 500 email sends/month restricts the ability to send
+        until the next billing cycle or an upgrade. There is no automatic overage
+        billing on the free tier.
+
+paid_tiers:
+  published_as_static_table: false
+  mechanism: interactive calculator on https://www.klaviyo.com/pricing
+  detail: >-
+    Selecting a profile count and product mix produces a computed total (the page
+    rendered "Total: $45 USD" with a "View breakdown" control during the 2026-08-13
+    fetch). The underlying per-tier rates are not emitted into the page HTML — a
+    plain-HTTP fetch of https://www.klaviyo.com/pricing returns no dollar amounts at all,
+    confirming the figures are produced client-side. No public pricing or catalog API was
+    found.
+  named_lines_seen: [Marketing, Data + Analytics, Service, Composer, Customer Agent, Professional Services, Enterprise]
+  promotions_seen_2026_08: 'Service, Composer and Customer Agent each shown at 30% off.'
+  enterprise: contact sales
+
+api_usage_pricing:
+  metered: false
+  detail: >-
+    Klaviyo does not bill for API calls. API access is included with the account and
+    governed by rate limits (see rate-limits/klaviyo-rate-limits.yml) rather than price.
+    What is billed is the underlying marketing activity — profiles stored, emails sent,
+    mobile messages sent — regardless of whether it was initiated through the UI or the
+    API.
+  in_product_visibility: >-
+    The Billing Usage API (Beta, 2026-07-15 revision) reports current-period metered
+    usage against plan caps across Klaviyo products, making consumption readable
+    programmatically even though price is not.
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://www.klaviyo.com/pricing', http_status: 200, note: 'Free tier figures read from rendered content; no static paid-tier price table present.'}
+  - {fetched: '2026-08-13', url: 'https://www.klaviyo.com/pricing/marketing', http_status: 404}
+  - {fetched: '2026-08-13', url: 'https://www.klaviyo.com/pricing/email', http_status: 404}

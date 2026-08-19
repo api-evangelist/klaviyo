@@ -1,0 +1,182 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/reference/api_overview
+docs:
+  - https://developers.klaviyo.com/en/reference/api_overview
+  - https://developers.klaviyo.com/en/docs/authenticate_
+  - https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy
+  - https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling
+derived_from: openapi/*.yml (23 files, 308 operations, revision 2026-04-15)
+
+base_url: https://a.klaviyo.com
+path_prefixes:
+  - prefix: /api/
+    audience: server-side
+    auth: private API key
+  - prefix: /client/
+    audience: browser / client-side
+    auth: public key (company_id query parameter)
+
+standard: JSON:API
+standard_detail: >-
+  Klaviyo's current API is modelled on JSON:API — resource objects with type/id/
+  attributes/relationships, a top-level data envelope, /relationships/ sub-resources,
+  and JSON:API filtering, sparse fieldsets and includes. The response media type is
+  application/vnd.api+json (confirmed on every 2xx response in the OpenAPI). Klaviyo
+  does not claim formal JSON:API 1.x certification.
+
+authentication:
+  style: header
+  server_side:
+    scheme: apiKey
+    header: Authorization
+    format: 'Klaviyo-API-Key <private-api-key>'
+    key_prefix: pk_
+  client_side:
+    scheme: query
+    parameter: company_id
+    value: public API key / company ID (6-character alphanumeric)
+  oauth:
+    supported: true
+    flow: authorization_code with PKCE (S256 required)
+    detail: scopes/klaviyo-scopes.yml
+  artifact: authentication/klaviyo-authentication.yml
+
+versioning:
+  scheme: date-header
+  header: revision
+  format: ISO 8601 date (release date), e.g. 2026-07-15
+  required: true
+  current_revision_in_repo: '2026-04-15'
+  latest_published_revision: '2026-07-15'
+  fall_forward_opt_out_header: 'X-Klaviyo-Revision-Fall-Forward-Opt-Out: 1'
+  lifecycle: 1 year stable + 1 year deprecated = 2 years supported, then retired (410)
+  artifact: lifecycle/klaviyo-lifecycle.yml
+
+pagination:
+  style: cursor
+  request_params:
+    - 'page[cursor]'
+    - 'page[size]'
+  response_fields:
+    - links.self
+    - links.next
+    - links.prev
+  note: >-
+    Cursor pagination is the current standard across the revision-dated APIs; some
+    older endpoints were migrated from offset pagination in the 2023-02-22 revision.
+
+filtering:
+  style: json:api
+  param: filter
+  syntax: >-
+    JSON:API general filtering syntax, e.g. filter=equals(status,'draft') and
+    filter=greater-than(datetime,2026-01-01T00:00:00Z). Supported operators vary
+    per endpoint and are declared per operation in the OpenAPI.
+
+sorting:
+  param: sort
+  descending_prefix: '-'
+  example: '?sort=-datetime'
+
+sparse_fieldsets:
+  supported: true
+  param: 'fields[<TYPE>]'
+  example: '?fields[profile]=email,first_name'
+
+field_expansion:
+  supported: true
+  param: include
+  example: '?include=profile,metric'
+  note: >-
+    Rate-limit relevant — requests using `include` or `additional-fields` are subject
+    to a stricter, globally enforced limit. See rate-limits/klaviyo-rate-limits.yml.
+
+datetime_format: ISO 8601 / RFC 3339 (e.g. 2026-01-16T23:20:50.52Z)
+
+idempotency:
+  supported: partial
+  header: null
+  mechanism: body-field deduplication key
+  scope: event ingestion
+  detail: >-
+    Klaviyo publishes NO general-purpose Idempotency-Key request header — no operation
+    in the 308-operation OpenAPI declares one. What it does publish is a documented
+    deduplication contract on the highest-volume write path: the Create Event body
+    field `unique_id`. Klaviyo's own schema description states "A unique identifier for
+    an event. If the unique_id is repeated for the same profile and metric, only the
+    first processed event will be recorded." On the bulk variant the semantics are
+    stricter: "If a unique_id is repeated for the same profile and metric, the request
+    will fail and no events will be processed." Supplying a caller-generated unique_id
+    therefore makes create_event safe to retry, which is the property an agent needs.
+    Recorded as `partial` because it covers event ingestion only, not every write.
+  operations:
+    - {operationId: create_event, path: POST /api/events, field: data.attributes.unique_id}
+    - {operationId: create_client_event, path: POST /client/events, field: data.attributes.unique_id}
+    - {operationId: bulk_create_events, path: POST /api/event-bulk-create-jobs, field: unique_id, note: repeat causes whole-request failure}
+  default_behaviour: >-
+    When unique_id is omitted Klaviyo defaults it to the event timestamp truncated to
+    the second, which caps ingestion at one event per profile per metric per second.
+  related_upsert:
+    - {operationId: create_or_update_profile, path: POST /api/profile-import, note: "Upsert — idempotent by profile identifier (email/phone/external_id) rather than by a request key."}
+  retention: not published
+
+error_envelope:
+  format: json:api-errors
+  rfc9457: false
+  media_type: application/vnd.api+json
+  shape:
+    errors:
+      - id: UUID unique to this error occurrence
+        status: HTTP status code, repeated in the body
+        code: machine-readable classification (e.g. "invalid")
+        title: short human-readable summary
+        detail: specific explanation
+        source: '{pointer} into the request payload, or {parameter} naming the query parameter'
+        meta: object, may be empty
+  artifact: errors/klaviyo-problem-types.yml
+
+rate_limit_signaling:
+  headers_on_success:
+    - RateLimit-Limit
+    - RateLimit-Remaining
+    - RateLimit-Reset
+  headers_on_exhaustion:
+    - Retry-After
+  status_on_exhaustion: 429
+  note: >-
+    On a 429 the RateLimit-* triplet is REPLACED by Retry-After (integer seconds), so a
+    client must handle both header shapes. Klaviyo uses the draft RateLimit-* spelling,
+    not X-RateLimit-*.
+  artifact: rate-limits/klaviyo-rate-limits.yml
+
+request_tracing:
+  request_id_header: null
+  note: >-
+    Klaviyo publishes no request-id / correlation header. The only per-request
+    identifier surfaced to a caller is `errors[].id` on a failure response, which is a
+    UUID for that error occurrence and is what support asks for. There is no equivalent
+    on a success response.
+
+bulk_and_async:
+  pattern: job resource + polling
+  detail: >-
+    Long-running work (profile import, catalog bulk create/update/delete, suppression,
+    subscription, event bulk create) is modelled as a job resource: POST creates the
+    job and returns 202 Accepted, then GET /<job-collection>/{job_id} polls until the
+    job status is complete. 31 operations in the spec return 202.
+  example_ops: [bulk_import_profiles, bulk_create_catalog_items, get_bulk_create_catalog_items_job]
+
+webhooks:
+  supported: true
+  signature_header: Klaviyo-Signature
+  signature_algorithm: HMAC-SHA256
+  artifact: asyncapi/klaviyo-webhooks-asyncapi.yaml
+
+cross_links:
+  authentication: authentication/klaviyo-authentication.yml
+  scopes: scopes/klaviyo-scopes.yml
+  errors: errors/klaviyo-problem-types.yml
+  lifecycle: lifecycle/klaviyo-lifecycle.yml
+  rate_limits: rate-limits/klaviyo-rate-limits.yml
+  data_model: data-model/klaviyo-data-model.yml

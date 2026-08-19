@@ -1,17 +1,144 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/klaviyo-openapi.json
+generated: '2026-08-13'
+method: searched
+source: https://developers.klaviyo.com/en/docs/authenticate_
+docs:
+  - https://developers.klaviyo.com/en/docs/authenticate_
+  - https://developers.klaviyo.com/en/docs/set_up_oauth
+  - https://developers.klaviyo.com/en/docs/create_a_public_oauth_app
+derived_from: openapi/*.yml (23 files, revision 2026-04-15)
+supersedes: >-
+  The 2026-07-11 derived version, which recorded only the apiKey scheme because that is
+  all Klaviyo declares in its OpenAPI. Klaviyo also ships a full OAuth 2.0 + PKCE model
+  and a public-key client-side model, neither of which appears in the spec's
+  securitySchemes — both are added here from the docs.
+
 summary:
-  types:
-  - apiKey
-  api_key_in:
-  - header
+  types: [apiKey, oauth2]
+  api_key_in: [header, query]
+  oauth2_flows: [authorizationCode]
+  pkce_required: true
+  audiences: [server-side (private key), client-side (public key), third-party integrations (OAuth)]
+
 schemes:
-- name: Klaviyo-API-Key
-  type: apiKey
-  in: header
-  parameter: Authorization
-  description: Private key authentication for /api/ endpoints is performed by setting the `Authorization`
-    header to `Klaviyo-API-Key your-private-api-key`<br>For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#authentication
-  sources:
-  - openapi/klaviyo-openapi.json
+  - name: Klaviyo-API-Key
+    type: apiKey
+    in: header
+    parameter: Authorization
+    format: 'Klaviyo-API-Key <private-api-key>'
+    key_prefix: pk_
+    audience: server-side
+    description: >-
+      Private key authentication for /api/ endpoints. The Authorization header is set to
+      `Klaviyo-API-Key your-private-api-key`. Keys carry per-resource read/write
+      permissions selected at creation time, using the same <resource>:<read|write>
+      vocabulary as OAuth scopes.
+    declared_in_openapi: true
+    sources:
+      - openapi/klaviyo-accounts-api-openapi.yml
+      - openapi/klaviyo-profiles-api-openapi.yml
+      - (and every other document in openapi/)
+
+  - name: PublicKeyCompanyId
+    type: apiKey
+    in: query
+    parameter: company_id
+    format: 6-character alphanumeric public API key / company ID
+    audience: client-side / browser
+    description: >-
+      Public key authentication for the /client/ endpoint family and the onsite
+      JavaScript loader. Safe to expose in client-side code — it cannot read account
+      data, only write events and profile identifications. Used by
+      create_client_event, create_client_profile, bulk_create_client_events and by
+      https://static.klaviyo.com/onsite/js/klaviyo.js.
+    declared_in_openapi: false
+    declared_in_openapi_note: >-
+      The /client/ operations exist in the OpenAPI but the public-key scheme is not
+      declared as a securityScheme; the spec carries a single global
+      `security: [{Klaviyo-API-Key: []}]`.
+
+  - name: KlaviyoOAuth2
+    type: oauth2
+    audience: third-party integrations and marketplace apps
+    description: >-
+      OAuth 2.0 Authorization Code grant with mandatory PKCE. Required for any app
+      listed in the Klaviyo App Marketplace. Delegated access — the token is scoped to
+      what the installing account granted.
+    declared_in_openapi: false
+    declared_in_openapi_note: >-
+      Klaviyo does NOT declare an oauth2 securityScheme in its published OpenAPI, which
+      is why derive-oauth-scopes.py reports zero oauth2 providers for this repo. The
+      scope vocabulary IS published in the spec, but as an `x-klaviyo-scopes` vendor
+      extension on each operation rather than in securitySchemes.
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://www.klaviyo.com/oauth/authorize
+        tokenUrl: https://a.klaviyo.com/oauth/token
+        revocationUrl: https://a.klaviyo.com/oauth/revoke
+        refreshUrl: https://a.klaviyo.com/oauth/token
+        pkce_required: true
+        code_challenge_method: S256
+        code_verifier: 43-128 characters, letters/digits/underscore/period/hyphen/tilde
+        code_challenge: SHA-256 of the verifier, base64url encoded
+        pkce_note: >-
+          A new code_challenge/code_verifier pair is required for EVERY authorization
+          request. Klaviyo requires PKCE for both public and confidential client types,
+          not just public ones.
+        scope_count: 46
+        scopes_artifact: scopes/klaviyo-scopes.yml
+    token_lifetimes:
+      authorization_code: 5 minutes
+      access_token: 1 hour (rely on the returned expires_in rather than hard-coding)
+      refresh_token: valid until the app is uninstalled; revoked if unused for 90 days
+
+  - name: KlaviyoMCPOAuth
+    type: oauth2
+    audience: MCP clients calling the hosted server
+    description: >-
+      The hosted MCP server at https://mcp.klaviyo.com/mcp runs its OWN authorization
+      server, separate from the integration OAuth above. It supports RFC 7591 dynamic
+      client registration, which is what lets an MCP client connect without a
+      pre-registered app.
+    declared_in_openapi: false
+    discovery:
+      authorization_server_metadata: well-known/klaviyo-mcp-oauth-authorization-server.json
+      protected_resource_metadata: well-known/klaviyo-mcp-oauth-protected-resource.json
+    flows:
+      - flow: authorizationCode
+        issuer: https://mcp.klaviyo.com
+        authorizationUrl: https://mcp.klaviyo.com/authorize
+        tokenUrl: https://mcp.klaviyo.com/token
+        registrationUrl: https://mcp.klaviyo.com/register
+        revocationUrl: https://mcp.klaviyo.com/token
+        code_challenge_methods: [S256, plain]
+        dynamic_client_registration: true
+    note: >-
+      The LOCAL stdio MCP server uses a different model entirely — a private API key in
+      the PRIVATE_API_KEY environment variable. Remote = OAuth, local = API key. See
+      mcp/klaviyo-mcp.yml.
+
+oidc:
+  discovery_document: well-known/klaviyo-openid-configuration.json
+  issuer: https://a.klaviyo.com
+  jwks_uri: https://auth.services.klaviyo.com/oauth/v2/keys
+  userinfo_endpoint: https://auth.services.klaviyo.com/oidc/v1/userinfo
+  introspection_endpoint: https://auth.services.klaviyo.com/oauth/v2/introspect
+  scopes_supported: [openid, profile, email, phone]
+  note: >-
+    https://a.klaviyo.com/.well-known/openid-configuration returns 200. Its
+    authorization_endpoint is /staff/mcp/oauth/authorize, indicating this issuer serves
+    Klaviyo's internal/staff identity surface rather than the public integration OAuth
+    flow. Recorded because it is a real, anonymously readable discovery document, not
+    because it is the endpoint a partner integration should use — for that, use the
+    KlaviyoOAuth2 scheme above.
+
+required_headers:
+  - name: revision
+    required: true
+    format: ISO 8601 date, e.g. 2026-07-15
+    note: Required on every request alongside authentication. See lifecycle/klaviyo-lifecycle.yml.
+
+x-evidence:
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/authenticate_', http_status: 200}
+  - {fetched: '2026-08-13', url: 'https://developers.klaviyo.com/en/docs/set_up_oauth', http_status: 200}
+  - {fetched: '2026-08-13', url: 'https://a.klaviyo.com/.well-known/openid-configuration', http_status: 200}
+  - {fetched: '2026-08-13', url: 'https://mcp.klaviyo.com/.well-known/oauth-authorization-server', http_status: 200}

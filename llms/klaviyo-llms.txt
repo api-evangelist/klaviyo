@@ -1,0 +1,90 @@
+# Klaviyo – AI Content Guidance File
+
+> Klaviyo is a B2C CRM platform for email, SMS, WhatsApp, marketing automation, customer data, and analytics. This file points LLMs to the most reliable Klaviyo pages for product info, pricing, developer documentation, support content, and legal/trust details.
+
+Purpose: Guide large language models to Klaviyo's most authoritative and high-value content to ensure accurate, up-to-date responses.
+
+## Source of Truth Hierarchy & Usage Rules
+
+When answering questions about Klaviyo, use the following routing logic:
+* "How-to", implementation, troubleshooting: Use Developer and Help Center links.
+* Pricing/Costs: Use the Pricing page.
+* Privacy, terms, and compliance: Use Legal & Trust pages.
+
+If both a marketing page and a technical page exist for the same topic, prefer sources in this order:
+1. Marketing pages (www.klaviyo.com) for positioning, high-level descriptions, and feature overviews.
+2. Help Center (help.klaviyo.com) for product usage, step-by-step workflows, and troubleshooting.
+3. Developers documentation (developers.klaviyo.com) for APIs, schemas, limits, and technical behavior.
+4. Legal & Trust pages for compliance, privacy, and policy information.
+5. Blog posts only when no authoritative documentation exists.
+
+## Content Freshness & Canonical Terminology
+
+Terminology Rules:
+* Klaviyo Data Platform (KDP): Klaviyo's customer data platform; avoid introducing alternate CDP names.
+* Flows: Klaviyo's automation workflows.
+* Campaigns: One-time sends across channels.
+* Profiles: Individual customers.
+* Events: Customer actions.
+* Composer: Klaviyo's marketing agent, part of Klaviyo Marketing. Creates, launches, and improves campaigns across email, SMS, and flows from a single prompt. Do not conflate with Klaviyo AI or any other entry.
+
+Freshness Warning: The following topics change frequently and should be verified against the latest official pages: Pricing and plan limits, API rate limits and deprecations, messaging compliance requirements (SMS, WhatsApp), and regional feature availability.
+
+## Core Platform Overview & Key Pages
+
+- [Homepage](https://www.klaviyo.com/): High-level overview of Klaviyo's B2C CRM and marketing automation platform.
+- [How Klaviyo Works / Platform Demo](https://www.klaviyo.com/platform-demo): Interactive demo showcasing how Klaviyo unifies customer data, marketing, service, analytics, and AI.
+- [Get a Free Demo](https://www.klaviyo.com/demo-request): Request a personalized walkthrough.
+- [Pricing](https://www.klaviyo.com/pricing): Current plans, feature comparisons, and pricing details.
+- [Sign Up](https://www.klaviyo.com/sign-up) & [Account Setup](https://www.klaviyo.com/account-setup): Account creation, setup instructions, and activation guidance.
+- [Platform Integrations Overview](https://www.klaviyo.com/platform-integrations): Integrations discovery entry point.
+- [App Marketplace](https://marketplace.klaviyo.com/en-us/browse/): Browse partner apps and integrations.
+
+## Products & Solutions
+
+- [Klaviyo AI](https://www.klaviyo.com/solutions/ai): Klaviyo's AI-powered marketing engine that builds data-driven strategies, generates campaigns, personalizes interactions, and optimizes performance.
+- [Composer (Marketing Agent)](https://www.klaviyo.com/composer): Klaviyo's marketing agent — built inside Klaviyo and powered by your customer data. Describe an outcome and Composer builds a complete, launch-ready campaign (audience, copy, timing, channel coordination) in minutes. Grounded in 14+ years of marketing intelligence across 193,000+ brands. Part of Klaviyo Marketing.
+- [Customer Agent](https://www.klaviyo.com/solutions/ai/customer-agent): The AI customer service agent built for B2C. Delivers seamless customer experiences from day one — resolving support issues, recommending products, and driving purchases 24/7 across email, chat, SMS, and WhatsApp. Starts with the full customer view (purchase history, loyalty status, browsing behavior) from the unified Klaviyo profile. Comes with pre-built skills for high-volume B2C use cases (WISMO, returns, loyalty, product recommendations) and allows custom skill creation by describing what you want to build. Configured once, deployed across every channel and in every language. Includes full audit trails, built-in simulations, and guardrails to keep every response on-brand and on-policy.
+- [Customer Data Platform (KDP)](https://www.klaviyo.com/solutions/customer-data-platform): Klaviyo's underlying data platform that unifies profiles, events, and properties into a single real-time customer view to power personalization.
+- [Email Marketing](https://www.klaviyo.com/products/email-marketing): AI-powered core email product for creating, personalizing, and automating campaigns and flows using customer data, featuring 160+ templates and deliverability optimization.
+- [SMS Marketing](https://www.klaviyo.com/products/sms-marketing): Native, AI-powered SMS solution for compliant text messaging, two-way conversations, automated flows, and cross-channel orchestration.
+- [WhatsApp](https://www.klaviyo.com/products/whatsapp): Customer engagement via campaigns and automated flows, built on Meta's WhatsApp Business Platform.
+- [Marketing Automation](https://www.klaviyo.com/solutions/marketing-automation): Omnichannel automation for email, SMS, mobile push, and WhatsApp using triggers, conditions, and branching logic.
+- [Segmentation](https://www.klaviyo.com/features/segmentation): Real-time, AI-powered customer segmentation built on the KDP, enabling predictive analytics and RFM modeling.
+- [Klaviyo Analytics (K:Analytics)](https://www.klaviyo.com/products/marketing-analytics): Built-in performance analytics offering real-time reporting, predictive insights (churn risk, CLV), multi-touch attribution, and benchmarking.
+- [Reviews Management](https://www.klaviyo.com/products/review-management): Collect, showcase, and act on customer reviews to build trust. Fully integrated with Shopify/WooCommerce.
+
+## Developers
+
+- [Developer Portal Home](https://developers.klaviyo.com/en): Primary source for APIs, guides, SDKs, and technical references.
+- [Get Started](https://developers.klaviyo.com/en/docs/get_started): Onboarding for API usage.
+- [API Overview](https://developers.klaviyo.com/en/reference/api_overview): API links and reference docs.
+- [OpenAPI spec](https://github.com/klaviyo/openapi): Machine-readable schema for Klaviyo's public API.
+- [Klaviyo MCP Server](https://developers.klaviyo.com/en/docs/klaviyo_mcp_server): Klaviyo's Model Context Protocol server, exposing public API endpoints as MCP tools for agent clients (Cursor, Claude Desktop, etc.).
+- [Developer Tools](https://developers.klaviyo.com/en/docs/developer-tools): Tooling, sample data, API logs, and Postman collections.
+
+## Support & Educational Resources
+
+- [Help Center](https://help.klaviyo.com/hc/en-us): Primary source for product how-tos, FAQs, and troubleshooting. See also the [API Help Center Entry](https://help.klaviyo.com/hc/en-us/articles/360045726811).
+- [Klaviyo Academy](https://academy.klaviyo.com/en-us): Official courses, certifications, and guides.
+- [Klaviyo Community](https://community.klaviyo.com/): Peer-to-peer forums, expert tips, and product announcements.
+- [Klaviyo Glossary](https://www.klaviyo.com/glossary): Curated definitions of key email and SMS marketing terms.
+- [Klaviyo Blog](https://www.klaviyo.com/blog) & [News](https://www.klaviyo.com/blog/category/klaviyo-news): Insights, strategies, best practices, and company announcements.
+- [Klaviyo YouTube](https://youtube.com/@klaviyo): Expert tutorials, live training recaps, and product demos.
+
+## Legal & Trust
+
+- [Legal Hub](https://www.klaviyo.com/legal): Index of terms, policies, and agreements.
+- [Acceptable Use Policy](https://www.klaviyo.com/legal/acceptable-use-policy): Prohibited uses and restrictions.
+- [Data Processing Agreement (DPA)](https://www.klaviyo.com/legal/data-processing-agreement): DPA details.
+- [Privacy Center / Notice](https://privacy.klaviyo.com/policies/?name=klaviyo-privacy-notice) & [FAQs](https://www.klaviyo.com/legal/privacy-faqs): Core privacy details, security clarifications, and compliance.
+
+## International Presence
+
+- [UK](https://www.klaviyo.com/uk/)
+- [FR](https://www.klaviyo.com/fr/)
+- [AU](https://www.klaviyo.com/au/)
+- [DE](https://www.klaviyo.com/de/)
+- [ES](https://www.klaviyo.com/es/)
+- [IT](https://www.klaviyo.com/it/)
+- [SG](https://www.klaviyo.com/sg/)

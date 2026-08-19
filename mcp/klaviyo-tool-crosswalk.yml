@@ -1,0 +1,152 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  mcp/klaviyo-mcp.yml (tool names published verbatim in the klaviyo-mcp-server
+  PyPI README, v0.4.1) bound against the 308 operationIds in openapi/*.yml
+  (Klaviyo API revision 2026-04-15).
+
+surfaces:
+  openapi:
+    path: openapi/
+    files: 23
+    operations: 308
+    revision: '2026-04-15'
+    gated: false
+  mcp:
+    remote: https://mcp.klaviyo.com/mcp
+    local: uvx klaviyo-mcp-server@latest
+    tools_list_gated: true
+    gated_detail: >-
+      POST tools/list returns HTTP 401 invalid_token. Tool names + descriptions come
+      from Klaviyo's published README; input schemas were NOT observable, so each tool
+      inherits its real parameter contract from the bound OpenAPI operation below.
+  graphql:
+    endpoint: null
+    gated: null
+    note: >-
+      Klaviyo publishes NO GraphQL API. The graphql/ directory in this repo contains a
+      SELF-DESCRIBED "conceptual" schema authored by an earlier API Evangelist pass —
+      it is not a Klaviyo contract and is deliberately excluded from this crosswalk.
+
+binding_confidence_note: >-
+  Confidence is high across the board because Klaviyo names its MCP tools with the
+  SAME identifiers as its OpenAPI operationIds — 23 of the 28 tools are an exact
+  string match to a real operationId. The five that are not are recorded as medium
+  with the reason stated.
+
+crosswalk:
+  - {tool: get_account_details, category: Accounts, rest: [get_accounts, get_account], binding: rest, confidence: medium, note: "Name is not an operationId. Fans out to the Accounts collection (GET /api/accounts) and/or the single-account read (GET /api/accounts/{id}); a Klaviyo private key is scoped to one account, so the collection returns that one account."}
+
+  - {tool: get_campaigns, category: Campaigns, rest: [get_campaigns], binding: rest, confidence: high}
+  - {tool: get_campaign, category: Campaigns, rest: [get_campaign], binding: rest, confidence: high}
+  - {tool: create_campaign, category: Campaigns, rest: [create_campaign], binding: rest, confidence: high}
+  - {tool: assign_template_to_campaign_message, category: Campaigns, rest: [assign_template_to_campaign_message], binding: rest, confidence: high}
+
+  - {tool: get_catalog_items, category: Catalogs, rest: [get_catalog_items], binding: rest, confidence: high}
+
+  - {tool: get_events, category: Events, rest: [get_events], binding: rest, confidence: high}
+  - {tool: create_event, category: Events, rest: [create_event], binding: rest, confidence: high, note: "POST /api/events accepts a body `unique_id` that deduplicates retries for the same profile+metric — the tool's safe-retry key. See conventions/klaviyo-conventions.yml."}
+  - {tool: get_metrics, category: Events, rest: [get_metrics], binding: rest, confidence: high}
+  - {tool: get_metric, category: Events, rest: [get_metric], binding: rest, confidence: high}
+
+  - {tool: get_flows, category: Flows, rest: [get_flows], binding: rest, confidence: high}
+  - {tool: get_flow, category: Flows, rest: [get_flow], binding: rest, confidence: high}
+
+  - {tool: get_lists, category: Groups, rest: [get_lists], binding: rest, confidence: high}
+  - {tool: get_list, category: Groups, rest: [get_list], binding: rest, confidence: high}
+  - {tool: get_segments, category: Groups, rest: [get_segments], binding: rest, confidence: high}
+  - {tool: get_segment, category: Groups, rest: [get_segment], binding: rest, confidence: high}
+
+  - {tool: upload_image_from_file, category: Images, rest: [upload_image_from_file], binding: rest, confidence: high, note: "POST /api/image-upload, multipart."}
+  - {tool: upload_image_from_url, category: Images, rest: [upload_image_from_url], binding: rest, confidence: high, note: "POST /api/images — the operationId is literally upload_image_from_url."}
+
+  - {tool: get_profiles, category: Profiles, rest: [get_profiles], binding: rest, confidence: high}
+  - {tool: get_profile, category: Profiles, rest: [get_profile], binding: rest, confidence: high}
+  - {tool: create_profile, category: Profiles, rest: [create_profile], binding: rest, confidence: high, note: "POST /api/profiles. Klaviyo also ships create_or_update_profile (POST /api/profile-import) as the upsert; the MCP tool set exposes only the strict create."}
+  - {tool: update_profile, category: Profiles, rest: [update_profile], binding: rest, confidence: high}
+  - {tool: subscribe_profile_to_marketing, category: Profiles, rest: [bulk_subscribe_profiles], binding: rest, confidence: medium, note: "Name is not an operationId. Klaviyo has no single-profile subscribe operation — the only public REST path is the bulk job POST /api/profile-subscription-bulk-create-jobs, called with a one-profile array."}
+  - {tool: unsubscribe_profile_from_marketing, category: Profiles, rest: [bulk_unsubscribe_profiles], binding: rest, confidence: medium, note: "Same shape as above; backed by POST /api/profile-subscription-bulk-delete-jobs."}
+
+  - {tool: get_campaign_report, category: Reporting, rest: [query_campaign_values], binding: rest, confidence: medium, note: "Name is not an operationId. Backed by POST /api/campaign-values-reports; the tool presents a report-shaped read over a POST query operation."}
+  - {tool: get_flow_report, category: Reporting, rest: [query_flow_values, query_flow_series], binding: rest, confidence: medium, note: "Fans out. POST /api/flow-values-reports for aggregate values; POST /api/flow-series-reports when a time series is requested."}
+
+  - {tool: create_email_template, category: Templates, rest: [create_template], binding: rest, confidence: high, note: "POST /api/templates with an HTML template body."}
+  - {tool: get_email_template, category: Templates, rest: [get_template], binding: rest, confidence: high}
+
+mcp_only: []
+mcp_only_note: >-
+  No MCP-only tools. Every tool in the published local-server set resolves to at least
+  one real public REST operation — Klaviyo's MCP server is a straight projection of its
+  OpenAPI, not a composite layer. NOTE: this holds for the 28 documented LOCAL tools.
+  Klaviyo's docs say the REMOTE endpoint exposes "over 200 tools"; that catalogue is not
+  published anonymously and could not be introspected (401), so it is not crosswalked.
+
+rest_only:
+  - capability: Coupons
+    operations_approx: 17
+    example_ops: [create_coupon, get_coupons, bulk_create_coupon_codes, get_coupon_codes]
+  - capability: Custom objects
+    operations_approx: 6
+    example_ops: [create_custom_object_definition, get_custom_object_definitions]
+  - capability: Data privacy (GDPR/CCPA deletion)
+    operations_approx: 1
+    example_ops: [request_profile_deletion]
+  - capability: Forms
+    operations_approx: 9
+    example_ops: [get_forms, get_form_versions]
+  - capability: Reviews
+    operations_approx: 3
+    example_ops: [get_reviews, get_review]
+  - capability: Tags
+    operations_approx: 26
+    example_ops: [create_tag, tag_campaigns, tag_flows, tag_lists, tag_segments]
+  - capability: Tracking settings
+    operations_approx: 3
+    example_ops: [get_tracking_settings, update_tracking_setting]
+  - capability: Web feeds
+    operations_approx: 5
+    example_ops: [get_web_feeds, create_web_feed]
+  - capability: Webhooks (subscription management)
+    operations_approx: 7
+    example_ops: [create_webhook, get_webhooks, get_webhook_topics]
+  - capability: Conversations
+    operations_approx: 1
+    example_ops: [get_conversation_messages]
+  - capability: Client-side / browser endpoints
+    operations_approx: 11
+    example_ops: [create_client_event, create_client_profile, bulk_create_client_events]
+    note: Public-key (company_id) endpoints; not appropriate for a server-side agent tool.
+  - capability: Catalog write + bulk jobs
+    operations_approx: 54
+    note: >-
+      The MCP set exposes only get_catalog_items. All catalog creation, variant,
+      category and bulk-job operations are REST-only.
+  - capability: Bulk profile import / suppression jobs
+    operations_approx: 12
+    example_ops: [bulk_import_profiles, bulk_suppress_profiles, bulk_unsuppress_profiles]
+  - capability: Campaign send + clone + recipient estimation
+    operations_approx: 8
+    example_ops: [send_campaign, cancel_campaign_send, create_campaign_clone, refresh_campaign_recipient_estimation]
+    note: >-
+      Notable gap — an agent can CREATE a campaign through MCP but cannot SEND it.
+      send_campaign has no tool.
+  - capability: Metric aggregates + custom/mapped metrics
+    operations_approx: 26
+    example_ops: [query_metric_aggregates, create_custom_metric, get_mapped_metrics]
+
+coverage:
+  tools_named: 28
+  tools_bound: 28
+  tools_unbound: 0
+  mcp_only: 0
+  rest_operations_total: 308
+  rest_operations_with_a_tool: 30
+  rest_operations_without_a_tool: 278
+  rest_coverage_pct: 9.7
+  binding_confidence: {high: 23, medium: 5, low: 0}
+  headline: >-
+    The documented local MCP tool set covers ~10% of Klaviyo's REST surface — read paths
+    across the six core objects plus a narrow write set (create campaign, create/update
+    profile, create event, subscribe/unsubscribe, upload image, create template). The
+    largest deliberate omissions are campaign SENDING, catalog writes, bulk jobs, tags
+    and webhook management.
