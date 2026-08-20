@@ -28,6 +28,13 @@ tags:
 - Email
 - SMS
 - Customer Data
+- E-Commerce
+- Automation
+tags_raw:
+- Marketing
+- Email
+- SMS
+- Customer Data
 - Ecommerce
 - Automation
 created: '2024-11-07T00:00:00.000Z'
@@ -40,6 +47,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -130,6 +139,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - Clients
+  tags_raw:
   - Client
   properties:
   - type: OpenAPI
@@ -280,6 +291,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -370,6 +383,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -400,6 +415,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - List
+  tags_raw:
   - Lists
   properties:
   - type: OpenAPI
@@ -700,6 +717,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
