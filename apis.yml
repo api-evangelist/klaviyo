@@ -756,6 +756,9 @@ apis:
   - type: Overlay
     url: overlays/klaviyo-webhooks-api-overlay.yaml
 common:
+- type: CapabilityMap
+  url: capabilities/klaviyo-capability-edges.yml
+  name: Klaviyo Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/klaviyo/overview
 - type: AgenticAccess

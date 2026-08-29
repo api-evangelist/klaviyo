@@ -1,0 +1,102 @@
+slug: klaviyo
+provider: Klaviyo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 9
+edges:
+- tag: Segments
+  spec_file: klaviyo-segments-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.88
+  evidence: POST /api/segments Create Segment; GET /api/segments/{id}/profiles Get Profiles for Segment;
+    schemas ProfilePredictiveAnalyticsStringFilter, HasEmailMarketingConsent
+  reason: The surface creates and maintains rule-based segments of customer profiles with filter conditions
+    and resolves segment membership — directly customer segmentation for treatment/targeting.
+- tag: Data Privacy
+  spec_file: klaviyo-data-privacy-api-openapi.yml
+  capability_id: BC-130.50
+  capability_id_l1: BC-130
+  capability_name: Privacy & Data Protection Management
+  confidence: 0.85
+  evidence: POST /api/data-privacy-deletion-jobs  request_profile_deletion  Request Profile Deletion
+  reason: Endpoint executes data-subject deletion requests against customer profiles, which is the operational
+    realisation of privacy/data-protection (right to erasure) obligations.
+- tag: Flows
+  spec_file: klaviyo-flows-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.85
+  evidence: POST /api/flows  create_flow; GET /api/flow-messages/{id}  get_flow_message; SegmentTrigger,
+    TimeDelayAction
+  reason: Flows are triggered automated marketing message sequences with actions, delays and segment triggers
+    — marketing automation, i.e. Digital Marketing Management.
+- tag: Profiles
+  spec_file: klaviyo-profiles-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.85
+  evidence: POST /api/profiles  create_profile; POST /api/profile-bulk-import-jobs  bulk_import_profiles;
+    HasEmailMarketingConsent
+  reason: CRUD, bulk import and suppression of customer profiles with identifiers and consent state —
+    the customer master/golden-record surface of the CDP.
+- tag: Coupons
+  spec_file: klaviyo-coupons-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.8
+  evidence: POST /api/coupons  create_coupon; POST /api/coupon-code-bulk-create-jobs  bulk_create_coupon_codes
+  reason: Operations create and manage coupons and coupon codes at scale — promotional discount instruments
+    issued to customers, matching Discount & Promotion Management.
+- tag: Forms
+  spec_file: klaviyo-forms-api-openapi.yml
+  capability_id: BC-400.40
+  capability_id_l1: BC-400
+  capability_name: Demand Generation Management
+  confidence: 0.75
+  evidence: POST /api/forms  create_form; schemas 'FormSubscribeFilter'-style 'SubscribeViaWhatsAppProperties',
+    'ResendOptInCode'
+  reason: Klaviyo forms are signup/opt-in capture forms with subscribe and opt-in properties — lead capture
+    for demand generation.
+- tag: Reporting
+  spec_file: klaviyo-reporting-api-openapi.yml
+  capability_id: BC-400.50
+  capability_id_l1: BC-400
+  capability_name: Marketing Operations Management
+  confidence: 0.75
+  evidence: POST /api/campaign-values-reports  query_campaign_values; POST /api/flow-series-reports  query_flow_series
+  reason: Reports measure campaign, flow, form and segment performance — marketing measurement, which
+    sits under Marketing Operations Management.
+- tag: Campaigns
+  spec_file: klaviyo-campaigns-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.72
+  evidence: POST /api/campaigns — "Create Campaign"; "Get Campaign Send Job"; "Cancel Campaign Send";
+    MobilePushMessageStandardDefinition
+  reason: Creation, scheduling, sending and cancellation of email/SMS/mobile-push marketing campaigns
+    with recipient estimation — marketing automation execution. Digital Marketing Management is the closest
+    L2, though Demand Generation is a plausible alternative, hence not maximal confidence.
+- tag: Lists
+  spec_file: klaviyo-lists-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.7
+  evidence: POST /api/lists/{id}/relationships/profiles  add_profiles_to_list  Add Profiles to List
+  reason: Lists group customer profiles into audiences used for targeting, which corresponds to customer
+    segmentation/audience management rather than pure master data.
