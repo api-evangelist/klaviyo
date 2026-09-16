@@ -1,38 +1,43 @@
-# Kin Score artifact — klaviyo — 2026-08-14T105006
+# Kin Score artifact — klaviyo — 2026-09-14T225847
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: klaviyo
-  schema_version: 0.11.0
-  scored_at: '2026-08-14'
-  run_ts: 2026-08-14T105006
-  composite: 75.8
+  schema_version: 0.22.0
+  scored_at: '2026-09-14'
+  run_ts: 2026-09-14T225847
+  composite: 79.1
   band: exemplar
   facets:
-    discoverability: 92.6
-    contract_quality: 73.9
-    governance: 62.5
-    operational_transparency: 71.1
-    developer_ergonomics: 84.8
-    commercial_clarity: 73.7
+    discoverability: 75.9
+    contract_quality: 71.1
+    contract_governance: 31.8
+    operational_transparency: 76.3
+    developer_ergonomics: 58.3
+    access_clarity: 81.6
   agent_readiness:
-    score: 55.0
+    score: 54.4
     band: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
-      mcp_server: true
-      auth_clarity: true
+      reversibility_documented: documented
+      mcp_server: verified
+      auth_clarity: served
       idempotency: documented
       error_semantics: documented
       openapi_examples: false
       rate_limit_signal: documented
       event_surface_described: derived
-      agent_skills: true
+      agent_skills: derived
       well_known_catalog: false
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: served
+      protected_resource_metadata: verified
+      dynamic_client_registration: true
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Telecommunications
@@ -40,7 +45,10 @@ kin_score:
     score: 73.6
     matched_via: tags
   provenance:
+    mcp: first-party
+    skills: derived
     agentic_access: derived
+    conformance: first-party
     contracts:
       total: 23
       derived: 0
