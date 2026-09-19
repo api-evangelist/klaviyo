@@ -121,6 +121,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - Catalog
+  tags_raw:
   - Catalogs
   properties:
   - type: OpenAPI
@@ -335,6 +337,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - Flow
+  tags_raw:
   - Flows
   properties:
   - type: OpenAPI
