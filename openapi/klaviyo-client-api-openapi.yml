@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Klaviyo Accounts Client API
+  title: Klaviyo Client API
   version: '2026-04-15'
   description: The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
   contact:
@@ -24,7 +24,14 @@ paths:
     get:
       operationId: get_client_review_values_reports
       summary: Get Client Review Values Reports
-      description: 'Get all reviews values reports in an account.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`'
+      description: 'Get all reviews values reports in an account.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`'
       parameters:
       - name: company_id
         in: query
@@ -128,7 +135,14 @@ paths:
     get:
       operationId: get_client_reviews
       summary: Get Client Reviews
-      description: 'Get all reviews. This endpoint is for client-side environments only, for server-side use, refer to https://developers.klaviyo.com/en/reference/get_reviews<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`'
+      description: 'Get all reviews. This endpoint is for client-side environments only, for server-side use, refer to https://developers.klaviyo.com/en/reference/get_reviews
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`'
       parameters:
       - name: company_id
         in: query
@@ -234,7 +248,14 @@ paths:
     post:
       operationId: create_client_review
       summary: Create Client Review
-      description: 'Create a review with the given ID. This endpoint is for client-side environments only.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`'
+      description: 'Create a review with the given ID. This endpoint is for client-side environments only.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`'
       parameters:
       - name: company_id
         in: query
@@ -310,7 +331,14 @@ paths:
 
         Example filter header:
 
-        `X-Klaviyo-API-Filters: and(equals(lat,40.7128),equals(lng,-74.0060))`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`'
+        `X-Klaviyo-API-Filters: and(equals(lat,40.7128),equals(lng,-74.0060))`
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`'
       parameters:
       - name: company_id
         in: query
@@ -401,18 +429,25 @@ paths:
       description: 'Creates a subscription and consent record for email and/or SMS channels based on the provided `email` and `phone_number` attributes, respectively. One of either `email` or `phone_number` must be provided.
 
 
-        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a [public API key (site ID)](https://www.klaviyo.com/settings/account/api-keys). Never use a private API key with our client-side endpoints.
+        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a public API key (site ID). Never use a private API key with our client-side endpoints.
 
 
         Do not use this endpoint from server-side applications.
 
-        To subscribe profiles from server-side applications, instead use [POST /api/profile-subscription-bulk-create-jobs](https://developers.klaviyo.com/en/reference/subscribe_profiles).
+        To subscribe profiles from server-side applications, instead use POST /api/profile-subscription-bulk-create-jobs.
 
 
         Profiles can be opted into multiple channels: email marketing, SMS marketing, and SMS transactional. You can specify the channel(s) to subscribe the profile to by providing a subscriptions object in the profile attributes.
 
 
-        If you include a subscriptions object, only channels in that object will be subscribed.  You can use this to update `email` or `phone` on the profile without subscribing them, for example, by setting the profile property but omitting that channel in the subscriptions object. If a subscriptions object is not provided, subscriptions are defaulted to `MARKETING`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `750/m`
+        If you include a subscriptions object, only channels in that object will be subscribed. You can use this to update `email` or `phone` on the profile without subscribing them, for example, by setting the profile property but omitting that channel in the subscriptions object. If a subscriptions object is not provided, subscriptions are defaulted to `MARKETING`.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `750/m`
 
 
         **Scopes:**
@@ -463,12 +498,19 @@ paths:
       description: 'Create or update a push token.
 
 
-        This endpoint is specifically designed to be called from our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) and requires a [public API key (site ID)](https://www.klaviyo.com/settings/account/api-keys). Never use a private API key with our client-side endpoints.
+        This endpoint is specifically designed to be called from our mobile SDKs (iOS and Android) and requires a public API key (site ID). Never use a private API key with our client-side endpoints.
 
         You must have push notifications enabled to use this endpoint.
 
 
-        To migrate push tokens from another platform to Klaviyo, please use our server-side [POST /api/push-tokens](https://developers.klaviyo.com/en/reference/create_push_token) endpoint instead.<br><br>*Rate limits*:<br>Burst: `150/s`<br>Steady: `1400/m`'
+        To migrate push tokens from another platform to Klaviyo, please use our server-side POST /api/push-tokens endpoint instead.
+
+
+        *Rate limits*:
+
+        Burst: `150/s`
+
+        Steady: `1400/m`'
       parameters:
       - name: company_id
         in: query
@@ -513,9 +555,16 @@ paths:
       description: 'Unregister a push token.
 
 
-        This endpoint is specifically designed to be called from our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) and requires a [public API key (site ID)](https://www.klaviyo.com/settings/account/api-keys). Never use a private API key with our client-side endpoints.
+        This endpoint is specifically designed to be called from our mobile SDKs (iOS and Android) and requires a public API key (site ID). Never use a private API key with our client-side endpoints.
 
-        You must have push notifications enabled to use this endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`'
+        You must have push notifications enabled to use this endpoint.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`'
       parameters:
       - name: company_id
         in: query
@@ -562,15 +611,22 @@ paths:
       description: 'Create a new event to track a profile''s activity.
 
 
-        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a [public API key (site ID)](https://www.klaviyo.com/settings/account/api-keys). Never use a private API key with our client-side endpoints.
+        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a public API key (site ID). Never use a private API key with our client-side endpoints.
 
 
         Do not use this endpoint from server-side applications.
 
-        To create events from server-side applications, instead use [POST /api/events](https://developers.klaviyo.com/en/reference/create_event).
+        To create events from server-side applications, instead use POST /api/events.
 
 
-        Note that to update a profile''s existing identifiers (e.g., email), you must use a server-side endpoint authenticated by a private API key. Attempts to do so via client-side endpoints will return a 202, however the identifier field(s) will not be updated.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+        Note that to update a profile''s existing identifiers (e.g., email), you must use a server-side endpoint authenticated by a private API key. Attempts to do so via client-side endpoints will return a 202, however the identifier field(s) will not be updated.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -621,15 +677,22 @@ paths:
       description: 'Create or update properties about a profile without tracking an associated event.
 
 
-        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a [public API key (site ID)](https://www.klaviyo.com/settings/account/api-keys). Never use a private API key with our client-side endpoints.
+        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a public API key (site ID). Never use a private API key with our client-side endpoints.
 
 
         Do not use this endpoint from server-side applications.
 
-        To create or update profiles from server-side applications, instead use [POST /api/profile-import](https://developers.klaviyo.com/en/reference/create_or_update_profile).
+        To create or update profiles from server-side applications, instead use POST /api/profile-import.
 
 
-        Note that to update a profile''s existing identifiers (e.g., email), you must use a server-side endpoint authenticated by a private API key. Attempts to do so via client-side endpoints will return a 202, however the identifier field(s) will not be updated.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+        Note that to update a profile''s existing identifiers (e.g., email), you must use a server-side endpoint authenticated by a private API key. Attempts to do so via client-side endpoints will return a 202, however the identifier field(s) will not be updated.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -680,15 +743,22 @@ paths:
       description: 'Create new events to track a profile''s activity.
 
 
-        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a [public API key (site ID)](https://www.klaviyo.com/settings/account/api-keys). Never use a private API key with our client-side endpoints.
+        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a public API key (site ID). Never use a private API key with our client-side endpoints.
 
 
         Do not use this endpoint from server-side applications.
 
-        To create events from server-side applications, instead use [POST /api/event-bulk-create-jobs](https://developers.klaviyo.com/en/reference/bulk_create_events).
+        To create events from server-side applications, instead use POST /api/event-bulk-create-jobs.
 
 
-        Accepts a maximum of `1000` events per request.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+        Accepts a maximum of `1000` events per request.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -738,15 +808,22 @@ paths:
     post:
       operationId: create_client_back_in_stock_subscription
       summary: Create Client Back In Stock Subscription
-      description: 'Subscribe a profile to receive back in stock notifications. Check out [our Back in Stock API guide](https://developers.klaviyo.com/en/docs/how_to_set_up_custom_back_in_stock) for more details.
+      description: 'Subscribe a profile to receive back in stock notifications. Check out our Back in Stock API guide for more details.
 
 
-        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a [public API key (site ID)](https://www.klaviyo.com/settings/account/api-keys). Never use a private API key with our client-side endpoints.
+        This endpoint is specifically designed to be called from publicly-browseable, client-side environments only and requires a public API key (site ID). Never use a private API key with our client-side endpoints.
 
 
         Do not use this endpoint from server-side applications.
 
-        To create back in stock subscriptions from server-side applications, instead use [POST /api/back-in-stock-subscriptions](https://developers.klaviyo.com/en/reference/create_back_in_stock_subscription).<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+        To create back in stock subscriptions from server-side applications, instead use POST /api/back-in-stock-subscriptions.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -795,72 +872,36 @@ paths:
       - profiles:write
 components:
   schemas:
-    ReviewValuesReportResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ReviewValuesReportEnum'
-        id:
-          description: The unique identifier for the reviews values report
-          type: string
-          example: 925e385b52fb405715f3616c337cc65c
-        attributes:
-          type: object
-          properties:
-            results:
-              description: The list of groupings and their corresponding statistics in the reviews values report
-              type: array
-              items:
-                $ref: '#/components/schemas/ReviewValueReportGrouping'
-              example:
-              - groupings:
-                  product_id: id1
-                statistics:
-                  total_ratings: 459
-                  average_rating: 4.5
-              - groupings:
-                  product_id: id2
-                statistics:
-                  total_ratings: 459
-                  average_rating: 2.5
-          required:
-          - results
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    EventProfileCreateQueryResourceObject:
+    ProfileUpsertQueryResourceObject:
       type: object
       properties:
         type:
           $ref: '#/components/schemas/ProfileEnum'
         id:
           description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         attributes:
           type: object
           properties:
             email:
               description: Individual's email address
-              type: string
+              type:
+              - string
+              - 'null'
               example: sarah.mason@klaviyo-demo.com
-              nullable: true
             phone_number:
               description: Individual's phone number in E.164 format
-              type: string
+              type:
+              - string
+              - 'null'
               example: '+15005550006'
-              nullable: true
             external_id:
               description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-            anonymous_id:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
             _kx:
               description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
 
@@ -868,92 +909,561 @@ components:
 
 
                 You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
             first_name:
               description: Individual's first name
-              type: string
+              type:
+              - string
+              - 'null'
               example: Sarah
-              nullable: true
             last_name:
               description: Individual's last name
-              type: string
+              type:
+              - string
+              - 'null'
               example: Mason
-              nullable: true
             organization:
               description: Name of the company or organization within the company for whom the individual works
-              type: string
+              type:
+              - string
+              - 'null'
               example: Example Corporation
-              nullable: true
             locale:
               description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
+              type:
+              - string
+              - 'null'
               example: en-US
-              nullable: true
             title:
               description: Individual's job title
-              type: string
+              type:
+              - string
+              - 'null'
               example: Regional Manager
-              nullable: true
             image:
               description: URL pointing to the location of a profile image
-              type: string
+              type:
+              - string
+              - 'null'
               example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
             location:
               $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
             properties:
               description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
+              type:
+              - object
+              - 'null'
               example:
                 pseudonym: Dr. Octopus
-              nullable: true
-            meta:
-              $ref: '#/components/schemas/OnsiteProfileMeta'
-              nullable: true
+        meta:
+          $ref: '#/components/schemas/ProfileMeta'
       required:
       - type
       - attributes
-    EventsBulkCreateQuery:
+    OnsiteProfileCreateQuery:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/EventsBulkCreateQueryResourceObject'
+          $ref: '#/components/schemas/OnsiteProfileCreateQueryResourceObject'
       required:
       - data
-    ListEnum:
+    EventBulkCreateEnum:
       type: string
       enum:
-      - list
-    GeofenceResponseObjectResource:
+      - event-bulk-create
+    GeofenceEnum:
+      type: string
+      enum:
+      - geofence
+    ReviewCreateDTOResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/GeofenceEnum'
-        id:
-          description: Primary key that uniquely identifies this geofence. Generated by the system.
-          type: string
-          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+          $ref: '#/components/schemas/ReviewEnum'
         attributes:
           type: object
           properties:
-            latitude:
-              description: Latitude coordinate of the geofence center point
-              type: number
-              example: 40.7128
-            longitude:
-              description: Longitude coordinate of the geofence center point
-              type: number
-              example: -74.006
-            radius:
-              description: Radius in meters from the center point
-              type: number
-              example: 100
+            review_type:
+              description: The type of this review -- either a review or a question
+              type: string
+              example: review
+              enum:
+              - question
+              - rating
+              - review
+              - store
+            email:
+              description: The email of the author of this review
+              type: string
+              example: random.123@gmail.com
+            author:
+              description: The author of this review
+              type: string
+              example: John Doe
+            content:
+              description: The content of this review
+              example: This was an absolutely amazing t-shirt. I loved the color and the fit.
+              type: string
+            incentive_type:
+              description: The incentive type for the review
+              type:
+              - string
+              - 'null'
+              enum:
+              - coupon_or_discount
+              - employee_review
+              - free_product
+              - loyalty_points
+              - other
+              - paid_promotion
+              - sweepstakes_entry
+            product:
+              description: The product associated with this review
+              $ref: '#/components/schemas/ReviewProductExternalId'
+            rating:
+              description: The rating of this review on a scale from 1-5. If the review type is "question", this field will be null.
+              type:
+              - integer
+              - 'null'
+              example: 2
+              enum:
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+            title:
+              description: The title of this review
+              type:
+              - string
+              - 'null'
+              example: Great product!
+            custom_questions:
+              description: Custom question and answers for the review
+              type:
+              - array
+              - 'null'
+              items:
+                $ref: '#/components/schemas/CustomQuestionDTO'
+              example:
+              - id: 9ff0d32e-0edb-4513-a6a5-12814a6cb755
+                answers:
+                - M
+                - L
+            images:
+              description: The list of images submitted with this review (represented as a list of urls or base-64 encoded data-uri). If there are no images, this field will be an empty list.
+              type:
+              - array
+              - 'null'
+              items:
+                type: string
+              example:
+              - https://example.com/image1.jpg
+              - https://example.com/image2.jpg
           required:
-          - latitude
-          - longitude
-          - radius
+          - review_type
+          - email
+          - author
+          - content
+        relationships:
+          type: object
+          properties:
+            order:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/OrderEnum'
+                    id:
+                      description: The Order ID related to the review
+                      type: string
+                      example: '42439497119686'
+                  required:
+                  - type
+                  - id
+      required:
+      - type
+      - attributes
+    PushTokenEntry:
+      type: object
+      properties:
+        token:
+          description: A push token from APNS or FCM.
+          type: string
+          example: 1234567890abcdef
+        platform:
+          description: The platform on which the push token was created. Either "ios" or "android".
+          type: string
+          enum:
+          - android
+          - ios
+        vendor:
+          description: The vendor of the push token. Either "apns" or "fcm".
+          type: string
+          example: apns
+          enum:
+          - apns
+          - fcm
+        enablement_status:
+          description: The enablement status for the push token.
+          type:
+          - string
+          - 'null'
+          example: AUTHORIZED
+          enum:
+          - AUTHORIZED
+          - DENIED
+          - NOT_DETERMINED
+          - PROVISIONAL
+          - UNAUTHORIZED
+        background:
+          description: The background state of the push token.
+          type:
+          - string
+          - 'null'
+          example: AVAILABLE
+          enum:
+          - AVAILABLE
+          - DENIED
+          - RESTRICTED
+        device_metadata:
+          description: Metadata about the device that created the push token.
+          $ref: '#/components/schemas/PushTokenDeviceMetadata'
+      required:
+      - token
+      - platform
+      - vendor
+    EventEnum:
+      type: string
+      enum:
+      - event
+    RejectReasonOther:
+      type: object
+      properties:
+        reason:
+          description: reject reason is other
+          type: string
+          enum:
+          - other
+        status_explanation:
+          description: If review reject reason is other, we can provide further explanation
+          type:
+          - string
+          - 'null'
+          example: This review is just really poorly detailed and there is another with the same content
+      required:
+      - reason
+    RejectReasonMisleading:
+      type: object
+      properties:
+        reason:
+          description: rejected due to false or misleading content
+          type: string
+          enum:
+          - false_or_misleading
+      required:
+      - reason
+    PushTokenCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/PushTokenEnum'
+        attributes:
+          type: object
+          properties:
+            token:
+              description: A push token from APNS or FCM.
+              type: string
+              example: '1234567890'
+            platform:
+              description: The platform on which the push token was created.
+              type: string
+              enum:
+              - android
+              - ios
+            enablement_status:
+              description: This is the enablement status for the individual push token.
+              type:
+              - string
+              - 'null'
+              example: AUTHORIZED
+              default: AUTHORIZED
+              enum:
+              - AUTHORIZED
+              - DENIED
+              - NOT_DETERMINED
+              - PROVISIONAL
+              - UNAUTHORIZED
+            vendor:
+              description: The vendor of the push token.
+              type: string
+              example: apns
+              enum:
+              - apns
+              - fcm
+            background:
+              description: The background state of the push token.
+              type:
+              - string
+              - 'null'
+              example: AVAILABLE
+              default: AVAILABLE
+              enum:
+              - AVAILABLE
+              - DENIED
+              - RESTRICTED
+            device_metadata:
+              description: Metadata about the device that created the push token
+              $ref: '#/components/schemas/DeviceMetadata'
+            profile:
+              description: The profile associated with the push token to create/update
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/PushProfileUpsertQueryResourceObject'
+              required:
+              - data
+          required:
+          - token
+          - platform
+          - vendor
+          - profile
+      required:
+      - type
+      - attributes
+    ProfileIdentifierDTOResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ProfileEnum'
+        id:
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          type:
+          - string
+          - 'null'
+          example: 01GDDKASAP8TKDDA2GRZDSVP4H
+        attributes:
+          type: object
+          properties:
+            email:
+              description: Individual's email address
+              type:
+              - string
+              - 'null'
+              example: sarah.mason@klaviyo-demo.com
+            phone_number:
+              description: Individual's phone number in E.164 format
+              type:
+              - string
+              - 'null'
+              example: '+15005550006'
+            external_id:
+              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
+              type:
+              - string
+              - 'null'
+      required:
+      - type
+      - attributes
+    EventCreateQueryV2ResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EventEnum'
+        attributes:
+          type: object
+          properties:
+            properties:
+              description: 'Properties of this event (must not exceed 400 properties). The size of the event payload must not exceed 5 MB,
+
+                and each string cannot be larger than 100 KB. For a full list of data limits on event payloads,
+
+                see [Limitations](https://developers.klaviyo.com/en/reference/events_api_overview#limitations).
+
+
+                Note any top-level property that is not an object can be
+
+                used to create segments. The `$extra` property records any
+
+                non-segmentable values that can be referenced later, e.g., HTML templates are
+
+                useful on a segment but are not used to create a segment.'
+              type: object
+              example:
+                Brand: Kids Book
+                ProductID: 1111
+                ProductName: Winnie the Pooh
+            time:
+              description: 'When this event occurred. By default, the time the request was received will be used.
+
+                The time is truncated to the second. The time must be after the year 2000 and can only
+
+                be up to 1 year in the future.'
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            value:
+              description: A numeric, monetary value to associate with this event. For example, the dollar amount of a purchase.
+              type:
+              - number
+              - 'null'
+              example: 9.99
+            value_currency:
+              description: The ISO 4217 currency code of the value associated with the event.
+              type:
+              - string
+              - 'null'
+              example: USD
+            unique_id:
+              description: 'A unique identifier for an event. If the unique_id is repeated for the same
+
+                profile and metric, only the first processed event will be recorded. If this is not
+
+                present, this will use the time to the second. Using the default, this limits only one
+
+                event per profile per second.'
+              type:
+              - string
+              - 'null'
+            backfill:
+              description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
+
+                historical events so existing flow definitions do not re-fire on events that already
+
+                fired in the past.'
+              type:
+              - boolean
+              - 'null'
+              default: false
+            metric:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/MetricCreateQueryResourceObject'
+              required:
+              - data
+            profile:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/EventProfileCreateQueryResourceObject'
+              required:
+              - data
+          required:
+          - properties
+          - metric
+          - profile
+      required:
+      - type
+      - attributes
+    SMSSubscriptionParameters:
+      type: object
+      properties:
+        marketing:
+          description: The parameters to subscribe to marketing on the "SMS" Channel.
+          $ref: '#/components/schemas/SubscriptionParameters'
+        transactional:
+          description: The parameters to subscribe to transactional messaging on the "SMS" Channel.
+          $ref: '#/components/schemas/SubscriptionParameters'
+    ClientReviewResponseDTOObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ReviewEnum'
+        id:
+          description: The ID of the review
+          type: string
+          example: 925e385b52fb405715f3616c337cc65c
+        attributes:
+          type: object
+          properties:
+            status:
+              description: The status of this review
+              oneOf:
+              - $ref: '#/components/schemas/ReviewStatusRejected'
+              - $ref: '#/components/schemas/ReviewStatusFeatured'
+              - $ref: '#/components/schemas/ReviewStatusPublished'
+              - $ref: '#/components/schemas/ReviewStatusUnpublished'
+              - $ref: '#/components/schemas/ReviewStatusPending'
+            verified:
+              description: The verification status of this review (aka whether or not we have confirmation that the customer bought the product)
+              type: boolean
+              example: true
+            review_type:
+              description: The type of this review — either a review, question, or rating
+              type: string
+              example: review
+              enum:
+              - question
+              - rating
+              - review
+              - store
+            created:
+              description: The datetime when this review was created
+              type: string
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              description: The datetime when this review was updated
+              type: string
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            images:
+              description: The list of images submitted with this review (represented as a list of urls). If there are no images, this field will be an empty list.
+              type: array
+              items:
+                type: string
+              example:
+              - https://example.com/image1.jpg
+              - https://example.com/image2.jpg
+            product:
+              description: The product associated with this review
+              $ref: '#/components/schemas/ReviewProductDTO'
+            rating:
+              description: The rating of this review on a scale from 1-5. If the review type is "question", this field will be null.
+              type:
+              - integer
+              - 'null'
+              example: 2
+            author:
+              description: The author of this review
+              type:
+              - string
+              - 'null'
+              example: John D
+            content:
+              description: The content of this review
+              example: Great product! I love the smell. I will be buying again.
+              type:
+              - string
+              - 'null'
+            title:
+              description: The title of this review
+              type:
+              - string
+              - 'null'
+              example: Smells great, would recommend
+            smart_quote:
+              description: A quote from this review that summarizes the content
+              type:
+              - string
+              - 'null'
+              example: I love the smell
+            public_reply:
+              description: The public reply to this review (if one exists)
+              $ref: '#/components/schemas/ReviewPublicReply'
+          required:
+          - verified
+          - review_type
+          - created
+          - updated
+          - images
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
@@ -961,6 +1471,116 @@ components:
       - id
       - attributes
       - links
+    PushTokenDeviceMetadata:
+      type: object
+      properties:
+        device_id:
+          description: Relatively stable ID for the device. Will update on app uninstall and reinstall
+          type:
+          - string
+          - 'null'
+          example: '1234567890'
+        klaviyo_sdk:
+          description: The name of the SDK used to create the push token.
+          type:
+          - string
+          - 'null'
+          example: swift
+          enum:
+          - android
+          - flutter
+          - flutter_community
+          - react_native
+          - swift
+        sdk_version:
+          description: The version of the SDK used to create the push token
+          type:
+          - string
+          - 'null'
+          example: 1.0.0
+        device_model:
+          description: The model of the device
+          type:
+          - string
+          - 'null'
+          example: iPhone12,1
+        os_name:
+          description: The name of the operating system on the device.
+          type:
+          - string
+          - 'null'
+          example: ios
+          enum:
+          - android
+          - ios
+          - ipados
+          - macos
+          - tvos
+        os_version:
+          description: The version of the operating system on the device
+          type:
+          - string
+          - 'null'
+          example: '14.0'
+        manufacturer:
+          description: The manufacturer of the device
+          type:
+          - string
+          - 'null'
+          example: Apple
+        app_name:
+          description: The name of the app that created the push token
+          type:
+          - string
+          - 'null'
+          example: Klaviyo
+        app_version:
+          description: The version of the app that created the push token
+          type:
+          - string
+          - 'null'
+          example: 1.0.0
+        app_build:
+          description: The build of the app that created the push token
+          type:
+          - string
+          - 'null'
+          example: '1'
+        app_id:
+          description: The ID of the app that created the push token
+          type:
+          - string
+          - 'null'
+          example: com.klaviyo.app
+        environment:
+          description: The environment in which the push token was created
+          type:
+          - string
+          - 'null'
+          example: release
+          enum:
+          - debug
+          - release
+    ReviewStatusFeatured:
+      type: object
+      properties:
+        value:
+          description: Featured review status
+          type: string
+          enum:
+          - featured
+      required:
+      - value
+    RejectReasonPrivateInformation:
+      type: object
+      properties:
+        reason:
+          description: rejected due to private information
+          type: string
+          enum:
+          - private_information
+      required:
+      - reason
     ClientBISSubscriptionCreateQueryResourceObject:
       type: object
       properties:
@@ -1025,32 +1645,93 @@ components:
       - type
       - attributes
       - relationships
-    ProfileUpsertQueryResourceObject:
+    OrderEnum:
+      type: string
+      enum:
+      - order
+    ReviewValuesReportResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ReviewValuesReportEnum'
+        id:
+          description: The unique identifier for the reviews values report
+          type: string
+          example: 925e385b52fb405715f3616c337cc65c
+        attributes:
+          type: object
+          properties:
+            results:
+              description: The list of groupings and their corresponding statistics in the reviews values report
+              type: array
+              items:
+                $ref: '#/components/schemas/ReviewValueReportGrouping'
+              example:
+              - groupings:
+                  product_id: id1
+                statistics:
+                  total_ratings: 459
+                  average_rating: 4.5
+              - groupings:
+                  product_id: id2
+                statistics:
+                  total_ratings: 459
+                  average_rating: 2.5
+          required:
+          - results
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    PushTokenEnum:
+      type: string
+      enum:
+      - push-token
+    CatalogVariantEnum:
+      type: string
+      enum:
+      - catalog-variant
+    EmailSubscriptionParameters:
+      type: object
+      properties:
+        marketing:
+          description: The parameters to subscribe to on the "EMAIL" Channel. Currently supports "MARKETING".
+          $ref: '#/components/schemas/SubscriptionParameters'
+      required:
+      - marketing
+    ProfileUpsertQueryWithSubscriptionsResourceObject:
       type: object
       properties:
         type:
           $ref: '#/components/schemas/ProfileEnum'
         id:
           description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         attributes:
           type: object
           properties:
             email:
               description: Individual's email address
-              type: string
+              type:
+              - string
+              - 'null'
               example: sarah.mason@klaviyo-demo.com
-              nullable: true
             phone_number:
               description: Individual's phone number in E.164 format
-              type: string
+              type:
+              - string
+              - 'null'
               example: '+15005550006'
-              nullable: true
             external_id:
               description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
             _kx:
               description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
 
@@ -1058,83 +1739,393 @@ components:
 
 
                 You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
             first_name:
               description: Individual's first name
-              type: string
+              type:
+              - string
+              - 'null'
               example: Sarah
-              nullable: true
             last_name:
               description: Individual's last name
-              type: string
+              type:
+              - string
+              - 'null'
               example: Mason
-              nullable: true
             organization:
               description: Name of the company or organization within the company for whom the individual works
-              type: string
+              type:
+              - string
+              - 'null'
               example: Example Corporation
-              nullable: true
             locale:
               description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
+              type:
+              - string
+              - 'null'
               example: en-US
-              nullable: true
             title:
               description: Individual's job title
-              type: string
+              type:
+              - string
+              - 'null'
               example: Regional Manager
-              nullable: true
             image:
               description: URL pointing to the location of a profile image
-              type: string
+              type:
+              - string
+              - 'null'
               example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
             location:
               $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
             properties:
               description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
+              type:
+              - object
+              - 'null'
               example:
                 pseudonym: Dr. Octopus
-              nullable: true
-        meta:
-          $ref: '#/components/schemas/ProfileMeta'
-          nullable: true
+            meta:
+              $ref: '#/components/schemas/ProfileMeta'
+            subscriptions:
+              $ref: '#/components/schemas/SubscriptionChannels'
       required:
       - type
       - attributes
-    EventBulkCreateEnum:
-      type: string
-      enum:
-      - event-bulk-create
-    ProfileEnum:
-      type: string
-      enum:
-      - profile
-    ClientBISSubscriptionCreateQuery:
+    ReviewProductDTO:
+      type: object
+      properties:
+        url:
+          description: The URL of the product
+          type: string
+          example: https://example.com/product/123
+        name:
+          description: The name of the product
+          type: string
+        image_url:
+          description: The URL of the product image
+          type:
+          - string
+          - 'null'
+          example: https://example.com/image.jpg
+        external_id:
+          description: The external ID of the product
+          type:
+          - string
+          - 'null'
+          example: '123456789'
+      required:
+      - url
+      - name
+    ReviewStatusPublished:
+      type: object
+      properties:
+        value:
+          description: Published review status
+          type: string
+          enum:
+          - published
+      required:
+      - value
+    ProfileMetaPatchProperties:
+      type: object
+      properties:
+        append:
+          description: Append a simple value or values to this property array
+          type:
+          - object
+          - 'null'
+          example:
+            skus: '92538'
+        unappend:
+          description: Remove a simple value or values from this property array
+          type:
+          - object
+          - 'null'
+          example:
+            skus: '40571'
+        unset:
+          description: Remove a key or keys (and their values) completely from properties
+          example: skus
+          oneOf:
+          - type: string
+          - type: array
+            items:
+              type: string
+    ReviewStatusRejected:
+      type: object
+      properties:
+        value:
+          description: Rejected review status
+          type: string
+          enum:
+          - rejected
+        rejection_reason:
+          description: The updated status intended for the review with this ID
+          oneOf:
+          - $ref: '#/components/schemas/RejectReasonOther'
+          - $ref: '#/components/schemas/RejectReasonFake'
+          - $ref: '#/components/schemas/RejectReasonMisleading'
+          - $ref: '#/components/schemas/RejectReasonPrivateInformation'
+          - $ref: '#/components/schemas/RejectReasonProfanity'
+          - $ref: '#/components/schemas/RejectReasonUnrelated'
+      required:
+      - value
+      - rejection_reason
+    CustomQuestionDTO:
+      type: object
+      properties:
+        id:
+          description: The ID of the custom question
+          type: string
+          example: 9ff0d32e-0edb-4513-a6a5-12814a6cb755
+        answers:
+          description: The answers to the custom question
+          type: array
+          items:
+            type: string
+          example:
+          - M
+          - L
+      required:
+      - id
+      - answers
+    ReviewStatusUnpublished:
+      type: object
+      properties:
+        value:
+          description: Unpublished review status
+          type: string
+          enum:
+          - unpublished
+      required:
+      - value
+    ReviewCreateDTO:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/ClientBISSubscriptionCreateQueryResourceObject'
+          $ref: '#/components/schemas/ReviewCreateDTOResourceObject'
       required:
       - data
-    RejectReasonOther:
+    ProfileLocation:
+      type: object
+      properties:
+        address1:
+          description: First line of street address
+          type:
+          - string
+          - 'null'
+          example: 89 E 42nd St
+        address2:
+          description: Second line of street address
+          type:
+          - string
+          - 'null'
+          example: 1st floor
+        city:
+          description: City name
+          type:
+          - string
+          - 'null'
+          example: New York
+        country:
+          description: Country name
+          type:
+          - string
+          - 'null'
+          example: United States
+        latitude:
+          description: Latitude coordinate. We recommend providing a precision of four decimal places.
+          example: '40.7128'
+          oneOf:
+          - type: string
+          - type: number
+        longitude:
+          description: Longitude coordinate. We recommend providing a precision of four decimal places.
+          example: '74.0060'
+          oneOf:
+          - type: string
+          - type: number
+        region:
+          description: Region within a country, such as state or province
+          type:
+          - string
+          - 'null'
+          example: NY
+        zip:
+          description: Zip code
+          type:
+          - string
+          - 'null'
+          example: '10017'
+        timezone:
+          description: Time zone name. We recommend using time zones from the IANA Time Zone Database.
+          type:
+          - string
+          - 'null'
+          example: America/New_York
+        ip:
+          description: IP Address
+          type:
+          - string
+          - 'null'
+          example: 127.0.0.1
+    ReviewValuesReportEnum:
+      type: string
+      enum:
+      - review-values-report
+    ListEnum:
+      type: string
+      enum:
+      - list
+    GroupingProduct:
+      type: object
+      properties:
+        product_id:
+          description: The ID of the product
+          type: string
+          example: '12345'
+      required:
+      - product_id
+    ReviewValueReportGrouping:
+      type: object
+      properties:
+        groupings:
+          description: Grouping details, either by product or company
+          oneOf:
+          - $ref: '#/components/schemas/GroupingProduct'
+          - $ref: '#/components/schemas/GroupingCompany'
+        statistics:
+          description: Statistics related to the grouping
+          example:
+            average_rating: 4.5
+            total_reviews: 100
+            total_questions: 50
+            total_ratings: 200
+            total_store_reviews: 5000
+            average_store_rating: 2
+          $ref: '#/components/schemas/StatisticsDTO'
+      required:
+      - groupings
+      - statistics
+    RejectReasonFake:
       type: object
       properties:
         reason:
-          description: reject reason is other
+          description: rejected due to fake content
           type: string
           enum:
-          - other
-        status_explanation:
-          description: If review reject reason is other, we can provide further explanation
-          type: string
-          example: This review is just really poorly detailed and there is another with the same content
-          nullable: true
+          - fake
       required:
       - reason
+    PushProfileUpsertQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ProfileEnum'
+        id:
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          type:
+          - string
+          - 'null'
+        attributes:
+          type: object
+          properties:
+            phone_number:
+              description: Individual's phone number in E.164 format
+              type:
+              - string
+              - 'null'
+              example: '+15005550006'
+            external_id:
+              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
+              type:
+              - string
+              - 'null'
+            _kx:
+              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
+
+                profile by Klaviyo''s web tracking.
+
+
+                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
+              type:
+              - string
+              - 'null'
+            first_name:
+              description: Individual's first name
+              type:
+              - string
+              - 'null'
+              example: Sarah
+            last_name:
+              description: Individual's last name
+              type:
+              - string
+              - 'null'
+              example: Mason
+            organization:
+              description: Name of the company or organization within the company for whom the individual works
+              type:
+              - string
+              - 'null'
+              example: Example Corporation
+            locale:
+              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
+              type:
+              - string
+              - 'null'
+              example: en-US
+            title:
+              description: Individual's job title
+              type:
+              - string
+              - 'null'
+              example: Regional Manager
+            image:
+              description: URL pointing to the location of a profile image
+              type:
+              - string
+              - 'null'
+              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
+            location:
+              $ref: '#/components/schemas/ProfileLocation'
+            properties:
+              description: An object containing key/value pairs for any custom properties assigned to this profile
+              type:
+              - object
+              - 'null'
+              example:
+                pseudonym: Dr. Octopus
+            meta:
+              $ref: '#/components/schemas/ProfileMeta'
+            email:
+              description: Individual's email address
+              type:
+              - string
+              - 'null'
+              example: sarah.mason@klaviyo-demo.com
+      required:
+      - type
+      - attributes
+    GroupingCompany:
+      type: object
+      properties:
+        company_id:
+          description: The ID of the company
+          type: string
+          example: '67890'
+      required:
+      - company_id
+    EventCreateQueryV2:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EventCreateQueryV2ResourceObject'
+      required:
+      - data
     OnsiteSubscriptionCreateQueryResourceObject:
       type: object
       properties:
@@ -1145,9 +2136,10 @@ components:
           properties:
             custom_source:
               description: A custom method detail or source to store on the consent records for this subscription.
-              type: string
+              type:
+              - string
+              - 'null'
               example: Homepage footer signup form
-              nullable: true
             profile:
               type: object
               properties:
@@ -1181,31 +2173,208 @@ components:
       - type
       - attributes
       - relationships
+    OnsiteProfileCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ProfileEnum'
+        id:
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          type:
+          - string
+          - 'null'
+        attributes:
+          type: object
+          properties:
+            email:
+              description: Individual's email address
+              type:
+              - string
+              - 'null'
+              example: sarah.mason@klaviyo-demo.com
+            phone_number:
+              description: Individual's phone number in E.164 format
+              type:
+              - string
+              - 'null'
+              example: '+15005550006'
+            external_id:
+              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
+              type:
+              - string
+              - 'null'
+            anonymous_id:
+              type:
+              - string
+              - 'null'
+            _kx:
+              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
+
+                profile by Klaviyo''s web tracking.
+
+
+                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
+              type:
+              - string
+              - 'null'
+            first_name:
+              description: Individual's first name
+              type:
+              - string
+              - 'null'
+              example: Sarah
+            last_name:
+              description: Individual's last name
+              type:
+              - string
+              - 'null'
+              example: Mason
+            organization:
+              description: Name of the company or organization within the company for whom the individual works
+              type:
+              - string
+              - 'null'
+              example: Example Corporation
+            locale:
+              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
+              type:
+              - string
+              - 'null'
+              example: en-US
+            title:
+              description: Individual's job title
+              type:
+              - string
+              - 'null'
+              example: Regional Manager
+            image:
+              description: URL pointing to the location of a profile image
+              type:
+              - string
+              - 'null'
+              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
+            location:
+              $ref: '#/components/schemas/ProfileLocation'
+            properties:
+              description: An object containing key/value pairs for any custom properties assigned to this profile
+              type:
+              - object
+              - 'null'
+              example:
+                pseudonym: Dr. Octopus
+        meta:
+          $ref: '#/components/schemas/OnsiteProfileMeta'
+      required:
+      - type
+      - attributes
     ReviewEnum:
       type: string
       enum:
       - review
-    MetricCreateQueryResourceObject:
+    SubscriptionParameters:
+      type: object
+      properties:
+        consent:
+          description: The Consent status to be set as part of the subscribe call. Currently supports "SUBSCRIBED".
+          type: string
+          example: SUBSCRIBED
+          enum:
+          - SUBSCRIBED
+        consented_at:
+          description: The timestamp of when the profile's consent was gathered. This should only be used when syncing over historical consent info to Klaviyo; if the `historical_import` flag is not included, providing any value for this field will raise an error.
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - consent
+    ReviewProductExternalId:
+      type: object
+      properties:
+        external_id:
+          description: The external ID of the product
+          type: string
+          example: '7549950034135'
+        integration_key:
+          description: The integration key of the product in lowercase
+          type: string
+          example: shopify
+          enum:
+          - shopify
+          - woocommerce
+      required:
+      - external_id
+      - integration_key
+    SubscriptionEnum:
+      type: string
+      enum:
+      - subscription
+    OnsiteSubscriptionCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/OnsiteSubscriptionCreateQueryResourceObject'
+      required:
+      - data
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    BackInStockSubscriptionEnum:
+      type: string
+      enum:
+      - back-in-stock-subscription
+    GeofenceResponseObjectResource:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/MetricEnum'
+          $ref: '#/components/schemas/GeofenceEnum'
+        id:
+          description: Primary key that uniquely identifies this geofence. Generated by the system.
+          type: string
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
         attributes:
           type: object
           properties:
-            name:
-              description: Name of the event. Must be less than 128 characters.
-              type: string
-              example: Viewed Product
-            service:
-              description: This is for advanced usage. For api requests, this should use the default, which is set to api.
-              type: string
-              nullable: true
+            latitude:
+              description: Latitude coordinate of the geofence center point
+              type: number
+              example: 40.7128
+            longitude:
+              description: Longitude coordinate of the geofence center point
+              type: number
+              example: -74.006
+            radius:
+              description: Radius in meters from the center point
+              type: number
+              example: 100
           required:
-          - name
+          - latitude
+          - longitude
+          - radius
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
       required:
       - type
+      - id
       - attributes
+      - links
     RejectReasonProfanity:
       type: object
       properties:
@@ -1216,88 +2385,73 @@ components:
           - profanity_or_inappropriate
       required:
       - reason
-    StatisticsDTO:
+    MetricEnum:
+      type: string
+      enum:
+      - metric
+    WhatsAppSubscriptionParameters:
       type: object
       properties:
-        average_rating:
-          description: The average rating
-          type: number
-          example: 4.5
-          nullable: true
-        total_reviews:
-          description: The total number of reviews
-          type: integer
-          example: 100
-          nullable: true
-        total_questions:
-          description: The total number of questions
-          type: integer
-          example: 50
-          nullable: true
-        total_ratings:
-          description: The total number of ratings
-          type: integer
-          example: 200
-          nullable: true
-        total_store_reviews:
-          description: The total number of store reviews
-          type: integer
-          example: 5000
-          nullable: true
-        average_store_rating:
-          description: The average rating of store reviews
-          type: number
-          example: 2
-          nullable: true
-    ReviewCreateDTO:
+        marketing:
+          description: The parameters to subscribe to marketing on the "WhatsApp" Channel.
+          $ref: '#/components/schemas/SubscriptionParameters'
+        transactional:
+          description: The parameters to subscribe to transactional messaging on the "WhatsApp" Channel.
+          $ref: '#/components/schemas/SubscriptionParameters'
+    PushTokenUnregisterEnum:
+      type: string
+      enum:
+      - push-token-unregister
+    SubscriptionChannels:
+      type: object
+      properties:
+        email:
+          description: The subscription parameters to subscribe to on the "EMAIL" Channel.
+          $ref: '#/components/schemas/EmailSubscriptionParameters'
+        sms:
+          description: The subscription parameters to subscribe to on the "SMS" Channel.
+          $ref: '#/components/schemas/SMSSubscriptionParameters'
+        whatsapp:
+          description: The subscription parameters to subscribe to on the "WhatsApp" Channel.
+          $ref: '#/components/schemas/WhatsAppSubscriptionParameters'
+        push:
+          description: The subscription parameters to subscribe to on the "Push" Channel.
+          $ref: '#/components/schemas/PushSubscriptionParameters'
+    OnsiteProfileMeta:
+      type: object
+      properties:
+        patch_properties:
+          description: Specify one or more patch operations to apply to existing property data
+          example:
+            append:
+              skus: '92538'
+          $ref: '#/components/schemas/ProfileMetaPatchProperties'
+        patch_identifiers:
+          description: Specify one or more patch operations to apply to existing identifier data. Currently only `email` is supported, and it is used to add or remove secondary email addresses on a profile.
+          example:
+            append:
+              email:
+              - example@test.com
+              - another@example.com
+          $ref: '#/components/schemas/PatchIdentifiers'
+    ClientBISSubscriptionCreateQuery:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/ReviewCreateDTOResourceObject'
+          $ref: '#/components/schemas/ClientBISSubscriptionCreateQueryResourceObject'
       required:
       - data
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    GetReviewValuesReportResponseCollection:
+    GetGeofenceResponseCollection:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ReviewValuesReportResponseObjectResource'
+            $ref: '#/components/schemas/GeofenceResponseObjectResource'
         links:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    ReviewProductDTO:
-      type: object
-      properties:
-        url:
-          description: The URL of the product
-          type: string
-          example: https://example.com/product/123
-        name:
-          description: The name of the product
-          type: string
-        image_url:
-          description: The URL of the product image
-          type: string
-          example: https://example.com/image.jpg
-          nullable: true
-        external_id:
-          description: The external ID of the product
-          type: string
-          example: '123456789'
-          nullable: true
-      required:
-      - url
-      - name
     RejectReasonUnrelated:
       type: object
       properties:
@@ -1308,124 +2462,45 @@ components:
           - unrelated
       required:
       - reason
-    OnsiteProfileCreateQueryResourceObject:
+    StatisticsDTO:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/ProfileEnum'
-        id:
-          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          nullable: true
-        attributes:
-          type: object
-          properties:
-            email:
-              description: Individual's email address
-              type: string
-              example: sarah.mason@klaviyo-demo.com
-              nullable: true
-            phone_number:
-              description: Individual's phone number in E.164 format
-              type: string
-              example: '+15005550006'
-              nullable: true
-            external_id:
-              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-            anonymous_id:
-              type: string
-              nullable: true
-            _kx:
-              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
-
-                profile by Klaviyo''s web tracking.
-
-
-                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
-              type: string
-              nullable: true
-            first_name:
-              description: Individual's first name
-              type: string
-              example: Sarah
-              nullable: true
-            last_name:
-              description: Individual's last name
-              type: string
-              example: Mason
-              nullable: true
-            organization:
-              description: Name of the company or organization within the company for whom the individual works
-              type: string
-              example: Example Corporation
-              nullable: true
-            locale:
-              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
-              example: en-US
-              nullable: true
-            title:
-              description: Individual's job title
-              type: string
-              example: Regional Manager
-              nullable: true
-            image:
-              description: URL pointing to the location of a profile image
-              type: string
-              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
-            location:
-              $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
-            properties:
-              description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
-              example:
-                pseudonym: Dr. Octopus
-              nullable: true
-        meta:
-          $ref: '#/components/schemas/OnsiteProfileMeta'
-          nullable: true
-      required:
-      - type
-      - attributes
-    ProfileMetaPatchProperties:
-      type: object
-      properties:
-        append:
-          description: Append a simple value or values to this property array
-          type: object
-          example:
-            skus: '92538'
-          nullable: true
-        unappend:
-          description: Remove a simple value or values from this property array
-          type: object
-          example:
-            skus: '40571'
-          nullable: true
-        unset:
-          description: Remove a key or keys (and their values) completely from properties
-          example: skus
-          nullable: true
-          oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
-    OnsiteProfileCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/OnsiteProfileCreateQueryResourceObject'
-      required:
-      - data
-    PushTokenEnum:
-      type: string
-      enum:
-      - push-token
+        average_rating:
+          description: The average rating
+          type:
+          - number
+          - 'null'
+          example: 4.5
+        total_reviews:
+          description: The total number of reviews
+          type:
+          - integer
+          - 'null'
+          example: 100
+        total_questions:
+          description: The total number of questions
+          type:
+          - integer
+          - 'null'
+          example: 50
+        total_ratings:
+          description: The total number of ratings
+          type:
+          - integer
+          - 'null'
+          example: 200
+        total_store_reviews:
+          description: The total number of store reviews
+          type:
+          - integer
+          - 'null'
+          example: 5000
+        average_store_rating:
+          description: The average rating of store reviews
+          type:
+          - number
+          - 'null'
+          example: 2
     ReviewPublicReply:
       type: object
       properties:
@@ -1446,32 +2521,23 @@ components:
       - content
       - author
       - updated
-    ReviewProductExternalId:
+    ReviewStatusPending:
       type: object
       properties:
-        external_id:
-          description: The external ID of the product
+        value:
+          description: Pending review status
           type: string
-          example: '7549950034135'
-        integration_key:
-          description: The integration key of the product in lowercase
-          type: string
-          example: shopify
           enum:
-          - shopify
-          - woocommerce
+          - pending
       required:
-      - external_id
-      - integration_key
-    GroupingProduct:
+      - value
+    PatchIdentifiers:
       type: object
       properties:
-        product_id:
-          description: The ID of the product
-          type: string
-          example: '12345'
-      required:
-      - product_id
+        append:
+          type: object
+        unappend:
+          type: object
     BaseEventCreateQueryBulkEntryResourceObject:
       type: object
       properties:
@@ -1506,29 +2572,33 @@ components:
                 The time is truncated to the second. The time must be after the year 2000 and can only
 
                 be up to 1 year in the future.'
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T00:00:00+00:00'
-              nullable: true
             value:
               description: A numeric, monetary value to associate with this event. For example, the dollar amount of a purchase.
-              type: number
+              type:
+              - number
+              - 'null'
               example: 9.99
-              nullable: true
             value_currency:
               description: The ISO 4217 currency code of the value associated with the event.
-              type: string
+              type:
+              - string
+              - 'null'
               example: USD
-              nullable: true
             backfill:
               description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
 
                 historical events so existing flow definitions do not re-fire on events that already
 
                 fired in the past.'
-              type: boolean
+              type:
+              - boolean
+              - 'null'
               default: false
-              nullable: true
             metric:
               type: object
               properties:
@@ -1544,14 +2614,140 @@ components:
                 present, this field will use the time to the second. Using the default, this limits only one
 
                 event per profile per second.'
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
           required:
           - properties
           - metric
       required:
       - type
       - attributes
+    EventProfileCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ProfileEnum'
+        id:
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          type:
+          - string
+          - 'null'
+        attributes:
+          type: object
+          properties:
+            email:
+              description: Individual's email address
+              type:
+              - string
+              - 'null'
+              example: sarah.mason@klaviyo-demo.com
+            phone_number:
+              description: Individual's phone number in E.164 format
+              type:
+              - string
+              - 'null'
+              example: '+15005550006'
+            external_id:
+              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
+              type:
+              - string
+              - 'null'
+            anonymous_id:
+              type:
+              - string
+              - 'null'
+            _kx:
+              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
+
+                profile by Klaviyo''s web tracking.
+
+
+                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
+              type:
+              - string
+              - 'null'
+            first_name:
+              description: Individual's first name
+              type:
+              - string
+              - 'null'
+              example: Sarah
+            last_name:
+              description: Individual's last name
+              type:
+              - string
+              - 'null'
+              example: Mason
+            organization:
+              description: Name of the company or organization within the company for whom the individual works
+              type:
+              - string
+              - 'null'
+              example: Example Corporation
+            locale:
+              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
+              type:
+              - string
+              - 'null'
+              example: en-US
+            title:
+              description: Individual's job title
+              type:
+              - string
+              - 'null'
+              example: Regional Manager
+            image:
+              description: URL pointing to the location of a profile image
+              type:
+              - string
+              - 'null'
+              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
+            location:
+              $ref: '#/components/schemas/ProfileLocation'
+            properties:
+              description: An object containing key/value pairs for any custom properties assigned to this profile
+              type:
+              - object
+              - 'null'
+              example:
+                pseudonym: Dr. Octopus
+            meta:
+              $ref: '#/components/schemas/OnsiteProfileMeta'
+      required:
+      - type
+      - attributes
+    ProfileEnum:
+      type: string
+      enum:
+      - profile
+    PushSubscriptionParameters:
+      type: object
+      properties:
+        marketing:
+          description: The parameters to subscribe to marketing on the "Push" channel.
+          $ref: '#/components/schemas/SubscriptionParameters'
+        tokens:
+          description: A list of push tokens to register for this profile.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PushTokenEntry'
+        anonymous_id:
+          description: An anonymous identifier for push-only profiles with no email/phone.
+          type:
+          - string
+          - 'null'
+      required:
+      - marketing
+    PushTokenUnregisterQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PushTokenUnregisterQueryResourceObject'
+      required:
+      - data
     ProfileMeta:
       type: object
       properties:
@@ -1561,7 +2757,6 @@ components:
             append:
               skus: '92538'
           $ref: '#/components/schemas/ProfileMetaPatchProperties'
-          nullable: true
         patch_identifiers:
           description: Specify one or more patch operations to apply to existing identifier data. Currently only `email` is supported, and it is used to add or remove secondary email addresses on a profile.
           example:
@@ -1570,480 +2765,32 @@ components:
               - example@test.com
               - another@example.com
           $ref: '#/components/schemas/PatchIdentifiers'
-          nullable: true
-    PushTokenEntry:
-      type: object
-      properties:
-        token:
-          description: A push token from APNS or FCM.
-          type: string
-          example: 1234567890abcdef
-        platform:
-          description: The platform on which the push token was created. Either "ios" or "android".
-          type: string
-          enum:
-          - android
-          - ios
-        vendor:
-          description: The vendor of the push token. Either "apns" or "fcm".
-          type: string
-          example: apns
-          enum:
-          - apns
-          - fcm
-        enablement_status:
-          description: The enablement status for the push token.
-          type: string
-          example: AUTHORIZED
-          enum:
-          - AUTHORIZED
-          - DENIED
-          - NOT_DETERMINED
-          - PROVISIONAL
-          - UNAUTHORIZED
-          nullable: true
-        background:
-          description: The background state of the push token.
-          type: string
-          example: AVAILABLE
-          enum:
-          - AVAILABLE
-          - DENIED
-          - RESTRICTED
-          nullable: true
-        device_metadata:
-          description: Metadata about the device that created the push token.
-          $ref: '#/components/schemas/PushTokenDeviceMetadata'
-          nullable: true
-      required:
-      - token
-      - platform
-      - vendor
-    ClientReviewResponseDTOObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ReviewEnum'
-        id:
-          description: The ID of the review
-          type: string
-          example: 925e385b52fb405715f3616c337cc65c
-        attributes:
-          type: object
-          properties:
-            status:
-              description: The status of this review
-              nullable: true
-              oneOf:
-              - $ref: '#/components/schemas/ReviewStatusRejected'
-              - $ref: '#/components/schemas/ReviewStatusFeatured'
-              - $ref: '#/components/schemas/ReviewStatusPublished'
-              - $ref: '#/components/schemas/ReviewStatusUnpublished'
-              - $ref: '#/components/schemas/ReviewStatusPending'
-            verified:
-              description: The verification status of this review (aka whether or not we have confirmation that the customer bought the product)
-              type: boolean
-              example: true
-            review_type:
-              description: The type of this review — either a review, question, or rating
-              type: string
-              example: review
-              enum:
-              - question
-              - rating
-              - review
-              - store
-            created:
-              description: The datetime when this review was created
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            updated:
-              description: The datetime when this review was updated
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            images:
-              description: The list of images submitted with this review (represented as a list of urls). If there are no images, this field will be an empty list.
-              type: array
-              items:
-                type: string
-              example:
-              - https://example.com/image1.jpg
-              - https://example.com/image2.jpg
-            product:
-              description: The product associated with this review
-              $ref: '#/components/schemas/ReviewProductDTO'
-              nullable: true
-            rating:
-              description: The rating of this review on a scale from 1-5. If the review type is "question", this field will be null.
-              type: integer
-              example: 2
-              nullable: true
-            author:
-              description: The author of this review
-              type: string
-              example: John D
-              nullable: true
-            content:
-              description: The content of this review
-              example: Great product! I love the smell. I will be buying again.
-              nullable: true
-              type: string
-            title:
-              description: The title of this review
-              type: string
-              example: Smells great, would recommend
-              nullable: true
-            smart_quote:
-              description: A quote from this review that summarizes the content
-              type: string
-              example: I love the smell
-              nullable: true
-            public_reply:
-              description: The public reply to this review (if one exists)
-              $ref: '#/components/schemas/ReviewPublicReply'
-              nullable: true
-          required:
-          - verified
-          - review_type
-          - created
-          - updated
-          - images
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    BackInStockSubscriptionEnum:
-      type: string
-      enum:
-      - back-in-stock-subscription
-    ReviewStatusPublished:
-      type: object
-      properties:
-        value:
-          description: Published review status
-          type: string
-          enum:
-          - published
-      required:
-      - value
-    RejectReasonPrivateInformation:
-      type: object
-      properties:
-        reason:
-          description: rejected due to private information
-          type: string
-          enum:
-          - private_information
-      required:
-      - reason
-    SMSSubscriptionParameters:
-      type: object
-      properties:
-        marketing:
-          description: The parameters to subscribe to marketing on the "SMS" Channel.
-          $ref: '#/components/schemas/SubscriptionParameters'
-          nullable: true
-        transactional:
-          description: The parameters to subscribe to transactional messaging on the "SMS" Channel.
-          $ref: '#/components/schemas/SubscriptionParameters'
-          nullable: true
-    ReviewValueReportGrouping:
-      type: object
-      properties:
-        groupings:
-          description: Grouping details, either by product or company
-          oneOf:
-          - $ref: '#/components/schemas/GroupingProduct'
-          - $ref: '#/components/schemas/GroupingCompany'
-        statistics:
-          description: Statistics related to the grouping
-          example:
-            average_rating: 4.5
-            total_reviews: 100
-            total_questions: 50
-            total_ratings: 200
-            total_store_reviews: 5000
-            average_store_rating: 2
-          $ref: '#/components/schemas/StatisticsDTO'
-      required:
-      - groupings
-      - statistics
-    GetGeofenceResponseCollection:
+    EventsBulkCreateQuery:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeofenceResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
+          $ref: '#/components/schemas/EventsBulkCreateQueryResourceObject'
       required:
       - data
-    CatalogVariantEnum:
-      type: string
-      enum:
-      - catalog-variant
-    PushTokenUnregisterEnum:
-      type: string
-      enum:
-      - push-token-unregister
-    EventsBulkCreateQueryResourceObject:
+    MetricCreateQueryResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/EventBulkCreateEnum'
+          $ref: '#/components/schemas/MetricEnum'
         attributes:
           type: object
           properties:
-            backfill:
-              description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
-
-                historical events so existing flow definitions do not re-fire on events that already
-
-                fired in the past.'
-              type: boolean
-              default: false
-              nullable: true
-            profile:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/OnsiteProfileCreateQueryResourceObject'
-              required:
-              - data
-            events:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/BaseEventCreateQueryBulkEntryResourceObject'
-              required:
-              - data
+            name:
+              description: Name of the event. Must be less than 128 characters.
+              type: string
+              example: Viewed Product
+            service:
+              description: This is for advanced usage. For api requests, this should use the default, which is set to api.
+              type:
+              - string
+              - 'null'
           required:
-          - profile
-          - events
-      required:
-      - type
-      - attributes
-    SubscriptionEnum:
-      type: string
-      enum:
-      - subscription
-    ProfileUpsertQueryWithSubscriptionsResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ProfileEnum'
-        id:
-          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          nullable: true
-        attributes:
-          type: object
-          properties:
-            email:
-              description: Individual's email address
-              type: string
-              example: sarah.mason@klaviyo-demo.com
-              nullable: true
-            phone_number:
-              description: Individual's phone number in E.164 format
-              type: string
-              example: '+15005550006'
-              nullable: true
-            external_id:
-              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-            _kx:
-              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
-
-                profile by Klaviyo''s web tracking.
-
-
-                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
-              type: string
-              nullable: true
-            first_name:
-              description: Individual's first name
-              type: string
-              example: Sarah
-              nullable: true
-            last_name:
-              description: Individual's last name
-              type: string
-              example: Mason
-              nullable: true
-            organization:
-              description: Name of the company or organization within the company for whom the individual works
-              type: string
-              example: Example Corporation
-              nullable: true
-            locale:
-              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
-              example: en-US
-              nullable: true
-            title:
-              description: Individual's job title
-              type: string
-              example: Regional Manager
-              nullable: true
-            image:
-              description: URL pointing to the location of a profile image
-              type: string
-              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
-            location:
-              $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
-            properties:
-              description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
-              example:
-                pseudonym: Dr. Octopus
-              nullable: true
-            meta:
-              $ref: '#/components/schemas/ProfileMeta'
-              nullable: true
-            subscriptions:
-              $ref: '#/components/schemas/SubscriptionChannels'
-              nullable: true
-      required:
-      - type
-      - attributes
-    RejectReasonMisleading:
-      type: object
-      properties:
-        reason:
-          description: rejected due to false or misleading content
-          type: string
-          enum:
-          - false_or_misleading
-      required:
-      - reason
-    PushSubscriptionParameters:
-      type: object
-      properties:
-        marketing:
-          description: The parameters to subscribe to marketing on the "Push" channel.
-          $ref: '#/components/schemas/SubscriptionParameters'
-        tokens:
-          description: A list of push tokens to register for this profile.
-          type: array
-          items:
-            $ref: '#/components/schemas/PushTokenEntry'
-          nullable: true
-        anonymous_id:
-          description: An anonymous identifier for push-only profiles with no email/phone.
-          type: string
-          nullable: true
-      required:
-      - marketing
-    ReviewValuesReportEnum:
-      type: string
-      enum:
-      - review-values-report
-    GeofenceEnum:
-      type: string
-      enum:
-      - geofence
-    OnsiteProfileMeta:
-      type: object
-      properties:
-        patch_properties:
-          description: Specify one or more patch operations to apply to existing property data
-          example:
-            append:
-              skus: '92538'
-          $ref: '#/components/schemas/ProfileMetaPatchProperties'
-          nullable: true
-        patch_identifiers:
-          description: Specify one or more patch operations to apply to existing identifier data. Currently only `email` is supported, and it is used to add or remove secondary email addresses on a profile.
-          example:
-            append:
-              email:
-              - example@test.com
-              - another@example.com
-          $ref: '#/components/schemas/PatchIdentifiers'
-          nullable: true
-    PatchIdentifiers:
-      type: object
-      properties:
-        append:
-          type: object
-        unappend:
-          type: object
-    PushTokenCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/PushTokenEnum'
-        attributes:
-          type: object
-          properties:
-            token:
-              description: A push token from APNS or FCM.
-              type: string
-              example: '1234567890'
-            platform:
-              description: The platform on which the push token was created.
-              type: string
-              enum:
-              - android
-              - ios
-            enablement_status:
-              description: This is the enablement status for the individual push token.
-              type: string
-              example: AUTHORIZED
-              default: AUTHORIZED
-              enum:
-              - AUTHORIZED
-              - DENIED
-              - NOT_DETERMINED
-              - PROVISIONAL
-              - UNAUTHORIZED
-              nullable: true
-            vendor:
-              description: The vendor of the push token.
-              type: string
-              example: apns
-              enum:
-              - apns
-              - fcm
-            background:
-              description: The background state of the push token.
-              type: string
-              example: AVAILABLE
-              default: AVAILABLE
-              enum:
-              - AVAILABLE
-              - DENIED
-              - RESTRICTED
-              nullable: true
-            device_metadata:
-              description: Metadata about the device that created the push token
-              $ref: '#/components/schemas/DeviceMetadata'
-              nullable: true
-            profile:
-              description: The profile associated with the push token to create/update
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/PushProfileUpsertQueryResourceObject'
-              required:
-              - data
-          required:
-          - token
-          - platform
-          - vendor
-          - profile
+          - name
       required:
       - type
       - attributes
@@ -2067,12 +2814,13 @@ components:
               - ios
             vendor:
               description: The vendor of the push token.
-              type: string
+              type:
+              - string
+              - 'null'
               example: apns
               enum:
               - apns
               - fcm
-              nullable: true
             profile:
               description: The profile associated with the push token to create/update
               type: object
@@ -2088,669 +2836,6 @@ components:
       required:
       - type
       - attributes
-    SubscriptionChannels:
-      type: object
-      properties:
-        email:
-          description: The subscription parameters to subscribe to on the "EMAIL" Channel.
-          $ref: '#/components/schemas/EmailSubscriptionParameters'
-          nullable: true
-        sms:
-          description: The subscription parameters to subscribe to on the "SMS" Channel.
-          $ref: '#/components/schemas/SMSSubscriptionParameters'
-          nullable: true
-        whatsapp:
-          description: The subscription parameters to subscribe to on the "WhatsApp" Channel.
-          $ref: '#/components/schemas/WhatsAppSubscriptionParameters'
-          nullable: true
-        push:
-          description: The subscription parameters to subscribe to on the "Push" Channel.
-          $ref: '#/components/schemas/PushSubscriptionParameters'
-          nullable: true
-    EventCreateQueryV2:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/EventCreateQueryV2ResourceObject'
-      required:
-      - data
-    MetricEnum:
-      type: string
-      enum:
-      - metric
-    EventEnum:
-      type: string
-      enum:
-      - event
-    CustomQuestionDTO:
-      type: object
-      properties:
-        id:
-          description: The ID of the custom question
-          type: string
-          example: 9ff0d32e-0edb-4513-a6a5-12814a6cb755
-        answers:
-          description: The answers to the custom question
-          type: array
-          items:
-            type: string
-          example:
-          - M
-          - L
-      required:
-      - id
-      - answers
-    ReviewStatusPending:
-      type: object
-      properties:
-        value:
-          description: Pending review status
-          type: string
-          enum:
-          - pending
-      required:
-      - value
-    ReviewStatusUnpublished:
-      type: object
-      properties:
-        value:
-          description: Unpublished review status
-          type: string
-          enum:
-          - unpublished
-      required:
-      - value
-    ReviewCreateDTOResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ReviewEnum'
-        attributes:
-          type: object
-          properties:
-            review_type:
-              description: The type of this review -- either a review or a question
-              type: string
-              example: review
-              enum:
-              - question
-              - rating
-              - review
-              - store
-            email:
-              description: The email of the author of this review
-              type: string
-              example: random.123@gmail.com
-            author:
-              description: The author of this review
-              type: string
-              example: John Doe
-            content:
-              description: The content of this review
-              example: This was an absolutely amazing t-shirt. I loved the color and the fit.
-              type: string
-            incentive_type:
-              description: The incentive type for the review
-              type: string
-              enum:
-              - coupon_or_discount
-              - employee_review
-              - free_product
-              - loyalty_points
-              - other
-              - paid_promotion
-              - sweepstakes_entry
-              nullable: true
-            product:
-              description: The product associated with this review
-              $ref: '#/components/schemas/ReviewProductExternalId'
-              nullable: true
-            rating:
-              description: The rating of this review on a scale from 1-5. If the review type is "question", this field will be null.
-              type: integer
-              example: 2
-              enum:
-              - 1
-              - 2
-              - 3
-              - 4
-              - 5
-              nullable: true
-            title:
-              description: The title of this review
-              type: string
-              example: Great product!
-              nullable: true
-            custom_questions:
-              description: Custom question and answers for the review
-              type: array
-              items:
-                $ref: '#/components/schemas/CustomQuestionDTO'
-              example:
-              - id: 9ff0d32e-0edb-4513-a6a5-12814a6cb755
-                answers:
-                - M
-                - L
-              nullable: true
-            images:
-              description: The list of images submitted with this review (represented as a list of urls or base-64 encoded data-uri). If there are no images, this field will be an empty list.
-              type: array
-              items:
-                type: string
-              example:
-              - https://example.com/image1.jpg
-              - https://example.com/image2.jpg
-              nullable: true
-          required:
-          - review_type
-          - email
-          - author
-          - content
-        relationships:
-          type: object
-          properties:
-            order:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/OrderEnum'
-                    id:
-                      description: The Order ID related to the review
-                      type: string
-                      example: '42439497119686'
-                  required:
-                  - type
-                  - id
-      required:
-      - type
-      - attributes
-    PushTokenCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/PushTokenCreateQueryResourceObject'
-      required:
-      - data
-    ProfileLocation:
-      type: object
-      properties:
-        address1:
-          description: First line of street address
-          type: string
-          example: 89 E 42nd St
-          nullable: true
-        address2:
-          description: Second line of street address
-          type: string
-          example: 1st floor
-          nullable: true
-        city:
-          description: City name
-          type: string
-          example: New York
-          nullable: true
-        country:
-          description: Country name
-          type: string
-          example: United States
-          nullable: true
-        latitude:
-          description: Latitude coordinate. We recommend providing a precision of four decimal places.
-          example: '40.7128'
-          nullable: true
-          oneOf:
-          - type: string
-          - type: number
-        longitude:
-          description: Longitude coordinate. We recommend providing a precision of four decimal places.
-          example: '74.0060'
-          nullable: true
-          oneOf:
-          - type: string
-          - type: number
-        region:
-          description: Region within a country, such as state or province
-          type: string
-          example: NY
-          nullable: true
-        zip:
-          description: Zip code
-          type: string
-          example: '10017'
-          nullable: true
-        timezone:
-          description: Time zone name. We recommend using time zones from the IANA Time Zone Database.
-          type: string
-          example: America/New_York
-          nullable: true
-        ip:
-          description: IP Address
-          type: string
-          example: 127.0.0.1
-          nullable: true
-    ProfileIdentifierDTOResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ProfileEnum'
-        id:
-          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          example: 01GDDKASAP8TKDDA2GRZDSVP4H
-          nullable: true
-        attributes:
-          type: object
-          properties:
-            email:
-              description: Individual's email address
-              type: string
-              example: sarah.mason@klaviyo-demo.com
-              nullable: true
-            phone_number:
-              description: Individual's phone number in E.164 format
-              type: string
-              example: '+15005550006'
-              nullable: true
-            external_id:
-              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-      required:
-      - type
-      - attributes
-    GroupingCompany:
-      type: object
-      properties:
-        company_id:
-          description: The ID of the company
-          type: string
-          example: '67890'
-      required:
-      - company_id
-    PushTokenDeviceMetadata:
-      type: object
-      properties:
-        device_id:
-          description: Relatively stable ID for the device. Will update on app uninstall and reinstall
-          type: string
-          example: '1234567890'
-          nullable: true
-        klaviyo_sdk:
-          description: The name of the SDK used to create the push token.
-          type: string
-          example: swift
-          enum:
-          - android
-          - flutter
-          - flutter_community
-          - react_native
-          - swift
-          nullable: true
-        sdk_version:
-          description: The version of the SDK used to create the push token
-          type: string
-          example: 1.0.0
-          nullable: true
-        device_model:
-          description: The model of the device
-          type: string
-          example: iPhone12,1
-          nullable: true
-        os_name:
-          description: The name of the operating system on the device.
-          type: string
-          example: ios
-          enum:
-          - android
-          - ios
-          - ipados
-          - macos
-          - tvos
-          nullable: true
-        os_version:
-          description: The version of the operating system on the device
-          type: string
-          example: '14.0'
-          nullable: true
-        manufacturer:
-          description: The manufacturer of the device
-          type: string
-          example: Apple
-          nullable: true
-        app_name:
-          description: The name of the app that created the push token
-          type: string
-          example: Klaviyo
-          nullable: true
-        app_version:
-          description: The version of the app that created the push token
-          type: string
-          example: 1.0.0
-          nullable: true
-        app_build:
-          description: The build of the app that created the push token
-          type: string
-          example: '1'
-          nullable: true
-        app_id:
-          description: The ID of the app that created the push token
-          type: string
-          example: com.klaviyo.app
-          nullable: true
-        environment:
-          description: The environment in which the push token was created
-          type: string
-          example: release
-          enum:
-          - debug
-          - release
-          nullable: true
-    ReviewStatusRejected:
-      type: object
-      properties:
-        value:
-          description: Rejected review status
-          type: string
-          enum:
-          - rejected
-        rejection_reason:
-          description: The updated status intended for the review with this ID
-          oneOf:
-          - $ref: '#/components/schemas/RejectReasonOther'
-          - $ref: '#/components/schemas/RejectReasonFake'
-          - $ref: '#/components/schemas/RejectReasonMisleading'
-          - $ref: '#/components/schemas/RejectReasonPrivateInformation'
-          - $ref: '#/components/schemas/RejectReasonProfanity'
-          - $ref: '#/components/schemas/RejectReasonUnrelated'
-      required:
-      - value
-      - rejection_reason
-    PushTokenUnregisterQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/PushTokenUnregisterQueryResourceObject'
-      required:
-      - data
-    PushProfileUpsertQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ProfileEnum'
-        id:
-          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          nullable: true
-        attributes:
-          type: object
-          properties:
-            phone_number:
-              description: Individual's phone number in E.164 format
-              type: string
-              example: '+15005550006'
-              nullable: true
-            external_id:
-              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-            _kx:
-              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
-
-                profile by Klaviyo''s web tracking.
-
-
-                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
-              type: string
-              nullable: true
-            first_name:
-              description: Individual's first name
-              type: string
-              example: Sarah
-              nullable: true
-            last_name:
-              description: Individual's last name
-              type: string
-              example: Mason
-              nullable: true
-            organization:
-              description: Name of the company or organization within the company for whom the individual works
-              type: string
-              example: Example Corporation
-              nullable: true
-            locale:
-              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
-              example: en-US
-              nullable: true
-            title:
-              description: Individual's job title
-              type: string
-              example: Regional Manager
-              nullable: true
-            image:
-              description: URL pointing to the location of a profile image
-              type: string
-              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
-            location:
-              $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
-            properties:
-              description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
-              example:
-                pseudonym: Dr. Octopus
-              nullable: true
-            meta:
-              $ref: '#/components/schemas/ProfileMeta'
-              nullable: true
-            email:
-              description: Individual's email address
-              type: string
-              example: sarah.mason@klaviyo-demo.com
-              nullable: true
-      required:
-      - type
-      - attributes
-    DeviceMetadata:
-      type: object
-      properties:
-        device_id:
-          description: Relatively stable ID for the device. Will update on app uninstall and reinstall
-          type: string
-          example: '1234567890'
-          nullable: true
-        klaviyo_sdk:
-          description: The name of the SDK used to create the push token.
-          type: string
-          example: swift
-          enum:
-          - android
-          - flutter
-          - flutter_community
-          - react_native
-          - swift
-          nullable: true
-        sdk_version:
-          description: The version of the SDK used to create the push token
-          type: string
-          example: 1.0.0
-          nullable: true
-        device_model:
-          description: The model of the device
-          type: string
-          example: iPhone12,1
-          nullable: true
-        os_name:
-          description: The name of the operating system on the device.
-          type: string
-          example: ios
-          enum:
-          - android
-          - ios
-          - ipados
-          - macos
-          - tvos
-          nullable: true
-        os_version:
-          description: The version of the operating system on the device
-          type: string
-          example: '14.0'
-          nullable: true
-        manufacturer:
-          description: The manufacturer of the device
-          type: string
-          example: Apple
-          nullable: true
-        app_name:
-          description: The name of the app that created the push token
-          type: string
-          example: Klaviyo
-          nullable: true
-        app_version:
-          description: The version of the app that created the push token
-          type: string
-          example: 1.0.0
-          nullable: true
-        app_build:
-          description: The build of the app that created the push token
-          type: string
-          example: '1'
-          nullable: true
-        app_id:
-          description: The ID of the app that created the push token
-          type: string
-          example: com.klaviyo.app
-          nullable: true
-        environment:
-          description: The environment in which the push token was created
-          type: string
-          example: release
-          enum:
-          - debug
-          - release
-          nullable: true
-    OrderEnum:
-      type: string
-      enum:
-      - order
-    EventCreateQueryV2ResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/EventEnum'
-        attributes:
-          type: object
-          properties:
-            properties:
-              description: 'Properties of this event (must not exceed 400 properties). The size of the event payload must not exceed 5 MB,
-
-                and each string cannot be larger than 100 KB. For a full list of data limits on event payloads,
-
-                see [Limitations](https://developers.klaviyo.com/en/reference/events_api_overview#limitations).
-
-
-                Note any top-level property that is not an object can be
-
-                used to create segments. The `$extra` property records any
-
-                non-segmentable values that can be referenced later, e.g., HTML templates are
-
-                useful on a segment but are not used to create a segment.'
-              type: object
-              example:
-                Brand: Kids Book
-                ProductID: 1111
-                ProductName: Winnie the Pooh
-            time:
-              description: 'When this event occurred. By default, the time the request was received will be used.
-
-                The time is truncated to the second. The time must be after the year 2000 and can only
-
-                be up to 1 year in the future.'
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            value:
-              description: A numeric, monetary value to associate with this event. For example, the dollar amount of a purchase.
-              type: number
-              example: 9.99
-              nullable: true
-            value_currency:
-              description: The ISO 4217 currency code of the value associated with the event.
-              type: string
-              example: USD
-              nullable: true
-            unique_id:
-              description: 'A unique identifier for an event. If the unique_id is repeated for the same
-
-                profile and metric, only the first processed event will be recorded. If this is not
-
-                present, this will use the time to the second. Using the default, this limits only one
-
-                event per profile per second.'
-              type: string
-              nullable: true
-            backfill:
-              description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
-
-                historical events so existing flow definitions do not re-fire on events that already
-
-                fired in the past.'
-              type: boolean
-              default: false
-              nullable: true
-            metric:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/MetricCreateQueryResourceObject'
-              required:
-              - data
-            profile:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/EventProfileCreateQueryResourceObject'
-              required:
-              - data
-          required:
-          - properties
-          - metric
-          - profile
-      required:
-      - type
-      - attributes
-    OnsiteSubscriptionCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/OnsiteSubscriptionCreateQueryResourceObject'
-      required:
-      - data
-    WhatsAppSubscriptionParameters:
-      type: object
-      properties:
-        marketing:
-          description: The parameters to subscribe to marketing on the "WhatsApp" Channel.
-          $ref: '#/components/schemas/SubscriptionParameters'
-          nullable: true
-        transactional:
-          description: The parameters to subscribe to transactional messaging on the "WhatsApp" Channel.
-          $ref: '#/components/schemas/SubscriptionParameters'
-          nullable: true
-    EmailSubscriptionParameters:
-      type: object
-      properties:
-        marketing:
-          description: The parameters to subscribe to on the "EMAIL" Channel. Currently supports "MARKETING".
-          $ref: '#/components/schemas/SubscriptionParameters'
-      required:
-      - marketing
     GetClientReviewResponseDTOCollection:
       type: object
       properties:
@@ -2762,65 +2847,165 @@ components:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    SubscriptionParameters:
+    GetReviewValuesReportResponseCollection:
       type: object
       properties:
-        consent:
-          description: The Consent status to be set as part of the subscribe call. Currently supports "SUBSCRIBED".
-          type: string
-          example: SUBSCRIBED
-          enum:
-          - SUBSCRIBED
-        consented_at:
-          description: The timestamp of when the profile's consent was gathered. This should only be used when syncing over historical consent info to Klaviyo; if the `historical_import` flag is not included, providing any value for this field will raise an error.
-          type: string
-          format: date-time
-          nullable: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReviewValuesReportResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
       required:
-      - consent
-    CollectionLinks:
+      - data
+    DeviceMetadata:
+      type: object
+      properties:
+        device_id:
+          description: Relatively stable ID for the device. Will update on app uninstall and reinstall
+          type:
+          - string
+          - 'null'
+          example: '1234567890'
+        klaviyo_sdk:
+          description: The name of the SDK used to create the push token.
+          type:
+          - string
+          - 'null'
+          example: swift
+          enum:
+          - android
+          - flutter
+          - flutter_community
+          - react_native
+          - swift
+        sdk_version:
+          description: The version of the SDK used to create the push token
+          type:
+          - string
+          - 'null'
+          example: 1.0.0
+        device_model:
+          description: The model of the device
+          type:
+          - string
+          - 'null'
+          example: iPhone12,1
+        os_name:
+          description: The name of the operating system on the device.
+          type:
+          - string
+          - 'null'
+          example: ios
+          enum:
+          - android
+          - ios
+          - ipados
+          - macos
+          - tvos
+        os_version:
+          description: The version of the operating system on the device
+          type:
+          - string
+          - 'null'
+          example: '14.0'
+        manufacturer:
+          description: The manufacturer of the device
+          type:
+          - string
+          - 'null'
+          example: Apple
+        app_name:
+          description: The name of the app that created the push token
+          type:
+          - string
+          - 'null'
+          example: Klaviyo
+        app_version:
+          description: The version of the app that created the push token
+          type:
+          - string
+          - 'null'
+          example: 1.0.0
+        app_build:
+          description: The build of the app that created the push token
+          type:
+          - string
+          - 'null'
+          example: '1'
+        app_id:
+          description: The ID of the app that created the push token
+          type:
+          - string
+          - 'null'
+          example: com.klaviyo.app
+        environment:
+          description: The environment in which the push token was created
+          type:
+          - string
+          - 'null'
+          example: release
+          enum:
+          - debug
+          - release
+    EventsBulkCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EventBulkCreateEnum'
+        attributes:
+          type: object
+          properties:
+            backfill:
+              description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
+
+                historical events so existing flow definitions do not re-fire on events that already
+
+                fired in the past.'
+              type:
+              - boolean
+              - 'null'
+              default: false
+            profile:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/OnsiteProfileCreateQueryResourceObject'
+              required:
+              - data
+            events:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BaseEventCreateQueryBulkEntryResourceObject'
+              required:
+              - data
+          required:
+          - profile
+          - events
+      required:
+      - type
+      - attributes
+    ObjectLinks:
       type: object
       properties:
         self:
           type: string
           format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
       required:
       - self
-    ReviewStatusFeatured:
+    PushTokenCreateQuery:
       type: object
       properties:
-        value:
-          description: Featured review status
-          type: string
-          enum:
-          - featured
+        data:
+          $ref: '#/components/schemas/PushTokenCreateQueryResourceObject'
       required:
-      - value
-    RejectReasonFake:
-      type: object
-      properties:
-        reason:
-          description: rejected due to fake content
-          type: string
-          enum:
-          - fake
-      required:
-      - reason
+      - data
   responses:
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
@@ -2853,8 +3038,8 @@ components:
                           type: string
             required:
             - errors
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:

@@ -1,29 +1,7 @@
 {
   "provider": "klaviyo",
   "sources": [
-    "klaviyo-accounts-api-openapi.yml",
-    "klaviyo-campaigns-api-openapi.yml",
-    "klaviyo-catalogs-api-openapi.yml",
-    "klaviyo-client-api-openapi.yml",
-    "klaviyo-conversations-api-openapi.yml",
-    "klaviyo-coupons-api-openapi.yml",
-    "klaviyo-custom-objects-api-openapi.yml",
-    "klaviyo-data-privacy-api-openapi.yml",
-    "klaviyo-events-api-openapi.yml",
-    "klaviyo-flows-api-openapi.yml",
-    "klaviyo-forms-api-openapi.yml",
-    "klaviyo-images-api-openapi.yml",
-    "klaviyo-lists-api-openapi.yml",
-    "klaviyo-metrics-api-openapi.yml",
-    "klaviyo-profiles-api-openapi.yml",
-    "klaviyo-reporting-api-openapi.yml",
-    "klaviyo-reviews-api-openapi.yml",
-    "klaviyo-segments-api-openapi.yml",
-    "klaviyo-tags-api-openapi.yml",
-    "klaviyo-templates-api-openapi.yml",
-    "klaviyo-tracking-settings-api-openapi.yml",
-    "klaviyo-web-feeds-api-openapi.yml",
-    "klaviyo-webhooks-api-openapi.yml"
+    "_original/klaviyo-openapi.json"
   ],
   "outputs": [
     "klaviyo-accounts-api-openapi.yml",
@@ -53,6 +31,34 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "klaviyo-openapi.json: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "klaviyo-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-catalogs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-client-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-conversations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-coupons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-custom-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-data-privacy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-flows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-forms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-lists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-profiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-reporting-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-reviews-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-segments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-tracking-settings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-web-feeds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaviyo-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

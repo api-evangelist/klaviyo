@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Klaviyo Accounts Custom Objects API
+  title: Klaviyo Custom Objects API
   version: '2026-04-15'
   description: The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
   contact:
@@ -24,7 +24,14 @@ paths:
     get:
       operationId: get_data_sources
       summary: Get Data Sources
-      description: 'Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+      description: 'Get all data sources in an account.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -89,7 +96,14 @@ paths:
     post:
       operationId: create_data_source
       summary: Create Data Source
-      description: 'Create a new data source in an account<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+      description: 'Create a new data source in an account
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -133,7 +147,14 @@ paths:
     get:
       operationId: get_data_source
       summary: Get Data Source
-      description: 'Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+      description: 'Retrieve a data source in an account.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -190,7 +211,14 @@ paths:
     delete:
       operationId: delete_data_source
       summary: Delete Data Source
-      description: 'Delete a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+      description: 'Delete a data source in an account.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -236,7 +264,14 @@ paths:
         Accepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.
 
 
-        To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `15/m`
+        To learn more, see our Custom Objects API overview.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `15/m`
 
 
         **Scopes:**
@@ -284,7 +319,14 @@ paths:
         The maximum allowed payload size per-record is 512KB.
 
 
-        To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`
+        To learn more, see our Custom Objects API overview.
+
+
+        *Rate limits*:
+
+        Burst: `75/s`
+
+        Steady: `750/m`
 
 
         **Scopes:**
@@ -324,139 +366,49 @@ paths:
       - custom-objects:write
 components:
   schemas:
-    DataSourceRecordCreateJobCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataSourceRecordCreateJobCreateQueryResourceObject'
-      required:
-      - data
-    DataSourceRecordBulkCreateJobCreateQueryResourceObject:
+    DataSourceRecordResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/DataSourceRecordBulkCreateJobEnum'
+          $ref: '#/components/schemas/DataSourceRecordEnum'
         attributes:
           type: object
           properties:
-            data-source-records:
-              description: The records to ingest.
+            record:
               type: object
-              example:
-                data:
-                - type: data-source-record
-                  attributes:
-                    record:
-                      key1: value1
-                      key2: value2
-              nullable: true
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/DataSourceRecordResourceObject'
-              required:
-              - data
-        relationships:
-          type: object
-          properties:
-            data-source:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/DataSourceEnum'
-                    id:
-                      description: The data source to which the records belong.
-                      type: string
-                      example: 01J7C23V8XWMRG13FMD7VZN6GW
-                  required:
-                  - type
-                  - id
+          required:
+          - record
       required:
       - type
       - attributes
-    DataSourceRecordBulkCreateJobCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataSourceRecordBulkCreateJobCreateQueryResourceObject'
-      required:
-      - data
-    GetDataSourceResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSourceResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    DataSourceCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataSourceCreateQueryResourceObject'
-      required:
-      - data
     DataSourceRecordCreateJobEnum:
       type: string
       enum:
       - data-source-record-create-job
-    DataSourceRecordCreateJobCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DataSourceRecordCreateJobEnum'
-        attributes:
-          type: object
-          properties:
-            data-source-record:
-              description: The records to ingest.
-              type: object
-              example:
-                data:
-                  type: data-source-record
-                  attributes:
-                    record:
-                      key1: value1
-                      key2: value2
-              properties:
-                data:
-                  $ref: '#/components/schemas/DataSourceRecordResourceObject'
-              required:
-              - data
-          required:
-          - data-source-record
-        relationships:
-          type: object
-          properties:
-            data-source:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/DataSourceEnum'
-                    id:
-                      description: The data source to which the records belong.
-                      type: string
-                      example: 01J7C23V8XWMRG13FMD7VZN6GW
-                  required:
-                  - type
-                  - id
-      required:
-      - type
-      - attributes
-    DataSourceEnum:
+    DataSourceRecordBulkCreateJobEnum:
       type: string
       enum:
-      - data-source
+      - data-source-record-bulk-create-job
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
     DataSourceResponseObjectResource:
       type: object
       properties:
@@ -512,36 +464,109 @@ components:
               type: string
             visibility:
               description: Visibility of data source.
-              type: string
+              type:
+              - string
+              - 'null'
               example: private
               default: private
               enum:
               - private
               - shared
-              nullable: true
             description:
-              type: string
+              type:
+              - string
+              - 'null'
               default: ''
-              nullable: true
             namespace:
               description: The namespace of the data source.
-              type: string
+              type:
+              - string
+              - 'null'
               example: custom-objects
               default: custom-objects
-              nullable: true
           required:
           - title
       required:
       - type
       - attributes
-    DataSourceRecordBulkCreateJobEnum:
-      type: string
-      enum:
-      - data-source-record-bulk-create-job
-    DataSourceRecordEnum:
-      type: string
-      enum:
-      - data-source-record
+    DataSourceCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSourceCreateQueryResourceObject'
+      required:
+      - data
+    GetDataSourceResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSourceResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    DataSourceRecordCreateJobCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSourceRecordCreateJobEnum'
+        attributes:
+          type: object
+          properties:
+            data-source-record:
+              description: The records to ingest.
+              type: object
+              example:
+                data:
+                  type: data-source-record
+                  attributes:
+                    record:
+                      key1: value1
+                      key2: value2
+              properties:
+                data:
+                  $ref: '#/components/schemas/DataSourceRecordResourceObject'
+              required:
+              - data
+          required:
+          - data-source-record
+        relationships:
+          type: object
+          properties:
+            data-source:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/DataSourceEnum'
+                    id:
+                      description: The data source to which the records belong.
+                      type: string
+                      example: 01J7C23V8XWMRG13FMD7VZN6GW
+                  required:
+                  - type
+                  - id
+      required:
+      - type
+      - attributes
+    DataSourceRecordCreateJobCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSourceRecordCreateJobCreateQueryResourceObject'
+      required:
+      - data
+    DataSourceRecordBulkCreateJobCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSourceRecordBulkCreateJobCreateQueryResourceObject'
+      required:
+      - data
     PostDataSourceResponse:
       type: object
       properties:
@@ -591,18 +616,51 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    DataSourceRecordResourceObject:
+    DataSourceRecordBulkCreateJobCreateQueryResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/DataSourceRecordEnum'
+          $ref: '#/components/schemas/DataSourceRecordBulkCreateJobEnum'
         attributes:
           type: object
           properties:
-            record:
+            data-source-records:
+              description: The records to ingest.
+              type:
+              - object
+              - 'null'
+              example:
+                data:
+                - type: data-source-record
+                  attributes:
+                    record:
+                      key1: value1
+                      key2: value2
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/DataSourceRecordResourceObject'
+              required:
+              - data
+        relationships:
+          type: object
+          properties:
+            data-source:
               type: object
-          required:
-          - record
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/DataSourceEnum'
+                    id:
+                      description: The data source to which the records belong.
+                      type: string
+                      example: 01J7C23V8XWMRG13FMD7VZN6GW
+                  required:
+                  - type
+                  - id
       required:
       - type
       - attributes
@@ -623,26 +681,14 @@ components:
           format: uri
       required:
       - self
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
+    DataSourceRecordEnum:
+      type: string
+      enum:
+      - data-source-record
+    DataSourceEnum:
+      type: string
+      enum:
+      - data-source
   responses:
     ClientError:
       description: Client Error

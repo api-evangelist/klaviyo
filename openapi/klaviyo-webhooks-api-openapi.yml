@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Klaviyo Accounts Webhooks API
+  title: Klaviyo Webhooks API
   version: '2026-04-15'
   description: The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
   contact:
@@ -24,7 +24,14 @@ paths:
     get:
       operationId: get_webhooks
       summary: Get Webhooks
-      description: 'Get all webhooks in an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`
+      description: 'Get all webhooks in an account.
+
+
+        *Rate limits*:
+
+        Burst: `1/s`
+
+        Steady: `15/m`
 
 
         **Scopes:**
@@ -86,7 +93,14 @@ paths:
     post:
       operationId: create_webhook
       summary: Create Webhook
-      description: 'Create a new Webhook<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`
+      description: 'Create a new Webhook
+
+
+        *Rate limits*:
+
+        Burst: `1/s`
+
+        Steady: `15/m`
 
 
         **Scopes:**
@@ -129,7 +143,14 @@ paths:
     get:
       operationId: get_webhook
       summary: Get Webhook
-      description: 'Get the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`
+      description: 'Get the webhook with the given ID.
+
+
+        *Rate limits*:
+
+        Burst: `1/s`
+
+        Steady: `15/m`
 
 
         **Scopes:**
@@ -198,7 +219,14 @@ paths:
     patch:
       operationId: update_webhook
       summary: Update Webhook
-      description: 'Update the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`
+      description: 'Update the webhook with the given ID.
+
+
+        *Rate limits*:
+
+        Burst: `1/s`
+
+        Steady: `15/m`
 
 
         **Scopes:**
@@ -247,7 +275,14 @@ paths:
     delete:
       operationId: delete_webhook
       summary: Delete Webhook
-      description: 'Delete a webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`
+      description: 'Delete a webhook with the given ID.
+
+
+        *Rate limits*:
+
+        Burst: `1/s`
+
+        Steady: `15/m`
 
 
         **Scopes:**
@@ -287,7 +322,14 @@ paths:
     get:
       operationId: get_webhook_topics
       summary: Get Webhook Topics
-      description: 'Get all webhook topics in a Klaviyo account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`
+      description: 'Get all webhook topics in a Klaviyo account.
+
+
+        *Rate limits*:
+
+        Burst: `1/s`
+
+        Steady: `15/m`
 
 
         **Scopes:**
@@ -324,7 +366,14 @@ paths:
     get:
       operationId: get_webhook_topic
       summary: Get Webhook Topic
-      description: 'Get the webhook topic with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`
+      description: 'Get the webhook topic with the given ID.
+
+
+        *Rate limits*:
+
+        Burst: `1/s`
+
+        Steady: `15/m`
 
 
         **Scopes:**
@@ -367,41 +416,6 @@ paths:
       - webhooks:read
 components:
   schemas:
-    WebhookPartialUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/WebhookPartialUpdateQueryResourceObject'
-      required:
-      - data
-    GetWebhookResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/WebhookResponseObjectResource'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookTopicResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    GetWebhookResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookTopicResponseObjectResource'
-      required:
-      - data
     WebhookTopicResponseObjectResource:
       type: object
       properties:
@@ -417,6 +431,192 @@ components:
       - type
       - id
       - links
+    PatchWebhookResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/WebhookEnum'
+            id:
+              description: The ID of the webhook.
+              type: string
+              example: 01HF7AYTK76RHR4F17G6DGTRGF
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: A name for the webhook.
+                  type: string
+                  example: My Webhook
+                description:
+                  description: A description for the webhook.
+                  type:
+                  - string
+                  - 'null'
+                  example: A webhook for sms events
+                endpoint_url:
+                  description: The url to send webhook requests to, truncated for security.
+                  type: string
+                  example: https://www.example.com
+                enabled:
+                  description: Is the webhook enabled.
+                  type: boolean
+                created_at:
+                  description: Date and time when the webhook was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T01:23:45+00:00'
+                updated_at:
+                  description: Date and time when the webhook was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T01:23:45+00:00'
+              required:
+              - name
+              - endpoint_url
+              - enabled
+            relationships:
+              type: object
+              properties:
+                webhook-topics:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/WebhookTopicEnum'
+                          id:
+                            description: A topic the webhook is subscribed to.
+                            type: string
+                            example: event:klaviyo.sent_sms
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    WebhookPartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/WebhookEnum'
+        id:
+          description: The ID of the webhook.
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              description: A name for the webhook.
+              type:
+              - string
+              - 'null'
+            description:
+              description: A description for the webhook.
+              type:
+              - string
+              - 'null'
+            endpoint_url:
+              description: A url to send webhook calls to. Must be https.
+              type:
+              - string
+              - 'null'
+              example: https://www.example.com/example/path
+            secret_key:
+              description: A secret key, that will be used for webhook request signing.
+              type:
+              - string
+              - 'null'
+            enabled:
+              description: Is the webhook enabled.
+              type:
+              - boolean
+              - 'null'
+        relationships:
+          type: object
+          properties:
+            webhook-topics:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/WebhookTopicEnum'
+                      id:
+                        description: A list of topics to subscribe to.
+                        type: string
+                        example: event:klaviyo.sent_sms
+      required:
+      - type
+      - id
+      - attributes
+    WebhookEnum:
+      type: string
+      enum:
+      - webhook
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    GetWebhookTopicResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookTopicResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    WebhookCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WebhookCreateQueryResourceObject'
+      required:
+      - data
     WebhookResponseObjectResource:
       type: object
       properties:
@@ -435,9 +635,10 @@ components:
               example: My Webhook
             description:
               description: A description for the webhook.
-              type: string
+              type:
+              - string
+              - 'null'
               example: A webhook for sms events
-              nullable: true
             endpoint_url:
               description: The url to send webhook requests to, truncated for security.
               type: string
@@ -447,16 +648,18 @@ components:
               type: boolean
             created_at:
               description: Date and time when the webhook was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T01:23:45+00:00'
-              nullable: true
             updated_at:
               description: Date and time when the webhook was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T01:23:45+00:00'
-              nullable: true
           required:
           - name
           - endpoint_url
@@ -490,11 +693,51 @@ components:
       - id
       - attributes
       - links
-    WebhookCreateQuery:
+    GetWebhookTopicResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/WebhookCreateQueryResourceObject'
+          $ref: '#/components/schemas/WebhookTopicResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    WebhookPartialUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WebhookPartialUpdateQueryResourceObject'
+      required:
+      - data
+    WebhookTopicEnum:
+      type: string
+      enum:
+      - webhook-topic
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
+      required:
+      - self
+      - related
+    GetWebhookResponseCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookTopicResponseObjectResource'
       required:
       - data
     PostWebhookResponse:
@@ -518,9 +761,10 @@ components:
                   example: My Webhook
                 description:
                   description: A description for the webhook.
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   example: A webhook for sms events
-                  nullable: true
                 endpoint_url:
                   description: The url to send webhook requests to, truncated for security.
                   type: string
@@ -530,16 +774,18 @@ components:
                   type: boolean
                 created_at:
                   description: Date and time when the webhook was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: date-time
                   example: '2022-11-08T01:23:45+00:00'
-                  nullable: true
                 updated_at:
                   description: Date and time when the webhook was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: date-time
                   example: '2022-11-08T01:23:45+00:00'
-                  nullable: true
               required:
               - name
               - endpoint_url
@@ -577,155 +823,27 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    WebhookTopicEnum:
-      type: string
-      enum:
-      - webhook-topic
-    WebhookPartialUpdateQueryResourceObject:
+    GetWebhookResponseCompoundDocument:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/WebhookEnum'
-        id:
-          description: The ID of the webhook.
+        data:
+          $ref: '#/components/schemas/WebhookResponseObjectResource'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookTopicResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    ObjectLinks:
+      type: object
+      properties:
+        self:
           type: string
-        attributes:
-          type: object
-          properties:
-            name:
-              description: A name for the webhook.
-              type: string
-              nullable: true
-            description:
-              description: A description for the webhook.
-              type: string
-              nullable: true
-            endpoint_url:
-              description: A url to send webhook calls to. Must be https.
-              type: string
-              example: https://www.example.com/example/path
-              nullable: true
-            secret_key:
-              description: A secret key, that will be used for webhook request signing.
-              type: string
-              nullable: true
-            enabled:
-              description: Is the webhook enabled.
-              type: boolean
-              nullable: true
-        relationships:
-          type: object
-          properties:
-            webhook-topics:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/WebhookTopicEnum'
-                      id:
-                        description: A list of topics to subscribe to.
-                        type: string
-                        example: event:klaviyo.sent_sms
+          format: uri
       required:
-      - type
-      - id
-      - attributes
-    GetWebhookTopicResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/WebhookTopicResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    PatchWebhookResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/WebhookEnum'
-            id:
-              description: The ID of the webhook.
-              type: string
-              example: 01HF7AYTK76RHR4F17G6DGTRGF
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: A name for the webhook.
-                  type: string
-                  example: My Webhook
-                description:
-                  description: A description for the webhook.
-                  type: string
-                  example: A webhook for sms events
-                  nullable: true
-                endpoint_url:
-                  description: The url to send webhook requests to, truncated for security.
-                  type: string
-                  example: https://www.example.com
-                enabled:
-                  description: Is the webhook enabled.
-                  type: boolean
-                created_at:
-                  description: Date and time when the webhook was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T01:23:45+00:00'
-                  nullable: true
-                updated_at:
-                  description: Date and time when the webhook was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T01:23:45+00:00'
-                  nullable: true
-              required:
-              - name
-              - endpoint_url
-              - enabled
-            relationships:
-              type: object
-              properties:
-                webhook-topics:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/WebhookTopicEnum'
-                          id:
-                            description: A topic the webhook is subscribed to.
-                            type: string
-                            example: event:klaviyo.sent_sms
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
+      - self
     WebhookCreateQueryResourceObject:
       type: object
       properties:
@@ -740,9 +858,10 @@ components:
               example: My Webhook
             description:
               description: A description for the webhook.
-              type: string
+              type:
+              - string
+              - 'null'
               example: A webhook for sms events
-              nullable: true
             endpoint_url:
               description: A url to send webhook calls to. Must be https.
               type: string
@@ -781,61 +900,6 @@ components:
       - type
       - attributes
       - relationships
-    WebhookEnum:
-      type: string
-      enum:
-      - webhook
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    GetWebhookTopicResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookTopicResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
   responses:
     ClientError:
       description: Client Error

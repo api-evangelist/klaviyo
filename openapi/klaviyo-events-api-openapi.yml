@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Klaviyo Accounts Events API
+  title: Klaviyo Events API
   version: '2026-04-15'
   description: The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
   contact:
@@ -32,10 +32,17 @@ paths:
         `datetime`, `timestamp`
 
 
-        [Custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview) are not supported in the `metric_id` filter.
+        Custom metrics are not supported in the `metric_id` filter.
 
 
-        Returns a maximum of 200 events per page.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+        Returns a maximum of 200 events per page.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -185,7 +192,14 @@ paths:
         At a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.
 
 
-        Successful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+        Successful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -224,7 +238,14 @@ paths:
     get:
       operationId: get_event
       summary: Get Event
-      description: 'Get an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+      description: 'Get an event with the given event ID.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -351,7 +372,14 @@ paths:
         At a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.
 
 
-        Accepts up to 1,000 events per request. The maximum allowed payload size is 5MB. A single string cannot exceed 100KB.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+        Accepts up to 1,000 events per request. The maximum allowed payload size is 5MB. A single string cannot exceed 100KB.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -392,7 +420,14 @@ paths:
     get:
       operationId: get_metric_for_event
       summary: Get Metric for Event
-      description: 'Get the metric for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+      description: 'Get the metric for an event with the given event ID.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -455,7 +490,14 @@ paths:
     get:
       operationId: get_metric_id_for_event
       summary: Get Metric ID for Event
-      description: 'Get a list of related Metrics for an Event<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+      description: 'Get a list of related Metrics for an Event
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -504,7 +546,14 @@ paths:
     get:
       operationId: get_profile_for_event
       summary: Get Profile for Event
-      description: 'Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+      description: 'Get the profile associated with an event with the given event ID.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -671,7 +720,14 @@ paths:
     get:
       operationId: get_profile_id_for_event
       summary: Get Profile ID for Event
-      description: 'Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`
+      description: 'Get profile relationships for an event with the given event ID.
+
+
+        *Rate limits*:
+
+        Burst: `350/s`
+
+        Steady: `3500/m`
 
 
         **Scopes:**
@@ -718,10 +774,304 @@ paths:
       - profiles:read
 components:
   schemas:
+    EventCreateQueryV2:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EventCreateQueryV2ResourceObject'
+      required:
+      - data
+    PushMarketing:
+      type: object
+      properties:
+        can_receive_push_marketing:
+          description: Whether or not this profile is subscribed to receive mobile push.
+          type: boolean
+        consent:
+          description: The consent status for mobile push marketing.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when the consent was last changed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - can_receive_push_marketing
+      - consent
+    GetEventResponseCompoundDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EventResponseObjectResource'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/MetricResponseObjectResource'
+            - $ref: '#/components/schemas/ProfileResponseObjectResource'
+            - $ref: '#/components/schemas/AttributionResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    EmailMarketingListSuppression:
+      type: object
+      properties:
+        list_id:
+          description: The ID of list to which the suppression applies.
+          type: string
+          example: Y6nRLr
+        reason:
+          description: The reason the profile was suppressed from the list.
+          type: string
+          example: USER_SUPPRESSED
+        timestamp:
+          description: The timestamp when the profile was suppressed from the list, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type: string
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - list_id
+      - reason
+      - timestamp
+    OnsiteProfileCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ProfileEnum'
+        id:
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          type:
+          - string
+          - 'null'
+        attributes:
+          type: object
+          properties:
+            email:
+              description: Individual's email address
+              type:
+              - string
+              - 'null'
+              example: sarah.mason@klaviyo-demo.com
+            phone_number:
+              description: Individual's phone number in E.164 format
+              type:
+              - string
+              - 'null'
+              example: '+15005550006'
+            external_id:
+              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
+              type:
+              - string
+              - 'null'
+            anonymous_id:
+              type:
+              - string
+              - 'null'
+            _kx:
+              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
+
+                profile by Klaviyo''s web tracking.
+
+
+                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
+              type:
+              - string
+              - 'null'
+            first_name:
+              description: Individual's first name
+              type:
+              - string
+              - 'null'
+              example: Sarah
+            last_name:
+              description: Individual's last name
+              type:
+              - string
+              - 'null'
+              example: Mason
+            organization:
+              description: Name of the company or organization within the company for whom the individual works
+              type:
+              - string
+              - 'null'
+              example: Example Corporation
+            locale:
+              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
+              type:
+              - string
+              - 'null'
+              example: en-US
+            title:
+              description: Individual's job title
+              type:
+              - string
+              - 'null'
+              example: Regional Manager
+            image:
+              description: URL pointing to the location of a profile image
+              type:
+              - string
+              - 'null'
+              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
+            location:
+              $ref: '#/components/schemas/ProfileLocation'
+            properties:
+              description: An object containing key/value pairs for any custom properties assigned to this profile
+              type:
+              - object
+              - 'null'
+              example:
+                pseudonym: Dr. Octopus
+        meta:
+          $ref: '#/components/schemas/OnsiteProfileMeta'
+      required:
+      - type
+      - attributes
     PushTokenEnum:
       type: string
       enum:
       - push-token
+    EventBulkCreateEnum:
+      type: string
+      enum:
+      - event-bulk-create
+    MetricResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MetricEnum'
+        id:
+          description: The Metric ID
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name of the metric
+              type:
+              - string
+              - 'null'
+            created:
+              description: Creation time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+            updated:
+              description: Last updated time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+            integration:
+              description: The integration associated with the event
+              type:
+              - object
+              - 'null'
+        relationships:
+          type: object
+          properties:
+            flow-triggers:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/FlowEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    GetProfileResponse:
+      type: object
+      properties:
+        data:
+          allOf:
+          - properties:
+              type:
+                $ref: '#/components/schemas/ProfileEnum'
+              attributes:
+                properties:
+                  subscriptions:
+                    $ref: '#/components/schemas/Subscriptions'
+                  predictive_analytics:
+                    $ref: '#/components/schemas/PredictiveAnalytics'
+          - $ref: '#/components/schemas/ProfileResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    EmailChannel:
+      type: object
+      properties:
+        marketing:
+          description: The email marketing subscription.
+          $ref: '#/components/schemas/EmailMarketing'
+    WhatsappTransactionalChannel:
+      type: object
+      properties:
+        consent:
+          description: The consent status for the channel.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        created_timestamp:
+          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        metadata:
+          description: Channel-specific metadata containing additional information about the permission.
+          type:
+          - object
+          - 'null'
+        can_receive:
+          description: Whether the profile can receive messages on this channel.
+          type: boolean
+        valid_until:
+          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-02-21T20:07:38+00:00'
+        phone_number:
+          description: Phone number to which the consent was granted for.
+          type: string
+      required:
+      - consent
+      - can_receive
+      - phone_number
     GetMetricResponse:
       type: object
       properties:
@@ -731,128 +1081,6 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    EventProfileCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ProfileEnum'
-        id:
-          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          nullable: true
-        attributes:
-          type: object
-          properties:
-            email:
-              description: Individual's email address
-              type: string
-              example: sarah.mason@klaviyo-demo.com
-              nullable: true
-            phone_number:
-              description: Individual's phone number in E.164 format
-              type: string
-              example: '+15005550006'
-              nullable: true
-            external_id:
-              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-            anonymous_id:
-              type: string
-              nullable: true
-            _kx:
-              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
-
-                profile by Klaviyo''s web tracking.
-
-
-                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
-              type: string
-              nullable: true
-            first_name:
-              description: Individual's first name
-              type: string
-              example: Sarah
-              nullable: true
-            last_name:
-              description: Individual's last name
-              type: string
-              example: Mason
-              nullable: true
-            organization:
-              description: Name of the company or organization within the company for whom the individual works
-              type: string
-              example: Example Corporation
-              nullable: true
-            locale:
-              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
-              example: en-US
-              nullable: true
-            title:
-              description: Individual's job title
-              type: string
-              example: Regional Manager
-              nullable: true
-            image:
-              description: URL pointing to the location of a profile image
-              type: string
-              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
-            location:
-              $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
-            properties:
-              description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
-              example:
-                pseudonym: Dr. Octopus
-              nullable: true
-            meta:
-              $ref: '#/components/schemas/OnsiteProfileMeta'
-              nullable: true
-      required:
-      - type
-      - attributes
-    EventsBulkCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/EventBulkCreateEnum'
-        attributes:
-          type: object
-          properties:
-            backfill:
-              description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
-
-                historical events so existing flow definitions do not re-fire on events that already
-
-                fired in the past.'
-              type: boolean
-              default: false
-              nullable: true
-            profile:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/OnsiteProfileCreateQueryResourceObject'
-              required:
-              - data
-            events:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/BaseEventCreateQueryBulkEntryResourceObject'
-              required:
-              - data
-          required:
-          - profile
-          - events
-      required:
-      - type
-      - attributes
     SMSTransactional:
       type: object
       properties:
@@ -865,137 +1093,80 @@ components:
           example: SUBSCRIBED
         consent_timestamp:
           description: The timestamp when consent was recorded or updated for Transactional SMS messaging , in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2023-02-21T20:07:38+00:00'
-          nullable: true
         method:
           description: The method by which the profile was subscribed to Transactional SMS messaging .
-          type: string
+          type:
+          - string
+          - 'null'
           example: TEXT
-          nullable: true
         method_detail:
           description: Additional details about the method which the profile was subscribed to Transactional SMS messaging. This may be empty if no details were provided.
-          type: string
+          type:
+          - string
+          - 'null'
           example: JOIN
           default: ''
-          nullable: true
         last_updated:
           description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2023-02-21T20:07:38+00:00'
-          nullable: true
       required:
       - can_receive_sms_transactional
       - consent
-    EmailMarketing:
-      type: object
-      properties:
-        can_receive_email_marketing:
-          description: Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.
-          type: boolean
-        consent:
-          description: The consent status for email marketing.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        last_updated:
-          description: The timestamp when a field on the email marketing object was last modified.
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        method:
-          description: The method by which the profile was subscribed to email marketing.
-          type: string
-          example: PREFERENCE_PAGE
-          nullable: true
-        method_detail:
-          description: Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.
-          type: string
-          example: mydomain.com/signup
-          default: ''
-          nullable: true
-        custom_method_detail:
-          description: Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.
-          type: string
-          example: marketing drive
-          nullable: true
-        double_optin:
-          description: Whether the profile was subscribed to email marketing using a double opt-in.
-          type: boolean
-          example: true
-          nullable: true
-        suppression:
-          description: The global email marketing suppression for this profile.
-          type: array
-          items:
-            $ref: '#/components/schemas/EmailMarketingSuppression'
-          nullable: true
-        list_suppressions:
-          description: The list suppressions for this profile.
-          type: array
-          items:
-            $ref: '#/components/schemas/EmailMarketingListSuppression'
-          nullable: true
-      required:
-      - can_receive_email_marketing
-      - consent
-    CampaignMessageEnum:
+    CampaignEnum:
       type: string
       enum:
-      - campaign-message
-    WhatsappTransactionalChannel:
+      - campaign
+    PushChannel:
       type: object
       properties:
-        consent:
-          description: The consent status for the channel.
+        marketing:
+          description: The mobile push marketing subscription.
+          $ref: '#/components/schemas/PushMarketing'
+    CollectionLinks:
+      type: object
+      properties:
+        self:
           type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          format: uri
+        first:
           type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        last_updated:
-          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          format: uri
+        last:
           type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        created_timestamp:
-          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          format: uri
+        prev:
           type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        metadata:
-          description: Channel-specific metadata containing additional information about the permission.
-          type: object
-          nullable: true
-        can_receive:
-          description: Whether the profile can receive messages on this channel.
-          type: boolean
-        valid_until:
-          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          format: uri
+        next:
           type: string
-          format: date-time
-          example: '2024-02-21T20:07:38+00:00'
-          nullable: true
-        phone_number:
-          description: Phone number to which the consent was granted for.
-          type: string
+          format: uri
       required:
-      - consent
-      - can_receive
-      - phone_number
+      - self
+    PatchIdentifiers:
+      type: object
+      properties:
+        append:
+          type: object
+        unappend:
+          type: object
+    SMSChannel:
+      type: object
+      properties:
+        marketing:
+          description: The SMS marketing subscription.
+          $ref: '#/components/schemas/SMSMarketing'
+        transactional:
+          description: The SMS transactional subscription.
+          $ref: '#/components/schemas/SMSTransactional'
     BaseEventCreateQueryBulkEntryResourceObject:
       type: object
       properties:
@@ -1030,29 +1201,33 @@ components:
                 The time is truncated to the second. The time must be after the year 2000 and can only
 
                 be up to 1 year in the future.'
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T00:00:00+00:00'
-              nullable: true
             value:
               description: A numeric, monetary value to associate with this event. For example, the dollar amount of a purchase.
-              type: number
+              type:
+              - number
+              - 'null'
               example: 9.99
-              nullable: true
             value_currency:
               description: The ISO 4217 currency code of the value associated with the event.
-              type: string
+              type:
+              - string
+              - 'null'
               example: USD
-              nullable: true
             backfill:
               description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
 
                 historical events so existing flow definitions do not re-fire on events that already
 
                 fired in the past.'
-              type: boolean
+              type:
+              - boolean
+              - 'null'
               default: false
-              nullable: true
             metric:
               type: object
               properties:
@@ -1068,18 +1243,205 @@ components:
                 present, this field will use the time to the second. Using the default, this limits only one
 
                 event per profile per second.'
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
           required:
           - properties
           - metric
       required:
       - type
       - attributes
-    ListEnum:
+    EventProfileCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ProfileEnum'
+        id:
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          type:
+          - string
+          - 'null'
+        attributes:
+          type: object
+          properties:
+            email:
+              description: Individual's email address
+              type:
+              - string
+              - 'null'
+              example: sarah.mason@klaviyo-demo.com
+            phone_number:
+              description: Individual's phone number in E.164 format
+              type:
+              - string
+              - 'null'
+              example: '+15005550006'
+            external_id:
+              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
+              type:
+              - string
+              - 'null'
+            anonymous_id:
+              type:
+              - string
+              - 'null'
+            _kx:
+              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
+
+                profile by Klaviyo''s web tracking.
+
+
+                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
+              type:
+              - string
+              - 'null'
+            first_name:
+              description: Individual's first name
+              type:
+              - string
+              - 'null'
+              example: Sarah
+            last_name:
+              description: Individual's last name
+              type:
+              - string
+              - 'null'
+              example: Mason
+            organization:
+              description: Name of the company or organization within the company for whom the individual works
+              type:
+              - string
+              - 'null'
+              example: Example Corporation
+            locale:
+              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
+              type:
+              - string
+              - 'null'
+              example: en-US
+            title:
+              description: Individual's job title
+              type:
+              - string
+              - 'null'
+              example: Regional Manager
+            image:
+              description: URL pointing to the location of a profile image
+              type:
+              - string
+              - 'null'
+              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
+            location:
+              $ref: '#/components/schemas/ProfileLocation'
+            properties:
+              description: An object containing key/value pairs for any custom properties assigned to this profile
+              type:
+              - object
+              - 'null'
+              example:
+                pseudonym: Dr. Octopus
+            meta:
+              $ref: '#/components/schemas/OnsiteProfileMeta'
+      required:
+      - type
+      - attributes
+    EventEnum:
       type: string
       enum:
-      - list
+      - event
+    WhatsappChannel:
+      type: object
+      properties:
+        marketing:
+          description: The Whatsapp marketing subscription.
+          $ref: '#/components/schemas/WhatsappMarketingChannel'
+        transactional:
+          description: The Whatsapp transactional subscription.
+          $ref: '#/components/schemas/WhatsappTransactionalChannel'
+        conversational:
+          description: The Whatsapp conversational subscription.
+          $ref: '#/components/schemas/WhatsappConversationalChannel'
+    GetEventProfileRelationshipResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ProfileEnum'
+            id:
+              description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+              type: string
+              example: 01GDDKASAP8TKDDA2GRZDSVP4H
+          required:
+          - type
+          - id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    EventsBulkCreateJob:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EventsBulkCreateJobResourceObject'
+      required:
+      - data
+    WhatsappConversationalChannel:
+      type: object
+      properties:
+        consent:
+          description: The consent status for the channel.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        created_timestamp:
+          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        metadata:
+          description: Channel-specific metadata containing additional information about the permission.
+          type:
+          - object
+          - 'null'
+        can_receive:
+          description: Whether the profile can receive messages on this channel.
+          type: boolean
+        valid_until:
+          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-02-21T20:07:38+00:00'
+        phone_number:
+          description: Phone number to which the consent was granted for.
+          type: string
+      required:
+      - consent
+      - can_receive
+      - phone_number
+    ProfileEnum:
+      type: string
+      enum:
+      - profile
     EventResponseObjectResource:
       type: object
       properties:
@@ -1093,22 +1455,26 @@ components:
           properties:
             timestamp:
               description: Event timestamp in seconds
-              type: integer
-              nullable: true
+              type:
+              - integer
+              - 'null'
             event_properties:
               description: Event properties, can include identifiers and extra properties
-              type: object
-              nullable: true
+              type:
+              - object
+              - 'null'
             datetime:
               description: Event timestamp in ISO8601 format (YYYY-MM-DDTHH:MM:SS+hh:mm)
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T01:23:45+00:00'
-              nullable: true
             uuid:
               description: A unique identifier for the event, this can be used as a cursor in pagination
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
         relationships:
           type: object
           properties:
@@ -1169,27 +1535,407 @@ components:
       - id
       - attributes
       - links
-    GetProfileResponse:
+    EventsBulkCreateJobResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EventBulkCreateJobEnum'
+        attributes:
+          type: object
+          properties:
+            events-bulk-create:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/EventsBulkCreateQueryResourceObject'
+              required:
+              - data
+          required:
+          - events-bulk-create
+      required:
+      - type
+      - attributes
+    CampaignMessageEnum:
+      type: string
+      enum:
+      - campaign-message
+    EventBulkCreateJobEnum:
+      type: string
+      enum:
+      - event-bulk-create-job
+    Subscriptions:
+      type: object
+      properties:
+        email:
+          description: The email channel subscription.
+          $ref: '#/components/schemas/EmailChannel'
+        sms:
+          description: The SMS channel subscription.
+          $ref: '#/components/schemas/SMSChannel'
+        mobile_push:
+          description: The mobile push channel subscription.
+          $ref: '#/components/schemas/PushChannel'
+        whatsapp:
+          description: The whatsapp channel subscription.
+          $ref: '#/components/schemas/WhatsappChannel'
+    AttributionEnum:
+      type: string
+      enum:
+      - attribution
+    ProfileMetaPatchProperties:
+      type: object
+      properties:
+        append:
+          description: Append a simple value or values to this property array
+          type:
+          - object
+          - 'null'
+          example:
+            skus: '92538'
+        unappend:
+          description: Remove a simple value or values from this property array
+          type:
+          - object
+          - 'null'
+          example:
+            skus: '40571'
+        unset:
+          description: Remove a key or keys (and their values) completely from properties
+          example: skus
+          oneOf:
+          - type: string
+          - type: array
+            items:
+              type: string
+    MetricEnum:
+      type: string
+      enum:
+      - metric
+    SMSMarketing:
+      type: object
+      properties:
+        can_receive_sms_marketing:
+          description: Whether or not this profile is subscribed to receive SMS marketing.
+          type: boolean
+        consent:
+          description: The consent status for SMS marketing.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        method:
+          description: The method by which the profile was subscribed to SMS marketing.
+          type:
+          - string
+          - 'null'
+          example: TEXT
+        method_detail:
+          description: Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: JOIN
+          default: ''
+        last_updated:
+          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - can_receive_sms_marketing
+      - consent
+    GetEventResponseCollectionCompoundDocument:
       type: object
       properties:
         data:
-          allOf:
-          - properties:
-              type:
-                $ref: '#/components/schemas/ProfileEnum'
-              attributes:
-                properties:
-                  subscriptions:
-                    $ref: '#/components/schemas/Subscriptions'
-                    nullable: true
-                  predictive_analytics:
-                    $ref: '#/components/schemas/PredictiveAnalytics'
-                    nullable: true
-          - $ref: '#/components/schemas/ProfileResponseObjectResource'
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResponseObjectResource'
         links:
-          $ref: '#/components/schemas/ObjectLinks'
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/MetricResponseObjectResource'
+            - $ref: '#/components/schemas/ProfileResponseObjectResource'
+            - $ref: '#/components/schemas/AttributionResponseObjectResource'
       required:
       - data
+    MetricCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MetricEnum'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: Name of the event. Must be less than 128 characters.
+              type: string
+              example: Viewed Product
+            service:
+              description: This is for advanced usage. For api requests, this should use the default, which is set to api.
+              type:
+              - string
+              - 'null'
+          required:
+          - name
+      required:
+      - type
+      - attributes
+    FlowEnum:
+      type: string
+      enum:
+      - flow
+    ProfileLocation:
+      type: object
+      properties:
+        address1:
+          description: First line of street address
+          type:
+          - string
+          - 'null'
+          example: 89 E 42nd St
+        address2:
+          description: Second line of street address
+          type:
+          - string
+          - 'null'
+          example: 1st floor
+        city:
+          description: City name
+          type:
+          - string
+          - 'null'
+          example: New York
+        country:
+          description: Country name
+          type:
+          - string
+          - 'null'
+          example: United States
+        latitude:
+          description: Latitude coordinate. We recommend providing a precision of four decimal places.
+          example: '40.7128'
+          oneOf:
+          - type: string
+          - type: number
+        longitude:
+          description: Longitude coordinate. We recommend providing a precision of four decimal places.
+          example: '74.0060'
+          oneOf:
+          - type: string
+          - type: number
+        region:
+          description: Region within a country, such as state or province
+          type:
+          - string
+          - 'null'
+          example: NY
+        zip:
+          description: Zip code
+          type:
+          - string
+          - 'null'
+          example: '10017'
+        timezone:
+          description: Time zone name. We recommend using time zones from the IANA Time Zone Database.
+          type:
+          - string
+          - 'null'
+          example: America/New_York
+        ip:
+          description: IP Address
+          type:
+          - string
+          - 'null'
+          example: 127.0.0.1
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
+      required:
+      - self
+      - related
+    WhatsappMarketingChannel:
+      type: object
+      properties:
+        consent:
+          description: The consent status for the channel.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        created_timestamp:
+          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        metadata:
+          description: Channel-specific metadata containing additional information about the permission.
+          type:
+          - object
+          - 'null'
+        can_receive:
+          description: Whether the profile can receive messages on this channel.
+          type: boolean
+        valid_until:
+          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-02-21T20:07:38+00:00'
+        phone_number:
+          description: Phone number to which the consent was granted for.
+          type: string
+      required:
+      - consent
+      - can_receive
+      - phone_number
+    OnsiteProfileMeta:
+      type: object
+      properties:
+        patch_properties:
+          description: Specify one or more patch operations to apply to existing property data
+          example:
+            append:
+              skus: '92538'
+          $ref: '#/components/schemas/ProfileMetaPatchProperties'
+        patch_identifiers:
+          description: Specify one or more patch operations to apply to existing identifier data. Currently only `email` is supported, and it is used to add or remove secondary email addresses on a profile.
+          example:
+            append:
+              email:
+              - example@test.com
+              - another@example.com
+          $ref: '#/components/schemas/PatchIdentifiers'
+    ListEnum:
+      type: string
+      enum:
+      - list
+    EventCreateQueryV2ResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EventEnum'
+        attributes:
+          type: object
+          properties:
+            properties:
+              description: 'Properties of this event (must not exceed 400 properties). The size of the event payload must not exceed 5 MB,
+
+                and each string cannot be larger than 100 KB. For a full list of data limits on event payloads,
+
+                see [Limitations](https://developers.klaviyo.com/en/reference/events_api_overview#limitations).
+
+
+                Note any top-level property that is not an object can be
+
+                used to create segments. The `$extra` property records any
+
+                non-segmentable values that can be referenced later, e.g., HTML templates are
+
+                useful on a segment but are not used to create a segment.'
+              type: object
+              example:
+                Brand: Kids Book
+                ProductID: 1111
+                ProductName: Winnie the Pooh
+            time:
+              description: 'When this event occurred. By default, the time the request was received will be used.
+
+                The time is truncated to the second. The time must be after the year 2000 and can only
+
+                be up to 1 year in the future.'
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            value:
+              description: A numeric, monetary value to associate with this event. For example, the dollar amount of a purchase.
+              type:
+              - number
+              - 'null'
+              example: 9.99
+            value_currency:
+              description: The ISO 4217 currency code of the value associated with the event.
+              type:
+              - string
+              - 'null'
+              example: USD
+            unique_id:
+              description: 'A unique identifier for an event. If the unique_id is repeated for the same
+
+                profile and metric, only the first processed event will be recorded. If this is not
+
+                present, this will use the time to the second. Using the default, this limits only one
+
+                event per profile per second.'
+              type:
+              - string
+              - 'null'
+            backfill:
+              description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
+
+                historical events so existing flow definitions do not re-fire on events that already
+
+                fired in the past.'
+              type:
+              - boolean
+              - 'null'
+              default: false
+            metric:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/MetricCreateQueryResourceObject'
+              required:
+              - data
+            profile:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/EventProfileCreateQueryResourceObject'
+              required:
+              - data
+          required:
+          - properties
+          - metric
+          - profile
+      required:
+      - type
+      - attributes
     GetEventMetricRelationshipResponse:
       type: object
       properties:
@@ -1208,104 +1954,230 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    Subscriptions:
+    ProfileResponseObjectResource:
       type: object
       properties:
-        email:
-          description: The email channel subscription.
-          $ref: '#/components/schemas/EmailChannel'
-          nullable: true
-        sms:
-          description: The SMS channel subscription.
-          $ref: '#/components/schemas/SMSChannel'
-          nullable: true
-        mobile_push:
-          description: The mobile push channel subscription.
-          $ref: '#/components/schemas/PushChannel'
-          nullable: true
-        whatsapp:
-          description: The whatsapp channel subscription.
-          $ref: '#/components/schemas/WhatsappChannel'
-          nullable: true
-    EmailMarketingListSuppression:
-      type: object
-      properties:
-        list_id:
-          description: The ID of list to which the suppression applies.
-          type: string
-          example: Y6nRLr
-        reason:
-          description: The reason the profile was suppressed from the list.
-          type: string
-          example: USER_SUPPRESSED
-        timestamp:
-          description: The timestamp when the profile was suppressed from the list, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
+        type:
+          $ref: '#/components/schemas/ProfileEnum'
+        id:
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          type:
+          - string
+          - 'null'
+          example: 01GDDKASAP8TKDDA2GRZDSVP4H
+        attributes:
+          type: object
+          properties:
+            email:
+              description: Individual's email address
+              type:
+              - string
+              - 'null'
+              example: sarah.mason@klaviyo-demo.com
+            phone_number:
+              description: Individual's phone number in E.164 format
+              type:
+              - string
+              - 'null'
+              example: '+15005550006'
+            external_id:
+              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
+              type:
+              - string
+              - 'null'
+            first_name:
+              description: Individual's first name
+              type:
+              - string
+              - 'null'
+              example: Sarah
+            last_name:
+              description: Individual's last name
+              type:
+              - string
+              - 'null'
+              example: Mason
+            organization:
+              description: Name of the company or organization within the company for whom the individual works
+              type:
+              - string
+              - 'null'
+              example: Example Corporation
+            locale:
+              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
+              type:
+              - string
+              - 'null'
+              example: en-US
+            title:
+              description: Individual's job title
+              type:
+              - string
+              - 'null'
+              example: Regional Manager
+            image:
+              description: URL pointing to the location of a profile image
+              type:
+              - string
+              - 'null'
+              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
+            created:
+              description: Date and time when the profile was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              description: Date and time when the profile was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            last_event_date:
+              description: Date and time of the most recent event the triggered an update to the profile, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            location:
+              $ref: '#/components/schemas/ProfileLocation'
+            properties:
+              description: An object containing key/value pairs for any custom properties assigned to this profile
+              type:
+              - object
+              - 'null'
+              example:
+                pseudonym: Dr. Octopus
+        relationships:
+          type: object
+          properties:
+            lists:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/ListEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            segments:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/SegmentEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            push-tokens:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/PushTokenEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
       required:
-      - list_id
-      - reason
-      - timestamp
-    EventsBulkCreateJob:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/EventsBulkCreateJobResourceObject'
-      required:
-      - data
+      - type
+      - attributes
+      - links
+    SegmentEnum:
+      type: string
+      enum:
+      - segment
     PredictiveAnalytics:
       type: object
       properties:
         historic_clv:
           description: Total value of all historically placed orders
-          type: number
+          type:
+          - number
+          - 'null'
           example: 93.87
-          nullable: true
         predicted_clv:
           description: Predicted value of all placed orders in the next 365 days
-          type: number
+          type:
+          - number
+          - 'null'
           example: 27.24
-          nullable: true
         total_clv:
           description: Sum of historic and predicted CLV
-          type: number
+          type:
+          - number
+          - 'null'
           example: 121.11
-          nullable: true
         historic_number_of_orders:
           description: Number of already placed orders
-          type: number
+          type:
+          - number
+          - 'null'
           example: 2
-          nullable: true
         predicted_number_of_orders:
           description: Predicted number of placed orders in the next 365 days
-          type: number
+          type:
+          - number
+          - 'null'
           example: 0.54
-          nullable: true
         average_days_between_orders:
           description: Average number of days between orders (None if only one order has been placed)
-          type: number
+          type:
+          - number
+          - 'null'
           example: 189
-          nullable: true
         average_order_value:
           description: Average value of placed orders
-          type: number
+          type:
+          - number
+          - 'null'
           example: 46.94
-          nullable: true
         churn_probability:
           description: Probability the customer has churned
-          type: number
+          type:
+          - number
+          - 'null'
           example: 0.89
-          nullable: true
         expected_date_of_next_order:
           description: Expected date of next order, as calculated at the time of their most recent order
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2022-11-08T00:00:00+00:00'
-          nullable: true
         ranked_channel_affinity:
           description: List of channels ranked by their predicted effectiveness for this profile, with the best channel being listed first at index 0
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             enum:
@@ -1318,43 +2190,145 @@ components:
           - sms
           - email
           - push
-          nullable: true
-    SMSMarketing:
+    FlowMessageEnum:
+      type: string
+      enum:
+      - flow-message
+    EmailMarketing:
       type: object
       properties:
-        can_receive_sms_marketing:
-          description: Whether or not this profile is subscribed to receive SMS marketing.
+        can_receive_email_marketing:
+          description: Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.
           type: boolean
         consent:
-          description: The consent status for SMS marketing.
+          description: The consent status for email marketing.
           type: string
           example: SUBSCRIBED
         consent_timestamp:
-          description: The timestamp when consent was recorded or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
+          description: The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        method:
-          description: The method by which the profile was subscribed to SMS marketing.
-          type: string
-          example: TEXT
-          nullable: true
-        method_detail:
-          description: Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
-          type: string
-          example: JOIN
-          default: ''
-          nullable: true
         last_updated:
-          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          description: The timestamp when a field on the email marketing object was last modified.
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        method:
+          description: The method by which the profile was subscribed to email marketing.
+          type:
+          - string
+          - 'null'
+          example: PREFERENCE_PAGE
+        method_detail:
+          description: Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: mydomain.com/signup
+          default: ''
+        custom_method_detail:
+          description: Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: marketing drive
+        double_optin:
+          description: Whether the profile was subscribed to email marketing using a double opt-in.
+          type:
+          - boolean
+          - 'null'
+          example: true
+        suppression:
+          description: The global email marketing suppression for this profile.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmailMarketingSuppression'
+        list_suppressions:
+          description: The list suppressions for this profile.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmailMarketingListSuppression'
+      required:
+      - can_receive_email_marketing
+      - consent
+    EventsBulkCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EventBulkCreateEnum'
+        attributes:
+          type: object
+          properties:
+            backfill:
+              description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
+
+                historical events so existing flow definitions do not re-fire on events that already
+
+                fired in the past.'
+              type:
+              - boolean
+              - 'null'
+              default: false
+            profile:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/OnsiteProfileCreateQueryResourceObject'
+              required:
+              - data
+            events:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BaseEventCreateQueryBulkEntryResourceObject'
+              required:
+              - data
+          required:
+          - profile
+          - events
+      required:
+      - type
+      - attributes
+    EmailMarketingSuppression:
+      type: object
+      properties:
+        reason:
+          description: The reason the profile was suppressed.
+          type: string
+          example: HARD_BOUNCE
+          enum:
+          - HARD_BOUNCE
+          - INVALID_EMAIL
+          - SPAM_COMPLAINT
+          - UNSUBSCRIBE
+          - USER_SUPPRESSED
+        timestamp:
+          description: The timestamp when the profile was suppressed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
           type: string
           format: date-time
           example: '2023-02-21T20:07:38+00:00'
-          nullable: true
       required:
-      - can_receive_sms_marketing
-      - consent
+      - reason
+      - timestamp
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
     AttributionResponseObjectResource:
       type: object
       properties:
@@ -1485,835 +2459,6 @@ components:
       - type
       - id
       - links
-    GetEventResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/EventResponseObjectResource'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/MetricResponseObjectResource'
-            - $ref: '#/components/schemas/ProfileResponseObjectResource'
-            - $ref: '#/components/schemas/AttributionResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    WhatsappChannel:
-      type: object
-      properties:
-        marketing:
-          description: The Whatsapp marketing subscription.
-          $ref: '#/components/schemas/WhatsappMarketingChannel'
-          nullable: true
-        transactional:
-          description: The Whatsapp transactional subscription.
-          $ref: '#/components/schemas/WhatsappTransactionalChannel'
-          nullable: true
-        conversational:
-          description: The Whatsapp conversational subscription.
-          $ref: '#/components/schemas/WhatsappConversationalChannel'
-          nullable: true
-    PushChannel:
-      type: object
-      properties:
-        marketing:
-          description: The mobile push marketing subscription.
-          $ref: '#/components/schemas/PushMarketing'
-          nullable: true
-    OnsiteProfileMeta:
-      type: object
-      properties:
-        patch_properties:
-          description: Specify one or more patch operations to apply to existing property data
-          example:
-            append:
-              skus: '92538'
-          $ref: '#/components/schemas/ProfileMetaPatchProperties'
-          nullable: true
-        patch_identifiers:
-          description: Specify one or more patch operations to apply to existing identifier data. Currently only `email` is supported, and it is used to add or remove secondary email addresses on a profile.
-          example:
-            append:
-              email:
-              - example@test.com
-              - another@example.com
-          $ref: '#/components/schemas/PatchIdentifiers'
-          nullable: true
-    AttributionEnum:
-      type: string
-      enum:
-      - attribution
-    ProfileEnum:
-      type: string
-      enum:
-      - profile
-    ProfileResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ProfileEnum'
-        id:
-          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          example: 01GDDKASAP8TKDDA2GRZDSVP4H
-          nullable: true
-        attributes:
-          type: object
-          properties:
-            email:
-              description: Individual's email address
-              type: string
-              example: sarah.mason@klaviyo-demo.com
-              nullable: true
-            phone_number:
-              description: Individual's phone number in E.164 format
-              type: string
-              example: '+15005550006'
-              nullable: true
-            external_id:
-              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-            first_name:
-              description: Individual's first name
-              type: string
-              example: Sarah
-              nullable: true
-            last_name:
-              description: Individual's last name
-              type: string
-              example: Mason
-              nullable: true
-            organization:
-              description: Name of the company or organization within the company for whom the individual works
-              type: string
-              example: Example Corporation
-              nullable: true
-            locale:
-              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
-              example: en-US
-              nullable: true
-            title:
-              description: Individual's job title
-              type: string
-              example: Regional Manager
-              nullable: true
-            image:
-              description: URL pointing to the location of a profile image
-              type: string
-              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
-            created:
-              description: Date and time when the profile was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            updated:
-              description: Date and time when the profile was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            last_event_date:
-              description: Date and time of the most recent event the triggered an update to the profile, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            location:
-              $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
-            properties:
-              description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
-              example:
-                pseudonym: Dr. Octopus
-              nullable: true
-        relationships:
-          type: object
-          properties:
-            lists:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/ListEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            segments:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/SegmentEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            push-tokens:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/PushTokenEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - attributes
-      - links
-    PatchIdentifiers:
-      type: object
-      properties:
-        append:
-          type: object
-        unappend:
-          type: object
-    EventBulkCreateEnum:
-      type: string
-      enum:
-      - event-bulk-create
-    SMSChannel:
-      type: object
-      properties:
-        marketing:
-          description: The SMS marketing subscription.
-          $ref: '#/components/schemas/SMSMarketing'
-          nullable: true
-        transactional:
-          description: The SMS transactional subscription.
-          $ref: '#/components/schemas/SMSTransactional'
-          nullable: true
-    OnsiteProfileCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ProfileEnum'
-        id:
-          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          nullable: true
-        attributes:
-          type: object
-          properties:
-            email:
-              description: Individual's email address
-              type: string
-              example: sarah.mason@klaviyo-demo.com
-              nullable: true
-            phone_number:
-              description: Individual's phone number in E.164 format
-              type: string
-              example: '+15005550006'
-              nullable: true
-            external_id:
-              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-            anonymous_id:
-              type: string
-              nullable: true
-            _kx:
-              description: 'Also known as the `exchange_id`, this is an encrypted identifier used for identifying a
-
-                profile by Klaviyo''s web tracking.
-
-
-                You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.'
-              type: string
-              nullable: true
-            first_name:
-              description: Individual's first name
-              type: string
-              example: Sarah
-              nullable: true
-            last_name:
-              description: Individual's last name
-              type: string
-              example: Mason
-              nullable: true
-            organization:
-              description: Name of the company or organization within the company for whom the individual works
-              type: string
-              example: Example Corporation
-              nullable: true
-            locale:
-              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
-              example: en-US
-              nullable: true
-            title:
-              description: Individual's job title
-              type: string
-              example: Regional Manager
-              nullable: true
-            image:
-              description: URL pointing to the location of a profile image
-              type: string
-              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
-            location:
-              $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
-            properties:
-              description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
-              example:
-                pseudonym: Dr. Octopus
-              nullable: true
-        meta:
-          $ref: '#/components/schemas/OnsiteProfileMeta'
-          nullable: true
-      required:
-      - type
-      - attributes
-    GetEventProfileRelationshipResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/ProfileEnum'
-            id:
-              description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-              type: string
-              example: 01GDDKASAP8TKDDA2GRZDSVP4H
-          required:
-          - type
-          - id
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    FlowEnum:
-      type: string
-      enum:
-      - flow
-    CampaignEnum:
-      type: string
-      enum:
-      - campaign
-    EmailChannel:
-      type: object
-      properties:
-        marketing:
-          description: The email marketing subscription.
-          $ref: '#/components/schemas/EmailMarketing'
-          nullable: true
-    FlowMessageEnum:
-      type: string
-      enum:
-      - flow-message
-    MetricResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/MetricEnum'
-        id:
-          description: The Metric ID
-          type: string
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name of the metric
-              type: string
-              nullable: true
-            created:
-              description: Creation time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
-              nullable: true
-            updated:
-              description: Last updated time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
-              nullable: true
-            integration:
-              description: The integration associated with the event
-              type: object
-              nullable: true
-        relationships:
-          type: object
-          properties:
-            flow-triggers:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/FlowEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    MetricCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/MetricEnum'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: Name of the event. Must be less than 128 characters.
-              type: string
-              example: Viewed Product
-            service:
-              description: This is for advanced usage. For api requests, this should use the default, which is set to api.
-              type: string
-              nullable: true
-          required:
-          - name
-      required:
-      - type
-      - attributes
-    EventCreateQueryV2ResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/EventEnum'
-        attributes:
-          type: object
-          properties:
-            properties:
-              description: 'Properties of this event (must not exceed 400 properties). The size of the event payload must not exceed 5 MB,
-
-                and each string cannot be larger than 100 KB. For a full list of data limits on event payloads,
-
-                see [Limitations](https://developers.klaviyo.com/en/reference/events_api_overview#limitations).
-
-
-                Note any top-level property that is not an object can be
-
-                used to create segments. The `$extra` property records any
-
-                non-segmentable values that can be referenced later, e.g., HTML templates are
-
-                useful on a segment but are not used to create a segment.'
-              type: object
-              example:
-                Brand: Kids Book
-                ProductID: 1111
-                ProductName: Winnie the Pooh
-            time:
-              description: 'When this event occurred. By default, the time the request was received will be used.
-
-                The time is truncated to the second. The time must be after the year 2000 and can only
-
-                be up to 1 year in the future.'
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            value:
-              description: A numeric, monetary value to associate with this event. For example, the dollar amount of a purchase.
-              type: number
-              example: 9.99
-              nullable: true
-            value_currency:
-              description: The ISO 4217 currency code of the value associated with the event.
-              type: string
-              example: USD
-              nullable: true
-            unique_id:
-              description: 'A unique identifier for an event. If the unique_id is repeated for the same
-
-                profile and metric, only the first processed event will be recorded. If this is not
-
-                present, this will use the time to the second. Using the default, this limits only one
-
-                event per profile per second.'
-              type: string
-              nullable: true
-            backfill:
-              description: 'When true, the event is recorded but does NOT trigger flows. Use this when backfilling
-
-                historical events so existing flow definitions do not re-fire on events that already
-
-                fired in the past.'
-              type: boolean
-              default: false
-              nullable: true
-            metric:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/MetricCreateQueryResourceObject'
-              required:
-              - data
-            profile:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/EventProfileCreateQueryResourceObject'
-              required:
-              - data
-          required:
-          - properties
-          - metric
-          - profile
-      required:
-      - type
-      - attributes
-    PushMarketing:
-      type: object
-      properties:
-        can_receive_push_marketing:
-          description: Whether or not this profile is subscribed to receive mobile push.
-          type: boolean
-        consent:
-          description: The consent status for mobile push marketing.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when the consent was last changed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-      required:
-      - can_receive_push_marketing
-      - consent
-    EventCreateQueryV2:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/EventCreateQueryV2ResourceObject'
-      required:
-      - data
-    WhatsappMarketingChannel:
-      type: object
-      properties:
-        consent:
-          description: The consent status for the channel.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        last_updated:
-          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        created_timestamp:
-          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        metadata:
-          description: Channel-specific metadata containing additional information about the permission.
-          type: object
-          nullable: true
-        can_receive:
-          description: Whether the profile can receive messages on this channel.
-          type: boolean
-        valid_until:
-          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2024-02-21T20:07:38+00:00'
-          nullable: true
-        phone_number:
-          description: Phone number to which the consent was granted for.
-          type: string
-      required:
-      - consent
-      - can_receive
-      - phone_number
-    MetricEnum:
-      type: string
-      enum:
-      - metric
-    SegmentEnum:
-      type: string
-      enum:
-      - segment
-    EventsBulkCreateJobResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/EventBulkCreateJobEnum'
-        attributes:
-          type: object
-          properties:
-            events-bulk-create:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/EventsBulkCreateQueryResourceObject'
-              required:
-              - data
-          required:
-          - events-bulk-create
-      required:
-      - type
-      - attributes
-    EventEnum:
-      type: string
-      enum:
-      - event
-    WhatsappConversationalChannel:
-      type: object
-      properties:
-        consent:
-          description: The consent status for the channel.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        last_updated:
-          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        created_timestamp:
-          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        metadata:
-          description: Channel-specific metadata containing additional information about the permission.
-          type: object
-          nullable: true
-        can_receive:
-          description: Whether the profile can receive messages on this channel.
-          type: boolean
-        valid_until:
-          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2024-02-21T20:07:38+00:00'
-          nullable: true
-        phone_number:
-          description: Phone number to which the consent was granted for.
-          type: string
-      required:
-      - consent
-      - can_receive
-      - phone_number
-    EmailMarketingSuppression:
-      type: object
-      properties:
-        reason:
-          description: The reason the profile was suppressed.
-          type: string
-          example: HARD_BOUNCE
-          enum:
-          - HARD_BOUNCE
-          - INVALID_EMAIL
-          - SPAM_COMPLAINT
-          - UNSUBSCRIBE
-          - USER_SUPPRESSED
-        timestamp:
-          description: The timestamp when the profile was suppressed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-      required:
-      - reason
-      - timestamp
-    GetEventResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/MetricResponseObjectResource'
-            - $ref: '#/components/schemas/ProfileResponseObjectResource'
-            - $ref: '#/components/schemas/AttributionResponseObjectResource'
-      required:
-      - data
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    ProfileLocation:
-      type: object
-      properties:
-        address1:
-          description: First line of street address
-          type: string
-          example: 89 E 42nd St
-          nullable: true
-        address2:
-          description: Second line of street address
-          type: string
-          example: 1st floor
-          nullable: true
-        city:
-          description: City name
-          type: string
-          example: New York
-          nullable: true
-        country:
-          description: Country name
-          type: string
-          example: United States
-          nullable: true
-        latitude:
-          description: Latitude coordinate. We recommend providing a precision of four decimal places.
-          example: '40.7128'
-          nullable: true
-          oneOf:
-          - type: string
-          - type: number
-        longitude:
-          description: Longitude coordinate. We recommend providing a precision of four decimal places.
-          example: '74.0060'
-          nullable: true
-          oneOf:
-          - type: string
-          - type: number
-        region:
-          description: Region within a country, such as state or province
-          type: string
-          example: NY
-          nullable: true
-        zip:
-          description: Zip code
-          type: string
-          example: '10017'
-          nullable: true
-        timezone:
-          description: Time zone name. We recommend using time zones from the IANA Time Zone Database.
-          type: string
-          example: America/New_York
-          nullable: true
-        ip:
-          description: IP Address
-          type: string
-          example: 127.0.0.1
-          nullable: true
-    ProfileMetaPatchProperties:
-      type: object
-      properties:
-        append:
-          description: Append a simple value or values to this property array
-          type: object
-          example:
-            skus: '92538'
-          nullable: true
-        unappend:
-          description: Remove a simple value or values from this property array
-          type: object
-          example:
-            skus: '40571'
-          nullable: true
-        unset:
-          description: Remove a key or keys (and their values) completely from properties
-          example: skus
-          nullable: true
-          oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
-    EventBulkCreateJobEnum:
-      type: string
-      enum:
-      - event-bulk-create-job
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
   responses:
     ClientError:
       description: Client Error

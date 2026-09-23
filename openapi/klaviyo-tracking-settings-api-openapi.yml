@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Klaviyo Accounts Tracking Settings API
+  title: Klaviyo Tracking Settings API
   version: '2026-04-15'
   description: The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
   contact:
@@ -27,7 +27,14 @@ paths:
       description: 'Get all UTM tracking settings in an account. Returns an array with a single tracking setting.
 
 
-        More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+        More information about UTM tracking settings can be found here.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -129,7 +136,14 @@ paths:
       description: 'Get the UTM tracking setting with the given account ID.
 
 
-        More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+        More information about UTM tracking settings can be found here.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -223,7 +237,14 @@ paths:
       description: 'Update the UTM tracking setting with the given account ID.
 
 
-        More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+        More information about UTM tracking settings can be found here.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -272,75 +293,52 @@ paths:
       - tracking-settings:write
 components:
   schemas:
-    TrackingSettingPartialUpdateQueryResourceObject:
+    FlowTrackingSettingDynamicParam:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/TrackingSettingEnum'
-        id:
-          description: The id of the tracking setting (account ID).
+          description: The type of the tracking parameter
           type: string
-        attributes:
-          type: object
-          properties:
-            auto_add_parameters:
-              description: Whether tracking parameters are automatically added to campaigns and flows.
-              type: boolean
-              nullable: true
-            utm_source:
-              description: The utm_source tracking parameter.
-              $ref: '#/components/schemas/TrackingParamDTO'
-              nullable: true
-            utm_medium:
-              description: The utm_medium tracking parameter.
-              $ref: '#/components/schemas/TrackingParamDTO'
-              nullable: true
-            utm_campaign:
-              description: The utm_campaign tracking parameter.
-              $ref: '#/components/schemas/TrackingParamDTO'
-              nullable: true
-            utm_id:
-              description: The utm_id tracking parameter.
-              $ref: '#/components/schemas/TrackingParamDTO'
-              nullable: true
-            utm_term:
-              description: The utm_term tracking parameter.
-              $ref: '#/components/schemas/TrackingParamDTO'
-              nullable: true
-            custom_parameters:
-              description: List of custom tracking parameters.
-              type: array
-              items:
-                $ref: '#/components/schemas/CustomTrackingParamDTO'
-              nullable: true
+          enum:
+          - dynamic
+        value:
+          description: The value of the tracking parameter
+          type: string
+          enum:
+          - email_subject
+          - flow_id
+          - flow_name
+          - link_alt_text
+          - message_name
+          - message_name_id
+          - message_type
+          - profile_external_id
+          - profile_id
       required:
       - type
-      - id
-      - attributes
-    TrackingSettingPartialUpdateQuery:
+      - value
+    TrackingSettingEnum:
+      type: string
+      enum:
+      - tracking-setting
+    CustomTrackingParamDTO:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/TrackingSettingPartialUpdateQueryResourceObject'
-      required:
-      - data
-    GetTrackingSettingResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TrackingSettingResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    ObjectLinks:
-      type: object
-      properties:
-        self:
+        flow:
+          description: The value of the tracking parameter when applied to a flow.
+          oneOf:
+          - $ref: '#/components/schemas/FlowTrackingSettingDynamicParam'
+          - $ref: '#/components/schemas/FlowTrackingSettingStaticParam'
+        campaign:
+          description: The value of the tracking parameter when applied to a campaign.
+          oneOf:
+          - $ref: '#/components/schemas/CampaignTrackingSettingDynamicParam'
+          - $ref: '#/components/schemas/CampaignTrackingSettingStaticParam'
+        name:
+          description: The name of the custom tracking parameter
           type: string
-          format: uri
       required:
-      - self
+      - name
     TrackingSettingResponseObjectResource:
       type: object
       properties:
@@ -364,21 +362,19 @@ components:
             utm_campaign:
               description: The utm_campaign tracking parameter.
               $ref: '#/components/schemas/TrackingParamDTO'
-              nullable: true
             utm_id:
               description: The utm_id tracking parameter.
               $ref: '#/components/schemas/TrackingParamDTO'
-              nullable: true
             utm_term:
               description: The utm_term tracking parameter.
               $ref: '#/components/schemas/TrackingParamDTO'
-              nullable: true
             custom_parameters:
               description: Additional custom tracking parameters.
-              type: array
+              type:
+              - array
+              - 'null'
               items:
                 $ref: '#/components/schemas/CustomTrackingParamDTO'
-              nullable: true
           required:
           - auto_add_parameters
           - utm_source
@@ -390,87 +386,7 @@ components:
       - id
       - attributes
       - links
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    CustomTrackingParamDTO:
-      type: object
-      properties:
-        flow:
-          description: The value of the tracking parameter when applied to a flow.
-          nullable: true
-          oneOf:
-          - $ref: '#/components/schemas/FlowTrackingSettingDynamicParam'
-          - $ref: '#/components/schemas/FlowTrackingSettingStaticParam'
-        campaign:
-          description: The value of the tracking parameter when applied to a campaign.
-          nullable: true
-          oneOf:
-          - $ref: '#/components/schemas/CampaignTrackingSettingDynamicParam'
-          - $ref: '#/components/schemas/CampaignTrackingSettingStaticParam'
-        name:
-          description: The name of the custom tracking parameter
-          type: string
-      required:
-      - name
-    CampaignTrackingSettingStaticParam:
-      type: object
-      properties:
-        type:
-          description: The type of the tracking parameter
-          type: string
-          enum:
-          - static
-        value:
-          description: The value of the tracking parameter
-          type: string
-      required:
-      - type
-      - value
-    TrackingParamDTO:
-      type: object
-      properties:
-        flow:
-          description: The value of the tracking parameter when applied to a flow.
-          nullable: true
-          oneOf:
-          - $ref: '#/components/schemas/FlowTrackingSettingDynamicParam'
-          - $ref: '#/components/schemas/FlowTrackingSettingStaticParam'
-        campaign:
-          description: The value of the tracking parameter when applied to a campaign.
-          nullable: true
-          oneOf:
-          - $ref: '#/components/schemas/CampaignTrackingSettingDynamicParam'
-          - $ref: '#/components/schemas/CampaignTrackingSettingStaticParam'
-    GetTrackingSettingResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackingSettingResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    FlowTrackingSettingDynamicParam:
+    CampaignTrackingSettingDynamicParam:
       type: object
       properties:
         type:
@@ -482,15 +398,58 @@ components:
           description: The value of the tracking parameter
           type: string
           enum:
+          - campaign_id
+          - campaign_name
+          - campaign_name_id
+          - campaign_name_send_day
           - email_subject
-          - flow_id
-          - flow_name
+          - group_id
+          - group_name
+          - group_name_id
           - link_alt_text
-          - message_name
-          - message_name_id
           - message_type
           - profile_external_id
           - profile_id
+      required:
+      - type
+      - value
+    TrackingSettingPartialUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TrackingSettingPartialUpdateQueryResourceObject'
+      required:
+      - data
+    GetTrackingSettingResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackingSettingResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    CampaignTrackingSettingStaticParam:
+      type: object
+      properties:
+        type:
+          description: The type of the tracking parameter
+          type: string
+          enum:
+          - static
+        value:
+          description: The value of the tracking parameter
+          type: string
       required:
       - type
       - value
@@ -520,21 +479,19 @@ components:
                 utm_campaign:
                   description: The utm_campaign tracking parameter.
                   $ref: '#/components/schemas/TrackingParamDTO'
-                  nullable: true
                 utm_id:
                   description: The utm_id tracking parameter.
                   $ref: '#/components/schemas/TrackingParamDTO'
-                  nullable: true
                 utm_term:
                   description: The utm_term tracking parameter.
                   $ref: '#/components/schemas/TrackingParamDTO'
-                  nullable: true
                 custom_parameters:
                   description: Additional custom tracking parameters.
-                  type: array
+                  type:
+                  - array
+                  - 'null'
                   items:
                     $ref: '#/components/schemas/CustomTrackingParamDTO'
-                  nullable: true
               required:
               - auto_add_parameters
               - utm_source
@@ -550,6 +507,48 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
+    GetTrackingSettingResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TrackingSettingResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    TrackingParamDTO:
+      type: object
+      properties:
+        flow:
+          description: The value of the tracking parameter when applied to a flow.
+          oneOf:
+          - $ref: '#/components/schemas/FlowTrackingSettingDynamicParam'
+          - $ref: '#/components/schemas/FlowTrackingSettingStaticParam'
+        campaign:
+          description: The value of the tracking parameter when applied to a campaign.
+          oneOf:
+          - $ref: '#/components/schemas/CampaignTrackingSettingDynamicParam'
+          - $ref: '#/components/schemas/CampaignTrackingSettingStaticParam'
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
     FlowTrackingSettingStaticParam:
       type: object
       properties:
@@ -564,40 +563,51 @@ components:
       required:
       - type
       - value
-    TrackingSettingEnum:
-      type: string
-      enum:
-      - tracking-setting
-    CampaignTrackingSettingDynamicParam:
+    TrackingSettingPartialUpdateQueryResourceObject:
       type: object
       properties:
         type:
-          description: The type of the tracking parameter
+          $ref: '#/components/schemas/TrackingSettingEnum'
+        id:
+          description: The id of the tracking setting (account ID).
           type: string
-          enum:
-          - dynamic
-        value:
-          description: The value of the tracking parameter
-          type: string
-          enum:
-          - campaign_id
-          - campaign_name
-          - campaign_name_id
-          - campaign_name_send_day
-          - email_subject
-          - group_id
-          - group_name
-          - group_name_id
-          - link_alt_text
-          - message_type
-          - profile_external_id
-          - profile_id
+        attributes:
+          type: object
+          properties:
+            auto_add_parameters:
+              description: Whether tracking parameters are automatically added to campaigns and flows.
+              type:
+              - boolean
+              - 'null'
+            utm_source:
+              description: The utm_source tracking parameter.
+              $ref: '#/components/schemas/TrackingParamDTO'
+            utm_medium:
+              description: The utm_medium tracking parameter.
+              $ref: '#/components/schemas/TrackingParamDTO'
+            utm_campaign:
+              description: The utm_campaign tracking parameter.
+              $ref: '#/components/schemas/TrackingParamDTO'
+            utm_id:
+              description: The utm_id tracking parameter.
+              $ref: '#/components/schemas/TrackingParamDTO'
+            utm_term:
+              description: The utm_term tracking parameter.
+              $ref: '#/components/schemas/TrackingParamDTO'
+            custom_parameters:
+              description: List of custom tracking parameters.
+              type:
+              - array
+              - 'null'
+              items:
+                $ref: '#/components/schemas/CustomTrackingParamDTO'
       required:
       - type
-      - value
+      - id
+      - attributes
   responses:
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
@@ -630,8 +640,8 @@ components:
                           type: string
             required:
             - errors
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:

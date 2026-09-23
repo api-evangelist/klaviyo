@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Klaviyo Accounts Lists API
+  title: Klaviyo Lists API
   version: '2026-04-15'
   description: The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
   contact:
@@ -30,7 +30,14 @@ paths:
         Filter to request a subset of all lists. Lists can be filtered by `id`, `name`, `created`, and `updated` fields.
 
 
-        Returns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`
+        Returns a maximum of 10 results per page.
+
+
+        *Rate limits*:
+
+        Burst: `75/s`
+
+        Steady: `750/m`
 
 
         **Scopes:**
@@ -153,7 +160,16 @@ paths:
     post:
       operationId: create_list
       summary: Create List
-      description: 'Create a new list.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`<br>Daily: `150/d`
+      description: 'Create a new list.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
+
+        Daily: `150/d`
 
 
         **Scopes:**
@@ -197,7 +213,24 @@ paths:
     get:
       operationId: get_list
       summary: Get List
-      description: 'Get a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `additional-fields[list]=profile_count` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.
+      description: 'Get a list with the given list ID.
+
+
+        *Rate limits*:
+
+        Burst: `75/s`
+
+        Steady: `750/m`
+
+
+        Rate limits when using the `additional-fields[list]=profile_count` parameter in your API request:
+
+        Burst: `1/s`
+
+        Steady: `15/m`
+
+
+        To learn more about how the `additional-fields` parameter impacts rate limits, check out our Rate limits, status codes, and errors guide.
 
 
         **Scopes:**
@@ -305,7 +338,14 @@ paths:
     patch:
       operationId: update_list
       summary: Update List
-      description: 'Update the name of a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+      description: 'Update the name of a list with the given list ID.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -355,7 +395,14 @@ paths:
     delete:
       operationId: delete_list
       summary: Delete List
-      description: 'Delete a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+      description: 'Delete a list with the given list ID.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -396,7 +443,14 @@ paths:
     get:
       operationId: get_tags_for_list
       summary: Get Tags for List
-      description: 'Return all tags associated with the given list ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+      description: 'Return all tags associated with the given list ID.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -457,7 +511,14 @@ paths:
     get:
       operationId: get_tag_ids_for_list
       summary: Get Tag IDs for List
-      description: 'Return all tags associated with the given list ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+      description: 'Return all tags associated with the given list ID.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -510,7 +571,24 @@ paths:
       description: 'Get all profiles within a list with the given list ID.
 
 
-        Filter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, `push_token`, and `joined_group_at` fields. Profiles can be sorted by the following fields, in ascending and descending order: `joined_group_at`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.
+        Filter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, `push_token`, and `joined_group_at` fields. Profiles can be sorted by the following fields, in ascending and descending order: `joined_group_at`
+
+
+        *Rate limits*:
+
+        Burst: `75/s`
+
+        Steady: `750/m`
+
+
+        Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
+
+
+        To learn more about how the `additional-fields` parameter impacts rate limits, check out our Rate limits, status codes, and errors guide.
 
 
         **Scopes:**
@@ -708,7 +786,24 @@ paths:
     get:
       operationId: get_profile_ids_for_list
       summary: Get Profile IDs for List
-      description: 'Get profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.
+      description: 'Get profile membership relationships for a list with the given list ID.
+
+
+        *Rate limits*:
+
+        Burst: `75/s`
+
+        Steady: `750/m`
+
+
+        Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
+
+
+        To learn more about how the `additional-fields` parameter impacts rate limits, check out our Rate limits, status codes, and errors guide.
 
 
         **Scopes:**
@@ -789,10 +884,17 @@ paths:
       description: 'Add a profile to a list with the given list ID.
 
 
-        It is recommended that you use the [Subscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/subscribe_profiles) if you''re trying to give a profile [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api) to receive email marketing, SMS marketing, or both.
+        It is recommended that you use the Subscribe Profiles endpoint if you''re trying to give a profile consent to receive email marketing, SMS marketing, or both.
 
 
-        This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+        This endpoint accepts a maximum of 1000 profiles per call.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -849,12 +951,19 @@ paths:
         The provided profile will no longer receive marketing from this particular list once removed.
 
 
-        Removing a profile from a list will not impact the profile''s [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api) status or subscription status in general.
+        Removing a profile from a list will not impact the profile''s consent status or subscription status in general.
 
-        To update a profile''s subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles).
+        To update a profile''s subscription status, please use the Unsubscribe Profiles endpoint.
 
 
-        This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`
+        This endpoint accepts a maximum of 1000 profiles per call.
+
+
+        *Rate limits*:
+
+        Burst: `10/s`
+
+        Steady: `150/m`
 
 
         **Scopes:**
@@ -905,7 +1014,14 @@ paths:
     get:
       operationId: get_flows_triggered_by_list
       summary: Get Flows Triggered by List
-      description: 'Get all flows where the given list ID is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+      description: 'Get all flows where the given list ID is being used as the trigger.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -972,7 +1088,14 @@ paths:
     get:
       operationId: get_ids_for_flows_triggered_by_list
       summary: Get IDs for Flows Triggered by List
-      description: 'Get the IDs of all flows where the given list is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+      description: 'Get the IDs of all flows where the given list is being used as the trigger.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -1021,497 +1144,67 @@ paths:
       - lists:read
 components:
   schemas:
-    PushTokenEnum:
-      type: string
-      enum:
-      - push-token
-    ListMembersDeleteQuery:
+    PushMarketing:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/ProfileEnum'
-              id:
-                type: string
-      required:
-      - data
-    ListMembersAddQuery:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/ProfileEnum'
-              id:
-                type: string
-      required:
-      - data
-    GetListTagsRelationshipsResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/TagEnum'
-              id:
-                description: The Tag ID
-                type: string
-                example: abcd1234-ef56-gh78-ij90-abcdef123456
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    SMSTransactional:
-      type: object
-      properties:
-        can_receive_sms_transactional:
-          description: Whether or not this profile is subscribed to receive transactional SMS.
+        can_receive_push_marketing:
+          description: Whether or not this profile is subscribed to receive mobile push.
           type: boolean
         consent:
-          description: The consent status for SMS Transactional.
+          description: The consent status for mobile push marketing.
           type: string
           example: SUBSCRIBED
         consent_timestamp:
-          description: The timestamp when consent was recorded or updated for Transactional SMS messaging , in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
+          description: The timestamp when the consent was last changed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        method:
-          description: The method by which the profile was subscribed to Transactional SMS messaging .
-          type: string
-          example: TEXT
-          nullable: true
-        method_detail:
-          description: Additional details about the method which the profile was subscribed to Transactional SMS messaging. This may be empty if no details were provided.
-          type: string
-          example: JOIN
-          default: ''
-          nullable: true
-        last_updated:
-          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
       required:
-      - can_receive_sms_transactional
+      - can_receive_push_marketing
       - consent
-    EmailMarketing:
-      type: object
-      properties:
-        can_receive_email_marketing:
-          description: Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.
-          type: boolean
-        consent:
-          description: The consent status for email marketing.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        last_updated:
-          description: The timestamp when a field on the email marketing object was last modified.
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        method:
-          description: The method by which the profile was subscribed to email marketing.
-          type: string
-          example: PREFERENCE_PAGE
-          nullable: true
-        method_detail:
-          description: Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.
-          type: string
-          example: mydomain.com/signup
-          default: ''
-          nullable: true
-        custom_method_detail:
-          description: Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.
-          type: string
-          example: marketing drive
-          nullable: true
-        double_optin:
-          description: Whether the profile was subscribed to email marketing using a double opt-in.
-          type: boolean
-          example: true
-          nullable: true
-        suppression:
-          description: The global email marketing suppression for this profile.
-          type: array
-          items:
-            $ref: '#/components/schemas/EmailMarketingSuppression'
-          nullable: true
-        list_suppressions:
-          description: The list suppressions for this profile.
-          type: array
-          items:
-            $ref: '#/components/schemas/EmailMarketingListSuppression'
-          nullable: true
-      required:
-      - can_receive_email_marketing
-      - consent
-    GetListFlowTriggersRelationshipsResponseCollection:
+    GetListListResponseCollectionCompoundDocument:
       type: object
       properties:
         data:
           type: array
           items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/FlowEnum'
-              id:
-                type: string
+            $ref: '#/components/schemas/ListListResponseObjectResource'
         links:
           $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    ListMemberResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ProfileEnum'
-        id:
-          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-          type: string
-          example: 01GDDKASAP8TKDDA2GRZDSVP4H
-          nullable: true
-        attributes:
-          type: object
-          properties:
-            email:
-              description: Individual's email address
-              type: string
-              example: sarah.mason@klaviyo-demo.com
-              nullable: true
-            phone_number:
-              description: Individual's phone number in E.164 format
-              type: string
-              example: '+15005550006'
-              nullable: true
-            external_id:
-              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-              type: string
-              nullable: true
-            first_name:
-              description: Individual's first name
-              type: string
-              example: Sarah
-              nullable: true
-            last_name:
-              description: Individual's last name
-              type: string
-              example: Mason
-              nullable: true
-            organization:
-              description: Name of the company or organization within the company for whom the individual works
-              type: string
-              example: Example Corporation
-              nullable: true
-            locale:
-              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-              type: string
-              example: en-US
-              nullable: true
-            title:
-              description: Individual's job title
-              type: string
-              example: Regional Manager
-              nullable: true
-            image:
-              description: URL pointing to the location of a profile image
-              type: string
-              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
-              nullable: true
-            created:
-              description: Date and time when the profile was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            updated:
-              description: Date and time when the profile was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            last_event_date:
-              description: Date and time of the most recent event the triggered an update to the profile, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            location:
-              $ref: '#/components/schemas/ProfileLocation'
-              nullable: true
-            properties:
-              description: An object containing key/value pairs for any custom properties assigned to this profile
-              type: object
-              example:
-                pseudonym: Dr. Octopus
-              nullable: true
-            joined_group_at:
-              description: The datetime when this profile most recently joined the list.
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-          required:
-          - joined_group_at
-        relationships:
-          type: object
-          properties:
-            lists:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/ListEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            segments:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/SegmentEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            push-tokens:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/PushTokenEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - attributes
-      - links
-    FlowResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/FlowEnum'
-        id:
-          type: string
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-              nullable: true
-            status:
-              type: string
-              nullable: true
-            archived:
-              type: boolean
-              nullable: true
-            created:
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            updated:
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-              nullable: true
-            trigger_type:
-              description: Corresponds to the object which triggered the flow.
-              type: string
-              enum:
-              - Added to List
-              - Date Based
-              - Low Inventory
-              - Metric
-              - Price Drop
-              - Unconfigured
-              nullable: true
-        relationships:
-          type: object
-          properties:
-            flow-actions:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/FlowActionEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            tags:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/TagEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    WhatsappTransactionalChannel:
-      type: object
-      properties:
-        consent:
-          description: The consent status for the channel.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        last_updated:
-          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        created_timestamp:
-          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        metadata:
-          description: Channel-specific metadata containing additional information about the permission.
-          type: object
-          nullable: true
-        can_receive:
-          description: Whether the profile can receive messages on this channel.
-          type: boolean
-        valid_until:
-          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2024-02-21T20:07:38+00:00'
-          nullable: true
-        phone_number:
-          description: Phone number to which the consent was granted for.
-          type: string
-      required:
-      - consent
-      - can_receive
-      - phone_number
-    GetTagResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    GetListRetrieveResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          allOf:
-          - properties:
-              type:
-                $ref: '#/components/schemas/ListEnum'
-              attributes:
-                properties:
-                  profile_count:
-                    type: integer
-                    nullable: true
-          - $ref: '#/components/schemas/ListRetrieveResponseObjectResource'
         included:
           type: array
           items:
             oneOf:
             - $ref: '#/components/schemas/TagResponseObjectResource'
             - $ref: '#/components/schemas/FlowResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    ListEnum:
+    EmailMarketingListSuppression:
+      type: object
+      properties:
+        list_id:
+          description: The ID of list to which the suppression applies.
+          type: string
+          example: Y6nRLr
+        reason:
+          description: The reason the profile was suppressed from the list.
+          type: string
+          example: USER_SUPPRESSED
+        timestamp:
+          description: The timestamp when the profile was suppressed from the list, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type: string
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - list_id
+      - reason
+      - timestamp
+    PushTokenEnum:
       type: string
       enum:
-      - list
+      - push-token
     ListListResponseObjectResource:
       type: object
       properties:
@@ -1526,29 +1219,33 @@ components:
           properties:
             name:
               description: A helpful name to label the list
-              type: string
+              type:
+              - string
+              - 'null'
               example: Newsletter
-              nullable: true
             created:
               description: Date and time when the list was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T00:00:00+00:00'
-              nullable: true
             updated:
               description: Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T00:00:00+00:00'
-              nullable: true
             opt_in_process:
               description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''.'
-              type: string
+              type:
+              - string
+              - 'null'
               example: double_opt_in
               enum:
               - double_opt_in
               - single_opt_in
-              nullable: true
         relationships:
           type: object
           properties:
@@ -1610,440 +1307,6 @@ components:
       - id
       - attributes
       - links
-    PostListCreateResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/ListEnum'
-            id:
-              description: Primary key that uniquely identifies this list. Generated by Klaviyo.
-              type: string
-              example: Y6nRLr
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: A helpful name to label the list
-                  type: string
-                  example: Newsletter
-                  nullable: true
-                created:
-                  description: Date and time when the list was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                  nullable: true
-                updated:
-                  description: Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                  nullable: true
-                opt_in_process:
-                  description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''.'
-                  type: string
-                  example: double_opt_in
-                  enum:
-                  - double_opt_in
-                  - single_opt_in
-                  nullable: true
-            relationships:
-              type: object
-              properties:
-                profiles:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/ProfileEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                tags:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/TagEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                flow-triggers:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/FlowEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    ListPartialUpdateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ListEnum'
-        id:
-          description: Primary key that uniquely identifies this list. Generated by Klaviyo.
-          type: string
-          example: Y6nRLr
-        attributes:
-          type: object
-          properties:
-            name:
-              description: A helpful name to label the list
-              type: string
-              example: Newsletter
-              nullable: true
-            opt_in_process:
-              description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''.'
-              type: string
-              example: double_opt_in
-              enum:
-              - double_opt_in
-              - single_opt_in
-              nullable: true
-      required:
-      - type
-      - id
-      - attributes
-    ListPartialUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ListPartialUpdateQueryResourceObject'
-      required:
-      - data
-    GetFlowResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    Subscriptions:
-      type: object
-      properties:
-        email:
-          description: The email channel subscription.
-          $ref: '#/components/schemas/EmailChannel'
-          nullable: true
-        sms:
-          description: The SMS channel subscription.
-          $ref: '#/components/schemas/SMSChannel'
-          nullable: true
-        mobile_push:
-          description: The mobile push channel subscription.
-          $ref: '#/components/schemas/PushChannel'
-          nullable: true
-        whatsapp:
-          description: The whatsapp channel subscription.
-          $ref: '#/components/schemas/WhatsappChannel'
-          nullable: true
-    PatchListPartialUpdateResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/ListEnum'
-            id:
-              description: Primary key that uniquely identifies this list. Generated by Klaviyo.
-              type: string
-              example: Y6nRLr
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: A helpful name to label the list
-                  type: string
-                  example: Newsletter
-                  nullable: true
-                created:
-                  description: Date and time when the list was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                  nullable: true
-                updated:
-                  description: Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                  nullable: true
-                opt_in_process:
-                  description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''.'
-                  type: string
-                  example: double_opt_in
-                  enum:
-                  - double_opt_in
-                  - single_opt_in
-                  nullable: true
-            relationships:
-              type: object
-              properties:
-                profiles:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/ProfileEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                tags:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/TagEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                flow-triggers:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/FlowEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    EmailMarketingListSuppression:
-      type: object
-      properties:
-        list_id:
-          description: The ID of list to which the suppression applies.
-          type: string
-          example: Y6nRLr
-        reason:
-          description: The reason the profile was suppressed from the list.
-          type: string
-          example: USER_SUPPRESSED
-        timestamp:
-          description: The timestamp when the profile was suppressed from the list, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-      required:
-      - list_id
-      - reason
-      - timestamp
-    PredictiveAnalytics:
-      type: object
-      properties:
-        historic_clv:
-          description: Total value of all historically placed orders
-          type: number
-          example: 93.87
-          nullable: true
-        predicted_clv:
-          description: Predicted value of all placed orders in the next 365 days
-          type: number
-          example: 27.24
-          nullable: true
-        total_clv:
-          description: Sum of historic and predicted CLV
-          type: number
-          example: 121.11
-          nullable: true
-        historic_number_of_orders:
-          description: Number of already placed orders
-          type: number
-          example: 2
-          nullable: true
-        predicted_number_of_orders:
-          description: Predicted number of placed orders in the next 365 days
-          type: number
-          example: 0.54
-          nullable: true
-        average_days_between_orders:
-          description: Average number of days between orders (None if only one order has been placed)
-          type: number
-          example: 189
-          nullable: true
-        average_order_value:
-          description: Average value of placed orders
-          type: number
-          example: 46.94
-          nullable: true
-        churn_probability:
-          description: Probability the customer has churned
-          type: number
-          example: 0.89
-          nullable: true
-        expected_date_of_next_order:
-          description: Expected date of next order, as calculated at the time of their most recent order
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-          nullable: true
-        ranked_channel_affinity:
-          description: List of channels ranked by their predicted effectiveness for this profile, with the best channel being listed first at index 0
-          type: array
-          items:
-            type: string
-            enum:
-            - email
-            - push
-            - sms
-            - whatsapp
-            description: Enum for channel name return values used in the V3 API for channel affinity for the field `ranked_channel_affinity`.
-          example:
-          - sms
-          - email
-          - push
-          nullable: true
-    SMSMarketing:
-      type: object
-      properties:
-        can_receive_sms_marketing:
-          description: Whether or not this profile is subscribed to receive SMS marketing.
-          type: boolean
-        consent:
-          description: The consent status for SMS marketing.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        method:
-          description: The method by which the profile was subscribed to SMS marketing.
-          type: string
-          example: TEXT
-          nullable: true
-        method_detail:
-          description: Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
-          type: string
-          example: JOIN
-          default: ''
-          nullable: true
-        last_updated:
-          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-      required:
-      - can_receive_sms_marketing
-      - consent
-    WhatsappChannel:
-      type: object
-      properties:
-        marketing:
-          description: The Whatsapp marketing subscription.
-          $ref: '#/components/schemas/WhatsappMarketingChannel'
-          nullable: true
-        transactional:
-          description: The Whatsapp transactional subscription.
-          $ref: '#/components/schemas/WhatsappTransactionalChannel'
-          nullable: true
-        conversational:
-          description: The Whatsapp conversational subscription.
-          $ref: '#/components/schemas/WhatsappConversationalChannel'
-          nullable: true
-    PushChannel:
-      type: object
-      properties:
-        marketing:
-          description: The mobile push marketing subscription.
-          $ref: '#/components/schemas/PushMarketing'
-          nullable: true
-    ProfileEnum:
-      type: string
-      enum:
-      - profile
-    SMSChannel:
-      type: object
-      properties:
-        marketing:
-          description: The SMS marketing subscription.
-          $ref: '#/components/schemas/SMSMarketing'
-          nullable: true
-        transactional:
-          description: The SMS transactional subscription.
-          $ref: '#/components/schemas/SMSTransactional'
-          nullable: true
     TagResponseObjectResource:
       type: object
       properties:
@@ -2155,6 +1418,196 @@ components:
       - id
       - attributes
       - links
+    GetTagResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    EmailChannel:
+      type: object
+      properties:
+        marketing:
+          description: The email marketing subscription.
+          $ref: '#/components/schemas/EmailMarketing'
+    WhatsappTransactionalChannel:
+      type: object
+      properties:
+        consent:
+          description: The consent status for the channel.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        created_timestamp:
+          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        metadata:
+          description: Channel-specific metadata containing additional information about the permission.
+          type:
+          - object
+          - 'null'
+        can_receive:
+          description: Whether the profile can receive messages on this channel.
+          type: boolean
+        valid_until:
+          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-02-21T20:07:38+00:00'
+        phone_number:
+          description: Phone number to which the consent was granted for.
+          type: string
+      required:
+      - consent
+      - can_receive
+      - phone_number
+    CampaignEnum:
+      type: string
+      enum:
+      - campaign
+    GetListMemberResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+            - properties:
+                type:
+                  $ref: '#/components/schemas/ProfileEnum'
+                attributes:
+                  properties:
+                    subscriptions:
+                      $ref: '#/components/schemas/Subscriptions'
+                    predictive_analytics:
+                      $ref: '#/components/schemas/PredictiveAnalytics'
+            - $ref: '#/components/schemas/ListMemberResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    SMSTransactional:
+      type: object
+      properties:
+        can_receive_sms_transactional:
+          description: Whether or not this profile is subscribed to receive transactional SMS.
+          type: boolean
+        consent:
+          description: The consent status for SMS Transactional.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for Transactional SMS messaging , in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        method:
+          description: The method by which the profile was subscribed to Transactional SMS messaging .
+          type:
+          - string
+          - 'null'
+          example: TEXT
+        method_detail:
+          description: Additional details about the method which the profile was subscribed to Transactional SMS messaging. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: JOIN
+          default: ''
+        last_updated:
+          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - can_receive_sms_transactional
+      - consent
+    PushChannel:
+      type: object
+      properties:
+        marketing:
+          description: The mobile push marketing subscription.
+          $ref: '#/components/schemas/PushMarketing'
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    SMSChannel:
+      type: object
+      properties:
+        marketing:
+          description: The SMS marketing subscription.
+          $ref: '#/components/schemas/SMSMarketing'
+        transactional:
+          description: The SMS transactional subscription.
+          $ref: '#/components/schemas/SMSTransactional'
+    GetFlowResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    WhatsappChannel:
+      type: object
+      properties:
+        marketing:
+          description: The Whatsapp marketing subscription.
+          $ref: '#/components/schemas/WhatsappMarketingChannel'
+        transactional:
+          description: The Whatsapp transactional subscription.
+          $ref: '#/components/schemas/WhatsappTransactionalChannel'
+        conversational:
+          description: The Whatsapp conversational subscription.
+          $ref: '#/components/schemas/WhatsappConversationalChannel'
     ListCreateQuery:
       type: object
       properties:
@@ -2162,23 +1615,789 @@ components:
           $ref: '#/components/schemas/ListCreateQueryResourceObject'
       required:
       - data
-    GetListListResponseCollectionCompoundDocument:
+    WhatsappConversationalChannel:
+      type: object
+      properties:
+        consent:
+          description: The consent status for the channel.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        created_timestamp:
+          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        metadata:
+          description: Channel-specific metadata containing additional information about the permission.
+          type:
+          - object
+          - 'null'
+        can_receive:
+          description: Whether the profile can receive messages on this channel.
+          type: boolean
+        valid_until:
+          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-02-21T20:07:38+00:00'
+        phone_number:
+          description: Phone number to which the consent was granted for.
+          type: string
+      required:
+      - consent
+      - can_receive
+      - phone_number
+    ProfileEnum:
+      type: string
+      enum:
+      - profile
+    ListMemberResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ProfileEnum'
+        id:
+          description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+          type:
+          - string
+          - 'null'
+          example: 01GDDKASAP8TKDDA2GRZDSVP4H
+        attributes:
+          type: object
+          properties:
+            email:
+              description: Individual's email address
+              type:
+              - string
+              - 'null'
+              example: sarah.mason@klaviyo-demo.com
+            phone_number:
+              description: Individual's phone number in E.164 format
+              type:
+              - string
+              - 'null'
+              example: '+15005550006'
+            external_id:
+              description: A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
+              type:
+              - string
+              - 'null'
+            first_name:
+              description: Individual's first name
+              type:
+              - string
+              - 'null'
+              example: Sarah
+            last_name:
+              description: Individual's last name
+              type:
+              - string
+              - 'null'
+              example: Mason
+            organization:
+              description: Name of the company or organization within the company for whom the individual works
+              type:
+              - string
+              - 'null'
+              example: Example Corporation
+            locale:
+              description: The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
+              type:
+              - string
+              - 'null'
+              example: en-US
+            title:
+              description: Individual's job title
+              type:
+              - string
+              - 'null'
+              example: Regional Manager
+            image:
+              description: URL pointing to the location of a profile image
+              type:
+              - string
+              - 'null'
+              example: https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg
+            created:
+              description: Date and time when the profile was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              description: Date and time when the profile was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            last_event_date:
+              description: Date and time of the most recent event the triggered an update to the profile, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            location:
+              $ref: '#/components/schemas/ProfileLocation'
+            properties:
+              description: An object containing key/value pairs for any custom properties assigned to this profile
+              type:
+              - object
+              - 'null'
+              example:
+                pseudonym: Dr. Octopus
+            joined_group_at:
+              description: The datetime when this profile most recently joined the list.
+              type: string
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+          required:
+          - joined_group_at
+        relationships:
+          type: object
+          properties:
+            lists:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/ListEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            segments:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/SegmentEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            push-tokens:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/PushTokenEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - attributes
+      - links
+    PostListCreateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ListEnum'
+            id:
+              description: Primary key that uniquely identifies this list. Generated by Klaviyo.
+              type: string
+              example: Y6nRLr
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: A helpful name to label the list
+                  type:
+                  - string
+                  - 'null'
+                  example: Newsletter
+                created:
+                  description: Date and time when the list was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated:
+                  description: Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                opt_in_process:
+                  description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''.'
+                  type:
+                  - string
+                  - 'null'
+                  example: double_opt_in
+                  enum:
+                  - double_opt_in
+                  - single_opt_in
+            relationships:
+              type: object
+              properties:
+                profiles:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/ProfileEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                tags:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/TagEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                flow-triggers:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/FlowEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    PatchListPartialUpdateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ListEnum'
+            id:
+              description: Primary key that uniquely identifies this list. Generated by Klaviyo.
+              type: string
+              example: Y6nRLr
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: A helpful name to label the list
+                  type:
+                  - string
+                  - 'null'
+                  example: Newsletter
+                created:
+                  description: Date and time when the list was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated:
+                  description: Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                opt_in_process:
+                  description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''.'
+                  type:
+                  - string
+                  - 'null'
+                  example: double_opt_in
+                  enum:
+                  - double_opt_in
+                  - single_opt_in
+            relationships:
+              type: object
+              properties:
+                profiles:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/ProfileEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                tags:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/TagEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                flow-triggers:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/FlowEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    ListCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ListEnum'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: A helpful name to label the list
+              type: string
+              example: Newsletter
+            opt_in_process:
+              description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''. If not provided, uses account default.'
+              type:
+              - string
+              - 'null'
+              example: double_opt_in
+              enum:
+              - double_opt_in
+              - single_opt_in
+          required:
+          - name
+      required:
+      - type
+      - attributes
+    ListMembersDeleteQuery:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ListListResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/TagResponseObjectResource'
-            - $ref: '#/components/schemas/FlowResponseObjectResource'
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/ProfileEnum'
+              id:
+                type: string
       required:
       - data
+    Subscriptions:
+      type: object
+      properties:
+        email:
+          description: The email channel subscription.
+          $ref: '#/components/schemas/EmailChannel'
+        sms:
+          description: The SMS channel subscription.
+          $ref: '#/components/schemas/SMSChannel'
+        mobile_push:
+          description: The mobile push channel subscription.
+          $ref: '#/components/schemas/PushChannel'
+        whatsapp:
+          description: The whatsapp channel subscription.
+          $ref: '#/components/schemas/WhatsappChannel'
+    ListPartialUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ListPartialUpdateQueryResourceObject'
+      required:
+      - data
+    FlowResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FlowEnum'
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+            status:
+              type:
+              - string
+              - 'null'
+            archived:
+              type:
+              - boolean
+              - 'null'
+            created:
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            trigger_type:
+              description: Corresponds to the object which triggered the flow.
+              type:
+              - string
+              - 'null'
+              enum:
+              - Added to List
+              - Date Based
+              - Low Inventory
+              - Metric
+              - Price Drop
+              - Unconfigured
+        relationships:
+          type: object
+          properties:
+            flow-actions:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/FlowActionEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            tags:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/TagEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    SMSMarketing:
+      type: object
+      properties:
+        can_receive_sms_marketing:
+          description: Whether or not this profile is subscribed to receive SMS marketing.
+          type: boolean
+        consent:
+          description: The consent status for SMS marketing.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        method:
+          description: The method by which the profile was subscribed to SMS marketing.
+          type:
+          - string
+          - 'null'
+          example: TEXT
+        method_detail:
+          description: Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: JOIN
+          default: ''
+        last_updated:
+          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - can_receive_sms_marketing
+      - consent
+    FlowActionEnum:
+      type: string
+      enum:
+      - flow-action
+    FlowEnum:
+      type: string
+      enum:
+      - flow
+    GetListFlowTriggersRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/FlowEnum'
+              id:
+                type: string
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ProfileLocation:
+      type: object
+      properties:
+        address1:
+          description: First line of street address
+          type:
+          - string
+          - 'null'
+          example: 89 E 42nd St
+        address2:
+          description: Second line of street address
+          type:
+          - string
+          - 'null'
+          example: 1st floor
+        city:
+          description: City name
+          type:
+          - string
+          - 'null'
+          example: New York
+        country:
+          description: Country name
+          type:
+          - string
+          - 'null'
+          example: United States
+        latitude:
+          description: Latitude coordinate. We recommend providing a precision of four decimal places.
+          example: '40.7128'
+          oneOf:
+          - type: string
+          - type: number
+        longitude:
+          description: Longitude coordinate. We recommend providing a precision of four decimal places.
+          example: '74.0060'
+          oneOf:
+          - type: string
+          - type: number
+        region:
+          description: Region within a country, such as state or province
+          type:
+          - string
+          - 'null'
+          example: NY
+        zip:
+          description: Zip code
+          type:
+          - string
+          - 'null'
+          example: '10017'
+        timezone:
+          description: Time zone name. We recommend using time zones from the IANA Time Zone Database.
+          type:
+          - string
+          - 'null'
+          example: America/New_York
+        ip:
+          description: IP Address
+          type:
+          - string
+          - 'null'
+          example: 127.0.0.1
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
+      required:
+      - self
+      - related
+    WhatsappMarketingChannel:
+      type: object
+      properties:
+        consent:
+          description: The consent status for the channel.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        created_timestamp:
+          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        metadata:
+          description: Channel-specific metadata containing additional information about the permission.
+          type:
+          - object
+          - 'null'
+        can_receive:
+          description: Whether the profile can receive messages on this channel.
+          type: boolean
+        valid_until:
+          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-02-21T20:07:38+00:00'
+        phone_number:
+          description: Phone number to which the consent was granted for.
+          type: string
+      required:
+      - consent
+      - can_receive
+      - phone_number
     GetListProfilesRelationshipsResponseCollection:
       type: object
       properties:
@@ -2200,157 +2419,10 @@ components:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    FlowEnum:
+    ListEnum:
       type: string
       enum:
-      - flow
-    CampaignEnum:
-      type: string
-      enum:
-      - campaign
-    EmailChannel:
-      type: object
-      properties:
-        marketing:
-          description: The email marketing subscription.
-          $ref: '#/components/schemas/EmailMarketing'
-          nullable: true
-    GetListMemberResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            allOf:
-            - properties:
-                type:
-                  $ref: '#/components/schemas/ProfileEnum'
-                attributes:
-                  properties:
-                    subscriptions:
-                      $ref: '#/components/schemas/Subscriptions'
-                      nullable: true
-                    predictive_analytics:
-                      $ref: '#/components/schemas/PredictiveAnalytics'
-                      nullable: true
-            - $ref: '#/components/schemas/ListMemberResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    PushMarketing:
-      type: object
-      properties:
-        can_receive_push_marketing:
-          description: Whether or not this profile is subscribed to receive mobile push.
-          type: boolean
-        consent:
-          description: The consent status for mobile push marketing.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when the consent was last changed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-      required:
-      - can_receive_push_marketing
-      - consent
-    WhatsappMarketingChannel:
-      type: object
-      properties:
-        consent:
-          description: The consent status for the channel.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        last_updated:
-          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        created_timestamp:
-          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        metadata:
-          description: Channel-specific metadata containing additional information about the permission.
-          type: object
-          nullable: true
-        can_receive:
-          description: Whether the profile can receive messages on this channel.
-          type: boolean
-        valid_until:
-          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2024-02-21T20:07:38+00:00'
-          nullable: true
-        phone_number:
-          description: Phone number to which the consent was granted for.
-          type: string
-      required:
-      - consent
-      - can_receive
-      - phone_number
-    SegmentEnum:
-      type: string
-      enum:
-      - segment
-    WhatsappConversationalChannel:
-      type: object
-      properties:
-        consent:
-          description: The consent status for the channel.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        last_updated:
-          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        created_timestamp:
-          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-          nullable: true
-        metadata:
-          description: Channel-specific metadata containing additional information about the permission.
-          type: object
-          nullable: true
-        can_receive:
-          description: Whether the profile can receive messages on this channel.
-          type: boolean
-        valid_until:
-          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2024-02-21T20:07:38+00:00'
-          nullable: true
-        phone_number:
-          description: Phone number to which the consent was granted for.
-          type: string
-      required:
-      - consent
-      - can_receive
-      - phone_number
+      - list
     ListRetrieveResponseObjectResource:
       type: object
       properties:
@@ -2365,29 +2437,33 @@ components:
           properties:
             name:
               description: A helpful name to label the list
-              type: string
+              type:
+              - string
+              - 'null'
               example: Newsletter
-              nullable: true
             created:
               description: Date and time when the list was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T00:00:00+00:00'
-              nullable: true
             updated:
               description: Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
               example: '2022-11-08T00:00:00+00:00'
-              nullable: true
             opt_in_process:
               description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''.'
-              type: string
+              type:
+              - string
+              - 'null'
               example: double_opt_in
               enum:
               - double_opt_in
               - single_opt_in
-              nullable: true
         relationships:
           type: object
           properties:
@@ -2449,6 +2525,193 @@ components:
       - id
       - attributes
       - links
+    GetListTagsRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/TagEnum'
+              id:
+                description: The Tag ID
+                type: string
+                example: abcd1234-ef56-gh78-ij90-abcdef123456
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    SegmentEnum:
+      type: string
+      enum:
+      - segment
+    PredictiveAnalytics:
+      type: object
+      properties:
+        historic_clv:
+          description: Total value of all historically placed orders
+          type:
+          - number
+          - 'null'
+          example: 93.87
+        predicted_clv:
+          description: Predicted value of all placed orders in the next 365 days
+          type:
+          - number
+          - 'null'
+          example: 27.24
+        total_clv:
+          description: Sum of historic and predicted CLV
+          type:
+          - number
+          - 'null'
+          example: 121.11
+        historic_number_of_orders:
+          description: Number of already placed orders
+          type:
+          - number
+          - 'null'
+          example: 2
+        predicted_number_of_orders:
+          description: Predicted number of placed orders in the next 365 days
+          type:
+          - number
+          - 'null'
+          example: 0.54
+        average_days_between_orders:
+          description: Average number of days between orders (None if only one order has been placed)
+          type:
+          - number
+          - 'null'
+          example: 189
+        average_order_value:
+          description: Average value of placed orders
+          type:
+          - number
+          - 'null'
+          example: 46.94
+        churn_probability:
+          description: Probability the customer has churned
+          type:
+          - number
+          - 'null'
+          example: 0.89
+        expected_date_of_next_order:
+          description: Expected date of next order, as calculated at the time of their most recent order
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+        ranked_channel_affinity:
+          description: List of channels ranked by their predicted effectiveness for this profile, with the best channel being listed first at index 0
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            enum:
+            - email
+            - push
+            - sms
+            - whatsapp
+            description: Enum for channel name return values used in the V3 API for channel affinity for the field `ranked_channel_affinity`.
+          example:
+          - sms
+          - email
+          - push
+    ListMembersAddQuery:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/ProfileEnum'
+              id:
+                type: string
+      required:
+      - data
+    EmailMarketing:
+      type: object
+      properties:
+        can_receive_email_marketing:
+          description: Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.
+          type: boolean
+        consent:
+          description: The consent status for email marketing.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when a field on the email marketing object was last modified.
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        method:
+          description: The method by which the profile was subscribed to email marketing.
+          type:
+          - string
+          - 'null'
+          example: PREFERENCE_PAGE
+        method_detail:
+          description: Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: mydomain.com/signup
+          default: ''
+        custom_method_detail:
+          description: Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: marketing drive
+        double_optin:
+          description: Whether the profile was subscribed to email marketing using a double opt-in.
+          type:
+          - boolean
+          - 'null'
+          example: true
+        suppression:
+          description: The global email marketing suppression for this profile.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmailMarketingSuppression'
+        list_suppressions:
+          description: The list suppressions for this profile.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmailMarketingListSuppression'
+      required:
+      - can_receive_email_marketing
+      - consent
+    TagEnum:
+      type: string
+      enum:
+      - tag
     EmailMarketingSuppression:
       type: object
       properties:
@@ -2470,6 +2733,37 @@ components:
       required:
       - reason
       - timestamp
+    ListPartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ListEnum'
+        id:
+          description: Primary key that uniquely identifies this list. Generated by Klaviyo.
+          type: string
+          example: Y6nRLr
+        attributes:
+          type: object
+          properties:
+            name:
+              description: A helpful name to label the list
+              type:
+              - string
+              - 'null'
+              example: Newsletter
+            opt_in_process:
+              description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''.'
+              type:
+              - string
+              - 'null'
+              example: double_opt_in
+              enum:
+              - double_opt_in
+              - single_opt_in
+      required:
+      - type
+      - id
+      - attributes
     ObjectLinks:
       type: object
       properties:
@@ -2482,128 +2776,31 @@ components:
       type: string
       enum:
       - tag-group
-    CollectionLinks:
+    GetListRetrieveResponseCompoundDocument:
       type: object
       properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
+        data:
+          allOf:
+          - properties:
+              type:
+                $ref: '#/components/schemas/ListEnum'
+              attributes:
+                properties:
+                  profile_count:
+                    type:
+                    - integer
+                    - 'null'
+          - $ref: '#/components/schemas/ListRetrieveResponseObjectResource'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TagResponseObjectResource'
+            - $ref: '#/components/schemas/FlowResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
       required:
-      - self
-    FlowActionEnum:
-      type: string
-      enum:
-      - flow-action
-    TagEnum:
-      type: string
-      enum:
-      - tag
-    ProfileLocation:
-      type: object
-      properties:
-        address1:
-          description: First line of street address
-          type: string
-          example: 89 E 42nd St
-          nullable: true
-        address2:
-          description: Second line of street address
-          type: string
-          example: 1st floor
-          nullable: true
-        city:
-          description: City name
-          type: string
-          example: New York
-          nullable: true
-        country:
-          description: Country name
-          type: string
-          example: United States
-          nullable: true
-        latitude:
-          description: Latitude coordinate. We recommend providing a precision of four decimal places.
-          example: '40.7128'
-          nullable: true
-          oneOf:
-          - type: string
-          - type: number
-        longitude:
-          description: Longitude coordinate. We recommend providing a precision of four decimal places.
-          example: '74.0060'
-          nullable: true
-          oneOf:
-          - type: string
-          - type: number
-        region:
-          description: Region within a country, such as state or province
-          type: string
-          example: NY
-          nullable: true
-        zip:
-          description: Zip code
-          type: string
-          example: '10017'
-          nullable: true
-        timezone:
-          description: Time zone name. We recommend using time zones from the IANA Time Zone Database.
-          type: string
-          example: America/New_York
-          nullable: true
-        ip:
-          description: IP Address
-          type: string
-          example: 127.0.0.1
-          nullable: true
-    ListCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ListEnum'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: A helpful name to label the list
-              type: string
-              example: Newsletter
-            opt_in_process:
-              description: 'The opt-in process for this list. Valid values: ''double_opt_in'', ''single_opt_in''. If not provided, uses account default.'
-              type: string
-              example: double_opt_in
-              enum:
-              - double_opt_in
-              - single_opt_in
-              nullable: true
-          required:
-          - name
-      required:
-      - type
-      - attributes
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
+      - data
   responses:
     ClientError:
       description: Client Error

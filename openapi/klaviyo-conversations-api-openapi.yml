@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Klaviyo Accounts Conversations API
+  title: Klaviyo Conversations API
   version: '2026-04-15'
   description: The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
   contact:
@@ -27,7 +27,14 @@ paths:
       description: 'Send an outbound message to a conversation.
 
 
-        Requires OAuth authentication and account-level enablement. To request access, reach out in the [developer community](https://community.klaviyo.com/groups/developer-group-64).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`
+        Requires OAuth authentication and account-level enablement. To request access, reach out in the developer community.
+
+
+        *Rate limits*:
+
+        Burst: `3/s`
+
+        Steady: `60/m`
 
 
         **Scopes:**
@@ -72,6 +79,14 @@ components:
           $ref: '#/components/schemas/ConversationMessageCreateQueryResourceObject'
       required:
       - data
+    ConversationMessageEnum:
+      type: string
+      enum:
+      - conversation-message
+    ConversationEnum:
+      type: string
+      enum:
+      - conversation
     ConversationMessageCreateQueryResourceObject:
       type: object
       properties:
@@ -107,17 +122,9 @@ components:
       - type
       - attributes
       - relationships
-    ConversationEnum:
-      type: string
-      enum:
-      - conversation
-    ConversationMessageEnum:
-      type: string
-      enum:
-      - conversation-message
   responses:
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
@@ -150,8 +157,8 @@ components:
                           type: string
             required:
             - errors
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
