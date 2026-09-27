@@ -8,15 +8,19 @@ description: Klaviyo is a marketing automation and customer data platform built 
   and data pipelines.
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - klaviyo/openapi
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -42,6 +46,8 @@ tags:
 - Customer Data
 - E-Commerce
 - Automation
+- Marketing Automation
+- Email Marketing
 tags_raw:
 - Marketing
 - Email
@@ -49,6 +55,8 @@ tags_raw:
 - Customer Data
 - Ecommerce
 - Automation
+- Marketing Automation
+- Email Marketing
 created: '2024-11-07T00:00:00.000Z'
 modified: '2026-08-13'
 specificationVersion: '0.23'
@@ -275,6 +283,8 @@ apis:
   humanURL: https://developers.klaviyo.com/
   baseURL: https://a.klaviyo.com
   tags:
+  - Privacy
+  tags_raw:
   - Data Privacy
   properties:
   - type: OpenAPI

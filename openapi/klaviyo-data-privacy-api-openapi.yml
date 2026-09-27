@@ -79,26 +79,6 @@ paths:
       - data-privacy:write
 components:
   schemas:
-    DataPrivacyCreateDeletionJobQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DataPrivacyDeletionJobEnum'
-        attributes:
-          type: object
-          properties:
-            profile:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/DataPrivacyProfileQueryResourceObject'
-              required:
-              - data
-          required:
-          - profile
-      required:
-      - type
-      - attributes
     DataPrivacyProfileQueryResourceObject:
       type: object
       properties:
@@ -128,10 +108,34 @@ components:
       required:
       - type
       - attributes
+    DataPrivacyCreateDeletionJobQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DataPrivacyDeletionJobEnum'
+        attributes:
+          type: object
+          properties:
+            profile:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/DataPrivacyProfileQueryResourceObject'
+              required:
+              - data
+          required:
+          - profile
+      required:
+      - type
+      - attributes
     ProfileEnum:
       type: string
       enum:
       - profile
+    DataPrivacyDeletionJobEnum:
+      type: string
+      enum:
+      - data-privacy-deletion-job
     DataPrivacyCreateDeletionJobQuery:
       type: object
       properties:
@@ -139,13 +143,9 @@ components:
           $ref: '#/components/schemas/DataPrivacyCreateDeletionJobQueryResourceObject'
       required:
       - data
-    DataPrivacyDeletionJobEnum:
-      type: string
-      enum:
-      - data-privacy-deletion-job
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -178,8 +178,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
