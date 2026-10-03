@@ -947,172 +947,39 @@ paths:
       - templates:write
 components:
   schemas:
-    PostUniversalContentResponse:
+    ReviewBlockData:
       type: object
       properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/TemplateUniversalContentEnum'
-            id:
-              description: The ID of the universal content
-              type: string
-              example: 01HWWWKAW4RHXQJCMW4R2KRYR4
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: The name for this universal content
-                  type: string
-                definition:
-                  oneOf:
-                  - $ref: '#/components/schemas/ButtonBlockV0'
-                  - $ref: '#/components/schemas/CouponBlockV0'
-                  - $ref: '#/components/schemas/DropShadowBlockV0'
-                  - $ref: '#/components/schemas/HeaderBlockV0'
-                  - $ref: '#/components/schemas/HorizontalRuleBlockV0'
-                  - $ref: '#/components/schemas/HTMLBlockV0'
-                  - $ref: '#/components/schemas/ImageBlockV0'
-                  - $ref: '#/components/schemas/ProductBlockV0'
-                  - $ref: '#/components/schemas/ReviewBlockV0'
-                  - $ref: '#/components/schemas/SocialBlockV0'
-                  - $ref: '#/components/schemas/SpacerBlockV0'
-                  - $ref: '#/components/schemas/SplitBlockV0'
-                  - $ref: '#/components/schemas/TableBlockV0'
-                  - $ref: '#/components/schemas/TextBlockV0'
-                  - $ref: '#/components/schemas/UnsupportedBlock'
-                  - $ref: '#/components/schemas/VideoBlockV0'
-                  - $ref: '#/components/schemas/SectionV0'
-                created:
-                  description: The datetime when this universal content was created
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                updated:
-                  description: The datetime when this universal content was updated
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                screenshot_status:
-                  description: The status of a universal content screenshot.
-                  type: string
-                  enum:
-                  - completed
-                  - failed
-                  - generating
-                  - never_generated
-                  - not_renderable
-                  - stale
-                screenshot_url:
-                  type: string
-              required:
-              - name
-              - created
-              - updated
-              - screenshot_status
-              - screenshot_url
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
+        properties:
+          oneOf:
+          - $ref: '#/components/schemas/StaticReviewBlockProperties'
+          - $ref: '#/components/schemas/DynamicReviewBlockProperties'
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/ReviewBlockStyles'
       required:
-      - data
-    SocialBlockStyles:
+      - properties
+      - display_options
+      - styles
+    SectionV1:
       type: object
       properties:
-        block_background_color:
+        id:
           type:
           - string
           - 'null'
-        block_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        block_padding_left:
-          type:
-          - integer
-          - 'null'
-        block_padding_right:
-          type:
-          - integer
-          - 'null'
-        block_padding_top:
-          type:
-          - integer
-          - 'null'
-        icon_align:
-          description: Text Alignment.
+          readOnly: true
+        data_id:
           type:
           - string
           - 'null'
-          enum:
-          - center
-          - left
-          - right
-        icon_color:
-          description: Social block icon color.
+          readOnly: true
+        universal_id:
           type:
           - string
           - 'null'
-          enum:
-          - black
-          - default
-          - grey
-          - white
-        icon_size:
-          description: Social block icon size.
-          type:
-          - string
-          - 'null'
-          enum:
-          - large
-          - medium
-          - small
-        icon_spacing:
-          type:
-          - integer
-          - 'null'
-        label_color:
-          type:
-          - string
-          - 'null'
-        label_font_family:
-          type:
-          - string
-          - 'null'
-        label_font_size:
-          type:
-          - integer
-          - 'null'
-        label_font_style:
-          description: Font style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - italic
-          - normal
-        label_text_decoration:
-          type:
-          - string
-          - 'null'
-        label_font_weight:
-          type:
-          - string
-          - 'null'
-        stack_on_mobile:
-          type:
-          - boolean
-          - 'null'
-    SectionV0:
-      type: object
-      properties:
+          readOnly: true
         content_type:
           type: string
           enum:
@@ -1122,23 +989,18 @@ components:
           enum:
           - section
         data:
-          oneOf:
-          - type: integer
-          - type: number
-          - type: string
-          - type: boolean
+          $ref: '#/components/schemas/SectionData'
+        rows:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RowV1'
       required:
       - content_type
       - type
       - data
-    TemplateUpdateHtmlOrDndQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TemplateUpdateHtmlOrDndQueryResourceObject'
-      required:
-      - data
-    HorizontalRuleBlockV1:
+    TextBlockV1:
       type: object
       properties:
         id:
@@ -1163,13 +1025,125 @@ components:
         type:
           type: string
           enum:
-          - horizontal_rule
+          - text
         data:
-          $ref: '#/components/schemas/HorizontalRuleBlockData'
+          $ref: '#/components/schemas/TextBlockDataV1'
       required:
       - content_type
       - type
       - data
+    DisplayOptions:
+      type: object
+      properties:
+        show_on:
+          description: Show on.
+          type:
+          - string
+          - 'null'
+          enum:
+          - all
+          - desktop
+          - mobile
+        content_repeat:
+          $ref: '#/components/schemas/ContentRepeatV1'
+        visibility:
+          $ref: '#/components/schemas/Visibility'
+    ImageBlockV0:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - image
+        data: {}
+      required:
+      - content_type
+      - type
+      - data
+    TemplateCreateHtmlOrDndQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TemplateCreateHtmlOrDndQueryResourceObject'
+      required:
+      - data
+    TableFallbackHtmlSubBlock:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+        show_on:
+          description: Show on.
+          type:
+          - string
+          - 'null'
+          enum:
+          - all
+          - desktop
+          - mobile
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - table_fallback_html
+      required:
+      - type
+    Visibility:
+      type: object
+      properties:
+        check:
+          type:
+          - string
+          - 'null'
+        definition:
+          type:
+          - string
+          - 'null'
+        is_code_only:
+          type:
+          - boolean
+          - 'null'
+    VideoBlockProperties:
+      type: object
+      properties:
+        raw_asset_id:
+          type:
+          - string
+          - 'null'
+        src_asset_id:
+          type:
+          - string
+          - 'null'
+        alt_text:
+          type:
+          - string
+          - 'null'
+        href:
+          type:
+          - string
+          - 'null'
+        overlay_toggle:
+          type:
+          - boolean
+          - 'null'
+        raw_src:
+          type:
+          - string
+          - 'null'
+        src:
+          type:
+          - string
+          - 'null'
     ButtonBlockV1:
       type: object
       properties:
@@ -1202,19 +1176,131 @@ components:
       - content_type
       - type
       - data
-    RowData:
+    HeaderBlockV0:
       type: object
       properties:
-        styles:
-          $ref: '#/components/schemas/RowStyles'
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - header
+        data:
+          oneOf:
+          - type: integer
+          - type: number
+          - type: string
+          - type: boolean
       required:
-      - styles
-    LinkStyleStyles:
+      - content_type
+      - type
+      - data
+    MobileStyleProperties:
       type: object
       properties:
+        mobile_padding_override:
+          type:
+          - boolean
+          - 'null'
+    RowStyles:
+      type: object
+      properties:
+        column_layout:
+          description: Column layout.
+          type:
+          - string
+          - 'null'
+          enum:
+          - 1-column-full-width
+          - 2-columns-25%-75%
+          - 2-columns-33%-67%
+          - 2-columns-67%-33%
+          - 2-columns-75%-25%
+          - 2-columns-equal-width
+          - 3-columns-25%-25%-50%
+          - 3-columns-25%-50%-25%
+          - 3-columns-50%-25%-25%
+          - 3-columns-equal-width
+          - 4-columns-equal-width
+    VideoBlockData:
+      type: object
+      properties:
+        properties:
+          $ref: '#/components/schemas/VideoBlockProperties'
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/VideoBlockStyles'
+      required:
+      - properties
+      - display_options
+      - styles
+    TextBlockStylesV1:
+      type: object
+      properties:
+        background_color:
+          type:
+          - string
+          - 'null'
+        block_background_color:
+          type:
+          - string
+          - 'null'
+        block_border_color:
+          type:
+          - string
+          - 'null'
+        block_border_style:
+          description: Border style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - dashed
+          - dotted
+          - groove
+          - inset
+          - none
+          - outset
+          - ridge
+          - solid
+        block_border_width:
+          type:
+          - integer
+          - 'null'
+        block_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        block_padding_left:
+          type:
+          - integer
+          - 'null'
+        block_padding_right:
+          type:
+          - integer
+          - 'null'
+        block_padding_top:
+          type:
+          - integer
+          - 'null'
         color:
           type:
           - string
+          - 'null'
+        extra_css_class:
+          type:
+          - string
+          - 'null'
+        font_family:
+          type:
+          - string
+          - 'null'
+        font_size:
+          type:
+          - integer
           - 'null'
         font_style:
           description: Font style.
@@ -1228,258 +1314,77 @@ components:
           type:
           - string
           - 'null'
+        inner_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        inner_padding_left:
+          type:
+          - integer
+          - 'null'
+        inner_padding_right:
+          type:
+          - integer
+          - 'null'
+        inner_padding_top:
+          type:
+          - integer
+          - 'null'
+        letter_spacing:
+          type:
+          - integer
+          - 'null'
+        line_height:
+          type:
+          - number
+          - 'null'
+        mobile_stretch_content:
+          type:
+          - boolean
+          - 'null'
+        text_align:
+          description: Text Alignment.
+          type:
+          - string
+          - 'null'
+          enum:
+          - center
+          - left
+          - right
         text_decoration:
           type:
           - string
           - 'null'
-    SpacerBlockStyles:
-      type: object
-      properties:
-        background_color:
+        text_table_layout:
+          description: Text table layout.
           type:
           - string
           - 'null'
-        height:
-          type:
-          - integer
-          - 'null'
-    ImageBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
           enum:
-          - block
-        type:
-          type: string
-          enum:
-          - image
-        data: {}
-      required:
-      - content_type
-      - type
-      - data
-    ButtonBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - button
-        data: {}
-      required:
-      - content_type
-      - type
-      - data
-    TextStyleV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        style_type:
-          type: string
-          enum:
-          - text-styles
-        styles:
-          $ref: '#/components/schemas/TextStyleStyles'
-      required:
-      - style_type
-      - styles
-    BodyProperties:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        css_class:
-          type:
-          - string
-          - 'null'
-    SocialBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - social
-        data:
-          $ref: '#/components/schemas/SocialBlockData'
-        subblocks:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/SocialIconSubBlock'
-            - $ref: '#/components/schemas/SocialSpacerSubBlock'
-      required:
-      - content_type
-      - type
-      - data
-    TextBlockDataV1:
+          - auto
+          - fixed
+          - inherit
+          - initial
+    TemplateEnum:
+      type: string
+      enum:
+      - template
+    TableFallbackTextSubBlock:
       type: object
       properties:
         content:
-          type: string
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/TextBlockStylesV1'
-      required:
-      - content
-      - display_options
-      - styles
-    MobileStyle:
-      type: object
-      properties:
-        id:
           type:
           - string
           - 'null'
-          readOnly: true
-        style_type:
-          type: string
-          enum:
-          - mobile-styles
-        properties:
-          $ref: '#/components/schemas/MobileStyleProperties'
-        styles:
-          $ref: '#/components/schemas/MobileStyleStyles'
-      required:
-      - style_type
-      - properties
-      - styles
-    CouponBlockProperties:
-      type: object
-      properties:
-        coupon_id:
+        cell_text_align:
+          description: Text Alignment.
           type:
           - string
-          - 'null'
-        coupon:
-          type:
-          - string
-          - 'null'
-        header_enabled:
-          type:
-          - boolean
-          - 'null'
-        href:
-          type:
-          - string
-          - 'null'
-    TemplateUniversalContentEnum:
-      type: string
-      enum:
-      - template-universal-content
-    HTMLBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - html
-        data:
-          $ref: '#/components/schemas/HTMLBlockDataV1'
-      required:
-      - content_type
-      - type
-      - data
-    SpacerBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - spacer
-        data: {}
-      required:
-      - content_type
-      - type
-      - data
-    StaticImageBlockProperties:
-      type: object
-      properties:
-        dynamic:
-          type:
-          - boolean
           - 'null'
           enum:
-          - false
-        alt_text:
-          type:
-          - string
-          - 'null'
-        asset_id:
-          type:
-          - string
-          - 'null'
-        cropping_properties:
-          $ref: '#/components/schemas/ImageBlockCroppingProperties'
-          readOnly: true
-        href:
-          type:
-          - string
-          - 'null'
-        src:
-          type:
-          - string
-          - 'null'
-      required:
-      - dynamic
-    TextStyleStyles:
-      type: object
-      properties:
+          - center
+          - left
+          - right
         color:
           type:
           - string
@@ -1508,31 +1413,34 @@ components:
           type:
           - integer
           - 'null'
-        line_height:
-          type:
-          - number
-          - 'null'
-        mobile_font_size:
-          type:
-          - integer
-          - 'null'
-        mobile_line_height:
-          type:
-          - number
-          - 'null'
-        text_align:
-          description: Text Alignment.
+        show_on:
+          description: Show on.
           type:
           - string
           - 'null'
           enum:
-          - center
-          - left
-          - right
+          - all
+          - desktop
+          - mobile
+        table_column_width:
+          type:
+          - string
+          - 'null'
         text_decoration:
           type:
           - string
           - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - table_fallback_text
+      required:
+      - type
     ProductBlockStyles:
       type: object
       properties:
@@ -1907,31 +1815,9 @@ components:
           type:
           - string
           - 'null'
-    ButtonBlockData:
+    BlockDisplayOptions:
       type: object
       properties:
-        content:
-          type:
-          - string
-          - 'null'
-        properties:
-          $ref: '#/components/schemas/ButtonBlockProperties'
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/ButtonBlockStyles'
-      required:
-      - content
-      - properties
-      - display_options
-      - styles
-    TableFallbackHtmlSubBlock:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
         show_on:
           description: Show on.
           type:
@@ -1941,454 +1827,12 @@ components:
           - all
           - desktop
           - mobile
-        id:
+        visible_check:
           type:
           - string
           - 'null'
-          readOnly: true
-        type:
-          type: string
-          enum:
-          - table_fallback_html
-      required:
-      - type
-    HeaderImageSubBlock:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        type:
-          type: string
-          enum:
-          - header_link_bar_image
-        alt_text:
-          type:
-          - string
-          - 'null'
-        asset_id:
-          type:
-          - string
-          - 'null'
-        background_color:
-          type:
-          - string
-          - 'null'
-        height:
-          type:
-          - integer
-          - 'null'
-        href:
-          type:
-          - string
-          - 'null'
-        max_width:
-          type:
-          - integer
-          - 'null'
-        show_on:
-          description: Show on.
-          type:
-          - string
-          - 'null'
-          enum:
-          - all
-          - desktop
-          - mobile
-        src:
-          type:
-          - string
-          - 'null'
-        width:
-          type:
-          - integer
-          - 'null'
-      required:
-      - type
-    DynamicProductBlockProperties:
-      type: object
-      properties:
-        is_ai_generated:
-          type:
-          - boolean
-          - 'null'
-        is_prebuilt_content:
-          type:
-          - boolean
-          - 'null'
-        item_subtype_id:
-          type:
-          - integer
-          - 'null'
-        show_button:
-          type:
-          - boolean
-          - 'null'
-        show_original_price:
-          type:
-          - boolean
-          - 'null'
-        show_price:
-          type:
-          - boolean
-          - 'null'
-        show_rating:
-          type:
-          - boolean
-          - 'null'
-        show_rating_count:
-          type:
-          - boolean
-          - 'null'
-        show_title:
-          type:
-          - boolean
-          - 'null'
-        show_title_links:
-          type:
-          - boolean
-          - 'null'
-        title_placeholder:
-          type:
-          - string
-          - 'null'
-        dynamic:
-          type: boolean
-          enum:
-          - true
-        button_text:
-          type:
-          - string
-          - 'null'
-        feed:
-          type:
-          - string
-          - 'null'
-        feed_offset:
-          type:
-          - integer
-          - 'null'
-        is_nbp:
-          type:
-          - boolean
-          - 'null'
-      required:
-      - dynamic
-    MobileStyleStyles:
-      type: object
-      properties:
-        mobile_block_padding_left:
-          type:
-          - integer
-          - 'null'
-        mobile_block_padding_right:
-          type:
-          - integer
-          - 'null'
-        mobile_margin:
-          type:
-          - integer
-          - 'null'
-        mobile_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        mobile_padding_left:
-          type:
-          - integer
-          - 'null'
-        mobile_padding_right:
-          type:
-          - integer
-          - 'null'
-        mobile_padding_top:
-          type:
-          - integer
-          - 'null'
-    GetTemplateDndResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            allOf:
-            - properties:
-                type:
-                  $ref: '#/components/schemas/TemplateEnum'
-                attributes:
-                  properties:
-                    definition:
-                      description: Template definition for SYSTEM_DRAGGABLE templates. Omitted for CODE/USER_DRAGGABLE. Use additional-fields[template]=definition to include in list responses.
-                      $ref: '#/components/schemas/TemplateDefinition'
-            - $ref: '#/components/schemas/TemplateDndResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    RowV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/RowData'
-        columns:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ColumnV1'
-      required:
-      - data
-    BaseStyleStyles:
-      type: object
-      properties:
-        background_asset_id:
-          type:
-          - string
-          - 'null'
-        background_format:
-          description: Background format.
-          type:
-          - string
-          - 'null'
-          enum:
-          - auto
-          - contain
-          - cover
-          - initial
-          - repeat
-        background_position:
-          description: Background position.
-          type:
-          - string
-          - 'null'
-          enum:
-          - center-bottom
-          - center-center
-          - center-top
-          - left-bottom
-          - left-center
-          - left-top
-          - right-bottom
-          - right-center
-          - right-top
-        background_repeat:
-          type:
-          - boolean
-          - 'null'
-        background_url:
-          type:
-          - string
-          - 'null'
-        border_color:
-          type:
-          - string
-          - 'null'
-        border_radius:
-          type:
-          - integer
-          - 'null'
-        border_style:
-          description: Border style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - dashed
-          - dotted
-          - groove
-          - inset
-          - none
-          - outset
-          - ridge
-          - solid
-        border_width:
-          type:
-          - integer
-          - 'null'
-        content_background_color:
-          type:
-          - string
-          - 'null'
-        inner_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        inner_padding_left:
-          type:
-          - integer
-          - 'null'
-        inner_padding_right:
-          type:
-          - integer
-          - 'null'
-        inner_padding_top:
-          type:
-          - integer
-          - 'null'
-        margin_top:
-          type:
-          - integer
-          - 'null'
-    DynamicTableBlockProperties:
-      type: object
-      properties:
-        dynamic:
-          type: boolean
-          enum:
-          - true
-        num_columns:
-          type:
-          - integer
-          - 'null'
-        row_content_repeat:
-          $ref: '#/components/schemas/ContentRepeatV1'
-        show_headers:
-          type:
-          - boolean
-          - 'null'
-        show_fallback_content:
-          type:
-          - boolean
-          - 'null'
-        show_static_row:
-          type:
-          - boolean
-          - 'null'
-      required:
-      - dynamic
-    ImageBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - image
-        data:
-          $ref: '#/components/schemas/ImageBlockData'
-      required:
-      - content_type
-      - type
-      - data
-    Heading1Style:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        style_type:
-          type: string
-          enum:
-          - heading-1-styles
-        styles:
-          $ref: '#/components/schemas/HeadingStyleStyles'
-      required:
-      - style_type
-      - styles
-    TemplateDefinition:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        template_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        body:
-          $ref: '#/components/schemas/Body'
-        styles:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/BaseStyle'
-            - $ref: '#/components/schemas/TextStyleV1'
-            - $ref: '#/components/schemas/Heading1Style'
-            - $ref: '#/components/schemas/Heading2Style'
-            - $ref: '#/components/schemas/Heading3Style'
-            - $ref: '#/components/schemas/Heading4Style'
-            - $ref: '#/components/schemas/LinkStyle'
-            - $ref: '#/components/schemas/MobileStyle'
-      required:
-      - body
-      - styles
-    TemplateRenderQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TemplateRenderQueryResourceObject'
-      required:
-      - data
-    TableHtmlSubBlock:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-        show_on:
-          description: Show on.
-          type:
-          - string
-          - 'null'
-          enum:
-          - all
-          - desktop
-          - mobile
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        type:
-          type: string
-          enum:
-          - table_html
-      required:
-      - type
+        content_repeat:
+          $ref: '#/components/schemas/ContentRepeatV0'
     SectionStyles:
       type: object
       properties:
@@ -2512,7 +1956,84 @@ components:
           type:
           - boolean
           - 'null'
-    SocialSpacerSubBlock:
+    TemplateCloneQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TemplateCloneQueryResourceObject'
+      required:
+      - data
+    PostTemplateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/TemplateEnum'
+            id:
+              description: The ID of template
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: The name of the template
+                  type: string
+                editor_type:
+                  description: '`editor_type` has a fixed set of values:
+
+                    * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
+
+                    * SIMPLE: A rich text editor template
+
+                    * CODE: A custom HTML template
+
+                    * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
+                  type: string
+                html:
+                  description: The rendered HTML of the template
+                  type: string
+                text:
+                  description: The template plain_text
+                  type:
+                  - string
+                  - 'null'
+                amp:
+                  description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
+                  type:
+                  - string
+                  - 'null'
+                created:
+                  description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated:
+                  description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+              required:
+              - name
+              - editor_type
+              - html
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    HeaderBlockV1:
       type: object
       properties:
         id:
@@ -2520,35 +2041,70 @@ components:
           - string
           - 'null'
           readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
         type:
           type: string
           enum:
-          - social_link_spacer
-        width:
+          - header
+        data:
+          $ref: '#/components/schemas/HeaderBlockData'
+        subblocks:
           type:
-          - integer
+          - array
           - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/HeaderLinkSubBlock'
+            - $ref: '#/components/schemas/HeaderImageSubBlock'
+            - $ref: '#/components/schemas/HeaderLogoSubBlock'
       required:
+      - content_type
       - type
-    GetTemplateDndResponse:
+      - data
+    TextBlockDataV0:
       type: object
       properties:
-        data:
-          allOf:
-          - properties:
-              type:
-                $ref: '#/components/schemas/TemplateEnum'
-              attributes:
-                properties:
-                  definition:
-                    description: Template definition for SYSTEM_DRAGGABLE templates. Omitted for CODE/USER_DRAGGABLE. Use additional-fields[template]=definition to include in list responses.
-                    $ref: '#/components/schemas/TemplateDefinition'
-          - $ref: '#/components/schemas/TemplateDndResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
+        content:
+          type: string
+        display_options:
+          $ref: '#/components/schemas/BlockDisplayOptions'
+        styles:
+          $ref: '#/components/schemas/TextBlockStylesV0'
       required:
-      - data
-    UnsupportedBlock:
+      - content
+      - display_options
+      - styles
+    Heading3Style:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        style_type:
+          type: string
+          enum:
+          - heading-3-styles
+        styles:
+          $ref: '#/components/schemas/HeadingStyleStyles'
+      required:
+      - style_type
+      - styles
+    SocialBlockV0:
       type: object
       properties:
         content_type:
@@ -2558,7 +2114,7 @@ components:
         type:
           type: string
           enum:
-          - unsupported
+          - social
         data:
           oneOf:
           - type: integer
@@ -2569,69 +2125,227 @@ components:
       - content_type
       - type
       - data
-    TemplateDndResponseObjectResource:
+    PatchUniversalContentResponse:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/TemplateEnum'
-        id:
-          description: The ID of template
-          type: string
-        attributes:
+        data:
           type: object
           properties:
-            name:
-              description: The name of the template
+            type:
+              $ref: '#/components/schemas/TemplateUniversalContentEnum'
+            id:
+              description: The ID of the universal content
               type: string
-            editor_type:
-              description: '`editor_type` has a fixed set of values:
-
-                * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
-
-                * SIMPLE: A rich text editor template
-
-                * CODE: A custom HTML template
-
-                * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
-              type: string
-            html:
-              description: The rendered HTML of the template
-              type: string
-            text:
-              description: The template plain_text
-              type:
-              - string
-              - 'null'
-            amp:
-              description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
-              type:
-              - string
-              - 'null'
-            created:
-              description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            updated:
-              description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
+              example: 01HWWWKAW4RHXQJCMW4R2KRYR4
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: The name for this universal content
+                  type: string
+                definition:
+                  oneOf:
+                  - $ref: '#/components/schemas/ButtonBlockV0'
+                  - $ref: '#/components/schemas/CouponBlockV0'
+                  - $ref: '#/components/schemas/DropShadowBlockV0'
+                  - $ref: '#/components/schemas/HeaderBlockV0'
+                  - $ref: '#/components/schemas/HorizontalRuleBlockV0'
+                  - $ref: '#/components/schemas/HTMLBlockV0'
+                  - $ref: '#/components/schemas/ImageBlockV0'
+                  - $ref: '#/components/schemas/ProductBlockV0'
+                  - $ref: '#/components/schemas/ReviewBlockV0'
+                  - $ref: '#/components/schemas/SocialBlockV0'
+                  - $ref: '#/components/schemas/SpacerBlockV0'
+                  - $ref: '#/components/schemas/SplitBlockV0'
+                  - $ref: '#/components/schemas/TableBlockV0'
+                  - $ref: '#/components/schemas/TextBlockV0'
+                  - $ref: '#/components/schemas/UnsupportedBlock'
+                  - $ref: '#/components/schemas/VideoBlockV0'
+                  - $ref: '#/components/schemas/SectionV0'
+                created:
+                  description: The datetime when this universal content was created
+                  type: string
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated:
+                  description: The datetime when this universal content was updated
+                  type: string
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                screenshot_status:
+                  description: The status of a universal content screenshot.
+                  type: string
+                  enum:
+                  - completed
+                  - failed
+                  - generating
+                  - never_generated
+                  - not_renderable
+                  - stale
+                screenshot_url:
+                  type: string
+              required:
+              - name
+              - created
+              - updated
+              - screenshot_status
+              - screenshot_url
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
           required:
-          - name
-          - editor_type
-          - html
+          - type
+          - id
+          - attributes
+          - links
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
+      - data
+    SplitBlockV0:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - split
+        data:
+          oneOf:
+          - type: integer
+          - type: number
+          - type: string
+          - type: boolean
+      required:
+      - content_type
       - type
-      - id
-      - attributes
-      - links
+      - data
+    SectionData:
+      type: object
+      properties:
+        properties:
+          $ref: '#/components/schemas/SectionProperties'
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/SectionStyles'
+      required:
+      - properties
+      - display_options
+      - styles
+    SocialBlockProperties:
+      type: object
+      properties:
+        show_labels:
+          type:
+          - boolean
+          - 'null'
+    RowV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/RowData'
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ColumnV1'
+      required:
+      - data
+    SocialIconSubBlock:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - social_link_icon
+        custom_asset_id:
+          type:
+          - string
+          - 'null'
+        custom_src:
+          type:
+          - string
+          - 'null'
+        custom_size:
+          type:
+          - integer
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        link_type:
+          description: Social block link type.
+          type:
+          - string
+          - 'null'
+          enum:
+          - android
+          - apple
+          - custom
+          - discord
+          - email
+          - facebook
+          - google-plus
+          - instagram
+          - linkedin
+          - pinterest
+          - rss
+          - snapchat
+          - threads
+          - tiktok
+          - twitch
+          - twitter
+          - whatsapp
+          - x-twitter
+          - yelp
+          - youtube
+        link_url:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+    CouponBlockV0:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - coupon
+        data:
+          oneOf:
+          - type: integer
+          - type: number
+          - type: string
+          - type: boolean
+      required:
+      - content_type
+      - type
+      - data
     VideoBlockV0:
       type: object
       properties:
@@ -2653,6 +2367,779 @@ components:
       - content_type
       - type
       - data
+    TextStyleV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        style_type:
+          type: string
+          enum:
+          - text-styles
+        styles:
+          $ref: '#/components/schemas/TextStyleStyles'
+      required:
+      - style_type
+      - styles
+    BaseStyle:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        style_type:
+          type: string
+          enum:
+          - base-styles
+        properties:
+          $ref: '#/components/schemas/BaseStyleProperties'
+        styles:
+          $ref: '#/components/schemas/BaseStyleStyles'
+      required:
+      - style_type
+      - properties
+      - styles
+    TextBlockDataV1:
+      type: object
+      properties:
+        content:
+          type: string
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/TextBlockStylesV1'
+      required:
+      - content
+      - display_options
+      - styles
+    CouponBlockV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - coupon
+        data:
+          $ref: '#/components/schemas/CouponBlockData'
+      required:
+      - content_type
+      - type
+      - data
+    ProductBlockData:
+      type: object
+      properties:
+        properties:
+          oneOf:
+          - $ref: '#/components/schemas/StaticProductBlockProperties'
+          - $ref: '#/components/schemas/DynamicProductBlockProperties'
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/ProductBlockStyles'
+      required:
+      - properties
+      - display_options
+      - styles
+    GetUniversalContentResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UniversalContentResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    PatchTemplateDndResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/TemplateEnum'
+            id:
+              description: The ID of template
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: The name of the template
+                  type: string
+                editor_type:
+                  description: '`editor_type` has a fixed set of values:
+
+                    * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
+
+                    * SIMPLE: A rich text editor template
+
+                    * CODE: A custom HTML template
+
+                    * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
+                  type: string
+                html:
+                  description: The rendered HTML of the template
+                  type: string
+                text:
+                  description: The template plain_text
+                  type:
+                  - string
+                  - 'null'
+                amp:
+                  description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
+                  type:
+                  - string
+                  - 'null'
+                created:
+                  description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated:
+                  description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                definition:
+                  description: Template definition for SYSTEM_DRAGGABLE templates. Omitted for CODE/USER_DRAGGABLE. Use additional-fields[template]=definition to include in list responses.
+                  $ref: '#/components/schemas/TemplateDefinition'
+              required:
+              - name
+              - editor_type
+              - html
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    PostUniversalContentResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/TemplateUniversalContentEnum'
+            id:
+              description: The ID of the universal content
+              type: string
+              example: 01HWWWKAW4RHXQJCMW4R2KRYR4
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: The name for this universal content
+                  type: string
+                definition:
+                  oneOf:
+                  - $ref: '#/components/schemas/ButtonBlockV0'
+                  - $ref: '#/components/schemas/CouponBlockV0'
+                  - $ref: '#/components/schemas/DropShadowBlockV0'
+                  - $ref: '#/components/schemas/HeaderBlockV0'
+                  - $ref: '#/components/schemas/HorizontalRuleBlockV0'
+                  - $ref: '#/components/schemas/HTMLBlockV0'
+                  - $ref: '#/components/schemas/ImageBlockV0'
+                  - $ref: '#/components/schemas/ProductBlockV0'
+                  - $ref: '#/components/schemas/ReviewBlockV0'
+                  - $ref: '#/components/schemas/SocialBlockV0'
+                  - $ref: '#/components/schemas/SpacerBlockV0'
+                  - $ref: '#/components/schemas/SplitBlockV0'
+                  - $ref: '#/components/schemas/TableBlockV0'
+                  - $ref: '#/components/schemas/TextBlockV0'
+                  - $ref: '#/components/schemas/UnsupportedBlock'
+                  - $ref: '#/components/schemas/VideoBlockV0'
+                  - $ref: '#/components/schemas/SectionV0'
+                created:
+                  description: The datetime when this universal content was created
+                  type: string
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated:
+                  description: The datetime when this universal content was updated
+                  type: string
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                screenshot_status:
+                  description: The status of a universal content screenshot.
+                  type: string
+                  enum:
+                  - completed
+                  - failed
+                  - generating
+                  - never_generated
+                  - not_renderable
+                  - stale
+                screenshot_url:
+                  type: string
+              required:
+              - name
+              - created
+              - updated
+              - screenshot_status
+              - screenshot_url
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    LinkStyle:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        style_type:
+          type: string
+          enum:
+          - link-styles
+        styles:
+          $ref: '#/components/schemas/LinkStyleStyles'
+      required:
+      - style_type
+      - styles
+    Heading4Style:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        style_type:
+          type: string
+          enum:
+          - heading-4-styles
+        styles:
+          $ref: '#/components/schemas/HeadingStyleStyles'
+      required:
+      - style_type
+      - styles
+    ReviewBlockV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - review
+        data:
+          $ref: '#/components/schemas/ReviewBlockData'
+      required:
+      - content_type
+      - type
+      - data
+    ButtonBlockV0:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - button
+        data: {}
+      required:
+      - content_type
+      - type
+      - data
+    ImageBlockData:
+      type: object
+      properties:
+        properties:
+          oneOf:
+          - $ref: '#/components/schemas/StaticImageBlockProperties'
+          - $ref: '#/components/schemas/DynamicImageBlockProperties'
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/ImageBlockStyles'
+      required:
+      - properties
+      - display_options
+      - styles
+    ContentRepeatV1:
+      type: object
+      properties:
+        repeat_for:
+          type: string
+        item_alias:
+          type: string
+      required:
+      - repeat_for
+      - item_alias
+    HeaderLinkSubBlock:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - header_link_bar_button
+        background_color:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        drop_shadow_color:
+          type:
+          - string
+          - 'null'
+        href:
+          type:
+          - string
+          - 'null'
+        show_on:
+          description: Show on.
+          type:
+          - string
+          - 'null'
+          enum:
+          - all
+          - desktop
+          - mobile
+      required:
+      - type
+    TableBlockV0:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - table
+        data:
+          oneOf:
+          - type: integer
+          - type: number
+          - type: string
+          - type: boolean
+      required:
+      - content_type
+      - type
+      - data
+    DynamicTableBlockProperties:
+      type: object
+      properties:
+        dynamic:
+          type: boolean
+          enum:
+          - true
+        num_columns:
+          type:
+          - integer
+          - 'null'
+        row_content_repeat:
+          $ref: '#/components/schemas/ContentRepeatV1'
+        show_headers:
+          type:
+          - boolean
+          - 'null'
+        show_fallback_content:
+          type:
+          - boolean
+          - 'null'
+        show_static_row:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - dynamic
+    GetTemplateDndResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+            - properties:
+                type:
+                  $ref: '#/components/schemas/TemplateEnum'
+                attributes:
+                  properties:
+                    definition:
+                      description: Template definition for SYSTEM_DRAGGABLE templates. Omitted for CODE/USER_DRAGGABLE. Use additional-fields[template]=definition to include in list responses.
+                      $ref: '#/components/schemas/TemplateDefinition'
+            - $ref: '#/components/schemas/TemplateDndResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ButtonBlockProperties:
+      type: object
+      properties:
+        href:
+          type:
+          - string
+          - 'null'
+    BaseStyleStyles:
+      type: object
+      properties:
+        background_asset_id:
+          type:
+          - string
+          - 'null'
+        background_format:
+          description: Background format.
+          type:
+          - string
+          - 'null'
+          enum:
+          - auto
+          - contain
+          - cover
+          - initial
+          - repeat
+        background_position:
+          description: Background position.
+          type:
+          - string
+          - 'null'
+          enum:
+          - center-bottom
+          - center-center
+          - center-top
+          - left-bottom
+          - left-center
+          - left-top
+          - right-bottom
+          - right-center
+          - right-top
+        background_repeat:
+          type:
+          - boolean
+          - 'null'
+        background_url:
+          type:
+          - string
+          - 'null'
+        border_color:
+          type:
+          - string
+          - 'null'
+        border_radius:
+          type:
+          - integer
+          - 'null'
+        border_style:
+          description: Border style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - dashed
+          - dotted
+          - groove
+          - inset
+          - none
+          - outset
+          - ridge
+          - solid
+        border_width:
+          type:
+          - integer
+          - 'null'
+        content_background_color:
+          type:
+          - string
+          - 'null'
+        inner_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        inner_padding_left:
+          type:
+          - integer
+          - 'null'
+        inner_padding_right:
+          type:
+          - integer
+          - 'null'
+        inner_padding_top:
+          type:
+          - integer
+          - 'null'
+        margin_top:
+          type:
+          - integer
+          - 'null'
+    ProductBlockV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - product
+        data:
+          $ref: '#/components/schemas/ProductBlockData'
+        subblocks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProductSubBlock'
+      required:
+      - content_type
+      - type
+      - data
+    VideoBlockV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - video
+        data:
+          $ref: '#/components/schemas/VideoBlockData'
+      required:
+      - content_type
+      - type
+      - data
+    TableHtmlSubBlock:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+        show_on:
+          description: Show on.
+          type:
+          - string
+          - 'null'
+          enum:
+          - all
+          - desktop
+          - mobile
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - table_html
+      required:
+      - type
+    SocialBlockData:
+      type: object
+      properties:
+        properties:
+          $ref: '#/components/schemas/SocialBlockProperties'
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/SocialBlockStyles'
+      required:
+      - properties
+      - display_options
+      - styles
+    VideoBlockStyles:
+      type: object
+      properties:
+        align:
+          description: Image Alignment.
+          type:
+          - string
+          - 'null'
+          enum:
+          - center
+          - left
+          - right
+        background_color:
+          type:
+          - string
+          - 'null'
+        block_background_color:
+          type:
+          - string
+          - 'null'
+        block_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        block_padding_left:
+          type:
+          - integer
+          - 'null'
+        block_padding_right:
+          type:
+          - integer
+          - 'null'
+        block_padding_top:
+          type:
+          - integer
+          - 'null'
+        border_color:
+          type:
+          - string
+          - 'null'
+        border_style:
+          description: Border style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - dashed
+          - dotted
+          - groove
+          - inset
+          - none
+          - outset
+          - ridge
+          - solid
+        border_width:
+          type:
+          - integer
+          - 'null'
+        full_width_mobile:
+          type:
+          - boolean
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        inner_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        inner_padding_left:
+          type:
+          - integer
+          - 'null'
+        inner_padding_right:
+          type:
+          - integer
+          - 'null'
+        inner_padding_top:
+          type:
+          - integer
+          - 'null'
+        max_width:
+          type:
+          - integer
+          - 'null'
+        mobile_stretch_content:
+          type:
+          - boolean
+          - 'null'
+        width:
+          type:
+          - integer
+          - 'null'
     TextBlockV0:
       type: object
       properties:
@@ -2670,27 +3157,24 @@ components:
       - content_type
       - type
       - data
-    DynamicImageBlockProperties:
+    ButtonBlockData:
       type: object
       properties:
-        dynamic:
-          type: boolean
-          enum:
-          - true
-        alt_text:
+        content:
           type:
           - string
           - 'null'
-        href:
-          type:
-          - string
-          - 'null'
-        src:
-          type:
-          - string
-          - 'null'
+        properties:
+          $ref: '#/components/schemas/ButtonBlockProperties'
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/ButtonBlockStyles'
       required:
-      - dynamic
+      - content
+      - properties
+      - display_options
+      - styles
     TableBlockStyles:
       type: object
       properties:
@@ -2891,347 +3375,185 @@ components:
           type:
           - boolean
           - 'null'
-    TemplateCloneQuery:
+    TemplateUpdateHtmlOrDndQuery:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/TemplateCloneQueryResourceObject'
+          $ref: '#/components/schemas/TemplateUpdateHtmlOrDndQueryResourceObject'
       required:
       - data
-    TableFallbackTextSubBlock:
+    ColumnData:
+      type: object
+      maxProperties: 0
+    SectionV0:
       type: object
       properties:
-        content:
-          type:
-          - string
-          - 'null'
-        cell_text_align:
-          description: Text Alignment.
-          type:
-          - string
-          - 'null'
+        content_type:
+          type: string
           enum:
-          - center
-          - left
-          - right
-        color:
-          type:
-          - string
-          - 'null'
-        font_family:
-          type:
-          - string
-          - 'null'
-        font_size:
-          type:
-          - integer
-          - 'null'
-        font_style:
-          description: Font style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - italic
-          - normal
-        font_weight:
-          type:
-          - string
-          - 'null'
-        letter_spacing:
-          type:
-          - integer
-          - 'null'
-        show_on:
-          description: Show on.
-          type:
-          - string
-          - 'null'
-          enum:
-          - all
-          - desktop
-          - mobile
-        table_column_width:
-          type:
-          - string
-          - 'null'
-        text_decoration:
-          type:
-          - string
-          - 'null'
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
+          - section
         type:
           type: string
           enum:
-          - table_fallback_text
+          - section
+        data:
+          oneOf:
+          - type: integer
+          - type: number
+          - type: string
+          - type: boolean
+      required:
+      - content_type
+      - type
+      - data
+    BodyProperties:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        css_class:
+          type:
+          - string
+          - 'null'
+    TemplateRenderQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TemplateEnum'
+        id:
+          description: The ID of template
+          type: string
+        attributes:
+          type: object
+          properties:
+            context:
+              description: The context for the template render. This must be a JSON object which has values for any tags used in the template. See [this doc](https://help.klaviyo.com/hc/en-us/articles/4408802648731) for more details.
+              type: object
+              example:
+                first_name: Jane
+                last_name: Smith
+          required:
+          - context
       required:
       - type
-    Heading3Style:
+      - id
+      - attributes
+    MobileStyleStyles:
       type: object
       properties:
-        id:
+        mobile_block_padding_left:
           type:
-          - string
+          - integer
           - 'null'
-          readOnly: true
-        style_type:
-          type: string
-          enum:
-          - heading-3-styles
-        styles:
-          $ref: '#/components/schemas/HeadingStyleStyles'
-      required:
-      - style_type
-      - styles
-    HTMLBlockDataV1:
+        mobile_block_padding_right:
+          type:
+          - integer
+          - 'null'
+        mobile_margin:
+          type:
+          - integer
+          - 'null'
+        mobile_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        mobile_padding_left:
+          type:
+          - integer
+          - 'null'
+        mobile_padding_right:
+          type:
+          - integer
+          - 'null'
+        mobile_padding_top:
+          type:
+          - integer
+          - 'null'
+    StaticImageBlockProperties:
       type: object
       properties:
-        content:
-          type: string
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-      required:
-      - content
-      - display_options
-    Body:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        properties:
-          $ref: '#/components/schemas/BodyProperties'
-        styles:
-          $ref: '#/components/schemas/BodyStyles'
-        sections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SectionV1'
-      required:
-      - properties
-      - styles
-    StaticReviewBlockProperties:
-      type: object
-      properties:
-        show_rating:
-          type:
-          - boolean
-          - 'null'
-        show_reviewer_name:
-          type:
-          - boolean
-          - 'null'
-        show_product_name:
-          type:
-          - boolean
-          - 'null'
-        show_variant_name:
-          type:
-          - boolean
-          - 'null'
-        show_verified_badge:
-          type:
-          - boolean
-          - 'null'
-        author_placeholder:
-          type:
-          - string
-          - 'null'
-        quote_placeholder:
-          type:
-          - string
-          - 'null'
-        product_name_placeholder:
-          type:
-          - string
-          - 'null'
-        product_variant_name_placeholder:
-          type:
-          - string
-          - 'null'
-        verified_badge_language:
-          description: Review block verified badge language.
-          type:
-          - string
-          - 'null'
-          enum:
-          - dutch
-          - english
-          - french
-          - german
-          - hungarian
-          - italian
-          - japanese
-          - korean
-          - portuguese
-          - spanish
         dynamic:
           type:
           - boolean
           - 'null'
           enum:
           - false
-        author:
+        alt_text:
           type:
           - string
           - 'null'
-        product_name:
+        asset_id:
           type:
           - string
           - 'null'
-        product_variant_name:
+        cropping_properties:
+          $ref: '#/components/schemas/ImageBlockCroppingProperties'
+          readOnly: true
+        href:
           type:
           - string
           - 'null'
-        quote:
-          type:
-          - string
-          - 'null'
-        stars:
-          type:
-          - integer
-          - 'null'
-        verified:
-          type:
-          - boolean
-          - 'null'
-      required:
-      - dynamic
-    DynamicReviewBlockProperties:
-      type: object
-      properties:
-        show_rating:
-          type:
-          - boolean
-          - 'null'
-        show_reviewer_name:
-          type:
-          - boolean
-          - 'null'
-        show_product_name:
-          type:
-          - boolean
-          - 'null'
-        show_variant_name:
-          type:
-          - boolean
-          - 'null'
-        show_verified_badge:
-          type:
-          - boolean
-          - 'null'
-        author_placeholder:
-          type:
-          - string
-          - 'null'
-        quote_placeholder:
-          type:
-          - string
-          - 'null'
-        product_name_placeholder:
-          type:
-          - string
-          - 'null'
-        product_variant_name_placeholder:
-          type:
-          - string
-          - 'null'
-        verified_badge_language:
-          description: Review block verified badge language.
-          type:
-          - string
-          - 'null'
-          enum:
-          - dutch
-          - english
-          - french
-          - german
-          - hungarian
-          - italian
-          - japanese
-          - korean
-          - portuguese
-          - spanish
-        dynamic:
-          type: boolean
-          enum:
-          - true
-        fallback_options:
-          description: Review block fallback options for dynamic selection.
-          type:
-          - string
-          - 'null'
-          enum:
-          - high-quality-review
-          - high-quality-review-or-static
-          - no-review
-          - recent
-          - static-only
-        fallback_content_type:
-          description: Review block fallback content type.
-          type:
-          - string
-          - 'null'
-          enum:
-          - full
-          - quote
-        fallback_review_id:
-          type:
-          - string
-          - 'null'
-        product_selection_mode:
-          description: Review block product selection mode.
-          type:
-          - string
-          - 'null'
-          enum:
-          - automatic
-          - manual
-        product_id:
-          type:
-          - string
-          - 'null'
-        product_event_variable:
+        src:
           type:
           - string
           - 'null'
       required:
       - dynamic
-    BodyStyles:
+    CouponBlockStyles:
       type: object
       properties:
         background_color:
           type:
           - string
           - 'null'
-        width:
-          type:
-          - integer
-          - 'null'
-    TableTextSubBlock:
-      type: object
-      properties:
-        content:
+        block_background_color:
           type:
           - string
           - 'null'
-        cell_text_align:
-          description: Text Alignment.
+        block_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        block_padding_left:
+          type:
+          - integer
+          - 'null'
+        block_padding_right:
+          type:
+          - integer
+          - 'null'
+        block_padding_top:
+          type:
+          - integer
+          - 'null'
+        border_color:
+          type:
+          - string
+          - 'null'
+        border_radius:
+          type:
+          - integer
+          - 'null'
+        border_style:
+          description: Border style.
           type:
           - string
           - 'null'
           enum:
-          - center
-          - left
-          - right
+          - dashed
+          - dotted
+          - groove
+          - inset
+          - none
+          - outset
+          - ridge
+          - solid
+        border_width:
+          type:
+          - integer
+          - 'null'
         color:
           type:
           - string
@@ -3256,267 +3578,163 @@ components:
           type:
           - string
           - 'null'
+        header_font_family:
+          type:
+          - string
+          - 'null'
+        header_font_size:
+          type:
+          - integer
+          - 'null'
+        header_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        header_padding_left:
+          type:
+          - integer
+          - 'null'
+        header_padding_right:
+          type:
+          - integer
+          - 'null'
+        header_padding_top:
+          type:
+          - integer
+          - 'null'
+        inner_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        inner_padding_left:
+          type:
+          - integer
+          - 'null'
+        inner_padding_right:
+          type:
+          - integer
+          - 'null'
+        inner_padding_top:
+          type:
+          - integer
+          - 'null'
         letter_spacing:
           type:
           - integer
           - 'null'
-        show_on:
-          description: Show on.
+        mobile_stretch_content:
+          type:
+          - boolean
+          - 'null'
+        stretch:
+          type:
+          - boolean
+          - 'null'
+        text_align:
+          description: Text Alignment.
           type:
           - string
           - 'null'
           enum:
-          - all
-          - desktop
-          - mobile
-        table_column_width:
-          type:
-          - string
-          - 'null'
+          - center
+          - left
+          - right
         text_decoration:
           type:
           - string
           - 'null'
-        id:
+    DropShadowBlockStyles:
+      type: object
+      properties:
+        block_background_color:
           type:
           - string
           - 'null'
-          readOnly: true
-        type:
-          type: string
-          enum:
-          - table_text
-      required:
-      - type
-    CouponBlockData:
-      type: object
-      properties:
-        content:
-          type: string
-        properties:
-          $ref: '#/components/schemas/CouponBlockProperties'
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/CouponBlockStyles'
-      required:
-      - content
-      - properties
-      - display_options
-      - styles
-    CouponBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - coupon
-        data:
-          oneOf:
-          - type: integer
-          - type: number
-          - type: string
-          - type: boolean
-      required:
-      - content_type
-      - type
-      - data
-    SplitBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - split
-        data:
-          oneOf:
-          - type: integer
-          - type: number
-          - type: string
-          - type: boolean
-      required:
-      - content_type
-      - type
-      - data
-    StaticProductBlockProperties:
-      type: object
-      properties:
-        is_ai_generated:
-          type:
-          - boolean
-          - 'null'
-        is_prebuilt_content:
-          type:
-          - boolean
-          - 'null'
-        item_subtype_id:
+        block_padding_bottom:
           type:
           - integer
           - 'null'
-        show_button:
+        block_padding_left:
+          type:
+          - integer
+          - 'null'
+        block_padding_right:
+          type:
+          - integer
+          - 'null'
+        block_padding_top:
+          type:
+          - integer
+          - 'null'
+        mobile_stretch_content:
           type:
           - boolean
           - 'null'
-        show_original_price:
-          type:
-          - boolean
-          - 'null'
-        show_price:
-          type:
-          - boolean
-          - 'null'
-        show_rating:
-          type:
-          - boolean
-          - 'null'
-        show_rating_count:
-          type:
-          - boolean
-          - 'null'
-        show_title:
-          type:
-          - boolean
-          - 'null'
-        show_title_links:
-          type:
-          - boolean
-          - 'null'
-        title_placeholder:
+        shadow_color:
+          description: Shadow color.
           type:
           - string
-          - 'null'
-        dynamic:
-          type:
-          - boolean
           - 'null'
           enum:
-          - false
-        show_description:
-          type:
-          - boolean
-          - 'null'
-        localize_for_recipient:
-          type:
-          - boolean
-          - 'null'
-        language:
-          type:
-          - string
-          - 'null'
-        region:
-          type:
-          - string
-          - 'null'
-      required:
-      - dynamic
-    GetUniversalContentResponseCollection:
+          - dark
+          - light
+          - medium
+    ReviewBlockV0:
       type: object
       properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - review
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UniversalContentResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
+          oneOf:
+          - type: integer
+          - type: number
+          - type: string
+          - type: boolean
       required:
+      - content_type
+      - type
       - data
-    PatchUniversalContentResponse:
+    DropShadowBlockData:
+      type: object
+      properties:
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/DropShadowBlockStyles'
+      required:
+      - display_options
+      - styles
+    RowData:
+      type: object
+      properties:
+        styles:
+          $ref: '#/components/schemas/RowStyles'
+      required:
+      - styles
+    GetTemplateDndResponse:
       type: object
       properties:
         data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/TemplateUniversalContentEnum'
-            id:
-              description: The ID of the universal content
-              type: string
-              example: 01HWWWKAW4RHXQJCMW4R2KRYR4
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: The name for this universal content
-                  type: string
-                definition:
-                  oneOf:
-                  - $ref: '#/components/schemas/ButtonBlockV0'
-                  - $ref: '#/components/schemas/CouponBlockV0'
-                  - $ref: '#/components/schemas/DropShadowBlockV0'
-                  - $ref: '#/components/schemas/HeaderBlockV0'
-                  - $ref: '#/components/schemas/HorizontalRuleBlockV0'
-                  - $ref: '#/components/schemas/HTMLBlockV0'
-                  - $ref: '#/components/schemas/ImageBlockV0'
-                  - $ref: '#/components/schemas/ProductBlockV0'
-                  - $ref: '#/components/schemas/ReviewBlockV0'
-                  - $ref: '#/components/schemas/SocialBlockV0'
-                  - $ref: '#/components/schemas/SpacerBlockV0'
-                  - $ref: '#/components/schemas/SplitBlockV0'
-                  - $ref: '#/components/schemas/TableBlockV0'
-                  - $ref: '#/components/schemas/TextBlockV0'
-                  - $ref: '#/components/schemas/UnsupportedBlock'
-                  - $ref: '#/components/schemas/VideoBlockV0'
-                  - $ref: '#/components/schemas/SectionV0'
-                created:
-                  description: The datetime when this universal content was created
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                updated:
-                  description: The datetime when this universal content was updated
-                  type: string
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                screenshot_status:
-                  description: The status of a universal content screenshot.
-                  type: string
-                  enum:
-                  - completed
-                  - failed
-                  - generating
-                  - never_generated
-                  - not_renderable
-                  - stale
-                screenshot_url:
-                  type: string
-              required:
-              - name
-              - created
-              - updated
-              - screenshot_status
-              - screenshot_url
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
+          allOf:
+          - properties:
+              type:
+                $ref: '#/components/schemas/TemplateEnum'
+              attributes:
+                properties:
+                  definition:
+                    description: Template definition for SYSTEM_DRAGGABLE templates. Omitted for CODE/USER_DRAGGABLE. Use additional-fields[template]=definition to include in list responses.
+                    $ref: '#/components/schemas/TemplateDefinition'
+          - $ref: '#/components/schemas/TemplateDndResponseObjectResource'
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    VideoBlockData:
-      type: object
-      properties:
-        properties:
-          $ref: '#/components/schemas/VideoBlockProperties'
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/VideoBlockStyles'
-      required:
-      - properties
-      - display_options
-      - styles
     TableImageSubBlock:
       type: object
       properties:
@@ -3622,21 +3840,6 @@ components:
           - table_image
       required:
       - type
-    Visibility:
-      type: object
-      properties:
-        check:
-          type:
-          - string
-          - 'null'
-        definition:
-          type:
-          - string
-          - 'null'
-        is_code_only:
-          type:
-          - boolean
-          - 'null'
     UniversalContentCreateQuery:
       type: object
       properties:
@@ -3644,450 +3847,26 @@ components:
           $ref: '#/components/schemas/UniversalContentCreateQueryResourceObject'
       required:
       - data
-    SplitBlockData:
+    CollectionLinks:
       type: object
       properties:
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/SplitBlockStyles'
-      required:
-      - display_options
-      - styles
-    TemplateCloneQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TemplateEnum'
-        id:
-          description: The ID of template to be cloned
+        self:
           type: string
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name of the template
-              type:
-              - string
-              - 'null'
-              example: Clone of Monthly Newsletter Template
-      required:
-      - type
-      - id
-      - attributes
-    TemplateRenderQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TemplateEnum'
-        id:
-          description: The ID of template
+          format: uri
+        first:
           type: string
-        attributes:
-          type: object
-          properties:
-            context:
-              description: The context for the template render. This must be a JSON object which has values for any tags used in the template. See [this doc](https://help.klaviyo.com/hc/en-us/articles/4408802648731) for more details.
-              type: object
-              example:
-                first_name: Jane
-                last_name: Smith
-          required:
-          - context
-      required:
-      - type
-      - id
-      - attributes
-    TableHeaderSubBlock:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-        cell_text_align:
-          description: Text Alignment.
-          type:
-          - string
-          - 'null'
-          enum:
-          - center
-          - left
-          - right
-        color:
-          type:
-          - string
-          - 'null'
-        font_family:
-          type:
-          - string
-          - 'null'
-        font_size:
-          type:
-          - integer
-          - 'null'
-        font_style:
-          description: Font style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - italic
-          - normal
-        font_weight:
-          type:
-          - string
-          - 'null'
-        letter_spacing:
-          type:
-          - integer
-          - 'null'
-        show_on:
-          description: Show on.
-          type:
-          - string
-          - 'null'
-          enum:
-          - all
-          - desktop
-          - mobile
-        table_column_width:
-          type:
-          - string
-          - 'null'
-        text_decoration:
-          type:
-          - string
-          - 'null'
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        type:
+          format: uri
+        last:
           type: string
-          enum:
-          - table_header
-      required:
-      - type
-    HeaderBlockV0:
-      type: object
-      properties:
-        content_type:
+          format: uri
+        prev:
           type: string
-          enum:
-          - block
-        type:
+          format: uri
+        next:
           type: string
-          enum:
-          - header
-        data:
-          oneOf:
-          - type: integer
-          - type: number
-          - type: string
-          - type: boolean
+          format: uri
       required:
-      - content_type
-      - type
-      - data
-    MobileStyleProperties:
-      type: object
-      properties:
-        mobile_padding_override:
-          type:
-          - boolean
-          - 'null'
-    HeaderBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - header
-        data:
-          $ref: '#/components/schemas/HeaderBlockData'
-        subblocks:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/HeaderLinkSubBlock'
-            - $ref: '#/components/schemas/HeaderImageSubBlock'
-            - $ref: '#/components/schemas/HeaderLogoSubBlock'
-      required:
-      - content_type
-      - type
-      - data
-    UniversalContentPartialUpdateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TemplateUniversalContentEnum'
-        id:
-          description: The ID of the template universal content
-          type: string
-          example: 01HWWWKAW4RHXQJCMW4R2KRYR4
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name for this template universal content
-              type:
-              - string
-              - 'null'
-            definition:
-              oneOf:
-              - $ref: '#/components/schemas/ButtonBlockV0'
-              - $ref: '#/components/schemas/DropShadowBlockV0'
-              - $ref: '#/components/schemas/HorizontalRuleBlockV0'
-              - $ref: '#/components/schemas/HTMLBlockV0'
-              - $ref: '#/components/schemas/ImageBlockV0'
-              - $ref: '#/components/schemas/SpacerBlockV0'
-              - $ref: '#/components/schemas/TextBlockV0'
-      required:
-      - type
-      - id
-      - attributes
-    LinkStyle:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        style_type:
-          type: string
-          enum:
-          - link-styles
-        styles:
-          $ref: '#/components/schemas/LinkStyleStyles'
-      required:
-      - style_type
-      - styles
-    HorizontalRuleBlockStyles:
-      type: object
-      properties:
-        block_background_color:
-          type:
-          - string
-          - 'null'
-        block_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        block_padding_left:
-          type:
-          - integer
-          - 'null'
-        block_padding_right:
-          type:
-          - integer
-          - 'null'
-        block_padding_top:
-          type:
-          - integer
-          - 'null'
-        border_color:
-          type:
-          - string
-          - 'null'
-        border_style:
-          description: Border style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - dashed
-          - dotted
-          - groove
-          - inset
-          - none
-          - outset
-          - ridge
-          - solid
-        border_width:
-          type:
-          - integer
-          - 'null'
-        mobile_stretch_content:
-          type:
-          - boolean
-          - 'null'
-    TemplateCreateHtmlOrDndQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TemplateEnum'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name of the template
-              type: string
-              example: Monthly Newsletter Template
-            editor_type:
-              description: Restricted to CODE, USER_DRAGGABLE, or SYSTEM_DRAGGABLE
-              type: string
-            html:
-              description: The HTML contents of the template. Required for CODE/USER_DRAGGABLE; not allowed for SYSTEM_DRAGGABLE.
-              type:
-              - string
-              - 'null'
-            definition:
-              description: The template definition. Required for SYSTEM_DRAGGABLE; ignored for CODE/USER_DRAGGABLE.
-              $ref: '#/components/schemas/TemplateDefinition'
-            text:
-              description: The plaintext version of the template
-              type:
-              - string
-              - 'null'
-              example: hello world
-            amp:
-              description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo Not allowed for SYSTEM_DRAGGABLE.
-              type:
-              - string
-              - 'null'
-          required:
-          - name
-          - editor_type
-      required:
-      - type
-      - attributes
-    PatchTemplateDndResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/TemplateEnum'
-            id:
-              description: The ID of template
-              type: string
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: The name of the template
-                  type: string
-                editor_type:
-                  description: '`editor_type` has a fixed set of values:
-
-                    * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
-
-                    * SIMPLE: A rich text editor template
-
-                    * CODE: A custom HTML template
-
-                    * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
-                  type: string
-                html:
-                  description: The rendered HTML of the template
-                  type: string
-                text:
-                  description: The template plain_text
-                  type:
-                  - string
-                  - 'null'
-                amp:
-                  description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
-                  type:
-                  - string
-                  - 'null'
-                created:
-                  description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                updated:
-                  description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                definition:
-                  description: Template definition for SYSTEM_DRAGGABLE templates. Omitted for CODE/USER_DRAGGABLE. Use additional-fields[template]=definition to include in list responses.
-                  $ref: '#/components/schemas/TemplateDefinition'
-              required:
-              - name
-              - editor_type
-              - html
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    SplitBlockStyles:
-      type: object
-      properties:
-        block_background_color:
-          type:
-          - string
-          - 'null'
-        block_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        block_padding_left:
-          type:
-          - integer
-          - 'null'
-        block_padding_right:
-          type:
-          - integer
-          - 'null'
-        block_padding_top:
-          type:
-          - integer
-          - 'null'
-        column_widths:
-          type:
-          - string
-          - 'null'
-        mobile_stack_order:
-          description: Stacking direction.
-          type:
-          - string
-          - 'null'
-          enum:
-          - ltr
-          - no-stack
-          - rtl
-        padding_in_between:
-          type:
-          - integer
-          - 'null'
+      - self
     UniversalContentCreateQueryResourceObject:
       type: object
       properties:
@@ -4114,135 +3893,7 @@ components:
       required:
       - type
       - attributes
-    TextBlockStylesV1:
-      type: object
-      properties:
-        background_color:
-          type:
-          - string
-          - 'null'
-        block_background_color:
-          type:
-          - string
-          - 'null'
-        block_border_color:
-          type:
-          - string
-          - 'null'
-        block_border_style:
-          description: Border style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - dashed
-          - dotted
-          - groove
-          - inset
-          - none
-          - outset
-          - ridge
-          - solid
-        block_border_width:
-          type:
-          - integer
-          - 'null'
-        block_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        block_padding_left:
-          type:
-          - integer
-          - 'null'
-        block_padding_right:
-          type:
-          - integer
-          - 'null'
-        block_padding_top:
-          type:
-          - integer
-          - 'null'
-        color:
-          type:
-          - string
-          - 'null'
-        extra_css_class:
-          type:
-          - string
-          - 'null'
-        font_family:
-          type:
-          - string
-          - 'null'
-        font_size:
-          type:
-          - integer
-          - 'null'
-        font_style:
-          description: Font style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - italic
-          - normal
-        font_weight:
-          type:
-          - string
-          - 'null'
-        inner_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        inner_padding_left:
-          type:
-          - integer
-          - 'null'
-        inner_padding_right:
-          type:
-          - integer
-          - 'null'
-        inner_padding_top:
-          type:
-          - integer
-          - 'null'
-        letter_spacing:
-          type:
-          - integer
-          - 'null'
-        line_height:
-          type:
-          - number
-          - 'null'
-        mobile_stretch_content:
-          type:
-          - boolean
-          - 'null'
-        text_align:
-          description: Text Alignment.
-          type:
-          - string
-          - 'null'
-          enum:
-          - center
-          - left
-          - right
-        text_decoration:
-          type:
-          - string
-          - 'null'
-        text_table_layout:
-          description: Text table layout.
-          type:
-          - string
-          - 'null'
-          enum:
-          - auto
-          - fixed
-          - inherit
-          - initial
-    Heading4Style:
+    SocialSpacerSubBlock:
       type: object
       properties:
         id:
@@ -4250,363 +3901,75 @@ components:
           - string
           - 'null'
           readOnly: true
-        style_type:
-          type: string
-          enum:
-          - heading-4-styles
-        styles:
-          $ref: '#/components/schemas/HeadingStyleStyles'
-      required:
-      - style_type
-      - styles
-    HorizontalRuleBlockData:
-      type: object
-      properties:
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/HorizontalRuleBlockStyles'
-      required:
-      - display_options
-      - styles
-    CouponBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
         type:
           type: string
           enum:
-          - coupon
-        data:
-          $ref: '#/components/schemas/CouponBlockData'
+          - social_link_spacer
+        width:
+          type:
+          - integer
+          - 'null'
       required:
-      - content_type
       - type
-      - data
-    DropShadowBlockV1:
+    GetUniversalContentResponse:
       type: object
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - drop_shadow
         data:
-          $ref: '#/components/schemas/DropShadowBlockData'
-      required:
-      - content_type
-      - type
-      - data
-    ContentRepeatV1:
-      type: object
-      properties:
-        repeat_for:
-          type: string
-        item_alias:
-          type: string
-      required:
-      - repeat_for
-      - item_alias
-    SpacerBlockData:
-      type: object
-      properties:
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/SpacerBlockStyles'
-      required:
-      - display_options
-      - styles
-    ColumnData:
-      type: object
-      maxProperties: 0
-    RowStyles:
-      type: object
-      properties:
-        column_layout:
-          description: Column layout.
-          type:
-          - string
-          - 'null'
-          enum:
-          - 1-column-full-width
-          - 2-columns-25%-75%
-          - 2-columns-33%-67%
-          - 2-columns-67%-33%
-          - 2-columns-75%-25%
-          - 2-columns-equal-width
-          - 3-columns-25%-25%-50%
-          - 3-columns-25%-50%-25%
-          - 3-columns-50%-25%-25%
-          - 3-columns-equal-width
-          - 4-columns-equal-width
-    TextBlockStylesV0:
-      type: object
-      properties:
-        background_color:
-          type:
-          - string
-          - 'null'
-        block_background_color:
-          type:
-          - string
-          - 'null'
-        block_border_color:
-          type:
-          - string
-          - 'null'
-        block_border_style:
-          description: Border style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - dashed
-          - dotted
-          - groove
-          - inset
-          - none
-          - outset
-          - ridge
-          - solid
-        block_border_width:
-          type:
-          - integer
-          - 'null'
-        block_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        block_padding_left:
-          type:
-          - integer
-          - 'null'
-        block_padding_right:
-          type:
-          - integer
-          - 'null'
-        block_padding_top:
-          type:
-          - integer
-          - 'null'
-        color:
-          type:
-          - string
-          - 'null'
-        extra_css_class:
-          type:
-          - string
-          - 'null'
-        font_family:
-          type:
-          - string
-          - 'null'
-        font_size:
-          type:
-          - integer
-          - 'null'
-        font_style:
-          description: Font style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - italic
-          - normal
-        font_weight:
-          type:
-          - string
-          - 'null'
-        inner_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        inner_padding_left:
-          type:
-          - integer
-          - 'null'
-        inner_padding_right:
-          type:
-          - integer
-          - 'null'
-        inner_padding_top:
-          type:
-          - integer
-          - 'null'
-        letter_spacing:
-          type:
-          - integer
-          - 'null'
-        line_height:
-          type:
-          - number
-          - 'null'
-        mobile_stretch_content:
-          type:
-          - boolean
-          - 'null'
-        text_align:
-          description: Text Alignment.
-          type:
-          - string
-          - 'null'
-          enum:
-          - center
-          - left
-          - right
-        text_decoration:
-          type:
-          - string
-          - 'null'
-        text_table_layout:
-          description: Text table layout.
-          type:
-          - string
-          - 'null'
-          enum:
-          - auto
-          - fixed
-          - inherit
-          - initial
-    UniversalContentResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TemplateUniversalContentEnum'
-        id:
-          description: The ID of the universal content
-          type: string
-          example: 01HWWWKAW4RHXQJCMW4R2KRYR4
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name for this universal content
-              type: string
-            definition:
-              oneOf:
-              - $ref: '#/components/schemas/ButtonBlockV0'
-              - $ref: '#/components/schemas/CouponBlockV0'
-              - $ref: '#/components/schemas/DropShadowBlockV0'
-              - $ref: '#/components/schemas/HeaderBlockV0'
-              - $ref: '#/components/schemas/HorizontalRuleBlockV0'
-              - $ref: '#/components/schemas/HTMLBlockV0'
-              - $ref: '#/components/schemas/ImageBlockV0'
-              - $ref: '#/components/schemas/ProductBlockV0'
-              - $ref: '#/components/schemas/ReviewBlockV0'
-              - $ref: '#/components/schemas/SocialBlockV0'
-              - $ref: '#/components/schemas/SpacerBlockV0'
-              - $ref: '#/components/schemas/SplitBlockV0'
-              - $ref: '#/components/schemas/TableBlockV0'
-              - $ref: '#/components/schemas/TextBlockV0'
-              - $ref: '#/components/schemas/UnsupportedBlock'
-              - $ref: '#/components/schemas/VideoBlockV0'
-              - $ref: '#/components/schemas/SectionV0'
-            created:
-              description: The datetime when this universal content was created
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            updated:
-              description: The datetime when this universal content was updated
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            screenshot_status:
-              description: The status of a universal content screenshot.
-              type: string
-              enum:
-              - completed
-              - failed
-              - generating
-              - never_generated
-              - not_renderable
-              - stale
-            screenshot_url:
-              type: string
-          required:
-          - name
-          - created
-          - updated
-          - screenshot_status
-          - screenshot_url
+          $ref: '#/components/schemas/UniversalContentResponseObjectResource'
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
-      - type
-      - id
-      - attributes
-      - links
-    BaseStyleProperties:
+      - data
+    UniversalContentPartialUpdateQuery:
       type: object
       properties:
-        currency:
-          type:
-          - string
-          - 'null'
-        currency_set_on_template:
-          type:
-          - boolean
-          - 'null'
-        disable_websafe_fonts:
-          type:
-          - boolean
-          - 'null'
-        is_user_draggable:
-          type:
-          - boolean
-          - 'null'
-        mobile_optimizations:
-          type:
-          - boolean
-          - 'null'
-    VideoBlockProperties:
+        data:
+          $ref: '#/components/schemas/UniversalContentPartialUpdateQueryResourceObject'
+      required:
+      - data
+    ColumnV1:
       type: object
       properties:
-        raw_asset_id:
+        id:
           type:
           - string
           - 'null'
-        src_asset_id:
+          readOnly: true
+        data_id:
           type:
           - string
           - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/ColumnData'
+        blocks:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ButtonBlockV1'
+            - $ref: '#/components/schemas/CouponBlockV1'
+            - $ref: '#/components/schemas/DropShadowBlockV1'
+            - $ref: '#/components/schemas/HeaderBlockV1'
+            - $ref: '#/components/schemas/HorizontalRuleBlockV1'
+            - $ref: '#/components/schemas/HTMLBlockV1'
+            - $ref: '#/components/schemas/ImageBlockV1'
+            - $ref: '#/components/schemas/ProductBlockV1'
+            - $ref: '#/components/schemas/ReviewBlockV1'
+            - $ref: '#/components/schemas/SocialBlockV1'
+            - $ref: '#/components/schemas/SpacerBlockV1'
+            - $ref: '#/components/schemas/SplitBlockV1'
+            - $ref: '#/components/schemas/TableBlockV1'
+            - $ref: '#/components/schemas/TextBlockV1'
+            - $ref: '#/components/schemas/VideoBlockV1'
+    DynamicImageBlockProperties:
+      type: object
+      properties:
+        dynamic:
+          type: boolean
+          enum:
+          - true
         alt_text:
           type:
           - string
@@ -4615,33 +3978,33 @@ components:
           type:
           - string
           - 'null'
-        overlay_toggle:
-          type:
-          - boolean
-          - 'null'
-        raw_src:
-          type:
-          - string
-          - 'null'
         src:
           type:
           - string
           - 'null'
-    ReviewBlockData:
+      required:
+      - dynamic
+    HeaderBlockData:
       type: object
       properties:
-        properties:
-          oneOf:
-          - $ref: '#/components/schemas/StaticReviewBlockProperties'
-          - $ref: '#/components/schemas/DynamicReviewBlockProperties'
         display_options:
           $ref: '#/components/schemas/DisplayOptions'
         styles:
-          $ref: '#/components/schemas/ReviewBlockStyles'
+          $ref: '#/components/schemas/HeaderBlockStyles'
       required:
-      - properties
       - display_options
       - styles
+    SpacerBlockStyles:
+      type: object
+      properties:
+        background_color:
+          type:
+          - string
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
     TableBlockData:
       type: object
       properties:
@@ -4657,6 +4020,377 @@ components:
       - properties
       - display_options
       - styles
+    StaticReviewBlockProperties:
+      type: object
+      properties:
+        show_rating:
+          type:
+          - boolean
+          - 'null'
+        show_reviewer_name:
+          type:
+          - boolean
+          - 'null'
+        show_product_name:
+          type:
+          - boolean
+          - 'null'
+        show_variant_name:
+          type:
+          - boolean
+          - 'null'
+        show_verified_badge:
+          type:
+          - boolean
+          - 'null'
+        author_placeholder:
+          type:
+          - string
+          - 'null'
+        quote_placeholder:
+          type:
+          - string
+          - 'null'
+        product_name_placeholder:
+          type:
+          - string
+          - 'null'
+        product_variant_name_placeholder:
+          type:
+          - string
+          - 'null'
+        verified_badge_language:
+          description: Review block verified badge language.
+          type:
+          - string
+          - 'null'
+          enum:
+          - dutch
+          - english
+          - french
+          - german
+          - hungarian
+          - italian
+          - japanese
+          - korean
+          - portuguese
+          - spanish
+        dynamic:
+          type:
+          - boolean
+          - 'null'
+          enum:
+          - false
+        author:
+          type:
+          - string
+          - 'null'
+        product_name:
+          type:
+          - string
+          - 'null'
+        product_variant_name:
+          type:
+          - string
+          - 'null'
+        quote:
+          type:
+          - string
+          - 'null'
+        stars:
+          type:
+          - integer
+          - 'null'
+        verified:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - dynamic
+    BodyStyles:
+      type: object
+      properties:
+        background_color:
+          type:
+          - string
+          - 'null'
+        width:
+          type:
+          - integer
+          - 'null'
+    CouponBlockProperties:
+      type: object
+      properties:
+        coupon_id:
+          type:
+          - string
+          - 'null'
+        coupon:
+          type:
+          - string
+          - 'null'
+        header_enabled:
+          type:
+          - boolean
+          - 'null'
+        href:
+          type:
+          - string
+          - 'null'
+    TemplateDndResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TemplateEnum'
+        id:
+          description: The ID of template
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name of the template
+              type: string
+            editor_type:
+              description: '`editor_type` has a fixed set of values:
+
+                * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
+
+                * SIMPLE: A rich text editor template
+
+                * CODE: A custom HTML template
+
+                * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
+              type: string
+            html:
+              description: The rendered HTML of the template
+              type: string
+            text:
+              description: The template plain_text
+              type:
+              - string
+              - 'null'
+            amp:
+              description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
+              type:
+              - string
+              - 'null'
+            created:
+              description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+          required:
+          - name
+          - editor_type
+          - html
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    HTMLBlockV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - html
+        data:
+          $ref: '#/components/schemas/HTMLBlockDataV1'
+      required:
+      - content_type
+      - type
+      - data
+    TextStyleStyles:
+      type: object
+      properties:
+        color:
+          type:
+          - string
+          - 'null'
+        font_family:
+          type:
+          - string
+          - 'null'
+        font_size:
+          type:
+          - integer
+          - 'null'
+        font_style:
+          description: Font style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - italic
+          - normal
+        font_weight:
+          type:
+          - string
+          - 'null'
+        letter_spacing:
+          type:
+          - integer
+          - 'null'
+        line_height:
+          type:
+          - number
+          - 'null'
+        mobile_font_size:
+          type:
+          - integer
+          - 'null'
+        mobile_line_height:
+          type:
+          - number
+          - 'null'
+        text_align:
+          description: Text Alignment.
+          type:
+          - string
+          - 'null'
+          enum:
+          - center
+          - left
+          - right
+        text_decoration:
+          type:
+          - string
+          - 'null'
+    TemplateRenderQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TemplateRenderQueryResourceObject'
+      required:
+      - data
+    HTMLBlockV0:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - html
+        data:
+          $ref: '#/components/schemas/HTMLBlockDataV0'
+      required:
+      - content_type
+      - type
+      - data
+    DynamicProductBlockProperties:
+      type: object
+      properties:
+        is_ai_generated:
+          type:
+          - boolean
+          - 'null'
+        is_prebuilt_content:
+          type:
+          - boolean
+          - 'null'
+        item_subtype_id:
+          type:
+          - integer
+          - 'null'
+        show_button:
+          type:
+          - boolean
+          - 'null'
+        show_original_price:
+          type:
+          - boolean
+          - 'null'
+        show_price:
+          type:
+          - boolean
+          - 'null'
+        show_rating:
+          type:
+          - boolean
+          - 'null'
+        show_rating_count:
+          type:
+          - boolean
+          - 'null'
+        show_title:
+          type:
+          - boolean
+          - 'null'
+        show_title_links:
+          type:
+          - boolean
+          - 'null'
+        title_placeholder:
+          type:
+          - string
+          - 'null'
+        dynamic:
+          type: boolean
+          enum:
+          - true
+        button_text:
+          type:
+          - string
+          - 'null'
+        feed:
+          type:
+          - string
+          - 'null'
+        feed_offset:
+          type:
+          - integer
+          - 'null'
+        is_nbp:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - dynamic
+    HTMLBlockDataV0:
+      type: object
+      properties:
+        content:
+          type: string
+        display_options:
+          $ref: '#/components/schemas/BlockDisplayOptions'
+      required:
+      - content
+      - display_options
     HeaderBlockStyles:
       type: object
       properties:
@@ -4827,75 +4561,9 @@ components:
           - bottom
           - middle
           - top
-    ImageBlockCroppingProperties:
+    DropShadowBlockV0:
       type: object
       properties:
-        aspect_ratio:
-          type:
-          - string
-          - 'null'
-        asset_id:
-          type:
-          - string
-          - 'null'
-        height:
-          type:
-          - integer
-          - 'null'
-        src:
-          type:
-          - string
-          - 'null'
-        width:
-          type:
-          - integer
-          - 'null'
-        x:
-          type:
-          - integer
-          - 'null'
-        y:
-          type:
-          - integer
-          - 'null'
-    TextBlockDataV0:
-      type: object
-      properties:
-        content:
-          type: string
-        display_options:
-          $ref: '#/components/schemas/BlockDisplayOptions'
-        styles:
-          $ref: '#/components/schemas/TextBlockStylesV0'
-      required:
-      - content
-      - display_options
-      - styles
-    UniversalContentPartialUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UniversalContentPartialUpdateQueryResourceObject'
-      required:
-      - data
-    ReviewBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
         content_type:
           type: string
           enum:
@@ -4903,150 +4571,13 @@ components:
         type:
           type: string
           enum:
-          - review
-        data:
-          $ref: '#/components/schemas/ReviewBlockData'
+          - drop_shadow
+        data: {}
       required:
       - content_type
       - type
       - data
-    VideoBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - video
-        data:
-          $ref: '#/components/schemas/VideoBlockData'
-      required:
-      - content_type
-      - type
-      - data
-    ColumnV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/ColumnData'
-        blocks:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/ButtonBlockV1'
-            - $ref: '#/components/schemas/CouponBlockV1'
-            - $ref: '#/components/schemas/DropShadowBlockV1'
-            - $ref: '#/components/schemas/HeaderBlockV1'
-            - $ref: '#/components/schemas/HorizontalRuleBlockV1'
-            - $ref: '#/components/schemas/HTMLBlockV1'
-            - $ref: '#/components/schemas/ImageBlockV1'
-            - $ref: '#/components/schemas/ProductBlockV1'
-            - $ref: '#/components/schemas/ReviewBlockV1'
-            - $ref: '#/components/schemas/SocialBlockV1'
-            - $ref: '#/components/schemas/SpacerBlockV1'
-            - $ref: '#/components/schemas/SplitBlockV1'
-            - $ref: '#/components/schemas/TableBlockV1'
-            - $ref: '#/components/schemas/TextBlockV1'
-            - $ref: '#/components/schemas/VideoBlockV1'
-    DropShadowBlockData:
-      type: object
-      properties:
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/DropShadowBlockStyles'
-      required:
-      - display_options
-      - styles
-    TextBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - text
-        data:
-          $ref: '#/components/schemas/TextBlockDataV1'
-      required:
-      - content_type
-      - type
-      - data
-    SectionProperties:
-      type: object
-      properties:
-        is_ai_generated:
-          type:
-          - boolean
-          - 'null'
-        is_prebuilt_content:
-          type:
-          - boolean
-          - 'null'
-    ImageBlockData:
-      type: object
-      properties:
-        properties:
-          oneOf:
-          - $ref: '#/components/schemas/StaticImageBlockProperties'
-          - $ref: '#/components/schemas/DynamicImageBlockProperties'
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/ImageBlockStyles'
-      required:
-      - properties
-      - display_options
-      - styles
-    HeaderLogoSubBlock:
+    HeaderImageSubBlock:
       type: object
       properties:
         id:
@@ -5057,12 +4588,16 @@ components:
         type:
           type: string
           enum:
-          - header_link_bar_logo
+          - header_link_bar_image
         alt_text:
           type:
           - string
           - 'null'
         asset_id:
+          type:
+          - string
+          - 'null'
+        background_color:
           type:
           - string
           - 'null'
@@ -5097,60 +4632,7 @@ components:
           - 'null'
       required:
       - type
-    ProductBlockData:
-      type: object
-      properties:
-        properties:
-          oneOf:
-          - $ref: '#/components/schemas/StaticProductBlockProperties'
-          - $ref: '#/components/schemas/DynamicProductBlockProperties'
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/ProductBlockStyles'
-      required:
-      - properties
-      - display_options
-      - styles
-    Heading2Style:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        style_type:
-          type: string
-          enum:
-          - heading-2-styles
-        styles:
-          $ref: '#/components/schemas/HeadingStyleStyles'
-      required:
-      - style_type
-      - styles
-    ReviewBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - review
-        data:
-          oneOf:
-          - type: integer
-          - type: number
-          - type: string
-          - type: boolean
-      required:
-      - content_type
-      - type
-      - data
-    SpacerBlockV1:
+    SplitBlockV1:
       type: object
       properties:
         id:
@@ -5175,23 +4657,58 @@ components:
         type:
           type: string
           enum:
-          - spacer
+          - split
         data:
-          $ref: '#/components/schemas/SpacerBlockData'
+          $ref: '#/components/schemas/SplitBlockData'
+        subblocks:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TableTextSubBlock'
+            - $ref: '#/components/schemas/TableImageSubBlock'
+            - $ref: '#/components/schemas/TableHtmlSubBlock'
       required:
       - content_type
       - type
       - data
-    ButtonBlockProperties:
+    ContentRepeatV0:
       type: object
       properties:
-        href:
+        repeat_for:
+          type: string
+        item_alias:
+          type: string
+      required:
+      - repeat_for
+      - item_alias
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    HorizontalRuleBlockV1:
+      type: object
+      properties:
+        id:
           type:
           - string
           - 'null'
-    HTMLBlockV0:
-      type: object
-      properties:
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
         content_type:
           type: string
           enum:
@@ -5199,120 +4716,57 @@ components:
         type:
           type: string
           enum:
-          - html
+          - horizontal_rule
         data:
-          $ref: '#/components/schemas/HTMLBlockDataV0'
+          $ref: '#/components/schemas/HorizontalRuleBlockData'
       required:
       - content_type
       - type
       - data
-    SocialBlockV0:
+    TableTextSubBlock:
       type: object
       properties:
-        content_type:
-          type: string
+        content:
+          type:
+          - string
+          - 'null'
+        cell_text_align:
+          description: Text Alignment.
+          type:
+          - string
+          - 'null'
           enum:
-          - block
-        type:
-          type: string
+          - center
+          - left
+          - right
+        color:
+          type:
+          - string
+          - 'null'
+        font_family:
+          type:
+          - string
+          - 'null'
+        font_size:
+          type:
+          - integer
+          - 'null'
+        font_style:
+          description: Font style.
+          type:
+          - string
+          - 'null'
           enum:
-          - social
-        data:
-          oneOf:
-          - type: integer
-          - type: number
-          - type: string
-          - type: boolean
-      required:
-      - content_type
-      - type
-      - data
-    PostTemplateDndResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/TemplateEnum'
-            id:
-              description: The ID of template
-              type: string
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: The name of the template
-                  type: string
-                editor_type:
-                  description: '`editor_type` has a fixed set of values:
-
-                    * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
-
-                    * SIMPLE: A rich text editor template
-
-                    * CODE: A custom HTML template
-
-                    * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
-                  type: string
-                html:
-                  description: The rendered HTML of the template
-                  type: string
-                text:
-                  description: The template plain_text
-                  type:
-                  - string
-                  - 'null'
-                amp:
-                  description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
-                  type:
-                  - string
-                  - 'null'
-                created:
-                  description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                updated:
-                  description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                definition:
-                  description: Template definition for SYSTEM_DRAGGABLE templates. Omitted for CODE/USER_DRAGGABLE. Use additional-fields[template]=definition to include in list responses.
-                  $ref: '#/components/schemas/TemplateDefinition'
-              required:
-              - name
-              - editor_type
-              - html
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    HeaderBlockData:
-      type: object
-      properties:
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
-        styles:
-          $ref: '#/components/schemas/HeaderBlockStyles'
-      required:
-      - display_options
-      - styles
-    DisplayOptions:
-      type: object
-      properties:
+          - italic
+          - normal
+        font_weight:
+          type:
+          - string
+          - 'null'
+        letter_spacing:
+          type:
+          - integer
+          - 'null'
         show_on:
           description: Show on.
           type:
@@ -5322,43 +4776,415 @@ components:
           - all
           - desktop
           - mobile
-        content_repeat:
-          $ref: '#/components/schemas/ContentRepeatV1'
-        visibility:
-          $ref: '#/components/schemas/Visibility'
-    SectionData:
+        table_column_width:
+          type:
+          - string
+          - 'null'
+        text_decoration:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - table_text
+      required:
+      - type
+    ImageBlockCroppingProperties:
       type: object
       properties:
+        aspect_ratio:
+          type:
+          - string
+          - 'null'
+        asset_id:
+          type:
+          - string
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        src:
+          type:
+          - string
+          - 'null'
+        width:
+          type:
+          - integer
+          - 'null'
+        x:
+          type:
+          - integer
+          - 'null'
+        y:
+          type:
+          - integer
+          - 'null'
+    SocialBlockV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - social
+        data:
+          $ref: '#/components/schemas/SocialBlockData'
+        subblocks:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/SocialIconSubBlock'
+            - $ref: '#/components/schemas/SocialSpacerSubBlock'
+      required:
+      - content_type
+      - type
+      - data
+    TableHeaderSubBlock:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+        cell_text_align:
+          description: Text Alignment.
+          type:
+          - string
+          - 'null'
+          enum:
+          - center
+          - left
+          - right
+        color:
+          type:
+          - string
+          - 'null'
+        font_family:
+          type:
+          - string
+          - 'null'
+        font_size:
+          type:
+          - integer
+          - 'null'
+        font_style:
+          description: Font style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - italic
+          - normal
+        font_weight:
+          type:
+          - string
+          - 'null'
+        letter_spacing:
+          type:
+          - integer
+          - 'null'
+        show_on:
+          description: Show on.
+          type:
+          - string
+          - 'null'
+          enum:
+          - all
+          - desktop
+          - mobile
+        table_column_width:
+          type:
+          - string
+          - 'null'
+        text_decoration:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - table_header
+      required:
+      - type
+    Body:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
         properties:
-          $ref: '#/components/schemas/SectionProperties'
-        display_options:
-          $ref: '#/components/schemas/DisplayOptions'
+          $ref: '#/components/schemas/BodyProperties'
         styles:
-          $ref: '#/components/schemas/SectionStyles'
+          $ref: '#/components/schemas/BodyStyles'
+        sections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SectionV1'
       required:
       - properties
-      - display_options
       - styles
-    CollectionLinks:
+    ButtonBlockStyles:
       type: object
       properties:
-        self:
+        background_color:
+          type:
+          - string
+          - 'null'
+        block_background_color:
+          type:
+          - string
+          - 'null'
+        block_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        block_padding_left:
+          type:
+          - integer
+          - 'null'
+        block_padding_right:
+          type:
+          - integer
+          - 'null'
+        block_padding_top:
+          type:
+          - integer
+          - 'null'
+        border_color:
+          type:
+          - string
+          - 'null'
+        border_radius:
+          type:
+          - integer
+          - 'null'
+        border_style:
+          description: Border style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - dashed
+          - dotted
+          - groove
+          - inset
+          - none
+          - outset
+          - ridge
+          - solid
+        border_width:
+          type:
+          - integer
+          - 'null'
+        color:
+          type:
+          - string
+          - 'null'
+        drop_shadow_color:
+          type:
+          - string
+          - 'null'
+        font_family:
+          type:
+          - string
+          - 'null'
+        font_size:
+          type:
+          - integer
+          - 'null'
+        font_style:
+          description: Font style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - italic
+          - normal
+        font_weight:
+          type:
+          - string
+          - 'null'
+        inner_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        inner_padding_left:
+          type:
+          - integer
+          - 'null'
+        inner_padding_right:
+          type:
+          - integer
+          - 'null'
+        inner_padding_top:
+          type:
+          - integer
+          - 'null'
+        letter_spacing:
+          type:
+          - integer
+          - 'null'
+        mobile_stretch_content:
+          type:
+          - boolean
+          - 'null'
+        stretch:
+          type:
+          - boolean
+          - 'null'
+        text_align:
+          description: Text Alignment.
+          type:
+          - string
+          - 'null'
+          enum:
+          - center
+          - left
+          - right
+        text_decoration:
+          type:
+          - string
+          - 'null'
+    TemplateCloneQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TemplateEnum'
+        id:
+          description: The ID of template to be cloned
           type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name of the template
+              type:
+              - string
+              - 'null'
+              example: Clone of Monthly Newsletter Template
       required:
-      - self
+      - type
+      - id
+      - attributes
+    HorizontalRuleBlockStyles:
+      type: object
+      properties:
+        block_background_color:
+          type:
+          - string
+          - 'null'
+        block_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        block_padding_left:
+          type:
+          - integer
+          - 'null'
+        block_padding_right:
+          type:
+          - integer
+          - 'null'
+        block_padding_top:
+          type:
+          - integer
+          - 'null'
+        border_color:
+          type:
+          - string
+          - 'null'
+        border_style:
+          description: Border style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - dashed
+          - dotted
+          - groove
+          - inset
+          - none
+          - outset
+          - ridge
+          - solid
+        border_width:
+          type:
+          - integer
+          - 'null'
+        mobile_stretch_content:
+          type:
+          - boolean
+          - 'null'
+    Heading2Style:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        style_type:
+          type: string
+          enum:
+          - heading-2-styles
+        styles:
+          $ref: '#/components/schemas/HeadingStyleStyles'
+      required:
+      - style_type
+      - styles
+    Heading1Style:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        style_type:
+          type: string
+          enum:
+          - heading-1-styles
+        styles:
+          $ref: '#/components/schemas/HeadingStyleStyles'
+      required:
+      - style_type
+      - styles
     ReviewBlockStyles:
       type: object
       properties:
@@ -5663,6 +5489,22 @@ components:
           - badge-and-text
           - badge-only
           - text-only
+    HorizontalRuleBlockV0:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - horizontal_rule
+        data: {}
+      required:
+      - content_type
+      - type
+      - data
     TableFallbackImageSubBlock:
       type: object
       properties:
@@ -5768,105 +5610,337 @@ components:
           - table_fallback_image
       required:
       - type
-    BaseStyle:
+    TemplateCreateHtmlOrDndQueryResourceObject:
       type: object
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        style_type:
+        type:
+          $ref: '#/components/schemas/TemplateEnum'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name of the template
+              type: string
+              example: Monthly Newsletter Template
+            editor_type:
+              description: Restricted to CODE, USER_DRAGGABLE, or SYSTEM_DRAGGABLE
+              type: string
+            html:
+              description: The HTML contents of the template. Required for CODE/USER_DRAGGABLE; not allowed for SYSTEM_DRAGGABLE.
+              type:
+              - string
+              - 'null'
+            definition:
+              description: The template definition. Required for SYSTEM_DRAGGABLE; ignored for CODE/USER_DRAGGABLE.
+              $ref: '#/components/schemas/TemplateDefinition'
+            text:
+              description: The plaintext version of the template
+              type:
+              - string
+              - 'null'
+              example: hello world
+            amp:
+              description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo Not allowed for SYSTEM_DRAGGABLE.
+              type:
+              - string
+              - 'null'
+          required:
+          - name
+          - editor_type
+      required:
+      - type
+      - attributes
+    SpacerBlockV0:
+      type: object
+      properties:
+        content_type:
           type: string
           enum:
-          - base-styles
-        properties:
-          $ref: '#/components/schemas/BaseStyleProperties'
-        styles:
-          $ref: '#/components/schemas/BaseStyleStyles'
+          - block
+        type:
+          type: string
+          enum:
+          - spacer
+        data: {}
       required:
-      - style_type
-      - properties
-      - styles
-    SocialBlockData:
+      - content_type
+      - type
+      - data
+    HorizontalRuleBlockData:
       type: object
       properties:
-        properties:
-          $ref: '#/components/schemas/SocialBlockProperties'
         display_options:
           $ref: '#/components/schemas/DisplayOptions'
         styles:
-          $ref: '#/components/schemas/SocialBlockStyles'
+          $ref: '#/components/schemas/HorizontalRuleBlockStyles'
       required:
-      - properties
       - display_options
       - styles
-    ProductSubBlock:
+    HTMLBlockDataV1:
       type: object
       properties:
+        content:
+          type: string
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+      required:
+      - content
+      - display_options
+    TemplateUniversalContentEnum:
+      type: string
+      enum:
+      - template-universal-content
+    UniversalContentPartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TemplateUniversalContentEnum'
         id:
+          description: The ID of the template universal content
+          type: string
+          example: 01HWWWKAW4RHXQJCMW4R2KRYR4
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name for this template universal content
+              type:
+              - string
+              - 'null'
+            definition:
+              oneOf:
+              - $ref: '#/components/schemas/ButtonBlockV0'
+              - $ref: '#/components/schemas/DropShadowBlockV0'
+              - $ref: '#/components/schemas/HorizontalRuleBlockV0'
+              - $ref: '#/components/schemas/HTMLBlockV0'
+              - $ref: '#/components/schemas/ImageBlockV0'
+              - $ref: '#/components/schemas/SpacerBlockV0'
+              - $ref: '#/components/schemas/TextBlockV0'
+      required:
+      - type
+      - id
+      - attributes
+    StaticTableBlockProperties:
+      type: object
+      properties:
+        dynamic:
           type:
-          - string
+          - boolean
           - 'null'
-          readOnly: true
+          enum:
+          - false
+        num_columns:
+          type:
+          - integer
+          - 'null'
+        show_headers:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - dynamic
+    PostTemplateDndResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/TemplateEnum'
+            id:
+              description: The ID of template
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: The name of the template
+                  type: string
+                editor_type:
+                  description: '`editor_type` has a fixed set of values:
+
+                    * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
+
+                    * SIMPLE: A rich text editor template
+
+                    * CODE: A custom HTML template
+
+                    * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
+                  type: string
+                html:
+                  description: The rendered HTML of the template
+                  type: string
+                text:
+                  description: The template plain_text
+                  type:
+                  - string
+                  - 'null'
+                amp:
+                  description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
+                  type:
+                  - string
+                  - 'null'
+                created:
+                  description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated:
+                  description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                definition:
+                  description: Template definition for SYSTEM_DRAGGABLE templates. Omitted for CODE/USER_DRAGGABLE. Use additional-fields[template]=definition to include in list responses.
+                  $ref: '#/components/schemas/TemplateDefinition'
+              required:
+              - name
+              - editor_type
+              - html
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    UnsupportedBlock:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - unsupported
+        data:
+          oneOf:
+          - type: integer
+          - type: number
+          - type: string
+          - type: boolean
+      required:
+      - content_type
+      - type
+      - data
+    ProductBlockV0:
+      type: object
+      properties:
+        content_type:
+          type: string
+          enum:
+          - block
         type:
           type: string
           enum:
           - product
-        product_id:
+        data:
+          oneOf:
+          - type: integer
+          - type: number
+          - type: string
+          - type: boolean
+      required:
+      - content_type
+      - type
+      - data
+    DropShadowBlockV1:
+      type: object
+      properties:
+        id:
           type:
           - string
           - 'null'
-        external_id:
+          readOnly: true
+        data_id:
           type:
           - string
           - 'null'
-        autogenerate_link:
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - drop_shadow
+        data:
+          $ref: '#/components/schemas/DropShadowBlockData'
+      required:
+      - content_type
+      - type
+      - data
+    ImageBlockV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - image
+        data:
+          $ref: '#/components/schemas/ImageBlockData'
+      required:
+      - content_type
+      - type
+      - data
+    BaseStyleProperties:
+      type: object
+      properties:
+        currency:
+          type:
+          - string
+          - 'null'
+        currency_set_on_template:
           type:
           - boolean
           - 'null'
-        button_text:
+        disable_websafe_fonts:
           type:
-          - string
+          - boolean
           - 'null'
-        description:
+        is_user_draggable:
           type:
-          - string
+          - boolean
           - 'null'
-        image_url:
+        mobile_optimizations:
           type:
-          - string
+          - boolean
           - 'null'
-        link:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        original_price:
-          type:
-          - string
-          - 'null'
-        price:
-          type:
-          - string
-          - 'null'
-        currency_code:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
     ImageBlockStyles:
       type: object
       properties:
@@ -5961,122 +6035,23 @@ components:
           type:
           - integer
           - 'null'
-    BlockDisplayOptions:
+    CouponBlockData:
       type: object
       properties:
-        show_on:
-          description: Show on.
-          type:
-          - string
-          - 'null'
-          enum:
-          - all
-          - desktop
-          - mobile
-        visible_check:
-          type:
-          - string
-          - 'null'
-        content_repeat:
-          $ref: '#/components/schemas/ContentRepeatV0'
-    StaticTableBlockProperties:
-      type: object
-      properties:
-        dynamic:
-          type:
-          - boolean
-          - 'null'
-          enum:
-          - false
-        num_columns:
-          type:
-          - integer
-          - 'null'
-        show_headers:
-          type:
-          - boolean
-          - 'null'
-      required:
-      - dynamic
-    GetUniversalContentResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UniversalContentResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    ContentRepeatV0:
-      type: object
-      properties:
-        repeat_for:
+        content:
           type: string
-        item_alias:
-          type: string
+        properties:
+          $ref: '#/components/schemas/CouponBlockProperties'
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/CouponBlockStyles'
       required:
-      - repeat_for
-      - item_alias
-    DropShadowBlockStyles:
-      type: object
-      properties:
-        block_background_color:
-          type:
-          - string
-          - 'null'
-        block_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        block_padding_left:
-          type:
-          - integer
-          - 'null'
-        block_padding_right:
-          type:
-          - integer
-          - 'null'
-        block_padding_top:
-          type:
-          - integer
-          - 'null'
-        mobile_stretch_content:
-          type:
-          - boolean
-          - 'null'
-        shadow_color:
-          description: Shadow color.
-          type:
-          - string
-          - 'null'
-          enum:
-          - dark
-          - light
-          - medium
-    DropShadowBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - drop_shadow
-        data: {}
-      required:
-      - content_type
-      - type
-      - data
-    SocialBlockProperties:
-      type: object
-      properties:
-        show_labels:
-          type:
-          - boolean
-          - 'null'
-    SocialIconSubBlock:
+      - content
+      - properties
+      - display_options
+      - styles
+    TableBlockV1:
       type: object
       properties:
         id:
@@ -6084,59 +6059,85 @@ components:
           - string
           - 'null'
           readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
         type:
           type: string
           enum:
-          - social_link_icon
-        custom_asset_id:
+          - table
+        data:
+          $ref: '#/components/schemas/TableBlockData'
+        subblocks:
           type:
-          - string
+          - array
           - 'null'
-        custom_src:
-          type:
-          - string
-          - 'null'
-        custom_size:
-          type:
-          - integer
-          - 'null'
-        label:
-          type:
-          - string
-          - 'null'
-        link_type:
-          description: Social block link type.
-          type:
-          - string
-          - 'null'
-          enum:
-          - android
-          - apple
-          - custom
-          - discord
-          - email
-          - facebook
-          - google-plus
-          - instagram
-          - linkedin
-          - pinterest
-          - rss
-          - snapchat
-          - threads
-          - tiktok
-          - twitch
-          - twitter
-          - whatsapp
-          - x-twitter
-          - yelp
-          - youtube
-        link_url:
-          type:
-          - string
-          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TableHeaderSubBlock'
+            - $ref: '#/components/schemas/TableHtmlSubBlock'
+            - $ref: '#/components/schemas/TableImageSubBlock'
+            - $ref: '#/components/schemas/TableTextSubBlock'
+            - $ref: '#/components/schemas/TableFallbackHtmlSubBlock'
+            - $ref: '#/components/schemas/TableFallbackImageSubBlock'
+            - $ref: '#/components/schemas/TableFallbackTextSubBlock'
+      required:
+      - content_type
+      - type
+      - data
+    TemplateUpdateHtmlOrDndQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TemplateEnum'
+        id:
+          description: The ID of template
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name of the template
+              type:
+              - string
+              - 'null'
+              example: Monthly Newsletter Template
+            html:
+              description: The HTML contents of the template. Not allowed for SYSTEM_DRAGGABLE templates.
+              type:
+              - string
+              - 'null'
+              example: "\n              <html>\n                  <body>\n                      hello world\n                  </body>\n              </html>\n          "
+            definition:
+              description: The template definition for SYSTEM_DRAGGABLE templates. Entirely replaces the existing definition. Not allowed for CODE/USER_DRAGGABLE.
+              $ref: '#/components/schemas/TemplateDefinition'
+            text:
+              description: The plaintext of the template
+              type:
+              - string
+              - 'null'
+              example: hello world
+            amp:
+              description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo Not allowed for SYSTEM_DRAGGABLE.
+              type:
+              - string
+              - 'null'
       required:
       - type
-    CouponBlockStyles:
+      - id
+      - attributes
+    TextBlockStylesV0:
       type: object
       properties:
         background_color:
@@ -6147,31 +6148,11 @@ components:
           type:
           - string
           - 'null'
-        block_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        block_padding_left:
-          type:
-          - integer
-          - 'null'
-        block_padding_right:
-          type:
-          - integer
-          - 'null'
-        block_padding_top:
-          type:
-          - integer
-          - 'null'
-        border_color:
+        block_border_color:
           type:
           - string
           - 'null'
-        border_radius:
-          type:
-          - integer
-          - 'null'
-        border_style:
+        block_border_style:
           description: Border style.
           type:
           - string
@@ -6185,11 +6166,31 @@ components:
           - outset
           - ridge
           - solid
-        border_width:
+        block_border_width:
+          type:
+          - integer
+          - 'null'
+        block_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        block_padding_left:
+          type:
+          - integer
+          - 'null'
+        block_padding_right:
+          type:
+          - integer
+          - 'null'
+        block_padding_top:
           type:
           - integer
           - 'null'
         color:
+          type:
+          - string
+          - 'null'
+        extra_css_class:
           type:
           - string
           - 'null'
@@ -6213,30 +6214,6 @@ components:
           type:
           - string
           - 'null'
-        header_font_family:
-          type:
-          - string
-          - 'null'
-        header_font_size:
-          type:
-          - integer
-          - 'null'
-        header_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        header_padding_left:
-          type:
-          - integer
-          - 'null'
-        header_padding_right:
-          type:
-          - integer
-          - 'null'
-        header_padding_top:
-          type:
-          - integer
-          - 'null'
         inner_padding_bottom:
           type:
           - integer
@@ -6257,11 +6234,11 @@ components:
           type:
           - integer
           - 'null'
-        mobile_stretch_content:
+        line_height:
           type:
-          - boolean
+          - number
           - 'null'
-        stretch:
+        mobile_stretch_content:
           type:
           - boolean
           - 'null'
@@ -6278,6 +6255,298 @@ components:
           type:
           - string
           - 'null'
+        text_table_layout:
+          description: Text table layout.
+          type:
+          - string
+          - 'null'
+          enum:
+          - auto
+          - fixed
+          - inherit
+          - initial
+    DynamicReviewBlockProperties:
+      type: object
+      properties:
+        show_rating:
+          type:
+          - boolean
+          - 'null'
+        show_reviewer_name:
+          type:
+          - boolean
+          - 'null'
+        show_product_name:
+          type:
+          - boolean
+          - 'null'
+        show_variant_name:
+          type:
+          - boolean
+          - 'null'
+        show_verified_badge:
+          type:
+          - boolean
+          - 'null'
+        author_placeholder:
+          type:
+          - string
+          - 'null'
+        quote_placeholder:
+          type:
+          - string
+          - 'null'
+        product_name_placeholder:
+          type:
+          - string
+          - 'null'
+        product_variant_name_placeholder:
+          type:
+          - string
+          - 'null'
+        verified_badge_language:
+          description: Review block verified badge language.
+          type:
+          - string
+          - 'null'
+          enum:
+          - dutch
+          - english
+          - french
+          - german
+          - hungarian
+          - italian
+          - japanese
+          - korean
+          - portuguese
+          - spanish
+        dynamic:
+          type: boolean
+          enum:
+          - true
+        fallback_options:
+          description: Review block fallback options for dynamic selection.
+          type:
+          - string
+          - 'null'
+          enum:
+          - high-quality-review
+          - high-quality-review-or-static
+          - no-review
+          - recent
+          - static-only
+        fallback_content_type:
+          description: Review block fallback content type.
+          type:
+          - string
+          - 'null'
+          enum:
+          - full
+          - quote
+        fallback_review_id:
+          type:
+          - string
+          - 'null'
+        product_selection_mode:
+          description: Review block product selection mode.
+          type:
+          - string
+          - 'null'
+          enum:
+          - automatic
+          - manual
+        product_id:
+          type:
+          - string
+          - 'null'
+        product_event_variable:
+          type:
+          - string
+          - 'null'
+      required:
+      - dynamic
+    TemplateDefinition:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        template_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        body:
+          $ref: '#/components/schemas/Body'
+        styles:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/BaseStyle'
+            - $ref: '#/components/schemas/TextStyleV1'
+            - $ref: '#/components/schemas/Heading1Style'
+            - $ref: '#/components/schemas/Heading2Style'
+            - $ref: '#/components/schemas/Heading3Style'
+            - $ref: '#/components/schemas/Heading4Style'
+            - $ref: '#/components/schemas/LinkStyle'
+            - $ref: '#/components/schemas/MobileStyle'
+      required:
+      - body
+      - styles
+    SectionProperties:
+      type: object
+      properties:
+        is_ai_generated:
+          type:
+          - boolean
+          - 'null'
+        is_prebuilt_content:
+          type:
+          - boolean
+          - 'null'
+    SpacerBlockData:
+      type: object
+      properties:
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/SpacerBlockStyles'
+      required:
+      - display_options
+      - styles
+    SpacerBlockV1:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        universal_id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        content_type:
+          type: string
+          enum:
+          - block
+        type:
+          type: string
+          enum:
+          - spacer
+        data:
+          $ref: '#/components/schemas/SpacerBlockData'
+      required:
+      - content_type
+      - type
+      - data
+    LinkStyleStyles:
+      type: object
+      properties:
+        color:
+          type:
+          - string
+          - 'null'
+        font_style:
+          description: Font style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - italic
+          - normal
+        font_weight:
+          type:
+          - string
+          - 'null'
+        text_decoration:
+          type:
+          - string
+          - 'null'
+    ProductSubBlock:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - product
+        product_id:
+          type:
+          - string
+          - 'null'
+        external_id:
+          type:
+          - string
+          - 'null'
+        autogenerate_link:
+          type:
+          - boolean
+          - 'null'
+        button_text:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        image_url:
+          type:
+          - string
+          - 'null'
+        link:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        original_price:
+          type:
+          - string
+          - 'null'
+        price:
+          type:
+          - string
+          - 'null'
+        currency_code:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+    SplitBlockData:
+      type: object
+      properties:
+        display_options:
+          $ref: '#/components/schemas/DisplayOptions'
+        styles:
+          $ref: '#/components/schemas/SplitBlockStyles'
+      required:
+      - display_options
+      - styles
     HeadingStyleStyles:
       type: object
       properties:
@@ -6338,7 +6607,7 @@ components:
           type:
           - string
           - 'null'
-    TableBlockV1:
+    MobileStyle:
       type: object
       properties:
         id:
@@ -6346,163 +6615,21 @@ components:
           - string
           - 'null'
           readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
+        style_type:
           type: string
           enum:
-          - block
-        type:
-          type: string
-          enum:
-          - table
-        data:
-          $ref: '#/components/schemas/TableBlockData'
-        subblocks:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/TableHeaderSubBlock'
-            - $ref: '#/components/schemas/TableHtmlSubBlock'
-            - $ref: '#/components/schemas/TableImageSubBlock'
-            - $ref: '#/components/schemas/TableTextSubBlock'
-            - $ref: '#/components/schemas/TableFallbackHtmlSubBlock'
-            - $ref: '#/components/schemas/TableFallbackImageSubBlock'
-            - $ref: '#/components/schemas/TableFallbackTextSubBlock'
+          - mobile-styles
+        properties:
+          $ref: '#/components/schemas/MobileStyleProperties'
+        styles:
+          $ref: '#/components/schemas/MobileStyleStyles'
       required:
-      - content_type
-      - type
-      - data
-    TemplateCreateHtmlOrDndQuery:
+      - style_type
+      - properties
+      - styles
+    SplitBlockStyles:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/TemplateCreateHtmlOrDndQueryResourceObject'
-      required:
-      - data
-    ProductBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - product
-        data:
-          $ref: '#/components/schemas/ProductBlockData'
-        subblocks:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ProductSubBlock'
-      required:
-      - content_type
-      - type
-      - data
-    SectionV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - section
-        type:
-          type: string
-          enum:
-          - section
-        data:
-          $ref: '#/components/schemas/SectionData'
-        rows:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RowV1'
-      required:
-      - content_type
-      - type
-      - data
-    ProductBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - product
-        data:
-          oneOf:
-          - type: integer
-          - type: number
-          - type: string
-          - type: boolean
-      required:
-      - content_type
-      - type
-      - data
-    VideoBlockStyles:
-      type: object
-      properties:
-        align:
-          description: Image Alignment.
-          type:
-          - string
-          - 'null'
-          enum:
-          - center
-          - left
-          - right
-        background_color:
-          type:
-          - string
-          - 'null'
         block_background_color:
           type:
           - string
@@ -6523,416 +6650,125 @@ components:
           type:
           - integer
           - 'null'
-        border_color:
+        column_widths:
           type:
           - string
           - 'null'
-        border_style:
-          description: Border style.
+        mobile_stack_order:
+          description: Stacking direction.
           type:
           - string
           - 'null'
           enum:
-          - dashed
-          - dotted
-          - groove
-          - inset
-          - none
-          - outset
-          - ridge
-          - solid
-        border_width:
+          - ltr
+          - no-stack
+          - rtl
+        padding_in_between:
           type:
           - integer
           - 'null'
-        full_width_mobile:
+    StaticProductBlockProperties:
+      type: object
+      properties:
+        is_ai_generated:
           type:
           - boolean
+          - 'null'
+        is_prebuilt_content:
+          type:
+          - boolean
+          - 'null'
+        item_subtype_id:
+          type:
+          - integer
+          - 'null'
+        show_button:
+          type:
+          - boolean
+          - 'null'
+        show_original_price:
+          type:
+          - boolean
+          - 'null'
+        show_price:
+          type:
+          - boolean
+          - 'null'
+        show_rating:
+          type:
+          - boolean
+          - 'null'
+        show_rating_count:
+          type:
+          - boolean
+          - 'null'
+        show_title:
+          type:
+          - boolean
+          - 'null'
+        show_title_links:
+          type:
+          - boolean
+          - 'null'
+        title_placeholder:
+          type:
+          - string
+          - 'null'
+        dynamic:
+          type:
+          - boolean
+          - 'null'
+          enum:
+          - false
+        show_description:
+          type:
+          - boolean
+          - 'null'
+        localize_for_recipient:
+          type:
+          - boolean
+          - 'null'
+        language:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
+      required:
+      - dynamic
+    HeaderLogoSubBlock:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          enum:
+          - header_link_bar_logo
+        alt_text:
+          type:
+          - string
+          - 'null'
+        asset_id:
+          type:
+          - string
           - 'null'
         height:
           type:
           - integer
           - 'null'
-        inner_padding_bottom:
+        href:
           type:
-          - integer
-          - 'null'
-        inner_padding_left:
-          type:
-          - integer
-          - 'null'
-        inner_padding_right:
-          type:
-          - integer
-          - 'null'
-        inner_padding_top:
-          type:
-          - integer
+          - string
           - 'null'
         max_width:
           type:
           - integer
-          - 'null'
-        mobile_stretch_content:
-          type:
-          - boolean
-          - 'null'
-        width:
-          type:
-          - integer
-          - 'null'
-    HorizontalRuleBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - horizontal_rule
-        data: {}
-      required:
-      - content_type
-      - type
-      - data
-    HTMLBlockDataV0:
-      type: object
-      properties:
-        content:
-          type: string
-        display_options:
-          $ref: '#/components/schemas/BlockDisplayOptions'
-      required:
-      - content
-      - display_options
-    PostTemplateResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/TemplateEnum'
-            id:
-              description: The ID of template
-              type: string
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: The name of the template
-                  type: string
-                editor_type:
-                  description: '`editor_type` has a fixed set of values:
-
-                    * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
-
-                    * SIMPLE: A rich text editor template
-
-                    * CODE: A custom HTML template
-
-                    * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
-                  type: string
-                html:
-                  description: The rendered HTML of the template
-                  type: string
-                text:
-                  description: The template plain_text
-                  type:
-                  - string
-                  - 'null'
-                amp:
-                  description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
-                  type:
-                  - string
-                  - 'null'
-                created:
-                  description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                updated:
-                  description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-              required:
-              - name
-              - editor_type
-              - html
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    SplitBlockV1:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        universal_id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - split
-        data:
-          $ref: '#/components/schemas/SplitBlockData'
-        subblocks:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/TableTextSubBlock'
-            - $ref: '#/components/schemas/TableImageSubBlock'
-            - $ref: '#/components/schemas/TableHtmlSubBlock'
-      required:
-      - content_type
-      - type
-      - data
-    TemplateEnum:
-      type: string
-      enum:
-      - template
-    ButtonBlockStyles:
-      type: object
-      properties:
-        background_color:
-          type:
-          - string
-          - 'null'
-        block_background_color:
-          type:
-          - string
-          - 'null'
-        block_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        block_padding_left:
-          type:
-          - integer
-          - 'null'
-        block_padding_right:
-          type:
-          - integer
-          - 'null'
-        block_padding_top:
-          type:
-          - integer
-          - 'null'
-        border_color:
-          type:
-          - string
-          - 'null'
-        border_radius:
-          type:
-          - integer
-          - 'null'
-        border_style:
-          description: Border style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - dashed
-          - dotted
-          - groove
-          - inset
-          - none
-          - outset
-          - ridge
-          - solid
-        border_width:
-          type:
-          - integer
-          - 'null'
-        color:
-          type:
-          - string
-          - 'null'
-        drop_shadow_color:
-          type:
-          - string
-          - 'null'
-        font_family:
-          type:
-          - string
-          - 'null'
-        font_size:
-          type:
-          - integer
-          - 'null'
-        font_style:
-          description: Font style.
-          type:
-          - string
-          - 'null'
-          enum:
-          - italic
-          - normal
-        font_weight:
-          type:
-          - string
-          - 'null'
-        inner_padding_bottom:
-          type:
-          - integer
-          - 'null'
-        inner_padding_left:
-          type:
-          - integer
-          - 'null'
-        inner_padding_right:
-          type:
-          - integer
-          - 'null'
-        inner_padding_top:
-          type:
-          - integer
-          - 'null'
-        letter_spacing:
-          type:
-          - integer
-          - 'null'
-        mobile_stretch_content:
-          type:
-          - boolean
-          - 'null'
-        stretch:
-          type:
-          - boolean
-          - 'null'
-        text_align:
-          description: Text Alignment.
-          type:
-          - string
-          - 'null'
-          enum:
-          - center
-          - left
-          - right
-        text_decoration:
-          type:
-          - string
-          - 'null'
-    TableBlockV0:
-      type: object
-      properties:
-        content_type:
-          type: string
-          enum:
-          - block
-        type:
-          type: string
-          enum:
-          - table
-        data:
-          oneOf:
-          - type: integer
-          - type: number
-          - type: string
-          - type: boolean
-      required:
-      - content_type
-      - type
-      - data
-    TemplateUpdateHtmlOrDndQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TemplateEnum'
-        id:
-          description: The ID of template
-          type: string
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name of the template
-              type:
-              - string
-              - 'null'
-              example: Monthly Newsletter Template
-            html:
-              description: The HTML contents of the template. Not allowed for SYSTEM_DRAGGABLE templates.
-              type:
-              - string
-              - 'null'
-              example: "\n              <html>\n                  <body>\n                      hello world\n                  </body>\n              </html>\n          "
-            definition:
-              description: The template definition for SYSTEM_DRAGGABLE templates. Entirely replaces the existing definition. Not allowed for CODE/USER_DRAGGABLE.
-              $ref: '#/components/schemas/TemplateDefinition'
-            text:
-              description: The plaintext of the template
-              type:
-              - string
-              - 'null'
-              example: hello world
-            amp:
-              description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo Not allowed for SYSTEM_DRAGGABLE.
-              type:
-              - string
-              - 'null'
-      required:
-      - type
-      - id
-      - attributes
-    HeaderLinkSubBlock:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        type:
-          type: string
-          enum:
-          - header_link_bar_button
-        background_color:
-          type:
-          - string
-          - 'null'
-        content:
-          type:
-          - string
-          - 'null'
-        drop_shadow_color:
-          type:
-          - string
-          - 'null'
-        href:
-          type:
-          - string
           - 'null'
         show_on:
           description: Show on.
@@ -6943,8 +6779,172 @@ components:
           - all
           - desktop
           - mobile
+        src:
+          type:
+          - string
+          - 'null'
+        width:
+          type:
+          - integer
+          - 'null'
       required:
       - type
+    SocialBlockStyles:
+      type: object
+      properties:
+        block_background_color:
+          type:
+          - string
+          - 'null'
+        block_padding_bottom:
+          type:
+          - integer
+          - 'null'
+        block_padding_left:
+          type:
+          - integer
+          - 'null'
+        block_padding_right:
+          type:
+          - integer
+          - 'null'
+        block_padding_top:
+          type:
+          - integer
+          - 'null'
+        icon_align:
+          description: Text Alignment.
+          type:
+          - string
+          - 'null'
+          enum:
+          - center
+          - left
+          - right
+        icon_color:
+          description: Social block icon color.
+          type:
+          - string
+          - 'null'
+          enum:
+          - black
+          - default
+          - grey
+          - white
+        icon_size:
+          description: Social block icon size.
+          type:
+          - string
+          - 'null'
+          enum:
+          - large
+          - medium
+          - small
+        icon_spacing:
+          type:
+          - integer
+          - 'null'
+        label_color:
+          type:
+          - string
+          - 'null'
+        label_font_family:
+          type:
+          - string
+          - 'null'
+        label_font_size:
+          type:
+          - integer
+          - 'null'
+        label_font_style:
+          description: Font style.
+          type:
+          - string
+          - 'null'
+          enum:
+          - italic
+          - normal
+        label_text_decoration:
+          type:
+          - string
+          - 'null'
+        label_font_weight:
+          type:
+          - string
+          - 'null'
+        stack_on_mobile:
+          type:
+          - boolean
+          - 'null'
+    UniversalContentResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TemplateUniversalContentEnum'
+        id:
+          description: The ID of the universal content
+          type: string
+          example: 01HWWWKAW4RHXQJCMW4R2KRYR4
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name for this universal content
+              type: string
+            definition:
+              oneOf:
+              - $ref: '#/components/schemas/ButtonBlockV0'
+              - $ref: '#/components/schemas/CouponBlockV0'
+              - $ref: '#/components/schemas/DropShadowBlockV0'
+              - $ref: '#/components/schemas/HeaderBlockV0'
+              - $ref: '#/components/schemas/HorizontalRuleBlockV0'
+              - $ref: '#/components/schemas/HTMLBlockV0'
+              - $ref: '#/components/schemas/ImageBlockV0'
+              - $ref: '#/components/schemas/ProductBlockV0'
+              - $ref: '#/components/schemas/ReviewBlockV0'
+              - $ref: '#/components/schemas/SocialBlockV0'
+              - $ref: '#/components/schemas/SpacerBlockV0'
+              - $ref: '#/components/schemas/SplitBlockV0'
+              - $ref: '#/components/schemas/TableBlockV0'
+              - $ref: '#/components/schemas/TextBlockV0'
+              - $ref: '#/components/schemas/UnsupportedBlock'
+              - $ref: '#/components/schemas/VideoBlockV0'
+              - $ref: '#/components/schemas/SectionV0'
+            created:
+              description: The datetime when this universal content was created
+              type: string
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              description: The datetime when this universal content was updated
+              type: string
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            screenshot_status:
+              description: The status of a universal content screenshot.
+              type: string
+              enum:
+              - completed
+              - failed
+              - generating
+              - never_generated
+              - not_renderable
+              - stale
+            screenshot_url:
+              type: string
+          required:
+          - name
+          - created
+          - updated
+          - screenshot_status
+          - screenshot_url
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
   responses:
     ServerError:
       description: Server Error

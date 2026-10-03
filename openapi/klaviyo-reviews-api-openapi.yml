@@ -326,29 +326,16 @@ paths:
       - reviews:write
 components:
   schemas:
-    ReviewPatchQueryResourceObject:
+    ReviewStatusUnpublished:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/ReviewEnum'
-        id:
-          description: The id of the review (review ID).
+        value:
+          description: Unpublished review status
           type: string
-        attributes:
-          type: object
-          properties:
-            status:
-              description: The updated status intended for the review with this ID
-              oneOf:
-              - $ref: '#/components/schemas/ReviewStatusRejected'
-              - $ref: '#/components/schemas/ReviewStatusFeatured'
-              - $ref: '#/components/schemas/ReviewStatusPublished'
-              - $ref: '#/components/schemas/ReviewStatusUnpublished'
-              - $ref: '#/components/schemas/ReviewStatusPending'
+          enum:
+          - unpublished
       required:
-      - type
-      - id
-      - attributes
+      - value
     ReviewPatchQuery:
       type: object
       properties:
@@ -356,68 +343,6 @@ components:
           $ref: '#/components/schemas/ReviewPatchQueryResourceObject'
       required:
       - data
-    RejectReasonPrivateInformation:
-      type: object
-      properties:
-        reason:
-          description: rejected due to private information
-          type: string
-          enum:
-          - private_information
-      required:
-      - reason
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    ReviewStatusRejected:
-      type: object
-      properties:
-        value:
-          description: Rejected review status
-          type: string
-          enum:
-          - rejected
-        rejection_reason:
-          description: The updated status intended for the review with this ID
-          oneOf:
-          - $ref: '#/components/schemas/RejectReasonOther'
-          - $ref: '#/components/schemas/RejectReasonFake'
-          - $ref: '#/components/schemas/RejectReasonMisleading'
-          - $ref: '#/components/schemas/RejectReasonPrivateInformation'
-          - $ref: '#/components/schemas/RejectReasonProfanity'
-          - $ref: '#/components/schemas/RejectReasonUnrelated'
-      required:
-      - value
-      - rejection_reason
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
     ProfileEnum:
       type: string
       enum:
@@ -447,206 +372,6 @@ components:
       required:
       - url
       - name
-    AttributionEnum:
-      type: string
-      enum:
-      - attribution
-    ReviewStatusFeatured:
-      type: object
-      properties:
-        value:
-          description: Featured review status
-          type: string
-          enum:
-          - featured
-      required:
-      - value
-    RejectReasonProfanity:
-      type: object
-      properties:
-        reason:
-          description: rejected due to profanity or inappropriate content
-          type: string
-          enum:
-          - profanity_or_inappropriate
-      required:
-      - reason
-    ReviewStatusPublished:
-      type: object
-      properties:
-        value:
-          description: Published review status
-          type: string
-          enum:
-          - published
-      required:
-      - value
-    GetReviewResponseDTOCompoundDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ReviewResponseDTOObjectResource'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    ReviewStatusUnpublished:
-      type: object
-      properties:
-        value:
-          description: Unpublished review status
-          type: string
-          enum:
-          - unpublished
-      required:
-      - value
-    ReviewResponseDTOObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ReviewEnum'
-        id:
-          description: The ID of the review
-          type: string
-          example: 925e385b52fb405715f3616c337cc65c
-        attributes:
-          type: object
-          properties:
-            email:
-              description: The email of the author of this review
-              type:
-              - string
-              - 'null'
-              example: john@doe.com
-            status:
-              description: The status of this review
-              oneOf:
-              - $ref: '#/components/schemas/ReviewStatusRejected'
-              - $ref: '#/components/schemas/ReviewStatusFeatured'
-              - $ref: '#/components/schemas/ReviewStatusPublished'
-              - $ref: '#/components/schemas/ReviewStatusUnpublished'
-              - $ref: '#/components/schemas/ReviewStatusPending'
-            verified:
-              description: The verification status of this review (aka whether or not we have confirmation that the customer bought the product)
-              type: boolean
-              example: true
-            review_type:
-              description: The type of this review — either a review, question, or rating
-              type: string
-              example: review
-              enum:
-              - question
-              - rating
-              - review
-              - store
-            created:
-              description: The datetime when this review was created
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            updated:
-              description: The datetime when this review was updated
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            images:
-              description: The list of images submitted with this review (represented as a list of urls). If there are no images, this field will be an empty list.
-              type: array
-              items:
-                type: string
-              example:
-              - https://example.com/image1.jpg
-              - https://example.com/image2.jpg
-            product:
-              description: The product associated with this review
-              $ref: '#/components/schemas/ReviewProductDTO'
-            rating:
-              description: The rating of this review on a scale from 1-5. If the review type is "question", this field will be null.
-              type:
-              - integer
-              - 'null'
-              example: 2
-            author:
-              description: The author of this review
-              type:
-              - string
-              - 'null'
-              example: John D
-            content:
-              description: The content of this review
-              example: Great product! I love the smell. I will be buying again.
-              type:
-              - string
-              - 'null'
-            title:
-              description: The title of this review
-              type:
-              - string
-              - 'null'
-              example: Smells great, would recommend
-            smart_quote:
-              description: A quote from this review that summarizes the content
-              type:
-              - string
-              - 'null'
-              example: I love the smell
-            public_reply:
-              description: The public reply to this review (if one exists)
-              $ref: '#/components/schemas/ReviewPublicReply'
-          required:
-          - verified
-          - review_type
-          - created
-          - updated
-          - images
-        relationships:
-          type: object
-          properties:
-            events:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/EventEnum'
-                      id:
-                        description: Related Events
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            item:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/CatalogItemEnum'
-                    id:
-                      description: Related Catalog Item
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
     RejectReasonMisleading:
       type: object
       properties:
@@ -657,156 +382,51 @@ components:
           - false_or_misleading
       required:
       - reason
-    CatalogItemEnum:
+    AttributionEnum:
       type: string
       enum:
-      - catalog-item
-    ReviewEnum:
-      type: string
-      enum:
-      - review
-    RejectReasonOther:
+      - attribution
+    RejectReasonProfanity:
       type: object
       properties:
         reason:
-          description: reject reason is other
+          description: rejected due to profanity or inappropriate content
           type: string
           enum:
-          - other
-        status_explanation:
-          description: If review reject reason is other, we can provide further explanation
-          type:
-          - string
-          - 'null'
-          example: This review is just really poorly detailed and there is another with the same content
+          - profanity_or_inappropriate
       required:
       - reason
-    RejectReasonFake:
-      type: object
-      properties:
-        reason:
-          description: rejected due to fake content
-          type: string
-          enum:
-          - fake
-      required:
-      - reason
-    EventEnum:
-      type: string
-      enum:
-      - event
-    EventResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/EventEnum'
-        id:
-          description: The Event ID
-          type: string
-        attributes:
-          type: object
-          properties:
-            timestamp:
-              description: Event timestamp in seconds
-              type:
-              - integer
-              - 'null'
-            event_properties:
-              description: Event properties, can include identifiers and extra properties
-              type:
-              - object
-              - 'null'
-            datetime:
-              description: Event timestamp in ISO8601 format (YYYY-MM-DDTHH:MM:SS+hh:mm)
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T01:23:45+00:00'
-            uuid:
-              description: A unique identifier for the event, this can be used as a cursor in pagination
-              type:
-              - string
-              - 'null'
-        relationships:
-          type: object
-          properties:
-            profile:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/ProfileEnum'
-                    id:
-                      description: Profile ID of the associated profile, if available
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            metric:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/MetricEnum'
-                    id:
-                      description: The Metric ID
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            attributions:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/AttributionEnum'
-                      id:
-                        description: Attributions for this event
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
     MetricEnum:
       type: string
       enum:
       - metric
-    GetReviewResponseDTOCollectionCompoundDocument:
+    CatalogItemEnum:
+      type: string
+      enum:
+      - catalog-item
+    ReviewPatchQueryResourceObject:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReviewResponseDTOObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventResponseObjectResource'
+        type:
+          $ref: '#/components/schemas/ReviewEnum'
+        id:
+          description: The id of the review (review ID).
+          type: string
+        attributes:
+          type: object
+          properties:
+            status:
+              description: The updated status intended for the review with this ID
+              oneOf:
+              - $ref: '#/components/schemas/ReviewStatusRejected'
+              - $ref: '#/components/schemas/ReviewStatusFeatured'
+              - $ref: '#/components/schemas/ReviewStatusPublished'
+              - $ref: '#/components/schemas/ReviewStatusUnpublished'
+              - $ref: '#/components/schemas/ReviewStatusPending'
       required:
-      - data
+      - type
+      - id
+      - attributes
     ObjectLinks:
       type: object
       properties:
@@ -815,16 +435,16 @@ components:
           format: uri
       required:
       - self
-    RejectReasonUnrelated:
+    ReviewStatusPending:
       type: object
       properties:
-        reason:
-          description: rejected due to unrelated content
+        value:
+          description: Pending review status
           type: string
           enum:
-          - unrelated
+          - pending
       required:
-      - reason
+      - value
     PatchReviewResponseDTO:
       type: object
       properties:
@@ -975,16 +595,312 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    ReviewStatusPending:
+    ReviewEnum:
+      type: string
+      enum:
+      - review
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    RejectReasonPrivateInformation:
+      type: object
+      properties:
+        reason:
+          description: rejected due to private information
+          type: string
+          enum:
+          - private_information
+      required:
+      - reason
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
+      required:
+      - self
+      - related
+    EventEnum:
+      type: string
+      enum:
+      - event
+    EventResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EventEnum'
+        id:
+          description: The Event ID
+          type: string
+        attributes:
+          type: object
+          properties:
+            timestamp:
+              description: Event timestamp in seconds
+              type:
+              - integer
+              - 'null'
+            event_properties:
+              description: Event properties, can include identifiers and extra properties
+              type:
+              - object
+              - 'null'
+            datetime:
+              description: Event timestamp in ISO8601 format (YYYY-MM-DDTHH:MM:SS+hh:mm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T01:23:45+00:00'
+            uuid:
+              description: A unique identifier for the event, this can be used as a cursor in pagination
+              type:
+              - string
+              - 'null'
+        relationships:
+          type: object
+          properties:
+            profile:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/ProfileEnum'
+                    id:
+                      description: Profile ID of the associated profile, if available
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            metric:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/MetricEnum'
+                    id:
+                      description: The Metric ID
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            attributions:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/AttributionEnum'
+                      id:
+                        description: Attributions for this event
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    ReviewStatusRejected:
       type: object
       properties:
         value:
-          description: Pending review status
+          description: Rejected review status
           type: string
           enum:
-          - pending
+          - rejected
+        rejection_reason:
+          description: The updated status intended for the review with this ID
+          oneOf:
+          - $ref: '#/components/schemas/RejectReasonOther'
+          - $ref: '#/components/schemas/RejectReasonFake'
+          - $ref: '#/components/schemas/RejectReasonMisleading'
+          - $ref: '#/components/schemas/RejectReasonPrivateInformation'
+          - $ref: '#/components/schemas/RejectReasonProfanity'
+          - $ref: '#/components/schemas/RejectReasonUnrelated'
       required:
       - value
+      - rejection_reason
+    ReviewResponseDTOObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ReviewEnum'
+        id:
+          description: The ID of the review
+          type: string
+          example: 925e385b52fb405715f3616c337cc65c
+        attributes:
+          type: object
+          properties:
+            email:
+              description: The email of the author of this review
+              type:
+              - string
+              - 'null'
+              example: john@doe.com
+            status:
+              description: The status of this review
+              oneOf:
+              - $ref: '#/components/schemas/ReviewStatusRejected'
+              - $ref: '#/components/schemas/ReviewStatusFeatured'
+              - $ref: '#/components/schemas/ReviewStatusPublished'
+              - $ref: '#/components/schemas/ReviewStatusUnpublished'
+              - $ref: '#/components/schemas/ReviewStatusPending'
+            verified:
+              description: The verification status of this review (aka whether or not we have confirmation that the customer bought the product)
+              type: boolean
+              example: true
+            review_type:
+              description: The type of this review — either a review, question, or rating
+              type: string
+              example: review
+              enum:
+              - question
+              - rating
+              - review
+              - store
+            created:
+              description: The datetime when this review was created
+              type: string
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              description: The datetime when this review was updated
+              type: string
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            images:
+              description: The list of images submitted with this review (represented as a list of urls). If there are no images, this field will be an empty list.
+              type: array
+              items:
+                type: string
+              example:
+              - https://example.com/image1.jpg
+              - https://example.com/image2.jpg
+            product:
+              description: The product associated with this review
+              $ref: '#/components/schemas/ReviewProductDTO'
+            rating:
+              description: The rating of this review on a scale from 1-5. If the review type is "question", this field will be null.
+              type:
+              - integer
+              - 'null'
+              example: 2
+            author:
+              description: The author of this review
+              type:
+              - string
+              - 'null'
+              example: John D
+            content:
+              description: The content of this review
+              example: Great product! I love the smell. I will be buying again.
+              type:
+              - string
+              - 'null'
+            title:
+              description: The title of this review
+              type:
+              - string
+              - 'null'
+              example: Smells great, would recommend
+            smart_quote:
+              description: A quote from this review that summarizes the content
+              type:
+              - string
+              - 'null'
+              example: I love the smell
+            public_reply:
+              description: The public reply to this review (if one exists)
+              $ref: '#/components/schemas/ReviewPublicReply'
+          required:
+          - verified
+          - review_type
+          - created
+          - updated
+          - images
+        relationships:
+          type: object
+          properties:
+            events:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/EventEnum'
+                      id:
+                        description: Related Events
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            item:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/CatalogItemEnum'
+                    id:
+                      description: Related Catalog Item
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
     ReviewPublicReply:
       type: object
       properties:
@@ -1005,6 +921,90 @@ components:
       - content
       - author
       - updated
+    ReviewStatusPublished:
+      type: object
+      properties:
+        value:
+          description: Published review status
+          type: string
+          enum:
+          - published
+      required:
+      - value
+    GetReviewResponseDTOCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReviewResponseDTOObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResponseObjectResource'
+      required:
+      - data
+    ReviewStatusFeatured:
+      type: object
+      properties:
+        value:
+          description: Featured review status
+          type: string
+          enum:
+          - featured
+      required:
+      - value
+    RejectReasonOther:
+      type: object
+      properties:
+        reason:
+          description: reject reason is other
+          type: string
+          enum:
+          - other
+        status_explanation:
+          description: If review reject reason is other, we can provide further explanation
+          type:
+          - string
+          - 'null'
+          example: This review is just really poorly detailed and there is another with the same content
+      required:
+      - reason
+    GetReviewResponseDTOCompoundDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ReviewResponseDTOObjectResource'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    RejectReasonFake:
+      type: object
+      properties:
+        reason:
+          description: rejected due to fake content
+          type: string
+          enum:
+          - fake
+      required:
+      - reason
+    RejectReasonUnrelated:
+      type: object
+      properties:
+        reason:
+          description: rejected due to unrelated content
+          type: string
+          enum:
+          - unrelated
+      required:
+      - reason
   responses:
     ServerError:
       description: Server Error

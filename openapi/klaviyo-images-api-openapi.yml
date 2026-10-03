@@ -399,91 +399,6 @@ components:
       - id
       - attributes
       - links
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    ImagePartialUpdateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ImageEnum'
-        id:
-          description: The ID of the image
-          type: string
-          example: '7'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: A name for the image.
-              type:
-              - string
-              - 'null'
-            hidden:
-              description: If true, this image is not shown in the asset library.
-              type:
-              - boolean
-              - 'null'
-      required:
-      - type
-      - id
-      - attributes
-    ImagePartialUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ImagePartialUpdateQueryResourceObject'
-      required:
-      - data
-    ImageCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ImageEnum'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
-              type:
-              - string
-              - 'null'
-            import_from_url:
-              description: 'An existing image url to import the image from. Alternatively, you may specify a base-64 encoded data-uri (`data:image/...`). Supported image formats: jpeg,png,gif. Maximum image size: 5MB.'
-              type: string
-              example: https://www.example.com/example.jpg
-            hidden:
-              description: If true, this image is not shown in the asset library.
-              type:
-              - boolean
-              - 'null'
-              default: false
-          required:
-          - import_from_url
-      required:
-      - type
-      - attributes
-    ImageUploadQuery:
-      type: object
-      properties:
-        file:
-          description: 'The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.'
-          type: string
-          format: binary
-        name:
-          description: A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
-          type: string
-        hidden:
-          description: If true, this image is not shown in the asset library.
-          type: boolean
-          default: false
-      required:
-      - file
     GetImageResponseCollection:
       type: object
       properties:
@@ -542,6 +457,26 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
+    ImageCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ImageCreateQueryResourceObject'
+      required:
+      - data
+    ImageEnum:
+      type: string
+      enum:
+      - image
+    GetImageResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ImageResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
     PostImageResponse:
       type: object
       properties:
@@ -589,26 +524,6 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetImageResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ImageResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    ImageEnum:
-      type: string
-      enum:
-      - image
-    ImageCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ImageCreateQueryResourceObject'
-      required:
-      - data
     CollectionLinks:
       type: object
       properties:
@@ -629,9 +544,94 @@ components:
           format: uri
       required:
       - self
+    ImagePartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ImageEnum'
+        id:
+          description: The ID of the image
+          type: string
+          example: '7'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: A name for the image.
+              type:
+              - string
+              - 'null'
+            hidden:
+              description: If true, this image is not shown in the asset library.
+              type:
+              - boolean
+              - 'null'
+      required:
+      - type
+      - id
+      - attributes
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    ImageUploadQuery:
+      type: object
+      properties:
+        file:
+          description: 'The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.'
+          type: string
+          format: binary
+        name:
+          description: A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
+          type: string
+        hidden:
+          description: If true, this image is not shown in the asset library.
+          type: boolean
+          default: false
+      required:
+      - file
+    ImageCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ImageEnum'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
+              type:
+              - string
+              - 'null'
+            import_from_url:
+              description: 'An existing image url to import the image from. Alternatively, you may specify a base-64 encoded data-uri (`data:image/...`). Supported image formats: jpeg,png,gif. Maximum image size: 5MB.'
+              type: string
+              example: https://www.example.com/example.jpg
+            hidden:
+              description: If true, this image is not shown in the asset library.
+              type:
+              - boolean
+              - 'null'
+              default: false
+          required:
+          - import_from_url
+      required:
+      - type
+      - attributes
+    ImagePartialUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ImagePartialUpdateQueryResourceObject'
+      required:
+      - data
   responses:
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
@@ -664,8 +664,8 @@ components:
                           type: string
             required:
             - errors
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:

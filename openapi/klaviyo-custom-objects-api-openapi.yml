@@ -370,51 +370,37 @@ components:
       type: string
       enum:
       - data-source
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    DataSourceRecordCreateJobCreateQueryResourceObject:
+    DataSourceRecordBulkCreateJobEnum:
+      type: string
+      enum:
+      - data-source-record-bulk-create-job
+    DataSourceRecordBulkCreateJobCreateQueryResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/DataSourceRecordCreateJobEnum'
+          $ref: '#/components/schemas/DataSourceRecordBulkCreateJobEnum'
         attributes:
           type: object
           properties:
-            data-source-record:
+            data-source-records:
               description: The records to ingest.
-              type: object
+              type:
+              - object
+              - 'null'
               example:
                 data:
-                  type: data-source-record
+                - type: data-source-record
                   attributes:
                     record:
                       key1: value1
                       key2: value2
               properties:
                 data:
-                  $ref: '#/components/schemas/DataSourceRecordResourceObject'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/DataSourceRecordResourceObject'
               required:
               - data
-          required:
-          - data-source-record
         relationships:
           type: object
           properties:
@@ -436,48 +422,36 @@ components:
       required:
       - type
       - attributes
-    DataSourceResponseObjectResource:
+    DataSourceRecordResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/DataSourceEnum'
-        id:
-          description: The ID of the data source
-          type: string
-          example: 01KH1D6P9Y8TJ7Q6MHXWZMPDN3
+          $ref: '#/components/schemas/DataSourceRecordEnum'
         attributes:
           type: object
           properties:
-            title:
-              description: The title of the data source
-              type: string
-              example: My Data Source
-            visibility:
-              description: The status of the data source
-              type: string
-              enum:
-              - private
-              - shared
-            description:
-              description: The description of the data source
-              type: string
-              example: This is a data source
-            namespace:
-              description: The namespace of the data source
-              type: string
-              example: custom-objects
+            record:
+              type: object
           required:
-          - title
-          - visibility
-          - description
-          - namespace
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
+          - record
       required:
       - type
-      - id
       - attributes
-      - links
+    DataSourceRecordEnum:
+      type: string
+      enum:
+      - data-source-record
+    DataSourceRecordCreateJobCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSourceRecordCreateJobCreateQueryResourceObject'
+      required:
+      - data
+    DataSourceRecordCreateJobEnum:
+      type: string
+      enum:
+      - data-source-record-create-job
     GetDataSourceResponse:
       type: object
       properties:
@@ -487,6 +461,14 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
     PostDataSourceResponse:
       type: object
       properties:
@@ -536,121 +518,6 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    DataSourceRecordCreateJobEnum:
-      type: string
-      enum:
-      - data-source-record-create-job
-    DataSourceRecordCreateJobCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataSourceRecordCreateJobCreateQueryResourceObject'
-      required:
-      - data
-    DataSourceRecordBulkCreateJobCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DataSourceRecordBulkCreateJobEnum'
-        attributes:
-          type: object
-          properties:
-            data-source-records:
-              description: The records to ingest.
-              type:
-              - object
-              - 'null'
-              example:
-                data:
-                - type: data-source-record
-                  attributes:
-                    record:
-                      key1: value1
-                      key2: value2
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/DataSourceRecordResourceObject'
-              required:
-              - data
-        relationships:
-          type: object
-          properties:
-            data-source:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/DataSourceEnum'
-                    id:
-                      description: The data source to which the records belong.
-                      type: string
-                      example: 01J7C23V8XWMRG13FMD7VZN6GW
-                  required:
-                  - type
-                  - id
-      required:
-      - type
-      - attributes
-    DataSourceRecordBulkCreateJobEnum:
-      type: string
-      enum:
-      - data-source-record-bulk-create-job
-    GetDataSourceResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSourceResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    DataSourceRecordEnum:
-      type: string
-      enum:
-      - data-source-record
-    DataSourceCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataSourceCreateQueryResourceObject'
-      required:
-      - data
-    DataSourceRecordBulkCreateJobCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataSourceRecordBulkCreateJobCreateQueryResourceObject'
-      required:
-      - data
-    DataSourceRecordResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DataSourceRecordEnum'
-        attributes:
-          type: object
-          properties:
-            record:
-              type: object
-          required:
-          - record
-      required:
-      - type
-      - attributes
     DataSourceCreateQueryResourceObject:
       type: object
       properties:
@@ -689,6 +556,139 @@ components:
       required:
       - type
       - attributes
+    DataSourceCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSourceCreateQueryResourceObject'
+      required:
+      - data
+    DataSourceResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSourceEnum'
+        id:
+          description: The ID of the data source
+          type: string
+          example: 01KH1D6P9Y8TJ7Q6MHXWZMPDN3
+        attributes:
+          type: object
+          properties:
+            title:
+              description: The title of the data source
+              type: string
+              example: My Data Source
+            visibility:
+              description: The status of the data source
+              type: string
+              enum:
+              - private
+              - shared
+            description:
+              description: The description of the data source
+              type: string
+              example: This is a data source
+            namespace:
+              description: The namespace of the data source
+              type: string
+              example: custom-objects
+          required:
+          - title
+          - visibility
+          - description
+          - namespace
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    DataSourceRecordBulkCreateJobCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSourceRecordBulkCreateJobCreateQueryResourceObject'
+      required:
+      - data
+    DataSourceRecordCreateJobCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSourceRecordCreateJobEnum'
+        attributes:
+          type: object
+          properties:
+            data-source-record:
+              description: The records to ingest.
+              type: object
+              example:
+                data:
+                  type: data-source-record
+                  attributes:
+                    record:
+                      key1: value1
+                      key2: value2
+              properties:
+                data:
+                  $ref: '#/components/schemas/DataSourceRecordResourceObject'
+              required:
+              - data
+          required:
+          - data-source-record
+        relationships:
+          type: object
+          properties:
+            data-source:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/DataSourceEnum'
+                    id:
+                      description: The data source to which the records belong.
+                      type: string
+                      example: 01J7C23V8XWMRG13FMD7VZN6GW
+                  required:
+                  - type
+                  - id
+      required:
+      - type
+      - attributes
+    GetDataSourceResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSourceResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
   responses:
     ServerError:
       description: Server Error

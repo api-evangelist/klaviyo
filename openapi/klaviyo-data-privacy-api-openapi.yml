@@ -78,7 +78,87 @@ paths:
       x-klaviyo-scopes:
       - data-privacy:write
 components:
+  responses:
+    ServerError:
+      description: Server Error
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - code
+                  - title
+                  - detail
+                  properties:
+                    id:
+                      type: string
+                    code:
+                      type: string
+                    title:
+                      type: string
+                    detail:
+                      type: string
+                    source:
+                      type: object
+                      properties:
+                        pointer:
+                          type: string
+                        parameter:
+                          type: string
+            required:
+            - errors
+    ClientError:
+      description: Client Error
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - code
+                  - title
+                  - detail
+                  properties:
+                    id:
+                      type: string
+                    code:
+                      type: string
+                    title:
+                      type: string
+                    detail:
+                      type: string
+                    source:
+                      type: object
+                      properties:
+                        pointer:
+                          type: string
+                        parameter:
+                          type: string
+            required:
+            - errors
   schemas:
+    DataPrivacyCreateDeletionJobQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataPrivacyCreateDeletionJobQueryResourceObject'
+      required:
+      - data
+    ProfileEnum:
+      type: string
+      enum:
+      - profile
     DataPrivacyProfileQueryResourceObject:
       type: object
       properties:
@@ -128,90 +208,10 @@ components:
       required:
       - type
       - attributes
-    ProfileEnum:
-      type: string
-      enum:
-      - profile
     DataPrivacyDeletionJobEnum:
       type: string
       enum:
       - data-privacy-deletion-job
-    DataPrivacyCreateDeletionJobQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataPrivacyCreateDeletionJobQueryResourceObject'
-      required:
-      - data
-  responses:
-    ClientError:
-      description: Client Error
-      content:
-        application/vnd.api+json:
-          schema:
-            type: object
-            properties:
-              errors:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - id
-                  - code
-                  - title
-                  - detail
-                  properties:
-                    id:
-                      type: string
-                    code:
-                      type: string
-                    title:
-                      type: string
-                    detail:
-                      type: string
-                    source:
-                      type: object
-                      properties:
-                        pointer:
-                          type: string
-                        parameter:
-                          type: string
-            required:
-            - errors
-    ServerError:
-      description: Server Error
-      content:
-        application/vnd.api+json:
-          schema:
-            type: object
-            properties:
-              errors:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - id
-                  - code
-                  - title
-                  - detail
-                  properties:
-                    id:
-                      type: string
-                    code:
-                      type: string
-                    title:
-                      type: string
-                    detail:
-                      type: string
-                    source:
-                      type: object
-                      properties:
-                        pointer:
-                          type: string
-                        parameter:
-                          type: string
-            required:
-            - errors
   securitySchemes:
     Klaviyo-API-Key:
       type: apiKey

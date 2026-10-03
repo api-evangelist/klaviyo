@@ -177,25 +177,42 @@ paths:
       - accounts:read
 components:
   schemas:
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    GetAccountResponseCollection:
+    GetAccountResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountResponseObjectResource'
+          $ref: '#/components/schemas/AccountResponseObjectResource'
         links:
-          $ref: '#/components/schemas/CollectionLinks'
+          $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
+    ContactInformation:
+      type: object
+      properties:
+        default_sender_name:
+          description: This field is used to auto-populate the default sender name on flow and campaign emails.
+          type: string
+          example: Klaviyo Demo
+        default_sender_email:
+          description: This field is used to auto-populate the default sender email address on flow and campaign emails.
+          type: string
+          example: contact@klaviyo-demo.com
+        website_url:
+          type:
+          - string
+          - 'null'
+          example: https://www.klaviyo.com
+        organization_name:
+          type: string
+          example: Klaviyo Demo
+        street_address:
+          description: Street address for your organization.
+          $ref: '#/components/schemas/StreetAddress'
+      required:
+      - default_sender_name
+      - default_sender_email
+      - organization_name
+      - street_address
     StreetAddress:
       type: object
       properties:
@@ -231,10 +248,17 @@ components:
           example: '04323'
       required:
       - city
-    AccountEnum:
-      type: string
-      enum:
-      - account
+    GetAccountResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
     AccountResponseObjectResource:
       type: object
       properties:
@@ -287,6 +311,10 @@ components:
       - id
       - attributes
       - links
+    AccountEnum:
+      type: string
+      enum:
+      - account
     CollectionLinks:
       type: object
       properties:
@@ -307,45 +335,17 @@ components:
           format: uri
       required:
       - self
-    GetAccountResponse:
+    ObjectLinks:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/AccountResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
+        self:
+          type: string
+          format: uri
       required:
-      - data
-    ContactInformation:
-      type: object
-      properties:
-        default_sender_name:
-          description: This field is used to auto-populate the default sender name on flow and campaign emails.
-          type: string
-          example: Klaviyo Demo
-        default_sender_email:
-          description: This field is used to auto-populate the default sender email address on flow and campaign emails.
-          type: string
-          example: contact@klaviyo-demo.com
-        website_url:
-          type:
-          - string
-          - 'null'
-          example: https://www.klaviyo.com
-        organization_name:
-          type: string
-          example: Klaviyo Demo
-        street_address:
-          description: Street address for your organization.
-          $ref: '#/components/schemas/StreetAddress'
-      required:
-      - default_sender_name
-      - default_sender_email
-      - organization_name
-      - street_address
+      - self
   responses:
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
@@ -378,8 +378,8 @@ components:
                           type: string
             required:
             - errors
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
