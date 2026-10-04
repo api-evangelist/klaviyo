@@ -359,6 +359,63 @@ paths:
       - images:write
 components:
   schemas:
+    ImageUploadQuery:
+      type: object
+      properties:
+        file:
+          description: 'The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.'
+          type: string
+          format: binary
+        name:
+          description: A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
+          type: string
+        hidden:
+          description: If true, this image is not shown in the asset library.
+          type: boolean
+          default: false
+      required:
+      - file
+    ImagePartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ImageEnum'
+        id:
+          description: The ID of the image
+          type: string
+          example: '7'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: A name for the image.
+              type:
+              - string
+              - 'null'
+            hidden:
+              description: If true, this image is not shown in the asset library.
+              type:
+              - boolean
+              - 'null'
+      required:
+      - type
+      - id
+      - attributes
+    GetImageResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ImageEnum:
+      type: string
+      enum:
+      - image
     ImageResponseObjectResource:
       type: object
       properties:
@@ -399,15 +456,11 @@ components:
       - id
       - attributes
       - links
-    GetImageResponseCollection:
+    ImagePartialUpdateQuery:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
+          $ref: '#/components/schemas/ImagePartialUpdateQueryResourceObject'
       required:
       - data
     PatchImageResponse:
@@ -457,17 +510,14 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    ImageCreateQuery:
+    ObjectLinks:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/ImageCreateQueryResourceObject'
+        self:
+          type: string
+          format: uri
       required:
-      - data
-    ImageEnum:
-      type: string
-      enum:
-      - image
+      - self
     GetImageResponse:
       type: object
       properties:
@@ -475,6 +525,13 @@ components:
           $ref: '#/components/schemas/ImageResponseObjectResource'
         links:
           $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    ImageCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ImageCreateQueryResourceObject'
       required:
       - data
     PostImageResponse:
@@ -524,76 +581,6 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    ImagePartialUpdateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ImageEnum'
-        id:
-          description: The ID of the image
-          type: string
-          example: '7'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: A name for the image.
-              type:
-              - string
-              - 'null'
-            hidden:
-              description: If true, this image is not shown in the asset library.
-              type:
-              - boolean
-              - 'null'
-      required:
-      - type
-      - id
-      - attributes
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    ImageUploadQuery:
-      type: object
-      properties:
-        file:
-          description: 'The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.'
-          type: string
-          format: binary
-        name:
-          description: A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
-          type: string
-        hidden:
-          description: If true, this image is not shown in the asset library.
-          type: boolean
-          default: false
-      required:
-      - file
     ImageCreateQueryResourceObject:
       type: object
       properties:
@@ -622,16 +609,29 @@ components:
       required:
       - type
       - attributes
-    ImagePartialUpdateQuery:
+    CollectionLinks:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/ImagePartialUpdateQueryResourceObject'
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
       required:
-      - data
+      - self
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -664,8 +664,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:

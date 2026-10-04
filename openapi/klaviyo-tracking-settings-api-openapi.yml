@@ -293,6 +293,19 @@ paths:
       - tracking-settings:write
 components:
   schemas:
+    TrackingParamDTO:
+      type: object
+      properties:
+        flow:
+          description: The value of the tracking parameter when applied to a flow.
+          oneOf:
+          - $ref: '#/components/schemas/FlowTrackingSettingDynamicParam'
+          - $ref: '#/components/schemas/FlowTrackingSettingStaticParam'
+        campaign:
+          description: The value of the tracking parameter when applied to a campaign.
+          oneOf:
+          - $ref: '#/components/schemas/CampaignTrackingSettingDynamicParam'
+          - $ref: '#/components/schemas/CampaignTrackingSettingStaticParam'
     TrackingSettingPartialUpdateQueryResourceObject:
       type: object
       properties:
@@ -335,14 +348,25 @@ components:
       - type
       - id
       - attributes
-    TrackingSettingPartialUpdateQuery:
+    CustomTrackingParamDTO:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/TrackingSettingPartialUpdateQueryResourceObject'
+        flow:
+          description: The value of the tracking parameter when applied to a flow.
+          oneOf:
+          - $ref: '#/components/schemas/FlowTrackingSettingDynamicParam'
+          - $ref: '#/components/schemas/FlowTrackingSettingStaticParam'
+        campaign:
+          description: The value of the tracking parameter when applied to a campaign.
+          oneOf:
+          - $ref: '#/components/schemas/CampaignTrackingSettingDynamicParam'
+          - $ref: '#/components/schemas/CampaignTrackingSettingStaticParam'
+        name:
+          description: The name of the custom tracking parameter
+          type: string
       required:
-      - data
-    FlowTrackingSettingStaticParam:
+      - name
+    CampaignTrackingSettingStaticParam:
       type: object
       properties:
         type:
@@ -430,48 +454,25 @@ components:
       - id
       - attributes
       - links
-    CampaignTrackingSettingStaticParam:
-      type: object
-      properties:
-        type:
-          description: The type of the tracking parameter
-          type: string
-          enum:
-          - static
-        value:
-          description: The value of the tracking parameter
-          type: string
-      required:
-      - type
-      - value
-    GetTrackingSettingResponseCollection:
+    TrackingSettingPartialUpdateQuery:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackingSettingResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
+          $ref: '#/components/schemas/TrackingSettingPartialUpdateQueryResourceObject'
       required:
       - data
-    TrackingParamDTO:
-      type: object
-      properties:
-        flow:
-          description: The value of the tracking parameter when applied to a flow.
-          oneOf:
-          - $ref: '#/components/schemas/FlowTrackingSettingDynamicParam'
-          - $ref: '#/components/schemas/FlowTrackingSettingStaticParam'
-        campaign:
-          description: The value of the tracking parameter when applied to a campaign.
-          oneOf:
-          - $ref: '#/components/schemas/CampaignTrackingSettingDynamicParam'
-          - $ref: '#/components/schemas/CampaignTrackingSettingStaticParam'
     TrackingSettingEnum:
       type: string
       enum:
       - tracking-setting
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
     PatchTrackingSettingResponse:
       type: object
       properties:
@@ -535,34 +536,31 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    CollectionLinks:
+    FlowTrackingSettingStaticParam:
       type: object
       properties:
-        self:
+        type:
+          description: The type of the tracking parameter
           type: string
-          format: uri
-        first:
+          enum:
+          - static
+        value:
+          description: The value of the tracking parameter
           type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
       required:
-      - self
-    ObjectLinks:
+      - type
+      - value
+    GetTrackingSettingResponseCollection:
       type: object
       properties:
-        self:
-          type: string
-          format: uri
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackingSettingResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
       required:
-      - self
+      - data
     FlowTrackingSettingDynamicParam:
       type: object
       properties:
@@ -587,27 +585,29 @@ components:
       required:
       - type
       - value
-    CustomTrackingParamDTO:
+    CollectionLinks:
       type: object
       properties:
-        flow:
-          description: The value of the tracking parameter when applied to a flow.
-          oneOf:
-          - $ref: '#/components/schemas/FlowTrackingSettingDynamicParam'
-          - $ref: '#/components/schemas/FlowTrackingSettingStaticParam'
-        campaign:
-          description: The value of the tracking parameter when applied to a campaign.
-          oneOf:
-          - $ref: '#/components/schemas/CampaignTrackingSettingDynamicParam'
-          - $ref: '#/components/schemas/CampaignTrackingSettingStaticParam'
-        name:
-          description: The name of the custom tracking parameter
+        self:
           type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
       required:
-      - name
+      - self
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -640,8 +640,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:

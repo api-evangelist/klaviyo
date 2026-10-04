@@ -2058,112 +2058,6 @@ paths:
       - campaigns:read
 components:
   schemas:
-    GetCampaignResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    CampaignRecipientEstimationJobCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignRecipientEstimationJobEnum'
-        id:
-          description: The ID of the campaign to perform recipient estimation
-          type: string
-      required:
-      - type
-      - id
-    GetCampaignMessageResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CampaignMessageResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/TemplateResponseObjectResource'
-            - $ref: '#/components/schemas/CampaignResponseObjectResource'
-            - $ref: '#/components/schemas/ImageResponseObjectResource'
-      required:
-      - data
-    CampaignMessageEnum:
-      type: string
-      enum:
-      - campaign-message
-    CampaignMessagePartialUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignMessagePartialUpdateQueryResourceObject'
-      required:
-      - data
-    SMSContent:
-      type: object
-      properties:
-        body:
-          description: The message body
-          type:
-          - string
-          - 'null'
-          example: My preview sms
-        media_url:
-          description: URL for included media
-          type:
-          - string
-          - 'null'
-    TemplateEnum:
-      type: string
-      enum:
-      - template
-    GetCampaignMessagesRelationshipsResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/CampaignMessageEnum'
-              id:
-                description: The message ID
-                type: string
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    StaticTrackingParam:
-      type: object
-      properties:
-        type:
-          description: The type of the tracking parameter
-          type: string
-          enum:
-          - static
-        value:
-          description: The value of the tracking parameter
-          type: string
-        name:
-          description: Name of the tracking param
-          type: string
-          example: utm_medium
-      required:
-      - type
-      - value
-      - name
     CampaignsEmailTrackingOptions:
       type: object
       properties:
@@ -2191,112 +2085,22 @@ components:
           type:
           - boolean
           - 'null'
-    SMSContentCreate:
-      type: object
-      properties:
-        body:
-          description: The message body
-          type:
-          - string
-          - 'null'
-          example: My preview sms
-    GetCampaignTagsRelationshipsResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/TagEnum'
-              id:
-                description: The Tag ID
-                type: string
-                example: abcd1234-ef56-gh78-ij90-abcdef123456
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    MobilePushMessageSilentDefinition:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - mobile_push
-        notification_type:
-          description: The type of notification to send
-          type: string
-          enum:
-          - silent
-        kv_pairs:
-          description: The key-value pairs to be sent with the push notification
-          type:
-          - object
-          - 'null'
-      required:
-      - channel
-      - notification_type
-    TemplateResponseObjectResource:
+    CampaignRecipientEstimationResponseObjectResource:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/TemplateEnum'
+          $ref: '#/components/schemas/CampaignRecipientEstimationEnum'
         id:
-          description: The ID of template
+          description: The ID of the campaign for which to get the estimated number of recipients
           type: string
         attributes:
           type: object
           properties:
-            name:
-              description: The name of the template
-              type: string
-            editor_type:
-              description: '`editor_type` has a fixed set of values:
-
-                * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
-
-                * SIMPLE: A rich text editor template
-
-                * CODE: A custom HTML template
-
-                * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
-              type: string
-            html:
-              description: The rendered HTML of the template
-              type: string
-            text:
-              description: The template plain_text
-              type:
-              - string
-              - 'null'
-            amp:
-              description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
-              type:
-              - string
-              - 'null'
-            created:
-              description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            updated:
-              description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
+            estimated_recipient_count:
+              description: The estimated number of unique recipients the campaign will send to
+              type: integer
           required:
-          - name
-          - editor_type
-          - html
+          - estimated_recipient_count
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
@@ -2304,276 +2108,22 @@ components:
       - id
       - attributes
       - links
-    RenderOptions:
+    CampaignMessageIncrement:
       type: object
       properties:
-        shorten_links:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-        add_org_prefix:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-        add_info_link:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-        add_opt_out_language:
-          type:
-          - boolean
-          - 'null'
-          default: false
-    MobilePushMessageSilentDefinitionUpdate:
-      type: object
-      properties:
-        channel:
+        badge_config:
           type: string
           enum:
-          - mobile_push
-        kv_pairs:
-          description: The key-value pairs to be sent with the push notification
-          type: object
-        notification_type:
-          description: The type of notification to send
-          type: string
-          example: silent
-          default: silent
-          enum:
-          - silent
+          - increment_one
       required:
-      - channel
-    ImageEnum:
-      type: string
-      enum:
-      - image
-    GetCampaignMessageImageRelationshipResponse:
+      - badge_config
+    CampaignSendJobCreateQuery:
       type: object
       properties:
         data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/ImageEnum'
-            id:
-              description: The ID of the image
-              type: string
-              example: '7'
-          required:
-          - type
-          - id
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
+          $ref: '#/components/schemas/CampaignSendJobCreateQueryResourceObject'
       required:
       - data
-    CampaignSendJobResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignSendJobEnum'
-        id:
-          description: The ID of the campaign to send
-          type: string
-        attributes:
-          type: object
-          properties:
-            status:
-              description: The status of the send job
-              type: string
-              enum:
-              - cancelled
-              - complete
-              - processing
-              - queued
-          required:
-          - status
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    GetTemplateResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TemplateResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    ThrottledSendStrategy:
-      type: object
-      properties:
-        method:
-          type: string
-          enum:
-          - throttled
-        datetime:
-          description: The time to send at
-          type: string
-          format: date-time
-        throttle_percentage:
-          description: The percentage of recipients per hour to send to.
-          type: integer
-          enum:
-          - 10
-          - 11
-          - 13
-          - 14
-          - 17
-          - 20
-          - 25
-          - 33
-          - 50
-      required:
-      - method
-      - datetime
-      - throttle_percentage
-    CampaignRecipientEstimationEnum:
-      type: string
-      enum:
-      - campaign-recipient-estimation
-    GetCampaignMessageResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignMessageResponseObjectResource'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/TemplateResponseObjectResource'
-            - $ref: '#/components/schemas/CampaignResponseObjectResource'
-            - $ref: '#/components/schemas/ImageResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    SendTime:
-      type: object
-      properties:
-        datetime:
-          description: The datetime that the message is to be sent
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-        is_local:
-          description: Whether that datetime is to be a local datetime for the recipient
-          type: boolean
-      required:
-      - datetime
-      - is_local
-    CampaignMessageAssignTemplateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignMessageAssignTemplateQueryResourceObject'
-      required:
-      - data
-    CampaignMessageResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignMessageEnum'
-        id:
-          description: The message ID
-          type: string
-        attributes:
-          type: object
-          properties:
-            definition:
-              oneOf:
-              - $ref: '#/components/schemas/EmailMessageDefinition'
-              - $ref: '#/components/schemas/SMSMessageDefinition'
-              - $ref: '#/components/schemas/MobilePushMessageStandardDefinition'
-              - $ref: '#/components/schemas/MobilePushMessageSilentDefinition'
-            send_times:
-              description: The list of appropriate Send Time Sub-objects associated with the message
-              type:
-              - array
-              - 'null'
-              items:
-                $ref: '#/components/schemas/SendTime'
-            created_at:
-              description: The datetime when the message was created
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            updated_at:
-              description: The datetime when the message was last updated
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-        relationships:
-          type: object
-          properties:
-            campaign:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/CampaignEnum'
-                    id:
-                      description: The parent campaign id
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            template:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/TemplateEnum'
-                    id:
-                      description: The associated template id
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            image:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/ImageEnum'
-                    id:
-                      description: The associated image id
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
     PostCampaignResponse:
       type: object
       properties:
@@ -2721,226 +2271,213 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    CampaignPartialUpdateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignEnum'
-        id:
-          description: The campaign ID to be retrieved
-          type: string
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The campaign name
-              type:
-              - string
-              - 'null'
-              example: My new campaign
-            audiences:
-              description: The audiences to be included and/or excluded from the campaign
-              $ref: '#/components/schemas/AudiencesUpdate'
-            send_options:
-              description: Options to use when sending a campaign
-              oneOf:
-              - $ref: '#/components/schemas/EmailSendOptions'
-              - $ref: '#/components/schemas/SMSSendOptions'
-              - $ref: '#/components/schemas/PushSendOptions'
-            tracking_options:
-              description: The tracking options associated with the campaign
-              oneOf:
-              - $ref: '#/components/schemas/CampaignsEmailTrackingOptions'
-              - $ref: '#/components/schemas/CampaignsSMSTrackingOptions'
-            send_strategy:
-              description: The send strategy the campaign will send with
-              oneOf:
-              - $ref: '#/components/schemas/StaticSendStrategy'
-              - $ref: '#/components/schemas/ThrottledSendStrategy'
-              - $ref: '#/components/schemas/ImmediateSendStrategy'
-              - $ref: '#/components/schemas/SmartSendTimeStrategy'
-      required:
-      - type
-      - id
-      - attributes
-    CampaignSendJobCreateQuery:
+    TemplateEnum:
+      type: string
+      enum:
+      - template
+    GetTemplateResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/CampaignSendJobCreateQueryResourceObject'
-      required:
-      - data
-    MobilePushMessageStandardDefinitionCreate:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - mobile_push
-        content:
-          $ref: '#/components/schemas/MobilePushContentCreate'
-          description: Additional attributes relating to the content of the message
-        kv_pairs:
-          description: The key-value pairs to be sent with the push notification
-          type:
-          - object
-          - 'null'
-        options:
-          $ref: '#/components/schemas/MobilePushOptions'
-        notification_type:
-          description: The type of notification to send
-          type: string
-          example: standard
-          default: standard
-          enum:
-          - standard
-      required:
-      - channel
-      - content
-    EmailSendOptions:
-      type: object
-      properties:
-        use_smart_sending:
-          description: Use smart sending.
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-    GetCampaignSendJobResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignSendJobResponseObjectResource'
+          $ref: '#/components/schemas/TemplateResponseObjectResource'
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    PushSendOptions:
-      type: object
-      properties:
-        use_smart_sending:
-          description: Use smart sending.
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-    CampaignMessageIncrement:
-      type: object
-      properties:
-        badge_config:
-          type: string
-          enum:
-          - increment_one
-      required:
-      - badge_config
-    CampaignCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignEnum'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The campaign name
-              type: string
-              example: My new campaign
-            audiences:
-              description: The audiences to be included and/or excluded from the campaign
-              $ref: '#/components/schemas/Audiences'
-            send_strategy:
-              description: The send strategy the campaign will send with. Defaults to 'Immediate' send strategy.
-              oneOf:
-              - $ref: '#/components/schemas/StaticSendStrategy'
-              - $ref: '#/components/schemas/ThrottledSendStrategy'
-              - $ref: '#/components/schemas/ImmediateSendStrategy'
-              - $ref: '#/components/schemas/SmartSendTimeStrategy'
-            send_options:
-              description: Options to use when sending a campaign
-              oneOf:
-              - $ref: '#/components/schemas/EmailSendOptions'
-              - $ref: '#/components/schemas/SMSSendOptions'
-              - $ref: '#/components/schemas/PushSendOptions'
-            tracking_options:
-              description: The tracking options associated with the campaign
-              oneOf:
-              - $ref: '#/components/schemas/CampaignsEmailTrackingOptions'
-              - $ref: '#/components/schemas/CampaignsSMSTrackingOptions'
-            campaign-messages:
-              description: The message(s) associated with the campaign
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/CampaignMessageCreateQueryResourceObject'
-              required:
-              - data
-          required:
-          - name
-          - audiences
-          - campaign-messages
-      required:
-      - type
-      - attributes
-    GetCampaignMessageTemplateRelationshipResponse:
+    PatchCampaignMessageResponse:
       type: object
       properties:
         data:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/TemplateEnum'
+              $ref: '#/components/schemas/CampaignMessageEnum'
             id:
-              description: The ID of template
+              description: The message ID
               type: string
+            attributes:
+              type: object
+              properties:
+                definition:
+                  oneOf:
+                  - $ref: '#/components/schemas/EmailMessageDefinition'
+                  - $ref: '#/components/schemas/SMSMessageDefinition'
+                  - $ref: '#/components/schemas/MobilePushMessageStandardDefinition'
+                  - $ref: '#/components/schemas/MobilePushMessageSilentDefinition'
+                send_times:
+                  description: The list of appropriate Send Time Sub-objects associated with the message
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    $ref: '#/components/schemas/SendTime'
+                created_at:
+                  description: The datetime when the message was created
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated_at:
+                  description: The datetime when the message was last updated
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+            relationships:
+              type: object
+              properties:
+                campaign:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/CampaignEnum'
+                        id:
+                          description: The parent campaign id
+                          type: string
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                template:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/TemplateEnum'
+                        id:
+                          description: The associated template id
+                          type: string
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                image:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/ImageEnum'
+                        id:
+                          description: The associated image id
+                          type: string
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
           required:
           - type
           - id
+          - attributes
+          - links
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    CollectionLinks:
+    ImageResponseObjectResource:
       type: object
       properties:
-        self:
+        type:
+          $ref: '#/components/schemas/ImageEnum'
+        id:
+          description: The ID of the image
           type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
+          example: '7'
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            image_url:
+              type: string
+            format:
+              type: string
+            size:
+              type: integer
+            hidden:
+              type: boolean
+            updated_at:
+              type: string
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+          required:
+          - name
+          - image_url
+          - format
+          - size
+          - hidden
+          - updated_at
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
       required:
-      - self
-    EmailMessageDefinition:
+      - type
+      - id
+      - attributes
+      - links
+    CampaignRecipientEstimationEnum:
+      type: string
+      enum:
+      - campaign-recipient-estimation
+    GetCampaignTagsRelationshipsResponseCollection:
       type: object
       properties:
-        channel:
-          type: string
-          enum:
-          - email
-        label:
-          description: The label or name on the message
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/TagEnum'
+              id:
+                description: The Tag ID
+                type: string
+                example: abcd1234-ef56-gh78-ij90-abcdef123456
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    MobilePushContent:
+      type: object
+      properties:
+        title:
+          description: The title of the message
           type:
           - string
           - 'null'
-          example: My message name
-        content:
-          $ref: '#/components/schemas/EmailContent'
-          description: Additional attributes relating to the content of the message
-      required:
-      - channel
+        body:
+          description: The message body
+          type:
+          - string
+          - 'null'
+          example: My preview push notification
+        dynamic_image:
+          description: The dynamic image to be used in the push notification
+          type:
+          - string
+          - 'null'
+        action_buttons:
+          description: Action buttons for the push notification
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PushActionButtonDefinition'
     CampaignCloneQuery:
       type: object
       properties:
@@ -2948,110 +2485,42 @@ components:
           $ref: '#/components/schemas/CampaignCloneQueryResourceObject'
       required:
       - data
-    TagEnum:
-      type: string
-      enum:
-      - tag
-    SegmentEnum:
-      type: string
-      enum:
-      - segment
-    GetCampaignRecipientEstimationJobResponse:
+    CampaignMessageCreateQueryResourceObject:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/CampaignRecipientEstimationJobResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    SMSContentSubObject:
-      type: object
-      properties:
-        body:
-          description: The message body
-          type:
-          - string
-          - 'null'
-          example: My preview sms
-        media_url:
-          description: URL for included media
-          type:
-          - string
-          - 'null'
-    GetCampaignMessageCampaignRelationshipResponse:
-      type: object
-      properties:
-        data:
+        type:
+          $ref: '#/components/schemas/CampaignMessageEnum'
+        attributes:
           type: object
           properties:
-            type:
-              $ref: '#/components/schemas/CampaignEnum'
-            id:
-              description: The campaign ID
-              type: string
+            definition:
+              oneOf:
+              - $ref: '#/components/schemas/EmailMessageDefinition'
+              - $ref: '#/components/schemas/SMSMessageDefinitionCreate'
+              - $ref: '#/components/schemas/MobilePushMessageStandardDefinitionCreate'
+              - $ref: '#/components/schemas/MobilePushMessageSilentDefinitionCreate'
           required:
-          - type
-          - id
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    FlowEnum:
-      type: string
-      enum:
-      - flow
-    CampaignRecipientEstimationJobCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignRecipientEstimationJobCreateQueryResourceObject'
-      required:
-      - data
-    SendTimeSubObject:
-      type: object
-      properties:
-        datetime:
-          description: The datetime that the message is to be sent
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-        is_local:
-          description: Whether that datetime is to be a local datetime for the recipient
-          type: boolean
-      required:
-      - datetime
-      - is_local
-    CampaignEnum:
-      type: string
-      enum:
-      - campaign
-    ABTestSendStrategy:
-      type: object
-      properties:
-        method:
-          type: string
-          enum:
-          - ab_test_campaign
-      required:
-      - method
-    CampaignMessageImageUpdateQuery:
-      type: object
-      properties:
-        data:
+          - definition
+        relationships:
           type: object
           properties:
-            type:
-              $ref: '#/components/schemas/ImageEnum'
-            id:
-              description: Campaign Message Image
-              type: string
-              example: '14254'
-          required:
-          - type
-          - id
+            image:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/ImageEnum'
+                    id:
+                      description: The associated image for mobile_push messages
+                      type: string
+                  required:
+                  - type
+                  - id
       required:
-      - data
+      - type
+      - attributes
     PatchCampaignResponse:
       type: object
       properties:
@@ -3199,39 +2668,544 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    MobilePushMessageSilentDefinitionCreate:
+    PushActionButtonDefinition:
+      type: object
+      properties:
+        label:
+          description: The button label (max 40 characters)
+          type: string
+        action_type:
+          description: 'The action type: open_app, deep_link, open_url, or dismiss'
+          type: string
+        position:
+          description: The display order of the button (0-indexed). If omitted, inferred from the button's order in the list.
+          type:
+          - integer
+          - 'null'
+        url:
+          description: URL for deep_link or open_url action types (max 2048 characters)
+          type:
+          - string
+          - 'null'
+      required:
+      - label
+      - action_type
+    PushSendOptions:
+      type: object
+      properties:
+        use_smart_sending:
+          description: Use smart sending.
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+    CampaignMessagePartialUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignMessagePartialUpdateQueryResourceObject'
+      required:
+      - data
+    GetCampaignResponseCompoundDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignResponseObjectResource'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TagResponseObjectResource'
+            - $ref: '#/components/schemas/CampaignMessageResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    CampaignPartialUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignPartialUpdateQueryResourceObject'
+      required:
+      - data
+    TagGroupEnum:
+      type: string
+      enum:
+      - tag-group
+    MobilePushNoBadge:
+      type: object
+      properties:
+        display:
+          description: Whether to display a badge on the app icon
+          type: boolean
+          enum:
+          - false
+      required:
+      - display
+    TagEnum:
+      type: string
+      enum:
+      - tag
+    CampaignSendJobEnum:
+      type: string
+      enum:
+      - campaign-send-job
+    GetCampaignMessageResponseCompoundDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignMessageResponseObjectResource'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TemplateResponseObjectResource'
+            - $ref: '#/components/schemas/CampaignResponseObjectResource'
+            - $ref: '#/components/schemas/ImageResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    FlowEnum:
+      type: string
+      enum:
+      - flow
+    ImageEnum:
+      type: string
+      enum:
+      - image
+    CampaignSendJobPartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CampaignSendJobEnum'
+        id:
+          description: The ID of the currently sending campaign to cancel or revert
+          type: string
+        attributes:
+          type: object
+          properties:
+            action:
+              description: The action you would like to take with this send job from among 'cancel' and 'revert'
+              type: string
+              example: cancel
+              enum:
+              - cancel
+              - revert
+          required:
+          - action
+      required:
+      - type
+      - id
+      - attributes
+    CampaignsSMSTrackingOptions:
+      type: object
+      properties:
+        add_tracking_params:
+          description: Whether the campaign needs custom tracking parameters. If set to False, tracking params will not be used.
+          type:
+          - boolean
+          - 'null'
+        custom_tracking_params:
+          description: A list of custom tracking parameters. If an empty list is given and add_tracking_params is True, uses company defaults.
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/DynamicTrackingParam'
+            - $ref: '#/components/schemas/StaticTrackingParam'
+    ABTestSendStrategy:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - ab_test_campaign
+      required:
+      - method
+    GetCampaignResponseCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TagResponseObjectResource'
+            - $ref: '#/components/schemas/CampaignMessageResponseObjectResource'
+      required:
+      - data
+    MobilePushContentUpdate:
+      type: object
+      properties:
+        title:
+          description: The title of the message
+          type:
+          - string
+          - 'null'
+        body:
+          description: The message body
+          type:
+          - string
+          - 'null'
+          example: My preview push notification
+        dynamic_image:
+          description: The dynamic image to be used in the push notification
+          type:
+          - string
+          - 'null'
+        action_buttons:
+          description: Action buttons for the push notification (max 3, positions 0-indexed with no gaps)
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PushActionButtonDefinition'
+    TagResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TagEnum'
+        id:
+          description: The Tag ID
+          type: string
+          example: abcd1234-ef56-gh78-ij90-abcdef123456
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The Tag name
+              type: string
+              example: My Tag
+          required:
+          - name
+        relationships:
+          type: object
+          properties:
+            tag-group:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/TagGroupEnum'
+                    id:
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            lists:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/ListEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            segments:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/SegmentEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            campaigns:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/CampaignEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            flows:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/FlowEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    CampaignPartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CampaignEnum'
+        id:
+          description: The campaign ID to be retrieved
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The campaign name
+              type:
+              - string
+              - 'null'
+              example: My new campaign
+            audiences:
+              description: The audiences to be included and/or excluded from the campaign
+              $ref: '#/components/schemas/AudiencesUpdate'
+            send_options:
+              description: Options to use when sending a campaign
+              oneOf:
+              - $ref: '#/components/schemas/EmailSendOptions'
+              - $ref: '#/components/schemas/SMSSendOptions'
+              - $ref: '#/components/schemas/PushSendOptions'
+            tracking_options:
+              description: The tracking options associated with the campaign
+              oneOf:
+              - $ref: '#/components/schemas/CampaignsEmailTrackingOptions'
+              - $ref: '#/components/schemas/CampaignsSMSTrackingOptions'
+            send_strategy:
+              description: The send strategy the campaign will send with
+              oneOf:
+              - $ref: '#/components/schemas/StaticSendStrategy'
+              - $ref: '#/components/schemas/ThrottledSendStrategy'
+              - $ref: '#/components/schemas/ImmediateSendStrategy'
+              - $ref: '#/components/schemas/SmartSendTimeStrategy'
+      required:
+      - type
+      - id
+      - attributes
+    CampaignRecipientEstimationJobResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CampaignRecipientEstimationJobEnum'
+        id:
+          description: The ID of the campaign used for estimating recipients
+          type: string
+          example: 01GMRWDSA0ARTAKE1SFX8JGXAY
+        attributes:
+          type: object
+          properties:
+            status:
+              description: The status of the recipient estimation job
+              type: string
+              enum:
+              - cancelled
+              - complete
+              - processing
+              - queued
+          required:
+          - status
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    SMSContent:
+      type: object
+      properties:
+        body:
+          description: The message body
+          type:
+          - string
+          - 'null'
+          example: My preview sms
+        media_url:
+          description: URL for included media
+          type:
+          - string
+          - 'null'
+    CampaignCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CampaignEnum'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The campaign name
+              type: string
+              example: My new campaign
+            audiences:
+              description: The audiences to be included and/or excluded from the campaign
+              $ref: '#/components/schemas/Audiences'
+            send_strategy:
+              description: The send strategy the campaign will send with. Defaults to 'Immediate' send strategy.
+              oneOf:
+              - $ref: '#/components/schemas/StaticSendStrategy'
+              - $ref: '#/components/schemas/ThrottledSendStrategy'
+              - $ref: '#/components/schemas/ImmediateSendStrategy'
+              - $ref: '#/components/schemas/SmartSendTimeStrategy'
+            send_options:
+              description: Options to use when sending a campaign
+              oneOf:
+              - $ref: '#/components/schemas/EmailSendOptions'
+              - $ref: '#/components/schemas/SMSSendOptions'
+              - $ref: '#/components/schemas/PushSendOptions'
+            tracking_options:
+              description: The tracking options associated with the campaign
+              oneOf:
+              - $ref: '#/components/schemas/CampaignsEmailTrackingOptions'
+              - $ref: '#/components/schemas/CampaignsSMSTrackingOptions'
+            campaign-messages:
+              description: The message(s) associated with the campaign
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CampaignMessageCreateQueryResourceObject'
+              required:
+              - data
+          required:
+          - name
+          - audiences
+          - campaign-messages
+      required:
+      - type
+      - attributes
+    SMSMessageDefinition:
       type: object
       properties:
         channel:
           type: string
           enum:
-          - mobile_push
-        kv_pairs:
-          description: The key-value pairs to be sent with the push notification
-          type:
-          - object
-          - 'null'
-        notification_type:
-          description: The type of notification to send
-          type: string
-          example: silent
-          default: silent
-          enum:
-          - silent
+          - sms
+        content:
+          $ref: '#/components/schemas/SMSContent'
+          description: Additional attributes relating to the content of the message
+        render_options:
+          description: Additional options for rendering the message
+          $ref: '#/components/schemas/RenderOptions'
       required:
       - channel
-    Audiences:
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    CampaignSendJobCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CampaignSendJobEnum'
+        id:
+          description: The ID of the campaign to send
+          type: string
+      required:
+      - type
+      - id
+    GetCampaignMessagesRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/CampaignMessageEnum'
+              id:
+                description: The message ID
+                type: string
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ListEnum:
+      type: string
+      enum:
+      - list
+    AudiencesUpdate:
       type: object
       properties:
         included:
-          description: A list of included audiences
-          type: array
+          description: An optional list of included audiences, will override existing included audiences
+          type:
+          - array
+          - 'null'
           items:
             type: string
           example:
           - Y6nRLr
         excluded:
-          description: An optional list of excluded audiences
+          description: An optional list of excluded audiences, will override exising excluded audiences
           type:
           - array
           - 'null'
@@ -3239,17 +3213,77 @@ components:
             type: string
           example:
           - UTd5ui
+    GetCampaignRecipientEstimationJobResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignRecipientEstimationJobResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
       required:
-      - included
-    PushOnOpenApp:
+      - data
+    StaticTrackingParam:
       type: object
       properties:
         type:
+          description: The type of the tracking parameter
           type: string
           enum:
-          - open_app
+          - static
+        value:
+          description: The value of the tracking parameter
+          type: string
+        name:
+          description: Name of the tracking param
+          type: string
+          example: utm_medium
       required:
       - type
+      - value
+      - name
+    GetTagResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    NonLocalStaticSend:
+      type: object
+      properties:
+        is_local:
+          description: Whether the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.
+          type: boolean
+          enum:
+          - false
+      required:
+      - is_local
+    CampaignRecipientEstimationJobEnum:
+      type: string
+      enum:
+      - campaign-recipient-estimation-job
+    GetCampaignMessageTemplateRelationshipResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/TemplateEnum'
+            id:
+              description: The ID of template
+              type: string
+          required:
+          - type
+          - id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
     EmailContent:
       type: object
       properties:
@@ -3295,45 +3329,111 @@ components:
           - string
           - 'null'
           example: bcc@my-company.com
-    CampaignsSMSTrackingOptions:
+    CampaignSendJobPartialUpdateQuery:
       type: object
       properties:
-        add_tracking_params:
-          description: Whether the campaign needs custom tracking parameters. If set to False, tracking params will not be used.
+        data:
+          $ref: '#/components/schemas/CampaignSendJobPartialUpdateQueryResourceObject'
+      required:
+      - data
+    SMSContentCreate:
+      type: object
+      properties:
+        body:
+          description: The message body
           type:
-          - boolean
+          - string
           - 'null'
-        custom_tracking_params:
-          description: A list of custom tracking parameters. If an empty list is given and add_tracking_params is True, uses company defaults.
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/DynamicTrackingParam'
-            - $ref: '#/components/schemas/StaticTrackingParam'
-    CampaignRecipientEstimationJobResponseObjectResource:
+          example: My preview sms
+    CampaignMessageResponseObjectResource:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/CampaignRecipientEstimationJobEnum'
+          $ref: '#/components/schemas/CampaignMessageEnum'
         id:
-          description: The ID of the campaign used for estimating recipients
+          description: The message ID
           type: string
-          example: 01GMRWDSA0ARTAKE1SFX8JGXAY
         attributes:
           type: object
           properties:
-            status:
-              description: The status of the recipient estimation job
-              type: string
-              enum:
-              - cancelled
-              - complete
-              - processing
-              - queued
-          required:
-          - status
+            definition:
+              oneOf:
+              - $ref: '#/components/schemas/EmailMessageDefinition'
+              - $ref: '#/components/schemas/SMSMessageDefinition'
+              - $ref: '#/components/schemas/MobilePushMessageStandardDefinition'
+              - $ref: '#/components/schemas/MobilePushMessageSilentDefinition'
+            send_times:
+              description: The list of appropriate Send Time Sub-objects associated with the message
+              type:
+              - array
+              - 'null'
+              items:
+                $ref: '#/components/schemas/SendTime'
+            created_at:
+              description: The datetime when the message was created
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated_at:
+              description: The datetime when the message was last updated
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+        relationships:
+          type: object
+          properties:
+            campaign:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/CampaignEnum'
+                    id:
+                      description: The parent campaign id
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            template:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/TemplateEnum'
+                    id:
+                      description: The associated template id
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            image:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/ImageEnum'
+                    id:
+                      description: The associated image id
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
@@ -3341,18 +3441,297 @@ components:
       - id
       - attributes
       - links
-    CampaignMessageProperty:
+    PostCampaignMessageResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/CampaignMessageEnum'
+            id:
+              description: The message ID
+              type: string
+            attributes:
+              type: object
+              properties:
+                label:
+                  description: The label or name on the message
+                  type: string
+                channel:
+                  description: The channel the message is to be sent on
+                  type: string
+                content:
+                  description: Additional attributes relating to the content of the message
+                  oneOf:
+                  - $ref: '#/components/schemas/EmailContentSubObject'
+                  - $ref: '#/components/schemas/SMSContentSubObject'
+                send_times:
+                  description: The list of appropriate Send Time Sub-objects associated with the message
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    $ref: '#/components/schemas/SendTimeSubObject'
+                render_options:
+                  description: Additional options for rendering the message
+                  $ref: '#/components/schemas/RenderOptionsSubObject'
+                created_at:
+                  description: The datetime when the message was created
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated_at:
+                  description: The datetime when the message was last updated
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+              required:
+              - label
+              - channel
+              - content
+            relationships:
+              type: object
+              properties:
+                campaign:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/CampaignEnum'
+                        id:
+                          description: The parent campaign id
+                          type: string
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                template:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/TemplateEnum'
+                        id:
+                          description: The associated template id
+                          type: string
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    EmailContentSubObject:
+      type: object
+      properties:
+        subject:
+          description: The subject of the message
+          type:
+          - string
+          - 'null'
+          example: Buy our product!
+        preview_text:
+          description: Preview text associated with the message
+          type:
+          - string
+          - 'null'
+          example: My preview text
+        from_email:
+          description: The email the message should be sent from
+          type:
+          - string
+          - 'null'
+          example: store@my-company.com
+        from_label:
+          description: The label associated with the from_email
+          type:
+          - string
+          - 'null'
+          example: My Company
+        reply_to_email:
+          description: Optional Reply-To email address
+          type:
+          - string
+          - 'null'
+          example: reply-to@my-company.com
+        cc_email:
+          description: Optional CC email address
+          type:
+          - string
+          - 'null'
+          example: cc@my-company.com
+        bcc_email:
+          description: Optional BCC email address
+          type:
+          - string
+          - 'null'
+          example: bcc@my-company.com
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
+      required:
+      - self
+      - related
+    GetCampaignMessageResponseCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignMessageResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TemplateResponseObjectResource'
+            - $ref: '#/components/schemas/CampaignResponseObjectResource'
+            - $ref: '#/components/schemas/ImageResponseObjectResource'
+      required:
+      - data
+    GetCampaignMessageImageRelationshipResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ImageEnum'
+            id:
+              description: The ID of the image
+              type: string
+              example: '7'
+          required:
+          - type
+          - id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    UnsupportedSendStrategy:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - unsupported
+      required:
+      - method
+    CampaignMessageStaticCount:
       type: object
       properties:
         badge_config:
           type: string
           enum:
-          - set_property
-        set_from_property:
+          - set_count
+        value:
           type: string
       required:
       - badge_config
-      - set_from_property
+      - value
+    GetCampaignResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    Audiences:
+      type: object
+      properties:
+        included:
+          description: A list of included audiences
+          type: array
+          items:
+            type: string
+          example:
+          - Y6nRLr
+        excluded:
+          description: An optional list of excluded audiences
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          example:
+          - UTd5ui
+      required:
+      - included
+    MobilePushContentCreate:
+      type: object
+      properties:
+        title:
+          description: The title of the message
+          type:
+          - string
+          - 'null'
+        body:
+          description: The message body
+          type: string
+          example: My preview push notification
+        dynamic_image:
+          description: The dynamic image to be used in the push notification
+          type:
+          - string
+          - 'null'
+        action_buttons:
+          description: Action buttons for the push notification (max 3, positions 0-indexed with no gaps)
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PushActionButtonDefinition'
+      required:
+      - body
+    CampaignCloneQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CampaignEnum'
+        id:
+          description: The campaign ID to be cloned
+          type: string
+        attributes:
+          type: object
+          properties:
+            new_name:
+              description: The name for the new cloned campaign
+              type:
+              - string
+              - 'null'
+              example: My cloned campaign's new name
+      required:
+      - type
+      - id
+      - attributes
     MobilePushBadge:
       type: object
       properties:
@@ -3369,94 +3748,44 @@ components:
           - $ref: '#/components/schemas/CampaignMessageProperty'
       required:
       - display
-    CampaignSendJobEnum:
-      type: string
-      enum:
-      - campaign-send-job
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    MobilePushContent:
-      type: object
-      properties:
-        title:
-          description: The title of the message
-          type:
-          - string
-          - 'null'
-        body:
-          description: The message body
-          type:
-          - string
-          - 'null'
-          example: My preview push notification
-        dynamic_image:
-          description: The dynamic image to be used in the push notification
-          type:
-          - string
-          - 'null'
-        action_buttons:
-          description: Action buttons for the push notification
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PushActionButtonDefinition'
-    CampaignSendJobPartialUpdateQueryResourceObject:
+    CampaignRecipientEstimationJobCreateQueryResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/CampaignSendJobEnum'
+          $ref: '#/components/schemas/CampaignRecipientEstimationJobEnum'
         id:
-          description: The ID of the currently sending campaign to cancel or revert
+          description: The ID of the campaign to perform recipient estimation
           type: string
-        attributes:
-          type: object
-          properties:
-            action:
-              description: The action you would like to take with this send job from among 'cancel' and 'revert'
-              type: string
-              example: cancel
-              enum:
-              - cancel
-              - revert
-          required:
-          - action
       required:
       - type
       - id
-      - attributes
-    CampaignPartialUpdateQuery:
+    GetCampaignMessageCampaignRelationshipResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/CampaignPartialUpdateQueryResourceObject'
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/CampaignEnum'
+            id:
+              description: The campaign ID
+              type: string
+          required:
+          - type
+          - id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    NonLocalStaticSend:
+    GetImageResponse:
       type: object
       properties:
-        is_local:
-          description: Whether the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.
-          type: boolean
-          enum:
-          - false
+        data:
+          $ref: '#/components/schemas/ImageResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
       required:
-      - is_local
-    UnsupportedSendStrategy:
-      type: object
-      properties:
-        method:
-          type: string
-          enum:
-          - unsupported
-      required:
-      - method
+      - data
     PostCampaignSendJobResponse:
       type: object
       properties:
@@ -3492,123 +3821,70 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    ListEnum:
+    EmailSendOptions:
+      type: object
+      properties:
+        use_smart_sending:
+          description: Use smart sending.
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+    SegmentEnum:
       type: string
       enum:
-      - list
-    RelationshipLinks:
+      - segment
+    MobilePushMessageSilentDefinition:
       type: object
       properties:
-        self:
+        channel:
           type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
-    CampaignMessagePartialUpdateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignMessageEnum'
-        id:
-          description: The message ID to be retrieved
-          type: string
-        attributes:
-          type: object
-          properties:
-            definition:
-              description: The contents and settings of the campaign message
-              oneOf:
-              - $ref: '#/components/schemas/EmailMessageDefinition'
-              - $ref: '#/components/schemas/SMSMessageDefinitionCreate'
-              - $ref: '#/components/schemas/MobilePushMessageStandardDefinitionUpdate'
-              - $ref: '#/components/schemas/MobilePushMessageSilentDefinitionUpdate'
-        relationships:
-          type: object
-          properties:
-            image:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/ImageEnum'
-                    id:
-                      description: The associated image for mobile_push messages
-                      type: string
-                  required:
-                  - type
-                  - id
-      required:
-      - type
-      - id
-      - attributes
-    MobilePushNoBadge:
-      type: object
-      properties:
-        display:
-          description: Whether to display a badge on the app icon
-          type: boolean
           enum:
-          - false
+          - mobile_push
+        notification_type:
+          description: The type of notification to send
+          type: string
+          enum:
+          - silent
+        kv_pairs:
+          description: The key-value pairs to be sent with the push notification
+          type:
+          - object
+          - 'null'
       required:
-      - display
-    PushOnOpenDeepLink:
+      - channel
+      - notification_type
+    PushOnOpenApp:
       type: object
       properties:
         type:
           type: string
           enum:
-          - deep_link
-        ios_deep_link:
-          description: required for all platforms enabled for push
-          type:
-          - string
-          - 'null'
-        android_deep_link:
-          description: required for all platforms enabled for push
-          type:
-          - string
-          - 'null'
+          - open_app
       required:
       - type
-    ImageResponseObjectResource:
+    CampaignSendJobResponseObjectResource:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/ImageEnum'
+          $ref: '#/components/schemas/CampaignSendJobEnum'
         id:
-          description: The ID of the image
+          description: The ID of the campaign to send
           type: string
-          example: '7'
         attributes:
           type: object
           properties:
-            name:
+            status:
+              description: The status of the send job
               type: string
-            image_url:
-              type: string
-            format:
-              type: string
-            size:
-              type: integer
-            hidden:
-              type: boolean
-            updated_at:
-              type: string
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
+              enum:
+              - cancelled
+              - complete
+              - processing
+              - queued
           required:
-          - name
-          - image_url
-          - format
-          - size
-          - hidden
-          - updated_at
+          - status
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
@@ -3616,38 +3892,200 @@ components:
       - id
       - attributes
       - links
-    GetCampaignRecipientEstimationResponse:
+    ThrottledSendStrategy:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - throttled
+        datetime:
+          description: The time to send at
+          type: string
+          format: date-time
+        throttle_percentage:
+          description: The percentage of recipients per hour to send to.
+          type: integer
+          enum:
+          - 10
+          - 11
+          - 13
+          - 14
+          - 17
+          - 20
+          - 25
+          - 33
+          - 50
+      required:
+      - method
+      - datetime
+      - throttle_percentage
+    EmailMessageDefinition:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - email
+        label:
+          description: The label or name on the message
+          type:
+          - string
+          - 'null'
+          example: My message name
+        content:
+          $ref: '#/components/schemas/EmailContent'
+          description: Additional attributes relating to the content of the message
+      required:
+      - channel
+    GetCampaignSendJobResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/CampaignRecipientEstimationResponseObjectResource'
+          $ref: '#/components/schemas/CampaignSendJobResponseObjectResource'
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetTagResponseCollection:
+    MobilePushMessageStandardDefinitionUpdate:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - mobile_push
+        kv_pairs:
+          description: The key-value pairs to be sent with the push notification
+          type:
+          - object
+          - 'null'
+        content:
+          $ref: '#/components/schemas/MobilePushContentUpdate'
+          description: Additional attributes relating to the content of the message
+        options:
+          description: Additional device specific options for the push notification
+          $ref: '#/components/schemas/MobilePushOptions'
+        notification_type:
+          description: The type of notification to send
+          type: string
+          example: standard
+          default: standard
+          enum:
+          - standard
+      required:
+      - channel
+    SMSMessageDefinitionCreate:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - sms
+        content:
+          $ref: '#/components/schemas/SMSContentCreate'
+          description: Additional attributes relating to the content of the message
+        render_options:
+          description: Additional options for rendering the message
+          $ref: '#/components/schemas/RenderOptions'
+      required:
+      - channel
+    RenderOptions:
+      type: object
+      properties:
+        shorten_links:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+        add_org_prefix:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+        add_info_link:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+        add_opt_out_language:
+          type:
+          - boolean
+          - 'null'
+          default: false
+    CampaignMessageImageUpdateQuery:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ImageEnum'
+            id:
+              description: Campaign Message Image
+              type: string
+              example: '14254'
+          required:
+          - type
+          - id
       required:
       - data
-    CampaignMessageStaticCount:
+    CampaignCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignCreateQueryResourceObject'
+      required:
+      - data
+    CampaignRecipientEstimationJobCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignRecipientEstimationJobCreateQueryResourceObject'
+      required:
+      - data
+    CampaignMessageProperty:
       type: object
       properties:
         badge_config:
           type: string
           enum:
-          - set_count
-        value:
+          - set_property
+        set_from_property:
           type: string
       required:
       - badge_config
-      - value
+      - set_from_property
+    ImmediateSendStrategy:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - immediate
+      required:
+      - method
+    MobilePushMessageSilentDefinitionUpdate:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - mobile_push
+        kv_pairs:
+          description: The key-value pairs to be sent with the push notification
+          type: object
+        notification_type:
+          description: The type of notification to send
+          type: string
+          example: silent
+          default: silent
+          enum:
+          - silent
+      required:
+      - channel
     CampaignResponseObjectResource:
       type: object
       properties:
@@ -3788,403 +4226,10 @@ components:
       - id
       - attributes
       - links
-    PushActionButtonDefinition:
-      type: object
-      properties:
-        label:
-          description: The button label (max 40 characters)
-          type: string
-        action_type:
-          description: 'The action type: open_app, deep_link, open_url, or dismiss'
-          type: string
-        position:
-          description: The display order of the button (0-indexed). If omitted, inferred from the button's order in the list.
-          type:
-          - integer
-          - 'null'
-        url:
-          description: URL for deep_link or open_url action types (max 2048 characters)
-          type:
-          - string
-          - 'null'
-      required:
-      - label
-      - action_type
-    MobilePushMessageStandardDefinition:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - mobile_push
-        notification_type:
-          description: The type of notification to send
-          type: string
-          enum:
-          - standard
-        content:
-          $ref: '#/components/schemas/MobilePushContent'
-          description: Additional attributes relating to the content of the message
-        kv_pairs:
-          description: The key-value pairs to be sent with the push notification
-          type:
-          - object
-          - 'null'
-        options:
-          $ref: '#/components/schemas/MobilePushOptions'
-      required:
-      - channel
-      - notification_type
-      - content
-    RenderOptionsSubObject:
-      type: object
-      properties:
-        shorten_links:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-        add_org_prefix:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-        add_info_link:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-        add_opt_out_language:
-          type:
-          - boolean
-          - 'null'
-          default: false
-    PatchCampaignMessageResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/CampaignMessageEnum'
-            id:
-              description: The message ID
-              type: string
-            attributes:
-              type: object
-              properties:
-                definition:
-                  oneOf:
-                  - $ref: '#/components/schemas/EmailMessageDefinition'
-                  - $ref: '#/components/schemas/SMSMessageDefinition'
-                  - $ref: '#/components/schemas/MobilePushMessageStandardDefinition'
-                  - $ref: '#/components/schemas/MobilePushMessageSilentDefinition'
-                send_times:
-                  description: The list of appropriate Send Time Sub-objects associated with the message
-                  type:
-                  - array
-                  - 'null'
-                  items:
-                    $ref: '#/components/schemas/SendTime'
-                created_at:
-                  description: The datetime when the message was created
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                updated_at:
-                  description: The datetime when the message was last updated
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-            relationships:
-              type: object
-              properties:
-                campaign:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/CampaignEnum'
-                        id:
-                          description: The parent campaign id
-                          type: string
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                template:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/TemplateEnum'
-                        id:
-                          description: The associated template id
-                          type: string
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                image:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/ImageEnum'
-                        id:
-                          description: The associated image id
-                          type: string
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    CampaignRecipientEstimationResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignRecipientEstimationEnum'
-        id:
-          description: The ID of the campaign for which to get the estimated number of recipients
-          type: string
-        attributes:
-          type: object
-          properties:
-            estimated_recipient_count:
-              description: The estimated number of unique recipients the campaign will send to
-              type: integer
-          required:
-          - estimated_recipient_count
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    AudiencesUpdate:
-      type: object
-      properties:
-        included:
-          description: An optional list of included audiences, will override existing included audiences
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          example:
-          - Y6nRLr
-        excluded:
-          description: An optional list of excluded audiences, will override exising excluded audiences
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          example:
-          - UTd5ui
-    PostCampaignMessageResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/CampaignMessageEnum'
-            id:
-              description: The message ID
-              type: string
-            attributes:
-              type: object
-              properties:
-                label:
-                  description: The label or name on the message
-                  type: string
-                channel:
-                  description: The channel the message is to be sent on
-                  type: string
-                content:
-                  description: Additional attributes relating to the content of the message
-                  oneOf:
-                  - $ref: '#/components/schemas/EmailContentSubObject'
-                  - $ref: '#/components/schemas/SMSContentSubObject'
-                send_times:
-                  description: The list of appropriate Send Time Sub-objects associated with the message
-                  type:
-                  - array
-                  - 'null'
-                  items:
-                    $ref: '#/components/schemas/SendTimeSubObject'
-                render_options:
-                  description: Additional options for rendering the message
-                  $ref: '#/components/schemas/RenderOptionsSubObject'
-                created_at:
-                  description: The datetime when the message was created
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                updated_at:
-                  description: The datetime when the message was last updated
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-              required:
-              - label
-              - channel
-              - content
-            relationships:
-              type: object
-              properties:
-                campaign:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/CampaignEnum'
-                        id:
-                          description: The parent campaign id
-                          type: string
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                template:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/TemplateEnum'
-                        id:
-                          description: The associated template id
-                          type: string
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    CampaignCloneQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignEnum'
-        id:
-          description: The campaign ID to be cloned
-          type: string
-        attributes:
-          type: object
-          properties:
-            new_name:
-              description: The name for the new cloned campaign
-              type:
-              - string
-              - 'null'
-              example: My cloned campaign's new name
-      required:
-      - type
-      - id
-      - attributes
-    MobilePushOptions:
-      type: object
-      properties:
-        on_open:
-          oneOf:
-          - $ref: '#/components/schemas/PushOnOpenApp'
-          - $ref: '#/components/schemas/PushOnOpenDeepLink'
-        badge:
-          description: Only supported on iOS.
-          oneOf:
-          - $ref: '#/components/schemas/MobilePushBadge'
-          - $ref: '#/components/schemas/MobilePushNoBadge'
-        play_sound:
-          description: Only supported on iOS.
-          type:
-          - boolean
-          - 'null'
-          default: false
-    CampaignSendJobPartialUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignSendJobPartialUpdateQueryResourceObject'
-      required:
-      - data
-    CampaignSendJobCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignSendJobEnum'
-        id:
-          description: The ID of the campaign to send
-          type: string
-      required:
-      - type
-      - id
-    StaticSendStrategy:
-      type: object
-      properties:
-        method:
-          type: string
-          enum:
-          - static
-        datetime:
-          description: The time to send at
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-        options:
-          description: If the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.
-          oneOf:
-          - $ref: '#/components/schemas/LocalStaticSend'
-          - $ref: '#/components/schemas/NonLocalStaticSend'
-      required:
-      - method
-      - datetime
+    CampaignMessageEnum:
+      type: string
+      enum:
+      - campaign-message
     DynamicTrackingParam:
       type: object
       properties:
@@ -4217,21 +4262,241 @@ components:
       - type
       - value
       - name
-    SMSMessageDefinition:
+    SMSContentSubObject:
+      type: object
+      properties:
+        body:
+          description: The message body
+          type:
+          - string
+          - 'null'
+          example: My preview sms
+        media_url:
+          description: URL for included media
+          type:
+          - string
+          - 'null'
+    LocalStaticSend:
+      type: object
+      properties:
+        is_local:
+          description: Whether the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.
+          type: boolean
+          enum:
+          - true
+        send_past_recipients_immediately:
+          description: Determines if we should send to local recipient timezone if the given time has passed. Only applicable to local sends.
+          type: boolean
+          default: false
+      required:
+      - is_local
+    CampaignEnum:
+      type: string
+      enum:
+      - campaign
+    MobilePushMessageSilentDefinitionCreate:
       type: object
       properties:
         channel:
           type: string
           enum:
-          - sms
-        content:
-          $ref: '#/components/schemas/SMSContent'
-          description: Additional attributes relating to the content of the message
-        render_options:
-          description: Additional options for rendering the message
-          $ref: '#/components/schemas/RenderOptions'
+          - mobile_push
+        kv_pairs:
+          description: The key-value pairs to be sent with the push notification
+          type:
+          - object
+          - 'null'
+        notification_type:
+          description: The type of notification to send
+          type: string
+          example: silent
+          default: silent
+          enum:
+          - silent
       required:
       - channel
+    CampaignMessageAssignTemplateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignMessageAssignTemplateQueryResourceObject'
+      required:
+      - data
+    SmartSendTimeStrategy:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - smart_send_time
+        date:
+          description: The day to send on
+          type: string
+          format: date
+      required:
+      - method
+      - date
+    CampaignMessagePartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CampaignMessageEnum'
+        id:
+          description: The message ID to be retrieved
+          type: string
+        attributes:
+          type: object
+          properties:
+            definition:
+              description: The contents and settings of the campaign message
+              oneOf:
+              - $ref: '#/components/schemas/EmailMessageDefinition'
+              - $ref: '#/components/schemas/SMSMessageDefinitionCreate'
+              - $ref: '#/components/schemas/MobilePushMessageStandardDefinitionUpdate'
+              - $ref: '#/components/schemas/MobilePushMessageSilentDefinitionUpdate'
+        relationships:
+          type: object
+          properties:
+            image:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/ImageEnum'
+                    id:
+                      description: The associated image for mobile_push messages
+                      type: string
+                  required:
+                  - type
+                  - id
+      required:
+      - type
+      - id
+      - attributes
+    MobilePushMessageStandardDefinitionCreate:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - mobile_push
+        content:
+          $ref: '#/components/schemas/MobilePushContentCreate'
+          description: Additional attributes relating to the content of the message
+        kv_pairs:
+          description: The key-value pairs to be sent with the push notification
+          type:
+          - object
+          - 'null'
+        options:
+          $ref: '#/components/schemas/MobilePushOptions'
+        notification_type:
+          description: The type of notification to send
+          type: string
+          example: standard
+          default: standard
+          enum:
+          - standard
+      required:
+      - channel
+      - content
+    StaticSendStrategy:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - static
+        datetime:
+          description: The time to send at
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+        options:
+          description: If the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.
+          oneOf:
+          - $ref: '#/components/schemas/LocalStaticSend'
+          - $ref: '#/components/schemas/NonLocalStaticSend'
+      required:
+      - method
+      - datetime
+    SendTimeSubObject:
+      type: object
+      properties:
+        datetime:
+          description: The datetime that the message is to be sent
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+        is_local:
+          description: Whether that datetime is to be a local datetime for the recipient
+          type: boolean
+      required:
+      - datetime
+      - is_local
+    MobilePushOptions:
+      type: object
+      properties:
+        on_open:
+          oneOf:
+          - $ref: '#/components/schemas/PushOnOpenApp'
+          - $ref: '#/components/schemas/PushOnOpenDeepLink'
+        badge:
+          description: Only supported on iOS.
+          oneOf:
+          - $ref: '#/components/schemas/MobilePushBadge'
+          - $ref: '#/components/schemas/MobilePushNoBadge'
+        play_sound:
+          description: Only supported on iOS.
+          type:
+          - boolean
+          - 'null'
+          default: false
+    SMSSendOptions:
+      type: object
+      properties:
+        use_smart_sending:
+          description: Use smart sending.
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+    PushOnOpenDeepLink:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - deep_link
+        ios_deep_link:
+          description: required for all platforms enabled for push
+          type:
+          - string
+          - 'null'
+        android_deep_link:
+          description: required for all platforms enabled for push
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+    SendTime:
+      type: object
+      properties:
+        datetime:
+          description: The datetime that the message is to be sent
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+        is_local:
+          description: Whether that datetime is to be a local datetime for the recipient
+          type: boolean
+      required:
+      - datetime
+      - is_local
     PostCampaignRecipientEstimationJobResponse:
       type: object
       properties:
@@ -4268,395 +4533,6 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetCampaignResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignResponseObjectResource'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/TagResponseObjectResource'
-            - $ref: '#/components/schemas/CampaignMessageResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    LocalStaticSend:
-      type: object
-      properties:
-        is_local:
-          description: Whether the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.
-          type: boolean
-          enum:
-          - true
-        send_past_recipients_immediately:
-          description: Determines if we should send to local recipient timezone if the given time has passed. Only applicable to local sends.
-          type: boolean
-          default: false
-      required:
-      - is_local
-    TagResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TagEnum'
-        id:
-          description: The Tag ID
-          type: string
-          example: abcd1234-ef56-gh78-ij90-abcdef123456
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The Tag name
-              type: string
-              example: My Tag
-          required:
-          - name
-        relationships:
-          type: object
-          properties:
-            tag-group:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/TagGroupEnum'
-                    id:
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            lists:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/ListEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            segments:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/SegmentEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            campaigns:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/CampaignEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            flows:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/FlowEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    MobilePushContentUpdate:
-      type: object
-      properties:
-        title:
-          description: The title of the message
-          type:
-          - string
-          - 'null'
-        body:
-          description: The message body
-          type:
-          - string
-          - 'null'
-          example: My preview push notification
-        dynamic_image:
-          description: The dynamic image to be used in the push notification
-          type:
-          - string
-          - 'null'
-        action_buttons:
-          description: Action buttons for the push notification (max 3, positions 0-indexed with no gaps)
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PushActionButtonDefinition'
-    MobilePushMessageStandardDefinitionUpdate:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - mobile_push
-        kv_pairs:
-          description: The key-value pairs to be sent with the push notification
-          type:
-          - object
-          - 'null'
-        content:
-          $ref: '#/components/schemas/MobilePushContentUpdate'
-          description: Additional attributes relating to the content of the message
-        options:
-          description: Additional device specific options for the push notification
-          $ref: '#/components/schemas/MobilePushOptions'
-        notification_type:
-          description: The type of notification to send
-          type: string
-          example: standard
-          default: standard
-          enum:
-          - standard
-      required:
-      - channel
-    EmailContentSubObject:
-      type: object
-      properties:
-        subject:
-          description: The subject of the message
-          type:
-          - string
-          - 'null'
-          example: Buy our product!
-        preview_text:
-          description: Preview text associated with the message
-          type:
-          - string
-          - 'null'
-          example: My preview text
-        from_email:
-          description: The email the message should be sent from
-          type:
-          - string
-          - 'null'
-          example: store@my-company.com
-        from_label:
-          description: The label associated with the from_email
-          type:
-          - string
-          - 'null'
-          example: My Company
-        reply_to_email:
-          description: Optional Reply-To email address
-          type:
-          - string
-          - 'null'
-          example: reply-to@my-company.com
-        cc_email:
-          description: Optional CC email address
-          type:
-          - string
-          - 'null'
-          example: cc@my-company.com
-        bcc_email:
-          description: Optional BCC email address
-          type:
-          - string
-          - 'null'
-          example: bcc@my-company.com
-    TagGroupEnum:
-      type: string
-      enum:
-      - tag-group
-    MobilePushContentCreate:
-      type: object
-      properties:
-        title:
-          description: The title of the message
-          type:
-          - string
-          - 'null'
-        body:
-          description: The message body
-          type: string
-          example: My preview push notification
-        dynamic_image:
-          description: The dynamic image to be used in the push notification
-          type:
-          - string
-          - 'null'
-        action_buttons:
-          description: Action buttons for the push notification (max 3, positions 0-indexed with no gaps)
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PushActionButtonDefinition'
-      required:
-      - body
-    GetImageResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ImageResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    SMSMessageDefinitionCreate:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - sms
-        content:
-          $ref: '#/components/schemas/SMSContentCreate'
-          description: Additional attributes relating to the content of the message
-        render_options:
-          description: Additional options for rendering the message
-          $ref: '#/components/schemas/RenderOptions'
-      required:
-      - channel
-    SMSSendOptions:
-      type: object
-      properties:
-        use_smart_sending:
-          description: Use smart sending.
-          type:
-          - boolean
-          - 'null'
-          example: true
-          default: true
-    CampaignCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignCreateQueryResourceObject'
-      required:
-      - data
-    GetCampaignResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CampaignResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/TagResponseObjectResource'
-            - $ref: '#/components/schemas/CampaignMessageResponseObjectResource'
-      required:
-      - data
-    SmartSendTimeStrategy:
-      type: object
-      properties:
-        method:
-          type: string
-          enum:
-          - smart_send_time
-        date:
-          description: The day to send on
-          type: string
-          format: date
-      required:
-      - method
-      - date
-    ImmediateSendStrategy:
-      type: object
-      properties:
-        method:
-          type: string
-          enum:
-          - immediate
-      required:
-      - method
-    CampaignRecipientEstimationJobEnum:
-      type: string
-      enum:
-      - campaign-recipient-estimation-job
-    CampaignMessageCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignMessageEnum'
-        attributes:
-          type: object
-          properties:
-            definition:
-              oneOf:
-              - $ref: '#/components/schemas/EmailMessageDefinition'
-              - $ref: '#/components/schemas/SMSMessageDefinitionCreate'
-              - $ref: '#/components/schemas/MobilePushMessageStandardDefinitionCreate'
-              - $ref: '#/components/schemas/MobilePushMessageSilentDefinitionCreate'
-          required:
-          - definition
-        relationships:
-          type: object
-          properties:
-            image:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/ImageEnum'
-                    id:
-                      description: The associated image for mobile_push messages
-                      type: string
-                  required:
-                  - type
-                  - id
-      required:
-      - type
-      - attributes
     CampaignMessageAssignTemplateQueryResourceObject:
       type: object
       properties:
@@ -4689,9 +4565,133 @@ components:
       - type
       - id
       - relationships
+    RenderOptionsSubObject:
+      type: object
+      properties:
+        shorten_links:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+        add_org_prefix:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+        add_info_link:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          default: true
+        add_opt_out_language:
+          type:
+          - boolean
+          - 'null'
+          default: false
+    GetCampaignRecipientEstimationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignRecipientEstimationResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    TemplateResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TemplateEnum'
+        id:
+          description: The ID of template
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name of the template
+              type: string
+            editor_type:
+              description: '`editor_type` has a fixed set of values:
+
+                * SYSTEM_DRAGGABLE: indicates a drag-and-drop editor template
+
+                * SIMPLE: A rich text editor template
+
+                * CODE: A custom HTML template
+
+                * USER_DRAGGABLE: A hybrid template, using custom HTML in the drag-and-drop editor'
+              type: string
+            html:
+              description: The rendered HTML of the template
+              type: string
+            text:
+              description: The template plain_text
+              type:
+              - string
+              - 'null'
+            amp:
+              description: The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
+              type:
+              - string
+              - 'null'
+            created:
+              description: The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              description: The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+          required:
+          - name
+          - editor_type
+          - html
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    MobilePushMessageStandardDefinition:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - mobile_push
+        notification_type:
+          description: The type of notification to send
+          type: string
+          enum:
+          - standard
+        content:
+          $ref: '#/components/schemas/MobilePushContent'
+          description: Additional attributes relating to the content of the message
+        kv_pairs:
+          description: The key-value pairs to be sent with the push notification
+          type:
+          - object
+          - 'null'
+        options:
+          $ref: '#/components/schemas/MobilePushOptions'
+      required:
+      - channel
+      - notification_type
+      - content
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -4724,8 +4724,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:

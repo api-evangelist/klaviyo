@@ -993,6 +993,178 @@ paths:
       - segments:read
 components:
   schemas:
+    AnniversaryDateFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - date
+        operator:
+          description: Operators for anniversary date filters.
+          type: string
+          enum:
+          - anniversary
+          - anniversary-month
+      required:
+      - type
+      - operator
+    HasEmailMarketingNeverSubscribed:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - never_subscribed
+        filters: {}
+      required:
+      - subscription
+    CalendarDateFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - date
+        operator:
+          description: Operators for calendar date filters.
+          type: string
+          enum:
+          - calendar-month
+        value:
+          type: integer
+      required:
+      - type
+      - operator
+      - value
+    ExistenceOperatorExistenceFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - existence
+        operator:
+          description: Operators for existence filters.
+          type: string
+          enum:
+          - is-set
+          - not-set
+      required:
+      - type
+      - operator
+    DataWarehouseImportMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - data_warehouse_import
+      required:
+      - field
+      - method
+    ConstantContactIntegrationFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+        operator:
+          type: string
+          enum:
+          - in
+        value:
+          type: array
+          items:
+            enum:
+            - constant_contact
+            type: string
+      required:
+      - type
+      - operator
+      - value
+    ImplicitlyUnreachable:
+      type: object
+      properties:
+        reachable_status:
+          type: string
+          enum:
+          - implicitly_unreachable
+      required:
+      - reachable_status
+    Subscriptions:
+      type: object
+      properties:
+        email:
+          description: The email channel subscription.
+          $ref: '#/components/schemas/EmailChannel'
+        sms:
+          description: The SMS channel subscription.
+          $ref: '#/components/schemas/SMSChannel'
+        mobile_push:
+          description: The mobile push channel subscription.
+          $ref: '#/components/schemas/PushChannel'
+        whatsapp:
+          description: The whatsapp channel subscription.
+          $ref: '#/components/schemas/WhatsappChannel'
+    SMSChannel:
+      type: object
+      properties:
+        marketing:
+          description: The SMS marketing subscription.
+          $ref: '#/components/schemas/SMSMarketing'
+        transactional:
+          description: The SMS transactional subscription.
+          $ref: '#/components/schemas/SMSTransactional'
+    WhatsappChannel:
+      type: object
+      properties:
+        marketing:
+          description: The Whatsapp marketing subscription.
+          $ref: '#/components/schemas/WhatsappMarketingChannel'
+        transactional:
+          description: The Whatsapp transactional subscription.
+          $ref: '#/components/schemas/WhatsappTransactionalChannel'
+        conversational:
+          description: The Whatsapp conversational subscription.
+          $ref: '#/components/schemas/WhatsappConversationalChannel'
+    ProfileHasGroupMembershipCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-group-membership
+        is_member:
+          type: boolean
+          enum:
+          - true
+        group_ids:
+          type: array
+          items:
+            type: string
+        timeframe_filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+      required:
+      - type
+      - is_member
+      - group_ids
+    SegmentPartialUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SegmentPartialUpdateQueryResourceObject'
+      required:
+      - data
     SegmentListResponseObjectResource:
       type: object
       properties:
@@ -1097,53 +1269,7 @@ components:
       - id
       - attributes
       - links
-    NoSMSMarketingConsent:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - sms
-        can_receive_marketing:
-          type: boolean
-          enum:
-          - false
-        consent_status:
-          oneOf:
-          - $ref: '#/components/schemas/NoSMSMarketing'
-          - $ref: '#/components/schemas/NoSMSMarketingUnsubscribed'
-          - $ref: '#/components/schemas/NoSMSMarketingNeverSubscribed'
-      required:
-      - channel
-      - can_receive_marketing
-      - consent_status
-    CustomSourceFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - custom_source
-        filter:
-          $ref: '#/components/schemas/EqualsStringFilter'
-      required:
-      - field
-      - filter
-    IsSetExistenceFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - existence
-        operator:
-          type: string
-          enum:
-          - is-set
-      required:
-      - type
-      - operator
-    ProfilePredictiveAnalyticsChannelAffinityRankFilter:
+    StringArrayOperatorStringArrayFilter:
       type: object
       properties:
         type:
@@ -1151,76 +1277,350 @@ components:
           enum:
           - string
         operator:
-          oneOf:
-          - enum:
-            - equals
-            type: string
-          - enum:
-            - not-equals
-            type: string
-        value:
-          description: Possible rank values in a channel affinity definition.
+          description: Operators for string-in-array filters.
           type: string
           enum:
-          - high
-          - low
-          - medium
+          - in
+          - not-in
+        value:
+          type: array
+          items:
+            type: string
       required:
       - type
       - operator
       - value
-    WhatsappChannel:
+    ConditionGroup:
       type: object
       properties:
-        marketing:
-          description: The Whatsapp marketing subscription.
-          $ref: '#/components/schemas/WhatsappMarketingChannel'
-        transactional:
-          description: The Whatsapp transactional subscription.
-          $ref: '#/components/schemas/WhatsappTransactionalChannel'
-        conversational:
-          description: The Whatsapp conversational subscription.
-          $ref: '#/components/schemas/WhatsappConversationalChannel'
-    PushChannel:
-      type: object
-      properties:
-        marketing:
-          description: The mobile push marketing subscription.
-          $ref: '#/components/schemas/PushMarketing'
-    HasSMSMarketingConsent:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - sms
-        can_receive_marketing:
-          type: boolean
-          enum:
-          - true
-        consent_status:
-          $ref: '#/components/schemas/HasSMSMarketingSubscribed'
+        conditions:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ProfileHasGroupMembershipCondition'
+            - $ref: '#/components/schemas/ProfileNoGroupMembershipCondition'
+            - $ref: '#/components/schemas/SegmentsProfileMetricCondition'
+            - $ref: '#/components/schemas/ProfileMarketingConsentCondition'
+            - $ref: '#/components/schemas/ProfilePostalCodeDistanceCondition'
+            - $ref: '#/components/schemas/ProfilePropertyCondition'
+            - $ref: '#/components/schemas/ProfileRegionCondition'
+            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsDateCondition'
+            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsNumericCondition'
+            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsStringCondition'
+            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsChannelAffinityPriorityCondition'
+            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsChannelAffinityRankCondition'
+            - $ref: '#/components/schemas/ProfileHasCustomObjectCondition'
+            - $ref: '#/components/schemas/ProfilePermissionsCondition'
+            - $ref: '#/components/schemas/SegmentsProfileMetricFunnelCondition'
       required:
-      - channel
-      - can_receive_marketing
-      - consent_status
-    ExistenceOperatorExistenceFilter:
+      - conditions
+    BooleanFilter:
       type: object
       properties:
         type:
           type: string
           enum:
-          - existence
+          - boolean
         operator:
-          description: Operators for existence filters.
+          description: Operators for boolean filters.
           type: string
           enum:
-          - is-set
-          - not-set
+          - equals
+        value:
+          type: boolean
       required:
       - type
       - operator
-    LessThanPositiveNumericFilter:
+      - value
+    SpamComplaintMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - spam_complaint
+      required:
+      - field
+      - method
+    ProvidedNoAgeMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - provided_no_age
+      required:
+      - field
+      - method
+    GetSegmentTagsRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/TagEnum'
+              id:
+                description: The Tag ID
+                type: string
+                example: abcd1234-ef56-gh78-ij90-abcdef123456
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    EmailMarketing:
+      type: object
+      properties:
+        can_receive_email_marketing:
+          description: Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.
+          type: boolean
+        consent:
+          description: The consent status for email marketing.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when a field on the email marketing object was last modified.
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        method:
+          description: The method by which the profile was subscribed to email marketing.
+          type:
+          - string
+          - 'null'
+          example: PREFERENCE_PAGE
+        method_detail:
+          description: Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: mydomain.com/signup
+          default: ''
+        custom_method_detail:
+          description: Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: marketing drive
+        double_optin:
+          description: Whether the profile was subscribed to email marketing using a double opt-in.
+          type:
+          - boolean
+          - 'null'
+          example: true
+        suppression:
+          description: The global email marketing suppression for this profile.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmailMarketingSuppression'
+        list_suppressions:
+          description: The list suppressions for this profile.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmailMarketingListSuppression'
+      required:
+      - can_receive_email_marketing
+      - consent
+    SubscribedSMSIsRcsCapableFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - is_rcs_capable
+        filter:
+          $ref: '#/components/schemas/BooleanFilter'
+      required:
+      - field
+      - filter
+    AlltimeDateFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - date
+        operator:
+          description: Operators for alltime date filters.
+          type: string
+          enum:
+          - alltime
+      required:
+      - type
+      - operator
+    HasEmailMarketingSubscribed:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - subscribed
+        filters:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/DoubleOptinFilter'
+            - $ref: '#/components/schemas/StatusDateFilter'
+            - $ref: '#/components/schemas/CustomSourceFilter'
+            - $ref: '#/components/schemas/FormMethodFilter'
+            - $ref: '#/components/schemas/PreferencePageFilter'
+            - $ref: '#/components/schemas/APIMethodFilter'
+            - $ref: '#/components/schemas/InboundMessageMethodFilter'
+            - $ref: '#/components/schemas/BackInStockMethodFilter'
+            - $ref: '#/components/schemas/SftpMethodFilter'
+            - $ref: '#/components/schemas/ManualImportManualMethodFilter'
+            - $ref: '#/components/schemas/ManualAddManualMethodFilter'
+            - $ref: '#/components/schemas/ShopifyIntegrationMethodFilter'
+      required:
+      - subscription
+    InvalidEmailDateFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - invalid_email_date
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/CalendarDateFilter'
+          - $ref: '#/components/schemas/AnniversaryDateFilter'
+          - $ref: '#/components/schemas/IsSetExistenceFilter'
+      required:
+      - field
+      - filter
+    SegmentCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SegmentCreateQueryResourceObject'
+      required:
+      - data
+    GetFlowResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ProfileLocation:
+      type: object
+      properties:
+        address1:
+          description: First line of street address
+          type:
+          - string
+          - 'null'
+          example: 89 E 42nd St
+        address2:
+          description: Second line of street address
+          type:
+          - string
+          - 'null'
+          example: 1st floor
+        city:
+          description: City name
+          type:
+          - string
+          - 'null'
+          example: New York
+        country:
+          description: Country name
+          type:
+          - string
+          - 'null'
+          example: United States
+        latitude:
+          description: Latitude coordinate. We recommend providing a precision of four decimal places.
+          example: '40.7128'
+          oneOf:
+          - type: string
+          - type: number
+        longitude:
+          description: Longitude coordinate. We recommend providing a precision of four decimal places.
+          example: '74.0060'
+          oneOf:
+          - type: string
+          - type: number
+        region:
+          description: Region within a country, such as state or province
+          type:
+          - string
+          - 'null'
+          example: NY
+        zip:
+          description: Zip code
+          type:
+          - string
+          - 'null'
+          example: '10017'
+        timezone:
+          description: Time zone name. We recommend using time zones from the IANA Time Zone Database.
+          type:
+          - string
+          - 'null'
+          example: America/New_York
+        ip:
+          description: IP Address
+          type:
+          - string
+          - 'null'
+          example: 127.0.0.1
+    ProfileMarketingConsentCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-marketing-consent
+        consent:
+          oneOf:
+          - $ref: '#/components/schemas/HasEmailMarketingConsent'
+          - $ref: '#/components/schemas/NoEmailMarketingConsent'
+          - $ref: '#/components/schemas/HasSMSMarketingConsent'
+          - $ref: '#/components/schemas/NoSMSMarketingConsent'
+          - $ref: '#/components/schemas/HasPushMarketingConsent'
+          - $ref: '#/components/schemas/NoPushMarketingConsent'
+      required:
+      - type
+      - consent
+    GreaterThanPositiveNumericFilter:
       type: object
       properties:
         type:
@@ -1230,7 +1630,7 @@ components:
         operator:
           type: string
           enum:
-          - less-than
+          - greater-than
         value:
           oneOf:
           - type: integer
@@ -1239,25 +1639,21 @@ components:
       - type
       - operator
       - value
-    ProfileRegionCondition:
+    HasPushMarketing:
       type: object
       properties:
-        type:
+        subscription:
           type: string
           enum:
-          - profile-region
-        in_region:
-          type: boolean
-        region:
-          description: Regions for profile region conditions.
-          type: string
-          enum:
-          - european_union
-          - united_states
+          - any
+        filters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StatusDateFilter'
       required:
-      - type
-      - in_region
-      - region
+      - subscription
     ListSubstringFilter:
       type: object
       properties:
@@ -1279,89 +1675,13 @@ components:
       - type
       - operator
       - value
-    ProvidedLandlineMethodFilter:
+    ManualSuppressionDateFilter:
       type: object
       properties:
         field:
           type: string
           enum:
-          - method
-        method:
-          type: string
-          enum:
-          - provided_landline
-      required:
-      - field
-      - method
-    ProfileHasCustomObjectFilter:
-      type: object
-      properties:
-        property_id:
-          type: integer
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/StringOperatorStringFilter'
-          - $ref: '#/components/schemas/StringArrayOperatorStringArrayFilter'
-          - $ref: '#/components/schemas/NumericOperatorNumericFilter'
-          - $ref: '#/components/schemas/NumericRangeFilter'
-          - $ref: '#/components/schemas/BooleanFilter'
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/ExistenceOperatorExistenceFilter'
-      required:
-      - property_id
-      - filter
-    SMSChannel:
-      type: object
-      properties:
-        marketing:
-          description: The SMS marketing subscription.
-          $ref: '#/components/schemas/SMSMarketing'
-        transactional:
-          description: The SMS transactional subscription.
-          $ref: '#/components/schemas/SMSTransactional'
-    CarrierDeactivationMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - carrier_deactivation
-      required:
-      - field
-      - method
-    NoEmailMarketing:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - any
-        filters:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/BounceDateFilter'
-            - $ref: '#/components/schemas/ManualSuppressionDateFilter'
-            - $ref: '#/components/schemas/InvalidEmailDateFilter'
-      required:
-      - subscription
-    EffectiveDateFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - effective_date
+          - manual_suppression_date
         filter:
           oneOf:
           - $ref: '#/components/schemas/StaticDateFilter'
@@ -1371,10 +1691,51 @@ components:
           - $ref: '#/components/schemas/RelativeDateRangeFilter'
           - $ref: '#/components/schemas/CalendarDateFilter'
           - $ref: '#/components/schemas/AnniversaryDateFilter'
+          - $ref: '#/components/schemas/IsSetExistenceFilter'
       required:
       - field
       - filter
-    ProfilePredictiveAnalyticsStringFilter:
+    APIMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - api
+        filter:
+          description: Optional filter on a specific list of API keys (using last 4 digits of the key)
+          $ref: '#/components/schemas/InStringArrayFilter'
+      required:
+      - field
+      - method
+    ImplicitlyReachable:
+      type: object
+      properties:
+        reachable_status:
+          type: string
+          enum:
+          - implicitly_reachable
+      required:
+      - reachable_status
+    ProfileEnum:
+      type: string
+      enum:
+      - profile
+    TagGroupEnum:
+      type: string
+      enum:
+      - tag-group
+    PushChannel:
+      type: object
+      properties:
+        marketing:
+          description: The mobile push marketing subscription.
+          $ref: '#/components/schemas/PushMarketing'
+    ShopifyIntegrationFilter:
       type: object
       properties:
         type:
@@ -1382,24 +1743,904 @@ components:
           enum:
           - string
         operator:
-          oneOf:
-          - enum:
-            - equals
-            type: string
-          - enum:
-            - not-equals
-            type: string
-        value:
-          description: Values for profile predictive analytics gender conditions.
           type: string
           enum:
-          - likely_female
-          - likely_male
-          - uncertain
+          - in
+        value:
+          type: array
+          items:
+            enum:
+            - shopify
+            type: string
       required:
       - type
       - operator
       - value
+    NumericOperatorNumericFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - numeric
+        operator:
+          description: Operators for numeric filters.
+          type: string
+          enum:
+          - equals
+          - greater-than
+          - greater-than-or-equal
+          - less-than
+          - less-than-or-equal
+          - not-equals
+        value:
+          oneOf:
+          - type: integer
+          - type: number
+      required:
+      - type
+      - operator
+      - value
+    TagEnum:
+      type: string
+      enum:
+      - tag
+    ProfilePropertyCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-property
+        property:
+          type: string
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/StringOperatorStringFilter'
+          - $ref: '#/components/schemas/StringArrayOperatorStringArrayFilter'
+          - $ref: '#/components/schemas/StringPhoneOperatorStringArrayFilter'
+          - $ref: '#/components/schemas/NumericOperatorNumericFilter'
+          - $ref: '#/components/schemas/BooleanFilter'
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/CalendarDateFilter'
+          - $ref: '#/components/schemas/AnniversaryDateFilter'
+          - $ref: '#/components/schemas/ListContainsOperatorListContainsFilter'
+          - $ref: '#/components/schemas/ListLengthFilter'
+          - $ref: '#/components/schemas/ExistenceOperatorExistenceFilter'
+      required:
+      - type
+      - property
+      - filter
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    FlowEnum:
+      type: string
+      enum:
+      - flow
+    HasSMSMarketingSubscribed:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - subscribed
+        filters:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/StatusDateFilter'
+            - $ref: '#/components/schemas/FormMethodFilter'
+            - $ref: '#/components/schemas/ManualImportManualMethodFilter'
+            - $ref: '#/components/schemas/ManualAddManualMethodFilter'
+            - $ref: '#/components/schemas/CheckoutMethodFilter'
+            - $ref: '#/components/schemas/InboundMessageMethodFilter'
+            - $ref: '#/components/schemas/PreferencePageMethodFilter'
+            - $ref: '#/components/schemas/SftpMethodFilter'
+            - $ref: '#/components/schemas/ShopifyIntegrationMethodFilter'
+            - $ref: '#/components/schemas/SubscribedSMSIsRcsCapableFilter'
+      required:
+      - subscription
+    DoubleOptinFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - is_double_opt_in
+        filter:
+          $ref: '#/components/schemas/BooleanFilter'
+      required:
+      - field
+      - filter
+    CheckoutMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - checkout
+      required:
+      - field
+      - method
+    ListSetFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - list
+        operator:
+          description: Operators for list contains set filters.
+          type: string
+          enum:
+          - contains-all
+          - contains-any
+          - not-contains-all
+          - not-contains-any
+        value:
+          type: array
+          items:
+            type: string
+      required:
+      - type
+      - operator
+      - value
+    ProfilePredictiveAnalyticsNumericCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-predictive-analytics
+        dimension:
+          description: Dimensions for numeric profile predictive analytics conditions.
+          type: string
+          enum:
+          - average_days_between_orders
+          - average_order_value
+          - churn_probability
+          - historic_clv
+          - historic_number_of_orders
+          - predicted_clv
+          - predicted_number_of_orders
+          - total_clv
+        filter:
+          $ref: '#/components/schemas/NumericOperatorNumericFilter'
+      required:
+      - type
+      - dimension
+      - filter
+    EmailMarketingSuppression:
+      type: object
+      properties:
+        reason:
+          description: The reason the profile was suppressed.
+          type: string
+          example: HARD_BOUNCE
+          enum:
+          - HARD_BOUNCE
+          - INVALID_EMAIL
+          - SPAM_COMPLAINT
+          - UNSUBSCRIBE
+          - USER_SUPPRESSED
+        timestamp:
+          description: The timestamp when the profile was suppressed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type: string
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - reason
+      - timestamp
+    FormMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - form
+        filter:
+          description: Optional filter on a specific list of form ids
+          $ref: '#/components/schemas/InStringArrayFilter'
+      required:
+      - field
+      - method
+    TagResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TagEnum'
+        id:
+          description: The Tag ID
+          type: string
+          example: abcd1234-ef56-gh78-ij90-abcdef123456
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The Tag name
+              type: string
+              example: My Tag
+          required:
+          - name
+        relationships:
+          type: object
+          properties:
+            tag-group:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/TagGroupEnum'
+                    id:
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            lists:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/ListEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            segments:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/SegmentEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            campaigns:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/CampaignEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            flows:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/FlowEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    ManualImportManualMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - manual_import
+        filter:
+          description: Optional filter on a specific list of user email addresses who initiated the manual action
+          $ref: '#/components/schemas/InStringArrayFilter'
+      required:
+      - field
+      - method
+    ConstantContactIntegrationMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - integration
+        filter:
+          $ref: '#/components/schemas/ConstantContactIntegrationFilter'
+      required:
+      - field
+      - method
+      - filter
+    ProfileMetricFunnelSteps:
+      type: object
+      properties:
+        metric_exists:
+          type: boolean
+        metric_id:
+          type: string
+        metric_filters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProfileMetricPropertyFilter'
+      required:
+      - metric_exists
+      - metric_id
+    SMSTransactional:
+      type: object
+      properties:
+        can_receive_sms_transactional:
+          description: Whether or not this profile is subscribed to receive transactional SMS.
+          type: boolean
+        consent:
+          description: The consent status for SMS Transactional.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for Transactional SMS messaging , in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        method:
+          description: The method by which the profile was subscribed to Transactional SMS messaging .
+          type:
+          - string
+          - 'null'
+          example: TEXT
+        method_detail:
+          description: Additional details about the method which the profile was subscribed to Transactional SMS messaging. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: JOIN
+          default: ''
+        last_updated:
+          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - can_receive_sms_transactional
+      - consent
+    MailboxProviderMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - mailbox_provider
+      required:
+      - field
+      - method
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    ProfilePredictiveAnalyticsDateCondition:
+      type: object
+      properties:
+        dimension:
+          description: Dimension for date profile predictive analytics conditions.
+          type: string
+          enum:
+          - expected_date_of_next_purchase
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/CalendarDateFilter'
+          - $ref: '#/components/schemas/AnniversaryDateFilter'
+        type:
+          type: string
+          enum:
+          - profile-predictive-analytics
+      required:
+      - dimension
+      - filter
+      - type
+    RelativeDateRangeFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - date
+        operator:
+          description: 'Operators for relative date range filters.
+
+
+            e.g. "between 10 and 20 days ago"'
+          type: string
+          enum:
+          - between
+        start:
+          type: integer
+        end:
+          type: integer
+        unit:
+          description: Units for relative date filters.
+          type: string
+          enum:
+          - day
+          - hour
+          - week
+      required:
+      - type
+      - operator
+      - start
+      - end
+      - unit
+    EmailMarketingListSuppression:
+      type: object
+      properties:
+        list_id:
+          description: The ID of list to which the suppression applies.
+          type: string
+          example: Y6nRLr
+        reason:
+          description: The reason the profile was suppressed from the list.
+          type: string
+          example: USER_SUPPRESSED
+        timestamp:
+          description: The timestamp when the profile was suppressed from the list, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type: string
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - list_id
+      - reason
+      - timestamp
+    HasPushMarketingConsent:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - push
+        can_receive_marketing:
+          type: boolean
+          enum:
+          - true
+        consent_status:
+          $ref: '#/components/schemas/HasPushMarketing'
+      required:
+      - channel
+      - can_receive_marketing
+      - consent_status
+    ProfilePredictiveAnalyticsChannelAffinityPriorityFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - numeric
+        operator:
+          type: string
+          enum:
+          - equals
+        value:
+          type: integer
+      required:
+      - type
+      - operator
+      - value
+    ProfilePostalCodeDistanceCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-postal-code-distance
+        country_code:
+          type: string
+        postal_code:
+          type: string
+        unit:
+          description: Units for profile postal code distance conditions.
+          type: string
+          enum:
+          - kilometers
+          - miles
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/GreaterThanPositiveNumericFilter'
+          - $ref: '#/components/schemas/LessThanPositiveNumericFilter'
+      required:
+      - type
+      - country_code
+      - postal_code
+      - unit
+      - filter
+    ListEnum:
+      type: string
+      enum:
+      - list
+    PredictiveAnalytics:
+      type: object
+      properties:
+        historic_clv:
+          description: Total value of all historically placed orders
+          type:
+          - number
+          - 'null'
+          example: 93.87
+        predicted_clv:
+          description: Predicted value of all placed orders in the next 365 days
+          type:
+          - number
+          - 'null'
+          example: 27.24
+        total_clv:
+          description: Sum of historic and predicted CLV
+          type:
+          - number
+          - 'null'
+          example: 121.11
+        historic_number_of_orders:
+          description: Number of already placed orders
+          type:
+          - number
+          - 'null'
+          example: 2
+        predicted_number_of_orders:
+          description: Predicted number of placed orders in the next 365 days
+          type:
+          - number
+          - 'null'
+          example: 0.54
+        average_days_between_orders:
+          description: Average number of days between orders (None if only one order has been placed)
+          type:
+          - number
+          - 'null'
+          example: 189
+        average_order_value:
+          description: Average value of placed orders
+          type:
+          - number
+          - 'null'
+          example: 46.94
+        churn_probability:
+          description: Probability the customer has churned
+          type:
+          - number
+          - 'null'
+          example: 0.89
+        expected_date_of_next_order:
+          description: Expected date of next order, as calculated at the time of their most recent order
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+        ranked_channel_affinity:
+          description: List of channels ranked by their predicted effectiveness for this profile, with the best channel being listed first at index 0
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            enum:
+            - email
+            - push
+            - sms
+            - whatsapp
+            description: Enum for channel name return values used in the V3 API for channel affinity for the field `ranked_channel_affinity`.
+          example:
+          - sms
+          - email
+          - push
+    PushTokenEnum:
+      type: string
+      enum:
+      - push-token
+    GetSegmentProfilesRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/ProfileEnum'
+              id:
+                description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
+                type: string
+                example: 01GDDKASAP8TKDDA2GRZDSVP4H
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ManualAddManualMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - manual_add
+        filter:
+          description: Optional filter on a specific list of user email addresses who initiated the manual action
+          $ref: '#/components/schemas/InStringArrayFilter'
+      required:
+      - field
+      - method
+    GetTagResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ProfilePredictiveAnalyticsStringCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-predictive-analytics
+        dimension:
+          description: Dimension for string profile predictive analytics conditions.
+          type: string
+          enum:
+          - predicted_gender
+        filter:
+          $ref: '#/components/schemas/ProfilePredictiveAnalyticsStringFilter'
+      required:
+      - type
+      - dimension
+      - filter
+    ProfileRegionCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-region
+        in_region:
+          type: boolean
+        region:
+          description: Regions for profile region conditions.
+          type: string
+          enum:
+          - european_union
+          - united_states
+      required:
+      - type
+      - in_region
+      - region
+    NoSMSMarketing:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - any
+      required:
+      - subscription
+    ProfileMetricPropertyFilter:
+      type: object
+      properties:
+        property:
+          type: string
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/StringOperatorStringFilter'
+          - $ref: '#/components/schemas/StringArrayOperatorStringArrayFilter'
+          - $ref: '#/components/schemas/ExistenceOperatorExistenceFilter'
+          - $ref: '#/components/schemas/ListSetFilter'
+          - $ref: '#/components/schemas/ListLengthFilter'
+          - $ref: '#/components/schemas/ListSubstringFilter'
+          - $ref: '#/components/schemas/BooleanFilter'
+          - $ref: '#/components/schemas/NumericOperatorNumericFilter'
+      required:
+      - property
+    NumericRangeFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - numeric
+        operator:
+          description: Operators for numeric range filters.
+          type: string
+          enum:
+          - between
+        start:
+          oneOf:
+          - type: integer
+          - type: number
+        end:
+          oneOf:
+          - type: integer
+          - type: number
+      required:
+      - type
+      - operator
+      - start
+      - end
+    BackInStockMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - back_in_stock
+      required:
+      - field
+      - method
+    ProfileHasCustomObjectCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-has-custom-object
+        object_type_id:
+          type: string
+        object_type_relationship_id:
+          type: string
+        filter:
+          $ref: '#/components/schemas/IntegerFilter'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileHasCustomObjectFilter'
+      required:
+      - type
+      - object_type_id
+      - object_type_relationship_id
+      - filter
+      - filters
+    InStringArrayFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+        operator:
+          type: string
+          enum:
+          - in
+        value:
+          type: array
+          items:
+            type: string
+      required:
+      - type
+      - operator
+      - value
+    LessThanPositiveNumericFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - numeric
+        operator:
+          type: string
+          enum:
+          - less-than
+        value:
+          oneOf:
+          - type: integer
+          - type: number
+      required:
+      - type
+      - operator
+      - value
+    NoPushMarketing:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - any
+      required:
+      - subscription
     ProfilePredictiveAnalyticsChannelAffinityPriorityCondition:
       type: object
       properties:
@@ -1431,112 +2672,135 @@ components:
       - measurement
       - predicted_channel
       - filter
-    NoEmailMarketingSubscribed:
+    WhatsappConversationalChannel:
       type: object
       properties:
-        subscription:
+        consent:
+          description: The consent status for the channel.
           type: string
-          enum:
-          - subscribed
-        filters:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/BounceDateFilter'
-            - $ref: '#/components/schemas/ManualSuppressionDateFilter'
-            - $ref: '#/components/schemas/InvalidEmailDateFilter'
-      required:
-      - subscription
-      - filters
-    HasPushMarketingConsent:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - push
-        can_receive_marketing:
-          type: boolean
-          enum:
-          - true
-        consent_status:
-          $ref: '#/components/schemas/HasPushMarketing'
-      required:
-      - channel
-      - can_receive_marketing
-      - consent_status
-    ProfileMetricPropertyFilter:
-      type: object
-      properties:
-        property:
-          type: string
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/StringOperatorStringFilter'
-          - $ref: '#/components/schemas/StringArrayOperatorStringArrayFilter'
-          - $ref: '#/components/schemas/ExistenceOperatorExistenceFilter'
-          - $ref: '#/components/schemas/ListSetFilter'
-          - $ref: '#/components/schemas/ListLengthFilter'
-          - $ref: '#/components/schemas/ListSubstringFilter'
-          - $ref: '#/components/schemas/BooleanFilter'
-          - $ref: '#/components/schemas/NumericOperatorNumericFilter'
-      required:
-      - property
-    ShopifyIntegrationFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
           - string
-        operator:
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        created_timestamp:
+          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        metadata:
+          description: Channel-specific metadata containing additional information about the permission.
+          type:
+          - object
+          - 'null'
+        can_receive:
+          description: Whether the profile can receive messages on this channel.
+          type: boolean
+        valid_until:
+          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-02-21T20:07:38+00:00'
+        phone_number:
+          description: Phone number to which the consent was granted for.
           type: string
-          enum:
-          - in
-        value:
-          type: array
-          items:
-            enum:
-            - shopify
-            type: string
       required:
-      - type
-      - operator
-      - value
-    ProfilePredictiveAnalyticsStringCondition:
+      - consent
+      - can_receive
+      - phone_number
+    RelationshipLinks:
       type: object
       properties:
-        type:
+        self:
           type: string
-          enum:
-          - profile-predictive-analytics
-        dimension:
-          description: Dimension for string profile predictive analytics conditions.
+          format: uri
+        related:
           type: string
-          enum:
-          - predicted_gender
-        filter:
-          $ref: '#/components/schemas/ProfilePredictiveAnalyticsStringFilter'
+          format: uri
       required:
-      - type
-      - dimension
-      - filter
-    HasPushMarketing:
+      - self
+      - related
+    NoSMSMarketingUnsubscribed:
       type: object
       properties:
         subscription:
           type: string
           enum:
-          - any
+          - unsubscribed
         filters:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/StatusDateFilter'
+            oneOf:
+            - $ref: '#/components/schemas/StatusDateFilter'
+            - $ref: '#/components/schemas/FormMethodFilter'
+            - $ref: '#/components/schemas/ManualImportManualMethodFilter'
+            - $ref: '#/components/schemas/ManualAddManualMethodFilter'
+            - $ref: '#/components/schemas/ManualRemoveMethodFilter'
+            - $ref: '#/components/schemas/BulkRemoveMethodFilter'
+            - $ref: '#/components/schemas/CheckoutMethodFilter'
+            - $ref: '#/components/schemas/InboundMessageMethodFilter'
+            - $ref: '#/components/schemas/PreferencePageMethodFilter'
+            - $ref: '#/components/schemas/SftpMethodFilter'
+            - $ref: '#/components/schemas/CarrierDeactivationMethodFilter'
+            - $ref: '#/components/schemas/ProvidedLandlineMethodFilter'
+            - $ref: '#/components/schemas/MessageBlockedMethodFilter'
+            - $ref: '#/components/schemas/ProvidedNoAgeMethodFilter'
+            - $ref: '#/components/schemas/FailedAgeGateMethodFilter'
+            - $ref: '#/components/schemas/ShopifyIntegrationMethodFilter'
       required:
       - subscription
-    MailboxProviderMethodFilter:
+    SegmentsProfileMetricFunnelCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-metric-funnel
+        timeframe_filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+        completion_window_seconds:
+          description: "Allowed completion window durations for funnel conditions (in\n    seconds)."
+          type:
+          - string
+          - 'null'
+          enum:
+          - DAYS_1
+          - DAYS_180
+          - DAYS_3
+          - DAYS_30
+          - DAYS_5
+          - DAYS_90
+          - HOURS_1
+          - WEEKS_1
+          - YEARS_1
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileMetricFunnelSteps'
+      required:
+      - type
+      - timeframe_filter
+      - steps
+    FailedAgeGateMethodFilter:
       type: object
       properties:
         field:
@@ -1546,63 +2810,147 @@ components:
         method:
           type: string
           enum:
-          - mailbox_provider
+          - failed_age_gate
       required:
       - field
       - method
-    SegmentPartialUpdateQuery:
+    FlowResponseObjectResource:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/SegmentPartialUpdateQueryResourceObject'
+        type:
+          $ref: '#/components/schemas/FlowEnum'
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+            status:
+              type:
+              - string
+              - 'null'
+            archived:
+              type:
+              - boolean
+              - 'null'
+            created:
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            trigger_type:
+              description: Corresponds to the object which triggered the flow.
+              type:
+              - string
+              - 'null'
+              enum:
+              - Added to List
+              - Date Based
+              - Low Inventory
+              - Metric
+              - Price Drop
+              - Unconfigured
+        relationships:
+          type: object
+          properties:
+            flow-actions:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/FlowActionEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            tags:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/TagEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
       required:
-      - data
-    StringArrayOperatorStringArrayFilter:
+      - type
+      - id
+      - attributes
+      - links
+    IntegerFilter:
       type: object
       properties:
         type:
           type: string
           enum:
-          - string
+          - numeric
         operator:
-          description: Operators for string-in-array filters.
+          description: Operators for numeric filters.
           type: string
           enum:
-          - in
-          - not-in
+          - equals
+          - greater-than
+          - greater-than-or-equal
+          - less-than
+          - less-than-or-equal
+          - not-equals
         value:
-          type: array
-          items:
-            type: string
+          type: integer
       required:
       - type
       - operator
       - value
-    ProfilePredictiveAnalyticsDateCondition:
+    StaticDateFilter:
       type: object
       properties:
-        dimension:
-          description: Dimension for date profile predictive analytics conditions.
-          type: string
-          enum:
-          - expected_date_of_next_purchase
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/CalendarDateFilter'
-          - $ref: '#/components/schemas/AnniversaryDateFilter'
         type:
           type: string
           enum:
-          - profile-predictive-analytics
+          - date
+        operator:
+          description: 'Operators for static date filters.
+
+
+            E.g. "before 2023-01-01"'
+          type: string
+          enum:
+          - after
+          - before
+        date:
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
       required:
-      - dimension
-      - filter
       - type
+      - operator
+      - date
     ManualImportMethodFilter:
       type: object
       properties:
@@ -1617,6 +2965,581 @@ components:
       required:
       - field
       - method
+    NoSMSMarketingNeverSubscribed:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - never_subscribed
+      required:
+      - subscription
+    GetSegmentListResponseCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentListResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TagResponseObjectResource'
+            - $ref: '#/components/schemas/FlowResponseObjectResource'
+      required:
+      - data
+    EmailChannel:
+      type: object
+      properties:
+        marketing:
+          description: The email marketing subscription.
+          $ref: '#/components/schemas/EmailMarketing'
+    HasSMSMarketingConsent:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - sms
+        can_receive_marketing:
+          type: boolean
+          enum:
+          - true
+        consent_status:
+          $ref: '#/components/schemas/HasSMSMarketingSubscribed'
+      required:
+      - channel
+      - can_receive_marketing
+      - consent_status
+    InboundMessageMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - inbound_message
+      required:
+      - field
+      - method
+    ProfilePredictiveAnalyticsStringFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+        operator:
+          oneOf:
+          - enum:
+            - equals
+            type: string
+          - enum:
+            - not-equals
+            type: string
+        value:
+          description: Values for profile predictive analytics gender conditions.
+          type: string
+          enum:
+          - likely_female
+          - likely_male
+          - uncertain
+      required:
+      - type
+      - operator
+      - value
+    RelativeAnniversaryDateFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - date
+        operator:
+          description: 'Operators for relative date filters.
+
+
+            e.g. "anniversary in the last 10 days"'
+          type: string
+          enum:
+          - anniversary-last
+          - anniversary-next
+        unit:
+          description: Units for relative date filters.
+          type: string
+          enum:
+          - day
+          - hour
+          - week
+        quantity:
+          type: integer
+      required:
+      - type
+      - operator
+      - unit
+      - quantity
+    CustomSourceFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - custom_source
+        filter:
+          $ref: '#/components/schemas/EqualsStringFilter'
+      required:
+      - field
+      - filter
+    ImplicitlyOrExplicitlyReachable:
+      type: object
+      properties:
+        reachable_status:
+          type: string
+          enum:
+          - implicitly_or_explicitly_reachable
+      required:
+      - reachable_status
+    CarrierDeactivationMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - carrier_deactivation
+      required:
+      - field
+      - method
+    EffectiveDateFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - effective_date
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/CalendarDateFilter'
+          - $ref: '#/components/schemas/AnniversaryDateFilter'
+      required:
+      - field
+      - filter
+    SegmentEnum:
+      type: string
+      enum:
+      - segment
+    NoEmailMarketing:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - any
+        filters:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/BounceDateFilter'
+            - $ref: '#/components/schemas/ManualSuppressionDateFilter'
+            - $ref: '#/components/schemas/InvalidEmailDateFilter'
+      required:
+      - subscription
+    BounceDateFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - bounce_date
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/CalendarDateFilter'
+          - $ref: '#/components/schemas/AnniversaryDateFilter'
+          - $ref: '#/components/schemas/IsSetExistenceFilter'
+      required:
+      - field
+      - filter
+    SegmentCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SegmentEnum'
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            definition:
+              $ref: '#/components/schemas/SegmentDefinition'
+            is_starred:
+              type:
+              - boolean
+              - 'null'
+              default: false
+          required:
+          - name
+          - definition
+      required:
+      - type
+      - attributes
+    SMSMarketing:
+      type: object
+      properties:
+        can_receive_sms_marketing:
+          description: Whether or not this profile is subscribed to receive SMS marketing.
+          type: boolean
+        consent:
+          description: The consent status for SMS marketing.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        method:
+          description: The method by which the profile was subscribed to SMS marketing.
+          type:
+          - string
+          - 'null'
+          example: TEXT
+        method_detail:
+          description: Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
+          type:
+          - string
+          - 'null'
+          example: JOIN
+          default: ''
+        last_updated:
+          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+      required:
+      - can_receive_sms_marketing
+      - consent
+    WhatsappTransactionalChannel:
+      type: object
+      properties:
+        consent:
+          description: The consent status for the channel.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        last_updated:
+          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        created_timestamp:
+          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
+        metadata:
+          description: Channel-specific metadata containing additional information about the permission.
+          type:
+          - object
+          - 'null'
+        can_receive:
+          description: Whether the profile can receive messages on this channel.
+          type: boolean
+        valid_until:
+          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-02-21T20:07:38+00:00'
+        phone_number:
+          description: Phone number to which the consent was granted for.
+          type: string
+      required:
+      - consent
+      - can_receive
+      - phone_number
+    HasEmailMarketing:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - any
+        filters: {}
+      required:
+      - subscription
+    NoEmailMarketingNeverSubscribed:
+      type: object
+      properties:
+        subscription:
+          type: string
+          enum:
+          - never_subscribed
+        filters:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/BounceDateFilter'
+            - $ref: '#/components/schemas/ManualSuppressionDateFilter'
+            - $ref: '#/components/schemas/InvalidEmailDateFilter'
+      required:
+      - subscription
+      - filters
+    ListContainsOperatorListContainsFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - list
+        operator:
+          description: Operators for list contains filters.
+          type: string
+          enum:
+          - contains
+          - not-contains
+        value:
+          oneOf:
+          - type: integer
+          - type: string
+      required:
+      - type
+      - operator
+      - value
+    ProfileModificationMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - profile_modification
+      required:
+      - field
+      - method
+    ShopifyIntegrationMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - integration
+        filter:
+          $ref: '#/components/schemas/ShopifyIntegrationFilter'
+      required:
+      - field
+      - method
+      - filter
+    PatchSegmentPartialUpdateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/SegmentEnum'
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: A helpful name to label the segment
+                  type:
+                  - string
+                  - 'null'
+                  example: Repeat Purchasers
+                definition:
+                  $ref: '#/components/schemas/SegmentDefinition'
+                created:
+                  description: Date and time when the segment was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                updated:
+                  description: Date and time when the segment was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                is_active:
+                  description: Whether the segment is active. Inactive segments are not processed and their membership does not update.
+                  type: boolean
+                is_processing:
+                  type: boolean
+                is_starred:
+                  type: boolean
+              required:
+              - is_active
+              - is_processing
+              - is_starred
+            relationships:
+              type: object
+              properties:
+                profiles:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/ProfileEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                tags:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/TagEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                flow-triggers:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/FlowEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    ProfilePredictiveAnalyticsChannelAffinityRankCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-predictive-analytics
+        dimension:
+          description: Possible dimension for channel affinity criterion.
+          type: string
+          enum:
+          - channel_affinity
+        measurement:
+          type: string
+          enum:
+          - rank
+        predicted_channel:
+          description: Possible channels in a channel affinity definition.
+          type: string
+          enum:
+          - email
+          - push
+          - sms
+        filter:
+          $ref: '#/components/schemas/ProfilePredictiveAnalyticsChannelAffinityRankFilter'
+      required:
+      - type
+      - dimension
+      - measurement
+      - predicted_channel
+      - filter
+    ProfilePredictiveAnalyticsChannelAffinityRankFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+        operator:
+          oneOf:
+          - enum:
+            - equals
+            type: string
+          - enum:
+            - not-equals
+            type: string
+        value:
+          description: Possible rank values in a channel affinity definition.
+          type: string
+          enum:
+          - high
+          - low
+          - medium
+      required:
+      - type
+      - operator
+      - value
     SegmentPartialUpdateQueryResourceObject:
       type: object
       properties:
@@ -1646,125 +3569,20 @@ components:
       - type
       - id
       - attributes
-    ProfilePropertyCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-property
-        property:
-          type: string
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/StringOperatorStringFilter'
-          - $ref: '#/components/schemas/StringArrayOperatorStringArrayFilter'
-          - $ref: '#/components/schemas/StringPhoneOperatorStringArrayFilter'
-          - $ref: '#/components/schemas/NumericOperatorNumericFilter'
-          - $ref: '#/components/schemas/BooleanFilter'
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/CalendarDateFilter'
-          - $ref: '#/components/schemas/AnniversaryDateFilter'
-          - $ref: '#/components/schemas/ListContainsOperatorListContainsFilter'
-          - $ref: '#/components/schemas/ListLengthFilter'
-          - $ref: '#/components/schemas/ExistenceOperatorExistenceFilter'
-      required:
-      - type
-      - property
-      - filter
-    InvalidEmailDateFilter:
+    ManualRemoveMethodFilter:
       type: object
       properties:
         field:
           type: string
           enum:
-          - invalid_email_date
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/CalendarDateFilter'
-          - $ref: '#/components/schemas/AnniversaryDateFilter'
-          - $ref: '#/components/schemas/IsSetExistenceFilter'
+          - method
+        method:
+          type: string
+          enum:
+          - manual_remove
       required:
       - field
-      - filter
-    HasEmailMarketingSubscribed:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - subscribed
-        filters:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/DoubleOptinFilter'
-            - $ref: '#/components/schemas/StatusDateFilter'
-            - $ref: '#/components/schemas/CustomSourceFilter'
-            - $ref: '#/components/schemas/FormMethodFilter'
-            - $ref: '#/components/schemas/PreferencePageFilter'
-            - $ref: '#/components/schemas/APIMethodFilter'
-            - $ref: '#/components/schemas/InboundMessageMethodFilter'
-            - $ref: '#/components/schemas/BackInStockMethodFilter'
-            - $ref: '#/components/schemas/SftpMethodFilter'
-            - $ref: '#/components/schemas/ManualImportManualMethodFilter'
-            - $ref: '#/components/schemas/ManualAddManualMethodFilter'
-            - $ref: '#/components/schemas/ShopifyIntegrationMethodFilter'
-      required:
-      - subscription
-    EmailMarketingSuppression:
-      type: object
-      properties:
-        reason:
-          description: The reason the profile was suppressed.
-          type: string
-          example: HARD_BOUNCE
-          enum:
-          - HARD_BOUNCE
-          - INVALID_EMAIL
-          - SPAM_COMPLAINT
-          - UNSUBSCRIBE
-          - USER_SUPPRESSED
-        timestamp:
-          description: The timestamp when the profile was suppressed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-      required:
-      - reason
-      - timestamp
-    StringPhoneOperatorStringArrayFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - string
-        operator:
-          description: "Operators for phone string array filters.\n\nExample condition using this filter:\n        {"
-          type: string
-          enum:
-          - phone-country-code-in
-          - phone-country-code-not-in
-        value:
-          type: array
-          items:
-            type: string
-      required:
-      - type
-      - operator
-      - value
+      - method
     NoEmailMarketingUnsubscribed:
       type: object
       properties:
@@ -1798,7 +3616,7 @@ components:
               - $ref: '#/components/schemas/InvalidEmailDateFilter'
       required:
       - subscription
-    ProvidedNoAgeMethodFilter:
+    OneClickUnsubscribeMethodFilter:
       type: object
       properties:
         field:
@@ -1808,7 +3626,7 @@ components:
         method:
           type: string
           enum:
-          - provided_no_age
+          - one_click_unsubscribe
       required:
       - field
       - method
@@ -1976,58 +3794,476 @@ components:
       - type
       - attributes
       - links
-    SegmentsProfileMetricFunnelCondition:
+    RelativeDateOperatorBaseRelativeDateFilter:
       type: object
       properties:
         type:
           type: string
           enum:
-          - profile-metric-funnel
-        timeframe_filter:
-          oneOf:
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-        completion_window_seconds:
-          description: "Allowed completion window durations for funnel conditions (in\n    seconds)."
+          - date
+        operator:
+          description: 'Operators for relative date filters.
+
+
+            e.g. "in the last 10 days"'
+          type: string
+          enum:
+          - at-least
+          - in-the-last
+          - in-the-next
+        unit:
+          description: Units for relative date filters.
+          type: string
+          enum:
+          - day
+          - hour
+          - week
+        quantity:
+          type: integer
+      required:
+      - type
+      - operator
+      - unit
+      - quantity
+    StaticDateRangeFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - date
+        operator:
+          description: 'Operators for static date range filters.
+
+
+            E.g. "between 2023-01-01 and 2023-02-01"'
+          type: string
+          enum:
+          - between-static
+        start:
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+        end:
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+      required:
+      - type
+      - operator
+      - start
+      - end
+    PushMarketing:
+      type: object
+      properties:
+        can_receive_push_marketing:
+          description: Whether or not this profile is subscribed to receive mobile push.
+          type: boolean
+        consent:
+          description: The consent status for mobile push marketing.
+          type: string
+          example: SUBSCRIBED
+        consent_timestamp:
+          description: The timestamp when the consent was last changed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
           type:
           - string
           - 'null'
-          enum:
-          - DAYS_1
-          - DAYS_180
-          - DAYS_3
-          - DAYS_30
-          - DAYS_5
-          - DAYS_90
-          - HOURS_1
-          - WEEKS_1
-          - YEARS_1
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProfileMetricFunnelSteps'
+          format: date-time
+          example: '2023-02-21T20:07:38+00:00'
       required:
-      - type
-      - timeframe_filter
-      - steps
-    NoPushMarketingConsent:
+      - can_receive_push_marketing
+      - consent
+    NoSMSMarketingConsent:
       type: object
       properties:
         channel:
           type: string
           enum:
-          - push
+          - sms
         can_receive_marketing:
           type: boolean
           enum:
           - false
         consent_status:
-          $ref: '#/components/schemas/NoPushMarketing'
+          oneOf:
+          - $ref: '#/components/schemas/NoSMSMarketing'
+          - $ref: '#/components/schemas/NoSMSMarketingUnsubscribed'
+          - $ref: '#/components/schemas/NoSMSMarketingNeverSubscribed'
       required:
       - channel
       - can_receive_marketing
       - consent_status
+    GetSegmentMemberResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+            - properties:
+                type:
+                  $ref: '#/components/schemas/ProfileEnum'
+                attributes:
+                  properties:
+                    subscriptions:
+                      $ref: '#/components/schemas/Subscriptions'
+                    predictive_analytics:
+                      $ref: '#/components/schemas/PredictiveAnalytics'
+            - $ref: '#/components/schemas/SegmentMemberResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    StringPhoneOperatorStringArrayFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+        operator:
+          description: "Operators for phone string array filters.\n\nExample condition using this filter:\n        {"
+          type: string
+          enum:
+          - phone-country-code-in
+          - phone-country-code-not-in
+        value:
+          type: array
+          items:
+            type: string
+      required:
+      - type
+      - operator
+      - value
+    GetSegmentFlowTriggersRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/FlowEnum'
+              id:
+                type: string
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    HasEmailMarketingConsent:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - email
+        can_receive_marketing:
+          type: boolean
+          enum:
+          - true
+        consent_status:
+          oneOf:
+          - $ref: '#/components/schemas/HasEmailMarketing'
+          - $ref: '#/components/schemas/HasEmailMarketingSubscribed'
+          - $ref: '#/components/schemas/HasEmailMarketingNeverSubscribed'
+      required:
+      - channel
+      - can_receive_marketing
+      - consent_status
+    MethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - subscribe_method
+        method:
+          description: Method for subscribing / unsubscribing.
+          type: string
+          enum:
+          - api
+          - back_in_stock
+          - bigcommerce
+          - bulk_remove
+          - campaign_monitor
+          - carrier_deactivation
+          - checkout
+          - constant_contact
+          - exact_target
+          - facebook
+          - failed_age_gate
+          - inbound_message
+          - integration
+          - mad_mimi
+          - magento_two
+          - mailbox_provider
+          - manual_add
+          - manual_import
+          - manual_remove
+          - message_blocked
+          - netsuite
+          - preference_page
+          - provided_landline
+          - provided_no_age
+          - sftp
+          - shopify
+          - social_instagram_message
+          - spam_complaint
+          - square
+          - wix
+          - woocommerce
+      required:
+      - field
+      - method
+    MessageBlockedMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - message_blocked
+      required:
+      - field
+      - method
+    ProfileNoGroupMembershipCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-group-membership
+        is_member:
+          type: boolean
+          enum:
+          - false
+        group_ids:
+          type: array
+          items:
+            type: string
+      required:
+      - type
+      - is_member
+      - group_ids
+    PreferencePageMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - preference_page
+      required:
+      - field
+      - method
+    ExplicitlyUnreachable:
+      type: object
+      properties:
+        reachable_status:
+          type: string
+          enum:
+          - explicitly_unreachable
+        filters:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/EffectiveDateFilter'
+            - $ref: '#/components/schemas/RecordedDateFilter'
+            - $ref: '#/components/schemas/MethodFilter'
+            - $ref: '#/components/schemas/FormSubscribeFilter'
+      required:
+      - reachable_status
+      - filters
+    StringOperatorStringFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+        operator:
+          description: Operators for string filters.
+          type: string
+          enum:
+          - contains
+          - ends-with
+          - equals
+          - not-contains
+          - not-ends-with
+          - not-equals
+          - not-starts-with
+          - nregex
+          - regex
+          - starts-with
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - operator
+      - value
+    ListLengthFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - list
+        operator:
+          description: Operators for list length filters.
+          type: string
+          enum:
+          - length-equals
+          - length-greater-than
+          - length-greater-than-or-equal
+          - length-less-than
+          - length-less-than-or-equal
+        value:
+          type: integer
+      required:
+      - type
+      - operator
+      - value
+    SegmentDefinition:
+      type: object
+      properties:
+        condition_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionGroup'
+      required:
+      - condition_groups
+    ProfilePermissionsCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-permissions
+        permission:
+          oneOf:
+          - $ref: '#/components/schemas/ExplicitlyReachable'
+          - $ref: '#/components/schemas/ImplicitlyReachable'
+          - $ref: '#/components/schemas/ImplicitlyOrExplicitlyReachable'
+          - $ref: '#/components/schemas/ExplicitlyUnreachable'
+          - $ref: '#/components/schemas/ImplicitlyUnreachable'
+          - $ref: '#/components/schemas/ImplicitlyOrExplicitlyUnreachable'
+        channel:
+          description: Possible channels for profile permissions criterion.
+          type: string
+          enum:
+          - whatsapp_marketing
+          - whatsapp_transactional
+      required:
+      - type
+      - permission
+      - channel
+    ExplicitlyReachable:
+      type: object
+      properties:
+        reachable_status:
+          type: string
+          enum:
+          - explicitly_reachable
+        filters:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/EffectiveDateFilter'
+            - $ref: '#/components/schemas/RecordedDateFilter'
+            - $ref: '#/components/schemas/MethodFilter'
+            - $ref: '#/components/schemas/FormSubscribeFilter'
+      required:
+      - reachable_status
+      - filters
+    CampaignEnum:
+      type: string
+      enum:
+      - campaign
+    FormSubscribeFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - subscribe_method
+        method:
+          type: string
+          enum:
+          - form
+        filter:
+          description: Optional filter on a specific list of form IDs
+          $ref: '#/components/schemas/InStringArrayFilter'
+      required:
+      - field
+      - method
+    StatusDateFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - status_date
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/CalendarDateFilter'
+          - $ref: '#/components/schemas/AnniversaryDateFilter'
+      required:
+      - field
+      - filter
+    FlowActionEnum:
+      type: string
+      enum:
+      - flow-action
+    EqualsStringFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+        operator:
+          type: string
+          enum:
+          - equals
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - operator
+      - value
+    IsSetExistenceFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - existence
+        operator:
+          type: string
+          enum:
+          - is-set
+      required:
+      - type
+      - operator
     SegmentRetrieveResponseObjectResource:
       type: object
       properties:
@@ -2132,833 +4368,31 @@ components:
       - id
       - attributes
       - links
-    PreferencePageMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - preference_page
-      required:
-      - field
-      - method
-    ProfileNoGroupMembershipCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-group-membership
-        is_member:
-          type: boolean
-          enum:
-          - false
-        group_ids:
-          type: array
-          items:
-            type: string
-      required:
-      - type
-      - is_member
-      - group_ids
-    StringOperatorStringFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - string
-        operator:
-          description: Operators for string filters.
-          type: string
-          enum:
-          - contains
-          - ends-with
-          - equals
-          - not-contains
-          - not-ends-with
-          - not-equals
-          - not-starts-with
-          - nregex
-          - regex
-          - starts-with
-        value:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - operator
-      - value
-    NoSMSMarketingUnsubscribed:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - unsubscribed
-        filters:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/StatusDateFilter'
-            - $ref: '#/components/schemas/FormMethodFilter'
-            - $ref: '#/components/schemas/ManualImportManualMethodFilter'
-            - $ref: '#/components/schemas/ManualAddManualMethodFilter'
-            - $ref: '#/components/schemas/ManualRemoveMethodFilter'
-            - $ref: '#/components/schemas/BulkRemoveMethodFilter'
-            - $ref: '#/components/schemas/CheckoutMethodFilter'
-            - $ref: '#/components/schemas/InboundMessageMethodFilter'
-            - $ref: '#/components/schemas/PreferencePageMethodFilter'
-            - $ref: '#/components/schemas/SftpMethodFilter'
-            - $ref: '#/components/schemas/CarrierDeactivationMethodFilter'
-            - $ref: '#/components/schemas/ProvidedLandlineMethodFilter'
-            - $ref: '#/components/schemas/MessageBlockedMethodFilter'
-            - $ref: '#/components/schemas/ProvidedNoAgeMethodFilter'
-            - $ref: '#/components/schemas/FailedAgeGateMethodFilter'
-            - $ref: '#/components/schemas/ShopifyIntegrationMethodFilter'
-      required:
-      - subscription
-    ProfileMetricFunnelSteps:
-      type: object
-      properties:
-        metric_exists:
-          type: boolean
-        metric_id:
-          type: string
-        metric_filters:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ProfileMetricPropertyFilter'
-      required:
-      - metric_exists
-      - metric_id
-    ListContainsOperatorListContainsFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - list
-        operator:
-          description: Operators for list contains filters.
-          type: string
-          enum:
-          - contains
-          - not-contains
-        value:
-          oneOf:
-          - type: integer
-          - type: string
-      required:
-      - type
-      - operator
-      - value
-    PredictiveAnalytics:
-      type: object
-      properties:
-        historic_clv:
-          description: Total value of all historically placed orders
-          type:
-          - number
-          - 'null'
-          example: 93.87
-        predicted_clv:
-          description: Predicted value of all placed orders in the next 365 days
-          type:
-          - number
-          - 'null'
-          example: 27.24
-        total_clv:
-          description: Sum of historic and predicted CLV
-          type:
-          - number
-          - 'null'
-          example: 121.11
-        historic_number_of_orders:
-          description: Number of already placed orders
-          type:
-          - number
-          - 'null'
-          example: 2
-        predicted_number_of_orders:
-          description: Predicted number of placed orders in the next 365 days
-          type:
-          - number
-          - 'null'
-          example: 0.54
-        average_days_between_orders:
-          description: Average number of days between orders (None if only one order has been placed)
-          type:
-          - number
-          - 'null'
-          example: 189
-        average_order_value:
-          description: Average value of placed orders
-          type:
-          - number
-          - 'null'
-          example: 46.94
-        churn_probability:
-          description: Probability the customer has churned
-          type:
-          - number
-          - 'null'
-          example: 0.89
-        expected_date_of_next_order:
-          description: Expected date of next order, as calculated at the time of their most recent order
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-        ranked_channel_affinity:
-          description: List of channels ranked by their predicted effectiveness for this profile, with the best channel being listed first at index 0
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            enum:
-            - email
-            - push
-            - sms
-            - whatsapp
-            description: Enum for channel name return values used in the V3 API for channel affinity for the field `ranked_channel_affinity`.
-          example:
-          - sms
-          - email
-          - push
-    GetSegmentMemberResponseCollection:
+    GetSegmentRetrieveResponseCompoundDocument:
       type: object
       properties:
         data:
-          type: array
-          items:
-            allOf:
-            - properties:
-                type:
-                  $ref: '#/components/schemas/ProfileEnum'
-                attributes:
-                  properties:
-                    subscriptions:
-                      $ref: '#/components/schemas/Subscriptions'
-                    predictive_analytics:
-                      $ref: '#/components/schemas/PredictiveAnalytics'
-            - $ref: '#/components/schemas/SegmentMemberResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    HasEmailMarketing:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - any
-        filters: {}
-      required:
-      - subscription
-    ManualImportManualMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - manual_import
-        filter:
-          description: Optional filter on a specific list of user email addresses who initiated the manual action
-          $ref: '#/components/schemas/InStringArrayFilter'
-      required:
-      - field
-      - method
-    ProfilePostalCodeDistanceCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-postal-code-distance
-        country_code:
-          type: string
-        postal_code:
-          type: string
-        unit:
-          description: Units for profile postal code distance conditions.
-          type: string
-          enum:
-          - kilometers
-          - miles
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/GreaterThanPositiveNumericFilter'
-          - $ref: '#/components/schemas/LessThanPositiveNumericFilter'
-      required:
-      - type
-      - country_code
-      - postal_code
-      - unit
-      - filter
-    ImplicitlyReachable:
-      type: object
-      properties:
-        reachable_status:
-          type: string
-          enum:
-          - implicitly_reachable
-      required:
-      - reachable_status
-    FlowActionEnum:
-      type: string
-      enum:
-      - flow-action
-    GreaterThanPositiveNumericFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - numeric
-        operator:
-          type: string
-          enum:
-          - greater-than
-        value:
-          oneOf:
-          - type: integer
-          - type: number
-      required:
-      - type
-      - operator
-      - value
-    CalendarDateFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - date
-        operator:
-          description: Operators for calendar date filters.
-          type: string
-          enum:
-          - calendar-month
-        value:
-          type: integer
-      required:
-      - type
-      - operator
-      - value
-    ExplicitlyUnreachable:
-      type: object
-      properties:
-        reachable_status:
-          type: string
-          enum:
-          - explicitly_unreachable
-        filters:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/EffectiveDateFilter'
-            - $ref: '#/components/schemas/RecordedDateFilter'
-            - $ref: '#/components/schemas/MethodFilter'
-            - $ref: '#/components/schemas/FormSubscribeFilter'
-      required:
-      - reachable_status
-      - filters
-    SMSMarketing:
-      type: object
-      properties:
-        can_receive_sms_marketing:
-          description: Whether or not this profile is subscribed to receive SMS marketing.
-          type: boolean
-        consent:
-          description: The consent status for SMS marketing.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        method:
-          description: The method by which the profile was subscribed to SMS marketing.
-          type:
-          - string
-          - 'null'
-          example: TEXT
-        method_detail:
-          description: Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
-          type:
-          - string
-          - 'null'
-          example: JOIN
-          default: ''
-        last_updated:
-          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-      required:
-      - can_receive_sms_marketing
-      - consent
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    GetSegmentListResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentListResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
+          allOf:
+          - properties:
+              type:
+                $ref: '#/components/schemas/SegmentEnum'
+              attributes:
+                properties:
+                  profile_count:
+                    type:
+                    - integer
+                    - 'null'
+          - $ref: '#/components/schemas/SegmentRetrieveResponseObjectResource'
         included:
           type: array
           items:
             oneOf:
             - $ref: '#/components/schemas/TagResponseObjectResource'
             - $ref: '#/components/schemas/FlowResponseObjectResource'
-      required:
-      - data
-    GetFlowResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    PushTokenEnum:
-      type: string
-      enum:
-      - push-token
-    TagEnum:
-      type: string
-      enum:
-      - tag
-    ImplicitlyUnreachable:
-      type: object
-      properties:
-        reachable_status:
-          type: string
-          enum:
-          - implicitly_unreachable
-      required:
-      - reachable_status
-    EqualsStringFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - string
-        operator:
-          type: string
-          enum:
-          - equals
-        value:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - operator
-      - value
-    GetSegmentProfilesRelationshipsResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/ProfileEnum'
-              id:
-                description: Primary key that uniquely identifies this profile. Generated by Klaviyo.
-                type: string
-                example: 01GDDKASAP8TKDDA2GRZDSVP4H
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    CheckoutMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - checkout
-      required:
-      - field
-      - method
-    SegmentEnum:
-      type: string
-      enum:
-      - segment
-    SftpMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - sftp
-      required:
-      - field
-      - method
-    FormMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - form
-        filter:
-          description: Optional filter on a specific list of form ids
-          $ref: '#/components/schemas/InStringArrayFilter'
-      required:
-      - field
-      - method
-    StatusDateFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - status_date
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/CalendarDateFilter'
-          - $ref: '#/components/schemas/AnniversaryDateFilter'
-      required:
-      - field
-      - filter
-    FlowEnum:
-      type: string
-      enum:
-      - flow
-    FlowResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/FlowEnum'
-        id:
-          type: string
-        attributes:
-          type: object
-          properties:
-            name:
-              type:
-              - string
-              - 'null'
-            status:
-              type:
-              - string
-              - 'null'
-            archived:
-              type:
-              - boolean
-              - 'null'
-            created:
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            updated:
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            trigger_type:
-              description: Corresponds to the object which triggered the flow.
-              type:
-              - string
-              - 'null'
-              enum:
-              - Added to List
-              - Date Based
-              - Low Inventory
-              - Metric
-              - Price Drop
-              - Unconfigured
-        relationships:
-          type: object
-          properties:
-            flow-actions:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/FlowActionEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            tags:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/TagEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
-      - type
-      - id
-      - attributes
-      - links
-    SpamComplaintMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - spam_complaint
-      required:
-      - field
-      - method
-    CampaignEnum:
-      type: string
-      enum:
-      - campaign
-    SMSTransactional:
-      type: object
-      properties:
-        can_receive_sms_transactional:
-          description: Whether or not this profile is subscribed to receive transactional SMS.
-          type: boolean
-        consent:
-          description: The consent status for SMS Transactional.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for Transactional SMS messaging , in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        method:
-          description: The method by which the profile was subscribed to Transactional SMS messaging .
-          type:
-          - string
-          - 'null'
-          example: TEXT
-        method_detail:
-          description: Additional details about the method which the profile was subscribed to Transactional SMS messaging. This may be empty if no details were provided.
-          type:
-          - string
-          - 'null'
-          example: JOIN
-          default: ''
-        last_updated:
-          description: The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-      required:
-      - can_receive_sms_transactional
-      - consent
-    AlltimeDateFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - date
-        operator:
-          description: Operators for alltime date filters.
-          type: string
-          enum:
-          - alltime
-      required:
-      - type
-      - operator
-    ProfileEnum:
-      type: string
-      enum:
-      - profile
-    DataWarehouseImportMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - data_warehouse_import
-      required:
-      - field
-      - method
-    HasEmailMarketingConsent:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - email
-        can_receive_marketing:
-          type: boolean
-          enum:
-          - true
-        consent_status:
-          oneOf:
-          - $ref: '#/components/schemas/HasEmailMarketing'
-          - $ref: '#/components/schemas/HasEmailMarketingSubscribed'
-          - $ref: '#/components/schemas/HasEmailMarketingNeverSubscribed'
-      required:
-      - channel
-      - can_receive_marketing
-      - consent_status
-    SubscribedSMSIsRcsCapableFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - is_rcs_capable
-        filter:
-          $ref: '#/components/schemas/BooleanFilter'
-      required:
-      - field
-      - filter
-    ManualRemoveMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - manual_remove
-      required:
-      - field
-      - method
-    IntegerFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - numeric
-        operator:
-          description: Operators for numeric filters.
-          type: string
-          enum:
-          - equals
-          - greater-than
-          - greater-than-or-equal
-          - less-than
-          - less-than-or-equal
-          - not-equals
-        value:
-          type: integer
-      required:
-      - type
-      - operator
-      - value
-    DoubleOptinFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - is_double_opt_in
-        filter:
-          $ref: '#/components/schemas/BooleanFilter'
-      required:
-      - field
-      - filter
+      - data
     NoEmailMarketingConsent:
       type: object
       properties:
@@ -2980,109 +4414,117 @@ components:
       - channel
       - can_receive_marketing
       - consent_status
-    Subscriptions:
+    NoEmailMarketingSubscribed:
       type: object
       properties:
-        email:
-          description: The email channel subscription.
-          $ref: '#/components/schemas/EmailChannel'
-        sms:
-          description: The SMS channel subscription.
-          $ref: '#/components/schemas/SMSChannel'
-        mobile_push:
-          description: The mobile push channel subscription.
-          $ref: '#/components/schemas/PushChannel'
-        whatsapp:
-          description: The whatsapp channel subscription.
-          $ref: '#/components/schemas/WhatsappChannel'
-    RelativeDateRangeFilter:
-      type: object
-      properties:
-        type:
+        subscription:
           type: string
           enum:
-          - date
-        operator:
-          description: 'Operators for relative date range filters.
-
-
-            e.g. "between 10 and 20 days ago"'
-          type: string
-          enum:
-          - between
-        start:
-          type: integer
-        end:
-          type: integer
-        unit:
-          description: Units for relative date filters.
-          type: string
-          enum:
-          - day
-          - hour
-          - week
-      required:
-      - type
-      - operator
-      - start
-      - end
-      - unit
-    ConditionGroup:
-      type: object
-      properties:
-        conditions:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/ProfileHasGroupMembershipCondition'
-            - $ref: '#/components/schemas/ProfileNoGroupMembershipCondition'
-            - $ref: '#/components/schemas/SegmentsProfileMetricCondition'
-            - $ref: '#/components/schemas/ProfileMarketingConsentCondition'
-            - $ref: '#/components/schemas/ProfilePostalCodeDistanceCondition'
-            - $ref: '#/components/schemas/ProfilePropertyCondition'
-            - $ref: '#/components/schemas/ProfileRegionCondition'
-            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsDateCondition'
-            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsNumericCondition'
-            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsStringCondition'
-            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsChannelAffinityPriorityCondition'
-            - $ref: '#/components/schemas/ProfilePredictiveAnalyticsChannelAffinityRankCondition'
-            - $ref: '#/components/schemas/ProfileHasCustomObjectCondition'
-            - $ref: '#/components/schemas/ProfilePermissionsCondition'
-            - $ref: '#/components/schemas/SegmentsProfileMetricFunnelCondition'
-      required:
-      - conditions
-    ProfileHasCustomObjectCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-has-custom-object
-        object_type_id:
-          type: string
-        object_type_relationship_id:
-          type: string
-        filter:
-          $ref: '#/components/schemas/IntegerFilter'
+          - subscribed
         filters:
           type: array
           items:
-            $ref: '#/components/schemas/ProfileHasCustomObjectFilter'
+            oneOf:
+            - $ref: '#/components/schemas/BounceDateFilter'
+            - $ref: '#/components/schemas/ManualSuppressionDateFilter'
+            - $ref: '#/components/schemas/InvalidEmailDateFilter'
       required:
-      - type
-      - object_type_id
-      - object_type_relationship_id
-      - filter
+      - subscription
       - filters
-    ObjectLinks:
+    ImplicitlyOrExplicitlyUnreachable:
       type: object
       properties:
-        self:
+        reachable_status:
           type: string
-          format: uri
+          enum:
+          - implicitly_or_explicitly_unreachable
       required:
-      - self
-    WhatsappTransactionalChannel:
+      - reachable_status
+    ProvidedLandlineMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - provided_landline
+      required:
+      - field
+      - method
+    SegmentsProfileMetricCondition:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - profile-metric
+        metric_id:
+          type: string
+        measurement:
+          description: Measurements for profile metrics.
+          type: string
+          enum:
+          - count
+          - sum
+        measurement_filter:
+          $ref: '#/components/schemas/NumericOperatorNumericFilter'
+        timeframe_filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/AlltimeDateFilter'
+        metric_filters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProfileMetricPropertyFilter'
+      required:
+      - type
+      - metric_id
+      - measurement
+      - measurement_filter
+      - timeframe_filter
+    RecordedDateFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - recorded_date
+        filter:
+          oneOf:
+          - $ref: '#/components/schemas/StaticDateFilter'
+          - $ref: '#/components/schemas/StaticDateRangeFilter'
+          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
+          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
+          - $ref: '#/components/schemas/RelativeDateRangeFilter'
+          - $ref: '#/components/schemas/CalendarDateFilter'
+          - $ref: '#/components/schemas/AnniversaryDateFilter'
+      required:
+      - field
+      - filter
+    BulkRemoveMethodFilter:
+      type: object
+      properties:
+        field:
+          type: string
+          enum:
+          - method
+        method:
+          type: string
+          enum:
+          - bulk_remove
+      required:
+      - field
+      - method
+    WhatsappMarketingChannel:
       type: object
       properties:
         consent:
@@ -3132,44 +4574,17 @@ components:
       - consent
       - can_receive
       - phone_number
-    StaticDateFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - date
-        operator:
-          description: 'Operators for static date filters.
-
-
-            E.g. "before 2023-01-01"'
-          type: string
-          enum:
-          - after
-          - before
-        date:
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-      required:
-      - type
-      - operator
-      - date
-    FormSubscribeFilter:
+    SftpMethodFilter:
       type: object
       properties:
         field:
           type: string
           enum:
-          - subscribe_method
+          - method
         method:
           type: string
           enum:
-          - form
-        filter:
-          description: Optional filter on a specific list of form IDs
-          $ref: '#/components/schemas/InStringArrayFilter'
+          - sftp
       required:
       - field
       - method
@@ -3190,262 +4605,23 @@ components:
       required:
       - field
       - method
-    ProfileModificationMethodFilter:
+    NoPushMarketingConsent:
       type: object
       properties:
-        field:
+        channel:
           type: string
           enum:
-          - method
-        method:
-          type: string
+          - push
+        can_receive_marketing:
+          type: boolean
           enum:
-          - profile_modification
+          - false
+        consent_status:
+          $ref: '#/components/schemas/NoPushMarketing'
       required:
-      - field
-      - method
-    RecordedDateFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - recorded_date
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/CalendarDateFilter'
-          - $ref: '#/components/schemas/AnniversaryDateFilter'
-      required:
-      - field
-      - filter
-    ProfilePredictiveAnalyticsChannelAffinityPriorityFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - numeric
-        operator:
-          type: string
-          enum:
-          - equals
-        value:
-          type: integer
-      required:
-      - type
-      - operator
-      - value
-    NumericOperatorNumericFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - numeric
-        operator:
-          description: Operators for numeric filters.
-          type: string
-          enum:
-          - equals
-          - greater-than
-          - greater-than-or-equal
-          - less-than
-          - less-than-or-equal
-          - not-equals
-        value:
-          oneOf:
-          - type: integer
-          - type: number
-      required:
-      - type
-      - operator
-      - value
-    EmailChannel:
-      type: object
-      properties:
-        marketing:
-          description: The email marketing subscription.
-          $ref: '#/components/schemas/EmailMarketing'
-    ExplicitlyReachable:
-      type: object
-      properties:
-        reachable_status:
-          type: string
-          enum:
-          - explicitly_reachable
-        filters:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/EffectiveDateFilter'
-            - $ref: '#/components/schemas/RecordedDateFilter'
-            - $ref: '#/components/schemas/MethodFilter'
-            - $ref: '#/components/schemas/FormSubscribeFilter'
-      required:
-      - reachable_status
-      - filters
-    ImplicitlyOrExplicitlyUnreachable:
-      type: object
-      properties:
-        reachable_status:
-          type: string
-          enum:
-          - implicitly_or_explicitly_unreachable
-      required:
-      - reachable_status
-    NoSMSMarketing:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - any
-      required:
-      - subscription
-    InStringArrayFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - string
-        operator:
-          type: string
-          enum:
-          - in
-        value:
-          type: array
-          items:
-            type: string
-      required:
-      - type
-      - operator
-      - value
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
-    ListEnum:
-      type: string
-      enum:
-      - list
-    ConstantContactIntegrationFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - string
-        operator:
-          type: string
-          enum:
-          - in
-        value:
-          type: array
-          items:
-            enum:
-            - constant_contact
-            type: string
-      required:
-      - type
-      - operator
-      - value
-    GetSegmentRetrieveResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          allOf:
-          - properties:
-              type:
-                $ref: '#/components/schemas/SegmentEnum'
-              attributes:
-                properties:
-                  profile_count:
-                    type:
-                    - integer
-                    - 'null'
-          - $ref: '#/components/schemas/SegmentRetrieveResponseObjectResource'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/TagResponseObjectResource'
-            - $ref: '#/components/schemas/FlowResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    OneClickUnsubscribeMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - one_click_unsubscribe
-      required:
-      - field
-      - method
-    GetSegmentTagsRelationshipsResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/TagEnum'
-              id:
-                description: The Tag ID
-                type: string
-                example: abcd1234-ef56-gh78-ij90-abcdef123456
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    SegmentCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SegmentEnum'
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            definition:
-              $ref: '#/components/schemas/SegmentDefinition'
-            is_starred:
-              type:
-              - boolean
-              - 'null'
-              default: false
-          required:
-          - name
-          - definition
-      required:
-      - type
-      - attributes
+      - channel
+      - can_receive_marketing
+      - consent_status
     PostSegmentCreateResponse:
       type: object
       properties:
@@ -3557,1206 +4733,30 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    EmailMarketing:
+    ProfileHasCustomObjectFilter:
       type: object
       properties:
-        can_receive_email_marketing:
-          description: Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.
-          type: boolean
-        consent:
-          description: The consent status for email marketing.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        last_updated:
-          description: The timestamp when a field on the email marketing object was last modified.
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        method:
-          description: The method by which the profile was subscribed to email marketing.
-          type:
-          - string
-          - 'null'
-          example: PREFERENCE_PAGE
-        method_detail:
-          description: Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.
-          type:
-          - string
-          - 'null'
-          example: mydomain.com/signup
-          default: ''
-        custom_method_detail:
-          description: Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.
-          type:
-          - string
-          - 'null'
-          example: marketing drive
-        double_optin:
-          description: Whether the profile was subscribed to email marketing using a double opt-in.
-          type:
-          - boolean
-          - 'null'
-          example: true
-        suppression:
-          description: The global email marketing suppression for this profile.
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EmailMarketingSuppression'
-        list_suppressions:
-          description: The list suppressions for this profile.
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EmailMarketingListSuppression'
-      required:
-      - can_receive_email_marketing
-      - consent
-    FailedAgeGateMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - failed_age_gate
-      required:
-      - field
-      - method
-    GetTagResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    APIMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - api
-        filter:
-          description: Optional filter on a specific list of API keys (using last 4 digits of the key)
-          $ref: '#/components/schemas/InStringArrayFilter'
-      required:
-      - field
-      - method
-    BooleanFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - boolean
-        operator:
-          description: Operators for boolean filters.
-          type: string
-          enum:
-          - equals
-        value:
-          type: boolean
-      required:
-      - type
-      - operator
-      - value
-    ProfileMarketingConsentCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-marketing-consent
-        consent:
-          oneOf:
-          - $ref: '#/components/schemas/HasEmailMarketingConsent'
-          - $ref: '#/components/schemas/NoEmailMarketingConsent'
-          - $ref: '#/components/schemas/HasSMSMarketingConsent'
-          - $ref: '#/components/schemas/NoSMSMarketingConsent'
-          - $ref: '#/components/schemas/HasPushMarketingConsent'
-          - $ref: '#/components/schemas/NoPushMarketingConsent'
-      required:
-      - type
-      - consent
-    ImplicitlyOrExplicitlyReachable:
-      type: object
-      properties:
-        reachable_status:
-          type: string
-          enum:
-          - implicitly_or_explicitly_reachable
-      required:
-      - reachable_status
-    RelativeDateOperatorBaseRelativeDateFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - date
-        operator:
-          description: 'Operators for relative date filters.
-
-
-            e.g. "in the last 10 days"'
-          type: string
-          enum:
-          - at-least
-          - in-the-last
-          - in-the-next
-        unit:
-          description: Units for relative date filters.
-          type: string
-          enum:
-          - day
-          - hour
-          - week
-        quantity:
+        property_id:
           type: integer
-      required:
-      - type
-      - operator
-      - unit
-      - quantity
-    AnniversaryDateFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - date
-        operator:
-          description: Operators for anniversary date filters.
-          type: string
-          enum:
-          - anniversary
-          - anniversary-month
-      required:
-      - type
-      - operator
-    MessageBlockedMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - message_blocked
-      required:
-      - field
-      - method
-    BulkRemoveMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - bulk_remove
-      required:
-      - field
-      - method
-    ListLengthFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - list
-        operator:
-          description: Operators for list length filters.
-          type: string
-          enum:
-          - length-equals
-          - length-greater-than
-          - length-greater-than-or-equal
-          - length-less-than
-          - length-less-than-or-equal
-        value:
-          type: integer
-      required:
-      - type
-      - operator
-      - value
-    NoPushMarketing:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - any
-      required:
-      - subscription
-    PushMarketing:
-      type: object
-      properties:
-        can_receive_push_marketing:
-          description: Whether or not this profile is subscribed to receive mobile push.
-          type: boolean
-        consent:
-          description: The consent status for mobile push marketing.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when the consent was last changed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-      required:
-      - can_receive_push_marketing
-      - consent
-    ProfileHasGroupMembershipCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-group-membership
-        is_member:
-          type: boolean
-          enum:
-          - true
-        group_ids:
-          type: array
-          items:
-            type: string
-        timeframe_filter:
-          oneOf:
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-      required:
-      - type
-      - is_member
-      - group_ids
-    ShopifyIntegrationMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - integration
-        filter:
-          $ref: '#/components/schemas/ShopifyIntegrationFilter'
-      required:
-      - field
-      - method
-      - filter
-    SegmentCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/SegmentCreateQueryResourceObject'
-      required:
-      - data
-    TagResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TagEnum'
-        id:
-          description: The Tag ID
-          type: string
-          example: abcd1234-ef56-gh78-ij90-abcdef123456
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The Tag name
-              type: string
-              example: My Tag
-          required:
-          - name
-        relationships:
-          type: object
-          properties:
-            tag-group:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/TagGroupEnum'
-                    id:
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            lists:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/ListEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            segments:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/SegmentEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            campaigns:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/CampaignEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            flows:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/FlowEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    ProfilePermissionsCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-permissions
-        permission:
-          oneOf:
-          - $ref: '#/components/schemas/ExplicitlyReachable'
-          - $ref: '#/components/schemas/ImplicitlyReachable'
-          - $ref: '#/components/schemas/ImplicitlyOrExplicitlyReachable'
-          - $ref: '#/components/schemas/ExplicitlyUnreachable'
-          - $ref: '#/components/schemas/ImplicitlyUnreachable'
-          - $ref: '#/components/schemas/ImplicitlyOrExplicitlyUnreachable'
-        channel:
-          description: Possible channels for profile permissions criterion.
-          type: string
-          enum:
-          - whatsapp_marketing
-          - whatsapp_transactional
-      required:
-      - type
-      - permission
-      - channel
-    StaticDateRangeFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - date
-        operator:
-          description: 'Operators for static date range filters.
-
-
-            E.g. "between 2023-01-01 and 2023-02-01"'
-          type: string
-          enum:
-          - between-static
-        start:
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-        end:
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-      required:
-      - type
-      - operator
-      - start
-      - end
-    EmailMarketingListSuppression:
-      type: object
-      properties:
-        list_id:
-          description: The ID of list to which the suppression applies.
-          type: string
-          example: Y6nRLr
-        reason:
-          description: The reason the profile was suppressed from the list.
-          type: string
-          example: USER_SUPPRESSED
-        timestamp:
-          description: The timestamp when the profile was suppressed from the list, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type: string
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-      required:
-      - list_id
-      - reason
-      - timestamp
-    ProfileLocation:
-      type: object
-      properties:
-        address1:
-          description: First line of street address
-          type:
-          - string
-          - 'null'
-          example: 89 E 42nd St
-        address2:
-          description: Second line of street address
-          type:
-          - string
-          - 'null'
-          example: 1st floor
-        city:
-          description: City name
-          type:
-          - string
-          - 'null'
-          example: New York
-        country:
-          description: Country name
-          type:
-          - string
-          - 'null'
-          example: United States
-        latitude:
-          description: Latitude coordinate. We recommend providing a precision of four decimal places.
-          example: '40.7128'
-          oneOf:
-          - type: string
-          - type: number
-        longitude:
-          description: Longitude coordinate. We recommend providing a precision of four decimal places.
-          example: '74.0060'
-          oneOf:
-          - type: string
-          - type: number
-        region:
-          description: Region within a country, such as state or province
-          type:
-          - string
-          - 'null'
-          example: NY
-        zip:
-          description: Zip code
-          type:
-          - string
-          - 'null'
-          example: '10017'
-        timezone:
-          description: Time zone name. We recommend using time zones from the IANA Time Zone Database.
-          type:
-          - string
-          - 'null'
-          example: America/New_York
-        ip:
-          description: IP Address
-          type:
-          - string
-          - 'null'
-          example: 127.0.0.1
-    WhatsappConversationalChannel:
-      type: object
-      properties:
-        consent:
-          description: The consent status for the channel.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        last_updated:
-          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        created_timestamp:
-          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        metadata:
-          description: Channel-specific metadata containing additional information about the permission.
-          type:
-          - object
-          - 'null'
-        can_receive:
-          description: Whether the profile can receive messages on this channel.
-          type: boolean
-        valid_until:
-          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2024-02-21T20:07:38+00:00'
-        phone_number:
-          description: Phone number to which the consent was granted for.
-          type: string
-      required:
-      - consent
-      - can_receive
-      - phone_number
-    BackInStockMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - back_in_stock
-      required:
-      - field
-      - method
-    BounceDateFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - bounce_date
         filter:
           oneOf:
+          - $ref: '#/components/schemas/StringOperatorStringFilter'
+          - $ref: '#/components/schemas/StringArrayOperatorStringArrayFilter'
+          - $ref: '#/components/schemas/NumericOperatorNumericFilter'
+          - $ref: '#/components/schemas/NumericRangeFilter'
+          - $ref: '#/components/schemas/BooleanFilter'
           - $ref: '#/components/schemas/StaticDateFilter'
           - $ref: '#/components/schemas/StaticDateRangeFilter'
           - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
           - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
           - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/CalendarDateFilter'
-          - $ref: '#/components/schemas/AnniversaryDateFilter'
-          - $ref: '#/components/schemas/IsSetExistenceFilter'
+          - $ref: '#/components/schemas/ExistenceOperatorExistenceFilter'
       required:
-      - field
+      - property_id
       - filter
-    NumericRangeFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - numeric
-        operator:
-          description: Operators for numeric range filters.
-          type: string
-          enum:
-          - between
-        start:
-          oneOf:
-          - type: integer
-          - type: number
-        end:
-          oneOf:
-          - type: integer
-          - type: number
-      required:
-      - type
-      - operator
-      - start
-      - end
-    ListSetFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - list
-        operator:
-          description: Operators for list contains set filters.
-          type: string
-          enum:
-          - contains-all
-          - contains-any
-          - not-contains-all
-          - not-contains-any
-        value:
-          type: array
-          items:
-            type: string
-      required:
-      - type
-      - operator
-      - value
-    ConstantContactIntegrationMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - integration
-        filter:
-          $ref: '#/components/schemas/ConstantContactIntegrationFilter'
-      required:
-      - field
-      - method
-      - filter
-    TagGroupEnum:
-      type: string
-      enum:
-      - tag-group
-    SegmentsProfileMetricCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-metric
-        metric_id:
-          type: string
-        measurement:
-          description: Measurements for profile metrics.
-          type: string
-          enum:
-          - count
-          - sum
-        measurement_filter:
-          $ref: '#/components/schemas/NumericOperatorNumericFilter'
-        timeframe_filter:
-          oneOf:
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/AlltimeDateFilter'
-        metric_filters:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ProfileMetricPropertyFilter'
-      required:
-      - type
-      - metric_id
-      - measurement
-      - measurement_filter
-      - timeframe_filter
-    ManualAddManualMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - manual_add
-        filter:
-          description: Optional filter on a specific list of user email addresses who initiated the manual action
-          $ref: '#/components/schemas/InStringArrayFilter'
-      required:
-      - field
-      - method
-    RelativeAnniversaryDateFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - date
-        operator:
-          description: 'Operators for relative date filters.
-
-
-            e.g. "anniversary in the last 10 days"'
-          type: string
-          enum:
-          - anniversary-last
-          - anniversary-next
-        unit:
-          description: Units for relative date filters.
-          type: string
-          enum:
-          - day
-          - hour
-          - week
-        quantity:
-          type: integer
-      required:
-      - type
-      - operator
-      - unit
-      - quantity
-    InboundMessageMethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - method
-        method:
-          type: string
-          enum:
-          - inbound_message
-      required:
-      - field
-      - method
-    PatchSegmentPartialUpdateResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/SegmentEnum'
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: A helpful name to label the segment
-                  type:
-                  - string
-                  - 'null'
-                  example: Repeat Purchasers
-                definition:
-                  $ref: '#/components/schemas/SegmentDefinition'
-                created:
-                  description: Date and time when the segment was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                updated:
-                  description: Date and time when the segment was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                is_active:
-                  description: Whether the segment is active. Inactive segments are not processed and their membership does not update.
-                  type: boolean
-                is_processing:
-                  type: boolean
-                is_starred:
-                  type: boolean
-              required:
-              - is_active
-              - is_processing
-              - is_starred
-            relationships:
-              type: object
-              properties:
-                profiles:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/ProfileEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                tags:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/TagEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                flow-triggers:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/FlowEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    GetSegmentFlowTriggersRelationshipsResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/FlowEnum'
-              id:
-                type: string
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    NoEmailMarketingNeverSubscribed:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - never_subscribed
-        filters:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/BounceDateFilter'
-            - $ref: '#/components/schemas/ManualSuppressionDateFilter'
-            - $ref: '#/components/schemas/InvalidEmailDateFilter'
-      required:
-      - subscription
-      - filters
-    ProfilePredictiveAnalyticsNumericCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-predictive-analytics
-        dimension:
-          description: Dimensions for numeric profile predictive analytics conditions.
-          type: string
-          enum:
-          - average_days_between_orders
-          - average_order_value
-          - churn_probability
-          - historic_clv
-          - historic_number_of_orders
-          - predicted_clv
-          - predicted_number_of_orders
-          - total_clv
-        filter:
-          $ref: '#/components/schemas/NumericOperatorNumericFilter'
-      required:
-      - type
-      - dimension
-      - filter
-    ProfilePredictiveAnalyticsChannelAffinityRankCondition:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - profile-predictive-analytics
-        dimension:
-          description: Possible dimension for channel affinity criterion.
-          type: string
-          enum:
-          - channel_affinity
-        measurement:
-          type: string
-          enum:
-          - rank
-        predicted_channel:
-          description: Possible channels in a channel affinity definition.
-          type: string
-          enum:
-          - email
-          - push
-          - sms
-        filter:
-          $ref: '#/components/schemas/ProfilePredictiveAnalyticsChannelAffinityRankFilter'
-      required:
-      - type
-      - dimension
-      - measurement
-      - predicted_channel
-      - filter
-    HasEmailMarketingNeverSubscribed:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - never_subscribed
-        filters: {}
-      required:
-      - subscription
-    ManualSuppressionDateFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - manual_suppression_date
-        filter:
-          oneOf:
-          - $ref: '#/components/schemas/StaticDateFilter'
-          - $ref: '#/components/schemas/StaticDateRangeFilter'
-          - $ref: '#/components/schemas/RelativeDateOperatorBaseRelativeDateFilter'
-          - $ref: '#/components/schemas/RelativeAnniversaryDateFilter'
-          - $ref: '#/components/schemas/RelativeDateRangeFilter'
-          - $ref: '#/components/schemas/CalendarDateFilter'
-          - $ref: '#/components/schemas/AnniversaryDateFilter'
-          - $ref: '#/components/schemas/IsSetExistenceFilter'
-      required:
-      - field
-      - filter
-    SegmentDefinition:
-      type: object
-      properties:
-        condition_groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionGroup'
-      required:
-      - condition_groups
-    WhatsappMarketingChannel:
-      type: object
-      properties:
-        consent:
-          description: The consent status for the channel.
-          type: string
-          example: SUBSCRIBED
-        consent_timestamp:
-          description: The timestamp when consent was recorded or updated for the channel, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        last_updated:
-          description: The timestamp when the channel was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        created_timestamp:
-          description: The timestamp when the channel was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-02-21T20:07:38+00:00'
-        metadata:
-          description: Channel-specific metadata containing additional information about the permission.
-          type:
-          - object
-          - 'null'
-        can_receive:
-          description: Whether the profile can receive messages on this channel.
-          type: boolean
-        valid_until:
-          description: Optional expiration date for the permission, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2024-02-21T20:07:38+00:00'
-        phone_number:
-          description: Phone number to which the consent was granted for.
-          type: string
-      required:
-      - consent
-      - can_receive
-      - phone_number
-    HasSMSMarketingSubscribed:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - subscribed
-        filters:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/StatusDateFilter'
-            - $ref: '#/components/schemas/FormMethodFilter'
-            - $ref: '#/components/schemas/ManualImportManualMethodFilter'
-            - $ref: '#/components/schemas/ManualAddManualMethodFilter'
-            - $ref: '#/components/schemas/CheckoutMethodFilter'
-            - $ref: '#/components/schemas/InboundMessageMethodFilter'
-            - $ref: '#/components/schemas/PreferencePageMethodFilter'
-            - $ref: '#/components/schemas/SftpMethodFilter'
-            - $ref: '#/components/schemas/ShopifyIntegrationMethodFilter'
-            - $ref: '#/components/schemas/SubscribedSMSIsRcsCapableFilter'
-      required:
-      - subscription
-    NoSMSMarketingNeverSubscribed:
-      type: object
-      properties:
-        subscription:
-          type: string
-          enum:
-          - never_subscribed
-      required:
-      - subscription
-    MethodFilter:
-      type: object
-      properties:
-        field:
-          type: string
-          enum:
-          - subscribe_method
-        method:
-          description: Method for subscribing / unsubscribing.
-          type: string
-          enum:
-          - api
-          - back_in_stock
-          - bigcommerce
-          - bulk_remove
-          - campaign_monitor
-          - carrier_deactivation
-          - checkout
-          - constant_contact
-          - exact_target
-          - facebook
-          - failed_age_gate
-          - inbound_message
-          - integration
-          - mad_mimi
-          - magento_two
-          - mailbox_provider
-          - manual_add
-          - manual_import
-          - manual_remove
-          - message_blocked
-          - netsuite
-          - preference_page
-          - provided_landline
-          - provided_no_age
-          - sftp
-          - shopify
-          - social_instagram_message
-          - spam_complaint
-          - square
-          - wix
-          - woocommerce
-      required:
-      - field
-      - method
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -4789,8 +4789,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:

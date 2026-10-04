@@ -1799,40 +1799,818 @@ paths:
       x-klaviyo-subtag: Mapped Metrics
 components:
   schemas:
-    GetMappedMetricResponseCompoundDocument:
+    MappedMetricPartialUpdateQuery:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/MappedMetricResponseObjectResource'
+          $ref: '#/components/schemas/MappedMetricPartialUpdateQueryResourceObject'
+      required:
+      - data
+    FlowEnum:
+      type: string
+      enum:
+      - flow
+    CustomMetricGroup:
+      type: object
+      properties:
+        metric_id:
+          description: The ID of the metric that composes the custom metric.
+          type: string
+        metric_filters:
+          description: An optional array of objects for filtering on properties of the metric.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CustomMetricCondition'
+        value_property:
+          description: '
+
+            If the custom metric has a `value` aggregation method, the `value_property` of each `metric_group` of the `definition` should specify the property to calculate the conversion value. If null, the default `$value` property will be used.
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - metric_id
+    CustomMetricResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CustomMetricEnum'
+        id:
+          description: The ID of the custom metric
+          type: string
+          example: 925e385b52fb405715f3616c337cc65c
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.
+              type: string
+              example: My custom metric
+            created:
+              description: The datetime when this custom metric was created.
+              type: string
+              format: date-time
+              example: '2025-04-15T00:00:00Z'
+            updated:
+              description: The datetime when this custom metric was updated.
+              type: string
+              format: date-time
+              example: '2025-04-15T00:00:00Z'
+            definition:
+              description: The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.
+              example:
+                aggregation_method: value
+                metric_groups:
+                - metric_id: AAAAAA
+                  metric_filters:
+                  - property: my_string_property
+                    filter:
+                      type: string
+                      operator: starts-with
+                      value: some_substring
+                  - property: my_numeric_property
+                    filter:
+                      type: numeric
+                      operator: greater-than-or-equal
+                      value: 999
+                  value_property: $value
+                - metric_id: BBBBBB
+                  metric_filters:
+                  - property: my_boolean_property
+                    filter:
+                      type: boolean
+                      operator: equals
+                      value: false
+                  - property: my_list_property
+                    filter:
+                      type: list
+                      operator: contains
+                      value: some_value_in_a_list
+                  value_property: my_numeric_property
+              $ref: '#/components/schemas/CustomMetricDefinition'
+          required:
+          - name
+          - created
+          - updated
+          - definition
+        relationships:
+          type: object
+          properties:
+            metrics:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/MetricEnum'
+                      id:
+                        description: Related metrics
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    ExistenceOperatorExistenceFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - existence
+        operator:
+          description: Operators for existence filters.
+          type: string
+          enum:
+          - is-set
+          - not-set
+      required:
+      - type
+      - operator
+    CustomMetricCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CustomMetricEnum'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.
+              type: string
+              example: My custom metric
+            definition:
+              description: The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.
+              example:
+                aggregation_method: value
+                metric_groups:
+                - metric_id: AAAAAA
+                  metric_filters:
+                  - property: my_string_property
+                    filter:
+                      type: string
+                      operator: starts-with
+                      value: some_substring
+                  - property: my_numeric_property
+                    filter:
+                      type: numeric
+                      operator: greater-than-or-equal
+                      value: 999
+                  value_property: $value
+                - metric_id: BBBBBB
+                  metric_filters:
+                  - property: my_boolean_property
+                    filter:
+                      type: boolean
+                      operator: equals
+                      value: false
+                  - property: my_list_property
+                    filter:
+                      type: list
+                      operator: contains
+                      value: some_value_in_a_list
+                  value_property: my_numeric_property
+              $ref: '#/components/schemas/CustomMetricDefinition'
+          required:
+          - name
+          - definition
+      required:
+      - type
+      - attributes
+    GetMetricResponseCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowResponseObjectResource'
+      required:
+      - data
+    GetMetricPropertyMetricRelationshipResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/MetricEnum'
+            id:
+              description: The Metric ID
+              type: string
+          required:
+          - type
+          - id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
+      required:
+      - self
+      - related
+    CustomMetricPartialUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomMetricPartialUpdateQueryResourceObject'
+      required:
+      - data
+    GetMetricPropertyResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+            - properties:
+                type:
+                  $ref: '#/components/schemas/MetricPropertyEnum'
+                attributes:
+                  properties:
+                    sample_values:
+                      type:
+                      - array
+                      - 'null'
+                      items:
+                        oneOf:
+                        - type: integer
+                        - type: number
+                        - type: string
+                        - type: boolean
+            - $ref: '#/components/schemas/MetricPropertyResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    GetMetricResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MetricResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    FlowResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FlowEnum'
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+            status:
+              type:
+              - string
+              - 'null'
+            archived:
+              type:
+              - boolean
+              - 'null'
+            created:
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            updated:
+              type:
+              - string
+              - 'null'
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
+            trigger_type:
+              description: Corresponds to the object which triggered the flow.
+              type:
+              - string
+              - 'null'
+              enum:
+              - Added to List
+              - Date Based
+              - Low Inventory
+              - Metric
+              - Price Drop
+              - Unconfigured
+        relationships:
+          type: object
+          properties:
+            flow-actions:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/FlowActionEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            tags:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/TagEnum'
+                      id:
+                        type: string
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    ListRegexOperatorListContainsFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - list
+        operator:
+          description: Operators for list regex filters.
+          type: string
+          enum:
+          - contains-ends-with
+          - contains-starts-with
+          - not-contains-ends-with
+          - not-contains-starts-with
+        value:
+          oneOf:
+          - type: integer
+          - type: string
+      required:
+      - type
+      - operator
+      - value
+    GetMetricPropertyResponseCompoundDocument:
+      type: object
+      properties:
+        data:
+          allOf:
+          - properties:
+              type:
+                $ref: '#/components/schemas/MetricPropertyEnum'
+              attributes:
+                properties:
+                  sample_values:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      oneOf:
+                      - type: integer
+                      - type: number
+                      - type: string
+                      - type: boolean
+          - $ref: '#/components/schemas/MetricPropertyResponseObjectResource'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    StringOperatorStringFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - string
+        operator:
+          description: Operators for string filters.
+          type: string
+          enum:
+          - contains
+          - ends-with
+          - equals
+          - not-contains
+          - not-ends-with
+          - not-equals
+          - not-starts-with
+          - nregex
+          - regex
+          - starts-with
+        value:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - operator
+      - value
+    MetricAggregateRowDTO:
+      type: object
+      properties:
+        dimensions:
+          description: List of dimensions associated with this set of measurements
+          type: array
+          items:
+            type: string
+        measurements:
+          description: Dictionary of measurement_key, values
+          type: object
+      required:
+      - dimensions
+      - measurements
+    MetricEnum:
+      type: string
+      enum:
+      - metric
+    MappedMetricResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MappedMetricEnum'
+        id:
+          description: The type of mapping.
+          type: string
+          example: revenue
+          enum:
+          - added_to_cart
+          - cancelled_sales
+          - ordered_product
+          - refunded_sales
+          - revenue
+          - started_checkout
+          - viewed_product
+        attributes:
+          type: object
+          properties:
+            updated:
+              description: The datetime when this mapping was last updated.
+              type: string
+              format: date-time
+              example: '2025-04-15T00:00:00Z'
+          required:
+          - updated
+        relationships:
+          type: object
+          properties:
+            metric:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/MetricEnum'
+                    id:
+                      description: The ID of the metric for this mapping.
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+            custom-metric:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/CustomMetricEnum'
+                    id:
+                      description: The ID of the custom metric for this mapping.
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    GetMappedMetricCustomMetricRelationshipResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/CustomMetricEnum'
+            id:
+              description: The ID of the custom metric
+              type: string
+              example: 925e385b52fb405715f3616c337cc65c
+          required:
+          - type
+          - id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    GetMappedMetricResponseCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MappedMetricResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
         included:
           type: array
           items:
             oneOf:
             - $ref: '#/components/schemas/MetricResponseObjectResource'
             - $ref: '#/components/schemas/CustomMetricResponseObjectResource'
+      required:
+      - data
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    GetCustomMetricResponseCompoundDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomMetricResponseObjectResource'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponseObjectResource'
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetMetricFlowTriggersRelationshipsResponseCollection:
+    GetCustomMetricResponseCollectionCompoundDocument:
       type: object
       properties:
         data:
           type: array
           items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
+            $ref: '#/components/schemas/CustomMetricResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricResponseObjectResource'
+      required:
+      - data
+    BooleanFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - boolean
+        operator:
+          description: Operators for boolean filters.
+          type: string
+          enum:
+          - equals
+        value:
+          type: boolean
+      required:
+      - type
+      - operator
+      - value
+    GetMetricResponseCompoundDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MetricResponseObjectResource'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    PatchMappedMetricResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/MappedMetricEnum'
+            id:
+              description: The type of mapping.
+              type: string
+              example: revenue
+              enum:
+              - added_to_cart
+              - cancelled_sales
+              - ordered_product
+              - refunded_sales
+              - revenue
+              - started_checkout
+              - viewed_product
+            attributes:
+              type: object
+              properties:
+                updated:
+                  description: The datetime when this mapping was last updated.
+                  type: string
+                  format: date-time
+                  example: '2025-04-15T00:00:00Z'
+              required:
+              - updated
+            relationships:
+              type: object
+              properties:
+                metric:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/MetricEnum'
+                        id:
+                          description: The ID of the metric for this mapping.
+                          type: string
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                custom-metric:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/CustomMetricEnum'
+                        id:
+                          description: The ID of the custom metric for this mapping.
+                          type: string
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    FlowActionEnum:
+      type: string
+      enum:
+      - flow-action
+    CustomMetricPartialUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CustomMetricEnum'
+        id:
+          description: The ID of the custom metric
+          type: string
+          example: 925e385b52fb405715f3616c337cc65c
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.
               type:
-                $ref: '#/components/schemas/FlowEnum'
-              id:
-                type: string
+              - string
+              - 'null'
+              example: My custom metric
+            definition:
+              description: The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.
+              example:
+                aggregation_method: value
+                metric_groups:
+                - metric_id: AAAAAA
+                  metric_filters:
+                  - property: my_string_property
+                    filter:
+                      type: string
+                      operator: starts-with
+                      value: some_substring
+                  - property: my_numeric_property
+                    filter:
+                      type: numeric
+                      operator: greater-than-or-equal
+                      value: 999
+                  value_property: $value
+                - metric_id: BBBBBB
+                  metric_filters:
+                  - property: my_boolean_property
+                    filter:
+                      type: boolean
+                      operator: equals
+                      value: false
+                  - property: my_list_property
+                    filter:
+                      type: list
+                      operator: contains
+                      value: some_value_in_a_list
+                  value_property: my_numeric_property
+              $ref: '#/components/schemas/CustomMetricDefinition'
+      required:
+      - type
+      - id
+      - attributes
+    GetFlowResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowResponseObjectResource'
         links:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
+    CustomMetricCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomMetricCreateQueryResourceObject'
+      required:
+      - data
+    StringInArrayFilter:
+      type: object
+      properties:
+        operator:
+          type: string
+          enum:
+          - in
+        value:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+          enum:
+          - string
+      required:
+      - operator
+      - value
+      - type
     MetricResponseObjectResource:
       type: object
       properties:
@@ -1891,98 +2669,81 @@ components:
       - id
       - attributes
       - links
-    ListRegexOperatorListContainsFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - list
-        operator:
-          description: Operators for list regex filters.
-          type: string
-          enum:
-          - contains-ends-with
-          - contains-starts-with
-          - not-contains-ends-with
-          - not-contains-starts-with
-        value:
-          oneOf:
-          - type: integer
-          - type: string
-      required:
-      - type
-      - operator
-      - value
-    GetMetricResponseCompoundDocument:
+    GetMetricFlowTriggersRelationshipsResponseCollection:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/MetricResponseObjectResource'
-        included:
           type: array
           items:
-            $ref: '#/components/schemas/FlowResponseObjectResource'
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/FlowEnum'
+              id:
+                type: string
         links:
-          $ref: '#/components/schemas/ObjectLinks'
+          $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    StringInArrayFilter:
-      type: object
-      properties:
-        operator:
-          type: string
-          enum:
-          - in
-        value:
-          type: array
-          items:
-            type: string
-        type:
-          type: string
-          enum:
-          - string
-      required:
-      - operator
-      - value
-      - type
     MappedMetricEnum:
       type: string
       enum:
       - mapped-metric
-    ExistenceOperatorExistenceFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - existence
-        operator:
-          description: Operators for existence filters.
-          type: string
-          enum:
-          - is-set
-          - not-set
-      required:
-      - type
-      - operator
-    GetMappedMetricResponseCollectionCompoundDocument:
+    GetCustomMetricResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MappedMetricResponseObjectResource'
+          $ref: '#/components/schemas/CustomMetricResponseObjectResource'
         links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/MetricResponseObjectResource'
-            - $ref: '#/components/schemas/CustomMetricResponseObjectResource'
+          $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
+    PostMetricAggregateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/MetricAggregateEnum'
+            id:
+              description: Ephemeral ID associated with the aggregation query
+              type: string
+            attributes:
+              type: object
+              properties:
+                dates:
+                  description: The dates of the query range
+                  type: array
+                  items:
+                    type: string
+                    format: date-time
+                data:
+                  description: Aggregation result data
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/MetricAggregateRowDTO'
+              required:
+              - dates
+              - data
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    MetricPropertyEnum:
+      type: string
+      enum:
+      - metric-property
     CustomMetricCondition:
       type: object
       properties:
@@ -2001,35 +2762,6 @@ components:
       required:
       - property
       - filter
-    StringOperatorStringFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - string
-        operator:
-          description: Operators for string filters.
-          type: string
-          enum:
-          - contains
-          - ends-with
-          - equals
-          - not-contains
-          - not-ends-with
-          - not-equals
-          - not-starts-with
-          - nregex
-          - regex
-          - starts-with
-        value:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - operator
-      - value
     ListSubstringFilter:
       type: object
       properties:
@@ -2051,197 +2783,27 @@ components:
       - type
       - operator
       - value
-    CustomMetricPartialUpdateQueryResourceObject:
+    GetMetricPropertiesRelationshipsResponseCollection:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/CustomMetricEnum'
-        id:
-          description: The ID of the custom metric
-          type: string
-          example: 925e385b52fb405715f3616c337cc65c
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
               type:
-              - string
-              - 'null'
-              example: My custom metric
-            definition:
-              description: The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.
-              example:
-                aggregation_method: value
-                metric_groups:
-                - metric_id: AAAAAA
-                  metric_filters:
-                  - property: my_string_property
-                    filter:
-                      type: string
-                      operator: starts-with
-                      value: some_substring
-                  - property: my_numeric_property
-                    filter:
-                      type: numeric
-                      operator: greater-than-or-equal
-                      value: 999
-                  value_property: $value
-                - metric_id: BBBBBB
-                  metric_filters:
-                  - property: my_boolean_property
-                    filter:
-                      type: boolean
-                      operator: equals
-                      value: false
-                  - property: my_list_property
-                    filter:
-                      type: list
-                      operator: contains
-                      value: some_value_in_a_list
-                  value_property: my_numeric_property
-              $ref: '#/components/schemas/CustomMetricDefinition'
-      required:
-      - type
-      - id
-      - attributes
-    GetCustomMetricResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CustomMetricResponseObjectResource'
+                $ref: '#/components/schemas/MetricPropertyEnum'
+              id:
+                description: The ID of the metric property
+                type: string
+                example: 925e385b52fb405715f3616c337cc65c
         links:
-          $ref: '#/components/schemas/ObjectLinks'
+          $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    PatchCustomMetricResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/CustomMetricEnum'
-            id:
-              description: The ID of the custom metric
-              type: string
-              example: 925e385b52fb405715f3616c337cc65c
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.
-                  type: string
-                  example: My custom metric
-                created:
-                  description: The datetime when this custom metric was created.
-                  type: string
-                  format: date-time
-                  example: '2025-04-15T00:00:00Z'
-                updated:
-                  description: The datetime when this custom metric was updated.
-                  type: string
-                  format: date-time
-                  example: '2025-04-15T00:00:00Z'
-                definition:
-                  description: The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.
-                  example:
-                    aggregation_method: value
-                    metric_groups:
-                    - metric_id: AAAAAA
-                      metric_filters:
-                      - property: my_string_property
-                        filter:
-                          type: string
-                          operator: starts-with
-                          value: some_substring
-                      - property: my_numeric_property
-                        filter:
-                          type: numeric
-                          operator: greater-than-or-equal
-                          value: 999
-                      value_property: $value
-                    - metric_id: BBBBBB
-                      metric_filters:
-                      - property: my_boolean_property
-                        filter:
-                          type: boolean
-                          operator: equals
-                          value: false
-                      - property: my_list_property
-                        filter:
-                          type: list
-                          operator: contains
-                          value: some_value_in_a_list
-                      value_property: my_numeric_property
-                  $ref: '#/components/schemas/CustomMetricDefinition'
-              required:
-              - name
-              - created
-              - updated
-              - definition
-            relationships:
-              type: object
-              properties:
-                metrics:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/MetricEnum'
-                          id:
-                            description: Related metrics
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    GetMetricResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/MetricResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    ListContainsOperatorListContainsFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - list
-        operator:
-          description: Operators for list contains filters.
-          type: string
-          enum:
-          - contains
-          - not-contains
-        value:
-          oneOf:
-          - type: integer
-          - type: string
-      required:
-      - type
-      - operator
-      - value
     MetricAggregateQueryResourceObject:
       type: object
       properties:
@@ -2443,107 +3005,6 @@ components:
       required:
       - type
       - attributes
-    MetricEnum:
-      type: string
-      enum:
-      - metric
-    FlowResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/FlowEnum'
-        id:
-          type: string
-        attributes:
-          type: object
-          properties:
-            name:
-              type:
-              - string
-              - 'null'
-            status:
-              type:
-              - string
-              - 'null'
-            archived:
-              type:
-              - boolean
-              - 'null'
-            created:
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            updated:
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-            trigger_type:
-              description: Corresponds to the object which triggered the flow.
-              type:
-              - string
-              - 'null'
-              enum:
-              - Added to List
-              - Date Based
-              - Low Inventory
-              - Metric
-              - Price Drop
-              - Unconfigured
-        relationships:
-          type: object
-          properties:
-            flow-actions:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/FlowActionEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            tags:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/TagEnum'
-                      id:
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    CustomMetricPartialUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CustomMetricPartialUpdateQueryResourceObject'
-      required:
-      - data
     CustomMetricDefinition:
       type: object
       properties:
@@ -2562,36 +3023,143 @@ components:
       required:
       - aggregation_method
       - metric_groups
-    FlowActionEnum:
-      type: string
-      enum:
-      - flow-action
-    GetMetricResponseCollection:
+    ListContainsOperatorListContainsFilter:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    CustomMetricCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CustomMetricCreateQueryResourceObject'
-      required:
-      - data
-    ObjectLinks:
-      type: object
-      properties:
-        self:
+        type:
           type: string
-          format: uri
+          enum:
+          - list
+        operator:
+          description: Operators for list contains filters.
+          type: string
+          enum:
+          - contains
+          - not-contains
+        value:
+          oneOf:
+          - type: integer
+          - type: string
       required:
-      - self
+      - type
+      - operator
+      - value
+    GetMappedMetricMetricRelationshipResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/MetricEnum'
+            id:
+              description: The Metric ID
+              type: string
+          required:
+          - type
+          - id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    PatchCustomMetricResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/CustomMetricEnum'
+            id:
+              description: The ID of the custom metric
+              type: string
+              example: 925e385b52fb405715f3616c337cc65c
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.
+                  type: string
+                  example: My custom metric
+                created:
+                  description: The datetime when this custom metric was created.
+                  type: string
+                  format: date-time
+                  example: '2025-04-15T00:00:00Z'
+                updated:
+                  description: The datetime when this custom metric was updated.
+                  type: string
+                  format: date-time
+                  example: '2025-04-15T00:00:00Z'
+                definition:
+                  description: The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.
+                  example:
+                    aggregation_method: value
+                    metric_groups:
+                    - metric_id: AAAAAA
+                      metric_filters:
+                      - property: my_string_property
+                        filter:
+                          type: string
+                          operator: starts-with
+                          value: some_substring
+                      - property: my_numeric_property
+                        filter:
+                          type: numeric
+                          operator: greater-than-or-equal
+                          value: 999
+                      value_property: $value
+                    - metric_id: BBBBBB
+                      metric_filters:
+                      - property: my_boolean_property
+                        filter:
+                          type: boolean
+                          operator: equals
+                          value: false
+                      - property: my_list_property
+                        filter:
+                          type: list
+                          operator: contains
+                          value: some_value_in_a_list
+                      value_property: my_numeric_property
+                  $ref: '#/components/schemas/CustomMetricDefinition'
+              required:
+              - name
+              - created
+              - updated
+              - definition
+            relationships:
+              type: object
+              properties:
+                metrics:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/MetricEnum'
+                          id:
+                            description: Related metrics
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
     GetCustomMetricMetricsRelationshipsResponseCollection:
       type: object
       properties:
@@ -2612,6 +3180,64 @@ components:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
+    MetricPropertyResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MetricPropertyEnum'
+        id:
+          description: The ID of the metric property
+          type: string
+          example: 925e385b52fb405715f3616c337cc65c
+        attributes:
+          type: object
+          properties:
+            label:
+              description: The label for this metric property
+              type: string
+              example: Categories
+            property:
+              description: The property for this metric property
+              type: string
+              example: Categories
+            inferred_type:
+              description: Inferred type for this metric property
+              type: string
+              example: List
+          required:
+          - label
+          - property
+          - inferred_type
+        relationships:
+          type: object
+          properties:
+            metric:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/MetricEnum'
+                    id:
+                      description: Related Metric
+                      type: string
+                  required:
+                  - type
+                  - id
+                links:
+                  $ref: '#/components/schemas/RelationshipLinks'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    MetricAggregateEnum:
+      type: string
+      enum:
+      - metric-aggregate
     PostCustomMetricResponse:
       type: object
       properties:
@@ -2710,556 +3336,6 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetMetricPropertyResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          allOf:
-          - properties:
-              type:
-                $ref: '#/components/schemas/MetricPropertyEnum'
-              attributes:
-                properties:
-                  sample_values:
-                    type:
-                    - array
-                    - 'null'
-                    items:
-                      oneOf:
-                      - type: integer
-                      - type: number
-                      - type: string
-                      - type: boolean
-          - $ref: '#/components/schemas/MetricPropertyResponseObjectResource'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    GetMetricPropertyMetricRelationshipResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/MetricEnum'
-            id:
-              description: The Metric ID
-              type: string
-          required:
-          - type
-          - id
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    MetricAggregateEnum:
-      type: string
-      enum:
-      - metric-aggregate
-    GetMetricResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowResponseObjectResource'
-      required:
-      - data
-    CustomMetricCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CustomMetricEnum'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.
-              type: string
-              example: My custom metric
-            definition:
-              description: The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.
-              example:
-                aggregation_method: value
-                metric_groups:
-                - metric_id: AAAAAA
-                  metric_filters:
-                  - property: my_string_property
-                    filter:
-                      type: string
-                      operator: starts-with
-                      value: some_substring
-                  - property: my_numeric_property
-                    filter:
-                      type: numeric
-                      operator: greater-than-or-equal
-                      value: 999
-                  value_property: $value
-                - metric_id: BBBBBB
-                  metric_filters:
-                  - property: my_boolean_property
-                    filter:
-                      type: boolean
-                      operator: equals
-                      value: false
-                  - property: my_list_property
-                    filter:
-                      type: list
-                      operator: contains
-                      value: some_value_in_a_list
-                  value_property: my_numeric_property
-              $ref: '#/components/schemas/CustomMetricDefinition'
-          required:
-          - name
-          - definition
-      required:
-      - type
-      - attributes
-    GetMappedMetricCustomMetricRelationshipResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/CustomMetricEnum'
-            id:
-              description: The ID of the custom metric
-              type: string
-              example: 925e385b52fb405715f3616c337cc65c
-          required:
-          - type
-          - id
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    NumericOperatorNumericFilter:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - numeric
-        operator:
-          description: Operators for numeric filters.
-          type: string
-          enum:
-          - equals
-          - greater-than
-          - greater-than-or-equal
-          - less-than
-          - less-than-or-equal
-          - not-equals
-        value:
-          oneOf:
-          - type: integer
-          - type: number
-      required:
-      - type
-      - operator
-      - value
-    GetMappedMetricMetricRelationshipResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/MetricEnum'
-            id:
-              description: The Metric ID
-              type: string
-          required:
-          - type
-          - id
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    PostMetricAggregateResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/MetricAggregateEnum'
-            id:
-              description: Ephemeral ID associated with the aggregation query
-              type: string
-            attributes:
-              type: object
-              properties:
-                dates:
-                  description: The dates of the query range
-                  type: array
-                  items:
-                    type: string
-                    format: date-time
-                data:
-                  description: Aggregation result data
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/MetricAggregateRowDTO'
-              required:
-              - dates
-              - data
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    MetricAggregateRowDTO:
-      type: object
-      properties:
-        dimensions:
-          description: List of dimensions associated with this set of measurements
-          type: array
-          items:
-            type: string
-        measurements:
-          description: Dictionary of measurement_key, values
-          type: object
-      required:
-      - dimensions
-      - measurements
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    GetFlowResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
-    GetMetricPropertyResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            allOf:
-            - properties:
-                type:
-                  $ref: '#/components/schemas/MetricPropertyEnum'
-                attributes:
-                  properties:
-                    sample_values:
-                      type:
-                      - array
-                      - 'null'
-                      items:
-                        oneOf:
-                        - type: integer
-                        - type: number
-                        - type: string
-                        - type: boolean
-            - $ref: '#/components/schemas/MetricPropertyResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    PatchMappedMetricResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/MappedMetricEnum'
-            id:
-              description: The type of mapping.
-              type: string
-              example: revenue
-              enum:
-              - added_to_cart
-              - cancelled_sales
-              - ordered_product
-              - refunded_sales
-              - revenue
-              - started_checkout
-              - viewed_product
-            attributes:
-              type: object
-              properties:
-                updated:
-                  description: The datetime when this mapping was last updated.
-                  type: string
-                  format: date-time
-                  example: '2025-04-15T00:00:00Z'
-              required:
-              - updated
-            relationships:
-              type: object
-              properties:
-                metric:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/MetricEnum'
-                        id:
-                          description: The ID of the metric for this mapping.
-                          type: string
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                custom-metric:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/CustomMetricEnum'
-                        id:
-                          description: The ID of the custom metric for this mapping.
-                          type: string
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    TagEnum:
-      type: string
-      enum:
-      - tag
-    CustomMetricResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CustomMetricEnum'
-        id:
-          description: The ID of the custom metric
-          type: string
-          example: 925e385b52fb405715f3616c337cc65c
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The name for this custom metric. Names must be unique across the account.         Attempting to create a metric with a duplicate name will return a 400 status code.
-              type: string
-              example: My custom metric
-            created:
-              description: The datetime when this custom metric was created.
-              type: string
-              format: date-time
-              example: '2025-04-15T00:00:00Z'
-            updated:
-              description: The datetime when this custom metric was updated.
-              type: string
-              format: date-time
-              example: '2025-04-15T00:00:00Z'
-            definition:
-              description: The definition of a custom metric. It is composed of a list of         `metric_groups`. Each group specifies how to query a particular metric with         customized filters and the value property to calculate conversion value measurements         (if applicable). The groups are combined with `AND` relationships, i.e., conversion         and conversion value measurements for each group will be added together to get the final         result.
-              example:
-                aggregation_method: value
-                metric_groups:
-                - metric_id: AAAAAA
-                  metric_filters:
-                  - property: my_string_property
-                    filter:
-                      type: string
-                      operator: starts-with
-                      value: some_substring
-                  - property: my_numeric_property
-                    filter:
-                      type: numeric
-                      operator: greater-than-or-equal
-                      value: 999
-                  value_property: $value
-                - metric_id: BBBBBB
-                  metric_filters:
-                  - property: my_boolean_property
-                    filter:
-                      type: boolean
-                      operator: equals
-                      value: false
-                  - property: my_list_property
-                    filter:
-                      type: list
-                      operator: contains
-                      value: some_value_in_a_list
-                  value_property: my_numeric_property
-              $ref: '#/components/schemas/CustomMetricDefinition'
-          required:
-          - name
-          - created
-          - updated
-          - definition
-        relationships:
-          type: object
-          properties:
-            metrics:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        $ref: '#/components/schemas/MetricEnum'
-                      id:
-                        description: Related metrics
-                        type: string
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    CustomMetricGroup:
-      type: object
-      properties:
-        metric_id:
-          description: The ID of the metric that composes the custom metric.
-          type: string
-        metric_filters:
-          description: An optional array of objects for filtering on properties of the metric.
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CustomMetricCondition'
-        value_property:
-          description: '
-
-            If the custom metric has a `value` aggregation method, the `value_property` of each `metric_group` of the `definition` should specify the property to calculate the conversion value. If null, the default `$value` property will be used.
-
-            '
-          type:
-          - string
-          - 'null'
-      required:
-      - metric_id
-    MetricPropertyResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/MetricPropertyEnum'
-        id:
-          description: The ID of the metric property
-          type: string
-          example: 925e385b52fb405715f3616c337cc65c
-        attributes:
-          type: object
-          properties:
-            label:
-              description: The label for this metric property
-              type: string
-              example: Categories
-            property:
-              description: The property for this metric property
-              type: string
-              example: Categories
-            inferred_type:
-              description: Inferred type for this metric property
-              type: string
-              example: List
-          required:
-          - label
-          - property
-          - inferred_type
-        relationships:
-          type: object
-          properties:
-            metric:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/MetricEnum'
-                    id:
-                      description: Related Metric
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
     MappedMetricPartialUpdateQueryResourceObject:
       type: object
       properties:
@@ -3311,27 +3387,65 @@ components:
       required:
       - type
       - id
-    GetMetricPropertiesRelationshipsResponseCollection:
+    NumericOperatorNumericFilter:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - numeric
+        operator:
+          description: Operators for numeric filters.
+          type: string
+          enum:
+          - equals
+          - greater-than
+          - greater-than-or-equal
+          - less-than
+          - less-than-or-equal
+          - not-equals
+        value:
+          oneOf:
+          - type: integer
+          - type: number
+      required:
+      - type
+      - operator
+      - value
+    GetMetricResponseCollection:
       type: object
       properties:
         data:
           type: array
           items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/MetricPropertyEnum'
-              id:
-                description: The ID of the metric property
-                type: string
-                example: 925e385b52fb405715f3616c337cc65c
+            $ref: '#/components/schemas/MetricResponseObjectResource'
         links:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
+    GetMappedMetricResponseCompoundDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MappedMetricResponseObjectResource'
+        included:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/MetricResponseObjectResource'
+            - $ref: '#/components/schemas/CustomMetricResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    CustomMetricEnum:
+      type: string
+      enum:
+      - custom-metric
+    TagEnum:
+      type: string
+      enum:
+      - tag
     MetricAggregateQuery:
       type: object
       properties:
@@ -3339,143 +3453,29 @@ components:
           $ref: '#/components/schemas/MetricAggregateQueryResourceObject'
       required:
       - data
-    GetCustomMetricResponseCompoundDocument:
+    CollectionLinks:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/CustomMetricResponseObjectResource'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    GetCustomMetricResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomMetricResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricResponseObjectResource'
-      required:
-      - data
-    MappedMetricResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/MappedMetricEnum'
-        id:
-          description: The type of mapping.
+        self:
           type: string
-          example: revenue
-          enum:
-          - added_to_cart
-          - cancelled_sales
-          - ordered_product
-          - refunded_sales
-          - revenue
-          - started_checkout
-          - viewed_product
-        attributes:
-          type: object
-          properties:
-            updated:
-              description: The datetime when this mapping was last updated.
-              type: string
-              format: date-time
-              example: '2025-04-15T00:00:00Z'
-          required:
-          - updated
-        relationships:
-          type: object
-          properties:
-            metric:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/MetricEnum'
-                    id:
-                      description: The ID of the metric for this mapping.
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-            custom-metric:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/CustomMetricEnum'
-                    id:
-                      description: The ID of the custom metric for this mapping.
-                      type: string
-                  required:
-                  - type
-                  - id
-                links:
-                  $ref: '#/components/schemas/RelationshipLinks'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    MappedMetricPartialUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/MappedMetricPartialUpdateQueryResourceObject'
-      required:
-      - data
-    MetricPropertyEnum:
-      type: string
-      enum:
-      - metric-property
-    FlowEnum:
-      type: string
-      enum:
-      - flow
-    CustomMetricEnum:
-      type: string
-      enum:
-      - custom-metric
-    BooleanFilter:
-      type: object
-      properties:
-        type:
+          format: uri
+        first:
           type: string
-          enum:
-          - boolean
-        operator:
-          description: Operators for boolean filters.
+          format: uri
+        last:
           type: string
-          enum:
-          - equals
-        value:
-          type: boolean
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
       required:
-      - type
-      - operator
-      - value
+      - self
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -3508,8 +3508,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:

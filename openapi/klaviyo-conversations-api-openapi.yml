@@ -72,14 +72,6 @@ paths:
       - conversations:write
 components:
   schemas:
-    ConversationMessageEnum:
-      type: string
-      enum:
-      - conversation-message
-    ConversationEnum:
-      type: string
-      enum:
-      - conversation
     ConversationMessageCreateQueryResourceObject:
       type: object
       properties:
@@ -115,6 +107,14 @@ components:
       - type
       - attributes
       - relationships
+    ConversationMessageEnum:
+      type: string
+      enum:
+      - conversation-message
+    ConversationEnum:
+      type: string
+      enum:
+      - conversation
     ConversationMessageCreateQuery:
       type: object
       properties:
@@ -123,8 +123,8 @@ components:
       required:
       - data
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -157,8 +157,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:

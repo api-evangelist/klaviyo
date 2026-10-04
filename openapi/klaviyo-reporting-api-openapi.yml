@@ -432,758 +432,34 @@ paths:
       - segments:read
 components:
   schemas:
-    ValuesData:
-      type: object
-      properties:
-        groupings:
-          description: Applied groupings and the values for this object
-          type: object
-        statistics:
-          description: Requested statistics and their values results
-          type: object
-      required:
-      - groupings
-      - statistics
-    FormSeriesReportEnum:
+    FlowEnum:
       type: string
       enum:
-      - form-series-report
-    SegmentValuesRequestDTOResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/SegmentValuesReportEnum'
-        attributes:
-          type: object
-          properties:
-            statistics:
-              description: List of statistics to query for.
-              type: array
-              items:
-                type: string
-                enum:
-                - members_added
-                - members_removed
-                - net_members_changed
-                - total_members
-                description: Defined segment reporting metric
-              example:
-              - total_members
-              - net_members_changed
-            timeframe:
-              description: 'The time frame to pull data from (Max length: 1 year). Data is unavailable before June 1st, 2023. Please use a time frame after this date. See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).'
-              oneOf:
-              - $ref: '#/components/schemas/Timeframe'
-              - $ref: '#/components/schemas/CustomTimeframe'
-            filter:
-              description: 'API filter string used to filter the query.
-
-                Allowed filters are segment_id.
-
-                Allowed operators are equals, any.
-
-                Only one filter can be used per attribute.
-
-                Max of 100 messages per ANY filter.'
-              type:
-              - string
-              - 'null'
-              example: any(segment_id,["xyz123","ghi456"])
-          required:
-          - statistics
-          - timeframe
-      required:
-      - type
-      - attributes
-    CampaignValuesRequestDTOResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CampaignValuesReportEnum'
-        attributes:
-          type: object
-          properties:
-            statistics:
-              description: List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
-              type: array
-              items:
-                type: string
-                enum:
-                - average_order_value
-                - bounce_rate
-                - bounced
-                - bounced_or_failed
-                - bounced_or_failed_rate
-                - click_rate
-                - click_to_open_rate
-                - clicks
-                - clicks_unique
-                - conversion_rate
-                - conversion_uniques
-                - conversion_value
-                - conversions
-                - delivered
-                - delivery_rate
-                - failed
-                - failed_rate
-                - message_segment_count_sum
-                - open_rate
-                - opens
-                - opens_unique
-                - recipients
-                - revenue_per_recipient
-                - spam_complaint_rate
-                - spam_complaints
-                - text_message_credit_usage_amount
-                - text_message_roi
-                - text_message_spend
-                - unsubscribe_rate
-                - unsubscribe_uniques
-                - unsubscribes
-                description: Defined reporting metric
-              example:
-              - opens
-              - open_rate
-            timeframe:
-              description: 'The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).'
-              oneOf:
-              - $ref: '#/components/schemas/Timeframe'
-              - $ref: '#/components/schemas/CustomTimeframe'
-            conversion_metric_id:
-              description: ID of the metric to be used for conversion statistics
-              type: string
-              example: RESQ6t
-            group_by:
-              description: 'List of attributes to group the data by.
-
-                Allowed group-bys are campaign_id, campaign_message_id, campaign_message_name, group, group_name, send_channel, tag_id, tag_name, text_message_format, variation, variation_name.
-
-                If not passed in, the data will be grouped by campaign_id, campaign_message_id, send_channel.
-
-                The following group by attributes are required: campaign_id, campaign_message_id'
-              type:
-              - array
-              - 'null'
-              items:
-                type: string
-                enum:
-                - campaign_id
-                - campaign_message_id
-                - campaign_message_name
-                - group
-                - group_name
-                - send_channel
-                - tag_id
-                - tag_name
-                - text_message_format
-                - variation
-                - variation_name
-                description: Attributes to represent what is being grouped by / filtered on for Campaigns
-            filter:
-              description: 'API filter string used to filter the query.
-
-                Scalar attributes (send_channel, campaign_id, campaign_message_id, campaign_message_name, variation, variation_name, text_message_format): Supported operators: equals, contains-any.
-
-                List attributes (tag_id, tag_name): Supported operators: contains-any, contains-all.
-
-                Only one filter can be used per attribute.
-
-                Only AND can be used as a combination operator.
-
-                Max of 100 items per list filter.
-
-                When filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.'
-              type:
-              - string
-              - 'null'
-              example: and(equals(campaign_id,"abc123"),contains-any(send_channel,["email","sms"]))
-          required:
-          - statistics
-          - timeframe
-          - conversion_metric_id
-      required:
-      - type
-      - attributes
-    SeriesData:
-      type: object
-      properties:
-        groupings:
-          description: Applied groupings and the values for this object
-          type: object
-        statistics:
-          description: Requested statistics and their series result
-          type: object
-      required:
-      - groupings
-      - statistics
-    FlowValuesReportEnum:
+      - flow
+    SegmentSeriesReportEnum:
       type: string
       enum:
-      - flow-values-report
-    PostSegmentValuesResponseDTO:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/SegmentValuesReportEnum'
-            attributes:
-              type: object
-              properties:
-                results:
-                  description: 'An array of all the returned values data.
-
-                    Each object in the array represents one unique grouping and the results for that grouping.'
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/ValuesData'
-                  example:
-                  - groupings:
-                      segment_id: abc123
-                    statistics:
-                      total_members: 120
-                      net_members_changed: 53
-                  - groupings:
-                      segment_id: def123
-                    statistics:
-                      total_members: 250
-                      net_members_changed: 113
-              required:
-              - results
-          required:
-          - type
-          - attributes
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    FormSeriesRequestDTO:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/FormSeriesRequestDTOResourceObject'
-      required:
-      - data
-    PostFlowSeriesResponseDTO:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/FlowSeriesReportEnum'
-            attributes:
-              type: object
-              properties:
-                results:
-                  description: 'An array of all the returned values data.
-
-                    Each object in the array represents one unique grouping and the results for that grouping.
-
-                    Each value in the results array corresponds to the date time at the same index.'
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SeriesData'
-                  example:
-                  - groupings:
-                      flow_id: XVTP5Q
-                      send_channel: email
-                      flow_message_id: 01GMRWDSA0ARTAKE1SFX8JGXAY
-                    statistics:
-                      opens:
-                      - 123
-                      - 156
-                      - 144
-                      open_rate:
-                      - 0.8253
-                      - 0.8722
-                      - 0.8398
-                  - groupings:
-                      flow_id: XVTP5Q
-                      send_channel: email
-                      flow_message_id: 01GJTHNWVG93F3KNX71SJ4FDBB
-                    statistics:
-                      opens:
-                      - 97
-                      - 98
-                      - 65
-                      open_rate:
-                      - 0.7562
-                      - 0.761
-                      - 0.688
-                date_times:
-                  description: An array of date times which correspond to the equivalent index in the results data.
-                  type: array
-                  items:
-                    type: string
-                    format: date-time
-                  example:
-                  - '2024-01-05T00:00:00+00:00'
-                  - '2024-01-06T00:00:00+00:00'
-                  - '2024-01-07T00:00:00+00:00'
-              required:
-              - results
-              - date_times
-            relationships:
-              type: object
-              properties:
-                flows:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/FlowEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                flow-messages:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/FlowMessageEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-          required:
-          - type
-          - attributes
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    FlowMessageEnum:
+      - segment-series-report
+    FlowSeriesReportEnum:
       type: string
       enum:
-      - flow-message
-    SegmentValuesRequestDTO:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/SegmentValuesRequestDTOResourceObject'
-      required:
-      - data
-    FlowValuesRequestDTOResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/FlowValuesReportEnum'
-        attributes:
-          type: object
-          properties:
-            statistics:
-              description: List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
-              type: array
-              items:
-                type: string
-                enum:
-                - average_order_value
-                - bounce_rate
-                - bounced
-                - bounced_or_failed
-                - bounced_or_failed_rate
-                - click_rate
-                - click_to_open_rate
-                - clicks
-                - clicks_unique
-                - conversion_rate
-                - conversion_uniques
-                - conversion_value
-                - conversions
-                - delivered
-                - delivery_rate
-                - failed
-                - failed_rate
-                - message_segment_count_sum
-                - open_rate
-                - opens
-                - opens_unique
-                - recipients
-                - revenue_per_recipient
-                - spam_complaint_rate
-                - spam_complaints
-                - text_message_credit_usage_amount
-                - text_message_roi
-                - text_message_spend
-                - unsubscribe_rate
-                - unsubscribe_uniques
-                - unsubscribes
-                description: Defined reporting metric
-              example:
-              - opens
-              - open_rate
-            timeframe:
-              description: 'The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).'
-              oneOf:
-              - $ref: '#/components/schemas/Timeframe'
-              - $ref: '#/components/schemas/CustomTimeframe'
-            conversion_metric_id:
-              description: ID of the metric to be used for conversion statistics
-              type: string
-              example: RESQ6t
-            group_by:
-              description: 'List of attributes to group the data by.
-
-                Allowed group-bys are flow_id, flow_message_id, flow_message_name, flow_name, send_channel, tag_id, tag_name, text_message_format, variation, variation_name.
-
-                If not passed in, the data will be grouped by flow_id, flow_message_id, send_channel.
-
-                The following group by attributes are required: flow_message_id, flow_id.'
-              type:
-              - array
-              - 'null'
-              items:
-                type: string
-                enum:
-                - flow_id
-                - flow_message_id
-                - flow_message_name
-                - flow_name
-                - send_channel
-                - tag_id
-                - tag_name
-                - text_message_format
-                - variation
-                - variation_name
-                description: Attributes to represent what is being grouped by for Flows
-            filter:
-              description: 'API filter string used to filter the query.
-
-                Scalar attributes (flow_id, flow_name, send_channel, flow_message_id, flow_message_name, text_message_format, variation, variation_name): Supported operators: equals, contains-any.
-
-                List attributes (tag_id, tag_name): Supported operators: contains-any, contains-all.
-
-                Only one filter can be used per attribute.
-
-                Only AND can be used as a combination operator.
-
-                Max of 100 items per list filter.
-
-                When filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.'
-              type:
-              - string
-              - 'null'
-              example: and(equals(flow_id,"abc123"),contains-any(send_channel,["email","sms"]))
-          required:
-          - statistics
-          - timeframe
-          - conversion_metric_id
-      required:
-      - type
-      - attributes
-    PostFormSeriesResponseDTO:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/FormSeriesReportEnum'
-            attributes:
-              type: object
-              properties:
-                results:
-                  description: 'An array of all the returned values data.
-
-                    Each object in the array represents one unique grouping and the results for that grouping.
-
-                    Each value in the results array corresponds to the date time at the same index.'
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SeriesData'
-                  example:
-                  - groupings:
-                      form_id: abc123
-                    statistics:
-                      viewed_form:
-                      - 100
-                      - 120
-                      - 140
-                      submits:
-                      - 20
-                      - 22
-                      - 28
-                  - groupings:
-                      form_id: def456
-                    statistics:
-                      viewed_form:
-                      - 200
-                      - 300
-                      - 400
-                      submits:
-                      - 20
-                      - 25
-                      - 30
-                date_times:
-                  description: An array of date times which correspond to the equivalent index in the results data.
-                  type: array
-                  items:
-                    type: string
-                    format: date-time
-                  example:
-                  - '2024-01-05T00:00:00+00:00'
-                  - '2024-01-06T00:00:00+00:00'
-                  - '2024-01-07T00:00:00+00:00'
-              required:
-              - results
-              - date_times
-          required:
-          - type
-          - attributes
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    PostSegmentSeriesResponseDTO:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/SegmentSeriesReportEnum'
-            attributes:
-              type: object
-              properties:
-                results:
-                  description: 'An array of all the returned values data.
-
-                    Each object in the array represents one unique grouping and the results for that grouping.
-
-                    Each value in the results array corresponds to the date time at the same index.'
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SeriesData'
-                  example:
-                  - groupings:
-                      segment_id: abc123
-                    statistics:
-                      total_members:
-                      - 120
-                      - 185
-                      - 240
-                      net_members_changed:
-                      - 40
-                      - 62
-                      - 88
-                  - groupings:
-                      segment_id: def456
-                    statistics:
-                      total_members:
-                      - 103
-                      - 163
-                      - 213
-                      net_members_changed:
-                      - 36
-                      - 66
-                      - 86
-                date_times:
-                  description: An array of date times which correspond to the equivalent index in the results data.
-                  type: array
-                  items:
-                    type: string
-                    format: date-time
-                  example:
-                  - '2024-01-05T00:00:00+00:00'
-                  - '2024-01-06T00:00:00+00:00'
-                  - '2024-01-07T00:00:00+00:00'
-              required:
-              - results
-              - date_times
-          required:
-          - type
-          - attributes
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    SegmentSeriesRequestDTO:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/SegmentSeriesRequestDTOResourceObject'
-      required:
-      - data
-    ObjectLinks:
+      - flow-series-report
+    FormValuesReportEnum:
+      type: string
+      enum:
+      - form-values-report
+    RelationshipLinks:
       type: object
       properties:
         self:
           type: string
           format: uri
+        related:
+          type: string
+          format: uri
       required:
       - self
-    CampaignValuesReportEnum:
-      type: string
-      enum:
-      - campaign-values-report
-    FormValuesRequestDTOResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/FormValuesReportEnum'
-        attributes:
-          type: object
-          properties:
-            statistics:
-              description: List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
-              type: array
-              items:
-                type: string
-                enum:
-                - closed_form
-                - closed_form_uniques
-                - qualified_form
-                - qualified_form_uniques
-                - submit_rate
-                - submits
-                - submitted_form_step
-                - submitted_form_step_uniques
-                - viewed_form
-                - viewed_form_step
-                - viewed_form_step_uniques
-                - viewed_form_uniques
-                description: Defined form reporting metric
-              example:
-              - viewed_form
-              - submit_rate
-            timeframe:
-              description: 'The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).'
-              oneOf:
-              - $ref: '#/components/schemas/Timeframe'
-              - $ref: '#/components/schemas/CustomTimeframe'
-            group_by:
-              description: 'List of attributes to group the data by.
-
-                Allowed group-bys are form_id, form_version_id.
-
-                If not passed in, the data will be grouped by form_id.
-
-                If a group by has prerequisites, they must be passed in together. The prerequisites for form_version_id is form_id'
-              type:
-              - array
-              - 'null'
-              items:
-                type: string
-                enum:
-                - form_id
-                - form_version_id
-                description: Attributes to represent what is being grouped by for Forms
-            filter:
-              description: 'API filter string used to filter the query.
-
-                Allowed filters are form_id, form_version_id.
-
-                Allowed operators are equals, any.
-
-                Only one filter can be used per attribute, only AND can be used as a combination operator.
-
-                Max of 100 messages per ANY filter.'
-              type:
-              - string
-              - 'null'
-              example: and(equals(form_id,"abc123"),any(form_version_id,["xyz123","ghi456"]))
-          required:
-          - statistics
-          - timeframe
-      required:
-      - type
-      - attributes
-    PostFlowValuesResponseDTO:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/FlowValuesReportEnum'
-            attributes:
-              type: object
-              properties:
-                results:
-                  description: 'An array of all the returned values data.
-
-                    Each object in the array represents one unique grouping and the results for that grouping.'
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/ValuesData'
-                  example:
-                  - groupings:
-                      flow_id: XVTP5Q
-                      send_channel: email
-                      flow_message_id: 01GMRWDSA0ARTAKE1SFX8JGXAY
-                    statistics:
-                      opens: 123
-                      open_rate: 0.8253
-                  - groupings:
-                      flow_id: XVTP5Q
-                      send_channel: email
-                      flow_message_id: 01GJTHNWVG93F3KNX71SJ4FDBB
-                    statistics:
-                      opens: 97
-                      open_rate: 0.7562
-              required:
-              - results
-            relationships:
-              type: object
-              properties:
-                flows:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/FlowEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                flow-messages:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/FlowMessageEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-          required:
-          - type
-          - attributes
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
+      - related
     FlowSeriesRequestDTOResourceObject:
       type: object
       properties:
@@ -1308,17 +584,261 @@ components:
       required:
       - type
       - attributes
-    FlowValuesRequestDTO:
+    SegmentValuesRequestDTO:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/FlowValuesRequestDTOResourceObject'
+          $ref: '#/components/schemas/SegmentValuesRequestDTOResourceObject'
       required:
       - data
-    FlowSeriesReportEnum:
-      type: string
-      enum:
-      - flow-series-report
+    SeriesData:
+      type: object
+      properties:
+        groupings:
+          description: Applied groupings and the values for this object
+          type: object
+        statistics:
+          description: Requested statistics and their series result
+          type: object
+      required:
+      - groupings
+      - statistics
+    Timeframe:
+      type: object
+      properties:
+        key:
+          description: Pre-defined key that represents a set timeframe
+          type: string
+          enum:
+          - last_12_months
+          - last_30_days
+          - last_365_days
+          - last_3_months
+          - last_7_days
+          - last_90_days
+          - last_month
+          - last_week
+          - last_year
+          - this_month
+          - this_week
+          - this_year
+          - today
+          - yesterday
+      required:
+      - key
+    PostFlowSeriesResponseDTO:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/FlowSeriesReportEnum'
+            attributes:
+              type: object
+              properties:
+                results:
+                  description: 'An array of all the returned values data.
+
+                    Each object in the array represents one unique grouping and the results for that grouping.
+
+                    Each value in the results array corresponds to the date time at the same index.'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SeriesData'
+                  example:
+                  - groupings:
+                      flow_id: XVTP5Q
+                      send_channel: email
+                      flow_message_id: 01GMRWDSA0ARTAKE1SFX8JGXAY
+                    statistics:
+                      opens:
+                      - 123
+                      - 156
+                      - 144
+                      open_rate:
+                      - 0.8253
+                      - 0.8722
+                      - 0.8398
+                  - groupings:
+                      flow_id: XVTP5Q
+                      send_channel: email
+                      flow_message_id: 01GJTHNWVG93F3KNX71SJ4FDBB
+                    statistics:
+                      opens:
+                      - 97
+                      - 98
+                      - 65
+                      open_rate:
+                      - 0.7562
+                      - 0.761
+                      - 0.688
+                date_times:
+                  description: An array of date times which correspond to the equivalent index in the results data.
+                  type: array
+                  items:
+                    type: string
+                    format: date-time
+                  example:
+                  - '2024-01-05T00:00:00+00:00'
+                  - '2024-01-06T00:00:00+00:00'
+                  - '2024-01-07T00:00:00+00:00'
+              required:
+              - results
+              - date_times
+            relationships:
+              type: object
+              properties:
+                flows:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/FlowEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                flow-messages:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/FlowMessageEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+          required:
+          - type
+          - attributes
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    CampaignValuesRequestDTOResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CampaignValuesReportEnum'
+        attributes:
+          type: object
+          properties:
+            statistics:
+              description: List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
+              type: array
+              items:
+                type: string
+                enum:
+                - average_order_value
+                - bounce_rate
+                - bounced
+                - bounced_or_failed
+                - bounced_or_failed_rate
+                - click_rate
+                - click_to_open_rate
+                - clicks
+                - clicks_unique
+                - conversion_rate
+                - conversion_uniques
+                - conversion_value
+                - conversions
+                - delivered
+                - delivery_rate
+                - failed
+                - failed_rate
+                - message_segment_count_sum
+                - open_rate
+                - opens
+                - opens_unique
+                - recipients
+                - revenue_per_recipient
+                - spam_complaint_rate
+                - spam_complaints
+                - text_message_credit_usage_amount
+                - text_message_roi
+                - text_message_spend
+                - unsubscribe_rate
+                - unsubscribe_uniques
+                - unsubscribes
+                description: Defined reporting metric
+              example:
+              - opens
+              - open_rate
+            timeframe:
+              description: 'The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).'
+              oneOf:
+              - $ref: '#/components/schemas/Timeframe'
+              - $ref: '#/components/schemas/CustomTimeframe'
+            conversion_metric_id:
+              description: ID of the metric to be used for conversion statistics
+              type: string
+              example: RESQ6t
+            group_by:
+              description: 'List of attributes to group the data by.
+
+                Allowed group-bys are campaign_id, campaign_message_id, campaign_message_name, group, group_name, send_channel, tag_id, tag_name, text_message_format, variation, variation_name.
+
+                If not passed in, the data will be grouped by campaign_id, campaign_message_id, send_channel.
+
+                The following group by attributes are required: campaign_id, campaign_message_id'
+              type:
+              - array
+              - 'null'
+              items:
+                type: string
+                enum:
+                - campaign_id
+                - campaign_message_id
+                - campaign_message_name
+                - group
+                - group_name
+                - send_channel
+                - tag_id
+                - tag_name
+                - text_message_format
+                - variation
+                - variation_name
+                description: Attributes to represent what is being grouped by / filtered on for Campaigns
+            filter:
+              description: 'API filter string used to filter the query.
+
+                Scalar attributes (send_channel, campaign_id, campaign_message_id, campaign_message_name, variation, variation_name, text_message_format): Supported operators: equals, contains-any.
+
+                List attributes (tag_id, tag_name): Supported operators: contains-any, contains-all.
+
+                Only one filter can be used per attribute.
+
+                Only AND can be used as a combination operator.
+
+                Max of 100 items per list filter.
+
+                When filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.'
+              type:
+              - string
+              - 'null'
+              example: and(equals(campaign_id,"abc123"),contains-any(send_channel,["email","sms"]))
+          required:
+          - statistics
+          - timeframe
+          - conversion_metric_id
+      required:
+      - type
+      - attributes
     FormValuesRequestDTO:
       type: object
       properties:
@@ -1326,14 +846,22 @@ components:
           $ref: '#/components/schemas/FormValuesRequestDTOResourceObject'
       required:
       - data
-    PostFormValuesResponseDTO:
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    PostCampaignValuesResponseDTO:
       type: object
       properties:
         data:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/FormValuesReportEnum'
+              $ref: '#/components/schemas/CampaignValuesReportEnum'
             attributes:
               type: object
               properties:
@@ -1346,19 +874,81 @@ components:
                     $ref: '#/components/schemas/ValuesData'
                   example:
                   - groupings:
-                      form_id: abc123
-                      form_version_id: 012tuy
+                      send_channel: email
+                      campaign_id: 01GMRWDSA0ARTAKE1SFX8JGXAY
+                      campaign_message_id: 01GMRWDSA0ARTAKE1SFX8JGXAY
                     statistics:
-                      viewed_form: 90
-                      submits: 9
-                      submit_rate: 0.1
+                      opens: 123
+                      open_rate: 0.8253
                   - groupings:
-                      form_id: abc123
-                      form_version_id: 756ghi
+                      send_channel: email
+                      campaign_id: 01GJTHNWVG93F3KNX71SJ4FDBB
+                      campaign_message_id: 01GJTHNWVG93F3KNX71SJ4FDBB
                     statistics:
-                      viewed_form: 10
-                      submits: 1
-                      submit_rate: 0.1
+                      opens: 97
+                      open_rate: 0.7562
+              required:
+              - results
+            relationships:
+              type: object
+              properties:
+                campaigns:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/CampaignEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+          required:
+          - type
+          - attributes
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    CampaignEnum:
+      type: string
+      enum:
+      - campaign
+    PostSegmentValuesResponseDTO:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/SegmentValuesReportEnum'
+            attributes:
+              type: object
+              properties:
+                results:
+                  description: 'An array of all the returned values data.
+
+                    Each object in the array represents one unique grouping and the results for that grouping.'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ValuesData'
+                  example:
+                  - groupings:
+                      segment_id: abc123
+                    statistics:
+                      total_members: 120
+                      net_members_changed: 53
+                  - groupings:
+                      segment_id: def123
+                    statistics:
+                      total_members: 250
+                      net_members_changed: 113
               required:
               - results
           required:
@@ -1368,11 +958,165 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    FlowSeriesRequestDTO:
+    SegmentSeriesRequestDTOResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SegmentSeriesReportEnum'
+        attributes:
+          type: object
+          properties:
+            statistics:
+              description: List of statistics to query for.
+              type: array
+              items:
+                type: string
+                enum:
+                - members_added
+                - members_removed
+                - net_members_changed
+                - total_members
+                description: Defined segment reporting metric
+              example:
+              - total_members
+              - net_members_changed
+            timeframe:
+              description: 'The time frame to pull data from (Max length: 1 year). Data is unavailable before June 1st, 2023. Please use a time frame after this date. See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).'
+              oneOf:
+              - $ref: '#/components/schemas/Timeframe'
+              - $ref: '#/components/schemas/CustomTimeframe'
+            interval:
+              description: 'The interval used to aggregate data within the series request.
+
+                If hourly is used, the timeframe cannot be longer than 7 days.
+
+                If daily is used, the timeframe cannot be longer than 60 days.
+
+                If monthly is used, the timeframe cannot be longer than 52 weeks.'
+              type: string
+              example: weekly
+              enum:
+              - daily
+              - hourly
+              - monthly
+              - weekly
+            filter:
+              description: 'API filter string used to filter the query.
+
+                Allowed filters are segment_id.
+
+                Allowed operators are equals, any.
+
+                Only one filter can be used per attribute.
+
+                Max of 100 messages per ANY filter.'
+              type:
+              - string
+              - 'null'
+              example: any(segment_id,["xyz123","ghi456"])
+          required:
+          - statistics
+          - timeframe
+          - interval
+      required:
+      - type
+      - attributes
+    PostFormSeriesResponseDTO:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/FlowSeriesRequestDTOResourceObject'
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/FormSeriesReportEnum'
+            attributes:
+              type: object
+              properties:
+                results:
+                  description: 'An array of all the returned values data.
+
+                    Each object in the array represents one unique grouping and the results for that grouping.
+
+                    Each value in the results array corresponds to the date time at the same index.'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SeriesData'
+                  example:
+                  - groupings:
+                      form_id: abc123
+                    statistics:
+                      viewed_form:
+                      - 100
+                      - 120
+                      - 140
+                      submits:
+                      - 20
+                      - 22
+                      - 28
+                  - groupings:
+                      form_id: def456
+                    statistics:
+                      viewed_form:
+                      - 200
+                      - 300
+                      - 400
+                      submits:
+                      - 20
+                      - 25
+                      - 30
+                date_times:
+                  description: An array of date times which correspond to the equivalent index in the results data.
+                  type: array
+                  items:
+                    type: string
+                    format: date-time
+                  example:
+                  - '2024-01-05T00:00:00+00:00'
+                  - '2024-01-06T00:00:00+00:00'
+                  - '2024-01-07T00:00:00+00:00'
+              required:
+              - results
+              - date_times
+          required:
+          - type
+          - attributes
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    ValuesData:
+      type: object
+      properties:
+        groupings:
+          description: Applied groupings and the values for this object
+          type: object
+        statistics:
+          description: Requested statistics and their values results
+          type: object
+      required:
+      - groupings
+      - statistics
+    CustomTimeframe:
+      type: object
+      properties:
+        start:
+          description: A datetime that represents the start of a custom time frame. Offset is ignored and the company timezone is used.
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+        end:
+          description: A datetime that represents the end of a custom time frame. Offset is ignored and the company timezone is used.
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+      required:
+      - start
+      - end
+    FormSeriesRequestDTO:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/FormSeriesRequestDTOResourceObject'
       required:
       - data
     FormSeriesRequestDTOResourceObject:
@@ -1463,80 +1207,14 @@ components:
       required:
       - type
       - attributes
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
-    Timeframe:
-      type: object
-      properties:
-        key:
-          description: Pre-defined key that represents a set timeframe
-          type: string
-          enum:
-          - last_12_months
-          - last_30_days
-          - last_365_days
-          - last_3_months
-          - last_7_days
-          - last_90_days
-          - last_month
-          - last_week
-          - last_year
-          - this_month
-          - this_week
-          - this_year
-          - today
-          - yesterday
-      required:
-      - key
-    CampaignValuesRequestDTO:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CampaignValuesRequestDTOResourceObject'
-      required:
-      - data
-    FlowEnum:
-      type: string
-      enum:
-      - flow
-    CustomTimeframe:
-      type: object
-      properties:
-        start:
-          description: A datetime that represents the start of a custom time frame. Offset is ignored and the company timezone is used.
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-        end:
-          description: A datetime that represents the end of a custom time frame. Offset is ignored and the company timezone is used.
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-      required:
-      - start
-      - end
-    SegmentSeriesReportEnum:
-      type: string
-      enum:
-      - segment-series-report
-    PostCampaignValuesResponseDTO:
+    PostFlowValuesResponseDTO:
       type: object
       properties:
         data:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/CampaignValuesReportEnum'
+              $ref: '#/components/schemas/FlowValuesReportEnum'
             attributes:
               type: object
               properties:
@@ -1549,16 +1227,16 @@ components:
                     $ref: '#/components/schemas/ValuesData'
                   example:
                   - groupings:
+                      flow_id: XVTP5Q
                       send_channel: email
-                      campaign_id: 01GMRWDSA0ARTAKE1SFX8JGXAY
-                      campaign_message_id: 01GMRWDSA0ARTAKE1SFX8JGXAY
+                      flow_message_id: 01GMRWDSA0ARTAKE1SFX8JGXAY
                     statistics:
                       opens: 123
                       open_rate: 0.8253
                   - groupings:
+                      flow_id: XVTP5Q
                       send_channel: email
-                      campaign_id: 01GJTHNWVG93F3KNX71SJ4FDBB
-                      campaign_message_id: 01GJTHNWVG93F3KNX71SJ4FDBB
+                      flow_message_id: 01GJTHNWVG93F3KNX71SJ4FDBB
                     statistics:
                       opens: 97
                       open_rate: 0.7562
@@ -1567,7 +1245,7 @@ components:
             relationships:
               type: object
               properties:
-                campaigns:
+                flows:
                   type: object
                   properties:
                     data:
@@ -1579,7 +1257,24 @@ components:
                         - id
                         properties:
                           type:
-                            $ref: '#/components/schemas/CampaignEnum'
+                            $ref: '#/components/schemas/FlowEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                flow-messages:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/FlowMessageEnum'
                           id:
                             type: string
                     links:
@@ -1591,11 +1286,333 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    SegmentSeriesRequestDTOResourceObject:
+    PostSegmentSeriesResponseDTO:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/SegmentSeriesReportEnum'
+            attributes:
+              type: object
+              properties:
+                results:
+                  description: 'An array of all the returned values data.
+
+                    Each object in the array represents one unique grouping and the results for that grouping.
+
+                    Each value in the results array corresponds to the date time at the same index.'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SeriesData'
+                  example:
+                  - groupings:
+                      segment_id: abc123
+                    statistics:
+                      total_members:
+                      - 120
+                      - 185
+                      - 240
+                      net_members_changed:
+                      - 40
+                      - 62
+                      - 88
+                  - groupings:
+                      segment_id: def456
+                    statistics:
+                      total_members:
+                      - 103
+                      - 163
+                      - 213
+                      net_members_changed:
+                      - 36
+                      - 66
+                      - 86
+                date_times:
+                  description: An array of date times which correspond to the equivalent index in the results data.
+                  type: array
+                  items:
+                    type: string
+                    format: date-time
+                  example:
+                  - '2024-01-05T00:00:00+00:00'
+                  - '2024-01-06T00:00:00+00:00'
+                  - '2024-01-07T00:00:00+00:00'
+              required:
+              - results
+              - date_times
+          required:
+          - type
+          - attributes
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    FlowValuesReportEnum:
+      type: string
+      enum:
+      - flow-values-report
+    FlowValuesRequestDTOResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/SegmentSeriesReportEnum'
+          $ref: '#/components/schemas/FlowValuesReportEnum'
+        attributes:
+          type: object
+          properties:
+            statistics:
+              description: List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
+              type: array
+              items:
+                type: string
+                enum:
+                - average_order_value
+                - bounce_rate
+                - bounced
+                - bounced_or_failed
+                - bounced_or_failed_rate
+                - click_rate
+                - click_to_open_rate
+                - clicks
+                - clicks_unique
+                - conversion_rate
+                - conversion_uniques
+                - conversion_value
+                - conversions
+                - delivered
+                - delivery_rate
+                - failed
+                - failed_rate
+                - message_segment_count_sum
+                - open_rate
+                - opens
+                - opens_unique
+                - recipients
+                - revenue_per_recipient
+                - spam_complaint_rate
+                - spam_complaints
+                - text_message_credit_usage_amount
+                - text_message_roi
+                - text_message_spend
+                - unsubscribe_rate
+                - unsubscribe_uniques
+                - unsubscribes
+                description: Defined reporting metric
+              example:
+              - opens
+              - open_rate
+            timeframe:
+              description: 'The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).'
+              oneOf:
+              - $ref: '#/components/schemas/Timeframe'
+              - $ref: '#/components/schemas/CustomTimeframe'
+            conversion_metric_id:
+              description: ID of the metric to be used for conversion statistics
+              type: string
+              example: RESQ6t
+            group_by:
+              description: 'List of attributes to group the data by.
+
+                Allowed group-bys are flow_id, flow_message_id, flow_message_name, flow_name, send_channel, tag_id, tag_name, text_message_format, variation, variation_name.
+
+                If not passed in, the data will be grouped by flow_id, flow_message_id, send_channel.
+
+                The following group by attributes are required: flow_message_id, flow_id.'
+              type:
+              - array
+              - 'null'
+              items:
+                type: string
+                enum:
+                - flow_id
+                - flow_message_id
+                - flow_message_name
+                - flow_name
+                - send_channel
+                - tag_id
+                - tag_name
+                - text_message_format
+                - variation
+                - variation_name
+                description: Attributes to represent what is being grouped by for Flows
+            filter:
+              description: 'API filter string used to filter the query.
+
+                Scalar attributes (flow_id, flow_name, send_channel, flow_message_id, flow_message_name, text_message_format, variation, variation_name): Supported operators: equals, contains-any.
+
+                List attributes (tag_id, tag_name): Supported operators: contains-any, contains-all.
+
+                Only one filter can be used per attribute.
+
+                Only AND can be used as a combination operator.
+
+                Max of 100 items per list filter.
+
+                When filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.'
+              type:
+              - string
+              - 'null'
+              example: and(equals(flow_id,"abc123"),contains-any(send_channel,["email","sms"]))
+          required:
+          - statistics
+          - timeframe
+          - conversion_metric_id
+      required:
+      - type
+      - attributes
+    FormValuesRequestDTOResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FormValuesReportEnum'
+        attributes:
+          type: object
+          properties:
+            statistics:
+              description: List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
+              type: array
+              items:
+                type: string
+                enum:
+                - closed_form
+                - closed_form_uniques
+                - qualified_form
+                - qualified_form_uniques
+                - submit_rate
+                - submits
+                - submitted_form_step
+                - submitted_form_step_uniques
+                - viewed_form
+                - viewed_form_step
+                - viewed_form_step_uniques
+                - viewed_form_uniques
+                description: Defined form reporting metric
+              example:
+              - viewed_form
+              - submit_rate
+            timeframe:
+              description: 'The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).'
+              oneOf:
+              - $ref: '#/components/schemas/Timeframe'
+              - $ref: '#/components/schemas/CustomTimeframe'
+            group_by:
+              description: 'List of attributes to group the data by.
+
+                Allowed group-bys are form_id, form_version_id.
+
+                If not passed in, the data will be grouped by form_id.
+
+                If a group by has prerequisites, they must be passed in together. The prerequisites for form_version_id is form_id'
+              type:
+              - array
+              - 'null'
+              items:
+                type: string
+                enum:
+                - form_id
+                - form_version_id
+                description: Attributes to represent what is being grouped by for Forms
+            filter:
+              description: 'API filter string used to filter the query.
+
+                Allowed filters are form_id, form_version_id.
+
+                Allowed operators are equals, any.
+
+                Only one filter can be used per attribute, only AND can be used as a combination operator.
+
+                Max of 100 messages per ANY filter.'
+              type:
+              - string
+              - 'null'
+              example: and(equals(form_id,"abc123"),any(form_version_id,["xyz123","ghi456"]))
+          required:
+          - statistics
+          - timeframe
+      required:
+      - type
+      - attributes
+    PostFormValuesResponseDTO:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/FormValuesReportEnum'
+            attributes:
+              type: object
+              properties:
+                results:
+                  description: 'An array of all the returned values data.
+
+                    Each object in the array represents one unique grouping and the results for that grouping.'
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ValuesData'
+                  example:
+                  - groupings:
+                      form_id: abc123
+                      form_version_id: 012tuy
+                    statistics:
+                      viewed_form: 90
+                      submits: 9
+                      submit_rate: 0.1
+                  - groupings:
+                      form_id: abc123
+                      form_version_id: 756ghi
+                    statistics:
+                      viewed_form: 10
+                      submits: 1
+                      submit_rate: 0.1
+              required:
+              - results
+          required:
+          - type
+          - attributes
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    FlowMessageEnum:
+      type: string
+      enum:
+      - flow-message
+    CampaignValuesReportEnum:
+      type: string
+      enum:
+      - campaign-values-report
+    SegmentSeriesRequestDTO:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SegmentSeriesRequestDTOResourceObject'
+      required:
+      - data
+    SegmentValuesReportEnum:
+      type: string
+      enum:
+      - segment-values-report
+    FlowSeriesRequestDTO:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/FlowSeriesRequestDTOResourceObject'
+      required:
+      - data
+    FlowValuesRequestDTO:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/FlowValuesRequestDTOResourceObject'
+      required:
+      - data
+    SegmentValuesRequestDTOResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/SegmentValuesReportEnum'
         attributes:
           type: object
           properties:
@@ -1618,21 +1635,6 @@ components:
               oneOf:
               - $ref: '#/components/schemas/Timeframe'
               - $ref: '#/components/schemas/CustomTimeframe'
-            interval:
-              description: 'The interval used to aggregate data within the series request.
-
-                If hourly is used, the timeframe cannot be longer than 7 days.
-
-                If daily is used, the timeframe cannot be longer than 60 days.
-
-                If monthly is used, the timeframe cannot be longer than 52 weeks.'
-              type: string
-              example: weekly
-              enum:
-              - daily
-              - hourly
-              - monthly
-              - weekly
             filter:
               description: 'API filter string used to filter the query.
 
@@ -1650,25 +1652,23 @@ components:
           required:
           - statistics
           - timeframe
-          - interval
       required:
       - type
       - attributes
-    FormValuesReportEnum:
+    FormSeriesReportEnum:
       type: string
       enum:
-      - form-values-report
-    SegmentValuesReportEnum:
-      type: string
-      enum:
-      - segment-values-report
-    CampaignEnum:
-      type: string
-      enum:
-      - campaign
+      - form-series-report
+    CampaignValuesRequestDTO:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CampaignValuesRequestDTOResourceObject'
+      required:
+      - data
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -1701,8 +1701,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:

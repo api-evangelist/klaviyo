@@ -1180,57 +1180,89 @@ paths:
       - coupon-codes:read
 components:
   schemas:
-    ErrorSource:
-      type: object
-      properties:
-        pointer:
-          description: A pointer to the source of the error in the request payload.
-          type:
-          - string
-          - 'null'
-          example: /data
-          default: /data
-    CouponCreateQuery:
+    CouponCodeUpdateQuery:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/CouponCreateQueryResourceObject'
+          $ref: '#/components/schemas/CouponCodeUpdateQueryResourceObject'
       required:
       - data
-    PatchCouponResponse:
+    PostCouponCodeResponse:
       type: object
       properties:
         data:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/CouponEnum'
+              $ref: '#/components/schemas/CouponCodeEnum'
             id:
-              description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+              description: The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
               type: string
-              example: 10OFF
+              example: 10OFF-ASD325FHK324UJDOI2M3JNES99
             attributes:
               type: object
               properties:
-                external_id:
-                  description: This is the id that is stored in an integration such as Shopify or Magento.
-                  type: string
-                  example: 10OFF
-                description:
-                  description: A description of the coupon.
+                unique_code:
+                  description: This is a unique string that will be or is assigned to each customer/profile and is associated with a coupon.
                   type:
                   - string
                   - 'null'
-                  example: 10% off for purchases over $50
-                monitor_configuration:
-                  description: The monitor configuration for the coupon.
+                  example: ASD325FHK324UJDOI2M3JNES99
+                expires_at:
+                  description: The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
                   type:
-                  - object
+                  - string
                   - 'null'
-                  example:
-                    low_balance_threshold: 500
-              required:
-              - external_id
+                  format: date-time
+                  example: '2022-11-08T00:00:00+00:00'
+                status:
+                  description: The current status of the coupon code.
+                  type:
+                  - string
+                  - 'null'
+                  example: UNASSIGNED
+                  enum:
+                  - ASSIGNED_TO_PROFILE
+                  - DELETING
+                  - PROCESSING
+                  - UNASSIGNED
+                  - USED
+                  - VERSION_NOT_ACTIVE
+            relationships:
+              type: object
+              properties:
+                coupon:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/CouponEnum'
+                        id:
+                          type: string
+                          example: 10OFF
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+                profile:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          $ref: '#/components/schemas/ProfileEnum'
+                        id:
+                          type: string
+                          example: 01GDDKASAP8TKDDA2GRZDSVP4H
+                      required:
+                      - type
+                      - id
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
             links:
               $ref: '#/components/schemas/ObjectLinks'
           required:
@@ -1238,85 +1270,6 @@ components:
           - id
           - attributes
           - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    APIJobErrorPayload:
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the error.
-          type: string
-          example: e4eebb08-b055-4a6f-bb13-c8cb69c9eb94
-        code:
-          description: A code for classifying the error type.
-          type: string
-          example: invalid
-        title:
-          description: A high-level message about the error.
-          type: string
-          example: Invalid input
-        detail:
-          description: Specific details about the error.
-          type: string
-          example: The payload provided in the request is invalid.
-        source:
-          description: Additional information on the source of the error.
-          $ref: '#/components/schemas/ErrorSource'
-      required:
-      - id
-      - code
-      - title
-      - detail
-      - source
-    GetCouponCodeCreateJobResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CouponCodeCreateJobResponseObjectResource'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/CouponCodeResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    GetCouponCodeResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CouponCodeResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/CouponResponseObjectResource'
-      required:
-      - data
-    ProfileEnum:
-      type: string
-      enum:
-      - profile
-    GetCouponCodeCouponRelationshipResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/CouponEnum'
-            id:
-              description: The internal id of a Coupon is equivalent to its external id stored within an integration.
-              type: string
-              example: 10OFF
-          required:
-          - type
-          - id
         links:
           $ref: '#/components/schemas/ObjectLinks'
       required:
@@ -1408,6 +1361,46 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
+    APIJobErrorPayload:
+      type: object
+      properties:
+        id:
+          description: Unique identifier for the error.
+          type: string
+          example: e4eebb08-b055-4a6f-bb13-c8cb69c9eb94
+        code:
+          description: A code for classifying the error type.
+          type: string
+          example: invalid
+        title:
+          description: A high-level message about the error.
+          type: string
+          example: Invalid input
+        detail:
+          description: Specific details about the error.
+          type: string
+          example: The payload provided in the request is invalid.
+        source:
+          description: Additional information on the source of the error.
+          $ref: '#/components/schemas/ErrorSource'
+      required:
+      - id
+      - code
+      - title
+      - detail
+      - source
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
+      required:
+      - self
+      - related
     GetCouponResponse:
       type: object
       properties:
@@ -1417,34 +1410,26 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetCouponCodesRelationshipsResponseCollection:
+    GetCouponCodeResponseCompoundDocument:
       type: object
       properties:
         data:
+          $ref: '#/components/schemas/CouponCodeResponseObjectResource'
+        included:
           type: array
           items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/CouponCodeEnum'
-              id:
-                description: The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
-                type: string
-                example: 10OFF-ASD325FHK324UJDOI2M3JNES99
+            $ref: '#/components/schemas/CouponResponseObjectResource'
         links:
-          $ref: '#/components/schemas/CollectionLinks'
+          $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetCouponCodeResponseCollection:
+    GetCouponResponseCollection:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/CouponCodeResponseObjectResource'
+            $ref: '#/components/schemas/CouponResponseObjectResource'
         links:
           $ref: '#/components/schemas/CollectionLinks'
       required:
@@ -1453,145 +1438,6 @@ components:
       type: string
       enum:
       - coupon
-    CouponCodeBulkCreateJobEnum:
-      type: string
-      enum:
-      - coupon-code-bulk-create-job
-    CouponCodeEnum:
-      type: string
-      enum:
-      - coupon-code
-    PostCouponCodeResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/CouponCodeEnum'
-            id:
-              description: The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
-              type: string
-              example: 10OFF-ASD325FHK324UJDOI2M3JNES99
-            attributes:
-              type: object
-              properties:
-                unique_code:
-                  description: This is a unique string that will be or is assigned to each customer/profile and is associated with a coupon.
-                  type:
-                  - string
-                  - 'null'
-                  example: ASD325FHK324UJDOI2M3JNES99
-                expires_at:
-                  description: The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
-                  type:
-                  - string
-                  - 'null'
-                  format: date-time
-                  example: '2022-11-08T00:00:00+00:00'
-                status:
-                  description: The current status of the coupon code.
-                  type:
-                  - string
-                  - 'null'
-                  example: UNASSIGNED
-                  enum:
-                  - ASSIGNED_TO_PROFILE
-                  - DELETING
-                  - PROCESSING
-                  - UNASSIGNED
-                  - USED
-                  - VERSION_NOT_ACTIVE
-            relationships:
-              type: object
-              properties:
-                coupon:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/CouponEnum'
-                        id:
-                          type: string
-                          example: 10OFF
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-                profile:
-                  type: object
-                  properties:
-                    data:
-                      type: object
-                      properties:
-                        type:
-                          $ref: '#/components/schemas/ProfileEnum'
-                        id:
-                          type: string
-                          example: 01GDDKASAP8TKDDA2GRZDSVP4H
-                      required:
-                      - type
-                      - id
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    CouponCodeCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CouponCodeEnum'
-        attributes:
-          type: object
-          properties:
-            unique_code:
-              description: This is a unique string that will be or is assigned to each customer/profile and is associated with a coupon.
-              type: string
-              example: ASD325FHK324UJDOI2M3JNES99
-            expires_at:
-              description: The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
-              type:
-              - string
-              - 'null'
-              format: date-time
-              example: '2022-11-08T00:00:00+00:00'
-          required:
-          - unique_code
-        relationships:
-          type: object
-          properties:
-            coupon:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/CouponEnum'
-                    id:
-                      type: string
-                      example: 10OFF
-                  required:
-                  - type
-                  - id
-          required:
-          - coupon
-      required:
-      - type
-      - attributes
-      - relationships
     CouponCodeResponseObjectResource:
       type: object
       properties:
@@ -1680,125 +1526,17 @@ components:
           format: uri
       required:
       - self
-    CouponUpdateQuery:
+    CouponCodeEnum:
+      type: string
+      enum:
+      - coupon-code
+    CouponCodeCreateQuery:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/CouponUpdateQueryResourceObject'
+          $ref: '#/components/schemas/CouponCodeCreateQueryResourceObject'
       required:
       - data
-    CouponUpdateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CouponEnum'
-        id:
-          description: The internal id of a Coupon is equivalent to its external id stored within an integration.
-          type: string
-          example: 10OFF
-        attributes:
-          type: object
-          properties:
-            description:
-              description: A description of the coupon.
-              type:
-              - string
-              - 'null'
-              example: 10% off for purchases over $50
-            monitor_configuration:
-              description: The monitor configuration for the coupon.
-              type:
-              - object
-              - 'null'
-              example:
-                low_balance_threshold: 500
-      required:
-      - type
-      - id
-      - attributes
-    CouponCodeUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CouponCodeUpdateQueryResourceObject'
-      required:
-      - data
-    GetCouponCodeCreateJobResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CouponCodeCreateJobResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    PostCouponResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/CouponEnum'
-            id:
-              description: The internal id of a Coupon is equivalent to its external id stored within an integration.
-              type: string
-              example: 10OFF
-            attributes:
-              type: object
-              properties:
-                external_id:
-                  description: This is the id that is stored in an integration such as Shopify or Magento.
-                  type: string
-                  example: 10OFF
-                description:
-                  description: A description of the coupon.
-                  type:
-                  - string
-                  - 'null'
-                  example: 10% off for purchases over $50
-                monitor_configuration:
-                  description: The monitor configuration for the coupon.
-                  type:
-                  - object
-                  - 'null'
-                  example:
-                    low_balance_threshold: 500
-              required:
-              - external_id
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
     PostCouponCodeCreateJobResponse:
       type: object
       properties:
@@ -1903,29 +1641,199 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetCouponResponseCollection:
+    GetCouponCodeCreateJobResponseCompoundDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CouponCodeCreateJobResponseObjectResource'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/CouponCodeResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    PatchCouponResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/CouponEnum'
+            id:
+              description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+              type: string
+              example: 10OFF
+            attributes:
+              type: object
+              properties:
+                external_id:
+                  description: This is the id that is stored in an integration such as Shopify or Magento.
+                  type: string
+                  example: 10OFF
+                description:
+                  description: A description of the coupon.
+                  type:
+                  - string
+                  - 'null'
+                  example: 10% off for purchases over $50
+                monitor_configuration:
+                  description: The monitor configuration for the coupon.
+                  type:
+                  - object
+                  - 'null'
+                  example:
+                    low_balance_threshold: 500
+              required:
+              - external_id
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    PostCouponResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/CouponEnum'
+            id:
+              description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+              type: string
+              example: 10OFF
+            attributes:
+              type: object
+              properties:
+                external_id:
+                  description: This is the id that is stored in an integration such as Shopify or Magento.
+                  type: string
+                  example: 10OFF
+                description:
+                  description: A description of the coupon.
+                  type:
+                  - string
+                  - 'null'
+                  example: 10% off for purchases over $50
+                monitor_configuration:
+                  description: The monitor configuration for the coupon.
+                  type:
+                  - object
+                  - 'null'
+                  example:
+                    low_balance_threshold: 500
+              required:
+              - external_id
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    GetCouponCodesRelationshipsResponseCollection:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/CouponResponseObjectResource'
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/CouponCodeEnum'
+              id:
+                description: The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
+                type: string
+                example: 10OFF-ASD325FHK324UJDOI2M3JNES99
         links:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    RelationshipLinks:
+    CouponUpdateQuery:
       type: object
       properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
+        data:
+          $ref: '#/components/schemas/CouponUpdateQueryResourceObject'
       required:
-      - self
-      - related
+      - data
+    CouponResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CouponEnum'
+        id:
+          description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+          type: string
+          example: 10OFF
+        attributes:
+          type: object
+          properties:
+            external_id:
+              description: This is the id that is stored in an integration such as Shopify or Magento.
+              type: string
+              example: 10OFF
+            description:
+              description: A description of the coupon.
+              type:
+              - string
+              - 'null'
+              example: 10% off for purchases over $50
+            monitor_configuration:
+              description: The monitor configuration for the coupon.
+              type:
+              - object
+              - 'null'
+              example:
+                low_balance_threshold: 500
+          required:
+          - external_id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
+    ErrorSource:
+      type: object
+      properties:
+        pointer:
+          description: A pointer to the source of the error in the request payload.
+          type:
+          - string
+          - 'null'
+          example: /data
+          default: /data
+    CouponCodeCreateJobCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CouponCodeCreateJobCreateQueryResourceObject'
+      required:
+      - data
+    CouponCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CouponCreateQueryResourceObject'
+      required:
+      - data
     CouponCodeCreateJobResponseObjectResource:
       type: object
       properties:
@@ -2023,64 +1931,88 @@ components:
       - id
       - attributes
       - links
-    GetCouponCodeResponseCompoundDocument:
+    GetCouponCodeResponseCollection:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/CouponCodeResponseObjectResource'
-        included:
           type: array
           items:
-            $ref: '#/components/schemas/CouponResponseObjectResource'
+            $ref: '#/components/schemas/CouponCodeResponseObjectResource'
         links:
-          $ref: '#/components/schemas/ObjectLinks'
+          $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    CouponResponseObjectResource:
+    CouponCodeCreateJobCreateQueryResourceObject:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/CouponEnum'
-        id:
-          description: The internal id of a Coupon is equivalent to its external id stored within an integration.
-          type: string
-          example: 10OFF
+          $ref: '#/components/schemas/CouponCodeBulkCreateJobEnum'
         attributes:
           type: object
           properties:
-            external_id:
-              description: This is the id that is stored in an integration such as Shopify or Magento.
+            coupon-codes:
+              description: Array of coupon codes to create.
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CouponCodeCreateQueryResourceObject'
+              required:
+              - data
+          required:
+          - coupon-codes
+      required:
+      - type
+      - attributes
+    ProfileEnum:
+      type: string
+      enum:
+      - profile
+    CouponCodeCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CouponCodeEnum'
+        attributes:
+          type: object
+          properties:
+            unique_code:
+              description: This is a unique string that will be or is assigned to each customer/profile and is associated with a coupon.
               type: string
-              example: 10OFF
-            description:
-              description: A description of the coupon.
+              example: ASD325FHK324UJDOI2M3JNES99
+            expires_at:
+              description: The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
               type:
               - string
               - 'null'
-              example: 10% off for purchases over $50
-            monitor_configuration:
-              description: The monitor configuration for the coupon.
-              type:
-              - object
-              - 'null'
-              example:
-                low_balance_threshold: 500
+              format: date-time
+              example: '2022-11-08T00:00:00+00:00'
           required:
-          - external_id
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
+          - unique_code
+        relationships:
+          type: object
+          properties:
+            coupon:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/CouponEnum'
+                    id:
+                      type: string
+                      example: 10OFF
+                  required:
+                  - type
+                  - id
+          required:
+          - coupon
       required:
       - type
-      - id
       - attributes
-      - links
-    CouponCodeCreateJobCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CouponCodeCreateJobCreateQueryResourceObject'
-      required:
-      - data
+      - relationships
     CouponCreateQueryResourceObject:
       type: object
       properties:
@@ -2111,36 +2043,6 @@ components:
       required:
       - type
       - attributes
-    CouponCodeCreateJobCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CouponCodeBulkCreateJobEnum'
-        attributes:
-          type: object
-          properties:
-            coupon-codes:
-              description: Array of coupon codes to create.
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/CouponCodeCreateQueryResourceObject'
-              required:
-              - data
-          required:
-          - coupon-codes
-      required:
-      - type
-      - attributes
-    CouponCodeCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CouponCodeCreateQueryResourceObject'
-      required:
-      - data
     CouponCodeUpdateQueryResourceObject:
       type: object
       properties:
@@ -2176,9 +2078,107 @@ components:
       - type
       - id
       - attributes
+    GetCouponCodeCouponRelationshipResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/CouponEnum'
+            id:
+              description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+              type: string
+              example: 10OFF
+          required:
+          - type
+          - id
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    CouponUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CouponEnum'
+        id:
+          description: The internal id of a Coupon is equivalent to its external id stored within an integration.
+          type: string
+          example: 10OFF
+        attributes:
+          type: object
+          properties:
+            description:
+              description: A description of the coupon.
+              type:
+              - string
+              - 'null'
+              example: 10% off for purchases over $50
+            monitor_configuration:
+              description: The monitor configuration for the coupon.
+              type:
+              - object
+              - 'null'
+              example:
+                low_balance_threshold: 500
+      required:
+      - type
+      - id
+      - attributes
+    GetCouponCodeCreateJobResponseCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CouponCodeCreateJobResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    GetCouponCodeResponseCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CouponCodeResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/CouponResponseObjectResource'
+      required:
+      - data
+    CouponCodeBulkCreateJobEnum:
+      type: string
+      enum:
+      - coupon-code-bulk-create-job
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -2211,8 +2211,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:

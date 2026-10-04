@@ -1712,89 +1712,43 @@ paths:
       x-klaviyo-subtag: Tag Groups
 components:
   schemas:
-    TagFlowOp:
+    GetTagGroupResponseCollection:
       type: object
       properties:
         data:
           type: array
           items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/FlowEnum'
-              id:
-                description: The IDs of the flows to link or unlink with the given Tag ID
-                type: string
-      required:
-      - data
-    TagCreateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TagCreateQueryResourceObject'
-      required:
-      - data
-    GetTagListRelationshipsResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/ListEnum'
-              id:
-                description: The IDs of all lists that are associated with the Tag
-                type: string
+            $ref: '#/components/schemas/TagGroupResponseObjectResource'
         links:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    GetTagFlowRelationshipsResponseCollection:
+    FlowEnum:
+      type: string
+      enum:
+      - flow
+    TagGroupCreateQueryResourceObject:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
+        type:
+          $ref: '#/components/schemas/TagGroupEnum'
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The Tag Group name
+              type: string
+              example: My Tag Group
+            exclusive:
               type:
-                $ref: '#/components/schemas/FlowEnum'
-              id:
-                description: The IDs of all flows that are associated with the Tag
-                type: string
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
+              - boolean
+              - 'null'
+              default: false
+          required:
+          - name
       required:
-      - data
-    TagSegmentOp:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/SegmentEnum'
-              id:
-                description: The IDs of the segments to link or unlink with the given Tag ID
-                type: string
-      required:
-      - data
+      - type
+      - attributes
     TagCreateQueryResourceObject:
       type: object
       properties:
@@ -1830,85 +1784,31 @@ components:
       required:
       - type
       - attributes
-    TagGroupCreateQuery:
+    RelationshipLinks:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/TagGroupCreateQueryResourceObject'
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
       required:
-      - data
-    TagCampaignOp:
+      - self
+      - related
+    GetTagResponseCollectionCompoundDocument:
       type: object
       properties:
         data:
           type: array
           items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/CampaignEnum'
-              id:
-                description: The IDs of the campaigns to link or unlink with the given Tag ID
-                type: string
-      required:
-      - data
-    TagListOp:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/ListEnum'
-              id:
-                description: The IDs of the lists to link or unlink with the given Tag ID
-                type: string
-      required:
-      - data
-    GetTagGroupResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TagGroupResponseObjectResource'
+            $ref: '#/components/schemas/TagResponseObjectResource'
         links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    TagGroupCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TagGroupEnum'
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The Tag Group name
-              type: string
-              example: My Tag Group
-            exclusive:
-              type:
-              - boolean
-              - 'null'
-              default: false
-          required:
-          - name
-      required:
-      - type
-      - attributes
-    TagGroupUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TagGroupUpdateQueryResourceObject'
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroupResponseObjectResource'
       required:
       - data
     TagResponseObjectResource:
@@ -2022,6 +1922,298 @@ components:
       - id
       - attributes
       - links
+    TagUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TagEnum'
+        id:
+          description: The Tag ID
+          type: string
+          example: abcd1234-ef56-gh78-ij90-abcdef123456
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The Tag name
+              type: string
+              example: My Tag
+          required:
+          - name
+      required:
+      - type
+      - id
+      - attributes
+    TagGroupUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TagGroupUpdateQueryResourceObject'
+      required:
+      - data
+    GetTagListRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/ListEnum'
+              id:
+                description: The IDs of all lists that are associated with the Tag
+                type: string
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    GetTagGroupResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TagGroupResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    TagGroupUpdateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TagGroupEnum'
+        id:
+          description: The Tag Group ID
+          type: string
+          example: zyxw9876-vu54-ts32-rq10-zyxwvu654321
+        attributes:
+          type: object
+          properties:
+            name:
+              description: The Tag Group name
+              type: string
+              example: My Tag Group
+            return_fields:
+              type:
+              - array
+              - 'null'
+              items:
+                type: string
+          required:
+          - name
+      required:
+      - type
+      - id
+      - attributes
+    CampaignEnum:
+      type: string
+      enum:
+      - campaign
+    GetTagFlowRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/FlowEnum'
+              id:
+                description: The IDs of all flows that are associated with the Tag
+                type: string
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    PostTagGroupResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/TagGroupEnum'
+            id:
+              description: The Tag Group ID
+              type: string
+              example: zyxw9876-vu54-ts32-rq10-zyxwvu654321
+            attributes:
+              type: object
+              properties:
+                name:
+                  description: The Tag Group name
+                  type: string
+                  example: My Tag Group
+                exclusive:
+                  description: If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.
+                  type: boolean
+                default:
+                  description: Every company automatically has one Default Tag Group. The Default Tag Group cannot be deleted, and no other Default Tag Groups can be created. This value is true for the Default Tag Group and false for all other Tag Groups.
+                  type: boolean
+              required:
+              - name
+              - exclusive
+              - default
+            relationships:
+              type: object
+              properties:
+                tags:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            $ref: '#/components/schemas/TagEnum'
+                          id:
+                            type: string
+                    links:
+                      $ref: '#/components/schemas/RelationshipLinks'
+            links:
+              $ref: '#/components/schemas/ObjectLinks'
+          required:
+          - type
+          - id
+          - attributes
+          - links
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    SegmentEnum:
+      type: string
+      enum:
+      - segment
+    TagUpdateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TagUpdateQueryResourceObject'
+      required:
+      - data
+    GetTagGroupTagsRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/TagEnum'
+              id:
+                description: The Tag ID
+                type: string
+                example: abcd1234-ef56-gh78-ij90-abcdef123456
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    ListEnum:
+      type: string
+      enum:
+      - list
+    TagSegmentOp:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/SegmentEnum'
+              id:
+                description: The IDs of the segments to link or unlink with the given Tag ID
+                type: string
+      required:
+      - data
+    TagGroupEnum:
+      type: string
+      enum:
+      - tag-group
+    GetTagSegmentRelationshipsResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/SegmentEnum'
+              id:
+                description: The IDs of all segments that are associated with the Tag
+                type: string
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    TagGroupCreateQuery:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TagGroupCreateQueryResourceObject'
+      required:
+      - data
+    GetTagResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    TagFlowOp:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/FlowEnum'
+              id:
+                description: The IDs of the flows to link or unlink with the given Tag ID
+                type: string
+      required:
+      - data
     TagGroupResponseObjectResource:
       type: object
       properties:
@@ -2094,187 +2286,7 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    TagUpdateQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TagUpdateQueryResourceObject'
-      required:
-      - data
-    TagGroupEnum:
-      type: string
-      enum:
-      - tag-group
-    GetTagGroupResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagGroupResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    PostTagGroupResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              $ref: '#/components/schemas/TagGroupEnum'
-            id:
-              description: The Tag Group ID
-              type: string
-              example: zyxw9876-vu54-ts32-rq10-zyxwvu654321
-            attributes:
-              type: object
-              properties:
-                name:
-                  description: The Tag Group name
-                  type: string
-                  example: My Tag Group
-                exclusive:
-                  description: If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.
-                  type: boolean
-                default:
-                  description: Every company automatically has one Default Tag Group. The Default Tag Group cannot be deleted, and no other Default Tag Groups can be created. This value is true for the Default Tag Group and false for all other Tag Groups.
-                  type: boolean
-              required:
-              - name
-              - exclusive
-              - default
-            relationships:
-              type: object
-              properties:
-                tags:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - type
-                        - id
-                        properties:
-                          type:
-                            $ref: '#/components/schemas/TagEnum'
-                          id:
-                            type: string
-                    links:
-                      $ref: '#/components/schemas/RelationshipLinks'
-            links:
-              $ref: '#/components/schemas/ObjectLinks'
-          required:
-          - type
-          - id
-          - attributes
-          - links
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    TagUpdateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TagEnum'
-        id:
-          description: The Tag ID
-          type: string
-          example: abcd1234-ef56-gh78-ij90-abcdef123456
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The Tag name
-              type: string
-              example: My Tag
-          required:
-          - name
-      required:
-      - type
-      - id
-      - attributes
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
-    ListEnum:
-      type: string
-      enum:
-      - list
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
-    GetTagResponseCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagGroupResponseObjectResource'
-      required:
-      - data
-    TagEnum:
-      type: string
-      enum:
-      - tag
-    GetTagResponseCompoundDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TagResponseObjectResource'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagGroupResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    GetTagSegmentRelationshipsResponseCollection:
+    TagListOp:
       type: object
       properties:
         data:
@@ -2286,12 +2298,28 @@ components:
             - id
             properties:
               type:
-                $ref: '#/components/schemas/SegmentEnum'
+                $ref: '#/components/schemas/ListEnum'
               id:
-                description: The IDs of all segments that are associated with the Tag
+                description: The IDs of the lists to link or unlink with the given Tag ID
                 type: string
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    TagCampaignOp:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - id
+            properties:
+              type:
+                $ref: '#/components/schemas/CampaignEnum'
+              id:
+                description: The IDs of the campaigns to link or unlink with the given Tag ID
+                type: string
       required:
       - data
     PostTagResponse:
@@ -2412,46 +2440,23 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    SegmentEnum:
+    TagEnum:
       type: string
       enum:
-      - segment
-    GetTagGroupTagsRelationshipsResponseCollection:
+      - tag
+    GetTagResponseCompoundDocument:
       type: object
       properties:
         data:
+          $ref: '#/components/schemas/TagResponseObjectResource'
+        included:
           type: array
           items:
-            type: object
-            required:
-            - type
-            - id
-            properties:
-              type:
-                $ref: '#/components/schemas/TagEnum'
-              id:
-                description: The Tag ID
-                type: string
-                example: abcd1234-ef56-gh78-ij90-abcdef123456
+            $ref: '#/components/schemas/TagGroupResponseObjectResource'
         links:
-          $ref: '#/components/schemas/CollectionLinks'
+          $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    GetTagResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    FlowEnum:
-      type: string
-      enum:
-      - flow
     GetTagCampaignRelationshipsResponseCollection:
       type: object
       properties:
@@ -2472,41 +2477,36 @@ components:
           $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
-    TagGroupUpdateQueryResourceObject:
+    TagCreateQuery:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/TagGroupEnum'
-        id:
-          description: The Tag Group ID
-          type: string
-          example: zyxw9876-vu54-ts32-rq10-zyxwvu654321
-        attributes:
-          type: object
-          properties:
-            name:
-              description: The Tag Group name
-              type: string
-              example: My Tag Group
-            return_fields:
-              type:
-              - array
-              - 'null'
-              items:
-                type: string
-          required:
-          - name
+        data:
+          $ref: '#/components/schemas/TagCreateQueryResourceObject'
       required:
-      - type
-      - id
-      - attributes
-    CampaignEnum:
-      type: string
-      enum:
-      - campaign
+      - data
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
   responses:
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:
@@ -2539,8 +2539,8 @@ components:
                           type: string
             required:
             - errors
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
