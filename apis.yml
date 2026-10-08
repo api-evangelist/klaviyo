@@ -773,6 +773,10 @@ apis:
   - type: Overlay
     url: overlays/klaviyo-webhooks-api-overlay.yaml
 common:
+- type: Plans
+  url: plans/klaviyo-plans-pricing.yml
+- type: FinOps
+  url: finops/klaviyo-finops.yml
 - type: CapabilityMap
   url: capabilities/klaviyo-capability-edges.yml
   name: Klaviyo Business Capability Map
