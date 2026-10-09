@@ -110,3 +110,22 @@ x-evidence:
   - {fetched: '2026-08-13', url: 'https://www.klaviyo.com/pricing', http_status: 200, note: 'Free tier figures read from rendered content; no static paid-tier price table present.'}
   - {fetched: '2026-08-13', url: 'https://www.klaviyo.com/pricing/marketing', http_status: 404}
   - {fetched: '2026-08-13', url: 'https://www.klaviyo.com/pricing/email', http_status: 404}
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units:
+  - credit
+  - message
+  plans:
+  - name: Free
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - credit
+    - message
+    - other
+    periods:
+    - month
