@@ -1,0 +1,1104 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/klaviyo/integrations
+- https://n8n.io/integrations/klaviyo/
+- https://composio.dev/toolkits/klaviyo
+checked:
+- https://composio.dev/toolkits/klaviyo
+- https://monid.ai/tools/klaviyo
+- https://n8n.io/integrations/klaviyo/
+- https://zapier.com/apps/klaviyo/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: klaviyo
+  url: https://zapier.com/apps/klaviyo/integrations
+  external_url: https://www.klaviyo.com/
+  partner_tier: PLATINUM
+  triggers:
+  - key: event_v3
+    label: New Event
+  - key: segmentOrList_subscriber
+    label: Profile added to Segment or List
+  - key: subscriber
+    label: New Profile
+  actions:
+  - key: add_profile_to_list
+    label: Add Profile to List
+  - key: add_tag_to_list
+    label: Add Tag to List
+  - key: add_tag_to_segment
+    label: Add Tag to Segment
+  - key: create_list
+    label: Create List
+  - key: create_profile
+    label: Create Profile
+  - key: event
+    label: Create Event
+  - key: remove_subscriber
+    label: Remove Profile from List
+  - key: remove_tag_from_list
+    label: Remove Tag From List
+  - key: remove_tag_from_segment
+    label: Remove Tag from Segment
+  - key: send_campaign
+    label: Send Campaign
+  - key: subscriber_update_v3
+    label: Update Profile
+  - key: subscriber_v2
+    label: Create Or Update Profile
+  - key: subscribe_profile
+    label: Subscribe Profile
+  - key: unsubscribe
+    label: Unsubscribe Profile
+  - key: _zap_raw_request
+    label: API Request (Beta)
+  searches:
+  - key: campaign
+    label: Find Campaign
+  - key: list
+    label: Find List
+  - key: segment
+    label: Find Segment
+  - key: subscriber_v3
+    label: Find a Profile
+  - key: tag
+    label: Find Tag
+- marketplace: n8n
+  channel: open-source-node
+  app: klaviyo
+  url: https://n8n.io/integrations/klaviyo/
+  identity: title
+  pair_pages: 405
+  pairs:
+  - klazify
+  - knack
+  - knowbe4
+  - kobotoolbox
+  - kraftful
+  - lagrowthmachine
+  - lambdatest
+  - landbot
+  - laposta
+  - launch27
+  - launchdarkly
+  - ldap
+  - leadboxer
+  - leadpops
+  - lemlist
+  - lets-enhance
+  - libraria
+  - lighthouse
+  - lime-go
+  - line
+  - linear
+  - lingvanex
+  - linkedin
+  - linkish
+  - linode
+  - liveagent
+  - localazy
+  - loginradius
+  - lokalise
+  - lonescale
+  - lucidchart
+  - magento-2
+  - mailcheck
+  - mailchimp
+  - mailerlite
+  - mailersend
+  - mailgun
+  - mailify
+  - mailjet
+  - mailmodo
+  - malcore
+  - mandrill
+  - marcom-robot
+  - marketing-master-io
+  - marketplacer
+  - marketstack
+  - mastodon
+  - matrix
+  - mattermost
+  - mautic
+  - mav
+  - maverick
+  - medium
+  - mem
+  - messagebird
+  - metabase
+  - metatextai-inference-api
+  - mews
+  - microsoft-azure-monitor
+  - microsoft-dynamics-365-business-central-api
+  - microsoft-dynamics-crm
+  - microsoft-entra-id
+  - microsoft-entra-id-azure-active-directory
+  - microsoft-excel
+  - microsoft-graph-security
+  - microsoft-onedrive
+  - microsoft-outlook
+  - microsoft-sharepoint
+  - microsoft-sql
+  - microsoft-teams
+  - microsoft-teams-admin
+  - microsoft-to-do
+  - miestro
+  - mindee
+  - miro
+  - misp
+  - missive
+  - mist
+  - mistral-ai
+  - mixpanel
+  - mocean
+  - mondaycom
+  - mongodb
+  - monica-crm
+  - moonclerk
+  - moonmail
+  - morph
+  - mqtt
+  - msg91
+  - mux
+  - mx-toolbox
+  - my-askai
+  - myphoner
+  - mysql
+  - nanonets-ocr
+  - nasa
+  - ncscale
+  - netlify
+  - nextcloud
+  - nightfallai
+  - ninox
+  - nmkr
+  - nocodb
+  - notion
+  - nozbe-teams
+  - npm
+  - nuclia
+  - nusii-proposals
+  - nyckel
+  - nyota
+  - occasion
+  - ocrspace
+  - odoo
+  - offalerts
+  - okta
+  - omeda
+  - omniconvert
+  - omnimind
+  - on2air
+  - one-ai
+  - one-simple-api
+  - onfleet
+  - openai
+  - opencti
+  - openthesaurus
+  - openweathermap
+  - opn-formerly-omise
+  - oracle-database
+  - orbit
+  - order-desk
+  - ortto
+  - oura
+  - paddle
+  - pagerduty
+  - paperform
+  - papyrs
+  - parsehub
+  - parseprompt
+  - passcreator
+  - passslot
+  - patreon
+  - paymo
+  - paypal
+  - peekalink
+  - perplexity
+  - persio
+  - personal-ai
+  - phantombuster
+  - philips-hue
+  - phrase
+  - pinata
+  - pinboard
+  - pinterest
+  - pipedrive
+  - pipefy
+  - pirate-weather
+  - pitchly
+  - pivotal-tracker
+  - planview-leankit
+  - planyo-online-booking
+  - platformly
+  - plecto
+  - plivo
+  - postbin
+  - postgres
+  - posthog
+  - practitest
+  - predisai
+  - prodia
+  - product-hunt
+  - profitwell
+  - project-bubble-proprofs-project
+  - prompthub
+  - prospe-ai
+  - pushbullet
+  - pushcut
+  - pusher
+  - pushover
+  - qradar
+  - qualaroo
+  - qualys
+  - quentn
+  - questdb
+  - quick-base
+  - quickbooks-online
+  - quickchart
+  - quintadb
+  - rabbitmq
+  - radar
+  - raindrop
+  - rapid7-insightvm
+  - raven-tools
+  - rawg-video-games-database
+  - read-ai
+  - realphonevalidation
+  - recharge
+  - recorded-future
+  - redash
+  - reddit
+  - redis
+  - relevance-ai
+  - relink-url-shortener
+  - relysia
+  - replyio
+  - retable
+  - reverse-contact
+  - rewardful
+  - ritekit
+  - roboflow
+  - robolytix
+  - roboresponseai
+  - rocketchat
+  - rollbar
+  - rootly
+  - route4me
+  - rundeck
+  - s3
+  - sales-simplify
+  - salesforce
+  - salesmaa
+  - salesmate
+  - salesmsg
+  - salesrocks
+  - samsung-smartthings
+  - scrape-itcloud
+  - scrapeninja
+  - seamless-ai
+  - search-and-save
+  - seatable
+  - securityscorecard
+  - segment
+  - sekoia
+  - sellix
+  - sembly-ai
+  - sendgrid
+  - sendy
+  - sentryio
+  - servicenow
+  - sharly-ai
+  - shiphero
+  - shipstation
+  - shopify
+  - shortio
+  - shuffler
+  - sierra-interactive
+  - sifter
+  - signaturit
+  - signl4
+  - signrequest
+  - simpleem
+  - simplehash
+  - simplekpi
+  - simplelocalize
+  - simplero
+  - simpletexting
+  - sitecreatorio
+  - sitespeakai
+  - slack
+  - smaily
+  - smartreach
+  - smartsuite
+  - sms-it
+  - sms-magic
+  - sms77
+  - snapdocs
+  - snatchbot
+  - snipcart
+  - snowflake
+  - solve-data
+  - specter
+  - splunk
+  - spondyr
+  - spontit
+  - sportsdata
+  - spotify
+  - spydra
+  - sslmate-cert-spotter-api
+  - stackby
+  - stammerai
+  - starton
+  - statuscake
+  - storyblok
+  - strapi
+  - strava
+  - stripe
+  - studio-by-ai21-labs
+  - suitedash
+  - supabase
+  - supernormal
+  - superpowered
+  - supportivekoala
+  - survicate
+  - swagup
+  - switchboard
+  - syncly
+  - syncromsp
+  - synthesia
+  - taiga
+  - talentlms
+  - talknotes
+  - tapfiliate
+  - td-ameritrade
+  - teachable
+  - team-up
+  - teamdeck
+  - teamgate
+  - teknoir
+  - telegram
+  - testmonitor
+  - textcortex-ai
+  - textgain
+  - textkit
+  - textmagic
+  - thankster
+  - the-customer-factor
+  - the-leap
+  - thehive
+  - thehive-5
+  - thoughtfulgpt
+  - thrivecart
+  - tidb-cloud
+  - tierion
+  - tilda
+  - timescaledb
+  - timetonic
+  - tinyurl
+  - tisane-labs
+  - todoist
+  - token-metrics
+  - toket
+  - totango
+  - trackvia
+  - transifex
+  - travisci
+  - trellix-epo
+  - trello
+  - trengo
+  - trevorio
+  - turbohire
+  - tuskr
+  - tuulio
+  - twake
+  - twilio
+  - twist
+  - twitter
+  - unbounce
+  - unisender
+  - unleashed-software
+  - upkeep
+  - uplead
+  - uproc
+  - uptimerobot
+  - uptimetoolbox
+  - urlscanio
+  - uservoice
+  - venafi-tls-protect-cloud
+  - venafi-tls-protect-datacenter
+  - venly
+  - verifalia
+  - vero
+  - vimeo
+  - virustotal
+  - vivifyscrum
+  - voicit
+  - vonage
+  - vowel
+  - watchsignals
+  - waveline-extract
+  - webex-by-cisco
+  - webflow
+  - webscraperio
+  - wekan
+  - whal3s
+  - whatconverts
+  - whatsapp-business-cloud
+  - wise
+  - wizychat
+  - wonderchat
+  - wondercraft
+  - woocommerce
+  - woodpeckerco
+  - wordpress
+  - workast
+  - workboard
+  - woxo
+  - writesonic
+  - wubook-ratechecker
+  - xero
+  - xtractly
+  - ybug
+  - ycode
+  - yodiz
+  - yourls
+  - youtube
+  - zabbix
+  - zammad
+  - zendesk
+  - zenrows
+  - zoho-books
+  - zoho-crm
+  - zoho-desk
+  - zonka-feedback
+  - zoom
+  - zscaler-zia
+  - zulip
+- marketplace: composio
+  channel: agent-gateway
+  app: klaviyo
+  url: https://composio.dev/toolkits/klaviyo
+  identity: action-prefix
+  actions:
+  - key: KLAVIYO_ADD_PROFILE_TO_LIST
+  - key: KLAVIYO_ASSIGN_CAMPAIGN_MESSAGE_TEMPLATE
+  - key: KLAVIYO_BULK_CREATE_CLIENT_EVENTS
+  - key: KLAVIYO_BULK_CREATE_EVENTS
+  - key: KLAVIYO_CANCEL_CAMPAIGN_SEND
+  - key: KLAVIYO_CREATE_BACK_IN_STOCK_SUBSCRIPTION
+  - key: KLAVIYO_CREATE_CAMPAIGN
+  - key: KLAVIYO_CREATE_CAMPAIGN_CLONE
+  - key: KLAVIYO_CREATE_CAMPAIGN_RECIPIENT_ESTIMATION_JOB
+  - key: KLAVIYO_CREATE_CAMPAIGN_SEND_JOB
+  - key: KLAVIYO_CREATE_CATALOG_CATEGORY
+  - key: KLAVIYO_CREATE_CATALOG_CATEGORY_RELATIONSHIPS_ITEMS
+  - key: KLAVIYO_CREATE_CATALOG_ITEM
+  - key: KLAVIYO_CREATE_CATALOG_ITEM_RELATIONSHIPS_CATEGORIES
+  - key: KLAVIYO_CREATE_CATALOG_VARIANT
+  - key: KLAVIYO_CREATE_CLIENT_BACK_IN_STOCK_SUBSCRIPTION
+  - key: KLAVIYO_CREATE_CLIENT_EVENT2
+  - key: KLAVIYO_CREATE_CLIENT_SUBSCRIPTION
+  - key: KLAVIYO_CREATE_COUPON
+  - key: KLAVIYO_CREATE_COUPON_CODE
+  - key: KLAVIYO_CREATE_EVENT
+  - key: KLAVIYO_CREATE_LIST
+  - key: KLAVIYO_CREATE_OR_UPDATE_CLIENT_PROFILE
+  - key: KLAVIYO_CREATE_OR_UPDATE_CLIENT_PUSH_TOKEN
+  - key: KLAVIYO_CREATE_OR_UPDATE_PROFILE
+  - key: KLAVIYO_CREATE_OR_UPDATE_PUSH_TOKEN
+  - key: KLAVIYO_CREATE_PROFILE
+  - key: KLAVIYO_CREATE_SEGMENT
+  - key: KLAVIYO_CREATE_TAG
+  - key: KLAVIYO_CREATE_TAG_GROUP
+  - key: KLAVIYO_CREATE_TAG_RELATIONSHIPS
+  - key: KLAVIYO_CREATE_TEMPLATE
+  - key: KLAVIYO_CREATE_TEMPLATE_CLONE
+  - key: KLAVIYO_CREATE_TEMPLATE_RENDER
+  - key: KLAVIYO_CREATE_WEBHOOK
+  - key: KLAVIYO_DELETE_CAMPAIGN
+  - key: KLAVIYO_DELETE_CATALOG_CATEGORY
+  - key: KLAVIYO_DELETE_CATALOG_CATEGORY_RELATIONSHIPS_ITEMS
+  - key: KLAVIYO_DELETE_CATALOG_ITEM
+  - key: KLAVIYO_DELETE_CATALOG_ITEM_RELATIONSHIPS_CATEGORIES
+  - key: KLAVIYO_DELETE_CATALOG_VARIANT
+  - key: KLAVIYO_DELETE_COUPON
+  - key: KLAVIYO_DELETE_COUPON_CODE
+  - key: KLAVIYO_DELETE_FLOW
+  - key: KLAVIYO_DELETE_LIST
+  - key: KLAVIYO_DELETE_SEGMENT
+  - key: KLAVIYO_DELETE_TAG
+  - key: KLAVIYO_DELETE_TAG_GROUP
+  - key: KLAVIYO_DELETE_TAG_RELATIONSHIPS
+  - key: KLAVIYO_DELETE_TEMPLATE
+  - key: KLAVIYO_DELETE_WEBHOOK
+  - key: KLAVIYO_GET_ACCOUNT
+  - key: KLAVIYO_GET_ACCOUNTS
+  - key: KLAVIYO_GET_BULK_CREATE_COUPON_CODES_JOB
+  - key: KLAVIYO_GET_BULK_DELETE_CATALOG_ITEMS_JOB
+  - key: KLAVIYO_GET_BULK_PROFILE_IMPORT_JOB
+  - key: KLAVIYO_GET_BULK_PROFILE_IMPORT_JOBS
+  - key: KLAVIYO_GET_BULK_PROFILE_IMPORT_JOB_ERRORS
+  - key: KLAVIYO_GET_BULK_PROFILE_IMPORT_JOB_LISTS
+  - key: KLAVIYO_GET_BULK_PROFILE_IMPORT_JOB_PROFILES
+  - key: KLAVIYO_GET_BULK_PROFILE_IMPORT_JOB_RELATIONSHIPS_LISTS
+  - key: KLAVIYO_GET_BULK_PROFILE_IMPORT_JOB_RELATIONSHIPS_PROFILES
+  - key: KLAVIYO_GET_BULK_UPDATE_CATALOG_ITEMS_JOB
+  - key: KLAVIYO_GET_BULK_UPDATE_CATEGORIES_JOB
+  - key: KLAVIYO_GET_BULK_UPDATE_VARIANTS_JOB
+  - key: KLAVIYO_GET_CAMPAIGN
+  - key: KLAVIYO_GET_CAMPAIGNS
+  - key: KLAVIYO_GET_CAMPAIGN_CAMPAIGN_MESSAGES
+  - key: KLAVIYO_GET_CAMPAIGN_MESSAGE
+  - key: KLAVIYO_GET_CAMPAIGN_MESSAGE_CAMPAIGN
+  - key: KLAVIYO_GET_CAMPAIGN_MESSAGE_RELATIONSHIPS_CAMPAIGN
+  - key: KLAVIYO_GET_CAMPAIGN_MESSAGE_RELATIONSHIPS_TEMPLATE
+  - key: KLAVIYO_GET_CAMPAIGN_MESSAGE_TEMPLATE
+  - key: KLAVIYO_GET_CAMPAIGN_RECIPIENT_ESTIMATION
+  - key: KLAVIYO_GET_CAMPAIGN_RECIPIENT_ESTIMATION_JOB
+  - key: KLAVIYO_GET_CAMPAIGN_RELATIONSHIPS_CAMPAIGN_MESSAGES
+  - key: KLAVIYO_GET_CAMPAIGN_RELATIONSHIPS_TAGS
+  - key: KLAVIYO_GET_CAMPAIGN_SEND_JOB
+  - key: KLAVIYO_GET_CAMPAIGN_TAGS
+  - key: KLAVIYO_GET_CATALOG_CATEGORIES
+  - key: KLAVIYO_GET_CATALOG_CATEGORY
+  - key: KLAVIYO_GET_CATALOG_CATEGORY_ITEMS
+  - key: KLAVIYO_GET_CATALOG_CATEGORY_RELATIONSHIPS_ITEMS
+  - key: KLAVIYO_GET_CATALOG_ITEM
+  - key: KLAVIYO_GET_CATALOG_ITEMS
+  - key: KLAVIYO_GET_CATALOG_ITEM_CATEGORIES
+  - key: KLAVIYO_GET_CATALOG_ITEM_RELATIONSHIPS_CATEGORIES
+  - key: KLAVIYO_GET_CATALOG_ITEM_VARIANTS
+  - key: KLAVIYO_GET_CATALOG_VARIANT
+  - key: KLAVIYO_GET_CATALOG_VARIANTS
+  - key: KLAVIYO_GET_COUPON
+  - key: KLAVIYO_GET_COUPONS
+  - key: KLAVIYO_GET_COUPON_CODE
+  - key: KLAVIYO_GET_COUPON_CODES
+  - key: KLAVIYO_GET_COUPON_CODES_FOR_COUPON
+  - key: KLAVIYO_GET_COUPON_CODE_BULK_CREATE_JOB
+  - key: KLAVIYO_GET_COUPON_CODE_BULK_CREATE_JOBS
+  - key: KLAVIYO_GET_COUPON_CODE_RELATIONSHIPS_COUPON
+  - key: KLAVIYO_GET_COUPON_FOR_COUPON_CODE
+  - key: KLAVIYO_GET_COUPON_ID_FOR_COUPON_CODE
+  - key: KLAVIYO_GET_COUPON_RELATIONSHIPS_COUPON_CODES
+  - key: KLAVIYO_GET_CREATE_CATEGORIES_JOB
+  - key: KLAVIYO_GET_CREATE_CATEGORIES_JOBS
+  - key: KLAVIYO_GET_CREATE_ITEMS_JOB
+  - key: KLAVIYO_GET_CREATE_ITEMS_JOBS
+  - key: KLAVIYO_GET_CREATE_VARIANTS_JOB
+  - key: KLAVIYO_GET_CREATE_VARIANTS_JOBS
+  - key: KLAVIYO_GET_DELETE_CATEGORIES_JOB
+  - key: KLAVIYO_GET_DELETE_CATEGORIES_JOBS
+  - key: KLAVIYO_GET_DELETE_ITEMS_JOBS
+  - key: KLAVIYO_GET_DELETE_VARIANTS_JOB
+  - key: KLAVIYO_GET_DELETE_VARIANTS_JOBS
+  - key: KLAVIYO_GET_EVENT
+  - key: KLAVIYO_GET_EVENTS
+  - key: KLAVIYO_GET_EVENT_METRIC
+  - key: KLAVIYO_GET_EVENT_PROFILE
+  - key: KLAVIYO_GET_EVENT_RELATIONSHIPS
+  - key: KLAVIYO_GET_FLOW
+  - key: KLAVIYO_GET_FLOWS
+  - key: KLAVIYO_GET_FLOW_ACTION
+  - key: KLAVIYO_GET_FLOW_ACTION_FOR_MESSAGE
+  - key: KLAVIYO_GET_FLOW_ACTION_MESSAGES
+  - key: KLAVIYO_GET_FLOW_ACTION_RELATIONSHIPS_FLOW
+  - key: KLAVIYO_GET_FLOW_ACTION_RELATIONSHIPS_MESSAGES
+  - key: KLAVIYO_GET_FLOW_FLOW_ACTIONS
+  - key: KLAVIYO_GET_FLOW_FOR_FLOW_ACTION
+  - key: KLAVIYO_GET_FLOW_MESSAGE
+  - key: KLAVIYO_GET_FLOW_MESSAGE_RELATIONSHIPS_ACTION
+  - key: KLAVIYO_GET_FLOW_MESSAGE_RELATIONSHIPS_TEMPLATE
+  - key: KLAVIYO_GET_FLOW_MESSAGE_TEMPLATE
+  - key: KLAVIYO_GET_FLOW_RELATIONSHIPS_FLOW_ACTIONS
+  - key: KLAVIYO_GET_FLOW_RELATIONSHIPS_TAGS
+  - key: KLAVIYO_GET_FLOW_TAGS
+  - key: KLAVIYO_GET_FORM
+  - key: KLAVIYO_GET_FORMS
+  - key: KLAVIYO_GET_FORM_FOR_FORM_VERSION
+  - key: KLAVIYO_GET_FORM_ID_FOR_FORM_VERSION
+  - key: KLAVIYO_GET_FORM_VERSION
+  - key: KLAVIYO_GET_IMAGE
+  - key: KLAVIYO_GET_IMAGES
+  - key: KLAVIYO_GET_LIST
+  - key: KLAVIYO_GET_LISTS
+  - key: KLAVIYO_GET_LIST_PROFILES
+  - key: KLAVIYO_GET_LIST_RELATIONSHIPS
+  - key: KLAVIYO_GET_LIST_RELATIONSHIPS_TAGS
+  - key: KLAVIYO_GET_LIST_TAGS
+  - key: KLAVIYO_GET_METRIC
+  - key: KLAVIYO_GET_METRICS
+  - key: KLAVIYO_GET_PROFILE
+  - key: KLAVIYO_GET_PROFILES
+  - key: KLAVIYO_GET_PROFILE_LISTS
+  - key: KLAVIYO_GET_PROFILE_RELATIONSHIPS
+  - key: KLAVIYO_GET_PROFILE_SEGMENTS
+  - key: KLAVIYO_GET_SEGMENT
+  - key: KLAVIYO_GET_SEGMENTS
+  - key: KLAVIYO_GET_SEGMENT_PROFILES
+  - key: KLAVIYO_GET_SEGMENT_RELATIONSHIPS
+  - key: KLAVIYO_GET_SEGMENT_TAGS
+  - key: KLAVIYO_GET_TAG
+  - key: KLAVIYO_GET_TAGS
+  - key: KLAVIYO_GET_TAG_GROUP
+  - key: KLAVIYO_GET_TAG_GROUPS
+  - key: KLAVIYO_GET_TAG_GROUP_RELATIONSHIPS_TAGS
+  - key: KLAVIYO_GET_TAG_GROUP_TAGS
+  - key: KLAVIYO_GET_TAG_RELATIONSHIPS
+  - key: KLAVIYO_GET_TAG_TAG_GROUP
+  - key: KLAVIYO_GET_TEMPLATE
+  - key: KLAVIYO_GET_TEMPLATES
+  - key: KLAVIYO_GET_UPDATE_CATEGORIES_JOBS
+  - key: KLAVIYO_GET_UPDATE_ITEMS_JOB
+  - key: KLAVIYO_GET_UPDATE_ITEMS_JOBS
+  - key: KLAVIYO_GET_UPDATE_VARIANTS_JOBS
+  - key: KLAVIYO_GET_VARIANT_IDS_FOR_CATALOG_ITEM
+  - key: KLAVIYO_GET_VERSIONS_FOR_FORM
+  - key: KLAVIYO_GET_VERSION_IDS_FOR_FORM
+  - key: KLAVIYO_GET_WEBHOOK
+  - key: KLAVIYO_GET_WEBHOOKS
+  - key: KLAVIYO_GET_WEBHOOK_TOPIC
+  - key: KLAVIYO_GET_WEBHOOK_TOPICS
+  - key: KLAVIYO_MERGE_PROFILES
+  - key: KLAVIYO_QUERY_CAMPAIGN_VALUES
+  - key: KLAVIYO_QUERY_FLOW_SERIES
+  - key: KLAVIYO_QUERY_FLOW_VALUES
+  - key: KLAVIYO_QUERY_METRIC_AGGREGATES
+  - key: KLAVIYO_REMOVE_PROFILE_FROM_LIST
+  - key: KLAVIYO_REQUEST_PROFILE_DELETION
+  - key: KLAVIYO_SPAWN_BULK_PROFILE_IMPORT_JOB
+  - key: KLAVIYO_SPAWN_COUPON_CODE_BULK_CREATE_JOB
+  - key: KLAVIYO_SPAWN_CREATE_CATEGORIES_JOB
+  - key: KLAVIYO_SPAWN_CREATE_ITEMS_JOB
+  - key: KLAVIYO_SPAWN_CREATE_VARIANTS_JOB
+  - key: KLAVIYO_SPAWN_DELETE_CATEGORIES_JOB
+  - key: KLAVIYO_SPAWN_DELETE_ITEMS_JOB
+  - key: KLAVIYO_SPAWN_DELETE_VARIANTS_JOB
+  - key: KLAVIYO_SPAWN_UPDATE_CATEGORIES_JOB
+  - key: KLAVIYO_SPAWN_UPDATE_ITEMS_JOB
+  - key: KLAVIYO_SPAWN_UPDATE_VARIANTS_JOB
+  - key: KLAVIYO_SUBSCRIBE_PROFILES
+  - key: KLAVIYO_SUPPRESS_PROFILES
+  - key: KLAVIYO_UNREGISTER_CLIENT_PUSH_TOKEN
+  - key: KLAVIYO_UNSUBSCRIBE_PROFILES
+  - key: KLAVIYO_UNSUBSCRIBE_PROFILES_BULK
+  - key: KLAVIYO_UNSUPPRESS_PROFILES
+  - key: KLAVIYO_UNSUPPRESS_PROFILES_BULK
+  - key: KLAVIYO_UPDATE_CAMPAIGN
+  - key: KLAVIYO_UPDATE_CAMPAIGN_MESSAGE
+  - key: KLAVIYO_UPDATE_CATALOG_CATEGORY
+  - key: KLAVIYO_UPDATE_CATALOG_CATEGORY_RELATIONSHIPS
+  - key: KLAVIYO_UPDATE_CATALOG_CATEGORY_RELATIONSHIPS_ITEMS
+  - key: KLAVIYO_UPDATE_CATALOG_ITEM
+  - key: KLAVIYO_UPDATE_CATALOG_ITEM_RELATIONSHIPS_CATEGORIES
+  - key: KLAVIYO_UPDATE_CATALOG_VARIANT
+  - key: KLAVIYO_UPDATE_COUPON
+  - key: KLAVIYO_UPDATE_COUPON_CODE
+  - key: KLAVIYO_UPDATE_FLOW_STATUS
+  - key: KLAVIYO_UPDATE_IMAGE
+  - key: KLAVIYO_UPDATE_LIST
+  - key: KLAVIYO_UPDATE_PROFILE
+  - key: KLAVIYO_UPDATE_SEGMENT
+  - key: KLAVIYO_UPDATE_TAG
+  - key: KLAVIYO_UPDATE_TAG_GROUP
+  - key: KLAVIYO_UPDATE_TEMPLATE
+  - key: KLAVIYO_UPDATE_WEBHOOK
+  - key: KLAVIYO_UPLOAD_IMAGE_FROM_FILE
+  - key: KLAVIYO_UPLOAD_IMAGE_FROM_URL
+edges:
+- partner_name: Google Ads
+  partner: google-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/google-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://ads.google.com/
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: Squarespace Forms
+  partner: squarespace
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/squarespace-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.squarespace.com/
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Jotform
+  partner: jotform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/jotform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://www.jotform.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: Facebook Conversions
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/facebook-conversions
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://developers.facebook.com/docs/marketing-api/server-side-api/guides/zapier-integration
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Webflow
+  partner: webflow
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/webflow
+  direction: third-party
+  category: Website Builders
+  partner_url: https://webflow.com/
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: Tally
+  partner: tally
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/tally
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://try.tally.so/zapier
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: ClickFunnels Classic
+  partner: clickfunnels
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/clickfunnels-classic
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.clickfunnels.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Manychat
+  partner: manychat
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/manychat
+  direction: third-party
+  category: Social Media Marketing
+  partner_url: https://manychat.com/
+- partner_name: Wix
+  partner: wix
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: Stan
+  partner: stan
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/stan-creator
+  direction: third-party
+  category: App Builder
+  partner_url: https://stan.store/
+- partner_name: Kajabi
+  partner: kajabi
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/kajabi
+  direction: third-party
+  category: eCommerce
+  partner_url: http://kajabi.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Acuity Scheduling
+  partner: acuity-scheduling
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/acuity-scheduling
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://acuityscheduling.com/?utm_source=zapier.com&utm_medium=referral&utm_campaign=integration-page
+- partner_name: Gravity Forms
+  partner: gravity-forms
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/gravity-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.gravityforms.com/?utm_campaign=partners&utm_source=zapier-listing-learn-more&utm_medium=free-placement
+- partner_name: Pipedrive
+  partner: pipedrive
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/pipedrive
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://pipedrive.com/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Ecwid by Lightspeed
+  partner: ecwid
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/ecwid
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.ecwid.com/
+- partner_name: Square
+  partner: square
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/square
+  direction: third-party
+  category: eCommerce
+  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
+- partner_name: Close
+  partner: close
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/close
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.close.com/?utm_source=Partner&utm_medium=Integration_Listing&utm_campaign=2025_Partnerships&utm_content=Home
+templates:
+- title: Add contacts to a Google Ads customer list for new events on Klaviyo
+  url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo
+  apps:
+  - klaviyo
+  - google-ads
+- title: Add Klaviyo subscribers for new submissions in Jotform
+  url: https://zapier.com/apps/jotform/integrations/klaviyo/177456/add-klaviyo-subscribers-for-new-submissions-in-jotform
+  apps:
+  - jotform
+  - klaviyo
+- title: Add new Leadpages leads to Klaviyo as subscribers
+  url: https://zapier.com/apps/klaviyo/integrations/leadpages/22980/add-new-leadpages-leads-to-klaviyo-as-subscribers
+  apps:
+  - leadpages
+  - klaviyo
+- title: Add new Klaviyo profiles to Google Ads customer list when they are added to a segment or list
+  url: https://zapier.com/apps/google-ads/integrations/klaviyo/1683561/add-new-klaviyo-profiles-to-google-ads-customer-list-when-they-are-added-to-a-segment-or-list
+  apps:
+  - klaviyo
+  - google-ads
+- title: Add new Google Ads leads to Klaviyo
+  url: https://zapier.com/apps/google-ads/integrations/klaviyo/538586/add-new-google-ads-leads-to-klaviyo
+  apps:
+  - google-ads
+  - klaviyo
+- title: Create Klaviyo subscribers from new Squarespace Forms form submissions
+  url: https://zapier.com/apps/klaviyo/integrations/squarespace-forms/23249/create-klaviyo-subscribers-from-new-squarespace-forms-form-submissions
+  apps:
+  - squarespace-forms
+  - klaviyo
+- title: Add Klaviyo subscribers from new POWr Form Builder form responses
+  url: https://zapier.com/apps/klaviyo/integrations/powr-form-builder/72865/add-klaviyo-subscribers-from-new-powr-form-builder-form-responses
+  apps:
+  - powr-form-builder
+  - klaviyo
+- title: Send funnel events to Facebook Conversions from Klaviyo
+  url: https://zapier.com/apps/facebook-conversions/integrations/klaviyo/1128608/send-funnel-events-to-facebook-conversions-from-klaviyo
+  apps:
+  - klaviyo
+  - facebook-conversions
+- title: Add new Jotform submissions to Klaviyo list as profiles
+  url: https://zapier.com/apps/jotform/integrations/klaviyo/1786388/add-new-jotform-submissions-to-klaviyo-list-as-profiles
+  apps:
+  - jotform
+  - klaviyo
+- title: Add new Klaviyo subscribers to Google Ads customer list when they're added to a segment or list
+  url: https://zapier.com/apps/google-ads/integrations/klaviyo/1655862/add-new-klaviyo-subscribers-to-google-ads-customer-list-when-theyre-added-to-a-segment-or-list
+  apps:
+  - klaviyo
+  - google-ads
+- title: Add new Klaviyo profiles to a Google Ads contact list immediately
+  url: https://zapier.com/apps/google-ads/integrations/klaviyo/1672186/add-new-klaviyo-profiles-to-a-google-ads-contact-list-immediately
+  apps:
+  - klaviyo
+  - google-ads
+- title: Add new Jotform submissions to a Klaviyo list as profiles
+  url: https://zapier.com/apps/jotform/integrations/klaviyo/1718455/add-new-jotform-submissions-to-a-klaviyo-list-as-profiles
+  apps:
+  - jotform
+  - klaviyo
+template_total: 2738
