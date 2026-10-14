@@ -514,6 +514,30 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: klaviyo-guesty-own
+  label: Guesty (own)
+  partner: guesty
+  partner_name: Guesty (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.guesty.com/marketplace-items/klaviyo/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-mews-own
+  label: Mews (own)
+  partner: mews-com
+  partner_name: Mews (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.mews.com/en/products/marketplace/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: klaviyo-olo-own
   label: Olo (own)
   partner: olo
