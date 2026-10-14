@@ -5,6 +5,7 @@ source:
 - https://n8n.io/integrations/klaviyo/
 - https://composio.dev/toolkits/klaviyo
 checked:
+- classy-org/integrations/classy-org-integration-edges.yml
 - https://composio.dev/toolkits/klaviyo
 - https://docs.mparticle.com/integrations/klaviyo/audience/
 - https://fivetran.com/docs/activations/destinations/available-destinations/klaviyo
@@ -1141,6 +1142,23 @@ edges:
       - upsert
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: Classy (own)
+  partner: classy-org
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://pro.gofundme.com/c/integrations/
+  mirror_of: classy-org/integrations/classy-org-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: marketing-supporter-engagement
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
   url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo

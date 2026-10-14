@@ -501,3 +501,16 @@
   relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
+- slug: klaviyo-classy-own
+  label: Classy (own)
+  partner: classy-org
+  partner_name: Classy (own)
+  category: marketing-supporter-engagement
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://pro.gofundme.com/c/integrations/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
