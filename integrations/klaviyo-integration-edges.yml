@@ -6,8 +6,12 @@ source:
 - https://composio.dev/toolkits/klaviyo
 checked:
 - https://composio.dev/toolkits/klaviyo
+- https://docs.mparticle.com/integrations/klaviyo/audience/
+- https://fivetran.com/docs/activations/destinations/available-destinations/klaviyo
+- https://hightouch.com/docs/destinations/klaviyo
 - https://monid.ai/tools/klaviyo
 - https://n8n.io/integrations/klaviyo/
+- https://www.twilio.com/docs/segment/connections/destinations/catalog/klaviyo
 - https://zapier.com/apps/klaviyo/integrations
 summary: null
 marketplace_apps:
@@ -1040,6 +1044,103 @@ edges:
   direction: third-party
   category: CRM (Customer Relationship Management)
   partner_url: https://www.close.com/?utm_source=Partner&utm_medium=Integration_Listing&utm_campaign=2025_Partnerships&utm_content=Home
+- partner_name: Twilio Segment
+  partner: segment
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/klaviyo
+  coverage_role:
+  - destination
+  - source
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - klaviyo
+      status: PUBLIC
+      partner_owned: false
+      accepted_methods:
+      - Identify
+      - Track
+    source:
+      catalog_entries:
+      - klaviyo
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: mParticle
+  partner: mparticle
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://docs.mparticle.com/integrations/klaviyo/audience/
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - klaviyo
+      integration_types:
+      - audience
+      - event
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/klaviyo
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - klaviyo
+      status: released
+      sync_types:
+      - Events
+      - Lists
+      - Profiles
+      - Subscription Lists
+      sync_modes:
+      - add
+      - insert
+      - remove
+      - upsert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Census
+  partner: getcensus
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/klaviyo
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - klaviyo
+      sync_behaviours:
+      - delete
+      - mirror
+      - update only
+      - update or create
+      - upsert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
   url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo
