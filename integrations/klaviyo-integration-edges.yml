@@ -14,6 +14,8 @@ checked:
 - https://n8n.io/integrations/klaviyo/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/klaviyo
 - https://zapier.com/apps/klaviyo/integrations
+- olo/integrations/olo-integration-edges.yml
+- toast/integrations/toast-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1159,6 +1161,40 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: marketing-supporter-engagement
+- partner_name: Olo (own)
+  partner: olo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.olo.com/partners/klaviyo
+  mirror_of: olo/integrations/olo-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Data Analytics
+- partner_name: Toast (own)
+  partner: toast
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://pos.toasttab.com/partners/directory/klaviyo
+  mirror_of: toast/integrations/toast-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Analytics
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
   url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo
