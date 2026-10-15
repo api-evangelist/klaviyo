@@ -17,7 +17,9 @@ checked:
 - https://zapier.com/apps/klaviyo/integrations
 - mews-com/integrations/mews-com-integration-edges.yml
 - olo/integrations/olo-integration-edges.yml
+- shopify/integrations/shopify-integration-edges.yml
 - toast/integrations/toast-integration-edges.yml
+- woocommerce/integrations/woocommerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1212,6 +1214,25 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Data Analytics
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/klaviyo-email-marketing
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - 'Klaviyo: Email Marketing & SMS'
+  - 'Klaviyo: Product Reviews'
+  listing_count: 2
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
 - partner_name: Toast (own)
   partner: toast
   partner_match: mirror
@@ -1229,6 +1250,23 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Analytics
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/klaviyo-for-woocommerce/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
   url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo

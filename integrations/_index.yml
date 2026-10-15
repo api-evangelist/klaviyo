@@ -551,6 +551,18 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: klaviyo-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/klaviyo-email-marketing
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: klaviyo-toast-own
   label: Toast (own)
   partner: toast
@@ -560,6 +572,19 @@
   marketplace: own
   channel: partner-built
   evidence: https://pos.toasttab.com/partners/directory/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/klaviyo-for-woocommerce/
   source: edge
   relationship: platform-app
   status: not-a-workflow
