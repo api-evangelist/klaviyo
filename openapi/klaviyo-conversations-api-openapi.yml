@@ -71,7 +71,84 @@ paths:
       x-klaviyo-scopes:
       - conversations:write
 components:
+  responses:
+    ServerError:
+      description: Server Error
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - code
+                  - title
+                  - detail
+                  properties:
+                    id:
+                      type: string
+                    code:
+                      type: string
+                    title:
+                      type: string
+                    detail:
+                      type: string
+                    source:
+                      type: object
+                      properties:
+                        pointer:
+                          type: string
+                        parameter:
+                          type: string
+            required:
+            - errors
+    ClientError:
+      description: Client Error
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - code
+                  - title
+                  - detail
+                  properties:
+                    id:
+                      type: string
+                    code:
+                      type: string
+                    title:
+                      type: string
+                    detail:
+                      type: string
+                    source:
+                      type: object
+                      properties:
+                        pointer:
+                          type: string
+                        parameter:
+                          type: string
+            required:
+            - errors
   schemas:
+    ConversationEnum:
+      type: string
+      enum:
+      - conversation
+    ConversationMessageEnum:
+      type: string
+      enum:
+      - conversation-message
     ConversationMessageCreateQueryResourceObject:
       type: object
       properties:
@@ -107,14 +184,6 @@ components:
       - type
       - attributes
       - relationships
-    ConversationMessageEnum:
-      type: string
-      enum:
-      - conversation-message
-    ConversationEnum:
-      type: string
-      enum:
-      - conversation
     ConversationMessageCreateQuery:
       type: object
       properties:
@@ -122,75 +191,6 @@ components:
           $ref: '#/components/schemas/ConversationMessageCreateQueryResourceObject'
       required:
       - data
-  responses:
-    ClientError:
-      description: Client Error
-      content:
-        application/vnd.api+json:
-          schema:
-            type: object
-            properties:
-              errors:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - id
-                  - code
-                  - title
-                  - detail
-                  properties:
-                    id:
-                      type: string
-                    code:
-                      type: string
-                    title:
-                      type: string
-                    detail:
-                      type: string
-                    source:
-                      type: object
-                      properties:
-                        pointer:
-                          type: string
-                        parameter:
-                          type: string
-            required:
-            - errors
-    ServerError:
-      description: Server Error
-      content:
-        application/vnd.api+json:
-          schema:
-            type: object
-            properties:
-              errors:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - id
-                  - code
-                  - title
-                  - detail
-                  properties:
-                    id:
-                      type: string
-                    code:
-                      type: string
-                    title:
-                      type: string
-                    detail:
-                      type: string
-                    source:
-                      type: object
-                      properties:
-                        pointer:
-                          type: string
-                        parameter:
-                          type: string
-            required:
-            - errors
   securitySchemes:
     Klaviyo-API-Key:
       type: apiKey

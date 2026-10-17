@@ -366,52 +366,6 @@ paths:
       - custom-objects:write
 components:
   schemas:
-    DataSourceRecordCreateJobCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DataSourceRecordCreateJobEnum'
-        attributes:
-          type: object
-          properties:
-            data-source-record:
-              description: The records to ingest.
-              type: object
-              example:
-                data:
-                  type: data-source-record
-                  attributes:
-                    record:
-                      key1: value1
-                      key2: value2
-              properties:
-                data:
-                  $ref: '#/components/schemas/DataSourceRecordResourceObject'
-              required:
-              - data
-          required:
-          - data-source-record
-        relationships:
-          type: object
-          properties:
-            data-source:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      $ref: '#/components/schemas/DataSourceEnum'
-                    id:
-                      description: The data source to which the records belong.
-                      type: string
-                      example: 01J7C23V8XWMRG13FMD7VZN6GW
-                  required:
-                  - type
-                  - id
-      required:
-      - type
-      - attributes
     DataSourceRecordCreateJobCreateQuery:
       type: object
       properties:
@@ -419,138 +373,11 @@ components:
           $ref: '#/components/schemas/DataSourceRecordCreateJobCreateQueryResourceObject'
       required:
       - data
-    GetDataSourceResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataSourceResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
     DataSourceCreateQuery:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/DataSourceCreateQueryResourceObject'
-      required:
-      - data
-    DataSourceEnum:
-      type: string
-      enum:
-      - data-source
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    DataSourceResponseObjectResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DataSourceEnum'
-        id:
-          description: The ID of the data source
-          type: string
-          example: 01KH1D6P9Y8TJ7Q6MHXWZMPDN3
-        attributes:
-          type: object
-          properties:
-            title:
-              description: The title of the data source
-              type: string
-              example: My Data Source
-            visibility:
-              description: The status of the data source
-              type: string
-              enum:
-              - private
-              - shared
-            description:
-              description: The description of the data source
-              type: string
-              example: This is a data source
-            namespace:
-              description: The namespace of the data source
-              type: string
-              example: custom-objects
-          required:
-          - title
-          - visibility
-          - description
-          - namespace
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - type
-      - id
-      - attributes
-      - links
-    DataSourceCreateQueryResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DataSourceEnum'
-        attributes:
-          type: object
-          properties:
-            title:
-              description: The title of the data source. Must be between 1 and 255 characters and unique within the namespace.
-              type: string
-            visibility:
-              description: Visibility of data source.
-              type:
-              - string
-              - 'null'
-              example: private
-              default: private
-              enum:
-              - private
-              - shared
-            description:
-              type:
-              - string
-              - 'null'
-              default: ''
-            namespace:
-              description: The namespace of the data source.
-              type:
-              - string
-              - 'null'
-              example: custom-objects
-              default: custom-objects
-          required:
-          - title
-      required:
-      - type
-      - attributes
-    DataSourceRecordResourceObject:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DataSourceRecordEnum'
-        attributes:
-          type: object
-          properties:
-            record:
-              type: object
-          required:
-          - record
-      required:
-      - type
-      - attributes
-    GetDataSourceResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSourceResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
       required:
       - data
     PostDataSourceResponse:
@@ -602,14 +429,111 @@ components:
           $ref: '#/components/schemas/ObjectLinks'
       required:
       - data
-    DataSourceRecordCreateJobEnum:
+    GetDataSourceResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSourceResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    GetDataSourceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSourceResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    DataSourceEnum:
       type: string
       enum:
-      - data-source-record-create-job
+      - data-source
+    DataSourceResponseObjectResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSourceEnum'
+        id:
+          description: The ID of the data source
+          type: string
+          example: 01KH1D6P9Y8TJ7Q6MHXWZMPDN3
+        attributes:
+          type: object
+          properties:
+            title:
+              description: The title of the data source
+              type: string
+              example: My Data Source
+            visibility:
+              description: The status of the data source
+              type: string
+              enum:
+              - private
+              - shared
+            description:
+              description: The description of the data source
+              type: string
+              example: This is a data source
+            namespace:
+              description: The namespace of the data source
+              type: string
+              example: custom-objects
+          required:
+          - title
+          - visibility
+          - description
+          - namespace
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - type
+      - id
+      - attributes
+      - links
     DataSourceRecordEnum:
       type: string
       enum:
       - data-source-record
+    DataSourceRecordResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSourceRecordEnum'
+        attributes:
+          type: object
+          properties:
+            record:
+              type: object
+          required:
+          - record
+      required:
+      - type
+      - attributes
     DataSourceRecordBulkCreateJobCreateQueryResourceObject:
       type: object
       properties:
@@ -658,10 +582,6 @@ components:
       required:
       - type
       - attributes
-    DataSourceRecordBulkCreateJobEnum:
-      type: string
-      enum:
-      - data-source-record-bulk-create-job
     DataSourceRecordBulkCreateJobCreateQuery:
       type: object
       properties:
@@ -669,29 +589,109 @@ components:
           $ref: '#/components/schemas/DataSourceRecordBulkCreateJobCreateQueryResourceObject'
       required:
       - data
-    CollectionLinks:
+    DataSourceRecordBulkCreateJobEnum:
+      type: string
+      enum:
+      - data-source-record-bulk-create-job
+    DataSourceRecordCreateJobCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSourceRecordCreateJobEnum'
+        attributes:
+          type: object
+          properties:
+            data-source-record:
+              description: The records to ingest.
+              type: object
+              example:
+                data:
+                  type: data-source-record
+                  attributes:
+                    record:
+                      key1: value1
+                      key2: value2
+              properties:
+                data:
+                  $ref: '#/components/schemas/DataSourceRecordResourceObject'
+              required:
+              - data
+          required:
+          - data-source-record
+        relationships:
+          type: object
+          properties:
+            data-source:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/DataSourceEnum'
+                    id:
+                      description: The data source to which the records belong.
+                      type: string
+                      example: 01J7C23V8XWMRG13FMD7VZN6GW
+                  required:
+                  - type
+                  - id
+      required:
+      - type
+      - attributes
+    DataSourceRecordCreateJobEnum:
+      type: string
+      enum:
+      - data-source-record-create-job
+    DataSourceCreateQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DataSourceEnum'
+        attributes:
+          type: object
+          properties:
+            title:
+              description: The title of the data source. Must be between 1 and 255 characters and unique within the namespace.
+              type: string
+            visibility:
+              description: Visibility of data source.
+              type:
+              - string
+              - 'null'
+              example: private
+              default: private
+              enum:
+              - private
+              - shared
+            description:
+              type:
+              - string
+              - 'null'
+              default: ''
+            namespace:
+              description: The namespace of the data source.
+              type:
+              - string
+              - 'null'
+              example: custom-objects
+              default: custom-objects
+          required:
+          - title
+      required:
+      - type
+      - attributes
+    ObjectLinks:
       type: object
       properties:
         self:
           type: string
           format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
       required:
       - self
   responses:
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
@@ -724,8 +724,8 @@ components:
                           type: string
             required:
             - errors
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:

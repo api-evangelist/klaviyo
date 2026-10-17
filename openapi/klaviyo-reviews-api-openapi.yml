@@ -326,10 +326,85 @@ paths:
       - reviews:write
 components:
   schemas:
+    RejectReasonMisleading:
+      type: object
+      properties:
+        reason:
+          description: rejected due to false or misleading content
+          type: string
+          enum:
+          - false_or_misleading
+      required:
+      - reason
+    MetricEnum:
+      type: string
+      enum:
+      - metric
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        related:
+          type: string
+          format: uri
+      required:
+      - self
+      - related
     ReviewEnum:
       type: string
       enum:
       - review
+    ReviewStatusPublished:
+      type: object
+      properties:
+        value:
+          description: Published review status
+          type: string
+          enum:
+          - published
+      required:
+      - value
+    GetReviewResponseDTOCollectionCompoundDocument:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReviewResponseDTOObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResponseObjectResource'
+      required:
+      - data
+    CatalogItemEnum:
+      type: string
+      enum:
+      - catalog-item
     ReviewResponseDTOObjectResource:
       type: object
       properties:
@@ -473,6 +548,46 @@ components:
       - id
       - attributes
       - links
+    RejectReasonProfanity:
+      type: object
+      properties:
+        reason:
+          description: rejected due to profanity or inappropriate content
+          type: string
+          enum:
+          - profanity_or_inappropriate
+      required:
+      - reason
+    ReviewPublicReply:
+      type: object
+      properties:
+        content:
+          description: The content of the public reply
+          example: Thanks for the review!
+          type: string
+        author:
+          description: The author of the public reply
+          type: string
+          example: Company X
+        updated:
+          description: The datetime when this public reply was updated
+          type: string
+          format: date-time
+          example: '2022-11-08T00:00:00+00:00'
+      required:
+      - content
+      - author
+      - updated
+    RejectReasonUnrelated:
+      type: object
+      properties:
+        reason:
+          description: rejected due to unrelated content
+          type: string
+          enum:
+          - unrelated
+      required:
+      - reason
     ReviewStatusFeatured:
       type: object
       properties:
@@ -483,38 +598,10 @@ components:
           - featured
       required:
       - value
-    ReviewStatusUnpublished:
-      type: object
-      properties:
-        value:
-          description: Unpublished review status
-          type: string
-          enum:
-          - unpublished
-      required:
-      - value
-    RejectReasonMisleading:
-      type: object
-      properties:
-        reason:
-          description: rejected due to false or misleading content
-          type: string
-          enum:
-          - false_or_misleading
-      required:
-      - reason
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        related:
-          type: string
-          format: uri
-      required:
-      - self
-      - related
+    AttributionEnum:
+      type: string
+      enum:
+      - attribution
     PatchReviewResponseDTO:
       type: object
       properties:
@@ -690,30 +777,6 @@ components:
       required:
       - url
       - name
-    GetReviewResponseDTOCompoundDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ReviewResponseDTOObjectResource'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/ObjectLinks'
-      required:
-      - data
-    ReviewPatchQuery:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ReviewPatchQueryResourceObject'
-      required:
-      - data
-    MetricEnum:
-      type: string
-      enum:
-      - metric
     ReviewStatusPending:
       type: object
       properties:
@@ -724,28 +787,6 @@ components:
           - pending
       required:
       - value
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    RejectReasonUnrelated:
-      type: object
-      properties:
-        reason:
-          description: rejected due to unrelated content
-          type: string
-          enum:
-          - unrelated
-      required:
-      - reason
-    AttributionEnum:
-      type: string
-      enum:
-      - attribution
     RejectReasonPrivateInformation:
       type: object
       properties:
@@ -756,108 +797,31 @@ components:
           - private_information
       required:
       - reason
-    RejectReasonProfanity:
+    ReviewStatusUnpublished:
       type: object
       properties:
-        reason:
-          description: rejected due to profanity or inappropriate content
+        value:
+          description: Unpublished review status
           type: string
           enum:
-          - profanity_or_inappropriate
+          - unpublished
       required:
-      - reason
-    ReviewPatchQueryResourceObject:
+      - value
+    EventEnum:
+      type: string
+      enum:
+      - event
+    ReviewPatchQuery:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/ReviewEnum'
-        id:
-          description: The id of the review (review ID).
-          type: string
-        attributes:
-          type: object
-          properties:
-            status:
-              description: The updated status intended for the review with this ID
-              oneOf:
-              - $ref: '#/components/schemas/ReviewStatusRejected'
-              - $ref: '#/components/schemas/ReviewStatusFeatured'
-              - $ref: '#/components/schemas/ReviewStatusPublished'
-              - $ref: '#/components/schemas/ReviewStatusUnpublished'
-              - $ref: '#/components/schemas/ReviewStatusPending'
+        data:
+          $ref: '#/components/schemas/ReviewPatchQueryResourceObject'
       required:
-      - type
-      - id
-      - attributes
+      - data
     ProfileEnum:
       type: string
       enum:
       - profile
-    ReviewStatusRejected:
-      type: object
-      properties:
-        value:
-          description: Rejected review status
-          type: string
-          enum:
-          - rejected
-        rejection_reason:
-          description: The updated status intended for the review with this ID
-          oneOf:
-          - $ref: '#/components/schemas/RejectReasonOther'
-          - $ref: '#/components/schemas/RejectReasonFake'
-          - $ref: '#/components/schemas/RejectReasonMisleading'
-          - $ref: '#/components/schemas/RejectReasonPrivateInformation'
-          - $ref: '#/components/schemas/RejectReasonProfanity'
-          - $ref: '#/components/schemas/RejectReasonUnrelated'
-      required:
-      - value
-      - rejection_reason
-    GetReviewResponseDTOCollectionCompoundDocument:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReviewResponseDTOObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventResponseObjectResource'
-      required:
-      - data
-    RejectReasonFake:
-      type: object
-      properties:
-        reason:
-          description: rejected due to fake content
-          type: string
-          enum:
-          - fake
-      required:
-      - reason
-    ReviewPublicReply:
-      type: object
-      properties:
-        content:
-          description: The content of the public reply
-          example: Thanks for the review!
-          type: string
-        author:
-          description: The author of the public reply
-          type: string
-          example: Company X
-        updated:
-          description: The datetime when this public reply was updated
-          type: string
-          format: date-time
-          example: '2022-11-08T00:00:00+00:00'
-      required:
-      - content
-      - author
-      - updated
     EventResponseObjectResource:
       type: object
       properties:
@@ -951,20 +915,29 @@ components:
       - id
       - attributes
       - links
-    EventEnum:
-      type: string
-      enum:
-      - event
-    ReviewStatusPublished:
+    GetReviewResponseDTOCompoundDocument:
       type: object
       properties:
-        value:
-          description: Published review status
+        data:
+          $ref: '#/components/schemas/ReviewResponseDTOObjectResource'
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/ObjectLinks'
+      required:
+      - data
+    RejectReasonFake:
+      type: object
+      properties:
+        reason:
+          description: rejected due to fake content
           type: string
           enum:
-          - published
+          - fake
       required:
-      - value
+      - reason
     RejectReasonOther:
       type: object
       properties:
@@ -981,33 +954,60 @@ components:
           example: This review is just really poorly detailed and there is another with the same content
       required:
       - reason
-    CatalogItemEnum:
-      type: string
-      enum:
-      - catalog-item
-    CollectionLinks:
+    ReviewPatchQueryResourceObject:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ReviewEnum'
+        id:
+          description: The id of the review (review ID).
+          type: string
+        attributes:
+          type: object
+          properties:
+            status:
+              description: The updated status intended for the review with this ID
+              oneOf:
+              - $ref: '#/components/schemas/ReviewStatusRejected'
+              - $ref: '#/components/schemas/ReviewStatusFeatured'
+              - $ref: '#/components/schemas/ReviewStatusPublished'
+              - $ref: '#/components/schemas/ReviewStatusUnpublished'
+              - $ref: '#/components/schemas/ReviewStatusPending'
+      required:
+      - type
+      - id
+      - attributes
+    ObjectLinks:
       type: object
       properties:
         self:
           type: string
           format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
       required:
       - self
+    ReviewStatusRejected:
+      type: object
+      properties:
+        value:
+          description: Rejected review status
+          type: string
+          enum:
+          - rejected
+        rejection_reason:
+          description: The updated status intended for the review with this ID
+          oneOf:
+          - $ref: '#/components/schemas/RejectReasonOther'
+          - $ref: '#/components/schemas/RejectReasonFake'
+          - $ref: '#/components/schemas/RejectReasonMisleading'
+          - $ref: '#/components/schemas/RejectReasonPrivateInformation'
+          - $ref: '#/components/schemas/RejectReasonProfanity'
+          - $ref: '#/components/schemas/RejectReasonUnrelated'
+      required:
+      - value
+      - rejection_reason
   responses:
-    ClientError:
-      description: Client Error
+    ServerError:
+      description: Server Error
       content:
         application/vnd.api+json:
           schema:
@@ -1040,8 +1040,8 @@ components:
                           type: string
             required:
             - errors
-    ServerError:
-      description: Server Error
+    ClientError:
+      description: Client Error
       content:
         application/vnd.api+json:
           schema:

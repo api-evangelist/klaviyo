@@ -181,6 +181,52 @@ components:
       type: string
       enum:
       - account
+    StreetAddress:
+      type: object
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+          example: 125 Summer Street
+        address2:
+          type:
+          - string
+          - 'null'
+          example: 5th Floor
+        city:
+          type: string
+          example: Boston
+        region:
+          description: State, province, or region.
+          type:
+          - string
+          - 'null'
+          example: MA
+        country:
+          description: Two-letter [ISO country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
+          type:
+          - string
+          - 'null'
+          example: US
+        zip:
+          type:
+          - string
+          - 'null'
+          example: '04323'
+      required:
+      - city
+    GetAccountResponseCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponseObjectResource'
+        links:
+          $ref: '#/components/schemas/CollectionLinks'
+      required:
+      - data
     GetAccountResponse:
       type: object
       properties:
@@ -217,6 +263,34 @@ components:
       - default_sender_email
       - organization_name
       - street_address
+    ObjectLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+      required:
+      - self
+    CollectionLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+      required:
+      - self
     AccountResponseObjectResource:
       type: object
       properties:
@@ -269,80 +343,6 @@ components:
       - id
       - attributes
       - links
-    ObjectLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-      required:
-      - self
-    GetAccountResponseCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountResponseObjectResource'
-        links:
-          $ref: '#/components/schemas/CollectionLinks'
-      required:
-      - data
-    StreetAddress:
-      type: object
-      properties:
-        address1:
-          type:
-          - string
-          - 'null'
-          example: 125 Summer Street
-        address2:
-          type:
-          - string
-          - 'null'
-          example: 5th Floor
-        city:
-          type: string
-          example: Boston
-        region:
-          description: State, province, or region.
-          type:
-          - string
-          - 'null'
-          example: MA
-        country:
-          description: Two-letter [ISO country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
-          type:
-          - string
-          - 'null'
-          example: US
-        zip:
-          type:
-          - string
-          - 'null'
-          example: '04323'
-      required:
-      - city
-    CollectionLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-      required:
-      - self
   responses:
     ServerError:
       description: Server Error
