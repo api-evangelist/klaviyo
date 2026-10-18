@@ -674,7 +674,7 @@
       type: source
       lapsed: false
       cloud: true
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: klaviyo-fivetran
   label: Fivetran
@@ -700,7 +700,7 @@
     - connectors/applications/klaviyo
     vendor_link: https://www.klaviyo.com
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: klaviyo-meltano
   label: Meltano
@@ -737,5 +737,5 @@
     - gold
     - silver
     builder: 'community (Meltano Hub variant maintainers: airbyte, codyss, hotgluexyz, meltanolabs, singer-io)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
