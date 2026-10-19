@@ -739,3 +739,105 @@
     builder: 'community (Meltano Hub variant maintainers: airbyte, codyss, hotgluexyz, meltanolabs, singer-io)'
   status: not-a-workflow
   arazzo: null
+- slug: klaviyo-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/klaviyo-api
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: klaviyo-api
+      version: 24.0.0
+      released: '2026-10-15'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klaviyo-api
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    - name: klaviyo-react-native-sdk
+      version: 2.5.0
+      released: '2026-08-20'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klaviyo-react-native-sdk
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/klaviyo-api/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: klaviyo-api
+      version: 25.0.0
+      released: '2026-10-15'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/klaviyo-api/
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-rubygems
+  label: RubyGems
+  partner: rubygems
+  partner_name: RubyGems
+  category: official SDK (Ruby)
+  type: register
+  channel: package-registry
+  evidence: https://rubygems.org/gems/klaviyo-api-sdk
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: klaviyo-api-sdk
+      version: 19.0.0
+      released: '2026-10-15'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/klaviyo-api-sdk
+      repo_leg: domain:klaviyo.com
+      publisher_leg: org:klaviyo
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null

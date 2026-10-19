@@ -7,9 +7,11 @@ source:
 checked:
 - classy-org/integrations/classy-org-integration-edges.yml
 - guesty/integrations/guesty-integration-edges.yml
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/klaviyo
 - https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
 - https://connectors.airbyte.com/files/registries/v0/oss_registry.json
+- https://crates.io/api/v1
 - https://docs.mparticle.com/integrations/klaviyo/audience/
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/activations/destinations/available-destinations/klaviyo
@@ -19,6 +21,11 @@ checked:
 - https://hightouch.com/docs/destinations/klaviyo
 - https://monid.ai/tools/klaviyo
 - https://n8n.io/integrations/klaviyo/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/klaviyo
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/klaviyo/integrations
@@ -1423,6 +1430,105 @@ edges:
     - silver
     builder: 'community (Meltano Hub variant maintainers: airbyte, codyss, hotgluexyz, meltanolabs, singer-io)'
   detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/klaviyo-api
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: klaviyo-api
+      version: 24.0.0
+      released: '2026-10-15'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klaviyo-api
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    - name: klaviyo-react-native-sdk
+      version: 2.5.0
+      released: '2026-08-20'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klaviyo-react-native-sdk
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/klaviyo-api/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: klaviyo-api
+      version: 25.0.0
+      released: '2026-10-15'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/klaviyo-api/
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: RubyGems
+  partner: rubygems
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Ruby)
+  evidence: https://rubygems.org/gems/klaviyo-api-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: klaviyo-api-sdk
+      version: 19.0.0
+      released: '2026-10-15'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/klaviyo-api-sdk
+      repo_leg: domain:klaviyo.com
+      publisher_leg: org:klaviyo
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
