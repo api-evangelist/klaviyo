@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo
   template: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-add-klaviyo-subscribers-for-new-submissions-in-jotform
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/jotform/integrations/klaviyo/177456/add-klaviyo-subscribers-for-new-submissions-in-jotform
   template: https://zapier.com/apps/jotform/integrations/klaviyo/177456/add-klaviyo-subscribers-for-new-submissions-in-jotform
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-add-new-klaviyo-profiles-to-google-ads-customer-list-when-they-are-added-to-a-segm
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/google-ads/integrations/klaviyo/1683561/add-new-klaviyo-profiles-to-google-ads-customer-list-when-they-are-added-to-a-segment-or-list
   template: https://zapier.com/apps/google-ads/integrations/klaviyo/1683561/add-new-klaviyo-profiles-to-google-ads-customer-list-when-they-are-added-to-a-segment-or-list
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-add-new-google-ads-leads-to-klaviyo
@@ -57,6 +60,7 @@
   evidence: https://zapier.com/apps/google-ads/integrations/klaviyo/538586/add-new-google-ads-leads-to-klaviyo
   template: https://zapier.com/apps/google-ads/integrations/klaviyo/538586/add-new-google-ads-leads-to-klaviyo
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-create-klaviyo-subscribers-from-new-squarespace-forms-form-submissions
@@ -71,10 +75,12 @@
   evidence: https://zapier.com/apps/klaviyo/integrations/squarespace-forms/23249/create-klaviyo-subscribers-from-new-squarespace-forms-form-submissions
   template: https://zapier.com/apps/klaviyo/integrations/squarespace-forms/23249/create-klaviyo-subscribers-from-new-squarespace-forms-form-submissions
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-send-funnel-events-to-facebook-conversions-from-klaviyo
   label: Send funnel events to Facebook Conversions from Klaviyo
+  partner: facebook
   partner_name: Facebook Conversions
   category: Ads & Conversion
   use_case: Send funnel events to Facebook Conversions from Klaviyo
@@ -84,7 +90,8 @@
   evidence: https://zapier.com/apps/facebook-conversions/integrations/klaviyo/1128608/send-funnel-events-to-facebook-conversions-from-klaviyo
   template: https://zapier.com/apps/facebook-conversions/integrations/klaviyo/1128608/send-funnel-events-to-facebook-conversions-from-klaviyo
   source: template
-  status: pending-partner-spec
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null
 - slug: klaviyo-add-new-jotform-submissions-to-klaviyo-list-as-profiles
   label: Add new Jotform submissions to Klaviyo list as profiles
@@ -98,6 +105,7 @@
   evidence: https://zapier.com/apps/jotform/integrations/klaviyo/1786388/add-new-jotform-submissions-to-klaviyo-list-as-profiles
   template: https://zapier.com/apps/jotform/integrations/klaviyo/1786388/add-new-jotform-submissions-to-klaviyo-list-as-profiles
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-add-new-klaviyo-subscribers-to-google-ads-customer-list-when-they-re-added-to-a-se
@@ -112,6 +120,7 @@
   evidence: https://zapier.com/apps/google-ads/integrations/klaviyo/1655862/add-new-klaviyo-subscribers-to-google-ads-customer-list-when-theyre-added-to-a-segment-or-list
   template: https://zapier.com/apps/google-ads/integrations/klaviyo/1655862/add-new-klaviyo-subscribers-to-google-ads-customer-list-when-theyre-added-to-a-segment-or-list
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-add-new-klaviyo-profiles-to-a-google-ads-contact-list-immediately
@@ -126,6 +135,7 @@
   evidence: https://zapier.com/apps/google-ads/integrations/klaviyo/1672186/add-new-klaviyo-profiles-to-a-google-ads-contact-list-immediately
   template: https://zapier.com/apps/google-ads/integrations/klaviyo/1672186/add-new-klaviyo-profiles-to-a-google-ads-contact-list-immediately
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-add-new-jotform-submissions-to-a-klaviyo-list-as-profiles
@@ -140,317 +150,7 @@
   evidence: https://zapier.com/apps/jotform/integrations/klaviyo/1718455/add-new-jotform-submissions-to-a-klaviyo-list-as-profiles
   template: https://zapier.com/apps/jotform/integrations/klaviyo/1718455/add-new-jotform-submissions-to-a-klaviyo-list-as-profiles
   source: template
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-typeform
-  label: Typeform
-  partner: typeform
-  partner_name: Typeform
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/typeform
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/shopify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-calendly
-  label: Calendly
-  partner: calendly
-  partner_name: Calendly
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/calendly
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-google-forms
-  label: Google Forms
-  partner: google-forms
-  partner_name: Google Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/google-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-webflow
-  label: Webflow
-  partner: webflow
-  partner_name: Webflow
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/webflow
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-facebook-lead-ads
-  label: Facebook Lead Ads
-  partner: facebook-lead-ads
-  partner_name: Facebook Lead Ads
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/facebook-lead-ads
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-tally
-  label: Tally
-  partner: tally
-  partner_name: Tally
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/tally
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-airtable
-  label: Airtable
-  partner: airtable
-  partner_name: Airtable
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/airtable
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-clickfunnels-classic
-  label: ClickFunnels Classic
-  partner: clickfunnels
-  partner_name: ClickFunnels Classic
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/clickfunnels-classic
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-google-sheets
-  label: Google Sheets
-  partner: google-sheets
-  partner_name: Google Sheets
-  category: Google
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/google-sheets
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-manychat
-  label: Manychat
-  partner: manychat
-  partner_name: Manychat
-  category: Social Media Marketing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/manychat
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-wix
-  label: Wix
-  partner: wix
-  partner_name: Wix
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/wix
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-stan
-  label: Stan
-  partner: stan
-  partner_name: Stan
-  category: App Builder
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/stan-creator
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: klaviyo-kajabi
-  label: Kajabi
-  partner: kajabi
-  partner_name: Kajabi
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/kajabi
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-slack
-  label: Slack
-  partner: slack
-  partner_name: Slack
-  category: Team Chat
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/slack
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-gmail
-  label: Gmail
-  partner: gmail
-  partner_name: Gmail
-  category: Email
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/gmail
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: klaviyo-monday-com
-  label: monday.com
-  partner_name: monday.com
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/monday
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: klaviyo-acuity-scheduling
-  label: Acuity Scheduling
-  partner: acuity-scheduling
-  partner_name: Acuity Scheduling
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/acuity-scheduling
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-gravity-forms
-  label: Gravity Forms
-  partner: gravity-forms
-  partner_name: Gravity Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/gravity-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-pipedrive
-  label: Pipedrive
-  partner: pipedrive
-  partner_name: Pipedrive
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/pipedrive
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-notion
-  label: Notion
-  partner: notion
-  partner_name: Notion
-  category: Task Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/notion
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-woocommerce
-  label: WooCommerce
-  partner: woocommerce
-  partner_name: WooCommerce
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/woocommerce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-ecwid-by-lightspeed
-  label: Ecwid by Lightspeed
-  partner: ecwid
-  partner_name: Ecwid by Lightspeed
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/ecwid
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-square
-  label: Square
-  partner: square
-  partner_name: Square
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/square
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: klaviyo-close
-  label: Close
-  partner: close
-  partner_name: Close
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/klaviyo/integrations/close
-  source: edge
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: klaviyo-npm-registry
@@ -853,4 +553,339 @@
   source: edge
   relationship: platform-app
   status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-typeform
+  label: Typeform
+  partner: typeform
+  partner_name: Typeform
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/typeform
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-kajabi
+  label: Kajabi
+  partner: kajabi
+  partner_name: Kajabi
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/kajabi
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-clickfunnels-classic
+  label: ClickFunnels Classic
+  partner: clickfunnels
+  partner_name: ClickFunnels Classic
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/clickfunnels-classic
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-facebook-lead-ads
+  label: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_name: Facebook Lead Ads
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/facebook-lead-ads
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-airtable
+  label: Airtable
+  partner: airtable
+  partner_name: Airtable
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/airtable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-thrivecart
+  label: ThriveCart
+  partner: thrivecart
+  partner_name: ThriveCart
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/thrivecart
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-gravity-forms
+  label: Gravity Forms
+  partner: gravity-forms
+  partner_name: Gravity Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/gravity-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-tally
+  label: Tally
+  partner: tally
+  partner_name: Tally
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/tally
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-calendly
+  label: Calendly
+  partner: calendly
+  partner_name: Calendly
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/calendly
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-google-forms
+  label: Google Forms
+  partner: google-forms
+  partner_name: Google Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/google-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-manychat
+  label: Manychat
+  partner: manychat
+  partner_name: Manychat
+  category: Social Media Marketing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/manychat
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-monday-com
+  label: monday.com
+  partner: monday-com
+  partner_name: monday.com
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/monday
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-acuity-scheduling
+  label: Acuity Scheduling
+  partner: acuity-scheduling
+  partner_name: Acuity Scheduling
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/acuity-scheduling
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-google-sheets
+  label: Google Sheets
+  partner: google-sheets
+  partner_name: Google Sheets
+  category: Google
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/google-sheets
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-microsoft-excel
+  label: Microsoft Excel
+  partner_name: Microsoft Excel
+  category: Microsoft
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/excel
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: klaviyo-zoom
+  label: Zoom
+  partner: zoom
+  partner_name: Zoom
+  category: Video Conferencing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/zoom
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-woocommerce
+  label: WooCommerce
+  partner: woocommerce
+  partner_name: WooCommerce
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/woocommerce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-leadconnector
+  label: LeadConnector
+  partner_name: LeadConnector
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/leadconnector
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: klaviyo-webflow
+  label: Webflow
+  partner: webflow
+  partner_name: Webflow
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/webflow
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-wpforms
+  label: WPForms
+  partner_name: WPForms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/wpforms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: klaviyo-gmail
+  label: Gmail
+  partner: gmail
+  partner_name: Gmail
+  category: Email
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/gmail
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: klaviyo-thinkific
+  label: Thinkific
+  partner: thinkific
+  partner_name: Thinkific
+  category: Online Courses
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/thinkific
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: klaviyo-stan
+  label: Stan
+  partner: stan
+  partner_name: Stan
+  category: App Builder
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/stan-creator
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: klaviyo-wix
+  label: Wix
+  partner: wix
+  partner_name: Wix
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/klaviyo/integrations/wix
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null
