@@ -13,10 +13,12 @@ checked:
 - https://connectors.airbyte.com/files/registries/v0/oss_registry.json
 - https://crates.io/api/v1
 - https://docs.mparticle.com/integrations/klaviyo/audience/
+- https://docs.mparticle.com/integrations/klaviyo/event/
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/activations/destinations/available-destinations/klaviyo
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://github.com/meltano/hub
 - https://hightouch.com/docs/destinations/klaviyo
 - https://monid.ai/tools/klaviyo
@@ -34,6 +36,7 @@ checked:
 - shopify/integrations/shopify-integration-edges.yml
 - toast/integrations/toast-integration-edges.yml
 - woocommerce/integrations/woocommerce-integration-edges.yml
+- zendesk/integrations/zendesk-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1065,6 +1068,204 @@ edges:
   direction: third-party
   category: CRM (Customer Relationship Management)
   partner_url: https://www.close.com/?utm_source=Partner&utm_medium=Integration_Listing&utm_campaign=2025_Partnerships&utm_content=Home
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/klaviyo-api
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: klaviyo-api
+      version: 24.0.0
+      released: '2026-10-15'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klaviyo-api
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    - name: klaviyo-react-native-sdk
+      version: 2.5.0
+      released: '2026-08-20'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klaviyo-react-native-sdk
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/klaviyo-api/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: klaviyo-api
+      version: 25.0.0
+      released: '2026-10-15'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/klaviyo-api/
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: RubyGems
+  partner: rubygems
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Ruby)
+  evidence: https://rubygems.org/gems/klaviyo-api-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: klaviyo-api-sdk
+      version: 19.0.0
+      released: '2026-10-15'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/klaviyo-api-sdk
+      repo_leg: domain:klaviyo.com
+      publisher_leg: org:klaviyo
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: Airbyte
+  partner: airbyte
+  partner_match: aggregator
+  type: marketplace
+  marketplace: airbyte-registry
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://docs.airbyte.com/integrations/sources/klaviyo
+  category: null
+  contract_reference:
+    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
+    spec_file: null
+    role: elt-connector:airbyte-certified
+    registered_name: Klaviyo
+    matched_domain: klaviyo.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connectors:
+    - airbyte/source-klaviyo
+    support_level:
+    - certified
+    release_stage:
+    - generally_available
+    in_cloud: true
+    builder: Airbyte (certified)
+    standard: Airbyte certified connector
+    certified_products:
+    - product: Airbyte certified source
+      type: source
+      lapsed: false
+      cloud: true
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Fivetran
+  partner: fivetran
+  partner_match: aggregator
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://fivetran.com/docs/connectors/applications/klaviyo
+  category: null
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: Klaviyo
+    matched_domain: klaviyo.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/applications/klaviyo
+    vendor_link: https://www.klaviyo.com
+    builder: Fivetran
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Meltano
+  partner: meltano
+  partner_match: aggregator
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://hub.meltano.com/extractors/tap-klaviyo--airbyte
+  category: null
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Klaviyo
+    matched_domain: klaviyo.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-klaviyo--airbyte
+    - tap-klaviyo--codyss
+    - tap-klaviyo--hotgluexyz
+    - tap-klaviyo--meltanolabs
+    - tap-klaviyo--singer-io
+    maintenance_status:
+    - active
+    - beta
+    - unknown
+    quality:
+    - bronze
+    - gold
+    - silver
+    builder: 'community (Meltano Hub variant maintainers: airbyte, codyss, hotgluexyz, meltanolabs, singer-io)'
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 - partner_name: Twilio Segment
   partner: segment
   partner_match: aggregator
@@ -1162,6 +1363,57 @@ edges:
       - upsert
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/klaviyo/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Klaviyo
+    matched_domain: klaviyo.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: klaviyo
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
+- partner_name: Pipedream
+  partner: pipedream
+  partner_match: aggregator
+  type: marketplace
+  marketplace: pipedream-components
+  channel: open-source-node
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/klaviyo
+  category: null
+  contract_reference:
+    register: Pipedream components (PipedreamHQ/pipedream components/)
+    spec_file: null
+    role: ipaas-connector:pipedream
+    registered_name: klaviyo
+    matched_domain: klaviyo.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: klaviyo
+    actions: true
+    sources: false
+    builder: Pipedream repo (component)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 - partner_name: Classy (own)
   partner: classy-org
   partner_match: mirror
@@ -1281,255 +1533,23 @@ edges:
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
   category: extension
-- partner_name: Zapier
-  partner: zapier
-  partner_match: aggregator
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
   type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  relationship: ipaas-bridge
+  relationship: platform-app
   direction: third-party
-  evidence: https://zapier.com/apps/klaviyo/integrations
-  category: null
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: Klaviyo
-    matched_domain: klaviyo.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: klaviyo
-    beta: false
-    builder: unknown (not in the directory record)
-  detected_by: sweep-workflow-automation.py
-  first_seen: '2026-10-15'
-- partner_name: Pipedream
-  partner: pipedream
-  partner_match: aggregator
-  type: marketplace
-  marketplace: pipedream-components
-  channel: open-source-node
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/klaviyo
-  category: null
-  contract_reference:
-    register: Pipedream components (PipedreamHQ/pipedream components/)
-    spec_file: null
-    role: ipaas-connector:pipedream
-    registered_name: klaviyo
-    matched_domain: klaviyo.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: klaviyo
-    actions: true
-    sources: false
-    builder: Pipedream repo (component)
-  detected_by: sweep-workflow-automation.py
-  first_seen: '2026-10-15'
-- partner_name: Airbyte
-  partner: airbyte
-  partner_match: aggregator
-  type: marketplace
-  marketplace: airbyte-registry
-  channel: elt-connector
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://docs.airbyte.com/integrations/sources/klaviyo
-  category: null
-  contract_reference:
-    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
-    spec_file: null
-    role: elt-connector:airbyte-certified
-    registered_name: Klaviyo
-    matched_domain: klaviyo.com
-    matched_by: domain
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    connectors:
-    - airbyte/source-klaviyo
-    support_level:
-    - certified
-    release_stage:
-    - generally_available
-    in_cloud: true
-    builder: Airbyte (certified)
-    standard: Airbyte certified connector
-    certified_products:
-    - product: Airbyte certified source
-      type: source
-      lapsed: false
-      cloud: true
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
-- partner_name: Fivetran
-  partner: fivetran
-  partner_match: aggregator
-  type: marketplace
-  marketplace: fivetran-connectors
-  channel: elt-connector
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://fivetran.com/docs/connectors/applications/klaviyo
-  category: null
-  contract_reference:
-    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
-    spec_file: null
-    role: elt-connector:fivetran
-    registered_name: Klaviyo
-    matched_domain: klaviyo.com
-    matched_by: domain
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    connector_paths:
-    - connectors/applications/klaviyo
-    vendor_link: https://www.klaviyo.com
-    builder: Fivetran
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
-- partner_name: Meltano
-  partner: meltano
-  partner_match: aggregator
-  type: marketplace
-  marketplace: meltano-hub
-  channel: elt-connector
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://hub.meltano.com/extractors/tap-klaviyo--airbyte
-  category: null
-  contract_reference:
-    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
-    spec_file: null
-    role: elt-connector:meltano-hub
-    registered_name: Klaviyo
-    matched_domain: klaviyo.com
-    matched_by: domain
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    plugins:
-    - tap-klaviyo--airbyte
-    - tap-klaviyo--codyss
-    - tap-klaviyo--hotgluexyz
-    - tap-klaviyo--meltanolabs
-    - tap-klaviyo--singer-io
-    maintenance_status:
-    - active
-    - beta
-    - unknown
-    quality:
-    - bronze
-    - gold
-    - silver
-    builder: 'community (Meltano Hub variant maintainers: airbyte, codyss, hotgluexyz, meltanolabs, singer-io)'
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
-- partner_name: npm registry
-  partner: npm
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: official SDK (JavaScript/TypeScript)
-  evidence: https://www.npmjs.com/package/klaviyo-api
-  channel: package-registry
-  relationship: distribution-channel
-  contract_reference:
-    register: npm registry (public registry JSON)
-    spec_file: null
-    language: JavaScript/TypeScript
-    packages:
-    - name: klaviyo-api
-      version: 24.0.0
-      released: '2026-10-15'
-      released_field: modified
-      lapsed: false
-      page: https://www.npmjs.com/package/klaviyo-api
-      repo_leg: github-org:klaviyo
-      publisher_leg: email:klaviyo.com
-      matched_by: domain
-    - name: klaviyo-react-native-sdk
-      version: 2.5.0
-      released: '2026-08-20'
-      released_field: modified
-      lapsed: false
-      page: https://www.npmjs.com/package/klaviyo-react-native-sdk
-      repo_leg: github-org:klaviyo
-      publisher_leg: email:klaviyo.com
-      matched_by: domain
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
-  detected_by: sweep-official-sdks.py
-  first_seen: '2026-10-18'
-- partner_name: PyPI
-  partner: pypi
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: official SDK (Python)
-  evidence: https://pypi.org/project/klaviyo-api/
-  channel: package-registry
-  relationship: distribution-channel
-  contract_reference:
-    register: PyPI (public registry JSON)
-    spec_file: null
-    language: Python
-    packages:
-    - name: klaviyo-api
-      version: 25.0.0
-      released: '2026-10-15'
-      released_field: upload_time
-      lapsed: false
-      page: https://pypi.org/project/klaviyo-api/
-      repo_leg: github-org:klaviyo
-      publisher_leg: email:klaviyo.com
-      matched_by: domain
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
-  detected_by: sweep-official-sdks.py
-  first_seen: '2026-10-18'
-- partner_name: RubyGems
-  partner: rubygems
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: official SDK (Ruby)
-  evidence: https://rubygems.org/gems/klaviyo-api-sdk
-  channel: package-registry
-  relationship: distribution-channel
-  contract_reference:
-    register: RubyGems (public registry JSON)
-    spec_file: null
-    language: Ruby
-    packages:
-    - name: klaviyo-api-sdk
-      version: 19.0.0
-      released: '2026-10-15'
-      released_field: version_created_at
-      lapsed: false
-      page: https://rubygems.org/gems/klaviyo-api-sdk
-      repo_leg: domain:klaviyo.com
-      publisher_leg: org:klaviyo
-      matched_by: domain
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
-  detected_by: sweep-official-sdks.py
-  first_seen: '2026-10-18'
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/1236425/klaviyo/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: CRM and Marketing
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
   url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo

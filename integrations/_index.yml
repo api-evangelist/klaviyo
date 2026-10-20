@@ -453,191 +453,106 @@
   source: edge
   status: pending-generation
   arazzo: null
-- slug: klaviyo-twilio-segment
-  label: Twilio Segment
-  partner: segment
-  partner_name: Twilio Segment
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/klaviyo
+- slug: klaviyo-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/klaviyo-api
   source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-mparticle
-  label: mParticle
-  partner: mparticle
-  partner_name: mParticle
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://docs.mparticle.com/integrations/klaviyo/audience/
-  source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-hightouch
-  label: Hightouch
-  partner: hightouch
-  partner_name: Hightouch
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://hightouch.com/docs/destinations/klaviyo
-  source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-census
-  label: Census
-  partner: getcensus
-  partner_name: Census
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/klaviyo
-  source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-classy-own
-  label: Classy (own)
-  partner: classy-org
-  partner_name: Classy (own)
-  category: marketing-supporter-engagement
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://pro.gofundme.com/c/integrations/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-guesty-own
-  label: Guesty (own)
-  partner: guesty
-  partner_name: Guesty (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.guesty.com/marketplace-items/klaviyo/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-mews-own
-  label: Mews (own)
-  partner: mews-com
-  partner_name: Mews (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.mews.com/en/products/marketplace/klaviyo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-olo-own
-  label: Olo (own)
-  partner: olo
-  partner_name: Olo (own)
-  category: Data Analytics
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.olo.com/partners/klaviyo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-shopify-own
-  label: Shopify (own)
-  partner: shopify
-  partner_name: Shopify (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://apps.shopify.com/klaviyo-email-marketing
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-toast-own
-  label: Toast (own)
-  partner: toast
-  partner_name: Toast (own)
-  category: Analytics
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://pos.toasttab.com/partners/directory/klaviyo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-woocommerce-own
-  label: WooCommerce (own)
-  partner: woocommerce
-  partner_name: WooCommerce (own)
-  category: extension
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://woocommerce.com/products/klaviyo-for-woocommerce/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-zapier
-  label: Zapier
-  partner: zapier
-  partner_name: Zapier
-  type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  evidence: https://zapier.com/apps/klaviyo/integrations
-  source: edge
-  relationship: ipaas-bridge
+  relationship: distribution-channel
   contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
+    register: npm registry (public registry JSON)
     spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: Klaviyo
-    matched_domain: klaviyo.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: klaviyo
-    beta: false
-    builder: unknown (not in the directory record)
+    language: JavaScript/TypeScript
+    packages:
+    - name: klaviyo-api
+      version: 24.0.0
+      released: '2026-10-15'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klaviyo-api
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    - name: klaviyo-react-native-sdk
+      version: 2.5.0
+      released: '2026-08-20'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klaviyo-react-native-sdk
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
-- slug: klaviyo-pipedream
-  label: Pipedream
-  partner: pipedream
-  partner_name: Pipedream
-  type: marketplace
-  marketplace: pipedream-components
-  channel: open-source-node
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/klaviyo
+- slug: klaviyo-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/klaviyo-api/
   source: edge
-  relationship: ipaas-bridge
+  relationship: distribution-channel
   contract_reference:
-    register: Pipedream components (PipedreamHQ/pipedream components/)
+    register: PyPI (public registry JSON)
     spec_file: null
-    role: ipaas-connector:pipedream
-    registered_name: klaviyo
-    matched_domain: klaviyo.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: klaviyo
-    actions: true
-    sources: false
-    builder: Pipedream repo (component)
+    language: Python
+    packages:
+    - name: klaviyo-api
+      version: 25.0.0
+      released: '2026-10-15'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/klaviyo-api/
+      repo_leg: github-org:klaviyo
+      publisher_leg: email:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-rubygems
+  label: RubyGems
+  partner: rubygems
+  partner_name: RubyGems
+  category: official SDK (Ruby)
+  type: register
+  channel: package-registry
+  evidence: https://rubygems.org/gems/klaviyo-api-sdk
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: klaviyo-api-sdk
+      version: 19.0.0
+      released: '2026-10-15'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/klaviyo-api-sdk
+      repo_leg: domain:klaviyo.com
+      publisher_leg: org:klaviyo
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
 - slug: klaviyo-airbyte
@@ -739,105 +654,203 @@
     builder: 'community (Meltano Hub variant maintainers: airbyte, codyss, hotgluexyz, meltanolabs, singer-io)'
   status: not-a-workflow
   arazzo: null
-- slug: klaviyo-npm-registry
-  label: npm registry
-  partner: npm
-  partner_name: npm registry
-  category: official SDK (JavaScript/TypeScript)
-  type: register
-  channel: package-registry
-  evidence: https://www.npmjs.com/package/klaviyo-api
+- slug: klaviyo-twilio-segment
+  label: Twilio Segment
+  partner: segment
+  partner_name: Twilio Segment
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/klaviyo
   source: edge
-  relationship: distribution-channel
-  contract_reference:
-    register: npm registry (public registry JSON)
-    spec_file: null
-    language: JavaScript/TypeScript
-    packages:
-    - name: klaviyo-api
-      version: 24.0.0
-      released: '2026-10-15'
-      released_field: modified
-      lapsed: false
-      page: https://www.npmjs.com/package/klaviyo-api
-      repo_leg: github-org:klaviyo
-      publisher_leg: email:klaviyo.com
-      matched_by: domain
-    - name: klaviyo-react-native-sdk
-      version: 2.5.0
-      released: '2026-08-20'
-      released_field: modified
-      lapsed: false
-      page: https://www.npmjs.com/package/klaviyo-react-native-sdk
-      repo_leg: github-org:klaviyo
-      publisher_leg: email:klaviyo.com
-      matched_by: domain
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
+  relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
-- slug: klaviyo-pypi
-  label: PyPI
-  partner: pypi
-  partner_name: PyPI
-  category: official SDK (Python)
-  type: register
-  channel: package-registry
-  evidence: https://pypi.org/project/klaviyo-api/
+- slug: klaviyo-mparticle
+  label: mParticle
+  partner: mparticle
+  partner_name: mParticle
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://docs.mparticle.com/integrations/klaviyo/audience/
   source: edge
-  relationship: distribution-channel
-  contract_reference:
-    register: PyPI (public registry JSON)
-    spec_file: null
-    language: Python
-    packages:
-    - name: klaviyo-api
-      version: 25.0.0
-      released: '2026-10-15'
-      released_field: upload_time
-      lapsed: false
-      page: https://pypi.org/project/klaviyo-api/
-      repo_leg: github-org:klaviyo
-      publisher_leg: email:klaviyo.com
-      matched_by: domain
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
+  relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
-- slug: klaviyo-rubygems
-  label: RubyGems
-  partner: rubygems
-  partner_name: RubyGems
-  category: official SDK (Ruby)
-  type: register
-  channel: package-registry
-  evidence: https://rubygems.org/gems/klaviyo-api-sdk
+- slug: klaviyo-hightouch
+  label: Hightouch
+  partner: hightouch
+  partner_name: Hightouch
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://hightouch.com/docs/destinations/klaviyo
   source: edge
-  relationship: distribution-channel
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-census
+  label: Census
+  partner: getcensus
+  partner_name: Census
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/klaviyo
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-zapier
+  label: Zapier
+  partner: zapier
+  partner_name: Zapier
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  evidence: https://zapier.com/apps/klaviyo/integrations
+  source: edge
+  relationship: ipaas-bridge
   contract_reference:
-    register: RubyGems (public registry JSON)
+    register: Zapier app directory (zapier.com/api/v4/apps)
     spec_file: null
-    language: Ruby
-    packages:
-    - name: klaviyo-api-sdk
-      version: 19.0.0
-      released: '2026-10-15'
-      released_field: version_created_at
-      lapsed: false
-      page: https://rubygems.org/gems/klaviyo-api-sdk
-      repo_leg: domain:klaviyo.com
-      publisher_leg: org:klaviyo
-      matched_by: domain
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
+    role: ipaas-connector:zapier
+    registered_name: Klaviyo
+    matched_domain: klaviyo.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: klaviyo
+    beta: false
+    builder: unknown (not in the directory record)
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-pipedream
+  label: Pipedream
+  partner: pipedream
+  partner_name: Pipedream
+  type: marketplace
+  marketplace: pipedream-components
+  channel: open-source-node
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/klaviyo
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Pipedream components (PipedreamHQ/pipedream components/)
+    spec_file: null
+    role: ipaas-connector:pipedream
+    registered_name: klaviyo
+    matched_domain: klaviyo.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: klaviyo
+    actions: true
+    sources: false
+    builder: Pipedream repo (component)
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-classy-own
+  label: Classy (own)
+  partner: classy-org
+  partner_name: Classy (own)
+  category: marketing-supporter-engagement
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://pro.gofundme.com/c/integrations/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-guesty-own
+  label: Guesty (own)
+  partner: guesty
+  partner_name: Guesty (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.guesty.com/marketplace-items/klaviyo/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-mews-own
+  label: Mews (own)
+  partner: mews-com
+  partner_name: Mews (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.mews.com/en/products/marketplace/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-olo-own
+  label: Olo (own)
+  partner: olo
+  partner_name: Olo (own)
+  category: Data Analytics
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.olo.com/partners/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/klaviyo-email-marketing
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-toast-own
+  label: Toast (own)
+  partner: toast
+  partner_name: Toast (own)
+  category: Analytics
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://pos.toasttab.com/partners/directory/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/klaviyo-for-woocommerce/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-zendesk-own
+  label: Zendesk (own)
+  partner: zendesk
+  partner_name: Zendesk (own)
+  category: CRM and Marketing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.zendesk.com/marketplace/apps/support/1236425/klaviyo/
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
