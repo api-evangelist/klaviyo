@@ -889,3 +889,16 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
+- slug: klaviyo-yotpo-own
+  label: Yotpo (own)
+  partner: yotpo
+  partner_name: Yotpo (own)
+  category: Loyalty & Referrals
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.yotpo.com/integrations/klaviyo-customer-hub/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

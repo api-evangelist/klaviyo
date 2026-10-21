@@ -37,6 +37,7 @@ checked:
 - toast/integrations/toast-integration-edges.yml
 - woocommerce/integrations/woocommerce-integration-edges.yml
 - zendesk/integrations/zendesk-integration-edges.yml
+- yotpo/integrations/yotpo-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1185,6 +1186,23 @@ edges:
   direction: third-party
   category: Website Builders
   partner_url: https://www.wix.com/
+- partner_name: Yotpo (own)
+  partner: yotpo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.yotpo.com/integrations/klaviyo-customer-hub/
+  mirror_of: yotpo/integrations/yotpo-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Loyalty & Referrals
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
   url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo
