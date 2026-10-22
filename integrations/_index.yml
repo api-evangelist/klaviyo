@@ -788,6 +788,18 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
+- slug: klaviyo-shopware-store
+  label: Shopware Store
+  partner_name: Shopware Store
+  category: Shopware Store extension partner
+  type: marketplace
+  marketplace: shopware-store
+  channel: partner-built
+  evidence: https://store.shopware.com/en/extension-partners/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: klaviyo-classy-own
   label: Classy (own)
   partner: classy-org
@@ -915,14 +927,15 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: klaviyo-shopware-store
-  label: Shopware Store
-  partner_name: Shopware Store
-  category: Shopware Store extension partner
+- slug: klaviyo-wix-own
+  label: Wix (own)
+  partner: wix
+  partner_name: Wix (own)
+  category: Email
   type: marketplace
-  marketplace: shopware-store
+  marketplace: own
   channel: partner-built
-  evidence: https://store.shopware.com/en/extension-partners/klaviyo
+  evidence: https://www.wix.com/app-market/developer/klaviyo
   source: edge
   relationship: platform-app
   status: not-a-workflow
