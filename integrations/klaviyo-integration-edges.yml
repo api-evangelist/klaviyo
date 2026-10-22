@@ -38,6 +38,11 @@ checked:
 - woocommerce/integrations/woocommerce-integration-edges.yml
 - zendesk/integrations/zendesk-integration-edges.yml
 - yotpo/integrations/yotpo-integration-edges.yml
+- https://commercemarketplace.adobe.com/partner/
+- https://commercemarketplace.adobe.com/sitemap.xml
+- https://store.shopware.com/en/extension-partners/
+- https://store.shopware.com/en/sitemap.xml
+- adobe-commerce/integrations/adobe-commerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -690,142 +695,6 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
-- partner_name: Classy (own)
-  partner: classy-org
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://pro.gofundme.com/c/integrations/
-  mirror_of: classy-org/integrations/classy-org-integration-edges.yml
-  apps:
-  - Klaviyo
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: marketing-supporter-engagement
-- partner_name: Guesty (own)
-  partner: guesty
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.guesty.com/marketplace-items/klaviyo/
-  mirror_of: guesty/integrations/guesty-integration-edges.yml
-  apps:
-  - Klaviyo
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-- partner_name: Mews (own)
-  partner: mews-com
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.mews.com/en/products/marketplace/klaviyo
-  mirror_of: mews-com/integrations/mews-com-integration-edges.yml
-  apps:
-  - Klaviyo
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-- partner_name: Olo (own)
-  partner: olo
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.olo.com/partners/klaviyo
-  mirror_of: olo/integrations/olo-integration-edges.yml
-  apps:
-  - Klaviyo
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Data Analytics
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/klaviyo-email-marketing
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - 'Klaviyo: Email Marketing & SMS'
-  - 'Klaviyo: Product Reviews'
-  listing_count: 2
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  publisher_verified:
-  - Built for Shopify
-- partner_name: Toast (own)
-  partner: toast
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://pos.toasttab.com/partners/directory/klaviyo
-  mirror_of: toast/integrations/toast-integration-edges.yml
-  apps:
-  - Klaviyo
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Analytics
-- partner_name: WooCommerce (own)
-  partner: woocommerce
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://woocommerce.com/products/klaviyo-for-woocommerce/
-  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
-  apps:
-  - Klaviyo
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: extension
-- partner_name: Zendesk (own)
-  partner: zendesk
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.zendesk.com/marketplace/apps/support/1236425/klaviyo/
-  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
-  apps:
-  - Klaviyo
-  listing_count: 1
-  detected: '2026-10-20'
-  detected_by: mirror-platform-listings.py
-  category: CRM and Marketing
 - partner_name: Typeform
   partner: typeform
   partner_match: domain
@@ -1186,6 +1055,142 @@ edges:
   direction: third-party
   category: Website Builders
   partner_url: https://www.wix.com/
+- partner_name: Classy (own)
+  partner: classy-org
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://pro.gofundme.com/c/integrations/
+  mirror_of: classy-org/integrations/classy-org-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: marketing-supporter-engagement
+- partner_name: Guesty (own)
+  partner: guesty
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.guesty.com/marketplace-items/klaviyo/
+  mirror_of: guesty/integrations/guesty-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Mews (own)
+  partner: mews-com
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.mews.com/en/products/marketplace/klaviyo
+  mirror_of: mews-com/integrations/mews-com-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Olo (own)
+  partner: olo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.olo.com/partners/klaviyo
+  mirror_of: olo/integrations/olo-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Data Analytics
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/klaviyo-email-marketing
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - 'Klaviyo: Email Marketing & SMS'
+  - 'Klaviyo: Product Reviews'
+  listing_count: 2
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
+- partner_name: Toast (own)
+  partner: toast
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://pos.toasttab.com/partners/directory/klaviyo
+  mirror_of: toast/integrations/toast-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Analytics
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/klaviyo-for-woocommerce/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/1236425/klaviyo/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: CRM and Marketing
 - partner_name: Yotpo (own)
   partner: yotpo
   partner_match: mirror
@@ -1203,6 +1208,53 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: Loyalty & Referrals
+- partner_name: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://commercemarketplace.adobe.com/klaviyo-magento2-extension.html
+  mirror_of: adobe-commerce/integrations/adobe-commerce-integration-edges.yml
+  apps:
+  - Klaviyo
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Commerce Marketplace extension
+- partner_name: Shopware Store
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: shopware-store
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://store.shopware.com/en/extension-partners/klaviyo
+  category: Shopware Store extension partner
+  publisher_name: Klaviyo
+  publisher_country: USA
+  partner_tier:
+  - Technology Partner Platinum
+  - Extension Partner
+  matched_domain: klaviyo.com
+  matched_by: domain
+  identity_source: the partner's own Shopware Store profile links (domain, name-checked)
+  partner_null_note: 'there is no all/shopware repo (Shopware is a harvest candidate): the platform side cannot
+    be written, so the publisher side names the store with partner null'
+  signal_note: Shopware Store extension partner (listing alone = participation); Partner Status tier in partner_tier;
+    listing count is context, never counted
+  detected_by: sweep-ecommerce-extension-marketplaces.py
+  detected: '2026-10-22'
+  example_listing: https://store.shopware.com/en/klavi31418217175f/klaviyo.html
+  listing_count_prefix: 1
+  badges:
+  - Shopware Technology Partner
+  publisher_verified:
+  - Shopware Technology Partner
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
   url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo

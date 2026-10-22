@@ -453,107 +453,6 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
-- slug: klaviyo-classy-own
-  label: Classy (own)
-  partner: classy-org
-  partner_name: Classy (own)
-  category: marketing-supporter-engagement
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://pro.gofundme.com/c/integrations/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-guesty-own
-  label: Guesty (own)
-  partner: guesty
-  partner_name: Guesty (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.guesty.com/marketplace-items/klaviyo/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-mews-own
-  label: Mews (own)
-  partner: mews-com
-  partner_name: Mews (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.mews.com/en/products/marketplace/klaviyo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-olo-own
-  label: Olo (own)
-  partner: olo
-  partner_name: Olo (own)
-  category: Data Analytics
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.olo.com/partners/klaviyo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-shopify-own
-  label: Shopify (own)
-  partner: shopify
-  partner_name: Shopify (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://apps.shopify.com/klaviyo-email-marketing
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-toast-own
-  label: Toast (own)
-  partner: toast
-  partner_name: Toast (own)
-  category: Analytics
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://pos.toasttab.com/partners/directory/klaviyo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-woocommerce-own
-  label: WooCommerce (own)
-  partner: woocommerce
-  partner_name: WooCommerce (own)
-  category: extension
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://woocommerce.com/products/klaviyo-for-woocommerce/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: klaviyo-zendesk-own
-  label: Zendesk (own)
-  partner: zendesk
-  partner_name: Zendesk (own)
-  category: CRM and Marketing
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.zendesk.com/marketplace/apps/support/1236425/klaviyo/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: klaviyo-typeform
   label: Typeform
   partner: typeform
@@ -889,6 +788,107 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
+- slug: klaviyo-classy-own
+  label: Classy (own)
+  partner: classy-org
+  partner_name: Classy (own)
+  category: marketing-supporter-engagement
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://pro.gofundme.com/c/integrations/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-guesty-own
+  label: Guesty (own)
+  partner: guesty
+  partner_name: Guesty (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.guesty.com/marketplace-items/klaviyo/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-mews-own
+  label: Mews (own)
+  partner: mews-com
+  partner_name: Mews (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.mews.com/en/products/marketplace/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-olo-own
+  label: Olo (own)
+  partner: olo
+  partner_name: Olo (own)
+  category: Data Analytics
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.olo.com/partners/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/klaviyo-email-marketing
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-toast-own
+  label: Toast (own)
+  partner: toast
+  partner_name: Toast (own)
+  category: Analytics
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://pos.toasttab.com/partners/directory/klaviyo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/klaviyo-for-woocommerce/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-zendesk-own
+  label: Zendesk (own)
+  partner: zendesk
+  partner_name: Zendesk (own)
+  category: CRM and Marketing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.zendesk.com/marketplace/apps/support/1236425/klaviyo/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: klaviyo-yotpo-own
   label: Yotpo (own)
   partner: yotpo
@@ -898,6 +898,31 @@
   marketplace: own
   channel: partner-built
   evidence: https://www.yotpo.com/integrations/klaviyo-customer-hub/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-adobe-commerce-own
+  label: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_name: Adobe Commerce (own)
+  category: Adobe Commerce Marketplace extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercemarketplace.adobe.com/klaviyo-magento2-extension.html
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: klaviyo-shopware-store
+  label: Shopware Store
+  partner_name: Shopware Store
+  category: Shopware Store extension partner
+  type: marketplace
+  marketplace: shopware-store
+  channel: partner-built
+  evidence: https://store.shopware.com/en/extension-partners/klaviyo
   source: edge
   relationship: platform-app
   status: not-a-workflow
