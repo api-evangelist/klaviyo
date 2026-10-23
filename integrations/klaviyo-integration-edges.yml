@@ -44,6 +44,9 @@ checked:
 - https://store.shopware.com/en/sitemap.xml
 - adobe-commerce/integrations/adobe-commerce-integration-edges.yml
 - wix/integrations/wix-integration-edges.yml
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1275,6 +1278,104 @@ edges:
   category: Email
   publisher_verified:
   - Verified by Wix
+- partner_name: Packagist
+  partner: packagist
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (PHP)
+  evidence: https://packagist.org/packages/klaviyo/api
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: klaviyo/api
+      version: 21.0.0
+      released: '2026-10-15'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/klaviyo/api
+      repo_leg: github-org:klaviyo
+      publisher_leg: org:klaviyo
+      matched_by: github-org
+    - name: klaviyo/magento2-extension
+      version: 5.2.0
+      released: '2026-08-24'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/klaviyo/magento2-extension
+      repo_leg: github-org:klaviyo
+      publisher_leg: org:klaviyo
+      matched_by: github-org
+    - name: klaviyo/php-sdk
+      version: 2.3.6
+      released: '2022-04-22'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/klaviyo/php-sdk
+      repo_leg: github-org:klaviyo
+      publisher_leg: org:klaviyo
+      matched_by: github-org
+      abandoned: true
+    - name: klaviyo/sdk
+      version: 1.0.3.20220329
+      released: '2022-07-19'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/klaviyo/sdk
+      repo_leg: github-org:klaviyo
+      publisher_leg: org:klaviyo
+      matched_by: github-org
+      abandoned: true
+    - name: klaviyo/shopware-klaviyo
+      version: 4.4.0
+      released: '2026-08-28'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/klaviyo/shopware-klaviyo
+      repo_leg: github-org:klaviyo
+      publisher_leg: org:klaviyo
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
+- partner_name: pub.dev
+  partner: pub-dev
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Dart/Flutter)
+  evidence: https://pub.dev/packages/klaviyo_flutter_sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: pub.dev (public registry JSON)
+    spec_file: null
+    language: Dart/Flutter
+    packages:
+    - name: klaviyo_flutter_sdk
+      version: 0.4.0
+      released: '2026-10-20'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/klaviyo_flutter_sdk
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:klaviyo.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 templates:
 - title: Add contacts to a Google Ads customer list for new events on Klaviyo
   url: https://zapier.com/apps/google-ads/integrations/klaviyo/543069/add-contacts-to-a-google-ads-customer-list-for-new-events-on-klaviyo
