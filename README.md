@@ -1,4 +1,4 @@
-# Klaviyo (klaviyo)
+# Klaviyo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,91 +66,288 @@
 
 Klaviyo is a marketing automation and customer data platform built for ecommerce. Build custom integrations to bring data into Klaviyo to create personalized experiences across email, SMS, mobile push, and more. The Klaviyo API exposes profiles, events, lists, segments, campaigns, flows, catalogs, coupons, metrics, reviews, templates, webhooks, and reporting endpoints for building rich integrations and data pipelines.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/klaviyo/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/klaviyo/refs/heads/main/apis.yml)
+**Areas:** Marketing · Email · SMS · Customer Data · E-Commerce · Automation · Marketing Automation · Email Marketing
 
-## Scope
+## Klaviyo on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Klaviyo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/klaviyo/](https://apis.io/providers/klaviyo/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (23)
 
-- Marketing
-- Email
-- SMS
-- Customer Data
-- Ecommerce
-- Automation
+- [Klaviyo Accounts API](https://apis.io/apis/klaviyo/klaviyo-accounts-api/) — accounts
+- [Klaviyo Campaigns API](https://apis.io/apis/klaviyo/klaviyo-campaigns-api/) — campaigns
+- [Klaviyo Catalogs API](https://apis.io/apis/klaviyo/klaviyo-catalogs-api/) — catalogs
+- [Klaviyo Client API](https://apis.io/apis/klaviyo/klaviyo-client-api/) — client
+- [Klaviyo Conversations API](https://apis.io/apis/klaviyo/klaviyo-conversations-api/) — conversations
+- [Klaviyo Coupons API](https://apis.io/apis/klaviyo/klaviyo-coupons-api/) — coupons
+- [Klaviyo Custom Objects API](https://apis.io/apis/klaviyo/klaviyo-custom-objects-api/) — custom objects
+- [Klaviyo Data Privacy API](https://apis.io/apis/klaviyo/klaviyo-data-privacy-api/) — data privacy
+- [Klaviyo Events API](https://apis.io/apis/klaviyo/klaviyo-events-api/) — events
+- [Klaviyo Flows API](https://apis.io/apis/klaviyo/klaviyo-flows-api/) — flows
+- [Klaviyo Forms API](https://apis.io/apis/klaviyo/klaviyo-forms-api/) — forms
+- [Klaviyo Images API](https://apis.io/apis/klaviyo/klaviyo-images-api/) — images
+- [Klaviyo Lists API](https://apis.io/apis/klaviyo/klaviyo-lists-api/) — lists
+- [Klaviyo Metrics API](https://apis.io/apis/klaviyo/klaviyo-metrics-api/) — metrics
+- [Klaviyo Profiles API](https://apis.io/apis/klaviyo/klaviyo-profiles-api/) — profiles
+- [Klaviyo Reporting API](https://apis.io/apis/klaviyo/klaviyo-reporting-api/) — reporting
+- [Klaviyo Reviews API](https://apis.io/apis/klaviyo/klaviyo-reviews-api/) — reviews
+- [Klaviyo Segments API](https://apis.io/apis/klaviyo/klaviyo-segments-api/) — segments
+- [Klaviyo Tags API](https://apis.io/apis/klaviyo/klaviyo-tags-api/) — tags
+- [Klaviyo Templates API](https://apis.io/apis/klaviyo/klaviyo-templates-api/) — templates
+- [Klaviyo Tracking Settings API](https://apis.io/apis/klaviyo/klaviyo-tracking-settings-api/) — tracking settings
+- [Klaviyo Web Feeds API](https://apis.io/apis/klaviyo/klaviyo-web-feeds-api/) — web feeds
+- [Klaviyo Webhooks API](https://apis.io/apis/klaviyo/klaviyo-webhooks-api/) — webhooks
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-07T00:00:00.000Z
-- **Modified:** 2026-05-30
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Klaviyo API
+Event-driven and webhook contracts.
 
-The Klaviyo API provides programmatic access to profiles, events, lists, segments, campaigns, flows, templates, catalogs, coupons, metrics, reviews, forms, images, tags, webhooks, tracking settings, custom objects, conversations, web feeds, data privacy, and reporting. It is used to build personalized customer experiences across email, SMS, mobile push, and other channels for ecommerce brands.
+- [Klaviyo Webhooks](https://apis.io/asyncapis/klaviyo/klaviyo-webhooks-asyncapi/)
 
-- **Human URL:** [https://developers.klaviyo.com/](https://developers.klaviyo.com/)
-- **Base URL:** `https://a.klaviyo.com`
+#### Event channels (1)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Profiles
-- Events
-- Lists
-- Segments
-- Campaigns
-- Flows
-- Catalogs
-- Coupons
-- Metrics
-- Reviews
-- Templates
-- Webhooks
-- Forms
-- Reporting
+- [/klaviyo/webhooks](https://apis.io/channels/klaviyo/klaviyo-webhooks/)
 
-#### Properties
+#### GraphQL (1)
 
-- [Documentation](https://developers.klaviyo.com/)
-- [OpenAPI](openapi/klaviyo-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/klaviyo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/klaviyo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/klaviyo-webhooks-asyncapi.yaml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Reference](https://developers.klaviyo.com/en/reference/api_overview)
-- [Authentication](https://developers.klaviyo.com/en/docs/authenticate_)
-- [Rate Limits](https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling)
-- [Versioning](https://developers.klaviyo.com/en/docs/api_versioning_and_deprecation_policy)
-- [Changelog](https://developers.klaviyo.com/en/docs/changelog_)
-- [S D Ks](https://developers.klaviyo.com/en/docs/sdk_overview)
-- [Git Hub](https://github.com/klaviyo/openapi)
+GraphQL schemas.
 
-## Common Properties
+- [Moved to /providers/klaviyo/](https://apis.io/graphqls/klaviyo/klaviyo-graphql/)
 
-- [LinkedIn](https://www.linkedin.com/company/klaviyo)
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Klaviyo MCP Server](https://apis.io/servers/klaviyo/klaviyo-mcp-server/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Klaviyo Agentic Access](https://apis.io/agentic-access/klaviyo/klaviyo-agentic-access/)
+
+#### JSON Schema (1194)
+
+The data models the API reads and writes.
+
+- [AbTestAction](https://apis.io/schemas/klaviyo/klaviyo-abtestaction/)
+- [ABTestSendStrategy](https://apis.io/schemas/klaviyo/klaviyo-abtestsendstrategy/)
+- [AccountEnum](https://apis.io/schemas/klaviyo/klaviyo-accountenum/)
+- [AccountResponseObjectResource](https://apis.io/schemas/klaviyo/klaviyo-accountresponseobjectresource/)
+- [ActionOutputCondition](https://apis.io/schemas/klaviyo/klaviyo-actionoutputcondition/)
+- [ActionOutputConditionConditionGroup](https://apis.io/schemas/klaviyo/klaviyo-actionoutputconditionconditiongroup/)
+- [ActionOutputConditionFilter](https://apis.io/schemas/klaviyo/klaviyo-actionoutputconditionfilter/)
+- [ActionOutputSplitAction](https://apis.io/schemas/klaviyo/klaviyo-actionoutputsplitaction/)
+- [ActionOutputSplitActionData](https://apis.io/schemas/klaviyo/klaviyo-actionoutputsplitactiondata/)
+- [AdditionalField](https://apis.io/schemas/klaviyo/klaviyo-additionalfield/)
+- [AfterCloseTimeout](https://apis.io/schemas/klaviyo/klaviyo-afterclosetimeout/)
+- [AfterCloseTimeoutProperties](https://apis.io/schemas/klaviyo/klaviyo-afterclosetimeoutproperties/)
+- [AgeGate](https://apis.io/schemas/klaviyo/klaviyo-agegate/)
+- [AgeGateProperties](https://apis.io/schemas/klaviyo/klaviyo-agegateproperties/)
+- [AgeGateStyles](https://apis.io/schemas/klaviyo/klaviyo-agegatestyles/)
+- [AlltimeDateFilter](https://apis.io/schemas/klaviyo/klaviyo-alltimedatefilter/)
+- [AnniversaryDateFilter](https://apis.io/schemas/klaviyo/klaviyo-anniversarydatefilter/)
+- [APIJobErrorPayload](https://apis.io/schemas/klaviyo/klaviyo-apijoberrorpayload/)
+- [APIMethodFilter](https://apis.io/schemas/klaviyo/klaviyo-apimethodfilter/)
+- [AttributionEnum](https://apis.io/schemas/klaviyo/klaviyo-attributionenum/)
+- [AttributionResponseObjectResource](https://apis.io/schemas/klaviyo/klaviyo-attributionresponseobjectresource/)
+- [Audiences](https://apis.io/schemas/klaviyo/klaviyo-audiences/)
+- [AudiencesUpdate](https://apis.io/schemas/klaviyo/klaviyo-audiencesupdate/)
+- [AutomaticWinnerSelectionSettings](https://apis.io/schemas/klaviyo/klaviyo-automaticwinnerselectionsettings/)
+- [BackgroundImage](https://apis.io/schemas/klaviyo/klaviyo-backgroundimage/)
+- …and 1169 more published on APIs.io
+
+#### JSON Structure (1)
+
+Data models expressed in JSON Structure.
+
+- [Klaviyo Structure](https://apis.io/json-structure/klaviyo/klaviyo-structure/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Klaviyo Domain Vocabulary](https://apis.io/vocabularies/klaviyo/klaviyo-vocabulary/)
+
+#### Collections (46)
+
+Postman and Open Collection request collections.
+
+- [Klaviyo API](https://apis.io/collections/klaviyo/open-klaviyo/)
+- [Klaviyo Accounts API](https://apis.io/collections/klaviyo/open-klaviyo-accounts-api/)
+- [Klaviyo Accounts Campaigns API](https://apis.io/collections/klaviyo/open-klaviyo-campaigns-api/)
+- [Klaviyo Accounts Catalogs API](https://apis.io/collections/klaviyo/open-klaviyo-catalogs-api/)
+- [Klaviyo Accounts Client API](https://apis.io/collections/klaviyo/open-klaviyo-client-api/)
+- [Klaviyo Accounts Conversations API](https://apis.io/collections/klaviyo/open-klaviyo-conversations-api/)
+- [Klaviyo Accounts Coupons API](https://apis.io/collections/klaviyo/open-klaviyo-coupons-api/)
+- [Klaviyo Accounts Custom Objects API](https://apis.io/collections/klaviyo/open-klaviyo-custom-objects-api/)
+- [Klaviyo Accounts Data Privacy API](https://apis.io/collections/klaviyo/open-klaviyo-data-privacy-api/)
+- [Klaviyo Accounts Events API](https://apis.io/collections/klaviyo/open-klaviyo-events-api/)
+- [Klaviyo Accounts Flows API](https://apis.io/collections/klaviyo/open-klaviyo-flows-api/)
+- [Klaviyo Accounts Forms API](https://apis.io/collections/klaviyo/open-klaviyo-forms-api/)
+- [Klaviyo Accounts Images API](https://apis.io/collections/klaviyo/open-klaviyo-images-api/)
+- [Klaviyo Accounts Lists API](https://apis.io/collections/klaviyo/open-klaviyo-lists-api/)
+- [Klaviyo Accounts Metrics API](https://apis.io/collections/klaviyo/open-klaviyo-metrics-api/)
+- [Klaviyo Accounts Profiles API](https://apis.io/collections/klaviyo/open-klaviyo-profiles-api/)
+- [Klaviyo Accounts Reporting API](https://apis.io/collections/klaviyo/open-klaviyo-reporting-api/)
+- [Klaviyo Accounts Segments API](https://apis.io/collections/klaviyo/open-klaviyo-segments-api/)
+- [Klaviyo Accounts Tags API](https://apis.io/collections/klaviyo/open-klaviyo-tags-api/)
+- [Klaviyo Accounts Templates API](https://apis.io/collections/klaviyo/open-klaviyo-templates-api/)
+- [Klaviyo Accounts Tracking Settings API](https://apis.io/collections/klaviyo/open-klaviyo-tracking-settings-api/)
+- [Klaviyo Accounts Web Feeds API](https://apis.io/collections/klaviyo/open-klaviyo-web-feeds-api/)
+- [Klaviyo Accounts Webhooks API](https://apis.io/collections/klaviyo/open-klaviyo-webhooks-api/)
+- [Klaviyo Accounts API](https://apis.io/collections/klaviyo/postman-klaviyo-accounts-api/)
+- [Klaviyo Accounts Campaigns API](https://apis.io/collections/klaviyo/postman-klaviyo-campaigns-api/)
+- …and 21 more published on APIs.io
+
+#### Overlays (46)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Klaviyo Accounts Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-accounts-api-overlay/)
+- [Klaviyo Accounts Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-accounts-api-phrasing-overlay/)
+- [Klaviyo Campaigns Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-campaigns-api-overlay/)
+- [Klaviyo Campaigns Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-campaigns-api-phrasing-overlay/)
+- [Klaviyo Catalogs Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-catalogs-api-overlay/)
+- [Klaviyo Catalogs Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-catalogs-api-phrasing-overlay/)
+- [Klaviyo Client Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-client-api-overlay/)
+- [Klaviyo Client Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-client-api-phrasing-overlay/)
+- [Klaviyo Conversations Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-conversations-api-overlay/)
+- [Klaviyo Conversations Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-conversations-api-phrasing-overlay/)
+- [Klaviyo Coupons Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-coupons-api-overlay/)
+- [Klaviyo Coupons Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-coupons-api-phrasing-overlay/)
+- [Klaviyo Custom Objects Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-custom-objects-api-overlay/)
+- [Klaviyo Custom Objects Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-custom-objects-api-phrasing-overlay/)
+- [Klaviyo Data Privacy Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-data-privacy-api-overlay/)
+- [Klaviyo Data Privacy Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-data-privacy-api-phrasing-overlay/)
+- [Klaviyo Events Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-events-api-overlay/)
+- [Klaviyo Events Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-events-api-phrasing-overlay/)
+- [Klaviyo Flows Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-flows-api-overlay/)
+- [Klaviyo Flows Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-flows-api-phrasing-overlay/)
+- [Klaviyo Forms Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-forms-api-overlay/)
+- [Klaviyo Forms Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-forms-api-phrasing-overlay/)
+- [Klaviyo Images Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-images-api-overlay/)
+- [Klaviyo Images Api Phrasing Overlay](https://apis.io/overlays/klaviyo/klaviyo-images-api-phrasing-overlay/)
+- [Klaviyo Lists Api Overlay](https://apis.io/overlays/klaviyo/klaviyo-lists-api-overlay/)
+- …and 21 more published on APIs.io
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Klaviyo — asyncapi rules](https://apis.io/rules/klaviyo/klaviyo-asyncapi-spectral-rules/)
+- [Klaviyo — jsonschema rules](https://apis.io/rules/klaviyo/klaviyo-jsonschema-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Klaviyo Authentication](https://apis.io/security/klaviyo/klaviyo-authentication/)
+- [Klaviyo Domain Security](https://apis.io/security/klaviyo/klaviyo-domain-security/)
+- [Klaviyo Trust Center](https://apis.io/security/klaviyo/klaviyo-trust-center/)
+- [Klaviyo Vulnerability Disclosure](https://apis.io/security/klaviyo/klaviyo-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Klaviyo Scopes](https://apis.io/scopes/klaviyo/klaviyo-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Klaviyo Plans Pricing](https://apis.io/plans/klaviyo/klaviyo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Klaviyo Rate Limits](https://apis.io/rate-limits/klaviyo/klaviyo-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Klaviyo Finops](https://apis.io/finops/klaviyo/klaviyo-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.klaviyo.com)
-- [Portal](https://developers.klaviyo.com/)
 - [Documentation](https://developers.klaviyo.com/en/docs)
-- [Reference](https://developers.klaviyo.com/en/reference/api_overview)
-- [Authentication](https://developers.klaviyo.com/en/docs/authenticate_)
-- [Rate Limits](https://developers.klaviyo.com/en/docs/rate_limits_and_error_handling)
-- [Changelog](https://developers.klaviyo.com/en/docs/changelog_)
-- [S D Ks](https://developers.klaviyo.com/en/docs/sdk_overview)
-- [Status Page](https://status.klaviyo.com/)
-- [Blog](https://www.klaviyo.com/blog)
-- [Sign Up](https://www.klaviyo.com/signup)
+- [Getting started](https://developers.klaviyo.com/en/docs/get_started)
+- [API reference](https://developers.klaviyo.com/en/reference/api_overview)
 - [Pricing](https://www.klaviyo.com/pricing)
-- [Terms of Service](https://www.klaviyo.com/legal/terms-of-service)
-- [Privacy Policy](https://www.klaviyo.com/legal/privacy-policy)
+- [Sign up](https://www.klaviyo.com/sign-up)
 - [Support](https://help.klaviyo.com/)
-- [Git Hub](https://github.com/klaviyo)
-- [Features](undefined)
-- [Integrations](https://www.klaviyo.com/partners)
+- [Changelog](https://developers.klaviyo.com/en/docs/changelog_)
+- [Blog](https://www.klaviyo.com/blog)
+- [Security](https://www.klaviyo.com/security/bug-reporting)
+- [Compliance](https://trust.klaviyo.com/)
+- [Terms of service](https://www.klaviyo.com/legal/terms-of-service)
+- [Privacy policy](https://www.klaviyo.com/legal/privacy-policy)
+- [GitHub](https://github.com/klaviyo)
+- [Status](https://status.klaviyo.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 72.0** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 61.7 |
+| Contract governance | 31.8 |
+| Operational transparency | 76.3 |
+| Developer ergonomics | 58.3 |
+| Access clarity | 73.7 |
+
+**Agent readiness 54.9** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 44.2** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/klaviyo/](https://apis.io/providers/klaviyo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Klaviyo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/klaviyo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
