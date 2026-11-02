@@ -1,0 +1,67 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://www.klaviyo.com/pricing
+sources:
+- https://www.klaviyo.com/pricing
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T120612
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+published: true
+note: 'Page is a free-plan oriented pricing page with an interactive plan builder showing ''Total: $1'';
+  paid tier prices are not listed in the text. Sales contact offered for enterprise/professional services.'
+plan_count: 2
+currency: USD
+plans:
+- name: Free
+  price_text: Get started Free
+  currency: USD
+  period: month
+  unit: account
+  included_quota: Up to 250 profiles, 500 emails/month, $5 of mobile messages/month, $5 of Composer usage/month,
+    built-in reporting, email support
+  overage: Once you have exceeded the free plan's limits (e.g. more than 250 active profiles or more than
+    500 email sends in a month), your account will no longer be able to send additional emails or messages
+    until the next billing cycle or until you upgrade to a paid plan.
+- name: Build a plan (Total)
+  price_text: 'Total: $1'
+  price: 1
+  currency: USD
+  period: month
+rate_limit_statements:
+- Up to 250 active profiles
+- 500 email sends/month
+- $5 of mobile messages/month
+- $5 of Composer usage/month
+- Email support for first 60 days
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - object
+  plans:
+  - name: Free
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Build a plan (Total)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
